@@ -1,2 +1,7 @@
 @import 'reset.css';
 @import 'comment.css';
+
+
+.freeboard {
+    width: 100%;
+}
