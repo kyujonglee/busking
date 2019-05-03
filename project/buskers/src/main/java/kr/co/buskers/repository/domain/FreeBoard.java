@@ -9,7 +9,6 @@ public class FreeBoard {
 	private String content;
 	private int likeCnt;
 	private Date regDate;
-	private String koklllllllo;
 	
 	public int getBoardNo() {
 		return boardNo;
