@@ -1,0 +1,47 @@
+@import "common.css";
+
+:root {
+  --color-background: #f5f7fc;
+  --color-gray: #808e94;
+  --color-darkgray: #282e30;
+  --color-orange: #f37420;
+  --color-white: #ffffff;
+}
+
+.body-background {
+  background-color: var(--color-background);
+}
+
+.header {
+  margin-top: 50px;
+}
+
+.header .container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  background-color: var(--color-white);
+  height: 30px;
+}
+
+.header .header-columns:first-child {
+  display: flex;
+  align-items: center;
+}
+
+.header .header-columns:nth-child(2) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.header .header-columns:last-child {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.header .header-columns:nth-child(2) .header__title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
