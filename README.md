@@ -33,5 +33,4 @@ https://kyujonglee.github.io/busking/
 3. 다시 자신의 branch를 이동 후 master branch를 병합(merge) 한다.
 4. 충돌을 잡는다.
 5. 충돌을 잡은 뒤에 master branch로 이동한다.
-6. master branch에서 자신의 branch를 merge(병합)한다. 그리고 pull
-
+6. master branch에서 자신의 branch를 merge(병합)한다. 그리고 push!
