@@ -9,7 +9,25 @@ public class FreeBoard {
 	private String content;
 	private int likeCnt;
 	private Date regDate;
-	
+	private int viewCnt;
+	private int isNotify;
+
+	public int getViewCnt() {
+		return viewCnt;
+	}
+
+	public void setViewCnt(int viewCnt) {
+		this.viewCnt = viewCnt;
+	}
+
+	public int getIsNotify() {
+		return isNotify;
+	}
+
+	public void setIsNotify(int isNotify) {
+		this.isNotify = isNotify;
+	}
+
 	public int getBoardNo() {
 		return boardNo;
 	}
