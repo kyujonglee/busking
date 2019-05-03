@@ -1,6 +1,17 @@
 @import "reset.css";
 @import 'globals.css';
 
+/* font */
+
+/* color */
+
+
+
+
+.container {
+    width: 1200px;
+    margin: 0 auto;
+}
 
 
 
