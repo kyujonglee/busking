@@ -10,16 +10,8 @@ public class FreeBoard {
 	private int viewCnt;
 	private int likeCnt;
 	private Date regDate;
-	private int is_notify;
-
-	public int getIs_notify() {
-		return is_notify;
-	}
-
-	public void setIs_notify(int is_notify) {
-		this.is_notify = is_notify;
-	}
-
+	private String koo;
+	
 	public int getBoardNo() {
 		return boardNo;
 	}
