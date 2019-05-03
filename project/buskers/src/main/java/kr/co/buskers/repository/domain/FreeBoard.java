@@ -7,7 +7,6 @@ public class FreeBoard {
 	private int boardNo;
 	private String title;
 	private String content;
-	private int viewCnt;
 	private int likeCnt;
 	private Date regDate;
 	private int is_notify;
@@ -50,14 +49,6 @@ public class FreeBoard {
 
 	public void setContent(String content) {
 		this.content = content;
-	}
-
-	public int getViewCnt() {
-		return viewCnt;
-	}
-
-	public void setViewCnt(int viewCnt) {
-		this.viewCnt = viewCnt;
 	}
 
 	public int getLikeCnt() {
