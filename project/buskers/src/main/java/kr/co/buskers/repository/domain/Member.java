@@ -12,13 +12,33 @@ public class Member {
 	private String email;
 	private Date joinDate;
 	private String phone;
-	private int sex;
+	private char sex;
 	private String profileImg;
 	private String profileImgPath;
 	private String nickName;
-	private int isAdmin;
+	private char isAdmin;
+	private char isBusker;
+	private char isAgency;
 	
 	
+	public char getIsBusker() {
+		return isBusker;
+	}
+	public void setIsBusker(char isBusker) {
+		this.isBusker = isBusker;
+	}
+	public char getIsAgency() {
+		return isAgency;
+	}
+	public void setIsAgency(char isAgency) {
+		this.isAgency = isAgency;
+	}
+	public void setSex(char sex) {
+		this.sex = sex;
+	}
+	public void setIsAdmin(char isAdmin) {
+		this.isAdmin = isAdmin;
+	}
 	public int getMemberNo() {
 		return memberNo;
 	}
@@ -67,12 +87,8 @@ public class Member {
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
-	public int getSex() {
-		return sex;
-	}
-	public void setSex(int sex) {
-		this.sex = sex;
-	}
+	
+	
 	public String getProfileImg() {
 		return profileImg;
 	}
@@ -91,12 +107,8 @@ public class Member {
 	public void setNickName(String nickName) {
 		this.nickName = nickName;
 	}
-	public int getIsAdmin() {
-		return isAdmin;
-	}
-	public void setIsAdmin(int isAdmin) {
-		this.isAdmin = isAdmin;
-	}
+	
+	
 	
 	
 }
