@@ -1,4 +1,4 @@
-@import "common.css";
+@import "../../../common/common.css";
 
 :root {
   --color-background: #f5f7fc;
@@ -10,17 +10,18 @@
 
 .body-background {
   background-color: var(--color-background);
+  padding-top : 50px;
 }
 
 .header {
-  margin-top: 50px;
+  font-family: "Jua",sans-serif;
 }
 
 .header .container {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   background-color: var(--color-white);
-  height: 30px;
+  height: 50px;
 }
 
 .header .header-columns:first-child {
@@ -44,4 +45,18 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  font-size: 24px;
+}
+
+/* 사이드바 헤더 안에 넣고 position: relative 로 확인해보기  */
+.side-bar {
+    background-color: var(--color-white);
+    width: 50px;
+    height: 300px;
+    border-top-left-radius: 10px;
+}
+
+.main-form {
+    display : flex;
+    justify-content: center;
 }
