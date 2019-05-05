@@ -11,7 +11,6 @@ public class FreeBoardComment {
    private Date regDate;
    private int likeCnt;
    private int disLikeCnt;
-
    
    public int getMemberNo() {
       return memberNo;
