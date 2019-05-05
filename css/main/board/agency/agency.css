@@ -1,4 +1,5 @@
 @import "../../../common/common.css";
+@import "../../board/agency/agency-header.css";
 
 :root {
   --color-background: #f5f7fc;
@@ -6,6 +7,10 @@
   --color-darkgray: #282e30;
   --color-orange: #f37420;
   --color-white: #ffffff;
+  --color-black : #293234;
+  --color-green : #33C634;
+  --color-pink : #F4326C;
+  --color-blue : #3A5DFB;
 }
 
 .body-background {
@@ -22,11 +27,35 @@
   grid-template-columns: repeat(3, 1fr);
   background-color: var(--color-white);
   height: 50px;
+  padding : 10px;
+  box-sizing: border-box;
+  border-left : 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .header .header-columns:first-child {
   display: flex;
   align-items: center;
+  position: relative;
+}
+
+.header .header-columns:first-child input {
+  height: 28px;
+  border-radius: 5px;
+  border : 1px solid rgba(0, 0, 0, 0.05);
+  width: 200px;
+  padding-left: 40px;
+  opacity: 0.8;
+}
+.header .header-columns:first-child input:focus {
+  border-color : var(--color-darkgray);
+  transition: border-color .8s ease-in-out;
+}
+
+.header .header-columns:first-child i {
+  color : var(--color-darkgray);
+  position: absolute;
+  left: 10px;
+  font-weight: 600;
 }
 
 .header .header-columns:nth-child(2) {
@@ -39,24 +68,70 @@
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  color : var(--color-gray);
+}
+
+.header .header-columns:last-child i {
+  margin-left: 8px;
+}
+.header .header-columns:last-child i:nth-child(2){
+  color : #FFBC00;
+}
+
+.header-columns:last-child .header__user i{
+  color : var(--color-blue);
 }
 
 .header .header-columns:nth-child(2) .header__title {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 24px;
+  font-size: 30px;
 }
 
-/* 사이드바 헤더 안에 넣고 position: relative 로 확인해보기  */
+/* 사이드바 */
 .side-bar {
     background-color: var(--color-white);
     width: 50px;
-    height: 300px;
+    height: 100vh;
     border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+    color : var(--color-gray);
+    border-right : 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.side-bar .side-bar__icon {
+  border-left : 2px solid white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  width: 100%;
+}
+
+
+.side-bar .side-bar__icon:hover {
+  border-left : 2px solid var(--color-darkgray);
+  color : var(--color-darkgray);
+  transition: all .8s ease-in-out;
+}
+
+.side-bar .side-bar__icon:first-child {
+  border-right: 1px solid black;
 }
 
 .main-form {
     display : flex;
     justify-content: center;
+}
+.main-agency {
+  height: 100vh;
+}
+
+.main-agency{
+  border-right : 1px solid rgba(0, 0, 0, 0.1);
 }
