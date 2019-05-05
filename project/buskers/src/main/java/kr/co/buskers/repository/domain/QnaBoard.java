@@ -10,8 +10,14 @@ public class QnaBoard {
 	private int viewCnt;
 	private int likeCnt;
 	private Date regDate;
+	private String groupNo;
 	
-	
+	public String getGroupNo() {
+		return groupNo;
+	}
+	public void setGroupNo(String groupNo) {
+		this.groupNo = groupNo;
+	}
 	public int getBoardNo() {
 		return boardNo;
 	}
