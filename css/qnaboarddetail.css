@@ -10,6 +10,8 @@
 }
 .board_info_date{
   line-height:70px;
+  font-size:15px;
+  text-align:right;
 }
 .nickname{
   padding-left:20px;
@@ -103,6 +105,10 @@
   line-height:70px;
   font-size:30px;
 }
+.material-icons{
+  cursor: pointer;
+}
+
 .answer_icon i{ 
   font-size:50px;
 }
