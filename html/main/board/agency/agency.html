@@ -10,20 +10,30 @@
       integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="../css/main/board/agency/agency.css" />
-    <title>agency</title>
+    <link
+      rel="stylesheet"
+      href="../../../../css/main/board/agency/agency.css"
+    />
+    <title>buskers</title>
   </head>
   <body class="body-background">
     <div class="main-form">
       <aside class="side-bar">
         <div class="side-bar__icon">
           <i class="fas fa-bars fa-lg"></i>
+          <span class="side-bar__icon-content">메뉴바</span>
+        </div>
+        <div class="side-bar__icon">
+          <i class="fas fa-comments fa-lg"></i>
+          <span class="side-bar__icon-content">자유게시판</span>
         </div>
         <div class="side-bar__icon">
           <i class="far fa-clipboard fa-lg"></i>
+          <span class="side-bar__icon-content">질문게시판</span>
         </div>
         <div class="side-bar__icon">
           <i class="fas fa-music fa-lg"></i>
+          <span class="side-bar__icon-content">버스커소개</span>
         </div>
         <div class="side-bar__icon">
           ...
@@ -42,8 +52,9 @@
             <div class="header-columns">
               <span class="header__user">
                 <i class="fas fa-crown fa-lg"></i>
-                  kyujong93 님
-                </span>
+                kyujong93 님
+              </span>
+              <i class="fas fa-angle-down "></i>
               <i class="fas fa-bell fa-lg"></i>
               <i class="fas fa-cog fa-lg"></i>
             </div>
@@ -56,7 +67,9 @@
               <span class="agency-title">업체 게시판 </span>
             </header>
             <div class="agency-bottom">
-                <a class="agency-bottom__button">등록</a>
+              <a class="agency-bottom__button" href="agency-check.html"
+                >등록</a
+              >
             </div>
             <table class="agency-table">
               <tr>
@@ -126,9 +139,19 @@
                 <td></td>
               </tr>
             </table>
+
+            <div class="agency-paging__items">
+              <a class="agency-paging__item paging-selected">1</a>
+              <a class="agency-paging__item">2</a>
+              <a class="agency-paging__item">3</a>
+            </div>
           </div>
         </main>
       </div>
     </div>
+    <script
+  src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
+    <script src="../../../../js/main/board/agency/side-bar.js">
+    </script>
   </body>
 </html>

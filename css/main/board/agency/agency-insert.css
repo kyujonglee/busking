@@ -1,0 +1,12 @@
+:root {
+    --color-blue : #0265D6;
+    --color-black : #333333;
+    --color-green : #F9F9F9;
+    --color-white : #E8F0FE;
+}
+
+.agency-insert {
+    margin: 0 auto;
+    width:100%;
+    background-color : var(--color-white);
+}

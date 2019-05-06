@@ -1,5 +1,8 @@
 @import "../../../common/common.css";
-@import "../../board/agency/agency-header.css";
+@import "agency-header.css";
+@import "agency-insert.css";
+@import "agency-table.css";
+@import 'agency-check.css';
 
 :root {
   --color-background: #f5f7fc;
@@ -7,19 +10,24 @@
   --color-darkgray: #282e30;
   --color-orange: #f37420;
   --color-white: #ffffff;
-  --color-black : #293234;
-  --color-green : #33C634;
-  --color-pink : #F4326C;
-  --color-blue : #3A5DFB;
+  --color-black: #293234;
+  --color-green: #33c634;
+  --color-pink: #f4326c;
+  --color-blue: #3a5dfb;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
 }
 
 .body-background {
   background-color: var(--color-background);
-  padding-top : 50px;
+  padding-top: 50px;
 }
 
 .header {
-  font-family: "Jua",sans-serif;
+  font-family: "Jua", sans-serif;
 }
 
 .header .container {
@@ -27,9 +35,9 @@
   grid-template-columns: repeat(3, 1fr);
   background-color: var(--color-white);
   height: 50px;
-  padding : 10px;
+  padding: 10px;
   box-sizing: border-box;
-  border-left : 1px solid rgba(0, 0, 0, 0.1);
+  border-left: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .header .header-columns:first-child {
@@ -41,18 +49,18 @@
 .header .header-columns:first-child input {
   height: 28px;
   border-radius: 5px;
-  border : 1px solid rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(0, 0, 0, 0.05);
   width: 200px;
   padding-left: 40px;
   opacity: 0.8;
 }
 .header .header-columns:first-child input:focus {
-  border-color : var(--color-darkgray);
-  transition: border-color .8s ease-in-out;
+  border-color: var(--color-darkgray);
+  transition: border-color 0.8s ease-in-out;
 }
 
 .header .header-columns:first-child i {
-  color : var(--color-darkgray);
+  color: var(--color-darkgray);
   position: absolute;
   left: 10px;
   font-weight: 600;
@@ -68,18 +76,18 @@
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  color : var(--color-gray);
+  color: var(--color-gray);
 }
 
 .header .header-columns:last-child i {
   margin-left: 8px;
 }
-.header .header-columns:last-child i:nth-child(2){
-  color : #FFBC00;
+.header .header-columns:last-child i:nth-child(3) {
+  color: #ffbc00;
 }
 
-.header-columns:last-child .header__user i{
-  color : var(--color-blue);
+.header-columns:last-child .header__user i {
+  color: var(--color-blue);
 }
 
 .header .header-columns:nth-child(2) .header__title {
@@ -91,47 +99,68 @@
 
 /* 사이드바 */
 .side-bar {
-    background-color: var(--color-white);
-    width: 50px;
-    height: 100vh;
-    border-top-left-radius: 10px;
-    border-bottom-left-radius: 10px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    box-sizing: border-box;
-    color : var(--color-gray);
-    border-right : 1px solid rgba(0, 0, 0, 0.1);
+  position: relative;
+  z-index: 1;
+  left : 140px;
+  background-color: var(--color-white);
+  width: 200px;
+  height: 100vh;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+  color: var(--color-gray);
+  border-right: 1px solid rgba(0, 0, 0, 0.1);
+  font-family: "JUA", sans-serif;
 }
 
 .side-bar .side-bar__icon {
-  border-left : 2px solid white;
+  border-left: 2px solid white;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   height: 50px;
   width: 100%;
+  box-sizing: border-box;
+  padding-left: 20px;
 }
 
+.side-bar .side-bar__icon i {
+  width: 10%;
+}
 
 .side-bar .side-bar__icon:hover {
-  border-left : 2px solid var(--color-darkgray);
-  color : var(--color-darkgray);
-  transition: all .8s ease-in-out;
+  border-left: 2px solid var(--color-darkgray);
+  color: var(--color-darkgray);
+  transition: all 0.8s ease-in-out;
 }
 
-.side-bar .side-bar__icon:first-child {
-  border-right: 1px solid black;
+.side-bar__icon-content {
+  width: 90%;
+  text-align: center;
 }
 
 .main-form {
-    display : flex;
-    justify-content: center;
-}
-.main-agency {
-  height: 100vh;
+  display: flex;
+  justify-content: flex-start;
+  width: 1500px;
+  margin: 0 auto;
+  padding : 0 auto;
 }
 
-.main-agency{
-  border-right : 1px solid rgba(0, 0, 0, 0.1);
+.main-agency {
+  height: 100vh;
+  border-right: 1px solid rgba(0, 0, 0, 0.1);
 }
+.main-body {
+  position: relative;
+  z-index: 1;
+  /* left : -190px; */
+  background-color : var(--color-background);
+}
+
+
+/* paging */
+/* menu tab */
