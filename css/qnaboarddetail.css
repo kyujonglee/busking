@@ -1,0 +1,73 @@
+@import "common.css";
+@import "qnaboardcommon.css";
+
+.board_info{
+  display:grid;
+  grid-template-columns: 70px 7fr 2fr 1fr;
+  height:70px;
+  line-height:70px;
+  font-size:20px;
+  margin-top:30px;
+}
+.nickname{
+  padding-left:20px;
+  font-weight: bold;
+}
+.board_info_date{
+  text-align: right;
+  font-size:15px;
+}
+.content{
+  margin-top:30px;
+  margin-bottom:30px;
+  font-size:20px;
+}
+.profile img{
+  height:70px;
+  width:70px;
+  border-radius:50px;
+}
+.content_bottom{
+  margin-top:30px;
+  display:grid;
+  grid-template-columns:70px 7fr 2fr 1fr;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+button{  
+    font-weight:bold;   
+    border-style:none;
+    height:50px;
+    border-radius: 20px;
+    width:150px;
+    background-color: #eee;
+}

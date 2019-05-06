@@ -1,0 +1,43 @@
+@import "common.css";
+@import "qnaboardcommon.css";
+
+
+.title{
+    margin-top:30px;
+    margin-bottom:30px;
+    font-size:25px;
+    font-weight: bold;
+}
+.title_write{
+    width:1000px;
+    height:35px;
+    padding-left:10px;
+    font-size:20px;
+    box-sizing: border-box;
+}
+.content_write{
+    box-sizing: border-box;
+    width:1000px;
+    height:500px;
+    resize:none;
+    font-size:20px;
+}
+
+
+.button{
+    margin-top:30px;
+    margin-bottom:30px;
+    display:flex;
+    font-size:20px;
+    text-align:center;
+    justify-content: flex-end;
+}
+.button button{  
+    font-weight:bold;   
+    border-style:none;
+    height:50px;
+    border-radius: 20px;
+    width:150px;
+    background-color: #eee;
+}
+
