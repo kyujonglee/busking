@@ -29,12 +29,6 @@
                 <!-- 히든 멤버번호 시범용 -->
                 <input type="hidden" name="memberNo" value="1">
                 <textarea class="content_write" type="text" name="content" id="content"></textarea>
-                <!--
-                <div class="title">이미지 첨부</div>
-                <div class="field" align="left">
-                   <input type="file" id="files" name="files[]" multiple />
-                </div>         
-                -->    
 
                 <div class="button">
                     <button class="button_reg">글등록</button>
@@ -46,7 +40,6 @@
         풋터
     </footer>
     
-
 <script>
 $(document).ready(function() {
     $('#content').summernote({

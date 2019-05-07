@@ -4,9 +4,9 @@
 <mapper namespace="kr.co.buskers.repository.mapper.QnaBoardMapper">
 	<select id="insertBoard" parameterType="qnaBoard">
 			insert into tb_qnaboard(
-			member_no,content,title,group_no
+			member_no,content,title
 		) values (
-			#{memberNo}, #{content}, #{title}, #{groupNo}
+			#{memberNo}, #{content}, #{title}
 		)
 	</select>
 </mapper>
