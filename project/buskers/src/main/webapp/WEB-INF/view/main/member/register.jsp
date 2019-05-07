@@ -1,0 +1,85 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link
+      rel="stylesheet"
+      href="<c:url value='/resources/css/main/member/register.css'/>"
+    />
+    <title>buskers</title>
+</head>
+<body>
+    <!-- HEADER -->
+    <header class="header">
+        <div class="container">
+
+            <div class="menu">
+                <a href="#">Menu</a>
+            </div>
+            <div class="title">
+                <span>Buskers</span>
+            </div>
+            <div class="user">
+                <a href="login.html">로그인</a>
+            </div>
+        </div>
+            
+    </header>
+    
+    <!-- CONTAINER -->
+    <div class="login-body">
+            <div class="login-box">
+                <div class="lb-header">
+                    <span class="active" id="login-box-link">회원가입</span>
+                </div>
+                <form class="email-login">
+                    <div class="u-form-group">
+                        <div>아이디&nbsp;</div><input type="id" placeholder="Id"/>
+                        <button type="button" id="checkId" class="check">중복확인</button>
+                    </div>
+                    <div class="u-form-group">
+                        <div>비밀번호&nbsp;</div><input type="password" placeholder="Password"/>&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;
+                    </div>
+                    <div class="u-form-group">
+                        <div>비밀번호 확인&nbsp;</div><input type="password" placeholder="PasswordCheck"/>&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;
+                    </div>
+                    <div class="u-form-group">
+                        <div>이메일&nbsp;</div><input type="text" placeholder="email"/>
+                        <button type="button" id="checkEmail" class="check">중복확인</button>
+                    </div>
+                    <div class="u-form-group">
+                        <div>닉네임&nbsp;</div><input type="text" placeholder="nickName"/>
+                        <button type="button" id="checkNickName" class="check">중복확인</button>
+                    </div>
+                    <div class="u-form-group">
+                        <div>성별&nbsp;</div>
+                        <div class="radio">                        
+                            <label for="sex1">남</label>
+                            <input type="radio" id="sex1" name="sex" value="1">
+                            <label for="sex2">여</label>
+                            <input type="radio" id="sex2" name="sex" value="2">
+                        </div>
+                    </div>
+                    <br>
+                    <div class="u-form-group">
+                        <button class="register">일반 회원가입</button>&nbsp;&nbsp;
+                        <button type="button" class="register" onclick="location.href='register-busker.html'">버스커 회원가입</button>
+                    </div>
+                </form>
+                
+            </div>
+
+    </div>
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="copyright">
+            <h1>Copyright © 2019 .... - Buskers.</h1>
+        </div>
+    </footer>
+</body>
+</html>
