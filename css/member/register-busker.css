@@ -57,8 +57,8 @@ html, body{
     position:relative;
     margin: 10px auto;
     margin-top: 50px;
-    width: 500px;
-    height: 380px;
+    width: 580px;
+    height: 480px;
     background-color: #fff;
     border-radius: 3px;
     -webkit-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.33);
@@ -80,6 +80,8 @@ html, body{
     line-height: 35px;
   }
   
+
+  
   .email-login,.email-signup{
     position:relative;
     float: left;
@@ -88,18 +90,19 @@ html, body{
     margin-top: 70px;
     text-align:center;
   }
-  
   .u-form-group{
     width:100%;
     margin-bottom: 10px;
   }
-
+  
   .u-form-group div {
     display: inline-block;
-    width: 60px;
+    width: 120px;
     text-align: right;
   }
-
+  .u-form-group div button {
+    background: #fff;
+  }
   .u-form-group input {
     width: calc(50% - 22px);
     height:45px;
@@ -116,8 +119,8 @@ html, body{
   .u-form-group input:focus{
     border-color: #358efb;
   }
-  .u-form-group button{
-    width:15%;
+  .u-form-group .register,.back{
+    width:20%;
     background-color: #1CB94E;
     border: none;
     outline: none;
@@ -152,12 +155,3 @@ html, body{
 }
 
 
-/* ADDITIONAL CLASSES */
-.separator{
-    height: 10px;
-    background-color: red;
-}
-.flat{
-    height: 400px;
-    background-color: #62bcda;
-}

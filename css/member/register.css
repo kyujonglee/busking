@@ -57,7 +57,7 @@ html, body{
     position:relative;
     margin: 10px auto;
     margin-top: 50px;
-    width: 700px;
+    width: 580px;
     height: 480px;
     background-color: #fff;
     border-radius: 3px;
@@ -155,12 +155,3 @@ html, body{
 }
 
 
-/* ADDITIONAL CLASSES */
-.separator{
-    height: 10px;
-    background-color: red;
-}
-.flat{
-    height: 400px;
-    background-color: #62bcda;
-}
