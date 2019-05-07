@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import kr.co.buskers.main.agency.service.AgencyService;
 
 @Controller("kr.co.buskers.main.agency.controller.AgencyController")
-@RequestMapping("main/board/agency")
+@RequestMapping("/main/board/agency")
 public class AgencyController {
 	
 	@Autowired
