@@ -38,7 +38,7 @@
 	<mvc:default-servlet-handler />
 	
 	<mvc:view-resolvers>
-		<mvc:jsp prefix="/WEB-INF/view/jsp/" suffix=".jsp" />
+		<mvc:jsp prefix="/WEB-INF/view/" suffix=".jsp" />
 	</mvc:view-resolvers>
 	
 	<context:property-placeholder location="classpath:config/mybatis/db.properties"/>
