@@ -1,0 +1,88 @@
+.agency-insert {
+  margin: 0 auto;
+  width: 100%;
+  background-color: var(--color-white);
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.agency-insert__title {
+  border-bottom: 2px solid var(--color-darkgray);
+}
+.agency-insert__item {
+  padding: 10px;
+  margin: 10px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  font-size: 20px;
+}
+
+.agency-insert__item-column {
+  width: 15%;
+  height: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.agency-insert .agency-insert__item-input {
+  height: 30px;
+  width: 200px;
+  border: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+  padding: 5px 5px;
+}
+
+.agency-insert .agency-insert__item-input:focus {
+  border-color: var(--color-darkgray);
+  transition: border-color 0.7s ease-in-out;
+}
+
+.agency-insert__item-textarea {
+  border-color: rgba(0, 0, 0, 0.3);
+  resize: none;
+  padding : 10px;
+}
+.agency-insert__item-textarea:focus {
+  border-color: var(--color-darkgray);
+  transition: border-color 0.7s ease-in-out;
+}
+.agency-insert .agency-insert__item .agency-insert__input-email {
+    width: 150px;
+}
+
+.agency-insert .agency-insert__item .agency-insert__item-postcode {
+    width: 100px;
+}
+.agency-insert .agency-insert__item .agency-insert__item-addr {
+    width: 300px;
+}
+
+.agency-insert__checkbox-title {
+    font-size : 16px;
+    margin-left: 5px;
+    color : var(--color-gray);
+}
+.agency-insert__checkbox-item {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    height: 15px;
+    padding : 10px;
+}
+
+.agency-insert__btn-content {
+    display: flex;
+    justify-content: center;
+}
+.agency-insert__btn {
+    font-size : 18px;
+    font-family: inherit;
+    display: block;
+    width : 90px;
+    height: 35px;
+    border-radius: 5px;
+    color : var(--color-orange);
+    background-color : var(--color-white);
+}
