@@ -1,0 +1,28 @@
+.agency {
+    width: 100%;
+    align-self: flex-end;
+    padding : 50px 70px;
+    color : var(--color-orange);
+    font-family: "JUA",sans-serif;
+    box-sizing: border-box;
+}
+
+.agency .agency-header{
+    color : var(--color-darkgray);
+    font-size: 24px;
+    height: 50px;
+    /* opacity: 0.8; */
+    position: relative;
+    padding : 5px;
+}
+    
+.agency-header i {
+    color : var(--color-orange);
+    opacity: 0.7;
+}
+.agency-header .agency-title {
+    font-size : 30px;
+    position: relative;
+    top : 3px;
+}
+

@@ -10,11 +10,11 @@
 		<result column="reg_date" property="regDate" />
 	</resultMap>
 	
-	<select id="selectBoard" parameterType="page" resultMap="boardMap">
+	<select id="selectBoard" parameterType="freePage" resultMap="boardMap">
 		select *
 		  from (select rownum rnum, a.*
 		          from ( select *
-		                   from tb_board
+		                   from tb_freeboard
 		                  order by no desc) a
 		       )   
 		 where rnum between #{begin} and #{end}

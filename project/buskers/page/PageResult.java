@@ -1,6 +1,6 @@
-package kr.co.buskers.common.page;
+package kr.co.mlec.common.page;
 
-public class FreePageResult {
+public class PageResult {
 	private int pageNo;
 	private int count;
 	private int beginPage;
@@ -8,15 +8,15 @@ public class FreePageResult {
 	private boolean prev;
 	private boolean next;
 	
-	public FreePageResult(int pageNo, int count) {
+	public PageResult(int pageNo, int count) {
 		this.pageNo = pageNo;
 		this.count = count;
 		setPageInfo();
 	}
 	
 	private void setPageInfo() {
-		int lastPage = (count % 15 == 0) ? count / 15
-				                         : count / 15 + 1;
+		int lastPage = (count % 10 == 0) ? count / 10
+				                         : count / 10 + 1;
 		int tabSize = 10;
 		int currTab = (pageNo -1) / tabSize + 1; 
 		
