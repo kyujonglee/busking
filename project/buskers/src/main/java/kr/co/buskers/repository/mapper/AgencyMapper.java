@@ -1,5 +1,9 @@
 package kr.co.buskers.repository.mapper;
 
-public interface AgencyMapper {
+import java.util.List;
 
+import kr.co.buskers.repository.domain.AgencyInfo;
+
+public interface AgencyMapper {
+	List<AgencyInfo> selectAgencyInfo(); 
 }

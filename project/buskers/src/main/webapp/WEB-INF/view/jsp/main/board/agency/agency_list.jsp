@@ -166,6 +166,6 @@
       src="https://code.jquery.com/jquery-3.4.1.min.js"
       crossorigin="anonymous"
     ></script>
-    <script src="../../../../js/main/board/agency/side-bar.js"></script>
+    <script src="<c:url value='/resources/js/main/board/agency/side-bar.js'/>"></script>
   </body>
 </html>
