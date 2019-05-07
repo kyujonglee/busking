@@ -1,5 +1,5 @@
 package kr.co.buskers.repository.mapper;
 
-public class FreeBoardMapper {
+public interface FreeBoardMapper {
 
 }

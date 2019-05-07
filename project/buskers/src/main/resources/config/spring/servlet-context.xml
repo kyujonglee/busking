@@ -38,10 +38,11 @@
 	<mvc:default-servlet-handler />
 	
 	<mvc:view-resolvers>
-		<mvc:jsp prefix="/WEB-INF/view/jsp/" suffix=".jsp" />
+		<mvc:jsp prefix="/WEB-INF/view/" suffix=".jsp" />
 	</mvc:view-resolvers>
 	
 	<context:property-placeholder location="classpath:config/mybatis/db.properties"/>
+	
 	<bean id="dataSource"
         class="org.springframework.jdbc.datasource.DriverManagerDataSource"
         lazy-init="false"
@@ -62,7 +63,7 @@
     </bean>
     
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="kr.co.buskers" />
+        <property name="basePackage" value="kr.co.buskers.repository.mapper" />
     </bean>
     
     
