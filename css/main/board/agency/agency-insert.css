@@ -58,3 +58,31 @@
 .agency-insert .agency-insert__item .agency-insert__item-addr {
     width: 300px;
 }
+
+.agency-insert__checkbox-title {
+    font-size : 16px;
+    margin-left: 5px;
+    color : var(--color-gray);
+}
+.agency-insert__checkbox-item {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    height: 15px;
+    padding : 10px;
+}
+
+.agency-insert__btn-content {
+    display: flex;
+    justify-content: center;
+}
+.agency-insert__btn {
+    font-size : 18px;
+    font-family: inherit;
+    display: block;
+    width : 90px;
+    height: 35px;
+    border-radius: 5px;
+    color : var(--color-orange);
+    background-color : var(--color-white);
+}
