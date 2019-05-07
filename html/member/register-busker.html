@@ -36,18 +36,31 @@
                 </div>
                 <form class="email-login">
                     <div class="u-form-group">
-                        <div>이름&nbsp;</div><input type="name" placeholder="Name"/>&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;
+                        <div>이름&nbsp;</div><input type="text" placeholder="Name"/>&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;
                     </div>
                     <div class="u-form-group">
-                        <div>활동명&nbsp;</div><input type="activename" placeholder="ActiveName"/>
+                        <div>활동명&nbsp;</div><input type="text" placeholder="ActiveName"/>
                         <button type="button" id="checkActiveName" class="check">중복확인</button>
                     </div>
                     <div class="u-form-group">
-                        <div>연락처&nbsp;</div><input type="phone" placeholder="Phone"/>
+                        <div>연락처&nbsp;</div><input type="text" placeholder="Phone"/>
                         <button type="button" id="phone" class="check">본인인증</button>
                     </div>
                     <div class="u-form-group">
-                        <div>주요장르&nbsp;</div><input type="genre" placeholder="Genre"/>&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;
+                        <div class="genre">주요장르&nbsp;</div>
+                        <div class="checkBox">
+                            <input type="checkbox" id="skill1" name="skill" value="1">
+                            <label for="skill1">스트릿댄스</label>
+                            <input type="checkbox" id="skill2" name="skill" value="2">
+                            <label for="skill2">발라드</label>
+                            <input type="checkbox" id="skill3" name="skill" value="3">
+                            <label for="skill3">스탠드업 코미디</label>
+                            <br>
+                            <input type="checkbox" id="skill4" name="skill" value="4">
+                            <label for="skill4">악기연주</label>
+                            <input type="checkbox" id="skill5" name="skill" value="5">
+                            <label for="skill5">마술</label>
+                        </div>
                     </div>
                     <br>
                     <br>

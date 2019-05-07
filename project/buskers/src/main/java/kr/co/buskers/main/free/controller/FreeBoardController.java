@@ -18,4 +18,5 @@ public class FreeBoardController {
 	@RequestMapping("list.do")
 	public void list(FreePage freePage, Model model) {
 	}
+
 }

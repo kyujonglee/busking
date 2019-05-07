@@ -1,7 +1,7 @@
 package kr.co.buskers.main.agency.service;
 
-import org.springframework.stereotype.Service;
+import java.util.List;
 
 public interface AgencyService {
-
+//	public List<AgencyInfo> list();
 }

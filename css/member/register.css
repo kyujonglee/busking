@@ -104,7 +104,7 @@ html, body{
   .u-form-group div button {
     background: #fff;
   }
-  .u-form-group input {
+  .u-form-group input[type="text"],input[type="id"],input[type="password"] {
     width: calc(50% - 22px);
     height:45px;
     outline: none;
@@ -117,6 +117,12 @@ html, body{
     -webkit-transition:all 0.1s linear;
     -moz-transition:all 0.1s linear;
     transition:all 0.1s linear;
+  }
+  .u-form-group .radio {
+    text-align: left;
+    width: 370px;
+    height:45px;
+    line-height: 45px;
   }
   .u-form-group input:focus{
     border-color: #358efb;

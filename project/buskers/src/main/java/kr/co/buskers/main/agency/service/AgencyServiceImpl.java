@@ -1,5 +1,7 @@
 package kr.co.buskers.main.agency.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,4 +13,7 @@ public class AgencyServiceImpl implements AgencyService {
 	@Autowired
 	private AgencyMapper mapper;
 	
+//	public List<AgencyInfo> list(){
+//		return mapper.selectAgencyInfo();
+//	}
 }

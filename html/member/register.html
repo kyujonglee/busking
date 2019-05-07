@@ -43,18 +43,24 @@
                         <div>비밀번호&nbsp;</div><input type="password" placeholder="Password"/>&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;
                     </div>
                     <div class="u-form-group">
-                        <div>비밀번호 확인&nbsp;</div><input type="passwordcheck" placeholder="PasswordCheck"/>&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;
+                        <div>비밀번호 확인&nbsp;</div><input type="password" placeholder="PasswordCheck"/>&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;
                     </div>
                     <div class="u-form-group">
-                        <div>이메일&nbsp;</div><input type="email" placeholder="email"/>
+                        <div>이메일&nbsp;</div><input type="text" placeholder="email"/>
                         <button type="button" id="checkEmail" class="check">중복확인</button>
                     </div>
                     <div class="u-form-group">
-                        <div>성별&nbsp;</div><input type="sex" placeholder="sex"/>&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;
+                        <div>닉네임&nbsp;</div><input type="text" placeholder="nickName"/>
+                        <button type="button" id="checkNickName" class="check">중복확인</button>
                     </div>
                     <div class="u-form-group">
-                        <div>닉네임&nbsp;</div><input type="nickName" placeholder="nickName"/>
-                        <button type="button" id="checkNickName" class="check">중복확인</button>
+                        <div>성별&nbsp;</div>
+                        <div class="radio">                        
+                            <label for="sex1">남</label>
+                            <input type="radio" id="sex1" name="sex" value="1">
+                            <label for="sex2">여</label>
+                            <input type="radio" id="sex2" name="sex" value="2">
+                        </div>
                     </div>
                     <br>
                     <div class="u-form-group">

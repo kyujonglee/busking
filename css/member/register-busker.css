@@ -104,7 +104,7 @@ html, body{
   .u-form-group div button {
     background: #fff;
   }
-  .u-form-group input {
+  .u-form-group input[type="text"] {
     width: calc(50% - 22px);
     height:45px;
     outline: none;
@@ -118,6 +118,17 @@ html, body{
     -moz-transition:all 0.1s linear;
     transition:all 0.1s linear;
   }
+  
+  .u-form-group .checkBox {
+    text-align: left;
+    width: 370px;
+    vertical-align: middle;
+    margin: 5px;
+  }
+  .u-form-group .checkBox > input {
+    margin: 5px;
+  }
+  
   .u-form-group input:focus{
     border-color: #358efb;
   }
