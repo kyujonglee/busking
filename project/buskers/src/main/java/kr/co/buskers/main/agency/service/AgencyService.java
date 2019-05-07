@@ -1,5 +1,7 @@
 package kr.co.buskers.main.agency.service;
 
-public interface AgencyService {
+import java.util.List;
 
+public interface AgencyService {
+//	public List<AgencyInfo> list();
 }
