@@ -62,13 +62,56 @@
         </header>
         <main class="main-agency">
           <div class="agency">
-            <header class="agency-header">
+            <header class="agency-header agency-insert__title">
               <a href=""><i class="fas fa-home fa-lg"></i></a>
-              <span class="agency-title">업체 등록 </span>
+              <span class="agency-title ">업체 등록 </span>
             </header>
-            <div class="agency-insert">
-                
-            </div>
+            <section class="agency-insert">
+              <div class="agency-insert__item">
+                <div class="agency-insert__item-column">
+                  <span class="agency-insert__item-name">업체명</span>
+                </div>
+                <input
+                  class="agency-insert__item-input"
+                  type="text"
+                />
+              </div>
+              <div class="agency-insert__item">
+                <div class="agency-insert__item-column">
+                  <span class="agency-insert__item-name">목적</span>
+                </div>
+                <textarea
+                  class="agency-insert__item-textarea"
+                  cols="80"
+                  rows="7"
+                ></textarea>
+              </div>
+              <div class="agency-insert__item">
+                <div class="agency-insert__item-column">
+                  <span class="agency-insert__item-name">Email</span>
+                </div>
+                <input
+                  class="agency-insert__item-input agency-insert__input-email"
+                  type="text"
+                />
+                <span style="color:inherit;">@</span>
+                <input
+                  class="agency-insert__item-input agency-insert__input-email"
+                  type="text"
+                />
+              </div>
+              <div class="agency-insert__item">
+                    <div class="agency-insert__item-column">
+                      <span class="agency-insert__item-name">연락처</span>
+                    </div>
+                    <input
+                      class="agency-insert__item-input "
+                      type="text"
+                      placeholder="ex) 010-xxxx-xxxx"
+                    />
+                  </div>
+              <div class="agency-insert__item"></div>
+            </section>
           </div>
         </main>
       </div>
