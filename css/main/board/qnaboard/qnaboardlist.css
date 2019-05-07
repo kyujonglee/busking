@@ -1,0 +1,76 @@
+@import "../../../common/common.css";
+@import "qnaboardcommon.css";
+
+
+.list_title{
+  display: grid;
+  margin-top:30px;
+  grid-template-columns:1fr 5fr 1fr 1fr 0.7fr 0.7fr;
+  font-size:20px;
+  text-align:center;
+  font-weight: bold;
+  border-bottom:1px solid rgb(216, 208, 208);
+}
+.list_content{
+  display: grid;
+  grid-template-columns:1fr 5fr 1fr 1fr 0.7fr 0.7fr;
+  font-size:20px;
+  text-align:center;
+}
+.list_content div{
+  border-bottom:1px solid rgb(216, 208, 208);
+  height:40px;
+  line-height:40px;
+}
+.list_title div{
+  height:35px;
+  line-height:35px;
+}
+.page{
+  margin-top:30px;
+  text-align:center;
+  font-size:20px;
+  margin-bottom:30px;
+}
+.page a{
+  text-decoration: none;
+  color:black;
+  margin-left:10px;
+  margin-right:10px;
+}
+
+
+.list_bot{
+    margin-top:30px;
+    margin-bottom:30px;
+    display:grid;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+.list_bot .button_reg{  
+    font-size:20px;
+    font-weight:bold;   
+    border-style:none;
+    height:50px;
+    border-radius: 20px;
+    width:150px;
+    background-color: #eee;
+    float:right;
+}
+.list_bot select{
+  height:35px;
+}
+.list_bot input{
+  height:35px;
+  box-sizing:border-box;
+}
+.board_title{
+  cursor: pointer;
+}
+.search{
+  height:35px;
+}
+.search_line{
+  display:grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
