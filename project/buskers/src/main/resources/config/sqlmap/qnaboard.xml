@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.buskers.repository.mapper.QnaBoardMapper">
+	<select id="insertBoard" parameterType="qnaBoard">
+			insert into tb_qnaboard(
+			member_no,content,title,group_no
+		) values (
+			#{memberNo}, #{content}, #{title}, #{groupNo}
+		)
+	</select>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
