@@ -13,13 +13,6 @@ public class QnaBoardServiceImpl implements QnaBoardService{
 	private QnaBoardMapper mapper;
 	
 	public void write(QnaBoard qnaBoard) {
-		System.out.println(qnaBoard.getBoardNo());
-		System.out.println(qnaBoard.getTitle());
-		System.out.println(qnaBoard.getContent());
-		System.out.println(qnaBoard.getMemberNo());
 		mapper.insertBoard(qnaBoard);
 	}
-	
-	
-	
 }

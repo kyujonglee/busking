@@ -5,12 +5,13 @@
 	
 	<select id="selectBoard" parameterType="freePage" resultType="freeBoard">
 		select *
-		  from (select rownum rnum, a.*
+  		  from (select @rownum:=@rownum+1 rnum, a.*
 		          from ( select *
 		                   from tb_freeboard
-		                  order by no desc) a
-		       )   
-		 where rnum between #{begin} and #{end}
+						  WHERE (@rownum:=0)=0
+		                  order by board_no desc) a
+		       ) b
+		 where rnum between #{begin} and #{end};
 	</select>
 
 	<select id="selectBoardCount" resultType="int">
