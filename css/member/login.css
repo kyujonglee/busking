@@ -63,7 +63,7 @@ html, body{
     border-radius: 3px;
     -webkit-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.33);
   -moz-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.33);
-  box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.33);
+  box-shadow: 2px 2px 3px 0px rgba(0,0,0,0.33);
   }
   .lb-header{
     position:relative;
@@ -78,6 +78,7 @@ html, body{
     border-radius: 3px;
     background-color: #222222;
     line-height: 35px;
+    box-shadow: 2px 0px 3px 0px rgba(0,0,0,0.33);
   }
   
   
@@ -140,7 +141,8 @@ html, body{
     width: calc(50% - 22px);
     height:45px;
     outline: none;
-    border: 1px solid #ddd;
+    border: 1px solid #fff;
+    border-bottom: 1px solid #ddd;
     padding: 0 10px;
     border-radius: 2px;
     color: #333;
