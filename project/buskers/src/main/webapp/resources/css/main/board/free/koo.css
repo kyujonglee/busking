@@ -1,3 +1,5 @@
+@import "../../../common/common.css";
+
 * {
     margin: 0;
     padding: 0;
@@ -81,7 +83,6 @@ td {
     border-top: 1px solid #f2f2f2;
     height: 40px;
     vertical-align: middle;
-    
 }
 
 .free_board_no {
