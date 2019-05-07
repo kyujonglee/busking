@@ -8,10 +8,8 @@ public class Member {
 	private String id;
 	private String pass;
 	private String salt;
-	private String name;
 	private String email;
 	private Date joinDate;
-	private String phone;
 	private char sex;
 	private String profileImg;
 	private String profileImgPath;
@@ -62,12 +60,6 @@ public class Member {
 	public void setSalt(String salt) {
 		this.salt = salt;
 	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
 	public String getEmail() {
 		return email;
 	}
@@ -80,14 +72,6 @@ public class Member {
 	public void setJoinDate(Date joinDate) {
 		this.joinDate = joinDate;
 	}
-	public String getPhone() {
-		return phone;
-	}
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
-	
-	
 	public String getProfileImg() {
 		return profileImg;
 	}
