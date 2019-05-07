@@ -141,6 +141,9 @@ a {
   width: 90%;
   text-align: center;
 }
+.side-bar__tag {
+  width: 100%;
+}
 
 .main-form {
   display: flex;
