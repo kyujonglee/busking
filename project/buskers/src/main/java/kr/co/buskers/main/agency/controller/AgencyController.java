@@ -1,17 +1,12 @@
 package kr.co.buskers.main.agency.controller;
 
-import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import kr.co.buskers.main.agency.service.AgencyService;
 
 
-@Controller
-@RequestMapping("main/board/agency")
 public class AgencyController {
 	
 	@Autowired()
