@@ -13,6 +13,7 @@ public class Agency {
 	private String email;
 	private String permission;
 	private int memberNo;
+	
 	public int getAgencyNo() {
 		return agencyNo;
 	}
