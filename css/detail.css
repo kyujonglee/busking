@@ -10,7 +10,8 @@
     text-align: center;
     background-color: #f0f0f0;
     color: #fff;
-    margin-right: 10px;
+    margin-right: 20px;
+    cursor: pointer;
 }
 
 .board_head_line {
@@ -26,8 +27,35 @@
 }
 
 .board_article_info {
+    display: flex;
+    justify-content: space-between;
     width: 100%;
     height: 50px;
-    border-top: 1px solid #f0f0f0;
-    border-bottom: 1px solid #f0f0f0;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    background: #f5f5f5;
+    
+}
+
+.board_article_info > div > span {
+    height: 50px;
+    line-height: 50px;
+    margin-left: 5px;
+    font-weight: 100;
+}
+
+.board_article_info_left > i {
+    margin-left: 20px;
+}
+
+.board_article_info_right > span {
+    margin-right: 20px;
+}
+
+.board_article_body {
+    height: 500px;
+}
+
+.board_article_info_user {
+    cursor: pointer;
 }
