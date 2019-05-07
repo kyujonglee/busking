@@ -1,21 +1,6 @@
 @import "reset.css";
-@import "globals.css";
+@import 'globals.css';
 
-/* font */
 
-@import url("https://fonts.googleapis.com/css?family=Jua");
 
-/* 
-사용예시
-h1 {
-    font-family: 'Jua', sans-serif;
-}
 
-*/
-
-/* color */
-
-.container {
-  width: 1200px;
-  margin: 0 auto;
-}

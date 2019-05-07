@@ -20,7 +20,6 @@ public class Member {
 	private char isBusker;
 	private char isAgency;
 	
-	
 	public char getIsBusker() {
 		return isBusker;
 	}
