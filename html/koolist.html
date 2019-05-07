@@ -5,14 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" type="text/css" href="../css/globals.css">
-    <link rel="stylesheet" type="text/css" href="../css//common/common.css">
-    <link rel="stylesheet" type="text/css" href="../css//common/reset.css">
+    <link rel="stylesheet" type="text/css" href="../css/common.css">
     <link rel="stylesheet" type="text/css" href="../css/koo.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Italianno" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic" rel="stylesheet">
-    <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
     <title>Document</title>
 </head>
 <body>
@@ -51,11 +49,11 @@
                     <th class="free_board_title">제목</th>
                     <th class="free_board_writer">작성자</th>
                     <th class="free_board_date"><a>작성일</a></th>
-                    <th class="free_board_view"><a class="fas fa-sort-down">조회</a></th>
-                    <th class="free_board_like"><a class="fas fa-sort-down">추천</a></th>
+                    <th class="free_board_view"><a>조회</a></th>
+                    <th class="free_board_like"><a>추천</a></th>
                 </tr>
                 <tr>
-                    <td><span class="board_notify">공지</span></td>
+                    <td></td>
                     <td></td>
                     <td></td>
                     <td></td>
@@ -195,23 +193,5 @@
         </div>
     
     </div>
-
-    <script>
-        $(".free_board_view").click(function () {
-            if ( $(this).children("a").attr("class") == "fas fa-sort-down" ) {
-                $(this).children("a").attr("class", "fas fa-sort-up");
-            } else {
-                $(this).children("a").attr("class", "fas fa-sort-down");
-            }
-        });
-
-        $(".free_board_like").click(function () {
-            if ( $(this).children("a").attr("class") == "fas fa-sort-down" ) {
-                $(this).children("a").attr("class", "fas fa-sort-up");
-            } else {
-                $(this).children("a").attr("class", "fas fa-sort-down");
-            }
-        });
-    </script>
 </body>
 </html>

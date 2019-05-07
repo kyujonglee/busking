@@ -19,7 +19,6 @@ body {
     font-size: 40px;
     line-height: 50px;
     z-index: 100;
-    cursor: pointer;
 }
 
 .container {
@@ -51,7 +50,6 @@ body {
     height: 70px;
     border-bottom: 2px solid tomato;
     margin-top: 15px;
-    cursor: pointer;
 }
 
 .free_board {
@@ -68,8 +66,6 @@ th {
     border-top: 2px solid black;
     height: 50px;
     font-size: 15px;
-    line-height: 50px;
-    font-weight: bold;
 }
 
 th > a:hover {
@@ -80,8 +76,6 @@ th > a:hover {
 td {
     border-top: 1px solid #f2f2f2;
     height: 40px;
-    vertical-align: middle;
-    
 }
 
 .free_board_no {
@@ -159,7 +153,6 @@ td {
 .fa-pen:hover {
     text-decoration: underline;
     cursor: pointer;
-    color: tomato;
 }
 
 .fa-sort-amount-up {
@@ -171,11 +164,6 @@ td {
     background: #333333;
     color: white;
     cursor: pointer;
-    
-}
-
-.fa-sort-amount-up:hover {
-    color: tomato;
 }
 
 .free_board_bottom {
@@ -186,18 +174,4 @@ td {
 .footer {
       border: 1px solid black;
       height: 150px;
-}
-
-.board_notify {
-    display: block;
-    border: 1px solid tomato;
-    background-color: rgb(255, 232, 223);
-    color: tomato;
-    width: 56px;
-    height: 21px;
-    border-radius: 3px;
-    font-size: 13px;
-    font-weight: 800;
-    line-height: 21px;
-    text-align: center;
 }
