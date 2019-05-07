@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>   
 <!DOCTYPE html>
 <html lang="ko">
   <head>
@@ -13,7 +12,7 @@
     />
     <link
       rel="stylesheet"
-      href="<c:url value='/resources/css/main/board/agency/agency.css'/>"
+      href="../../../../css/main/board/agency/agency.css"
     />
     <title>buskers</title>
   </head>
@@ -76,88 +75,29 @@
           </div>
         </header>
         <main class="main-agency">
-          <div class="agency">
-            <header class="agency-header">
-              <i class="fas fa-home fa-lg"></i>
-              <span class="agency-title">업체 게시판 </span>
+          <div class="agency-check">
+            <header class="agency-check__header">
+              <span class="agency-check__header-title">업체고유번호 등록</span>
             </header>
-            <div class="agency-bottom">
-              <a class="agency-bottom__button" href="agency-check.html">등록</a>
-            </div>
-            <table class="agency-table">
-              <tr>
-                <th>번호</th>
-                <th>업체명</th>
-                <th>등록날짜</th>
-                <th>등록여부</th>
-              </tr>
-              <tr>
-                <td>1</td>
-                <td>이마트 신촌점</td>
-                <td>19-03-09 15:23</td>
-                <td>신청중</td>
-              </tr>
-              <tr>
-                <td>2</td>
-                <td>
-                  홈플러스 홍대점
-                  <i class="fas fa-lock fa-lg"></i>
-                </td>
-                <td>19-03-10 11:05</td>
-                <td>등록완료</td>
-              </tr>
-              <tr>
-                <td>3</td>
-                <td>
-                  영품문고
-                  <i class="fas fa-lock fa-lg"></i>
-                </td>
-                <td>19-03-13 12:23</td>
-                <td>신청중</td>
-              </tr>
-              <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
-            </table>
-
-            <div class="agency-paging__items">
-              <a class="agency-paging__item paging-selected">1</a>
-              <a class="agency-paging__item">2</a>
-              <a class="agency-paging__item">3</a>
-            </div>
+            <main class="agency-check__main">
+              <section class="agency-check__section">
+                <div class="agency-check__answer">
+                  <span class="agency-check__answer-title">
+                    업체등록번호
+                  </span>
+                  <input class="agency-check__answer-input" type="text" />
+                </div>
+                <button class="agency-check__ok-button">확인</button>
+              </section>
+              <section class="agency-check__section">
+                업체등록번호를 모르시나요?
+                <a href="agency-insert.html">
+                  <span class="agency-check__insert-link"
+                    >업체 등록신청하러 가기</span
+                  >
+                </a>
+              </section>
+            </main>
           </div>
         </main>
       </div>
@@ -166,6 +106,6 @@
       src="https://code.jquery.com/jquery-3.4.1.min.js"
       crossorigin="anonymous"
     ></script>
-    <script src="<c:url value='/resources/js/main/board/agency/side-bar.js'/>"></script>
+    <script src="../../../../js/main/board/agency/side-bar.js"></script>
   </body>
 </html>
