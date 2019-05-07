@@ -63,6 +63,9 @@
   height:35px;
   box-sizing:border-box;
 }
+.board_title{
+  cursor: pointer;
+}
 .search{
   height:35px;
 }
