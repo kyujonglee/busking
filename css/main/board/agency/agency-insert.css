@@ -3,6 +3,7 @@
   width: 100%;
   background-color: var(--color-white);
   padding: 20px;
+  box-sizing: border-box;
 }
 
 .agency-insert__title {
@@ -30,6 +31,7 @@
   width: 200px;
   border: none;
   border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+  padding: 5px 5px;
 }
 
 .agency-insert .agency-insert__item-input:focus {
@@ -48,4 +50,11 @@
 }
 .agency-insert .agency-insert__item .agency-insert__input-email {
     width: 150px;
+}
+
+.agency-insert .agency-insert__item .agency-insert__item-postcode {
+    width: 100px;
+}
+.agency-insert .agency-insert__item .agency-insert__item-addr {
+    width: 300px;
 }

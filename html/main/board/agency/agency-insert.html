@@ -19,22 +19,36 @@
   <body class="body-background">
     <div class="main-form">
       <aside class="side-bar">
-        <div class="side-bar__icon">
-          <i class="fas fa-bars fa-lg"></i>
-          <span class="side-bar__icon-content">메뉴바</span>
-        </div>
-        <div class="side-bar__icon">
-          <i class="fas fa-comments fa-lg"></i>
-          <span class="side-bar__icon-content">자유게시판</span>
-        </div>
-        <div class="side-bar__icon">
-          <i class="far fa-clipboard fa-lg"></i>
-          <span class="side-bar__icon-content">질문게시판</span>
-        </div>
-        <div class="side-bar__icon">
-          <i class="fas fa-music fa-lg"></i>
-          <span class="side-bar__icon-content">버스커소개</span>
-        </div>
+        <a class="side-bar__tag">
+          <div class="side-bar__icon">
+            <i class="fas fa-bars fa-lg"></i>
+            <span class="side-bar__icon-content">메뉴바</span>
+          </div>
+        </a>
+        <a class="side-bar__tag">
+          <div class="side-bar__icon">
+            <i class="fas fa-comments fa-lg"></i>
+            <span class="side-bar__icon-content">자유게시판</span>
+          </div>
+        </a>
+        <a class="side-bar__tag">
+          <div class="side-bar__icon">
+            <i class="far fa-clipboard fa-lg"></i>
+            <span class="side-bar__icon-content">질문게시판</span>
+          </div>
+        </a>
+        <a class="side-bar__tag">
+          <div class="side-bar__icon">
+            <i class="fas fa-music fa-lg"></i>
+            <span class="side-bar__icon-content">버스커소개</span>
+          </div>
+        </a>
+        <a class="side-bar__tag" href="agency.html">
+          <div class="side-bar__icon">
+            <i class="fas fa-pen-nib fa-lg"></i>
+            <span class="side-bar__icon-content">업체 등록</span>
+          </div>
+        </a>
         <div class="side-bar__icon">
           ...
         </div>
@@ -56,7 +70,6 @@
               </span>
               <i class="fas fa-angle-down "></i>
               <i class="fas fa-bell fa-lg"></i>
-              <i class="fas fa-cog fa-lg"></i>
             </div>
           </div>
         </header>
@@ -71,10 +84,7 @@
                 <div class="agency-insert__item-column">
                   <span class="agency-insert__item-name">업체명</span>
                 </div>
-                <input
-                  class="agency-insert__item-input"
-                  type="text"
-                />
+                <input class="agency-insert__item-input" type="text" />
               </div>
               <div class="agency-insert__item">
                 <div class="agency-insert__item-column">
@@ -82,7 +92,7 @@
                 </div>
                 <textarea
                   class="agency-insert__item-textarea"
-                  cols="80"
+                  cols="70"
                   rows="7"
                 ></textarea>
               </div>
@@ -101,16 +111,51 @@
                 />
               </div>
               <div class="agency-insert__item">
-                    <div class="agency-insert__item-column">
-                      <span class="agency-insert__item-name">연락처</span>
-                    </div>
-                    <input
-                      class="agency-insert__item-input "
-                      type="text"
-                      placeholder="ex) 010-xxxx-xxxx"
-                    />
-                  </div>
-              <div class="agency-insert__item"></div>
+                <div class="agency-insert__item-column">
+                  <span class="agency-insert__item-name">연락처</span>
+                </div>
+                <input
+                  class="agency-insert__item-input "
+                  type="text"
+                  placeholder="ex) 010-xxxx-xxxx"
+                />
+              </div>
+              <div class="agency-insert__item">
+                <div class="agency-insert__item-column">
+                  <span class="agency-insert__item-name">우편번호</span>
+                </div>
+                <input
+                  class="agency-insert__item-input agency-insert__item-postcode"
+                  type="text"
+                />
+              </div>
+              <div class="agency-insert__item">
+                <div class="agency-insert__item-column">
+                  <span class="agency-insert__item-name">기본주소</span>
+                </div>
+                <input
+                  class="agency-insert__item-input agency-insert__item-addr"
+                  type="text"
+                />
+              </div>
+              <div class="agency-insert__item">
+                <div class="agency-insert__item-column">
+                  <span class="agency-insert__item-name">상세주소</span>
+                </div>
+                <input
+                  class="agency-insert__item-input agency-insert__item-addr"
+                  type="text"
+                />
+              </div>
+              <div class="agency-insert__item">
+                <div class="agency-insert__item-column">
+                  <span class="agency-insert__item-name">관심분야</span>
+                </div>
+                <input type="checkbox" name="" id="">
+                <input type="checkbox" name="" id="">
+                <input type="checkbox" name="" id="">
+                <input type="checkbox" name="" id="">
+              </div>
             </section>
           </div>
         </main>
