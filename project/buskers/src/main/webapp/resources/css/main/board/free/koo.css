@@ -61,6 +61,16 @@ body {
     width: 100%;
 }
 
+.board_title_left {
+	text-align: left;
+	cursor: pointer;
+	padding-left: 15px;
+}
+
+.board_title_left:hover {
+	color: #DC143C;
+}
+
 .free_board_search {
     width:  100px;
     height: 100px;
@@ -83,6 +93,13 @@ td {
     border-top: 1px solid #f2f2f2;
     height: 40px;
     vertical-align: middle;
+    text-align: center;
+    font-size: 13px;
+}
+
+#board_notify_title {
+	font-weight: bold;
+	color: tomato;
 }
 
 .free_board_no {
@@ -152,6 +169,7 @@ td {
     border: 1px solid #d3d3d3;
     text-align: center;
     text-decoration: none;
+    font-size: 13px;
     margin-right: 20px;
     background: #333333;
     color: white;
@@ -168,6 +186,7 @@ td {
     padding: 9px 12px;
     border: 1px solid #d3d3d3;
     text-align: center;
+    font-size: 13px;
     text-decoration: none;
     background: #333333;
     color: white;
@@ -201,4 +220,32 @@ td {
     font-weight: 800;
     line-height: 21px;
     text-align: center;
+    margin-left: 8px;
 }
+
+.pagination {
+    display: inline-block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+  
+.pagination a {
+	color: black;
+	float: left;
+	padding: 8px 11px;
+	font-size: 12px;
+	text-decoration: none;
+	transition: background-color .3s;
+	border: 1px solid #ddd;
+	cursor: pointer;
+}
+
+.pagination a.active {
+	background-color: #444444;
+	color: white;
+	border: 1px solid #444444;
+}
+
+.pagination a:hover:not(.active) {background-color: #ddd;}
+
