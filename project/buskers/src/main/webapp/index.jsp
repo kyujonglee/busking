@@ -12,7 +12,6 @@
 	<a href="<c:url value='/main/board/agency/list.do'/>">업체 등록게시판</a><br>
 	<a href="<c:url value='/main/board/free/list.do'/>">자유게시판</a><br>
 	<a href="<c:url value='/main/board/qna/writeform.do'/>">qna게시판</a><br>
-	<a href="<c:url value='/main/board/qna/qnaboardwrite.do'/>">qna게시판</a><br>
 	<a href="<c:url value='/main/member/login.do'/>">로그인</a><br>
 </body>
 </html>
