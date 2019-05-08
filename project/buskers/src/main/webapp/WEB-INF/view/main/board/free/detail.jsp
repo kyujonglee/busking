@@ -43,6 +43,7 @@
 
             <div class="board_head_line">
                 <span class="board_img_title">
+                	<img src="<c:url value='/resources/img/boyoung.jpg'/>"/>
                 </span>
    				<c:out value="${board.title}" />
             </div>
@@ -67,8 +68,14 @@
 	                	<c:out value="${board.content}" />
                 	</div>
                 </div>
+                
             </div>
+            
+            <br><br><br>
         
+        	<div class="free_board_detail_bottom">
+                <a href="<c:url value='/main/board/free/list.do'/>" class="fas fa-list-ul"> 목록</a>
+            </div>
 
             <br><br><br>
 
@@ -76,5 +83,9 @@
         </div>
     
     </div>
+    
+    <script>
+    	
+    </script>
 </body>
 </html>
