@@ -9,6 +9,20 @@
 			#{memberNo}, #{content}, #{title}
 		)
 	</select>
+	<select id="selectBoard" parameterType="qnaBoard" resultType="qnaBoard">
+			select *
+  		  from (select @rownum:=@rownum+1 rnum, a.*
+		          from ( select *
+		                   from tb_qnaboard
+						  WHERE (@rownum:=0)=0
+		                  order by board_no desc) a
+		       ) b
+		 where rnum between #{begin} and #{end}
+	</select>
+	<select id="selectBoardCount" resultType="int">
+		select count(*)
+		  from tb_qnaboard
+	</select>
 </mapper>
 
 
