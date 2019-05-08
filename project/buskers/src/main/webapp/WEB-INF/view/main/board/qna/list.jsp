@@ -11,9 +11,6 @@
 	<link rel="stylesheet" href="<c:url value='/resources/css/main/board/qna/list.css'/>"/>
 </head>
 <body>
-<header>
-        헤더
-    </header>
     <div class="container">
         <form action="" method="post" enctype="multipart/form-data" name="">
             <div class="container_board">
@@ -74,9 +71,6 @@
             </div>
         </form>
     </div>            
-    <footer>
-        풋터
-    </footer>
 <script>
     /* let result = function(){
         let txt = "";

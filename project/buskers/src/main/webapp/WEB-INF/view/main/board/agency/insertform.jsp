@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="ko">
   <head>
@@ -10,10 +11,8 @@
       rel="stylesheet"
       href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
     />
-    <link
-      rel="stylesheet"
-      href="../../../../css/main/board/agency/agency.css"
-    />
+    <link rel="stylesheet"
+	href="<c:url value='/resources/css/main/board/agency/agency.css'/>" />
     <title>buskers</title>
   </head>
   <body class="body-background">
@@ -25,13 +24,13 @@
             <span class="side-bar__icon-content">메뉴바</span>
           </div>
         </a>
-        <a class="side-bar__tag">
+        <a class="side-bar__tag" href="<c:url value='/main/board/free/list.do'/>">
           <div class="side-bar__icon">
             <i class="fas fa-comments fa-lg"></i>
             <span class="side-bar__icon-content">자유게시판</span>
           </div>
         </a>
-        <a class="side-bar__tag">
+        <a class="side-bar__tag" href="<c:url value='/main/board/qna/list.do'/>">
           <div class="side-bar__icon">
             <i class="far fa-clipboard fa-lg"></i>
             <span class="side-bar__icon-content">질문게시판</span>
@@ -43,7 +42,7 @@
             <span class="side-bar__icon-content">버스커소개</span>
           </div>
         </a>
-        <a class="side-bar__tag" href="agency.html">
+        <a class="side-bar__tag" href="<c:url value='/main/board/agency/list.do'/>">
           <div class="side-bar__icon">
             <i class="fas fa-pen-nib fa-lg"></i>
             <span class="side-bar__icon-content">업체 등록</span>
@@ -79,12 +78,13 @@
               <a href=""><i class="fas fa-home fa-lg"></i></a>
               <span class="agency-title ">업체 등록 </span>
             </header>
+            <form id="insertForm" method="post" action="<c:url value='/main/board/agency/insert.do'/>">
             <section class="agency-insert">
               <div class="agency-insert__item">
                 <div class="agency-insert__item-column">
                   <span class="agency-insert__item-name">업체명</span>
                 </div>
-                <input class="agency-insert__item-input" type="text" />
+                <input class="agency-insert__item-input" type="text" name="agencyName" id="agencyName"/>
               </div>
               <div class="agency-insert__item">
                 <div class="agency-insert__item-column">
@@ -94,6 +94,8 @@
                   class="agency-insert__item-textarea"
                   cols="70"
                   rows="7"
+                  name="purpose"
+                  id="purpose"
                 ></textarea>
               </div>
               <div class="agency-insert__item">
@@ -103,12 +105,17 @@
                 <input
                   class="agency-insert__item-input agency-insert__input-email"
                   type="text"
+                  name="email1"
+                  id="email1"
                 />
                 <span style="color:inherit;">@</span>
                 <input
                   class="agency-insert__item-input agency-insert__input-email"
                   type="text"
+                  name="email2"
+                  id="email2"
                 />
+                <input type="hidden" name="email" id="email"/>
               </div>
               <div class="agency-insert__item">
                 <div class="agency-insert__item-column">
@@ -118,24 +125,23 @@
                   class="agency-insert__item-input "
                   type="text"
                   placeholder="ex) 010-xxxx-xxxx"
+                  name="phone"
+                  id="phone"
                 />
               </div>
-              <div class="agency-insert__item">
-                <div class="agency-insert__item-column">
-                  <span class="agency-insert__item-name">우편번호</span>
-                </div>
-                <input
-                  class="agency-insert__item-input agency-insert__item-postcode"
-                  type="text"
-                />
+              <div class="agency-insert__item addr-search">
+                <div class="agency-insert__item-column"></div>
+                <button type="button" class="agency-insert__item-addr-search" onclick="goPopup();">주소검색</button>
               </div>
-              <div class="agency-insert__item">
+              <div class="agency-insert__item addr-search">
                 <div class="agency-insert__item-column">
                   <span class="agency-insert__item-name">기본주소</span>
                 </div>
                 <input
                   class="agency-insert__item-input agency-insert__item-addr"
                   type="text"
+                  id="roadAddrPart1"
+                  name="basicAddr"
                 />
               </div>
               <div class="agency-insert__item">
@@ -143,8 +149,10 @@
                   <span class="agency-insert__item-name">상세주소</span>
                 </div>
                 <input
-                  class="agency-insert__item-input agency-insert__item-addr"
+                  class="agency-insert__item-input agency-insert__item-addr-detail"
                   type="text"
+                  id="addrDetail"
+                  name="detailAddr"
                 />
               </div>
               <div class="agency-insert__item">
@@ -155,8 +163,9 @@
                   <input
                     class="agency-insert__checkbox"
                     type="checkbox"
-                    name=""
+                    name="agencyCheckbox"
                     id=""
+                    value="1"
                   />
                   <span class="agency-insert__checkbox-title">스트릿댄스</span>
                 </div>
@@ -164,8 +173,9 @@
                   <input
                     class="agency-insert__checkbox"
                     type="checkbox"
-                    name=""
+                    name="agencyCheckbox"
                     id=""
+                    value="2"
                   />
                   <span class="agency-insert__checkbox-title">발라드</span>
                 </div>
@@ -173,25 +183,38 @@
                   <input
                     class="agency-insert__checkbox"
                     type="checkbox"
-                    name=""
+                    name="agencyCheckbox"
                     id=""
+                    value="3"
                   />
-                  <span class="agency-insert__checkbox-title">마술</span>
+                  <span class="agency-insert__checkbox-title">개그</span>
                 </div>
                 <div class="agency-insert__checkbox-item">
                   <input
                     class="agency-insert__checkbox"
                     type="checkbox"
-                    name=""
+                    name="agencyCheckbox"
                     id=""
+                    value="4"
                   />
-                  <span class="agency-insert__checkbox-title">댄스</span>
+                  <span class="agency-insert__checkbox-title">악기연주</span>
+                </div>
+                <div class="agency-insert__checkbox-item">
+                  <input
+                    class="agency-insert__checkbox"
+                    type="checkbox"
+                    name="agencyCheckbox"
+                    id=""
+                    value="5"
+                  />
+                  <span class="agency-insert__checkbox-title">마술</span>
                 </div>
               </div>
               <div class="agency-insert__btn-content">
                 <button class="agency-insert__btn">등 록</button>
               </div>
             </section>
+            </form>
           </div>
         </main>
       </div>
@@ -200,6 +223,7 @@
       src="https://code.jquery.com/jquery-3.4.1.min.js"
       crossorigin="anonymous"
     ></script>
-    <script src="../../../../js/main/board/agency/side-bar.js"></script>
+    <script src="<c:url value='/resources/js/main/board/agency/side-bar.js'/>"></script>
+    <script src="<c:url value='/resources/js/main/board/agency/insert.js'/>"></script>
   </body>
 </html>
