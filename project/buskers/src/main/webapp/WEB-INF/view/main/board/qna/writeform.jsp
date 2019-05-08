@@ -5,13 +5,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-	<link rel="stylesheet" href="<c:url value='/resources/css/main/board/qna/qnaboardwriteform.css'/>"/>
+	<link rel="stylesheet" href="<c:url value='/resources/css/main/board/qna/writeform.css'/>"/>
     <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
     <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script> 
     <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css" rel="stylesheet">
     <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
-    <link rel="stylesheet" href="<c:url value='/resources/js/main/board/qna/qnaboardwriteform.js'/>"/>    
    
 </head>
 <body>
@@ -19,7 +18,7 @@
         헤더
     </header>
     <div class="container">
-        <form action="qnaboardwrite.do" method="post">
+        <form action="write.do" method="post">
             <div class="container_board">
                 <div class="board_head">새 게시글</div>
                 <hr class="write_head_line">
@@ -40,6 +39,8 @@
         풋터
     </footer>
     
+<%--     <script src="<c:url value='/resources/js/main/board/qna/writeform.js'/>"></script> --%>
+   
 <script>
 $(document).ready(function() {
     $('#content').summernote({
@@ -49,7 +50,7 @@ $(document).ready(function() {
             maxHeight: 800,             // set maximum height of editor
             focus: false                  // set focus to editable area after initializing summernote
     });
-});
+}); 
 </script>
 </body>
 </html>

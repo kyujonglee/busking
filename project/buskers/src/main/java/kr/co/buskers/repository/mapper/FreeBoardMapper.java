@@ -9,4 +9,6 @@ import kr.co.buskers.repository.domain.FreePage;
 public interface FreeBoardMapper {
 	List<FreeBoard> selectBoard(FreePage freePage);
 	int selectBoardCount();
+	List<FreeBoard> selectNoticeBoard();
+	FreeBoard selectBoardByNo(int no);
 }

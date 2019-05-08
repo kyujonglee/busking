@@ -1,5 +1,5 @@
 @import "../../../common/common.css";
-@import "qnaboardcommon.css";
+@import "common.css";
 
 
 .title{
@@ -15,6 +15,14 @@
     font-size:20px;
     box-sizing: border-box;
 }
+.content_write{
+    box-sizing: border-box;
+    width:1000px;
+    height:500px;
+    resize:none;
+    font-size:20px;
+}
+
 
 .button{
     margin-top:30px;
