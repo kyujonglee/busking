@@ -7,8 +7,6 @@
     <link
       rel="stylesheet"
       href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
-      integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
-      crossorigin="anonymous"
     />
     <link
       rel="stylesheet"
@@ -25,13 +23,19 @@
             <span class="side-bar__icon-content">메뉴바</span>
           </div>
         </a>
-        <a class="side-bar__tag">
+        <a
+          class="side-bar__tag"
+          href="<c:url value='/main/board/free/list.do'/>"
+        >
           <div class="side-bar__icon">
             <i class="fas fa-comments fa-lg"></i>
             <span class="side-bar__icon-content">자유게시판</span>
           </div>
         </a>
-        <a class="side-bar__tag">
+        <a
+          class="side-bar__tag"
+          href="<c:url value='/main/board/qna/list.do'/>"
+        >
           <div class="side-bar__icon">
             <i class="far fa-clipboard fa-lg"></i>
             <span class="side-bar__icon-content">질문게시판</span>
@@ -43,7 +47,10 @@
             <span class="side-bar__icon-content">버스커소개</span>
           </div>
         </a>
-        <a class="side-bar__tag" href="agency.html">
+        <a
+          class="side-bar__tag"
+          href="<c:url value='/main/board/agency/list.do'/>"
+        >
           <div class="side-bar__icon">
             <i class="fas fa-pen-nib fa-lg"></i>
             <span class="side-bar__icon-content">업체 등록</span>
@@ -91,7 +98,7 @@
               </section>
               <section class="agency-check__section">
                 업체등록번호를 모르시나요?
-                <a href="agency-insert.html">
+                <a href="<c:url value='/main/board/agency/insertform.do'/>">
                   <span class="agency-check__insert-link"
                     >업체 등록신청하러 가기</span
                   >
