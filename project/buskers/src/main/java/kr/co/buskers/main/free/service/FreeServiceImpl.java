@@ -3,8 +3,6 @@ package kr.co.buskers.main.free.service;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,18 +26,6 @@ public class FreeServiceImpl implements FreeService {
 	}	
 	
 	public FreeBoard detail(int boardNo) {
-		mapper.updateBoardViewCount(boardNo);
 		return mapper.selectBoardByNo(boardNo);
-	}
-	
-	public Map<String, Object> sortList(HttpServletRequest request, FreePage freePage) {
-		Map<String, Object> map = new HashMap<>();
-		
-		freePage.setSortType(request.getParameter("sort"));
-		
-		map.put("notifyList", mapper.selectNoticeBoard());
-		map.put("list", mapper.selectBoard(freePage));
-		map.put("pageResult", new FreePageResult(freePage.getPageNo(), mapper.selectBoardCount()));
-		return map;
 	}
 }

@@ -7,6 +7,8 @@
     <link
       rel="stylesheet"
       href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+      integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+      crossorigin="anonymous"
     />
     <link
       rel="stylesheet"
@@ -23,19 +25,13 @@
             <span class="side-bar__icon-content">메뉴바</span>
           </div>
         </a>
-        <a
-          class="side-bar__tag"
-          href="<c:url value='/main/board/free/list.do'/>"
-        >
+        <a class="side-bar__tag">
           <div class="side-bar__icon">
             <i class="fas fa-comments fa-lg"></i>
             <span class="side-bar__icon-content">자유게시판</span>
           </div>
         </a>
-        <a
-          class="side-bar__tag"
-          href="<c:url value='/main/board/qna/list.do'/>"
-        >
+        <a class="side-bar__tag">
           <div class="side-bar__icon">
             <i class="far fa-clipboard fa-lg"></i>
             <span class="side-bar__icon-content">질문게시판</span>
@@ -47,10 +43,7 @@
             <span class="side-bar__icon-content">버스커소개</span>
           </div>
         </a>
-        <a
-          class="side-bar__tag"
-          href="<c:url value='/main/board/agency/list.do'/>"
-        >
+        <a class="side-bar__tag" href="agency.html">
           <div class="side-bar__icon">
             <i class="fas fa-pen-nib fa-lg"></i>
             <span class="side-bar__icon-content">업체 등록</span>
@@ -86,160 +79,119 @@
               <a href=""><i class="fas fa-home fa-lg"></i></a>
               <span class="agency-title ">업체 등록 </span>
             </header>
-            <form
-              id="insertForm"
-              method="post"
-              action="<c:url value='/main/board/agency/insert.do'/>"
-            >
-              <section class="agency-insert">
-                <div class="agency-insert__item">
-                  <div class="agency-insert__item-column">
-                    <span class="agency-insert__item-name">업체명</span>
-                  </div>
+            <section class="agency-insert">
+              <div class="agency-insert__item">
+                <div class="agency-insert__item-column">
+                  <span class="agency-insert__item-name">업체명</span>
+                </div>
+                <input class="agency-insert__item-input" type="text" />
+              </div>
+              <div class="agency-insert__item">
+                <div class="agency-insert__item-column">
+                  <span class="agency-insert__item-name">목적</span>
+                </div>
+                <textarea
+                  class="agency-insert__item-textarea"
+                  cols="70"
+                  rows="7"
+                ></textarea>
+              </div>
+              <div class="agency-insert__item">
+                <div class="agency-insert__item-column">
+                  <span class="agency-insert__item-name">Email</span>
+                </div>
+                <input
+                  class="agency-insert__item-input agency-insert__input-email"
+                  type="text"
+                />
+                <span style="color:inherit;">@</span>
+                <input
+                  class="agency-insert__item-input agency-insert__input-email"
+                  type="text"
+                />
+              </div>
+              <div class="agency-insert__item">
+                <div class="agency-insert__item-column">
+                  <span class="agency-insert__item-name">연락처</span>
+                </div>
+                <input
+                  class="agency-insert__item-input "
+                  type="text"
+                  placeholder="ex) 010-xxxx-xxxx"
+                />
+              </div>
+              <div class="agency-insert__item">
+                <div class="agency-insert__item-column">
+                  <span class="agency-insert__item-name">우편번호</span>
+                </div>
+                <input
+                  class="agency-insert__item-input agency-insert__item-postcode"
+                  type="text"
+                />
+              </div>
+              <div class="agency-insert__item">
+                <div class="agency-insert__item-column">
+                  <span class="agency-insert__item-name">기본주소</span>
+                </div>
+                <input
+                  class="agency-insert__item-input agency-insert__item-addr"
+                  type="text"
+                />
+              </div>
+              <div class="agency-insert__item">
+                <div class="agency-insert__item-column">
+                  <span class="agency-insert__item-name">상세주소</span>
+                </div>
+                <input
+                  class="agency-insert__item-input agency-insert__item-addr"
+                  type="text"
+                />
+              </div>
+              <div class="agency-insert__item">
+                <div class="agency-insert__item-column">
+                  <span class="agency-insert__item-name">관심분야</span>
+                </div>
+                <div class="agency-insert__checkbox-item">
                   <input
-                    class="agency-insert__item-input"
-                    type="text"
-                    name="agencyName"
-                    id="agencyName"
+                    class="agency-insert__checkbox"
+                    type="checkbox"
+                    name=""
+                    id=""
                   />
+                  <span class="agency-insert__checkbox-title">스트릿댄스</span>
                 </div>
-                <div class="agency-insert__item">
-                  <div class="agency-insert__item-column">
-                    <span class="agency-insert__item-name">목적</span>
-                  </div>
-                  <textarea
-                    class="agency-insert__item-textarea"
-                    cols="70"
-                    rows="7"
-                    name="purpose"
-                    id="purpose"
-                  ></textarea>
-                </div>
-                <div class="agency-insert__item">
-                  <div class="agency-insert__item-column">
-                    <span class="agency-insert__item-name">Email</span>
-                  </div>
+                <div class="agency-insert__checkbox-item">
                   <input
-                    class="agency-insert__item-input agency-insert__input-email"
-                    type="text"
-                    name="email1"
-                    id="email1"
+                    class="agency-insert__checkbox"
+                    type="checkbox"
+                    name=""
+                    id=""
                   />
-                  <span style="color:inherit;">@</span>
+                  <span class="agency-insert__checkbox-title">발라드</span>
+                </div>
+                <div class="agency-insert__checkbox-item">
                   <input
-                    class="agency-insert__item-input agency-insert__input-email"
-                    type="text"
-                    name="email2"
-                    id="email2"
+                    class="agency-insert__checkbox"
+                    type="checkbox"
+                    name=""
+                    id=""
                   />
-                  <input type="hidden" name="email" id="email" />
+                  <span class="agency-insert__checkbox-title">마술</span>
                 </div>
-                <div class="agency-insert__item">
-                  <div class="agency-insert__item-column">
-                    <span class="agency-insert__item-name">연락처</span>
-                  </div>
+                <div class="agency-insert__checkbox-item">
                   <input
-                    class="agency-insert__item-input "
-                    type="text"
-                    placeholder="ex) 010-xxxx-xxxx"
-                    name="phone"
-                    id="phone"
+                    class="agency-insert__checkbox"
+                    type="checkbox"
+                    name=""
+                    id=""
                   />
+                  <span class="agency-insert__checkbox-title">댄스</span>
                 </div>
-                <div class="agency-insert__item addr-search">
-                  <div class="agency-insert__item-column"></div>
-                  <button
-                    type="button"
-                    class="agency-insert__item-addr-search"
-                    onclick="goPopup();"
-                  >
-                    주소검색
-                  </button>
-                </div>
-                <div class="agency-insert__item addr-search">
-                  <div class="agency-insert__item-column">
-                    <span class="agency-insert__item-name">기본주소</span>
-                  </div>
-                  <input
-                    class="agency-insert__item-input agency-insert__item-addr"
-                    type="text"
-                    id="roadAddrPart1"
-                    name="basicAddr"
-                  />
-                </div>
-                <div class="agency-insert__item">
-                  <div class="agency-insert__item-column">
-                    <span class="agency-insert__item-name">상세주소</span>
-                  </div>
-                  <input
-                    class="agency-insert__item-input agency-insert__item-addr-detail"
-                    type="text"
-                    id="addrDetail"
-                    name="detailAddr"
-                  />
-                </div>
-                <div class="agency-insert__item">
-                  <div class="agency-insert__item-column">
-                    <span class="agency-insert__item-name">관심분야</span>
-                  </div>
-                  <div class="agency-insert__checkbox-item">
-                    <input
-                      class="agency-insert__checkbox"
-                      type="checkbox"
-                      name="agencyCheckbox"
-                      id=""
-                      value="1"
-                    />
-                    <span class="agency-insert__checkbox-title"
-                      >스트릿댄스</span
-                    >
-                  </div>
-                  <div class="agency-insert__checkbox-item">
-                    <input
-                      class="agency-insert__checkbox"
-                      type="checkbox"
-                      name="agencyCheckbox"
-                      id=""
-                      value="2"
-                    />
-                    <span class="agency-insert__checkbox-title">발라드</span>
-                  </div>
-                  <div class="agency-insert__checkbox-item">
-                    <input
-                      class="agency-insert__checkbox"
-                      type="checkbox"
-                      name="agencyCheckbox"
-                      id=""
-                      value="3"
-                    />
-                    <span class="agency-insert__checkbox-title">개그</span>
-                  </div>
-                  <div class="agency-insert__checkbox-item">
-                    <input
-                      class="agency-insert__checkbox"
-                      type="checkbox"
-                      name="agencyCheckbox"
-                      id=""
-                      value="4"
-                    />
-                    <span class="agency-insert__checkbox-title">악기연주</span>
-                  </div>
-                  <div class="agency-insert__checkbox-item">
-                    <input
-                      class="agency-insert__checkbox"
-                      type="checkbox"
-                      name="agencyCheckbox"
-                      id=""
-                      value="5"
-                    />
-                    <span class="agency-insert__checkbox-title">마술</span>
-                  </div>
-                </div>
-                <div class="agency-insert__btn-content">
-                  <button class="agency-insert__btn">등 록</button>
-                </div>
-              </section>
-            </form>
+              </div>
+              <div class="agency-insert__btn-content">
+                <button class="agency-insert__btn">등 록</button>
+              </div>
+            </section>
           </div>
         </main>
       </div>
