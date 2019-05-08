@@ -1,6 +1,7 @@
 package kr.co.buskers.repository.domain;
 
 import java.util.Date;
+import java.util.List;
 
 public class AgencyInfo {
 	private int agencyInfoNo;

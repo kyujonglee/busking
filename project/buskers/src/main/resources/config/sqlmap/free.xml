@@ -9,7 +9,24 @@
 		          from ( select *
 		                   from tb_freeboard
 						  WHERE (@rownum:=0)=0
-		                  order by board_no desc) a
+						<choose>
+							<when test="sortType == 'viewDESC'">
+								order by view_cnt desc
+							</when>
+							<when test="sortType == 'viewASC'">
+								order by view_cnt asc
+							</when>
+							<when test="sortType == 'likeDESC'">
+								order by like_cnt desc
+							</when>
+							<when test="sortType == 'likeASC'">
+								order by like_cnt asc
+							</when>
+							<otherwise>
+								order by board_no desc
+							</otherwise>
+						</choose>
+	                   ) a
 		       ) b
 		 where rnum between #{begin} and #{end}
 		   and is_notify = 'N'
@@ -19,14 +36,12 @@
 		select * 
 		  from tb_freeboard
 		 where is_notify = 'Y'
-
 	</select>
 	
-	<select id="selectBoardByNo" resultType="freeBoard">
+	<select id="selectBoardByNo" parameterType="int" resultType="freeBoard">
 		select * 
 		  from tb_freeboard
 		 where board_no = #{boardNo}
-
 	</select>
 
 	<select id="selectBoardCount" resultType="int">
@@ -34,6 +49,12 @@
 		  from tb_freeboard
 		 where is_notify = 'N'
 	</select>
+	
+	<update id="updateBoardViewCount" parameterType="int">
+		update tb_freeboard
+		  set view_cnt = view_cnt + 1
+		where board_no = #{boardNo}
+	</update>
 </mapper>
 
 

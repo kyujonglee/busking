@@ -10,5 +10,6 @@ public interface FreeBoardMapper {
 	List<FreeBoard> selectBoard(FreePage freePage);
 	int selectBoardCount();
 	List<FreeBoard> selectNoticeBoard();
-	FreeBoard selectBoardByNo(int no);
+	FreeBoard selectBoardByNo(int boardNo);
+	void updateBoardViewCount(int boardNo);
 }

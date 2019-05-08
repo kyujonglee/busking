@@ -11,9 +11,6 @@
 	<link rel="stylesheet" href="<c:url value='/resources/css/main/board/qna/list.css'/>"/>
 </head>
 <body>
-<header>
-        헤더
-    </header>
     <div class="container">
         <form action="" method="post" enctype="multipart/form-data" name="">
             <div class="container_board">
@@ -29,7 +26,7 @@
 	          
                <div class="list_content">
 					<c:forEach var="board" items="${list}">
-					    <div class='board_title'>${board.title }</div>
+					    <div class='board_title'><a href='detail.do?no=${board.boardNo}'>${board.title }</a></div>
 					    <div>${board.memberNo}</div>
 					    <div><fmt:formatDate value="${board.regDate}" pattern="MM-dd" /></div>
 	        			<div>${board.viewCnt}</div>
@@ -74,10 +71,13 @@
             </div>
         </form>
     </div>            
-    <footer>
-        풋터
-    </footer>
 <script>
+
+if( $(".page > a").hasClass("active") == false ) {
+	$(".page > a:eq(0)").attr("class", "active");
+} 
+
+
     /* let result = function(){
         let txt = "";
         for(let i = 0; i < 15; i++){

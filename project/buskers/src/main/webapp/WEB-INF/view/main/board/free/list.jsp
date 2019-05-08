@@ -47,44 +47,44 @@
             </div>
 
             <table class="free_board">
-                <tr>
+                <tr id="free_board_head">
                     <th class="free_board_no"></th>
                     <th class="free_board_title">제목</th>
                     <th class="free_board_writer">작성자</th>
                     <th class="free_board_date"><a>작성일</a></th>
-                    <th class="free_board_view"><a class="fas fa-caret-down">조회</a></th>
-                    <th class="free_board_like"><a class="fas fa-caret-down">추천</a></th>
+                    <th class="free_board_view"><a class="fas fa-caret-down" id="viewDESC">조회</a></th>
+                    <th class="free_board_like"><a class="fas fa-caret-down" id="likeDESC">추천</a></th>
                 </tr>
                 
                 <c:if test="${param.pageNo eq 1 || empty param.pageNo}">
 					<c:forEach var="notify" items="${notifyList}">
-					    <tr>
+               			<tr class="notice_table">
 					    	<td><span class="board_notify">공지</span></td>
 							<td class="board_title_left" id="board_notify_title">
 								<a href="detail.do?boardNo=${notify.boardNo}">${notify.title}</a>
 								<i class="fas fa-comment"><a>2</a></i>
 							</td>
 							<td>${notify.memberNo}</td>
-						    <td><fmt:formatDate value="${notify.regDate}" pattern="MM-dd" /></td>
+						    <td><fmt:formatDate value="${notify.regDate}" pattern="MM-dd HH:mm" /></td>
 						    <td>${notify.viewCnt}</td>
 						    <td>${notify.likeCnt}</td>
 						</tr>
-				</c:forEach>
+					</c:forEach>
 				</c:if>
-                
+				
+               
                 <c:forEach var="board" items="${list}">
-			    <tr>
-			    	<td>${board.boardNo}</td>
-					<td class="board_title_left">
-						<a href="detail.do?boardNo=${board.boardNo}">${board.title}</a>
-					</td>
-					<td>${board.memberNo}</td>
-				    <td><fmt:formatDate value="${board.regDate}" pattern="MM-dd" /></td>
-				    <td>${board.viewCnt}</td>
-				    <td>${board.likeCnt}</td>
-				</tr>
+               		<tr id="board_table">
+				    	<td>${board.boardNo}</td>
+						<td class="board_title_left">
+							<a href="detail.do?boardNo=${board.boardNo}">${board.title}</a>
+						</td>
+						<td>${board.memberNo}</td>
+					    <td><fmt:formatDate value="${board.regDate}" pattern="MM-dd HH:mm" /></td>
+					    <td>${board.viewCnt}</td>
+					    <td>${board.likeCnt}</td>
+               		</tr>
 				</c:forEach>
-                
             </table>
 			
 			<br><br><br>
@@ -122,7 +122,7 @@
     </div>
 
     <script>
-	
+		
 	    if( $(".pagination > a").hasClass("active") == false ) {
 	    	$(".pagination > a:eq(0)").attr("class", "active");
 	    } 
@@ -136,18 +136,70 @@
         $(".free_board_view").click(function () {
             if ( $(this).children("a").attr("class") == "fas fa-caret-down" ) {
                 $(this).children("a").attr("class", "fas fa-caret-up");
+                $(this).children("a").attr("id", "viewASC");
             } else {
                 $(this).children("a").attr("class", "fas fa-caret-down");
+                $(this).children("a").attr("id", "viewDESC");
             }
         });
 
         $(".free_board_like").click(function () {
             if ( $(this).children("a").attr("class") == "fas fa-caret-down" ) {
                 $(this).children("a").attr("class", "fas fa-caret-up");
+                $(this).children("a").attr("id", "likeASC");
             } else {
                 $(this).children("a").attr("class", "fas fa-caret-down");
+                $(this).children("a").attr("id", "likeDESC");
             }
         });
+        
+        
+        
+        $(".free_board_view").on("click", function () {
+   			let sort = $(".free_board_view > a").attr("id");
+   			console.log(sort);
+   			
+   			$.ajax({
+   				type: "POST",
+   				url: "list-ajax.do",
+   				data: "sort=" + sort,
+   				dataType: "json",
+   				success: function (sortResult) {
+   					console.log(sortResult);
+   					console.log("성공");
+   					let notifyList = sortResult.notifyList;
+   					let list = sortResult.list;
+   					let pageResult = sortResult.pageResult;
+   					let html = "";
+   					
+   					html += '<tr id="free_board_head">';
+   					html += '<th class="free_board_no"></th>';
+   					html += '<th class="free_board_title">제목</th>';
+   					html += '<th class="free_board_writer">작성자</th>';
+   					html += '<th class="free_board_date"><a>작성일</a></th>';
+   					html += '<th class="free_board_view"><a class="fas fa-caret-down" id="viewDESC">조회</a></th>';
+   					html += '<th class="free_board_like"><a class="fas fa-caret-down" id="likeDESC">추천</a></th>';
+   					html += '</tr>';
+   					
+   					console.log(list.length);
+   					for (i = 0; i < list.length; i++) {
+   						let board = list[i];
+   						html += '<tr id="board_table">';
+   						html += 	'<td>' + board.boardNo + '</td>';
+   						html += 	'<td class="board_title_left">';
+   						html += 		'<a href="detail.do?boardNo=' + board.boardNo + '">' + board.title + '</a>';
+   						html += 	'</td>';
+   						html += 	'<td>' + board.memberNo + '</td>';
+   						html += 	'<td>' + board.regDate + '</td>';
+   						html += 	'<td>' + board.viewCnt + '</td>';
+   						html += 	'<td>' + board.likeCnt + '</td>';
+   						html += '</tr>';
+   					}
+   					$(".free_board").html(html);
+   				}
+   			});
+        });
+        
     </script>
 </body>
 </html>
