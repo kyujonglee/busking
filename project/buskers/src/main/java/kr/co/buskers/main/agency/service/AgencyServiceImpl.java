@@ -31,5 +31,4 @@ public class AgencyServiceImpl implements AgencyService {
 	public void insertAgencyGenre(AgencyGenre agencyGenre){
 		mapper.insertAgencyGenre(agencyGenre);
 	}
-	
 }
