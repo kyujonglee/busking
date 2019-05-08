@@ -51,7 +51,7 @@ public class QnaBoardController {
 	public void updateForm(int no,Model model)  { 
 		model.addAttribute("board",service.updateForm(no));
 	}
-	 
+ 
 
 	
 	@RequestMapping("/list.do")
@@ -73,8 +73,7 @@ public class QnaBoardController {
 	
 	 @RequestMapping(value = "/detail.do")
 	   public ModelAndView detail(HttpServletRequest request, HttpServletResponse response, HttpSession session, int no) {
-	        
-	        // 해당 게시판 번호를 받아 리뷰 상세페이지로 넘겨줌
+		 // 해당 게시판 번호를 받아 리뷰 상세페이지로 넘겨줌
 	        QnaBoard qnaBoard = service.detail(no);
 	        ModelAndView view = new ModelAndView();
 	        Cookie[] cookies = request.getCookies();

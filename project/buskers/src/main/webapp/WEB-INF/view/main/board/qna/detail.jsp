@@ -38,7 +38,9 @@
                 </div>
                 <div class="likeText">${board.likeCnt}</div>
                 <div>
-                    <a href="updateForm.do?no=${board.no}"><button class="buttonBasic">글수정</button></a>
+<!--                     <button class="buttonBasic"> -->
+                    <a href="updateform.do?no=${board.boardNo}">글수정</a>
+<!--                     </button> -->
                 </div>
                 <div>
                     <a href="delete.do?no=${board.boardNo}">

@@ -50,13 +50,13 @@
     	 where board_no = #{boardNo}
     </delete>   
     
-    <!-- 게시글 수정 -->
+<!--  게시글 수정  -->
      <update id="updateBoard" parameterType="qnaBoard">
     	update tb_qnaboard
     	   set title = #{title},
     	       content = #{content}
     	 where board_no = #{boardNo}
-    </update>	   
+    </update>	 
 </mapper>
 
 
