@@ -9,11 +9,11 @@ public class Member {
 	private String pass;
 	private String salt;
 	private String email;
+	private String nickName;
 	private Date joinDate;
 	private char sex;
 	private String profileImg;
 	private String profileImgPath;
-	private String nickName;
 	private char isAdmin;
 	private char isBusker;
 	private char isAgency;
@@ -30,8 +30,15 @@ public class Member {
 	public void setIsAgency(char isAgency) {
 		this.isAgency = isAgency;
 	}
+	
+	public char getSex() {
+		return sex;
+	}
 	public void setSex(char sex) {
 		this.sex = sex;
+	}
+	public char getIsAdmin() {
+		return isAdmin;
 	}
 	public void setIsAdmin(char isAdmin) {
 		this.isAdmin = isAdmin;

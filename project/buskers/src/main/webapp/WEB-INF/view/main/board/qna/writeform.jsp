@@ -39,8 +39,8 @@
         풋터
     </footer>
     
-    <script src="<c:url value='/resources/js/main/board/qna/writeform.js'/>"></script>
-   <!--  
+<%--     <script src="<c:url value='/resources/js/main/board/qna/writeform.js'/>"></script> --%>
+   
 <script>
 $(document).ready(function() {
     $('#content').summernote({
@@ -51,6 +51,6 @@ $(document).ready(function() {
             focus: false                  // set focus to editable area after initializing summernote
     });
 }); 
-</script> -->
+</script>
 </body>
 </html>
