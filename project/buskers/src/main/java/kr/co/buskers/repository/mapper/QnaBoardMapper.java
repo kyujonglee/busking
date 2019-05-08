@@ -9,5 +9,8 @@ public interface QnaBoardMapper {
 	public void insertBoard(QnaBoard qnaBoard);
 	List<QnaBoard> selectBoard(FreePage freePage);
 	int selectBoardCount();
-	List<QnaBoard> selectNoticeBoard();
+	QnaBoard selectBoardByNo(int no);
+	void updateViewCnt(int no);
+	void deleteBoard(int no);	
+	void updateBoard(QnaBoard qnaBoard);
 }
