@@ -1,5 +1,7 @@
 package kr.co.buskers.repository.mapper;
 
-public interface MemberMapper {
+import kr.co.buskers.repository.domain.Member;
 
+public interface MemberMapper {
+	void signupMember(Member member);
 }

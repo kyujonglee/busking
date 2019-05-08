@@ -25,7 +25,7 @@
                 <span>Buskers</span>
             </div>
             <div class="user">
-                <a href="login.html">로그인</a>
+                <a href="<c:url value='/main/member/loginform.do'/>">로그인</a>
             </div>
         </div>
             
@@ -52,11 +52,11 @@
                         <button type="button" class="back" onclick="location.href='login.html'">뒤로</button>
                     </div>
                     <div class="u-form-group">
-                        <a href="findId.html" class="forgot-id">아이디 찾기</a>
+                        <a href="findIdform.do" class="forgot-id">아이디 찾기</a>
                         &nbsp;
-                        <a href="findPassword.html" class="forgot-password">비밀번호 찾기</a>
+                        <a href="findPasswordform.do" class="forgot-password">비밀번호 찾기</a>
                         &nbsp;
-                        <a href="register.html" class="forgot-id">회원가입</a>
+                        <a href="signupform.do" class="forgot-id">회원가입</a>
                     </div>
                 </form>
                 

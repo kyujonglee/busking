@@ -25,7 +25,7 @@
                 <span>Buskers</span>
             </div>
             <div class="user">
-                <a href="login.html">로그인</a>
+                <a href="<c:url value='/main/member/loginform.do'/>">로그인</a>
             </div>
         </div>
             
@@ -70,7 +70,7 @@
                     <br>
                     <div class="u-form-group">
                         <button class="register">등록</button>&nbsp;&nbsp;
-                        <button type="button" class="back" onclick="location.href='register.html'">뒤로</button>
+                        <button type="button" class="back" onclick="location.href='signupform.do'">뒤로</button>
                     </div>
                 </form>
                 
