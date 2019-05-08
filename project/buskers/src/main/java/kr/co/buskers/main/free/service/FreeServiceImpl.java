@@ -25,7 +25,7 @@ public class FreeServiceImpl implements FreeService {
 		return map;
 	}	
 	
-	public FreeBoard detail(int no) {
-		return mapper.selectBoardByNo(no);
+	public FreeBoard detail(int boardNo) {
+		return mapper.selectBoardByNo(boardNo);
 	}
 }

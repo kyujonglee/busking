@@ -30,7 +30,7 @@
                 <li><a href="#"><span class="fas fa-bullhorn"></span>공지사항</a></li>
                 <li><a href="#"><span class="fas fa-comments"></span>자유게시판</a></li>
                 <li><a href="#"><span class="fas fa-question"></span>질문게시판</a></li>
-                <li><a href="#"><span class="fas fa-building"></span>업체게시판</a></li>
+                <li><a href="<c:url value='/main/board/agency/list.do'/>"><span class="fas fa-building"></span>업체게시판</a></li>
             </ul>
         </div>
 
@@ -43,22 +43,29 @@
 
             <div class="board_head_line">
                 <span class="board_img_title">
-    
                 </span>
+   				<c:out value="${board.title}" />
             </div>
             
             
             <div class="board_article">
                 <div class="board_article_info">
                     <div class="board_article_info_left">
-                        <i class="fas fa-user"></i><span>ads</span>
-                        <i class="far fa-eye"></i><span>2</span>
-                        <i class="fas fa-heart"></i><span>2</span>
+                        <i class="fas fa-user"></i><span><c:out value="${board.memberNo}" /></span>
+                        <i class="far fa-eye"></i><span><c:out value="${board.viewCnt}" /></span>
+                        <i class="fas fa-heart"></i><span><c:out value="${board.likeCnt}" /></span>
                     </div>
 
                     <div class="board_article_info_right">
-                            <i class="fas fa-clock"></i><span>2014-05-14</span>
+                        <i class="fas fa-clock"></i>
+                        <span><fmt:formatDate value="${board.regDate}" pattern="MM-dd HH:mm" /></span>
                     </div>
+                </div>
+                
+                <div class="board_article_content">
+                	<div>
+	                	<c:out value="${board.content}" />
+                	</div>
                 </div>
             </div>
         

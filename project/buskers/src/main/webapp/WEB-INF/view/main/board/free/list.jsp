@@ -29,7 +29,7 @@
                 <li><a href="#"><span class="fas fa-bullhorn"></span>공지사항</a></li>
                 <li><a href="#"><span class="fas fa-comments"></span>자유게시판</a></li>
                 <li><a href="#"><span class="fas fa-question"></span>질문게시판</a></li>
-                <li><a href="#"><span class="fas fa-building"></span>업체게시판</a></li>
+                <li><a href="<c:url value='/main/board/agency/list.do'/>"><span class="fas fa-building"></span>업체게시판</a></li>
             </ul>
         </div>
 
@@ -52,8 +52,8 @@
                     <th class="free_board_title">제목</th>
                     <th class="free_board_writer">작성자</th>
                     <th class="free_board_date"><a>작성일</a></th>
-                    <th class="free_board_view"><a class="fas fa-sort-down">조회</a></th>
-                    <th class="free_board_like"><a class="fas fa-sort-down">추천</a></th>
+                    <th class="free_board_view"><a class="fas fa-caret-down">조회</a></th>
+                    <th class="free_board_like"><a class="fas fa-caret-down">추천</a></th>
                 </tr>
                 
                 <c:if test="${param.pageNo eq 1 || empty param.pageNo}">
@@ -134,18 +134,18 @@
 	    });
     
         $(".free_board_view").click(function () {
-            if ( $(this).children("a").attr("class") == "fas fa-sort-down" ) {
-                $(this).children("a").attr("class", "fas fa-sort-up");
+            if ( $(this).children("a").attr("class") == "fas fa-caret-down" ) {
+                $(this).children("a").attr("class", "fas fa-caret-up");
             } else {
-                $(this).children("a").attr("class", "fas fa-sort-down");
+                $(this).children("a").attr("class", "fas fa-caret-down");
             }
         });
 
         $(".free_board_like").click(function () {
-            if ( $(this).children("a").attr("class") == "fas fa-sort-down" ) {
-                $(this).children("a").attr("class", "fas fa-sort-up");
+            if ( $(this).children("a").attr("class") == "fas fa-caret-down" ) {
+                $(this).children("a").attr("class", "fas fa-caret-up");
             } else {
-                $(this).children("a").attr("class", "fas fa-sort-down");
+                $(this).children("a").attr("class", "fas fa-caret-down");
             }
         });
     </script>

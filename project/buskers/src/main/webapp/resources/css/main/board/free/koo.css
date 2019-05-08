@@ -67,6 +67,10 @@ body {
 	padding-left: 15px;
 }
 
+.board_title_left > a {
+	
+}
+
 .board_title_left:hover {
 	color: #DC143C;
 }
@@ -97,10 +101,14 @@ td {
     font-size: 13px;
 }
 
-#board_notify_title {
+#board_notify_title > a {
 	font-weight: bold;
 	color: tomato;
 	font-size: 14px;
+}
+
+#board_notify_title > a:hover {
+	text-decoration: underline;
 }
 
 .free_board_no {

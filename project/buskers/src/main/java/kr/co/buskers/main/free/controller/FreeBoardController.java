@@ -27,8 +27,8 @@ public class FreeBoardController {
 	}
 	
 	@RequestMapping("detail.do")
-	public void detail(int no, Model model) {
-		model.addAttribute("board", service.detail(no));
+	public void detail(int boardNo, Model model) {
+		model.addAttribute("board", service.detail(boardNo));
 
 	}
 }

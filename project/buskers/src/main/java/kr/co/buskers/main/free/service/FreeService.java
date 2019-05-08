@@ -7,5 +7,5 @@ import kr.co.buskers.repository.domain.FreePage;
 
 public interface FreeService {
 	public Map<String, Object> list(FreePage freePage);
-	public FreeBoard detail(int no);
+	public FreeBoard detail(int boardNo);
 }
