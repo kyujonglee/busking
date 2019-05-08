@@ -15,10 +15,10 @@ public class QnaBoardController {
 	@Autowired
 	private QnaBoardService service;
 	
-	@RequestMapping("/qnaboardwriteform.do")
-	public void writeFrom() {}
+	@RequestMapping("/writeform.do")
+	public void writeForm() {}
 		
-	@RequestMapping("/qnaboardwrite.do")
+	@RequestMapping("/write.do")
 	public String write(QnaBoard qnaBoard) {
 		System.out.println(qnaBoard.getContent());
 		System.out.println(qnaBoard.getTitle());
