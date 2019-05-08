@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="ko">
   <head>
@@ -10,10 +11,8 @@
       rel="stylesheet"
       href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
     />
-    <link
-      rel="stylesheet"
-      href="../../../../css/main/board/agency/agency.css"
-    />
+    <link rel="stylesheet"
+	href="<c:url value='/resources/css/main/board/agency/agency.css'/>" />
     <title>buskers</title>
   </head>
   <body class="body-background">
@@ -106,6 +105,8 @@
       src="https://code.jquery.com/jquery-3.4.1.min.js"
       crossorigin="anonymous"
     ></script>
-    <script src="../../../../js/main/board/agency/side-bar.js"></script>
+    <script
+		src="<c:url value='/resources/js/main/board/agency/side-bar.js'/>"></script>
+	<script>
   </body>
 </html>

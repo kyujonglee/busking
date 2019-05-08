@@ -22,4 +22,7 @@ public class AgencyController {
 		model.addAttribute("pageResult", new AgencyPageResult(
 				page.getPageNo(), service.agencyInfoCount()));
 	}
+	
+	@RequestMapping("checkform.do")
+	public void checkform() {}
 }

@@ -70,7 +70,7 @@
 						게시판 </span>
 				</header>
 				<div class="agency-bottom">
-					<a class="agency-bottom__button" href="agency-check.html">등록</a>
+					<a class="agency-bottom__button" href='<c:url value='/main/board/agency/checkform.do'/>'>등록</a>
 				</div>
 				<table class="agency-table">
 					<tr>
@@ -169,7 +169,6 @@
 	</div>
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js"
 		crossorigin="anonymous">
-		
 	</script>
 	<script
 		src="<c:url value='/resources/js/main/board/agency/side-bar.js'/>"></script>
