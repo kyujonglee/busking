@@ -60,7 +60,10 @@
 					<c:forEach var="notify" items="${notifyList}">
 					    <tr>
 					    	<td><span class="board_notify">공지</span></td>
-							<td class="board_title_left" id="board_notify_title">${notify.title}</td>
+							<td class="board_title_left" id="board_notify_title">
+								<a href="detail.do?boardNo=${notify.boardNo}">${notify.title}</a>
+								<i class="fas fa-comment"><a>2</a></i>
+							</td>
 							<td>${notify.memberNo}</td>
 						    <td><fmt:formatDate value="${notify.regDate}" pattern="MM-dd" /></td>
 						    <td>${notify.viewCnt}</td>
@@ -72,7 +75,9 @@
                 <c:forEach var="board" items="${list}">
 			    <tr>
 			    	<td>${board.boardNo}</td>
-					<td class="board_title_left">${board.title}</td>
+					<td class="board_title_left">
+						<a href="detail.do?boardNo=${board.boardNo}">${board.title}</a>
+					</td>
 					<td>${board.memberNo}</td>
 				    <td><fmt:formatDate value="${board.regDate}" pattern="MM-dd" /></td>
 				    <td>${board.viewCnt}</td>

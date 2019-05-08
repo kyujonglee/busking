@@ -100,6 +100,7 @@ td {
 #board_notify_title {
 	font-weight: bold;
 	color: tomato;
+	font-size: 14px;
 }
 
 .free_board_no {
@@ -249,3 +250,14 @@ td {
 
 .pagination a:hover:not(.active) {background-color: #ddd;}
 
+.fa-comment {
+	color: black;
+	padding-left: 10px;
+}
+
+.fa-comment > a {
+	color: tomato;
+	padding-left: 2px;
+	font-family: verdana;
+	font-size: 12px;
+}
