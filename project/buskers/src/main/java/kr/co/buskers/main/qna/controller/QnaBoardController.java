@@ -8,7 +8,7 @@ import org.springframework.web.servlet.view.UrlBasedViewResolver;
 import kr.co.buskers.main.qna.service.QnaBoardService;
 import kr.co.buskers.repository.domain.QnaBoard;
 
-@Controller
+@Controller("kr.co.buskers.main.qna.controller.QnaBoardController")
 @RequestMapping("/main/board/qna")
 public class QnaBoardController {
 	

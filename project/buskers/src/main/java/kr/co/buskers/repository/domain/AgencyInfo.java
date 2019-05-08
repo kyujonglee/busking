@@ -13,6 +13,14 @@ public class AgencyInfo {
 	private String email;
 	private String permission;
 	private String agencyCode;
+	private int memberNo;
+	
+	public int getMemberNo() {
+		return memberNo;
+	}
+	public void setMemberNo(int memberNo) {
+		this.memberNo = memberNo;
+	}
 	public int getAgencyInfoNo() {
 		return agencyInfoNo;
 	}

@@ -3,8 +3,23 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.co.buskers.repository.mapper.AgencyMapper">
 	
-	<select id="selectAgencyInfo" resultType="agencyInfo">
-		select *
+<!-- 	<select id="selectAgencyInfo" resultType="agencyInfo"> -->
+<!-- 		select * -->
+<!-- 		  from tb_agency_info -->
+<!-- 	</select> -->
+
+	<!-- 업체 페이지 페이징 -->
+	<select id="selectAgencyInfo" parameterType="agencyPage" resultType="agencyInfo">
+		select b.*
+ 		 from (select @rownum:=@rownum+1 as rnum, a.*
+		 		 from ( select *
+						   from tb_agency_info
+						  order by agency_info_no desc) a, (SELECT @rownum := 0 ) R 
+				)  b
+ 		where rnum between #{begin} and #{end}
+	</select>
+	<select id="selectAgencyInfoCount" resultType="int">
+		select count(*)
 		  from tb_agency_info
 	</select>
 </mapper>
