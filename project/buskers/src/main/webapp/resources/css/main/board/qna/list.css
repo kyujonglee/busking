@@ -1,19 +1,22 @@
-@import "common/common.css";
-@import "qnaboardcommon.css";
-
+@import "../../../common/common.css";
+@import "common.css";
 
 .list_title{
   display: grid;
   margin-top:30px;
-  grid-template-columns:1fr 5fr 1fr 1fr 0.7fr 0.7fr;
+  grid-template-columns:6fr 1fr 1fr 0.7fr 0.7fr;
   font-size:20px;
   text-align:center;
   font-weight: bold;
   border-bottom:1px solid rgb(216, 208, 208);
 }
+.page .active{
+	background-color:black;
+	color:white;
+}
 .list_content{
   display: grid;
-  grid-template-columns:1fr 5fr 1fr 1fr 0.7fr 0.7fr;
+  grid-template-columns:6fr 1fr 1fr 0.7fr 0.7fr;
   font-size:20px;
   text-align:center;
 }
@@ -37,8 +40,6 @@
   color:black;
   padding-left:10px;
   padding-right:10px;
-  background-color:red;
-  color:white;
 }
 
 
@@ -61,6 +62,7 @@
 .list_bot select{
   height:35px;
 }
+
 .list_bot input{
   height:35px;
   box-sizing:border-box;
@@ -70,9 +72,15 @@
 }
 .search{
   height:35px;
+  width:70px;
 }
 .search_line{
   display:grid;
   grid-template-columns: 1fr 1fr 1fr;
 }
-
+.button_reg a{
+	height:100%;
+	width:100%;
+	text-decoration: none;
+    color:black;
+}
