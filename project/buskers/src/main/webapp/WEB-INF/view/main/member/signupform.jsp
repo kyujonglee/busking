@@ -25,7 +25,7 @@
                 <span>Buskers</span>
             </div>
             <div class="user">
-                <a href="login.html">로그인</a>
+                <a href="<c:url value='/main/member/loginform.do'/>">로그인</a>
             </div>
         </div>
             
@@ -37,23 +37,23 @@
                 <div class="lb-header">
                     <span class="active" id="login-box-link">회원가입</span>
                 </div>
-                <form class="email-login">
+                <form class="email-login" action="signup.do" method="post">
                     <div class="u-form-group">
-                        <div>아이디&nbsp;</div><input type="id" placeholder="Id"/>
+                        <div>아이디&nbsp;</div><input type="text" name="id" placeholder="Id"/>
                         <button type="button" id="checkId" class="check">중복확인</button>
                     </div>
                     <div class="u-form-group">
-                        <div>비밀번호&nbsp;</div><input type="password" placeholder="Password"/>&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;
+                        <div>비밀번호&nbsp;</div><input type="password" name="pass" placeholder="Password"/>&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;
                     </div>
                     <div class="u-form-group">
-                        <div>비밀번호 확인&nbsp;</div><input type="password" placeholder="PasswordCheck"/>&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;
+                        <div>비밀번호 확인&nbsp;</div><input type="password" name="passcheck" placeholder="PasswordCheck"/>&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;
                     </div>
                     <div class="u-form-group">
-                        <div>이메일&nbsp;</div><input type="text" placeholder="email"/>
+                        <div>이메일&nbsp;</div><input type="text" name="email" placeholder="email"/>
                         <button type="button" id="checkEmail" class="check">중복확인</button>
                     </div>
                     <div class="u-form-group">
-                        <div>닉네임&nbsp;</div><input type="text" placeholder="nickName"/>
+                        <div>닉네임&nbsp;</div><input type="text" name="nickName" placeholder="nickName"/>
                         <button type="button" id="checkNickName" class="check">중복확인</button>
                     </div>
                     <div class="u-form-group">
@@ -68,13 +68,14 @@
                     <br>
                     <div class="u-form-group">
                         <button class="register">일반 회원가입</button>&nbsp;&nbsp;
-                        <button type="button" class="register" onclick="location.href='register-busker.html'">버스커 회원가입</button>
+                        <button type="button" class="register" onclick="location.href='signupform-busker.do'">버스커 회원가입</button>
                     </div>
                 </form>
                 
             </div>
 
     </div>
+    
     <!-- FOOTER -->
     <footer class="footer">
         <div class="copyright">
