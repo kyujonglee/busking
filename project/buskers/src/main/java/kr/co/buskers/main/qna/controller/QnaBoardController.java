@@ -1,8 +1,12 @@
 package kr.co.buskers.main.qna.controller;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.view.UrlBasedViewResolver;
 
 import kr.co.buskers.main.qna.service.QnaBoardService;
@@ -15,10 +19,10 @@ public class QnaBoardController {
 	@Autowired
 	private QnaBoardService service;
 	
-	@RequestMapping("/qnaboardwriteform.do")
+	@RequestMapping("/writeform.do")
 	public void writeFrom() {}
 		
-	@RequestMapping("/qnaboardwrite.do")
+	@RequestMapping("/boardwrite.do")
 	public String write(QnaBoard qnaBoard) {
 		System.out.println(qnaBoard.getContent());
 		System.out.println(qnaBoard.getTitle());
@@ -28,5 +32,13 @@ public class QnaBoardController {
 		
 		return UrlBasedViewResolver.REDIRECT_URL_PREFIX+"list.do";
 	}
+	
+
+	@ResponseBody
+	@RequestMapping("/image.do")
+	public void uploadAjax(MultipartFile file) throws Exception{
+		System.out.println("image.do들어옴");
+	}
+	
 	
 }

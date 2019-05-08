@@ -11,7 +11,7 @@
 	<a href="<c:url value='/test/test.do'/>">테스트 </a><br>
 	<a href="<c:url value='/main/board/agency/agency_list.do'/>">등록게시판</a><br>
 	<a href="<c:url value='/main/board/free/list.do'/>">자유게시판</a><br>
-	<a href="<c:url value='/main/board/qna/qnaboardwriteform.do'/>">qna게시판</a><br>
+	<a href="<c:url value='/main/board/qna/writeform.do'/>">qna게시판</a><br>
 	<a href="<c:url value='/main/board/qna/qnaboardwrite.do'/>">qna게시판</a><br>
 	<a href="<c:url value='/main/member/login.do'/>">로그인</a><br>
 </body>

@@ -5,13 +5,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
-	<link rel="stylesheet" href="<c:url value='/resources/css/main/board/qna/qnaboardwriteform.css'/>"/>
+	<link rel="stylesheet" href="<c:url value='/resources/css/main/board/qna/writeform.css'/>"/>
     <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
     <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script> 
     <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css" rel="stylesheet">
     <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
-    <link rel="stylesheet" href="<c:url value='/resources/js/main/board/qna/qnaboardwriteform.js'/>"/>    
+<%--     <link rel="stylesheet" href="<c:url value='/resources/js/main/board/qna/qnaboardwriteform.js'/>"/>     --%>
    
 </head>
 <body>
@@ -19,7 +19,7 @@
         헤더
     </header>
     <div class="container">
-        <form action="qnaboardwrite.do" method="post">
+        <form action="write.do" method="get">
             <div class="container_board">
                 <div class="board_head">새 게시글</div>
                 <hr class="write_head_line">
@@ -28,7 +28,7 @@
                 <div class="title">본문</div>
                 <!-- 히든 멤버번호 시범용 -->
                 <input type="hidden" name="memberNo" value="1">
-                <textarea class="content_write" type="text" name="content" id="content"></textarea>
+                <textarea class="content_write" type="text" name="content" id="summernote"></textarea>
 
                 <div class="button">
                     <button class="button_reg">글등록</button>
@@ -42,14 +42,41 @@
     
 <script>
 $(document).ready(function() {
-    $('#content').summernote({
-            height: 500,                 // set editor height
-            width: 1000,
-            minHeight: 400,             // set minimum height of editor
-            maxHeight: 800,             // set maximum height of editor
-            focus: false                  // set focus to editable area after initializing summernote
-    });
+  $('#summernote').summernote({
+    height: 300,
+    minHeight: null,
+    maxHeight: null,
+    focus: true,
+    callbacks: {
+      onImageUpload: function(files, editor, welEditable) {
+        for (var i = files.length - 1; i >= 0; i--) {
+          sendFile(files[i], this);
+        }
+      }
+    } 
+  });
 });
+
+function sendFile(file, el) {
+  var form_data = new FormData();
+  form_data.append('file', file);
+  $.ajax({
+    data: form_data,
+    type: "POST",
+    url: 'image.do',
+    cache: false,
+    contentType: false,
+    enctype: 'multipart/form-data',
+    processData: false,
+    success: function(url) {
+      $(el).summernote('editor.insertImage', url);
+      $('#imageBoard > ul').append('<li><img src="'+url+'" width="480" height="auto"/></li>');
+    }
+  });
+} 
 </script>
+
+
+
 </body>
 </html>
