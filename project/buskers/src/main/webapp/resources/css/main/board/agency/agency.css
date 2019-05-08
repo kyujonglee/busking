@@ -1,8 +1,8 @@
 @import "../../../common/common.css";
-@import "agency-header.css";
-@import "agency-insert.css";
-@import "agency-table.css";
-@import 'agency-check.css';
+@import "header.css";
+@import "insert.css";
+@import "table.css";
+@import 'check.css';
 
 :root {
   --color-background: #f5f7fc;

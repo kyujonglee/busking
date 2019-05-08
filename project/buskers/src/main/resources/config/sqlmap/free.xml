@@ -21,6 +21,13 @@
 		 where is_notify = 'Y'
 
 	</select>
+	
+	<select id="selectBoardByNo" resultType="freeBoard">
+		select * 
+		  from tb_freeboard
+		 where board_no = #{boardNo}
+
+	</select>
 
 	<select id="selectBoardCount" resultType="int">
 		select count(*)

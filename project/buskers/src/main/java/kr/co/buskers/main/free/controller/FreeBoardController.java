@@ -20,10 +20,15 @@ public class FreeBoardController {
 	@RequestMapping("list.do")
 	public void list(FreePage freePage, Model model) {
 		Map<String, Object> result = service.list(freePage);
-
 		
 		model.addAttribute("notifyList", result.get("notifyList"));
 		model.addAttribute("list", result.get("list"));
 		model.addAttribute("pageResult", result.get("pageResult"));
+	}
+	
+	@RequestMapping("detail.do")
+	public void detail(int boardNo, Model model) {
+		model.addAttribute("board", service.detail(boardNo));
+
 	}
 }
