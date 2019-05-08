@@ -58,7 +58,7 @@
                 
                 <c:if test="${param.pageNo eq 1 || empty param.pageNo}">
 					<c:forEach var="notify" items="${notifyList}">
-               			<tr id="notice_table">
+               			<tr class="notice_table">
 					    	<td><span class="board_notify">공지</span></td>
 							<td class="board_title_left" id="board_notify_title">
 								<a href="detail.do?boardNo=${notify.boardNo}">${notify.title}</a>
@@ -172,24 +172,30 @@
    					let pageResult = sortResult.pageResult;
    					let html = "";
    					
-   					console.log($("#free_board_head").next());
-   					$("#free_board_head").siblings().remove();
+   					html += '<tr id="free_board_head">';
+   					html += '<th class="free_board_no"></th>';
+   					html += '<th class="free_board_title">제목</th>';
+   					html += '<th class="free_board_writer">작성자</th>';
+   					html += '<th class="free_board_date"><a>작성일</a></th>';
+   					html += '<th class="free_board_view"><a class="fas fa-caret-down" id="viewDESC">조회</a></th>';
+   					html += '<th class="free_board_like"><a class="fas fa-caret-down" id="likeDESC">추천</a></th>';
+   					html += '</tr>';
    					
-   					/*
+   					console.log(list.length);
    					for (i = 0; i < list.length; i++) {
+   						let board = list[i];
    						html += '<tr id="board_table">';
-   						html += 	'<td>' + list.boardNo + '</td>';
+   						html += 	'<td>' + board.boardNo + '</td>';
    						html += 	'<td class="board_title_left">';
-   						html += 		'<a href="detail.do?boardNo=' + list.boardNo + '">' + list.title + '</a>';
+   						html += 		'<a href="detail.do?boardNo=' + board.boardNo + '">' + board.title + '</a>';
    						html += 	'</td>';
-   						html += 	'<td>' + list.memberNo + '</td>';
-   						html += 	'<td>' + list.regDate + '</td>';
-   						html += 	'<td>' + list.viewCnt + '</td>';
-   						html += 	'<td>' + list.likeCnt + '</td>';
+   						html += 	'<td>' + board.memberNo + '</td>';
+   						html += 	'<td>' + board.regDate + '</td>';
+   						html += 	'<td>' + board.viewCnt + '</td>';
+   						html += 	'<td>' + board.likeCnt + '</td>';
    						html += '</tr>';
    					}
-   					$(".free_board").append(html);
-   					*/
+   					$(".free_board").html(html);
    				}
    			});
         });
