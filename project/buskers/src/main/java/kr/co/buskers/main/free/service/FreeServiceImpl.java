@@ -12,11 +12,13 @@ import kr.co.buskers.repository.mapper.FreeBoardMapper;
 
 @Service
 public class FreeServiceImpl implements FreeService {
+	
 	@Autowired
 	private FreeBoardMapper mapper;
 	
 	public Map<String, Object> list(FreePage freePage) {
 		Map<String, Object> map = new HashMap<>();
+		map.put("notifyList", mapper.selectNoticeBoard());
 		map.put("list", mapper.selectBoard(freePage));
 		map.put("pageResult", new FreePageResult(freePage.getPageNo(), mapper.selectBoardCount()));
 		return map;
