@@ -42,7 +42,7 @@
             <span class="side-bar__icon-content">버스커소개</span>
           </div>
         </a>
-        <a class="side-bar__tag" href="agency.html">
+        <a class="side-bar__tag" href="<c:url value='/main/board/agency/list.do'/>">
           <div class="side-bar__icon">
             <i class="fas fa-pen-nib fa-lg"></i>
             <span class="side-bar__icon-content">업체 등록</span>
@@ -90,7 +90,7 @@
               </section>
               <section class="agency-check__section">
                 업체등록번호를 모르시나요?
-                <a href="agency-insert.html">
+                <a href="<c:url value='/main/board/agency/insertform.do'/>">
                   <span class="agency-check__insert-link"
                     >업체 등록신청하러 가기</span
                   >
@@ -105,8 +105,6 @@
       src="https://code.jquery.com/jquery-3.4.1.min.js"
       crossorigin="anonymous"
     ></script>
-    <script
-		src="<c:url value='/resources/js/main/board/agency/side-bar.js'/>"></script>
-	<script>
+    <script src="<c:url value='/resources/js/main/board/agency/side-bar.js'/>"></script>
   </body>
 </html>
