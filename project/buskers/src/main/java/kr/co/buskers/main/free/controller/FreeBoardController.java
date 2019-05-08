@@ -21,6 +21,8 @@ public class FreeBoardController {
 	public void list(FreePage freePage, Model model) {
 		Map<String, Object> result = service.list(freePage);
 
+		
+		model.addAttribute("notifyList", result.get("notifyList"));
 		model.addAttribute("list", result.get("list"));
 		model.addAttribute("pageResult", result.get("pageResult"));
 	}

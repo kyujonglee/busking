@@ -18,6 +18,7 @@ public class FreeServiceImpl implements FreeService {
 	
 	public Map<String, Object> list(FreePage freePage) {
 		Map<String, Object> map = new HashMap<>();
+		map.put("notifyList", mapper.selectNoticeBoard());
 		map.put("list", mapper.selectBoard(freePage));
 		map.put("pageResult", new FreePageResult(freePage.getPageNo(), mapper.selectBoardCount()));
 		return map;
