@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    $('#summernote').summernote({
+    $('#content').summernote({
             
             height: 500,                 // set editor height
             width: 1000,
@@ -8,3 +8,5 @@ $(document).ready(function() {
             focus: false                  // set focus to editable area after initializing summernote
     });
 });
+
+

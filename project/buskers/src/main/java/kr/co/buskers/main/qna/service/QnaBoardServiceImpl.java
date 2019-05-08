@@ -12,7 +12,7 @@ import kr.co.buskers.repository.domain.QnaBoard;
 import kr.co.buskers.repository.mapper.QnaBoardMapper;
 
 @Service
-public class QnaBoardServiceImpl implements QnaBoardService{
+public class QnaBoardServiceImpl implements QnaBoardService {
 	
 	@Autowired
 	private QnaBoardMapper mapper;
@@ -27,5 +27,26 @@ public class QnaBoardServiceImpl implements QnaBoardService{
 		map.put("pageResult", new FreePageResult(freePage.getPageNo(), mapper.selectBoardCount()));
 		return map;
 	}
+	
+	public QnaBoard detail(int no) { 
+		return mapper.selectBoardByNo(no);
+	}
+	public void updateViewCnt(int no) {
+		mapper.updateViewCnt(no);
+	}
+
+	public void delete(int no) {
+		mapper.deleteBoard(no);
+	}
+
+	public void update(QnaBoard qnaBoard) {
+		mapper.updateBoard(qnaBoard);
+	}
+
+	public QnaBoard updateForm(int no) {
+		return mapper.selectBoardByNo(no);
+	}
+
+	
 
 }
