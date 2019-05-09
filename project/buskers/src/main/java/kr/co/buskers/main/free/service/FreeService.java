@@ -8,7 +8,7 @@ import kr.co.buskers.repository.domain.FreeBoard;
 import kr.co.buskers.repository.domain.FreePage;
 
 public interface FreeService {
-	public Map<String, Object> list(FreePage freePage);
+	public Map<String, Object> list(HttpServletRequest request, FreePage freePage);
 	public Map<String, Object> sortList(HttpServletRequest request, FreePage freePage);
 	public FreeBoard detail(int boardNo);
 }

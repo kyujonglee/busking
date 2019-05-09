@@ -1,5 +1,6 @@
 package kr.co.buskers.main.qna.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.Cookie;
@@ -11,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.UrlBasedViewResolver;
 
@@ -44,10 +46,10 @@ public class QnaBoardController {
 	@RequestMapping("/update.do")
 	public String update(QnaBoard qnaBoard)  { 
 		service.update(qnaBoard);
-		return UrlBasedViewResolver.REDIRECT_URL_PREFIX + "list.do";
+		return UrlBasedViewResolver.REDIRECT_URL_PREFIX + "detail.do?no="+qnaBoard.getBoardNo();
 	}
 	
-	@RequestMapping("/updateForm.do")
+	@RequestMapping("/updateform.do")
 	public void updateForm(int no,Model model)  { 
 		model.addAttribute("board",service.updateForm(no));
 	}
@@ -59,6 +61,15 @@ public class QnaBoardController {
 		Map<String, Object> result = service.list(freePage);
 		model.addAttribute("list", result.get("list"));
 		model.addAttribute("pageResult", result.get("pageResult"));
+	}
+
+	@RequestMapping("/like.do")		
+	@ResponseBody
+	public void test01(QnaBoard qnaBoard) {
+		service.likeStatusUpdate(qnaBoard);
+		System.out.println("ajax들어오");
+		
+		
 	}
 	
 //	@RequestMapping("/detail.do")
