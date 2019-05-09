@@ -2,6 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.co.buskers.repository.mapper.QnaBoardMapper">
+	<!-- 게시글 등록 -->
 	<select id="insertBoard" parameterType="qnaBoard">
 			insert into tb_qnaboard(
 			member_no,content,title
@@ -9,6 +10,8 @@
 			#{memberNo}, #{content}, #{title}
 		)
 	</select>
+	
+	<!-- 전체글 조회 -->
 	<select id="selectBoard" parameterType="qnaBoard" resultType="qnaBoard">
 			select *
   		  from (select @rownum:=@rownum+1 rnum, a.*
@@ -19,33 +22,40 @@
 		       ) b
 		 where rnum between #{begin} and #{end}
 	</select>
+	
+	<!-- 페이지 이용 필요 카운트 -->
 	<select id="selectBoardCount" resultType="int">
 		select count(*)
 		  from tb_qnaboard
 	</select>
+	
+	<!-- 게시글조회 -->
+	<select id="selectBoardByNo" parameterType="int" resultType="qnaBoard">
+	  	select *
+	   	  from tb_qnaboard
+	   	 where board_no = #{boardNo} 
+	 </select>	
+	
+	<!-- 조회수 증가 --> 
+	 <update id="updateViewCnt" parameterType="int">
+		update tb_qnaboard
+		   set view_cnt = view_cnt + 1
+		 where board_no = #{boardNo}  
+	</update>
+	
+	<!-- 게시글 삭제 -->
+	 <delete id="deleteBoard" parameterType="int">
+    	delete 
+    	  from tb_qnaboard
+    	 where board_no = #{boardNo}
+    </delete>   
+    
+<!--  게시글 수정  -->
+     <update id="updateBoard" parameterType="qnaBoard">
+    	update tb_qnaboard
+    	   set title = #{title},
+    	       content = #{content}
+    	 where board_no = #{boardNo}
+    </update>	 
 </mapper>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
