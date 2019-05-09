@@ -33,14 +33,17 @@
             </div>
             <hr>
             <div class="content_bottom">
+            <!-- 좋아요버튼  -->
                 <div class="likeImage">
-                    <img class="like"   src="<c:url value='/resources/img/like.jpg'/>">
+                    <a href="<c:url value="/main/board/qna/like.do"/>"><img class="like"   src="<c:url value='/resources/img/like.jpg'/>"></a>
                 </div>
                 <div class="likeText">${board.likeCnt}</div>
                 <div>
-<!--                     <button class="buttonBasic"> -->
-                    <a href="updateform.do?no=${board.boardNo}">글수정</a>
-<!--                     </button> -->
+          				<button class="buttonBasic">
+          			<a href="updateform.do?no=${board.boardNo}">
+                   			 글수정
+                    </a>
+                    	</button>
                 </div>
                 <div>
                     <a href="delete.do?no=${board.boardNo}">
@@ -137,19 +140,34 @@
         풋터
     </footer>
 <script>
-let i = 0;
-$(".like").click(function(){
-    let likeCnt=$(".likeText").text();
-    if(i==0){
-        $(".like").attr("src","<c:url value='/resources/img/likeo.jpg'/>");
-        $(".likeText").text(parseInt(likeCnt)+1);
-        i++;
-    }else{
-        $(".like").attr("src","<c:url value='/resources/img/like.jpg'/>");
-        $(".likeText").text(parseInt(likeCnt)-1);
-        i--;
-    }
-});
+  
+  //     $(".like").attr("src","<c:url value='/resources/img/likeo.jpg'/>");
+  //     $(".likeText").text(parseInt(likeCnt)+1);
+       
+$("a").click(function(e){
+	let likeCnt=$(".likeText").text();
+   	let likeInfo = {boardNo: ${board.boardNo} , memberNo:1 , likeCnt : ${board.likeCnt}};
+   		alert($(this).attr("href"));
+	e.preventDefault();
+	$.ajax({
+		type : "POST",
+		data : likeInfo,
+		url:$(this).attr("href")
+	}).done(function(result){
+		alert("실행완료")
+		
+		
+	})
+	.fail(function(xhr){
+		alert("서버 처리중 에러발생")
+		console.dir(xhr);
+	})
+})
+
+
+
+
+
 let k=0;
 $(".material-icons").click(function(){
     let commentLikeCnt=$(this).parent().next().text();

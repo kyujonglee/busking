@@ -3,13 +3,13 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.co.buskers.repository.mapper.QnaBoardMapper">
 	<!-- 게시글 등록 -->
-	<select id="insertBoard" parameterType="qnaBoard">
-			insert into tb_qnaboard(
+	<insert id="insertBoard" parameterType="qnaBoard" useGeneratedKeys="true" keyProperty="boardNo">
+		insert into tb_qnaboard(
 			member_no,content,title
 		) values (
 			#{memberNo}, #{content}, #{title}
 		)
-	</select>
+	</insert>
 	
 	<!-- 전체글 조회 -->
 	<select id="selectBoard" parameterType="qnaBoard" resultType="qnaBoard">
@@ -57,5 +57,47 @@
     	       content = #{content}
     	 where board_no = #{boardNo}
     </update>	 
+    <!-- 좋아요 테이블 값 생성 -->
+    <insert id="insertLike" parameterType="like">
+		insert into tb_like(
+			member_no,board_no,board_type
+		) values (
+			#{memberNo}, #{boardNo},3
+		)
+	</insert>
+	<!-- 현재 like테이블 상태를 알기-->
+	  <select id="selectLike" parameterType="like" resultType="like">
+    	select *
+    	  from tb_like
+    	 where board_no = #{boardNo}
+    	   and member_no = #{memberNo}
+    	   and board_type=#{boardType}
+    </select>
+    
+	<!-- 현재 like테이블 상태를 알기-->
+    <update id="updateLike" parameterType="like" >
+    	update tb_like
+    	   set like_status = #{likeStatus}
+    	 where board_no = #{boardNo}
+    	   and member_no = #{memberNo}
+    	   and board_type = #{boardType}
+    </update>	 
+    
+      <update id="updateLikeQnaBoardPlus" parameterType="qnaBoard"  useGeneratedKeys="true" keyProperty="likeCnt">
+    	update tb_qnaboard
+		   set like_cnt = like_cnt + 1
+		 where board_no = #{boardNo}  
+    </update>
+    	 
+    <update id="updateLikeQnaBoardMinus" parameterType="qnaBoard"  useGeneratedKeys="true" keyProperty="likeCnt">
+    	update tb_qnaboard
+		   set like_cnt = like_cnt - 1
+		 where board_no = #{boardNo}  
+    </update>	 
+    
+    
+    
+    
+    
 </mapper>
 

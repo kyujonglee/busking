@@ -14,4 +14,7 @@ public interface QnaBoardService {
 	
 	public void update(QnaBoard qnaBoard);
 	public QnaBoard updateForm(int no);
+	
+	//좋아요상태 업데이트
+	public Map<String,Object> likeStatusUpdate(QnaBoard qnaBoard);
 }
