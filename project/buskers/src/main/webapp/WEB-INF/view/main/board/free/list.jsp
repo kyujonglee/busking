@@ -143,6 +143,13 @@
     		for (i = 0; i < $(".board_title_left > a").length; i++) {
     			$(".board_title_left > a:eq(" + i + ")").html( $(".board_title_left > a:eq(" + i + ")").html().replace(input, "<b class='search_keyword'>" + input + "</b>") );
     		}
+    		$(".search_form_input").val(input);
+    		$(".search_form_option > option:eq(0)").prop("selected", true);
+    	}
+    	
+    	if ( (input != "") && searchType == "content" ) {
+    		$(".search_form_input").val(input);
+    		$(".search_form_option > option:eq(1)").prop("selected", true);
     	}
 		
 	    if( $(".pagination > a").hasClass("active") == false ) {

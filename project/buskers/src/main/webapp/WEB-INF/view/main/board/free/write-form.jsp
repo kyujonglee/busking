@@ -46,23 +46,29 @@
                     <a href="<c:url value='/main/board/free/list.do'/>">자유게시판</a>
                 </div>
             </div>
-
-            <div class="board_head_line">
-                <span class="board_img_title">
-                	<img src="<c:url value='/resources/img/boyoung.jpg'/>"/>
-                </span>
-                <input class="write_form_title" name="title" placeholder="제목을 입력하세요." />
-            </div>
+			
+			<form action="write.do" method="get" id="write_from">
+	            <div class="board_head_line">
+	                <span class="board_img_title">
+	                	<img src="<c:url value='/resources/img/boyoung.jpg'/>"/>
+	                </span>
+	                <input class="write_form_title" name="title" placeholder="제목을 입력하세요." />
+	            </div>
+	            
+	            <textarea class="board_write_form" name="content"></textarea>
+	            
             
-            <textarea class="board_write_form" type="text" name="content"></textarea>
             
             <br><br><br>
         
         	<div class="free_board_detail_bottom">
+        		<a class="fas fa-edit"> 등록</a>
                 <a href="<c:url value='/main/board/free/list.do'/>" class="fas fa-list-ul"> 목록</a>
+                <input type="hidden" name="memberNo" value="2">
             </div>
 
             <br><br><br>
+			</form>
 
             <div class="footer"></div>
         </div>
@@ -70,13 +76,26 @@
     </div>
     
     <script>
+    	$(".fa-edit").click(function () {
+   			if ( $(".write_form_title").val() == "" ) {
+   				alert("제목을 입력하세요");
+   				return;
+   			}
+   			
+   			if ( $(".board_write_form").val() == "" ) {
+   				alert("내용을 입력하세요");
+   				return;
+   			}
+   			
+    		$("#write_from").submit();
+    	});
+	    
+    
 	    $(document).ready(function() {
 	        $('.board_write_form').summernote({
-	                height: 500,                 // set editor height
-	                width: 800,
-	                minHeight: 400,             // set minimum height of editor
-	                maxHeight: 800,             // set maximum height of editor
-	                focus: false                  // set focus to editable area after initializing summernote
+                height: 500,                 // set editor height
+                width: 800,
+                focus: false                  // set focus to editable area after initializing summernote
 	        });
 	    });
     </script>

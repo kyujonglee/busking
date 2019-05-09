@@ -65,7 +65,7 @@
                 
                 <div class="board_article_content">
                 	<div>
-	                	<c:out value="${board.content}" />
+	                	${board.content}
                 	</div>
                 </div>
             </div>

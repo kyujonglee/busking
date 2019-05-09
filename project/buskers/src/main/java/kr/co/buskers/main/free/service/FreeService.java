@@ -9,4 +9,5 @@ public interface FreeService {
 	public Map<String, Object> list(FreePage freePage);
 	public Map<String, Object> sortList(FreePage freePage);
 	public FreeBoard detail(int boardNo);
+	public void write(FreeBoard freeBoard);
 }
