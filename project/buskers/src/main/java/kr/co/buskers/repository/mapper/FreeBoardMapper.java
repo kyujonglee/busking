@@ -8,8 +8,9 @@ import kr.co.buskers.repository.domain.FreePage;
 
 public interface FreeBoardMapper {
 	List<FreeBoard> selectBoard(FreePage freePage);
-	int selectBoardCount();
+	int selectBoardCount(FreePage freePage);
 	List<FreeBoard> selectNoticeBoard();
 	FreeBoard selectBoardByNo(int boardNo);
 	void updateBoardViewCount(int boardNo);
+	void insertBoard(FreeBoard freeBoard);
 }

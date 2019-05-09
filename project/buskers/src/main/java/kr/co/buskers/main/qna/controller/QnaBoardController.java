@@ -1,5 +1,6 @@
 package kr.co.buskers.main.qna.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.Cookie;
@@ -11,12 +12,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.UrlBasedViewResolver;
 
 import kr.co.buskers.main.qna.service.QnaBoardService;
 import kr.co.buskers.repository.domain.FreePage;
 import kr.co.buskers.repository.domain.QnaBoard;
+import kr.co.buskers.repository.domain.QnaBoardComment;
 
 @Controller("kr.co.buskers.main.qna.controller.QnaBoardController")
 @RequestMapping("/main/board/qna")
@@ -44,10 +47,10 @@ public class QnaBoardController {
 	@RequestMapping("/update.do")
 	public String update(QnaBoard qnaBoard)  { 
 		service.update(qnaBoard);
-		return UrlBasedViewResolver.REDIRECT_URL_PREFIX + "list.do";
+		return UrlBasedViewResolver.REDIRECT_URL_PREFIX + "detail.do?no="+qnaBoard.getBoardNo();
 	}
 	
-	@RequestMapping("/updateForm.do")
+	@RequestMapping("/updateform.do")
 	public void updateForm(int no,Model model)  { 
 		model.addAttribute("board",service.updateForm(no));
 	}
@@ -60,13 +63,21 @@ public class QnaBoardController {
 		model.addAttribute("list", result.get("list"));
 		model.addAttribute("pageResult", result.get("pageResult"));
 	}
+
+	@RequestMapping("/like.do")		
+	@ResponseBody
+	public Map<String,Object> test01(QnaBoard qnaBoard) {
+		Map<String,Object> result = service.likeStatusUpdate(qnaBoard);
+		return result;
+	}
 	
-//	@RequestMapping("/detail.do")
-//	public void detail(HttpServletResponse response,int no)  throws  Exception {
-////	public void detail(int no,Model model)  throws  Exception {
-//		System.out.println("ㅁㅁㅁㅁㅁ");
-////	     model.addAttribute("board",service.detail(no));
-//	}
+	@RequestMapping("/comment-list.do")
+	@ResponseBody
+	public List<QnaBoardComment> commentList(int no) {  //int no 는 화면에서 넘겨준 파라미터값이 들어감.
+		System.out.println(no);
+		return service.commentList(no);
+	}
+
 	
 	
 	
@@ -77,7 +88,6 @@ public class QnaBoardController {
 	        QnaBoard qnaBoard = service.detail(no);
 	        ModelAndView view = new ModelAndView();
 	        Cookie[] cookies = request.getCookies();
-
 	        // 비교하기 위해 새로운 쿠키
 	        Cookie viewCookie = null;
 	 
@@ -93,9 +103,9 @@ public class QnaBoardController {
 	        
 	        if (qnaBoard != null) {
 	            view.addObject("qnaBoard", qnaBoard);
-
+	            
 	            if (viewCookie == null) {    
-//	                System.out.println("cookie 없음");
+	                System.out.println("cookie 없음");
 	                
 	                // 쿠키 생성(이름, 값)
 	                Cookie newCookie = new Cookie("cookie"+no, "|" + no + "|");
@@ -114,7 +124,8 @@ public class QnaBoardController {
 	                String value = viewCookie.getValue();
 //	                System.out.println("cookie 값 : " + value);
 	            }
-	            view.addObject("board",	service.detail(no));
+	            
+	            view.addObject("board",	qnaBoard);
 	            view.setViewName("main/board/qna/detail");
 	        } 
 	        return view;

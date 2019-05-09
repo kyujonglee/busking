@@ -7,6 +7,14 @@ public class AgencyGenre {
 	private int agencyInfoNo;
 	private int genreNo;
 	private List<String> agencyCheckbox;
+	private Genre genre;
+	
+	public Genre getGenre() {
+		return genre;
+	}
+	public void setGenre(Genre genre) {
+		this.genre = genre;
+	}
 	public int getAgencyGenreNo() {
 		return agencyGenreNo;
 	}

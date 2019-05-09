@@ -18,17 +18,22 @@
         헤더
     </header>
     <div class="container">
-        <form action="write.do" method="post">
+        <form action="update.do" method="post">
             <div class="container_board">
                 <div class="board_head">새 게시글</div>
                 <hr class="write_head_line">
                 <div class="title">제목</div>
                 <input class="title_write" type="text" name="title" id="title" value="${board.title }">
+                <input type="hidden" name="boardNo" value="${board.boardNo}"/>
                 <div class="title">본문</div>
+                
+                
                 <!-- 히든 멤버번호 시범용 -->
                 <input type="hidden" name="memberNo" value="1">
-                <textarea class="content_write" type="text" name="content" id="content" value="${board.content}"></textarea>
-
+                
+                
+                <textarea class="content_write" type="text" name="content" id="content" >${board.content}</textarea>
+				
                 <div class="button">
                     <button class="button_reg">글등록</button>
                 </div>

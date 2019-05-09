@@ -9,6 +9,21 @@
 		          from ( select *
 		                   from tb_freeboard
 						  WHERE (@rownum:=0)=0
+						  
+						<choose>
+							<when test="searchType == 'title'">
+								and title like concat('%', #{input}, '%')
+							</when>
+							<when test="searchType == 'content'">
+								and content like concat('%', #{input}, '%')
+							</when>
+							<when test="searchType == 'writer'">
+								and writer like concat('%', #{input}, '%')
+							</when>
+							<otherwise>
+							</otherwise>
+						</choose>
+						
 						<choose>
 							<when test="sortType == 'viewDESC'">
 								order by view_cnt desc
@@ -22,14 +37,20 @@
 							<when test="sortType == 'likeASC'">
 								order by like_cnt asc
 							</when>
+							<when test="sortType == 'dateDESC'">
+								order by reg_date desc
+							</when>
+							<when test="sortType == 'dateASC'">
+								order by reg_date asc
+							</when>
 							<otherwise>
 								order by board_no desc
 							</otherwise>
 						</choose>
+						
 	                   ) a
 		       ) b
 		 where rnum between #{begin} and #{end}
-		   and is_notify = 'N'
 	</select>
 	
 	<select id="selectNoticeBoard" resultType="freeBoard">
@@ -44,10 +65,22 @@
 		 where board_no = #{boardNo}
 	</select>
 
-	<select id="selectBoardCount" resultType="int">
+	<select id="selectBoardCount" parameterType="freePage" resultType="int">
 		select count(*)
 		  from tb_freeboard
-		 where is_notify = 'N'
+		<choose>
+			<when test="searchType == 'title'">
+				where title like concat('%', #{input}, '%')
+			</when>
+			<when test="searchType == 'content'">
+				where content like concat('%', #{input}, '%')
+			</when>
+			<when test="searchType == 'writer'">
+				where writer like concat('%', #{input}, '%')
+			</when>
+			<otherwise>
+			</otherwise>
+		</choose>
 	</select>
 	
 	<update id="updateBoardViewCount" parameterType="int">
@@ -55,29 +88,12 @@
 		  set view_cnt = view_cnt + 1
 		where board_no = #{boardNo}
 	</update>
+	
+	<insert id="insertBoard" parameterType="freeBoard">
+		insert into tb_freeboard(
+			member_no, content, title
+		)values(
+			#{memberNo}, #{content}, #{title}
+		)
+	</insert>
 </mapper>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

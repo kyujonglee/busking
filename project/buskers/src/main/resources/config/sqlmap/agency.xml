@@ -3,11 +3,33 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.co.buskers.repository.mapper.AgencyMapper">
 	
-<!-- 	<select id="selectAgencyInfo" resultType="agencyInfo"> -->
-<!-- 		select * -->
-<!-- 		  from tb_agency_info -->
-<!-- 	</select> -->
-
+	<resultMap type="agencyInfo" id="agencyInfoMap">
+		<result column="agency_info_no" property="agencyInfoNo" />
+		<result column="agency_name" property="agencyName" />
+		<result column="purpose" property="purpose" />
+		<result column="reg_date" property="regDate" />
+		<result column="phone" property="phone" />
+		<result column="basic_addr" property="basicAddr" />
+		<result column="detail_addr" property="detailAddr" />
+		<result column="email" property="email" />
+		<result column="permission" property="permission" />
+		<result column="agency_code" property="agencyCode" />
+		<result column="member_no" property="memberNo" />
+		<collection property="agencyGenreList"
+					column="agency_info_no"
+					select="selectAgencyGenreByNo" />
+	</resultMap>
+	
+	<resultMap type="agencyGenre" id="agencyGenreMap">
+		<result column="agency_genre_no" property="agencyGenreNo"/>
+		<result column="agency_info_no" property="agencyInfoNo"/>
+		<result column="genre_no" property="genreNo"/>
+		<collection property="genre"
+					column="genre_no"
+					select="selectGenreByNo"/>
+	</resultMap>
+	
+	<!-- select -->
 	<!-- 업체 페이지 페이징 -->
 	<select id="selectAgencyInfo" parameterType="agencyPage" resultType="agencyInfo">
 		select b.*
@@ -23,6 +45,24 @@
 		  from tb_agency_info
 	</select>
 	
+	<select id="selectAgencyInfoByNo" parameterType="int" resultMap="agencyInfoMap">
+		select *
+		  from tb_agency_info
+		 where agency_info_no = #{agencyInfoNo}
+	</select>
+	<select id="selectAgencyGenreByNo" parameterType="int" resultMap="agencyGenreMap">
+		select *
+		  from tb_agency_genre
+	     where agency_info_no = #{agencyInfoNo}
+	</select>
+	
+	<select id="selectGenreByNo" parameterType="int" resultType="genre">
+		select *
+		  from tb_genre
+	     where genre_no = #{genreNo}
+	</select>
+
+	<!-- insert -->
 	<insert id="insertAgencyInfo" parameterType="agencyInfo">
 		<selectKey keyProperty="agencyInfoNo" resultType="int" order="BEFORE">
    			 SELECT MAX(agency_info_no)+1 FROM tb_agency_info
@@ -38,6 +78,7 @@
             (#{genre}, #{agencyInfoNo})
         </foreach>
 	</insert>
+	
 </mapper>
 
 

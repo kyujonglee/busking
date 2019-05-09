@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="ko">
   <head>
@@ -8,10 +11,8 @@
       rel="stylesheet"
       href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
     />
-    <link
-      rel="stylesheet"
-      href="../../../../css/main/board/agency/agency.css"
-    />
+    <link rel="stylesheet"
+	href="<c:url value='/resources/css/main/board/agency/agency.css'/>" />
     <title>buskers</title>
   </head>
   <body class="body-background">
@@ -84,7 +85,7 @@
           <div class="container">
             <div class="agency">
               <header class="agency-header agency-insert__title">
-                <a href=""><i class="fas fa-home fa-lg"></i></a>
+                <a href="<c:url value='/main/board/agency/list.do'/>"><i class="fas fa-home fa-lg"></i></a>
                 <span class="agency-title ">업체 상세보기</span>
               </header>
               <form
@@ -98,7 +99,7 @@
                       <span class="agency-insert__item-name">업체명</span>
                     </div>
                     <div class="agency-insert__item-column">
-                      <span>업체1</span>
+                      <span>${agencyInfo.agencyName}</span>
                     </div>
                   </div>
                   <div class="agency-insert__item">
@@ -107,11 +108,7 @@
                     </div>
                     <div class="agency-insert__item-column">
                       <span class="agency-insert__item-purpose">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing
-                        elit. Soluta ratione cum magnam possimus sed mollitia
-                        perspiciatis excepturi. Accusamus distinctio doloribus,
-                        iste commodi quasi voluptates amet ratione sapiente
-                        officia dolorem provident.
+                        ${agencyInfo.purpose}
                       </span>
                     </div>
                   </div>
@@ -120,7 +117,7 @@
                       <span class="agency-insert__item-name">Email</span>
                     </div>
                     <div class="agency-insert__item-column">
-                      <span>kyujong93@naver.com</span>
+                      <span>${agencyInfo.email}</span>
                       <input type="hidden" name="email" id="email" />
                     </div>
                   </div>
@@ -129,7 +126,7 @@
                       <span class="agency-insert__item-name">연락처</span>
                     </div>
                     <div class="agency-insert__item-column">
-                      <span>010-2222-2222</span>
+                      <span>${agencyInfo.phone}</span>
                     </div>
                   </div>
                   <div class="agency-insert__item addr-search">
@@ -137,7 +134,7 @@
                       <span class="agency-insert__item-name">기본주소</span>
                     </div>
                     <div class="agency-insert__item-column">
-                      <span>서울특별시</span>
+                      <span>${agencyInfo.basicAddr}</span>
                     </div>
                   </div>
                   <div class="agency-insert__item">
@@ -145,7 +142,7 @@
                       <span class="agency-insert__item-name">상세주소</span>
                     </div>
                     <div class="agency-insert__item-column">
-                      <span>4단지</span>
+                      <span>${agencyInfo.detailAddr}</span>
                     </div>
                   </div>
                   <div class="agency-insert__item">
@@ -153,31 +150,13 @@
                       <span class="agency-insert__item-name">관심분야</span>
                     </div>
                     <div class="agency-insert__item-column">
+                    <c:forEach var="check" items="${agencyInfo.agencyGenreList}">
                       <div class="agency-insert__checkbox-item">
                         <span class="agency-insert__checkbox-title">
-                          스트릿댄스
+                          ${check.genre.name}
                         </span>
                       </div>
-                      <div class="agency-insert__checkbox-item">
-                        <span class="agency-insert__checkbox-title">
-                          발라드
-                        </span>
-                      </div>
-                      <div class="agency-insert__checkbox-item">
-                        <span class="agency-insert__checkbox-title">
-                          개그
-                        </span>
-                      </div>
-                      <div class="agency-insert__checkbox-item">
-                        <span class="agency-insert__checkbox-title">
-                          악기연주
-                        </span>
-                      </div>
-                      <div class="agency-insert__checkbox-item">
-                        <span class="agency-insert__checkbox-title">
-                          마술
-                        </span>
-                      </div>
+					</c:forEach>
                     </div>
                   </div>
                   <div class="agency-insert__item">
@@ -185,11 +164,32 @@
                       <span class="agency-insert__item-name">등록 상태</span>
                     </div>
                     <div class="agency-insert__item-column">
-                      <span>신청중</span>
+                      	<c:choose>
+							<c:when test="${agencyInfo.permission eq 'n'}">
+								<td>신청중</td>
+							</c:when>
+							<c:otherwise>
+								<td>등록완료</td>
+							</c:otherwise>
+						</c:choose>
                     </div>
                   </div>
                   <div class="agency-insert__btn-content">
-                    <button class="agency-insert__btn">뒤로 가기</button>
+                  	<a href="<c:url value='/main/board/agency/list.do?pageNo=${pageNo}'/>">
+                   	 <button type="button" class="agency-insert__btn">
+                    	수정 
+                   	 </button>
+                    </a>
+                  	<a href="<c:url value='/main/board/agency/list.do?pageNo=${pageNo}'/>">
+                   	 <button type="button" class="agency-insert__btn">
+                    	삭제 
+                   	 </button>
+                    </a>
+                  	<a href="<c:url value='/main/board/agency/list.do?pageNo=${pageNo}'/>">
+                   	 <button type="button" class="agency-insert__btn">
+                    	목록 
+                   	 </button>
+                    </a>
                   </div>
                 </section>
               </form>
@@ -202,6 +202,7 @@
       src="https://code.jquery.com/jquery-3.4.1.min.js"
       crossorigin="anonymous"
     ></script>
-    <script src="../../../../js/main/board/agency/side-bar.js"></script>
+    <script src="<c:url value='/resources/js/main/board/agency/side-bar.js'/>"></script>
+    <script src="<c:url value='/resources/js/main/board/agency/detail.js'/>"></script>
   </body>
 </html>
