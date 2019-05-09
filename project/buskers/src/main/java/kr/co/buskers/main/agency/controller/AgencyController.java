@@ -1,5 +1,6 @@
 package kr.co.buskers.main.agency.controller;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,11 @@ public class AgencyController {
 	
 	@RequestMapping("list.do")
 	public void list(AgencyPage page, Model model) {
+		if(page.getPageNo() == 0) {
+			model.addAttribute("pageNo",1);
+		}else {
+			model.addAttribute("pageNo",page.getPageNo());
+		}
 		model.addAttribute("list",service.agencyInfoList(page));
 		model.addAttribute("pageResult", new AgencyPageResult(
 				page.getPageNo(), service.agencyInfoCount()));
@@ -48,8 +54,8 @@ public class AgencyController {
 	public void jusopopup() {}
 	
 	@RequestMapping("detail.do")
-	public void detail(int agencyInfoNo,Model model) {
-		AgencyInfo agencyInfo = service.selectAgencyInfoByNo(agencyInfoNo);
+	public void detail(int agencyInfoNo,int pageNo,Model model) {
+		model.addAttribute("pageNo",pageNo);
 		model.addAttribute("agencyInfo",service.selectAgencyInfoByNo(agencyInfoNo));
 	}
 	

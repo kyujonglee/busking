@@ -21,7 +21,6 @@ public class FreeServiceImpl implements FreeService {
 	
 	public Map<String, Object> list(HttpServletRequest request, FreePage freePage) {
 		Map<String, Object> map = new HashMap<>();
-		System.out.println(request.getParameter("sort"));
 		freePage.setSortType(request.getParameter("sort"));
 		
 		map.put("sort", request.getParameter("sort"));

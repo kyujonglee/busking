@@ -85,7 +85,7 @@
 
 .agency-insert__btn-content {
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
 }
 .agency-insert__btn {
     font-size : 18px;
@@ -97,4 +97,5 @@
     margin-left : 5px;
     color : var(--color-orange);
     background-color : var(--color-white);
+    line-height : 35px;
 }

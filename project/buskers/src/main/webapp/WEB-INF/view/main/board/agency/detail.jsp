@@ -85,7 +85,7 @@
           <div class="container">
             <div class="agency">
               <header class="agency-header agency-insert__title">
-                <a href=""><i class="fas fa-home fa-lg"></i></a>
+                <a href="<c:url value='/main/board/agency/list.do'/>"><i class="fas fa-home fa-lg"></i></a>
                 <span class="agency-title ">업체 상세보기</span>
               </header>
               <form
@@ -175,9 +175,21 @@
                     </div>
                   </div>
                   <div class="agency-insert__btn-content">
-                    <button type="button" class="agency-insert__btn">
-                    	<a href="<c:url value='/main/board/agency/list.do'/>">뒤로 가기</a>
-                    </button>
+                  	<a href="<c:url value='/main/board/agency/list.do?pageNo=${pageNo}'/>">
+                   	 <button type="button" class="agency-insert__btn">
+                    	수정 
+                   	 </button>
+                    </a>
+                  	<a href="<c:url value='/main/board/agency/list.do?pageNo=${pageNo}'/>">
+                   	 <button type="button" class="agency-insert__btn">
+                    	삭제 
+                   	 </button>
+                    </a>
+                  	<a href="<c:url value='/main/board/agency/list.do?pageNo=${pageNo}'/>">
+                   	 <button type="button" class="agency-insert__btn">
+                    	목록 
+                   	 </button>
+                    </a>
                   </div>
                 </section>
               </form>
@@ -191,5 +203,6 @@
       crossorigin="anonymous"
     ></script>
     <script src="<c:url value='/resources/js/main/board/agency/side-bar.js'/>"></script>
+    <script src="<c:url value='/resources/js/main/board/agency/detail.js'/>"></script>
   </body>
 </html>
