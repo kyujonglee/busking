@@ -3,13 +3,13 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.co.buskers.repository.mapper.QnaBoardMapper">
 	<!-- 게시글 등록 -->
-	<select id="insertBoard" parameterType="qnaBoard">
-			insert into tb_qnaboard(
+	<insert id="insertBoard" parameterType="qnaBoard" useGeneratedKeys="true" keyProperty="boardNo">
+		insert into tb_qnaboard(
 			member_no,content,title
 		) values (
 			#{memberNo}, #{content}, #{title}
 		)
-	</select>
+	</insert>
 	
 	<!-- 전체글 조회 -->
 	<select id="selectBoard" parameterType="qnaBoard" resultType="qnaBoard">
@@ -18,9 +18,11 @@
 		          from ( select *
 		                   from tb_qnaboard
 						  WHERE (@rownum:=0)=0
+		  					and is_delete = 'n'
 		                  order by board_no desc) a
 		       ) b
 		 where rnum between #{begin} and #{end}
+
 	</select>
 	
 	<!-- 페이지 이용 필요 카운트 -->
@@ -32,8 +34,10 @@
 	<!-- 게시글조회 -->
 	<select id="selectBoardByNo" parameterType="int" resultType="qnaBoard">
 	  	select *
-	   	  from tb_qnaboard
-	   	 where board_no = #{boardNo} 
+		 from tb_qnaboard as a
+		inner join tb_like as b
+		   on a.board_no=b.board_no
+		where a.board_no=#{boardNo};
 	 </select>	
 	
 	<!-- 조회수 증가 --> 
@@ -45,8 +49,8 @@
 	
 	<!-- 게시글 삭제 -->
 	 <delete id="deleteBoard" parameterType="int">
-    	delete 
-    	  from tb_qnaboard
+    	update tb_qnaboard
+    	   set is_delete = 'y'
     	 where board_no = #{boardNo}
     </delete>   
     
@@ -57,5 +61,67 @@
     	       content = #{content}
     	 where board_no = #{boardNo}
     </update>	 
+    <!-- 좋아요 테이블 값 생성 -->
+    <insert id="insertLike" parameterType="like">
+		insert into tb_like(
+			member_no,board_no,board_type
+		) values (
+			#{memberNo}, #{boardNo},3
+		)
+	</insert>
+	<!-- 현재 like테이블 상태를 알기-->
+	  <select id="selectLike" parameterType="like" resultType="like">
+    	select *
+    	  from tb_like
+    	 where board_no = #{boardNo}
+    	   and member_no = #{memberNo}
+    	   and board_type=#{boardType}
+    </select>
+    
+	<!-- 현재 like테이블  상태 업데이트-->
+    <update id="updateLike" parameterType="like" >
+    	update tb_like
+    	   set like_status = #{likeStatus}
+    	 where board_no = #{boardNo}
+    	   and member_no = #{memberNo}
+    	   and board_type = #{boardType}
+    </update>	 
+    <!-- 좋아요값 + - -->
+      <update id="updateLikeQnaBoardPlus" parameterType="qnaBoard">
+      		
+    	update tb_qnaboard
+		   set like_cnt = like_cnt + 1
+		 where board_no = #{boardNo}  
+		 <selectKey keyProperty="likeCnt" resultType="int" order="AFTER">
+    			select like_cnt from tb_qnaboard where board_no=#{boardNo}
+   		</selectKey>
+    </update>
+    	 
+    <update id="updateLikeQnaBoardMinus"  parameterType="qnaBoard" >
+    	update tb_qnaboard
+		   set like_cnt = like_cnt - 1
+		 where board_no = #{boardNo}  
+		 <selectKey keyProperty="likeCnt" resultType="int" order="AFTER">
+    			select like_cnt from tb_qnaboard where board_no=#{boardNo}
+   		</selectKey>
+    </update>	 
+    <!-- 라이크테이블 삭제 -->
+    <delete id="deleteLike" parameterType="int">
+    	delete 
+    	  from tb_like
+    	 where board_no = #{no}
+    </delete>    
+    
+<!--     코멘트 불러오기 -->
+    <select id="selectCommentByNo" parameterType="int" resultType="qnaBoardComment">
+		select *
+		  from tb_qnaboard_comment as a
+		 inner join tb_member as b
+		    on a.member_no=b.member_no
+		 where board_no = #{boardNo}
+		 order by comment_no ;
+    </select>  
+    
+    
 </mapper>
 
