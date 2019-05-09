@@ -44,4 +44,9 @@ public class FreeBoardController {
 	public void detail(int boardNo, Model model) {
 		model.addAttribute("board", service.detail(boardNo));
 	}
+	
+	@RequestMapping("write-form.do")
+	public void writeForm() {
+		
+	}
 }

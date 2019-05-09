@@ -1,0 +1,16 @@
+.board_head_line {
+	margin-bottom: 10px;
+}
+
+.write_form_title {
+	width: 50%;
+	margin-right: 10px;
+	padding-left: 10px;
+	padding-right: 10px;
+	font-size: 13px;
+	transition: .2s ease-out;
+	border: none;
+	border-radius: 4px;
+	outline: none;
+	background-color: #fff;
+}
