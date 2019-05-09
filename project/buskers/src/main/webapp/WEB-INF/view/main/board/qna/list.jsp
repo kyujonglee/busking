@@ -26,7 +26,7 @@
 	          
                <div class="list_content">
 					<c:forEach var="board" items="${list}">
-					    <div class='board_title'><a href='detail.do?no=${board.boardNo}'>${board.title }</a></div>
+					    <div class='board_title'><a href='detail.do?no=${board.boardNo}'>${board.title}</a></div>
 					    <div>${board.memberNo}</div>
 					    <div><fmt:formatDate value="${board.regDate}" pattern="MM-dd" /></div>
 	        			<div>${board.viewCnt}</div>
