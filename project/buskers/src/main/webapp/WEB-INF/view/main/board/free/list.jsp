@@ -45,6 +45,17 @@
             </div>
         
             <div class="free_board_search">
+	            <form action="list.do" class="search_form">
+	            	<select class= "search_form_option" name='searchType'>
+					    <option value='title'>제목</option>
+					    <option value='content'>내용</option>
+					    <option value='writer'>작성자</option>
+					</select>
+	            	
+		            <input class="search_form_input" name="input" placeholder="검색어를 입력하세요." />
+		            
+		            <button class="search_form_button">검색</button>
+		        </form>
             </div>
 
             <table class="free_board">
@@ -91,7 +102,7 @@
 			
             <div class="free_board_bottom">
                 <a class="fas fa-pen"> 글쓰기</a>
-                <a class="fas fa-sort-amount-up"> 정렬</a>
+                <a href="list.do" class="fas fa-sort-amount-up"> 초기화</a>
             </div>
 
             <br><br><br>
@@ -99,18 +110,20 @@
             
             <div class="pagination">
                 <c:if test="${pageResult.prev eq true}">
-					<a href="list.do?pageNo=${pageResult.beginPage - 1}&sort=${param.sort}"><i class="fas fa-angle-left"></i></a>
+					<a href="list.do?pageNo=${pageResult.beginPage - 1}&sortType=${param.sortType}&searchType=${param.searchType}&input=${param.input}">
+					<i class="fas fa-angle-left"></i></a>
 				</c:if>
 				<c:forEach var="i" begin="${pageResult.beginPage}" end="${pageResult.endPage}">
 					<c:if test="${param.pageNo eq i}">
-						<a href="list.do?pageNo=${i}&sort=${param.sort}" class="active">${i}</a>
+						<a href="list.do?pageNo=${i}&sortType=${param.sortType}&searchType=${param.searchType}&input=${param.input}" class="active">${i}</a>
 					</c:if>
 					<c:if test="${param.pageNo ne i}">
-						<a href="list.do?pageNo=${i}&sort=${param.sort}&sort=${param.sort}">${i}</a>
+						<a href="list.do?pageNo=${i}&sortType=${param.sortType}&searchType=${param.searchType}&input=${param.input}">${i}</a>
 					</c:if>
 				</c:forEach>
 				<c:if test="${pageResult.next eq true}">
-					<a href="list.do?pageNo=${pageResult.endPage + 1}&sort=${param.sort}"><i class="fas fa-angle-right"></i></a>
+					<a href="list.do?pageNo=${pageResult.endPage + 1}&sortType=${param.sortType}&searchType=${param.searchType}&input=${param.input}">
+					<i class="fas fa-angle-right"></i></a>
 				</c:if>	
             </div>
             
@@ -122,7 +135,9 @@
     </div>
 
     <script>
-    	let sortType = "${param.sort}";
+    	let sortType = "${param.sortType}";
+    	let searchType = "${param.searchType}";
+    	let input = "${param.input}";
 		
 	    if( $(".pagination > a").hasClass("active") == false ) {
 	    	$(".pagination > a:eq(0)").attr("class", "active");
@@ -189,8 +204,17 @@
 	       		$(".free_board_view > a").attr("class", "fas fa-caret-down");
 	       		break;
         }
-
+		
+        
         $(".free_board_head > th > a").on("click", function () {
+        	$(".free_board_head > th > a").css({
+        		"text-decoration": ""
+        	});
+        	
+        	console.log( $(this).attr("id") );
+        	$(this).css({
+        		"text-decoration": "underline"
+        	});
    			let sort = $(this).attr("id");
    			console.log(sort);
    			let pageNo = "${param.pageNo}";
@@ -201,7 +225,7 @@
    			$.ajax({
    				type: "POST",
    				url: "list-ajax.do",
-   				data: {sort : sort, pageNo : pageNo},
+   				data: {sortType : sort, pageNo : pageNo, searchType : searchType, input : input},
    				dataType: "json",
    				success: function (sortResult) {
    					let notifyList = sortResult.notifyList;
@@ -230,20 +254,20 @@
    					
    					/** 페이징 */
    					if (pageResult.prev) {
-   						pageHtml += '<a href="list.do?pageNo=' + beginPage + '&sort=' + sort + '">';
+   						pageHtml += '<a href="list.do?pageNo=' + beginPage + '&sortType=' + sort + '&input=' + input + '&searchType=' + searchType + '">';
    						pageHtml += '<i class="fas fa-angle-left"></i></a>';
    					}
    					
    					for (i = 1; i <= pageResult.endPage; i++) {
    						if (pageNo == i) {
-   							pageHtml += '<a href="list.do?pageNo=' + i + '&sort=' + sort + '" class="active">' + i + '</a>';
+   							pageHtml += '<a href="list.do?pageNo=' + i + '&sortType=' + sort + '&input=' + input + '&searchType=' + searchType + '" class="active">' + i + '</a>';
    							continue;
    						}
-   						pageHtml += '<a href="list.do?pageNo=' + i + '&sort=' + sort + '">' + i + '</a>';
+   						pageHtml += '<a href="list.do?pageNo=' + i + '&sortType=' + sort + '&input=' + input + '&searchType=' + searchType + '">' + i + '</a>';
    					}
    					
    					if (pageResult.next) {
-   						pageHtml += '<a href="list.do?pageNo=' + endPage + '&sort=' + sort + '">';
+   						pageHtml += '<a href="list.do?pageNo=' + endPage + '&sortType=' + sort + '&input=' + input + '&searchType=' + searchType + '">';
    						pageHtml += '<i class="fas fa-angle-right"></i></a>';
    					}
 					
