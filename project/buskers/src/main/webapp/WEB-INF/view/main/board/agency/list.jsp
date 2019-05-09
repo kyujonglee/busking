@@ -69,8 +69,8 @@
 			<main class="main-agency">
 			<div class="agency">
 				<header class="agency-header">
-					<i class="fas fa-home fa-lg"></i> <span class="agency-title">업체
-						게시판 </span>
+					<a href="<c:url value='/main/board/agency/list.do'/>"><i class="fas fa-home fa-lg"></i></a>
+					<span class="agency-title">업체게시판 </span>
 				</header>
 				<div class="agency-bottom">
 					<a class="agency-bottom__button" href='<c:url value='/main/board/agency/checkform.do'/>'>등록</a>
@@ -87,10 +87,11 @@
 							<tr>
 								<td>${agency.agencyInfoNo}</td>
 								<td>
-									${agency.agencyName}
+									<a href="<c:url value='/main/board/agency/detail.do?agencyInfo=${agency.agencyInfoNo}'/>">${agency.agencyName}</a>
 								</td>
 								<td><fmt:formatDate value="${agency.regDate}"
-										pattern="yyyy-MM-dd HH:mm" /></td>
+										pattern="yyyy-MM-dd HH:mm" type="both" />
+								</td>
 								<c:choose>
 									<c:when test="${agency.permission eq 'n'}">
 										<td>신청중</td>
@@ -108,11 +109,12 @@
 							<tr>
 								<td>${agency.agencyInfoNo}</td>
 								<td>
-									${agency.agencyName}
+									<a href="<c:url value='/main/board/agency/detail.do?agencyInfoNo=${agency.agencyInfoNo}&pageNo=${pageNo}'/>">${agency.agencyName}</a>
 									<i class="fas fa-lock fa-lg"></i>
 								</td>
 								<td><fmt:formatDate value="${agency.regDate}"
-										pattern="yyyy-MM-dd HH:mm" /></td>
+										pattern="yyyy-MM-dd HH:mm" type="both" />
+								</td>
 								<c:choose>
 									<c:when test="${agency.permission eq 'n'}">
 										<td>신청중</td>
@@ -124,42 +126,19 @@
 							</tr>
 						</c:if>
 					</c:forEach>
-
-<!-- 					<tr> -->
-<!-- 						<td>1</td> -->
-<!-- 						<td>이마트 신촌점</td> -->
-<!-- 						<td>19-03-09 15:23</td> -->
-<!-- 						<td>신청중</td> -->
-<!-- 					</tr> -->
-<!-- 					<tr> -->
-<!-- 						<td>2</td> -->
-<!-- 						<td>홈플러스 홍대점 <i class="fas fa-lock fa-lg"></i> -->
-<!-- 						</td> -->
-<!-- 						<td>19-03-10 11:05</td> -->
-<!-- 						<td>등록완료</td> -->
-<!-- 					</tr> -->
 				</table>
-
-<!-- 				<div class="agency-paging__items"> -->
-<!-- 					<a class="agency-paging__item paging-selected">1</a>  -->
-<!-- 					<a class="agency-paging__item">2</a> -->
-<!-- 					<a class="agency-paging__item">3</a> -->
-<!-- 				</div> -->
 				
 				<div class="agency-paging__items">
 				<c:set var="link" value="${pageContext.request.contextPath}/main/board/agency/list.do"/>
 				<c:if test="${pageResult.count != 0}">
 					<c:if test="${pageResult.prev eq true}">
-<%-- 						<a href="${link}?pageNo=${pageResult.beginPage - 1}">이전</a> --%>
 						<a href="${link}?pageNo=${pageResult.beginPage - 1}" class="agency-paging__item">&lt</a> 
 					</c:if>
 					<c:forEach var="i" begin="${pageResult.beginPage}"
 						end="${pageResult.endPage}">
-<%-- 						<a href="${link}?pageNo=${i}">[${i}]</a> --%>
 						<a href="${link}?pageNo=${i}" class="agency-paging__item">${i}</a>
 					</c:forEach>
 					<c:if test="${pageResult.next eq true}">
-<%-- 						<a href="${link}?pageNo=${pageResult.endPage + 1}">다음</a> --%>
 						<a href="${link}?pageNo=${pageResult.endPage + 1}" class="agency-paging__item">&gt</a>
 					</c:if>
 				</c:if>

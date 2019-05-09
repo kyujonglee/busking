@@ -3,6 +3,7 @@
 @import "agency-insert.css";
 @import "agency-table.css";
 @import 'agency-check.css';
+@import 'agency-detail.css';
 
 :root {
   --color-background: #f5f7fc;

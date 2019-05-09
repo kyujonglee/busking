@@ -37,7 +37,7 @@
         <div class="container_body">
             <div class="board_title">
                 <div class="board_title_underline">
-                    <a>자유게시판</a>
+                    <a href="<c:url value='/main/board/free/list.do'/>">자유게시판</a>
                 </div>
             </div>
 
@@ -68,7 +68,6 @@
 	                	<c:out value="${board.content}" />
                 	</div>
                 </div>
-                
             </div>
             
             <br><br><br>
