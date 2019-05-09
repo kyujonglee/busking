@@ -21,10 +21,12 @@ public class FreeBoardController {
 	private FreeService service;
 	
 	@RequestMapping("list.do")
-	public void list(HttpServletRequest request, FreePage freePage, Model model) {
-		Map<String, Object> result = service.list(request, freePage);
-		
-		model.addAttribute("sort", result.get("sort"));
+	public void list(FreePage freePage, Model model) {
+		Map<String, Object> result = service.list(freePage);
+		System.out.println(result.get("searchType"));
+		model.addAttribute("searchType", result.get("searchType"));
+		model.addAttribute("input", result.get("input"));
+		model.addAttribute("sortType", result.get("sortType"));
 		model.addAttribute("notifyList", result.get("notifyList"));
 		model.addAttribute("list", result.get("list"));
 		model.addAttribute("pageResult", result.get("pageResult"));
@@ -32,8 +34,8 @@ public class FreeBoardController {
 	
 	@RequestMapping("list-ajax.do")
 	@ResponseBody
-	public Map<String, Object> sortList(HttpServletRequest request, FreePage freePage) {
-		Map<String, Object> result = service.sortList(request, freePage);
+	public Map<String, Object> sortList(FreePage freePage) {
+		Map<String, Object> result = service.sortList(freePage);
 		
 		return result;
 	}

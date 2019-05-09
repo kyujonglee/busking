@@ -3,7 +3,22 @@ package kr.co.buskers.repository.domain;
 public class FreePage {
 	private int pageNo = 1;
 	private String sortType;
+	private String searchType;
+	private String input;
+
 	
+	public String getInput() {
+		return input;
+	}
+	public void setInput(String input) {
+		this.input = input;
+	}
+	public String getSearchType() {
+		return searchType;
+	}
+	public void setSearchType(String searchType) {
+		this.searchType = searchType;
+	}
 	public String getSortType() {
 		return sortType;
 	}
