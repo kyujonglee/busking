@@ -5,6 +5,7 @@ import java.util.List;
 import kr.co.buskers.repository.domain.AgencyGenre;
 import kr.co.buskers.repository.domain.AgencyInfo;
 import kr.co.buskers.repository.domain.AgencyPage;
+import kr.co.buskers.repository.domain.Genre;
 
 public interface AgencyMapper {
 	List<AgencyInfo> selectAgencyInfo(AgencyPage page);
@@ -16,4 +17,5 @@ public interface AgencyMapper {
 	void deleteAgencyInfoByNo(int agencyInfoNo);
 	void deleteAgencyGenreByNo(int agencyInfoNo);
 	void deleteAgencyByNo(int agencyInfoNo);
+	List<Genre> selectGenre();
 }

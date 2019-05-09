@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import kr.co.buskers.common.page.AgencyPageResult;
@@ -39,7 +40,7 @@ public class AgencyController {
 	@RequestMapping("insertform.do")
 	public void insertform() {}
 	
-	@RequestMapping("insert.do")
+	@PostMapping("insert.do")
 	public String insert(AgencyInfo agencyInfo,AgencyGenre agencyGenre,HttpSession session) {
 //		agencyInfo.setMemberNo(session.getAttribute("user").getMemberNo());
 //		System.out.println(agencyInfo.getMemberNo());
@@ -58,12 +59,22 @@ public class AgencyController {
 		model.addAttribute("pageNo",pageNo);
 		model.addAttribute("agencyInfo",service.selectAgencyInfoByNo(agencyInfoNo));
 	}
+	
 	@RequestMapping("delete.do")
 	public String delete(int agencyInfoNo) {
 		// 3개의 테이블을 다 삭제해야함.
-		System.out.println(agencyInfoNo);
 		service.deleteAgencyInfoAll(agencyInfoNo);
 		return "redirect:list.do";
 	}
 	
+	@RequestMapping("update.do")
+	public String update(int agencyInfoNo,int pageNo) {
+		System.out.println("udpate 도달함");
+		return "redirect:list.do";
+	}
+	@RequestMapping("updateform.do")
+	public void updateform(int agencyInfoNo, Model model) {
+		model.addAttribute("agencyInfo",service.selectAgencyInfoByNo(agencyInfoNo));
+		model.addAttribute("genre",service.selectGenre());
+	}
 }

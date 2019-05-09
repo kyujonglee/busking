@@ -56,6 +56,10 @@
 	     where agency_info_no = #{agencyInfoNo}
 	</select>
 	
+	<select id="selectGenre" resultType="genre">
+		select *
+		  from tb_genre
+	</select>
 	<select id="selectGenreByNo" parameterType="int" resultType="genre">
 		select *
 		  from tb_genre

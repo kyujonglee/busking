@@ -131,7 +131,9 @@
               </div>
               <div class="agency-insert__item addr-search">
                 <div class="agency-insert__item-column"></div>
-                <button type="button" class="agency-insert__item-addr-search" onclick="goPopup();">주소검색</button>
+                <div class="agency-insert__item-column">
+	                <button type="button" class="agency-insert__item-addr-search" onclick="goPopup();">주소검색</button>
+                </div>
               </div>
               <div class="agency-insert__item addr-search">
                 <div class="agency-insert__item-column">

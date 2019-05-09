@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import kr.co.buskers.repository.domain.AgencyGenre;
 import kr.co.buskers.repository.domain.AgencyInfo;
 import kr.co.buskers.repository.domain.AgencyPage;
+import kr.co.buskers.repository.domain.Genre;
 import kr.co.buskers.repository.mapper.AgencyMapper;
 
 @Service
@@ -40,5 +41,8 @@ public class AgencyServiceImpl implements AgencyService {
 		mapper.deleteAgencyGenreByNo(agencyInfoNo);
 		mapper.deleteAgencyByNo(agencyInfoNo);
 		mapper.deleteAgencyInfoByNo(agencyInfoNo);
+	}
+	public List<Genre> selectGenre(){
+		return mapper.selectGenre();
 	}
 }
