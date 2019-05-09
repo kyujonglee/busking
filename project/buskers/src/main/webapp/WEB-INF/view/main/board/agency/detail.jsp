@@ -11,8 +11,9 @@
       rel="stylesheet"
       href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
     />
-    <link rel="stylesheet"
-	href="<c:url value='/resources/css/main/board/agency/agency.css'/>" />
+    <link rel="stylesheet" href="<c:url value='/resources/css/main/board/agency/agency.css'/>" />
+    <link rel="stylesheet" href="<c:url value='/resources/css/common/sweetalert2.min.css'/>" />
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
     <title>buskers</title>
   </head>
   <body class="body-background">
@@ -180,7 +181,7 @@
                     	수정 
                    	 </button>
                     </a>
-                  	<a href="<c:url value='/main/board/agency/list.do?pageNo=${pageNo}'/>">
+                  	<a href="#" onclick="deleteAgency('/buskers/main/board/agency/delete.do?agencyInfoNo=',${agencyInfo.agencyInfoNo});">
                    	 <button type="button" class="agency-insert__btn">
                     	삭제 
                    	 </button>
@@ -204,5 +205,7 @@
     ></script>
     <script src="<c:url value='/resources/js/main/board/agency/side-bar.js'/>"></script>
     <script src="<c:url value='/resources/js/main/board/agency/detail.js'/>"></script>
+    <script type="text/javascript">
+    </script>
   </body>
 </html>

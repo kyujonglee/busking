@@ -35,4 +35,10 @@ public class AgencyServiceImpl implements AgencyService {
 	public AgencyInfo selectAgencyInfoByNo(int agencyInfoNo) {
 		return mapper.selectAgencyInfoByNo(agencyInfoNo);
 	}
+	
+	public void deleteAgencyInfoAll(int agencyInfoNo) {
+		mapper.deleteAgencyGenreByNo(agencyInfoNo);
+		mapper.deleteAgencyByNo(agencyInfoNo);
+		mapper.deleteAgencyInfoByNo(agencyInfoNo);
+	}
 }

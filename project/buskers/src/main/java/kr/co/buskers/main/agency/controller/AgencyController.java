@@ -58,5 +58,12 @@ public class AgencyController {
 		model.addAttribute("pageNo",pageNo);
 		model.addAttribute("agencyInfo",service.selectAgencyInfoByNo(agencyInfoNo));
 	}
+	@RequestMapping("delete.do")
+	public String delete(int agencyInfoNo) {
+		// 3개의 테이블을 다 삭제해야함.
+		System.out.println(agencyInfoNo);
+		service.deleteAgencyInfoAll(agencyInfoNo);
+		return "redirect:list.do";
+	}
 	
 }

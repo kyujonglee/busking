@@ -5,12 +5,14 @@
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:jdbc="http://www.springframework.org/schema/jdbc"
 	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:tx="http://www.springframework.org/schema/tx"
 	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
 	xmlns:aop="http://www.springframework.org/schema/aop"
 	xmlns:mvc="http://www.springframework.org/schema/mvc"
 	xsi:schemaLocation="http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-4.3.xsd
 		http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
 		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
@@ -65,6 +67,35 @@
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <property name="basePackage" value="kr.co.buskers.repository.mapper" />
     </bean>
+    
+    <!-- 트랜젝션 관리 -->
+    
+    <!-- 트랜젝션 처리를 annotation 방식으로 처리 -->
+    <!-- xml 방식이 더 효율적이다!  -->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+    	<property name="dataSource" ref="dataSource" />
+    </bean>
+    
+    <!-- 트랜젝션 관리 -->
+    <!-- 
+     -->
+    <tx:advice id="txAdvice" transaction-manager="transactionManager">
+    	<tx:attributes>
+    		<!-- rollback-for : default-> sqlException but we expand Exception range -->
+    <!-- 
+     -->
+    		<tx:method name="insert*" rollback-for="Exception"/>
+    		<tx:method name="update*" rollback-for="Exception"/>
+    		<tx:method name="delete*" rollback-for="Exception"/>
+    	</tx:attributes>
+    </tx:advice>
+    <!-- 트랜젝션을 위한 AOP 설정
+     -->
+    <aop:config>
+    	<aop:pointcut id="pCut" expression="execution(public * kr.co.buskers..service.*Impl.*(..))" />
+    	<aop:advisor advice-ref="txAdvice" pointcut-ref="pCut"/>
+    </aop:config>
+     
     
     
 	

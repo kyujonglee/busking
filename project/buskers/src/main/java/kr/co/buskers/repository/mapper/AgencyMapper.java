@@ -13,4 +13,7 @@ public interface AgencyMapper {
 	void insertAgencyGenre(AgencyGenre agencyGenre);
 	AgencyInfo selectAgencyInfoByNo(int agencyInfoNo);
 	List<AgencyGenre> selectAgencyGenreByNo(int agencyInfoNo);
+	void deleteAgencyInfoByNo(int agencyInfoNo);
+	void deleteAgencyGenreByNo(int agencyInfoNo);
+	void deleteAgencyByNo(int agencyInfoNo);
 }

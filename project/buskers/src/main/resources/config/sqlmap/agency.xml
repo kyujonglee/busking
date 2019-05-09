@@ -78,6 +78,22 @@
             (#{genre}, #{agencyInfoNo})
         </foreach>
 	</insert>
+	<!-- delete -->
+	<delete id="deleteAgencyInfoByNo" parameterType="int">
+		delete
+		  from tb_agency_info
+		 where agency_info_no = #{agencyInfoNo}
+	</delete>
+	<delete id="deleteAgencyGenreByNo" parameterType="int">
+		delete
+		  from tb_agency_genre
+		 where agency_info_no = #{agencyInfoNo}
+	</delete>
+	<delete id="deleteAgencyByNo" parameterType="int">
+		delete
+		  from tb_agency
+		 where agency_info_no = #{agencyInfoNo}
+	</delete>
 	
 </mapper>
 
