@@ -139,9 +139,10 @@
     	let searchType = "${param.searchType}";
     	let input = "${param.input}";
     	
-    	if (input != "") {
-    		$(".board_title_left > a").text().replace(/바다/g,"산");
-    		
+    	if ( (input != "") && searchType == "title" ) {
+    		for (i = 0; i < $(".board_title_left > a").length; i++) {
+    			$(".board_title_left > a:eq(" + i + ")").html( $(".board_title_left > a:eq(" + i + ")").html().replace(input, "<b class='search_keyword'>" + input + "</b>") );
+    		}
     	}
 		
 	    if( $(".pagination > a").hasClass("active") == false ) {
@@ -185,7 +186,6 @@
         });
         
         /** 정렬 버튼 변경 */
-        console.log("정렬 : " + sortType);
         switch (sortType) {
 	        case "viewDESC":
 	        	$(".free_board_view > a").attr("class", "fas fa-caret-down");
@@ -212,6 +212,7 @@
 		
         
         $(".free_board_head > th > a").on("click", function () {
+        	
         	$(".free_board_head > th > a").css({
         		"text-decoration": ""
         	});
@@ -285,6 +286,12 @@
    						$(".free_board_head").nextAll().remove();
    						$(".free_board > tbody").append(html);
    					}
+   					
+   					if ( (input != "") && searchType == "title" ) {
+   		        		for (i = 0; i < $(".board_title_left > a").length; i++) {
+   		        			$(".board_title_left > a:eq(" + i + ")").html( $(".board_title_left > a:eq(" + i + ")").html().replace(input, "<b class='search_keyword'>" + input + "</b>") );
+   		        		}
+   		        	}
    				}
    			});
         });

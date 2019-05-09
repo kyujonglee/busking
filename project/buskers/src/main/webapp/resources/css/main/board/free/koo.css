@@ -137,7 +137,6 @@ tr:hover {
 
 .side_menu {
     position: fixed;
-    height: 100%;
     width: 60px;
     list-style-type: none;
     background: white;
@@ -217,8 +216,7 @@ tr:hover {
 }
 
 .footer {
-      border: 1px solid black;
-      height: 150px;
+    height: 150px;
 }
 
 .board_notify {
@@ -328,6 +326,11 @@ tr:hover {
 
 .search_form_button:hover {
 	color: tomato;		
+}
+
+.search_keyword {
+	color: #FF3061;
+	font-weight: bold;
 }
 
 
