@@ -11,8 +11,14 @@ public class QnaBoardComment {
 	private Date regDate;
 	private int likeCnt;
 	private int disLikeCnt;
-
+	private String nickName;
 	
+	public String getNickName() {
+		return nickName;
+	}
+	public void setNickName(String nickName) {
+		this.nickName = nickName;
+	}
 	public int getMemberNo() {
 		return memberNo;
 	}

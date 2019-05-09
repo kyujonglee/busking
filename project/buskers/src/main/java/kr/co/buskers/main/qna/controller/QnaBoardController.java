@@ -19,6 +19,7 @@ import org.springframework.web.servlet.view.UrlBasedViewResolver;
 import kr.co.buskers.main.qna.service.QnaBoardService;
 import kr.co.buskers.repository.domain.FreePage;
 import kr.co.buskers.repository.domain.QnaBoard;
+import kr.co.buskers.repository.domain.QnaBoardComment;
 
 @Controller("kr.co.buskers.main.qna.controller.QnaBoardController")
 @RequestMapping("/main/board/qna")
@@ -65,19 +66,18 @@ public class QnaBoardController {
 
 	@RequestMapping("/like.do")		
 	@ResponseBody
-	public void test01(QnaBoard qnaBoard) {
-		service.likeStatusUpdate(qnaBoard);
-		System.out.println("ajax들어오");
-		
-		
+	public Map<String,Object> test01(QnaBoard qnaBoard) {
+		Map<String,Object> result = service.likeStatusUpdate(qnaBoard);
+		return result;
 	}
 	
-//	@RequestMapping("/detail.do")
-//	public void detail(HttpServletResponse response,int no)  throws  Exception {
-////	public void detail(int no,Model model)  throws  Exception {
-//		System.out.println("ㅁㅁㅁㅁㅁ");
-////	     model.addAttribute("board",service.detail(no));
-//	}
+	@RequestMapping("/comment-list.do")
+	@ResponseBody
+	public List<QnaBoardComment> commentList(int no) {  //int no 는 화면에서 넘겨준 파라미터값이 들어감.
+		System.out.println(no);
+		return service.commentList(no);
+	}
+
 	
 	
 	
@@ -88,7 +88,6 @@ public class QnaBoardController {
 	        QnaBoard qnaBoard = service.detail(no);
 	        ModelAndView view = new ModelAndView();
 	        Cookie[] cookies = request.getCookies();
-
 	        // 비교하기 위해 새로운 쿠키
 	        Cookie viewCookie = null;
 	 
@@ -104,9 +103,9 @@ public class QnaBoardController {
 	        
 	        if (qnaBoard != null) {
 	            view.addObject("qnaBoard", qnaBoard);
-
+	            
 	            if (viewCookie == null) {    
-//	                System.out.println("cookie 없음");
+	                System.out.println("cookie 없음");
 	                
 	                // 쿠키 생성(이름, 값)
 	                Cookie newCookie = new Cookie("cookie"+no, "|" + no + "|");
@@ -125,7 +124,8 @@ public class QnaBoardController {
 	                String value = viewCookie.getValue();
 //	                System.out.println("cookie 값 : " + value);
 	            }
-	            view.addObject("board",	service.detail(no));
+	            
+	            view.addObject("board",	qnaBoard);
 	            view.setViewName("main/board/qna/detail");
 	        } 
 	        return view;
