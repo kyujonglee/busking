@@ -19,8 +19,12 @@ public class FreeServiceImpl implements FreeService {
 	@Autowired
 	private FreeBoardMapper mapper;
 	
-	public Map<String, Object> list(FreePage freePage) {
+	public Map<String, Object> list(HttpServletRequest request, FreePage freePage) {
 		Map<String, Object> map = new HashMap<>();
+		System.out.println(request.getParameter("sort"));
+		freePage.setSortType(request.getParameter("sort"));
+		
+		map.put("sort", request.getParameter("sort"));
 		map.put("notifyList", mapper.selectNoticeBoard());
 		map.put("list", mapper.selectBoard(freePage));
 		map.put("pageResult", new FreePageResult(freePage.getPageNo(), mapper.selectBoardCount()));

@@ -22,6 +22,12 @@
 							<when test="sortType == 'likeASC'">
 								order by like_cnt asc
 							</when>
+							<when test="sortType == 'dateDESC'">
+								order by reg_date desc
+							</when>
+							<when test="sortType == 'dateASC'">
+								order by reg_date asc
+							</when>
 							<otherwise>
 								order by board_no desc
 							</otherwise>
@@ -29,7 +35,6 @@
 	                   ) a
 		       ) b
 		 where rnum between #{begin} and #{end}
-		   and is_notify = 'N'
 	</select>
 	
 	<select id="selectNoticeBoard" resultType="freeBoard">
@@ -47,7 +52,6 @@
 	<select id="selectBoardCount" resultType="int">
 		select count(*)
 		  from tb_freeboard
-		 where is_notify = 'N'
 	</select>
 	
 	<update id="updateBoardViewCount" parameterType="int">
