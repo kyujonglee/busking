@@ -88,7 +88,12 @@
                		<tr class="free_board_list">
 				    	<td>${board.boardNo}</td>
 						<td class="board_title_left">
-							<a href="detail.do?boardNo=${board.boardNo}">${board.title}</a>
+						<c:if test="${empty param.pageNo}">
+							<a href="detail.do?boardNo=${board.boardNo}&pageNo=1&input=${param.input}&sortType=${param.sortType}&searchType=${param.searchType}">${board.title}</a>
+						</c:if>
+						<c:if test="${!empty param.pageNo}">
+							<a href="detail.do?boardNo=${board.boardNo}&pageNo=${param.pageNo}&input=${param.input}&sortType=${param.sortType}&searchType=${param.searchType}">${board.title}</a>
+						</c:if>
 						</td>
 						<td>${board.memberNo}</td>
 					    <td><fmt:formatDate value="${board.regDate}" pattern="MM-dd HH:mm" /></td>
@@ -256,7 +261,7 @@
    						html += '<tr id="board_table">';
    						html += 	'<td>' + board.boardNo + '</td>';
    						html += 	'<td class="board_title_left">';
-   						html += 		'<a href="detail.do?boardNo=' + board.boardNo + '">' + board.title + '</a>';
+   						html += 		'<a href="detail.do?boardNo=' + board.boardNo + '&pageNo=' + pageNo + '&sortType=' + sort + '&input=' + input + '&searchType=' + searchType + '">' + board.title + '</a>';
    						html += 	'</td>';
    						html += 	'<td>' + board.memberNo + '</td>';
    						html += 	'<td>' + date + '</td>';

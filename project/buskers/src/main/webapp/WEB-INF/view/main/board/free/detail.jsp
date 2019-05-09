@@ -73,7 +73,7 @@
             <br><br><br>
         
         	<div class="free_board_detail_bottom">
-                <a href="<c:url value='/main/board/free/list.do'/>" class="fas fa-list-ul"> 목록</a>
+                <a href="<c:url value='/main/board/free/list.do?pageNo=${param.pageNo}&input=${param.input}&sortType=${param.sortType}&searchType=${param.searchType}'/>" class="fas fa-list-ul"> 목록</a>
             </div>
 
             <br><br><br>
