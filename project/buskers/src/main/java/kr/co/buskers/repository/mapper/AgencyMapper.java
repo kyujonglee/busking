@@ -11,4 +11,6 @@ public interface AgencyMapper {
 	int selectAgencyInfoCount();
 	void insertAgencyInfo(AgencyInfo agencyInfo);
 	void insertAgencyGenre(AgencyGenre agencyGenre);
+	AgencyInfo selectAgencyInfoByNo(int agencyInfoNo);
+	List<AgencyGenre> selectAgencyGenreByNo(int agencyInfoNo);
 }

@@ -87,7 +87,7 @@
 							<tr>
 								<td>${agency.agencyInfoNo}</td>
 								<td>
-									${agency.agencyName}
+									<a href="<c:url value='/main/board/agency/detail.do?agencyInfo=${agency.agencyInfoNo}'/>">${agency.agencyName}</a>
 								</td>
 								<td><fmt:formatDate value="${agency.regDate}"
 										pattern="yyyy-MM-dd HH:mm" /></td>
@@ -108,7 +108,7 @@
 							<tr>
 								<td>${agency.agencyInfoNo}</td>
 								<td>
-									${agency.agencyName}
+									<a href="<c:url value='/main/board/agency/detail.do?agencyInfoNo=${agency.agencyInfoNo}'/>">${agency.agencyName}</a>
 									<i class="fas fa-lock fa-lg"></i>
 								</td>
 								<td><fmt:formatDate value="${agency.regDate}"

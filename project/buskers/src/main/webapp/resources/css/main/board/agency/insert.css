@@ -18,13 +18,20 @@
   font-size: 20px;
 }
 
-.agency-insert__item-column {
+.agency-insert__item .agency-insert__item-column:first-child {
   width: 15%;
   height: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
 }
+.agency-insert__item .agency-insert__item-column:last-child{
+  width: 85%;
+  height: 20px;
+  display: flex;
+  justify-content: flex-start;
+}
+
 
 .agency-insert .agency-insert__item-input {
   height: 30px;
@@ -51,36 +58,17 @@
 .agency-insert .agency-insert__item .agency-insert__input-email {
     width: 150px;
 }
-.agency-insert .agency-insert__item .agency-insert__item-addr-search{
-	border-radius: 5px;
-	font-size : 18px;
-	background-color : white;
-	color : var(--color-orange);
-	margin-left : 10px;
-	font-family:inherit;
-	height : 30px;
-	line-height : 30px;
-}
 
+.agency-insert .agency-insert__item .agency-insert__item-postcode {
+    width: 100px;
+}
 .agency-insert .agency-insert__item .agency-insert__item-addr {
-	font-size : 18px;
-    width: 500px;
-}
-
-.agency-insert .addr-search{
-	padding-top : 0;
-	padding-bottom : 0;
-	margin-top : 0;
-	margin-bottom : 0;
-}
-
-.agency-insert .agency-insert__item .agency-insert__item-addr-detail {
-	width : 200px;
+    width: 300px;
 }
 
 .agency-insert__checkbox-title {
     font-size : 16px;
-    margin-left: 5px;
+    margin-right: 5px;
     color : var(--color-gray);
 }
 .agency-insert__checkbox-item {
@@ -88,8 +76,12 @@
     justify-content: flex-start;
     align-items: flex-start;
     height: 15px;
-    padding : 10px;
 }
+.agency-insert__checkbox-item .agency-insert__checkbox {
+  margin-right: 5px;
+  margin-left: 5px;
+}
+
 
 .agency-insert__btn-content {
     display: flex;
@@ -101,8 +93,8 @@
     display: block;
     width : 90px;
     height: 35px;
-    line-height : 35px;
     border-radius: 5px;
+    margin-left : 5px;
     color : var(--color-orange);
     background-color : var(--color-white);
 }

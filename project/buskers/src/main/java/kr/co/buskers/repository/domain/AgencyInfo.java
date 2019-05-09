@@ -15,7 +15,14 @@ public class AgencyInfo {
 	private String permission;
 	private String agencyCode;
 	private int memberNo;
+	private List<AgencyGenre> agencyGenreList;
 	
+	public List<AgencyGenre> getAgencyGenreList() {
+		return agencyGenreList;
+	}
+	public void setAgencyGenreList(List<AgencyGenre> agencyGenreList) {
+		this.agencyGenreList = agencyGenreList;
+	}
 	public int getMemberNo() {
 		return memberNo;
 	}

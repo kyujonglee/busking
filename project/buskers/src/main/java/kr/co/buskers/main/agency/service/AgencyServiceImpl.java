@@ -31,4 +31,8 @@ public class AgencyServiceImpl implements AgencyService {
 	public void insertAgencyGenre(AgencyGenre agencyGenre){
 		mapper.insertAgencyGenre(agencyGenre);
 	}
+	
+	public AgencyInfo selectAgencyInfoByNo(int agencyInfoNo) {
+		return mapper.selectAgencyInfoByNo(agencyInfoNo);
+	}
 }

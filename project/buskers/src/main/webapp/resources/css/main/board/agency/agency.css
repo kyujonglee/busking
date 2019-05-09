@@ -3,6 +3,7 @@
 @import "insert.css";
 @import "table.css";
 @import 'check.css';
+@import 'detail.css';
 
 :root {
   --color-background: #f5f7fc;

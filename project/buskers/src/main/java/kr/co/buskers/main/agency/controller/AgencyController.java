@@ -37,25 +37,20 @@ public class AgencyController {
 	public String insert(AgencyInfo agencyInfo,AgencyGenre agencyGenre,HttpSession session) {
 //		agencyInfo.setMemberNo(session.getAttribute("user").getMemberNo());
 //		System.out.println(agencyInfo.getMemberNo());
-		System.out.println(agencyInfo.getAgencyName());
-		System.out.println(agencyInfo.getEmail());
-		System.out.println(agencyInfo.getPhone());
-		System.out.println(agencyInfo.getPurpose());
-		System.out.println(agencyInfo.getBasicAddr());
-		System.out.println(agencyInfo.getDetailAddr());
 		service.insertAgencyInfo(agencyInfo);
-		System.out.println(agencyInfo.getAgencyInfoNo());
 		agencyGenre.setAgencyInfoNo(agencyInfo.getAgencyInfoNo());
-		for(String check : agencyGenre.getAgencyCheckbox()) {
-			System.out.println(check);
-		}
 		service.insertAgencyGenre(agencyGenre);
-		// agencyInfo insert 하기 + agency_genre insert 하기
-		// service 구현하기 
 		return "redirect:list.do";
 	}
 	
+	// 주소 팝업창 띄우기
 	@RequestMapping("jusopopup.do")
 	public void jusopopup() {}
+	
+	@RequestMapping("detail.do")
+	public void detail(int agencyInfoNo,Model model) {
+		AgencyInfo agencyInfo = service.selectAgencyInfoByNo(agencyInfoNo);
+		model.addAttribute("agencyInfo",service.selectAgencyInfoByNo(agencyInfoNo));
+	}
 	
 }
