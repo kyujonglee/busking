@@ -21,9 +21,10 @@ public class FreeBoardController {
 	private FreeService service;
 	
 	@RequestMapping("list.do")
-	public void list(FreePage freePage, Model model) {
-		Map<String, Object> result = service.list(freePage);
+	public void list(HttpServletRequest request, FreePage freePage, Model model) {
+		Map<String, Object> result = service.list(request, freePage);
 		
+		model.addAttribute("sort", result.get("sort"));
 		model.addAttribute("notifyList", result.get("notifyList"));
 		model.addAttribute("list", result.get("list"));
 		model.addAttribute("pageResult", result.get("pageResult"));

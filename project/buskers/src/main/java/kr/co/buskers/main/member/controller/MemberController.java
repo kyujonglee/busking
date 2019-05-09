@@ -24,14 +24,9 @@ public class MemberController {
 	
 	@RequestMapping("signup.do")
 	public String signup(Member member) {
-		System.out.println(member.getId());
-		System.out.println(member.getNickName());
-		System.out.println(member.getPass());
 		String salt = SHA256Util.generateSalt();
 		member.setPass(SHA256Util.getEncrypt(member.getPass(), salt));
 		member.setSalt(salt);
-		System.out.println(member.getPass());
-		System.out.println(member.getSalt());
 		service.signup(member);
 		return UrlBasedViewResolver.REDIRECT_URL_PREFIX + "loginform.do";
 	}

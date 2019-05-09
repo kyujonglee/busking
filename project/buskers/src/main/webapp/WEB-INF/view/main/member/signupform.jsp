@@ -60,9 +60,9 @@
                         <div>성별&nbsp;</div>
                         <div class="radio">                        
                             <label for="sex1">남</label>
-                            <input type="radio" id="sex1" name="sex" value="1">
+                            <input type="radio" id="sex1" name="sex" value="m">
                             <label for="sex2">여</label>
-                            <input type="radio" id="sex2" name="sex" value="2">
+                            <input type="radio" id="sex2" name="sex" value="f">
                         </div>
                     </div>
                     <br>
