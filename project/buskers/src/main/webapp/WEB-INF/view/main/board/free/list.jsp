@@ -138,6 +138,11 @@
     	let sortType = "${param.sortType}";
     	let searchType = "${param.searchType}";
     	let input = "${param.input}";
+    	
+    	if (input != "") {
+    		$(".board_title_left > a").text().replace(/바다/g,"산");
+    		
+    	}
 		
 	    if( $(".pagination > a").hasClass("active") == false ) {
 	    	$(".pagination > a:eq(0)").attr("class", "active");
