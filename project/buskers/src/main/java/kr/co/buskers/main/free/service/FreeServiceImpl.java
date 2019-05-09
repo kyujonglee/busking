@@ -19,15 +19,17 @@ public class FreeServiceImpl implements FreeService {
 	@Autowired
 	private FreeBoardMapper mapper;
 	
-	public Map<String, Object> list(HttpServletRequest request, FreePage freePage) {
+	public Map<String, Object> list(FreePage freePage) {
 		Map<String, Object> map = new HashMap<>();
-		System.out.println(request.getParameter("sort"));
-		freePage.setSortType(request.getParameter("sort"));
+		System.out.println("검색 타입 : " + freePage.getSearchType());
+		System.out.println("검색어 : " + freePage.getInput());
 		
-		map.put("sort", request.getParameter("sort"));
+		map.put("searchType", freePage.getSearchType());
+		map.put("input", freePage.getInput());
+		map.put("sortType", freePage.getSortType());
 		map.put("notifyList", mapper.selectNoticeBoard());
 		map.put("list", mapper.selectBoard(freePage));
-		map.put("pageResult", new FreePageResult(freePage.getPageNo(), mapper.selectBoardCount()));
+		map.put("pageResult", new FreePageResult(freePage.getPageNo(), mapper.selectBoardCount(freePage)));
 		return map;
 	}	
 	
@@ -36,14 +38,15 @@ public class FreeServiceImpl implements FreeService {
 		return mapper.selectBoardByNo(boardNo);
 	}
 	
-	public Map<String, Object> sortList(HttpServletRequest request, FreePage freePage) {
+	public Map<String, Object> sortList(FreePage freePage) {
 		Map<String, Object> map = new HashMap<>();
 		
-		freePage.setSortType(request.getParameter("sort"));
-		
+		map.put("searchType", freePage.getSearchType());
+		map.put("input", freePage.getInput());
+		map.put("sortType", freePage.getSortType());
 		map.put("notifyList", mapper.selectNoticeBoard());
 		map.put("list", mapper.selectBoard(freePage));
-		map.put("pageResult", new FreePageResult(freePage.getPageNo(), mapper.selectBoardCount()));
+		map.put("pageResult", new FreePageResult(freePage.getPageNo(), mapper.selectBoardCount(freePage)));
 		return map;
 	}
 }

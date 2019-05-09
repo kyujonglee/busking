@@ -9,6 +9,21 @@
 		          from ( select *
 		                   from tb_freeboard
 						  WHERE (@rownum:=0)=0
+						  
+						<choose>
+							<when test="searchType == 'title'">
+								and title like concat('%', #{input}, '%')
+							</when>
+							<when test="searchType == 'content'">
+								and content like concat('%', #{input}, '%')
+							</when>
+							<when test="searchType == 'writer'">
+								and writer like concat('%', #{input}, '%')
+							</when>
+							<otherwise>
+							</otherwise>
+						</choose>
+						
 						<choose>
 							<when test="sortType == 'viewDESC'">
 								order by view_cnt desc
@@ -32,6 +47,7 @@
 								order by board_no desc
 							</otherwise>
 						</choose>
+						
 	                   ) a
 		       ) b
 		 where rnum between #{begin} and #{end}
@@ -49,9 +65,22 @@
 		 where board_no = #{boardNo}
 	</select>
 
-	<select id="selectBoardCount" resultType="int">
+	<select id="selectBoardCount" parameterType="freePage" resultType="int">
 		select count(*)
 		  from tb_freeboard
+		<choose>
+			<when test="searchType == 'title'">
+				where title like concat('%', #{input}, '%')
+			</when>
+			<when test="searchType == 'content'">
+				where content like concat('%', #{input}, '%')
+			</when>
+			<when test="searchType == 'writer'">
+				where writer like concat('%', #{input}, '%')
+			</when>
+			<otherwise>
+			</otherwise>
+		</choose>
 	</select>
 	
 	<update id="updateBoardViewCount" parameterType="int">
