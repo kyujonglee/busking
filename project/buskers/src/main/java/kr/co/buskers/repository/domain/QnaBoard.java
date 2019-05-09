@@ -9,6 +9,20 @@ public class QnaBoard {
 	private String content;
 	private int viewCnt;
 	private int likeCnt;
+	private String likeStatus;
+	private String isDelete;
+	public String getIsDelete() {
+		return isDelete;
+	}
+	public void setIsDelete(String isDelete) {
+		this.isDelete = isDelete;
+	}
+	public String getLikeStatus() {
+		return likeStatus;
+	}
+	public void setLikeStatus(String likeStatus) {
+		this.likeStatus = likeStatus;
+	}
 	private Date regDate;
 	private int groupNo;
 	
