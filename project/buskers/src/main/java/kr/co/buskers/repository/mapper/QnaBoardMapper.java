@@ -3,6 +3,7 @@ package kr.co.buskers.repository.mapper;
 import java.util.List;
 
 import kr.co.buskers.repository.domain.FreePage;
+import kr.co.buskers.repository.domain.Like;
 import kr.co.buskers.repository.domain.QnaBoard;
 
 public interface QnaBoardMapper {	
@@ -13,4 +14,10 @@ public interface QnaBoardMapper {
 	void updateViewCnt(int no);
 	void deleteBoard(int no);	
 	void updateBoard(QnaBoard qnaBoard);
+	void insertLike(Like like);
+	Like selectLike(Like like);
+	void updateLike(Like like);
+	void updateLikeQnaBoardPlus(QnaBoard qnaBoard);
+	void updateLikeQnaBoardMinus(QnaBoard qnaBoard);
+	
 }
