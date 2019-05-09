@@ -10,9 +10,15 @@ public class FreeBoard {
 	private int likeCnt;
 	private Date regDate;
 	private int viewCnt;
-	private char isNotify;
+	private String isNotify;
 	private int group_no;
 	
+	public String getIsNotify() {
+		return isNotify;
+	}
+	public void setIsNotify(String isNotify) {
+		this.isNotify = isNotify;
+	}
 	public int getMemberNo() {
 		return memberNo;
 	}
@@ -54,12 +60,6 @@ public class FreeBoard {
 	}
 	public void setViewCnt(int viewCnt) {
 		this.viewCnt = viewCnt;
-	}
-	public char getIsNotify() {
-		return isNotify;
-	}
-	public void setIsNotify(char isNotify) {
-		this.isNotify = isNotify;
 	}
 	public int getGroup_no() {
 		return group_no;

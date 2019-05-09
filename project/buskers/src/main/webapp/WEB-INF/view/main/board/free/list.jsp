@@ -19,8 +19,8 @@
 </head>
 <body>
     
-    <div class="container">
-        <div class="container_head">
+    <div class="board_container">
+        <div class="board_container_head">
             buskers
         </div>
 
@@ -29,14 +29,14 @@
                 <li></li>
                 <li><a href="#"><span class="fas fa-bullhorn"></span>공지사항</a></li>
                 <li><a href="#"><span class="fas fa-comments"></span>자유게시판</a></li>
-                <li><a href="#"><span class="fas fa-question"></span>질문게시판</a></li>
+                <li><a href="<c:url value='/main/board/qna/list.do'/>"><span class="fas fa-question"></span>질문게시판</a></li>
                 <li><a href="<c:url value='/main/board/agency/list.do'/>"><span class="fas fa-building"></span>업체게시판</a></li>
             </ul>
         </div>
 
 
 
-        <div class="container_body">
+        <div class="board_container_body">
             <div class="board_title">
                 <div class="board_title_underline">
                     <a href="<c:url value='/main/board/free/list.do'/>">자유게시판</a>
@@ -88,7 +88,12 @@
                		<tr class="free_board_list">
 				    	<td>${board.boardNo}</td>
 						<td class="board_title_left">
-							<a href="detail.do?boardNo=${board.boardNo}">${board.title}</a>
+						<c:if test="${empty param.pageNo}">
+							<a href="detail.do?boardNo=${board.boardNo}&pageNo=1&input=${param.input}&sortType=${param.sortType}&searchType=${param.searchType}">${board.title}</a>
+						</c:if>
+						<c:if test="${!empty param.pageNo}">
+							<a href="detail.do?boardNo=${board.boardNo}&pageNo=${param.pageNo}&input=${param.input}&sortType=${param.sortType}&searchType=${param.searchType}">${board.title}</a>
+						</c:if>
 						</td>
 						<td>${board.memberNo}</td>
 					    <td><fmt:formatDate value="${board.regDate}" pattern="MM-dd HH:mm" /></td>
@@ -101,7 +106,7 @@
 			<br><br><br>
 			
             <div class="free_board_bottom">
-                <a class="fas fa-pen"> 글쓰기</a>
+                <a href="write-form.do" class="fas fa-pen"> 글쓰기</a>
                 <a href="list.do" class="fas fa-sort-amount-up"> 초기화</a>
             </div>
 
@@ -143,6 +148,13 @@
     		for (i = 0; i < $(".board_title_left > a").length; i++) {
     			$(".board_title_left > a:eq(" + i + ")").html( $(".board_title_left > a:eq(" + i + ")").html().replace(input, "<b class='search_keyword'>" + input + "</b>") );
     		}
+    		$(".search_form_input").val(input);
+    		$(".search_form_option > option:eq(0)").prop("selected", true);
+    	}
+    	
+    	if ( (input != "") && searchType == "content" ) {
+    		$(".search_form_input").val(input);
+    		$(".search_form_option > option:eq(1)").prop("selected", true);
     	}
 		
 	    if( $(".pagination > a").hasClass("active") == false ) {
@@ -249,7 +261,7 @@
    						html += '<tr id="board_table">';
    						html += 	'<td>' + board.boardNo + '</td>';
    						html += 	'<td class="board_title_left">';
-   						html += 		'<a href="detail.do?boardNo=' + board.boardNo + '">' + board.title + '</a>';
+   						html += 		'<a href="detail.do?boardNo=' + board.boardNo + '&pageNo=' + pageNo + '&sortType=' + sort + '&input=' + input + '&searchType=' + searchType + '">' + board.title + '</a>';
    						html += 	'</td>';
    						html += 	'<td>' + board.memberNo + '</td>';
    						html += 	'<td>' + date + '</td>';

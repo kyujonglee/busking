@@ -3,7 +3,7 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.co.buskers.repository.mapper.MemberMapper">
 	
-	<!-- 회원 가입 -->
+	<!-- 일반 회원 가입 -->
 	<insert id="signupMember" parameterType="member">
 		insert into tb_member (
 			id, pass, salt, email, sex, nickname
@@ -12,6 +12,13 @@
 		);
 	</insert>
 	
+	<!-- 로그인 -->
+	<select id="loginAction" resultType="member">
+		select *
+		  from tb_member
+		 where id = #{id}
+		   and pass = #{pass}
+	</select>
 	
 	
 	

@@ -9,7 +9,7 @@ body {
     background: #F4F7FC;
 }
 
-.container_head {
+.board_container_head {
     position: fixed;
     top: 0;
     width: 1200px;
@@ -24,14 +24,14 @@ body {
     cursor: pointer;
 }
 
-.container {
+.board_container {
     background: white;
     display: flex;
     justify-content: space-between;
     box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
 }
 
-.container_body {
+.board_container_body {
     width: 950px;
     padding: 20px;
 }
@@ -86,6 +86,7 @@ th {
     font-size: 15px;
     line-height: 50px;
     font-weight: bold;
+    background: #FFFFFF;
 }
 
 th > a:hover {

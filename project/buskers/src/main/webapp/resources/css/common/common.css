@@ -14,12 +14,16 @@ h1 {
 
 /* color */
 
-.container {
+.board_container {
   width: 1200px;
   margin: 0 auto;
 }
 
 a {
+	text-decoration: none;
+	color: inherit;
+}
+a:hover {
 	text-decoration: none;
 	color: inherit;
 }
