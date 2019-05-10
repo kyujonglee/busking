@@ -304,7 +304,7 @@ function commentReplyLoad(){
                         thumb_down_alt
                         </i>
                     </div>
-                    <div class="comment_like">+result[i].disLikeCnt+</div>
+                    <div class="comment_like">`+result[i].disLikeCnt+`</div>
                 </div>
                 <div class="comment">
                 `+result[i].content+`

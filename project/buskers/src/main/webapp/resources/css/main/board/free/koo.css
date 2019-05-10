@@ -1,4 +1,5 @@
 @import "../../../common/common.css";
+@import 'detail.css';
 
 * {
     margin: 0;
@@ -24,7 +25,7 @@ body {
     cursor: pointer;
 }
 
-.board_container {
+.free_container {
     background: white;
     display: flex;
     justify-content: space-between;
@@ -38,6 +39,7 @@ body {
 
 .board_title {
     font-family: 'Nanum Gothic', sans-serif;
+    
     width: 100%;
     height: 70px;
     border-bottom: 2px solid #EBECF1;
@@ -62,7 +64,7 @@ body {
     width: 100%;
 }
 
-.board_title_left {
+.main-freeboard .board_title_left {
 	text-align: left;
 	cursor: pointer;
 	padding-left: 15px;
@@ -72,11 +74,16 @@ body {
 	
 }
 
-.board_title_left:hover {
+.main-freeboard .board_title_left:hover {
 	color: #DC143C;
 }
 
-th {
+.free_board_search {
+    width: 100%;
+    height: 100px;
+}
+
+.main-freeboard th {
     border-top: 2px solid black;
     height: 50px;
     font-size: 15px;
@@ -85,12 +92,12 @@ th {
     background: #FFFFFF;
 }
 
-th > a:hover {
+.main-freeboard th > a:hover {
     color: tomato;
     cursor: pointer;
 }
 
-td {
+.main-freeboard td {
     border-top: 1px solid #f2f2f2;
     height: 40px;
     vertical-align: middle;
@@ -98,7 +105,7 @@ td {
     font-size: 13px;
 }
 
-tr:hover {
+.main-freeboard tr:hover {
 	background: #F8F8F8;
 }
 
