@@ -46,7 +46,7 @@
 				                        <div class="header-i7">${sessionScope.user.id}</div>
 				                        <div class="header-i8">${sessionScope.user.email}</div>
 				                        <div class="header-i9">
-				                            <span>${sessionScope.user.nickName}님 안녕하세요!</span>
+				                            <span>${sessionScope.user.nickName} 님 안녕하세요!</span>
 				                        </div>
 				                        <a class="header-i10" href="#">나의소셜 계정</a>
 				                    </div>

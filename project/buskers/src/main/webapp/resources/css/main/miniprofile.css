@@ -12,7 +12,7 @@
         width: 320px;
         z-index: 987;
     }
-    .header-b1, .header-b2, .header-b3 {
+    .header-b1, .header-b3 {
         display: inline-flex;
         height: 30px;
         text-align: right;
@@ -21,7 +21,12 @@
         padding-left: 15px;
     }
     .header-b2 {
-    	width: 130px;
+    	display: inline-flex;
+        height: 30px;
+        text-align: right;
+        vertical-align: middle;
+        padding-left: 15px;
+        line-height: 30px;
     }
     .header-c {
         display: flex;

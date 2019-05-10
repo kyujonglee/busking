@@ -6,10 +6,8 @@
 <html>	
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet"
-	href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" />
-<link rel="stylesheet"
-	href="<c:url value='/resources/css/main/board/agency/agency.css'/>" />
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" />
+<link rel="stylesheet" href="<c:url value='/resources/css/main/main-header.css'/>" />
 <script src="<c:url value='/resources/js/jquery-3.4.1.min.js'/>"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.js"></script>
 <title>Insert title here</title>
@@ -26,5 +24,6 @@
 			alert("로그아웃 하셨습니다.");
 		});
 	</script>
+	<script src="<c:url value='/resources/js/main/board/agency/side-bar.js'/>"></script>
 </body>
 </html>
