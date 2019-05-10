@@ -74,8 +74,21 @@ public class QnaBoardController {
 	@RequestMapping("/comment-list.do")
 	@ResponseBody
 	public List<QnaBoardComment> commentList(int no) {  //int no 는 화면에서 넘겨준 파라미터값이 들어감.
-		System.out.println(no);
 		return service.commentList(no);
+	}
+	
+	@RequestMapping("/comment-reply-list.do")
+	@ResponseBody
+	public List<QnaBoardComment> commentReplyList(int no) {  
+		return service.commentReplyList(no);
+	}
+	
+	
+	
+	@RequestMapping("/comment-write.do")
+	@ResponseBody
+	public void commentWrite(QnaBoardComment qnaBoardComment) {  //int no 는 화면에서 넘겨준 파라미터값이 들어감.
+		service.writeComment(qnaBoardComment);
 	}
 
 	

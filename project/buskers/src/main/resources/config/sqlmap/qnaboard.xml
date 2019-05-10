@@ -37,7 +37,9 @@
 		 from tb_qnaboard as a
 		inner join tb_like as b
 		   on a.board_no=b.board_no
-		where a.board_no=#{boardNo};
+		inner join tb_member as c
+		   on a.member_no=c.member_no
+		where a.board_no=#{boardNo}
 	 </select>	
 	
 	<!-- 조회수 증가 --> 
@@ -113,15 +115,31 @@
     </delete>    
     
 <!--     코멘트 불러오기 -->
-    <select id="selectCommentByNo" parameterType="int" resultType="qnaBoardComment">
+    <select id="selectComment" parameterType="int" resultType="qnaBoardComment">
 		select *
 		  from tb_qnaboard_comment as a
 		 inner join tb_member as b
 		    on a.member_no=b.member_no
 		 where board_no = #{boardNo}
-		 order by comment_no ;
+		   and reply_no = 0
+		 order by comment_no 
     </select>  
-    
+    <!-- 대댓글 불러오기 -->
+    <select id="selectCommentReply" parameterType="int" resultType="qnaBoardComment">
+    	select *
+  		  from tb_qnaboard_comment as a
+		 inner join tb_member as b
+		 where a.member_no = b.member_no
+		   and board_no=#{boardNo} 
+   		   and reply_no not in (0) ;
+    </select>
+    <!-- 코멘트 추가 -->
+	<insert id="insertComment" parameterType="qnaBoardComment">
+		insert into tb_qnaboard_comment(board_no, member_no, content)
+		values(#{boardNo},#{memberNo},#{content})
+	</insert>
+	
+		    
     
 </mapper>
 

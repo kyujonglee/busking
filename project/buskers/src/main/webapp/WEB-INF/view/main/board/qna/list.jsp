@@ -11,7 +11,7 @@
 	<link rel="stylesheet" href="<c:url value='/resources/css/main/board/qna/list.css'/>"/>
 </head>
 <body>
-    <div class="container">
+    <div class="board_container">
         <form action="" method="post" enctype="multipart/form-data" name="">
             <div class="container_board">
                 <div class="board_head">질문답변 게시판</div>
