@@ -10,7 +10,7 @@ import kr.co.buskers.repository.domain.QnaBoardComment;
 public interface QnaBoardMapper {	
 	public void insertBoard(QnaBoard qnaBoard);
 	List<QnaBoard> selectBoard(FreePage freePage);
-	int selectBoardCount();
+	int selectBoardCount(FreePage freePage);
 	QnaBoard selectBoardByNo(int no);
 	void updateViewCnt(int no);
 	void deleteBoard(int no);	

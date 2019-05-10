@@ -32,10 +32,30 @@ public class QnaBoardServiceImpl implements QnaBoardService {
 	
 	public Map<String, Object> list(FreePage freePage) {
 		Map<String, Object> map = new HashMap<>();
+		map.put("searchType", freePage.getSearchType());
+		map.put("input", freePage.getInput());
+		map.put("sortType", freePage.getSortType());
 		map.put("list", mapper.selectBoard(freePage));
-		map.put("pageResult", new FreePageResult(freePage.getPageNo(), mapper.selectBoardCount()));
+		System.out.println(mapper.selectBoard(freePage).size());
+		map.put("pageResult", new FreePageResult(freePage.getPageNo(), mapper.selectBoardCount(freePage)));
 		return map;
 	}
+	
+
+	public Map<String, Object> sortList(FreePage freePage) {
+		Map<String, Object> map = new HashMap<>();
+		
+		map.put("searchType", freePage.getSearchType());
+		map.put("input", freePage.getInput());
+		map.put("sortType", freePage.getSortType());
+		map.put("list", mapper.selectBoard(freePage));
+		map.put("pageResult", new FreePageResult(freePage.getPageNo(), mapper.selectBoardCount(freePage)));
+		return map;
+	}
+	
+	
+	
+	
 	
 	public QnaBoard detail(int no) { 
 		return mapper.selectBoardByNo(no);
