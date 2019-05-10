@@ -36,6 +36,7 @@
 					</div>
 				</div>
 			</header>
+			
 			<main class="main-freeboard">
 			<div class="agency">
 				<div class="board_title">

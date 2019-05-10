@@ -81,9 +81,52 @@
 	                	
                 	</div>
                 	<div class="board_article_comment_list">
-                		<div class="comment_list">sdfsdfd
+                		<div class="comment_list">
+                			<div class="comment_info">
+	                			<span class="board_img_title">
+				                	<img src="<c:url value='/resources/img/boyoung.jpg'/>"/>
+				                </span>
+                				<div class="comment_id">박보영</div>
+                				<div class="comment_date"><i class="far fa-clock"></i>05/05 10:10</div>
+                			</div>
+			                
+	               			<div class="bubble"><p>댓글 내용<p></div>
+                		</div>
+                		<div class="comment_list">
+                			<div class="comment_info">
+	                			<span class="board_img_title">
+				                	<img src="<c:url value='/resources/img/boyoung.jpg'/>"/>
+				                </span>
+                				<div class="comment_id">박보영</div>
+                				<div class="comment_date"><i class="far fa-clock"></i>05/05 10:10</div>
+                			</div>
+			                
+	               			<div class="bubble"><p>댓글 내용ㄹㅇㅁㄻㅇㄴㅁㄻㄴㅇㄹㅁㄴㄹㅇㅁㄹㄴㄴㅁㅁ</p></div>
+                		</div>
+                		<div class="comment_list">
+                			<div class="comment_info">
+	                			<span class="board_img_title">
+				                	<img src="<c:url value='/resources/img/boyoung.jpg'/>"/>
+				                </span>
+                				<div class="comment_id">박보영</div>
+                				<div class="comment_date"><i class="far fa-clock"></i>05/05 10:10</div>
+                			</div>
+			                
+	               			<div class="bubble"><p>댓글 내용ㅁㄹㅇㄴㅁㄹㅇㅁㄹㅇ</p></div>
                 		</div>
                 	</div>
+                </div>
+                
+                <br><br><br>
+                
+                <div class="comment_write_form">
+                	<div class="comment_write_info">
+	          			<span class="board_img_title">
+	              			<img src="<c:url value='/resources/img/boyoung.jpg'/>"/>
+	           			</span>
+	       				<div class="comment_id">박보영</div>
+       				</div>
+           			
                 </div>
                 
             </div>
@@ -100,10 +143,18 @@
          	   <div class="footer"></div>
 		</div>
 	</div>
+	
 	<script src="<c:url value='/resources/js/jquery-3.4.1.min.js'/>"></script>
 	<script src="<c:url value='/resources/js/main/board/agency/side-bar.js'/>"></script>
+	
 	<script>
-    	
+		let width = $(".bubble > p:eq(0)").width();
+		if (width < 500) {
+			console.log(width);
+			$(".bubble:eq(0)").css({"width": width});
+		}
+		
     </script>
 </body>
 </html>
+

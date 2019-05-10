@@ -161,6 +161,7 @@
   z-index: 1;
   /* left : -190px; */
   background-color : var(--color-background);
+  background-color : white;
 }
 
 
