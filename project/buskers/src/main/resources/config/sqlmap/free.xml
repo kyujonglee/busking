@@ -88,4 +88,12 @@
 		  set view_cnt = view_cnt + 1
 		where board_no = #{boardNo}
 	</update>
+	
+	<insert id="insertBoard" parameterType="freeBoard">
+		insert into tb_freeboard(
+			member_no, content, title
+		)values(
+			#{memberNo}, #{content}, #{title}
+		)
+	</insert>
 </mapper>

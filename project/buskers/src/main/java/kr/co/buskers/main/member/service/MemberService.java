@@ -3,7 +3,11 @@ package kr.co.buskers.main.member.service;
 import kr.co.buskers.repository.domain.Member;
 
 public interface MemberService {
-
-	public void signup(Member member);
+	
+	// 로그인 체크
+	public Member login(Member member);
+	
+	// 일반 회원 가입
+	public void signupMember(Member member);
 
 }

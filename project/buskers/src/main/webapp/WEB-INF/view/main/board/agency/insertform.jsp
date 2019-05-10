@@ -54,7 +54,7 @@
       </aside>
       <div class="main-body">
         <header class="header">
-          <div class="container">
+          <div class="board_container">
             <div class="header-columns">
               <i class="fas fa-search fa-lg"></i>
               <input type="text" placeholder="search" />
@@ -131,7 +131,9 @@
               </div>
               <div class="agency-insert__item addr-search">
                 <div class="agency-insert__item-column"></div>
-                <button type="button" class="agency-insert__item-addr-search" onclick="goPopup();">주소검색</button>
+                <div class="agency-insert__item-column">
+	                <button type="button" class="agency-insert__item-addr-search" onclick="goPopup();">주소검색</button>
+                </div>
               </div>
               <div class="agency-insert__item addr-search">
                 <div class="agency-insert__item-column">
@@ -219,11 +221,10 @@
         </main>
       </div>
     </div>
-    <script
-      src="https://code.jquery.com/jquery-3.4.1.min.js"
-      crossorigin="anonymous"
-    ></script>
+    <script src="<c:url value='/resources/js/jquery-3.4.1.min.js'/>"></script>
     <script src="<c:url value='/resources/js/main/board/agency/side-bar.js'/>"></script>
     <script src="<c:url value='/resources/js/main/board/agency/insert.js'/>"></script>
+    <script type="text/javascript">
+    </script>
   </body>
 </html>

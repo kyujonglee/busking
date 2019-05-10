@@ -19,8 +19,8 @@
 </head>
 <body>
     
-    <div class="container">
-        <div class="container_head">
+    <div class="board_container">
+        <div class="board_container_head">
             buskers
         </div>
 
@@ -34,7 +34,7 @@
             </ul>
         </div>
 
-        <div class="container_body">
+        <div class="board_container_body">
             <div class="board_title">
                 <div class="board_title_underline">
                     <a href="<c:url value='/main/board/free/list.do'/>">자유게시판</a>
@@ -65,7 +65,7 @@
                 
                 <div class="board_article_content">
                 	<div>
-	                	<c:out value="${board.content}" />
+	                	${board.content}
                 	</div>
                 </div>
             </div>
@@ -73,7 +73,7 @@
             <br><br><br>
         
         	<div class="free_board_detail_bottom">
-                <a href="<c:url value='/main/board/free/list.do'/>" class="fas fa-list-ul"> 목록</a>
+                <a href="<c:url value='/main/board/free/list.do?pageNo=${param.pageNo}&input=${param.input}&sortType=${param.sortType}&searchType=${param.searchType}'/>" class="fas fa-list-ul"> 목록</a>
             </div>
 
             <br><br><br>

@@ -28,10 +28,10 @@ a {
 }
 
 .header {
-  font-family: "Jua", sans-serif;
+  /* font-family: "Jua", sans-serif; */
 }
 
-.header .container {
+.header .board_container{
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   background-color: var(--color-white);
@@ -114,7 +114,7 @@ a {
   box-sizing: border-box;
   color: var(--color-gray);
   border-right: 1px solid rgba(0, 0, 0, 0.1);
-  font-family: "JUA", sans-serif;
+  /* font-family: "JUA", sans-serif; */
 }
 
 .side-bar .side-bar__icon {
@@ -159,6 +159,7 @@ a {
   border-right: 1px solid rgba(0, 0, 0, 0.1);
 }
 .main-body {
+  /* width : 1200px; */
   position: relative;
   z-index: 1;
   /* left : -190px; */

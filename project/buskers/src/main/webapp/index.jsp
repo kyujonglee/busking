@@ -12,6 +12,19 @@
 	<a href="<c:url value='/main/board/agency/list.do'/>">업체 등록게시판</a><br>
 	<a href="<c:url value='/main/board/free/list.do'/>">자유게시판</a><br>
 	<a href="<c:url value='/main/board/qna/list.do'/>">qna게시판리스트</a><br>
-	<a href="<c:url value='/main/member/loginform.do'/>">로그인</a><br>
+	<c:if test="${sessionScope.user eq null}">
+		<a href="<c:url value='/main/member/loginform.do'/>">로그인</a><br>
+	</c:if>
+	<c:if test="${sessionScope.user ne null}">
+		<p>${sessionScope.user.id}</p>
+		<a id="logout" href="<c:url value='/main/member/logout.do'/>">로그아웃</a><br>
+	</c:if>
+	
+	<script src="<c:url value='/resources/js/jquery-3.4.1.min.js'/>"></script>
+	<script>
+		$("#logout").click(function() {
+			alert("로그아웃 하셨습니다.");
+		});
+	</script>
 </body>
 </html>

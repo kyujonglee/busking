@@ -54,7 +54,7 @@
       </aside>
       <div class="main-body">
         <header class="header">
-          <div class="container">
+          <div class="board_container">
             <div class="header-columns">
               <i class="fas fa-search fa-lg"></i>
               <input type="text" placeholder="search" />

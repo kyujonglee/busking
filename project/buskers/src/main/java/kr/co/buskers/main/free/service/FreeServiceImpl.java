@@ -47,4 +47,8 @@ public class FreeServiceImpl implements FreeService {
 		map.put("pageResult", new FreePageResult(freePage.getPageNo(), mapper.selectBoardCount(freePage)));
 		return map;
 	}
+	
+	public void write(FreeBoard freeBoard) {
+		mapper.insertBoard(freeBoard);
+	}
 }
