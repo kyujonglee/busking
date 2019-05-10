@@ -6,7 +6,7 @@
 }
 .agency-check {
     width: 100%;
-    font-family: "JUA",sans-serif;
+    /* font-family: "JUA",sans-serif; */
 }
 
 .agency-check__header {
@@ -20,7 +20,7 @@
 }
 .agency-check__section {
     margin : 0 auto;
-    width: 35%;
+    width: 40%;
     border : 1px solid rgba(0, 0, 0, 0.1);
     border-radius: 10px;
     background-color : white;
@@ -57,7 +57,7 @@
     height: 40px;
     margin : 0 auto;
     background-color : var(--color-green);
-    font-family: "JUA";
+    /* font-family: "JUA"; */
     color : white;
     font-size: 20px;
     border-radius: 5px;

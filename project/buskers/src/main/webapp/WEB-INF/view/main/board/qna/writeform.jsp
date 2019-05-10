@@ -17,7 +17,7 @@
  <header>
         헤더
     </header>
-    <div class="container">
+    <div class="board_container">
         <form action="write.do" method="post">
             <div class="container_board">
                 <div class="board_head">새 게시글</div>

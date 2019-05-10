@@ -11,8 +11,9 @@
       rel="stylesheet"
       href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
     />
-    <link rel="stylesheet"
-	href="<c:url value='/resources/css/main/board/agency/agency.css'/>" />
+    <link rel="stylesheet" href="<c:url value='/resources/css/main/board/agency/agency.css'/>" />
+    <link rel="stylesheet" href="<c:url value='/resources/css/common/sweetalert2.min.css'/>" />
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
     <title>buskers</title>
   </head>
   <body class="body-background">
@@ -63,7 +64,7 @@
       </aside>
       <div class="main-body">
         <header class="header">
-          <div class="container">
+          <div class="board_container">
             <div class="header-columns">
               <i class="fas fa-search fa-lg"></i>
               <input type="text" placeholder="search" />
@@ -88,11 +89,6 @@
                 <a href="<c:url value='/main/board/agency/list.do'/>"><i class="fas fa-home fa-lg"></i></a>
                 <span class="agency-title ">업체 상세보기</span>
               </header>
-              <form
-                id="insertForm"
-                method="post"
-                action="<c:url value='/main/board/agency/insert.do'/>"
-              >
                 <section class="agency-insert">
                   <div class="agency-insert__item">
                     <div class="agency-insert__item-column">
@@ -175,12 +171,12 @@
                     </div>
                   </div>
                   <div class="agency-insert__btn-content">
-                  	<a href="<c:url value='/main/board/agency/list.do?pageNo=${pageNo}'/>">
+                  	<a href="<c:url value='/main/board/agency/updateform.do?agencyInfoNo=${agencyInfo.agencyInfoNo}'/>">
                    	 <button type="button" class="agency-insert__btn">
                     	수정 
                    	 </button>
                     </a>
-                  	<a href="<c:url value='/main/board/agency/list.do?pageNo=${pageNo}'/>">
+                  	<a href="#" onclick="deleteAgency('/buskers/main/board/agency/delete.do?agencyInfoNo=',${agencyInfo.agencyInfoNo});">
                    	 <button type="button" class="agency-insert__btn">
                     	삭제 
                    	 </button>
@@ -192,7 +188,6 @@
                     </a>
                   </div>
                 </section>
-              </form>
             </div>
           </div>
         </main>
@@ -204,5 +199,7 @@
     ></script>
     <script src="<c:url value='/resources/js/main/board/agency/side-bar.js'/>"></script>
     <script src="<c:url value='/resources/js/main/board/agency/detail.js'/>"></script>
+    <script type="text/javascript">
+    </script>
   </body>
 </html>

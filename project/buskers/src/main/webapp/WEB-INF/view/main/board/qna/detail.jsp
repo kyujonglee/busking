@@ -15,7 +15,7 @@
 <header>
         헤더
     </header>
-    <div class="container">
+    <div class="board_container">
         <form action="" method="post" enctype="multipart/form-data" name="">
             <div class="container_board">
                 <div class="board_head">${board.title}</div>
@@ -24,7 +24,7 @@
                 <div class="profile">
                     <img class="profileImg" src="<c:url value='/resources/img/profile.png'/>">
                 </div>
-                <div class="nickname">이후승</div>
+                <div class="nickname">${board.nickName}</div>
                 <div class="board_info_date"><fmt:formatDate value="${board.regDate}" pattern="yyyy-MM-dd HH:mm" /></div>
                 <div class="board_info_date">조회수 : ${board.viewCnt} </div>
             	</div>
@@ -63,16 +63,16 @@
                 </div>
             </div>
             <div class="comment_start">
-                <div class="comment_top">댓글(5)</div>
+                <div class="comment_top"></div>
                 <!-- comment 작성부분 -->
                 <div class="comment_write">
                     <div class="profile">
                         <img class="profileImg" src="<c:url value='/resources/img/profile.png'/>">
                     </div>
                     <div class="nickname">이후승</div>
-                    <div><textarea class="comment_write_input"></textarea></div>
+                    <div><textarea class="comment_write_input" name="comment_write_content"></textarea></div>
                     <div class="board_info_date">
-                        <button class="button_write">쓰기</button>
+                        <button type="button" class="button_write" id="comment_write_button">쓰기</button>
                     </div>
                 </div>
                 <!--comment글 1개 -->
@@ -123,14 +123,14 @@
     <footer>
         풋터
     </footer>
-<%--  <script src="<c:url value='/resources/js/main/board/qna/detail.js'/>"></script>  --%>
+ <script src="<c:url value='/resources/js/main/board/qna/detail.js'/>"></script> 
 <script>
 
 //좋아요 기능 구현
 $("#like").click(function(e){
- 	let likeInfo = {boardNo: "${board.boardNo}" , memberNo:1 , likeCnt : "${board.likeCnt}"};
- 		alert($(this).attr("href"));   	//url확인
-	e.preventDefault();
+	let likeInfo = {boardNo: "${board.boardNo}" , memberNo:1 , likeCnt : "${board.likeCnt}"};
+// 		alert($(this).attr("href"));   	//url확인
+	e.preventDefault();ㅋ
 	$.ajax({
 		type : "POST",
 		data : likeInfo,
@@ -154,44 +154,173 @@ $("#like").click(function(e){
 	})
 })
 
+//날짜  파싱하는 함수 /////////////////////////////////////////////////////
 
-//댓글 불러옴
-$.ajax({      
-		url: "<c:url value="/main/board/qna/comment-list.do" />",
+function getTimeStamp(d) {
+var s =
+  leadingZeros(d.getFullYear(), 4) + '-' +
+  leadingZeros(d.getMonth() + 1, 2) + '-' +
+  leadingZeros(d.getDate(), 2) + ' ' +
+
+  leadingZeros(d.getHours(), 2) + ':' +
+  leadingZeros(d.getMinutes(), 2)
+return s;
+}
+
+function leadingZeros(n, digits) {
+var zero = '';
+n = n.toString();
+
+if (n.length < digits) {
+  for (i = 0; i < digits - n.length; i++)
+    zero += '0';
+}
+return zero + n;
+}
+
+$("#comment_write_button").click(function(){
+let writeContent = $(".comment_write_input").val();
+// 	alert(writeContent);
+	let comment = {boardNo: "${board.boardNo}" , memberNo:1 , content : writeContent};
+// 	console.log(comment);
+	$.ajax({
+		url:"<c:url value="/main/board/qna/comment-write.do" />",
+		data : comment
+	}) 
+	.done(function(){
+		$(".comment_container").empty();
+		commentLoad();
+	}).fail(function(xhr){
+		alert("서버 처리중 에러발생")
+		console.dir(xhr);
+	});
+})
+
+//페이지 시작시 comment 불러옴
+window.onload=commentLoad();
+window.onload=commentReplyLoad();
+
+//댓글 리스트(답글제외) 불러오기
+function commentLoad(){
+	$.ajax({      
+			url: "<c:url value="/main/board/qna/comment-list.do" />",
+			data: "no=${board.boardNo}",
+		})
+		.done(function (result) {
+	//		alert("성공이요");
+			for(let i=0; i<result.length ; i++){
+				
+				//날짜변환
+				
+				
+			d = new Date(result[i].regDate);
+	  		let dt = getTimeStamp(d);
+			
+				let text = `
+				<div class="comment_heigh" id="comment`+result[i].commentNo+`">
+					<hr>
+	              <div class="comment_content">
+	                  <div class="comment_profile">
+	                      <img class="profileImg" src="<c:url value='/resources/img/profile.png'/>">
+	                  </div>
+	                  <div class="nickname commentNik">`+result[i].nickName+`</div>
+	                  <div></div>
+	                  <div class="buttonDiv">
+	                      <a class="comment_answer">
+		                  	  <button class="answer" type="button">
+		                  	  	   답글
+		                      </button>
+	                  	  </a>
+	                  </div>
+	                  <div class="comment_date">`+dt+`</div>
+	                  <div class="comment_like_img" >
+	                      <i class="material-icons">
+	                      thumb_up_alt
+	                      </i></div>
+	                  <div class="comment_like" >`+result[i].likeCnt+`</div>
+	                  <div class="comment_like_img">
+	                      <i class="material-icons">
+	                      thumb_down_alt
+	                      </i></div>
+	                  <div class="comment_like">`+result[i].disLikeCnt+`</div>
+	              </div>
+	              <div class="comment">
+	              	`+result[i].content+`
+	              </div>
+              	</div>
+				`
+				//댓글 불러오기
+				$(".comment_container").append(text);
+				//댓글숫자 불러오기
+				$(".comment_top").html("댓글("+result.length+")");
+				
+				
+				////////////////////reply ajax
+			
+								
+				
+				
+			}
+			
+		}).fail(function(xhr){
+			alert("서버 처리중 에러발생")
+			console.dir(xhr);
+		});
+}
+
+/////////////////////////////////////////////////reply
+function commentReplyLoad(){
+	$.ajax({      
+		url: "<c:url value="/main/board/qna/comment-reply-list.do" />",
 		data: "no=${board.boardNo}",
 	})
 	.done(function (result) {
-// 		alert("성공이요");
-		console.log(result);
+		alert("성공이요");
 		for(let i=0; i<result.length ; i++){
+			
+			
+		d = new Date(result[i].regDate);
+  		let dt = getTimeStamp(d);
+			
 			let text = `
-				<hr>
-                <div class="comment_content">
+				<div>
+                <hr>
+                <div class="answer_comment_content">
+                    <div class="answer_icon">
+                        <i class="material-icons">
+                            subdirectory_arrow_right
+                        </i>
+                    </div>
                     <div class="comment_profile">
                         <img class="profileImg" src="<c:url value='/resources/img/profile.png'/>">
                     </div>
-                    <div class="nickname commentNik">`+result[i].nickName+`</div>
+                    <div class="nickname commentNik">구본영</div>
                     <div></div>
                     <div class="buttonDiv">
                         <button class="answer">답글</button>
                     </div>
-                    <div class="comment_date">`+result[i].regDate+`</div>
-                    <div class="comment_like_img" >
+                    <div class="comment_date">2010/04/05 12:34</div>
+                    <div class="comment_like_img">
                         <i class="material-icons">
                         thumb_up_alt
                         </i></div>
-                    <div class="comment_like" >21</div>
+                    <div class="comment_like">21</div>
                     <div class="comment_like_img">
                         <i class="material-icons">
                         thumb_down_alt
-                        </i></div>
+                        </i>
+                    </div>
                     <div class="comment_like">30</div>
                 </div>
                 <div class="comment">
-                	`+result[i].content+`
+                `+result[i].content+`
                 </div>
+            </div>
 			`
-			$(".comment_container").append(text);
+			console.log(result);
+			$("#comment"+result[i].replyNo).append(text);
+			$(".comment_top").html("댓글("+result.length+")");
+			$(".nickName").html()
 		}
 		
 	}).fail(function(xhr){
@@ -199,39 +328,46 @@ $.ajax({
 		console.dir(xhr);
 	});
 
+}
 
 
-
+//댓글 좋아요 //////////////////////////////////////////////////////////////////
 let k=0;
 $(".material-icons").click(function(){
-  let commentLikeCnt=$(this).parent().next().text();
-  if(k==0){
-      $(this).parent().next().text(parseInt(commentLikeCnt)+1);
-      k++;
-  }else{
-      $(this).parent().next().text(parseInt(commentLikeCnt)-1);
-      k--;
-  }
+let commentLikeCnt=$(this).parent().next().text();
+if(k==0){
+    $(this).parent().next().text(parseInt(commentLikeCnt)+1);
+    k++;
+}else{
+    $(this).parent().next().text(parseInt(commentLikeCnt)-1);
+    k--;
+}
 })
 
 let result=`
-  <div class="comment_write">
-      <div class="profile">
-          <img class="profileImg" src="pic/profile.jpg">
-      </div>
-      <div class="nickname">이후승</div>
-      <div><textarea class="comment_write_input"></textarea></div>
-      <div class="board_info_date">
-          <button class="button_write">쓰기</button>
-      </div>
-  </div>
+	<div class="comment_write">
+   	 	<div class="profile">
+        	<img class="profileImg" src="<c:url value='/resources/img/profile.png'/>">
+    	</div>
+    	<div class="nickname">이후승</div>
+    	<div><textarea class="comment_write_input" name="comment_write_content"></textarea></div>
+    	<div class="board_info_date">
+       		<button type="button" class="button_write" id="comment_write_button">쓰기</button>
+    	</div>
+	</div>
 `
-$(".answer").click(function(){
-  alert("ss");
-  $(".comment_container").after(result);
-  alert("끝");
-})
-
+let i =0;
+$(document).on("click",".comment_answer",(function(){
+		if(i==0){
+			$(this).parent().parent().parent().after(result);
+			$(this).find(".answer").html("답글취소");
+			i++;
+		}else if(i==1){
+			$(this).parent().parent().parent().next().remove();
+			i--;
+		}
+	})
+)
 
 
 </script>

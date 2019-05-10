@@ -32,8 +32,7 @@ public class MemberController {
 			mav.setViewName("redirect:loginform.do");
 		} else {
 			session.setAttribute("user", user);
-			session.setMaxInactiveInterval(10);
-			
+//			session.setMaxInactiveInterval(10);
 			mav.setViewName("redirect:/index.jsp");
 		}
 		return mav;

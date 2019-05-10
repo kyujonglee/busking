@@ -1,11 +1,11 @@
 package kr.co.buskers.main.agency.controller;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import kr.co.buskers.common.page.AgencyPageResult;
@@ -13,6 +13,7 @@ import kr.co.buskers.main.agency.service.AgencyService;
 import kr.co.buskers.repository.domain.AgencyGenre;
 import kr.co.buskers.repository.domain.AgencyInfo;
 import kr.co.buskers.repository.domain.AgencyPage;
+import kr.co.buskers.repository.domain.Member;
 
 @Controller("kr.co.buskers.main.agency.controller.AgencyController")
 @RequestMapping("/main/board/agency")
@@ -39,11 +40,16 @@ public class AgencyController {
 	@RequestMapping("insertform.do")
 	public void insertform() {}
 	
-	@RequestMapping("insert.do")
+	@PostMapping("insert.do")
 	public String insert(AgencyInfo agencyInfo,AgencyGenre agencyGenre,HttpSession session) {
-//		agencyInfo.setMemberNo(session.getAttribute("user").getMemberNo());
-//		System.out.println(agencyInfo.getMemberNo());
+		System.out.println(session.getAttribute("user"));
+		Member mem = (Member)session.getAttribute("user");
+//		// 자바스크립트에서 조건을 줄 것!
+		System.out.println(mem.getMemberNo());
+		agencyInfo.setMemberNo(mem.getMemberNo());
+		System.out.println(agencyInfo.getMemberNo());
 		service.insertAgencyInfo(agencyInfo);
+		System.out.println("등록됨");
 		agencyGenre.setAgencyInfoNo(agencyInfo.getAgencyInfoNo());
 		service.insertAgencyGenre(agencyGenre);
 		return "redirect:list.do";
@@ -59,4 +65,21 @@ public class AgencyController {
 		model.addAttribute("agencyInfo",service.selectAgencyInfoByNo(agencyInfoNo));
 	}
 	
+	@RequestMapping("delete.do")
+	public String delete(int agencyInfoNo) {
+		// 3개의 테이블을 다 삭제해야함.
+		service.deleteAgencyInfoAll(agencyInfoNo);
+		return "redirect:list.do";
+	}
+	
+	@RequestMapping("update.do")
+	public String update(int agencyInfoNo,int pageNo) {
+		System.out.println("udpate 도달함");
+		return "redirect:list.do";
+	}
+	@RequestMapping("updateform.do")
+	public void updateform(int agencyInfoNo, Model model) {
+		model.addAttribute("agencyInfo",service.selectAgencyInfoByNo(agencyInfoNo));
+		model.addAttribute("genre",service.selectGenre());
+	}
 }

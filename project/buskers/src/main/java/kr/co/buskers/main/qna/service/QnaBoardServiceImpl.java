@@ -85,6 +85,14 @@ public class QnaBoardServiceImpl implements QnaBoardService {
 	
 	
 	public List<QnaBoardComment> commentList(int no){
-		return mapper.selectCommentByNo(no);
+		return mapper.selectComment(no);
 	}
+	public List<QnaBoardComment> commentReplyList(int no) {
+		return mapper.selectCommentReply(no);
+	}
+
+	public void writeComment(QnaBoardComment qnaBoardComment) {
+		mapper.insertComment(qnaBoardComment);
+	}
+
 }

@@ -16,9 +16,13 @@ public interface QnaBoardService {
 
 	public void update(QnaBoard qnaBoard);
 	public QnaBoard updateForm(int no);
-	
 	List<QnaBoardComment> commentList(int no);
+	List<QnaBoardComment> commentReplyList(int no);
+	
 	
 	//좋아요상태 업데이트
 	public Map<String,Object> likeStatusUpdate(QnaBoard qnaBoard);
+	
+	public void writeComment(QnaBoardComment qnaBoardComment);
+	
 }

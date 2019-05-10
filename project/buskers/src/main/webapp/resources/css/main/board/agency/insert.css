@@ -30,6 +30,8 @@
   height: 20px;
   display: flex;
   justify-content: flex-start;
+  align-items : center;
+  color : var(--color-orange);
 }
 
 
@@ -63,7 +65,7 @@
     width: 100px;
 }
 .agency-insert .agency-insert__item .agency-insert__item-addr {
-    width: 300px;
+    width: 400px;
 }
 
 .agency-insert__checkbox-title {
@@ -98,4 +100,16 @@
     color : var(--color-orange);
     background-color : var(--color-white);
     line-height : 35px;
+}
+
+.agency-insert__item-addr-search {
+	font-size : 18px;
+    font-family: inherit;
+    display: block;
+    width : 80px;
+    height: 30px;
+    border-radius: 5px;
+    color : var(--color-orange);
+    background-color : var(--color-white);
+    line-height : 30px;
 }
