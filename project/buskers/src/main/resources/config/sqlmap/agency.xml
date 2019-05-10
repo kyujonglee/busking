@@ -72,7 +72,7 @@
    			 SELECT MAX(agency_info_no)+1 FROM tb_agency_info
   		</selectKey>
 		insert into tb_agency_info(agency_info_no, agency_name, purpose, phone, basic_addr, detail_addr, email, member_no)
-		values(#{agencyInfoNo},#{agencyName}, #{purpose}, #{phone}, #{basicAddr}, #{detailAddr}, #{email}, 2)
+		values(#{agencyInfoNo},#{agencyName}, #{purpose}, #{phone}, #{basicAddr}, #{detailAddr}, #{email}, #{memberNo})
 	</insert>
 	
 	<insert id="insertAgencyGenre" parameterType="agencyGenre">

@@ -16,10 +16,11 @@
 		<a href="<c:url value='/main/member/loginform.do'/>">로그인</a><br>
 	</c:if>
 	<c:if test="${sessionScope.user ne null}">
-		<p>${member.id}</p>
+		<p>${sessionScope.user.id}</p>
 		<a id="logout" href="<c:url value='/main/member/logout.do'/>">로그아웃</a><br>
 	</c:if>
 	
+	<script src="<c:url value='/resources/js/jquery-3.4.1.min.js'/>"></script>
 	<script>
 		$("#logout").click(function() {
 			alert("로그아웃 하셨습니다.");

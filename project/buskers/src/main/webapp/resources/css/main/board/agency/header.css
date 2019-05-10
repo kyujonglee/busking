@@ -3,7 +3,7 @@
     align-self: flex-end;
     padding : 50px 70px;
     color : var(--color-orange);
-    font-family: "JUA",sans-serif;
+    /* font-family: "JUA",sans-serif; */
     box-sizing: border-box;
 }
 
