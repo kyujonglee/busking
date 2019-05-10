@@ -43,9 +43,9 @@
                     <a href="<c:url value='/main/board/qna/list.do'/>">질문게시판</a>
                   </div>
                 </div>
-        
-	            <table class="free_board">
-	                <tr class="free_board_head">
+
+            <table class="free_board">
+                <tr class="free_board_head">
                     <th class="free_board_no"></th>
                     <th class="free_board_title">제목</th>
                     <th class="free_board_writer">작성자</th>
@@ -75,20 +75,21 @@
 			<br><br><br>
 
             <div class="free_board_bottom">
-	            <div class="free_board_search">
-		            <form action="list.do" class="search_form">
-		            	<select class= "search_form_option" name='searchType'>
-						    <option value='title'>제목</option>
-						    <option value='content'>내용</option>
-						    <option value='writer'>작성자</option>
-						</select>
-		            	
-			            <input class="search_form_input" name="input" placeholder="검색어를 입력하세요." />
-			            
-			            <button class="fas fa-search search_form_button"> 검색</button>
-			        </form>
-	            </div>
-                <a href="write-form.do" class="fas fa-pen"> 글쓰기</a>
+                <div class="free_board_search">
+	            <form action="list.do" class="search_form">
+	            	<select class= "search_form_option" name='searchType'>
+					    <option value='title'>제목</option>
+					    <option value='content'>내용</option>
+					    <option value='writer'>작성자</option>
+					</select>
+	            	
+		            <input class="search_form_input" name="input" placeholder="검색어를 입력하세요." />
+		            
+		            <button class="search_form_button">검색</button>
+		        </form>
+            	</div>
+            	
+                <a href="writeform.do" class="fas fa-pen"> 글쓰기</a>
                 <a href="list.do" class="fas fa-sort-amount-up"> 초기화</a>
             </div>
 
@@ -139,11 +140,11 @@
     	if ( (input != "") && searchType == "content" ) {
     		$(".search_form_input").val(input);
     		$(".search_form_option > option:eq(1)").prop("selected", true);
-    	}
+    	};
 		
 	    if( $(".pagination > a").hasClass("active") == false ) {
 	    	$(".pagination > a:eq(0)").attr("class", "active");
-	    } 
+	    } ;
 
 	    $(".pagination > a").click(function() {
 	        $(".pagination > a").attr("class", "disabled");
@@ -158,7 +159,7 @@
             } else {
                 $(this).children("a").attr("id", "dateDESC");
                 $(this).children("a").attr("class", "fas fa-caret-up");
-            }
+            };
         });
         
         $(".free_board_view").click(function () {

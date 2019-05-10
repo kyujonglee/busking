@@ -71,7 +71,7 @@
 				where title like concat('%', #{input}, '%')
 			</when>
 			<when test="searchType == 'content'">
-				where content like concat('%', #{input}, '%')
+				where content like concat('%', #{input} , '%')
 			</when>
 			<when test="searchType == 'writer'">
 				where writer like concat('%', #{input}, '%')
