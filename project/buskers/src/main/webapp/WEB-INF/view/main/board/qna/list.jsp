@@ -39,24 +39,12 @@
         <div class="board_container_body">
             <div class="board_title">
                 <div class="board_title_underline">
-                    <a href="<c:url value='/main/board/free/list.do'/>">질문게시판</a>
+                    <a href="<c:url value='/main/board/qna/list.do'/>">질문게시판</a>
                 </div>
                 
             </div>
         
-            <div class="free_board_search">
-	            <form action="list.do" class="search_form">
-	            	<select class= "search_form_option" name='searchType'>
-					    <option value='title'>제목</option>
-					    <option value='content'>내용</option>
-					    <option value='writer'>작성자</option>
-					</select>
-	            	
-		            <input class="search_form_input" name="input" placeholder="검색어를 입력하세요." />
-		            
-		            <button class="search_form_button">검색</button>
-		        </form>
-            </div>
+            
 
             <table class="free_board">
                 <tr class="free_board_head">
@@ -106,6 +94,21 @@
 			<br><br><br>
 			
             <div class="free_board_bottom">
+                
+                <div class="free_board_search">
+	            <form action="list.do" class="search_form">
+	            	<select class= "search_form_option" name='searchType'>
+					    <option value='title'>제목</option>
+					    <option value='content'>내용</option>
+					    <option value='writer'>작성자</option>
+					</select>
+	            	
+		            <input class="search_form_input" name="input" placeholder="검색어를 입력하세요." />
+		            
+		            <button class="search_form_button">검색</button>
+		        </form>
+            	</div>
+            	
                 <a href="writeform.do" class="fas fa-pen"> 글쓰기</a>
                 <a href="list.do" class="fas fa-sort-amount-up"> 초기화</a>
             </div>
