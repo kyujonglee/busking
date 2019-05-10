@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html lang="ko">
   <head>
@@ -87,15 +88,20 @@
             <div class="agency">
               <header class="agency-header agency-insert__title">
                 <a href="<c:url value='/main/board/agency/list.do'/>"><i class="fas fa-home fa-lg"></i></a>
-                <span class="agency-title ">업체 상세보기</span>
+                <span class="agency-title ">업체 수정</span>
               </header>
+              <form
+                id="insertForm"
+                method="post"
+                action="<c:url value='/main/board/agency/update.do'/>"
+              >
                 <section class="agency-insert">
                   <div class="agency-insert__item">
                     <div class="agency-insert__item-column">
                       <span class="agency-insert__item-name">업체명</span>
                     </div>
                     <div class="agency-insert__item-column">
-                      <span>${agencyInfo.agencyName}</span>
+                      <input class="agency-insert__item-input" type="text" name="agencyName" id="agencyName" value="${agencyInfo.agencyName}"/>
                     </div>
                   </div>
                   <div class="agency-insert__item">
@@ -103,9 +109,13 @@
                       <span class="agency-insert__item-name">목적</span>
                     </div>
                     <div class="agency-insert__item-column">
-                      <span class="agency-insert__item-purpose">
-                        ${agencyInfo.purpose}
-                      </span>
+                      <textarea
+	                  class="agency-insert__item-textarea"
+	                  cols="70"
+	                  rows="7"
+	                  name="purpose"
+	                  id="purpose"
+	                >${agencyInfo.purpose}</textarea>
                     </div>
                   </div>
                   <div class="agency-insert__item">
@@ -113,8 +123,22 @@
                       <span class="agency-insert__item-name">Email</span>
                     </div>
                     <div class="agency-insert__item-column">
-                      <span>${agencyInfo.email}</span>
-                      <input type="hidden" name="email" id="email" />
+                      <input
+		                  class="agency-insert__item-input agency-insert__input-email"
+		                  type="text"
+		                  name="email1"
+		                  id="email1"
+		                  value="${fn:split(agencyInfo.email,'@')[0]}"
+		                />
+		              <span style="color:inherit;">@</span>
+		              <input
+		                  class="agency-insert__item-input agency-insert__input-email"
+		                  type="text"
+		                  name="email2"
+		                  id="email2"
+		                  value="${fn:split(agencyInfo.email,'@')[1]}"
+		              />
+                      <input type="hidden" name="email" id="email" value="${agencyInfo.email}"/>
                     </div>
                   </div>
                   <div class="agency-insert__item">
@@ -122,7 +146,14 @@
                       <span class="agency-insert__item-name">연락처</span>
                     </div>
                     <div class="agency-insert__item-column">
-                      <span>${agencyInfo.phone}</span>
+                      <input
+		                  class="agency-insert__item-input "
+		                  type="text"
+		                  placeholder="ex) 010-xxxx-xxxx"
+		                  name="phone"
+		                  id="phone"
+		                  value="${agencyInfo.phone}"
+		                />
                     </div>
                   </div>
                   <div class="agency-insert__item addr-search">
@@ -130,7 +161,13 @@
                       <span class="agency-insert__item-name">기본주소</span>
                     </div>
                     <div class="agency-insert__item-column">
-                      <span>${agencyInfo.basicAddr}</span>
+                      <input
+		                  class="agency-insert__item-input agency-insert__item-addr"
+		                  type="text"
+		                  id="roadAddrPart1"
+		                  name="basicAddr"
+		                  value="${agencyInfo.basicAddr}"
+		                />
                     </div>
                   </div>
                   <div class="agency-insert__item">
@@ -138,7 +175,13 @@
                       <span class="agency-insert__item-name">상세주소</span>
                     </div>
                     <div class="agency-insert__item-column">
-                      <span>${agencyInfo.detailAddr}</span>
+                      <input
+	                  class="agency-insert__item-input agency-insert__item-addr-detail"
+	                  type="text"
+	                  id="addrDetail"
+	                  name="detailAddr"
+	                  value="${agencyInfo.detailAddr}"
+             		   />
                     </div>
                   </div>
                   <div class="agency-insert__item">
@@ -146,13 +189,39 @@
                       <span class="agency-insert__item-name">관심분야</span>
                     </div>
                     <div class="agency-insert__item-column">
-                    <c:forEach var="check" items="${agencyInfo.agencyGenreList}">
-                      <div class="agency-insert__checkbox-item">
-                        <span class="agency-insert__checkbox-title">
-                          ${check.genre.name}
-                        </span>
-                      </div>
-					</c:forEach>
+                    <!-- 모든 장르도 가져오기 -->
+	                    <c:forEach var="genreItem" items="${genre}">
+	                    	<c:set var="flag" value="n"/>
+		                    <c:forEach var="agencyGenre" items="${agencyInfo.agencyGenreList}">
+		                    	<c:if test="${genreItem.genreNo eq agencyGenre.genreNo }">
+			                    	<c:set var="flag" value="y"/>
+		                    	</c:if>
+	              	  		</c:forEach>
+          	  				<div class="agency-insert__checkbox-item">
+	              	  		<c:choose>
+	              	  			<c:when test="${flag eq 'y'}">
+				                  <input
+				                    class="agency-insert__checkbox"
+				                    type="checkbox"
+				                    name="agencyCheckbox"
+				                    id=""
+				                    value="${genreItem.genreNo}"
+				                    checked
+				                  />
+	              	  			</c:when>
+	              	  			<c:otherwise>
+	              	  			  <input
+				                    class="agency-insert__checkbox"
+				                    type="checkbox"
+				                    name="agencyCheckbox"
+				                    id=""
+				                    value="1"
+				                  />
+	              	  			</c:otherwise>
+	              	  		</c:choose>
+               			  		<span class="agency-insert__checkbox-title">${genreItem.name}</span>
+	              	  		</div>
+						</c:forEach>
                     </div>
                   </div>
                   <div class="agency-insert__item">
@@ -171,14 +240,9 @@
                     </div>
                   </div>
                   <div class="agency-insert__btn-content">
-                  	<a href="<c:url value='/main/board/agency/updateform.do?agencyInfoNo=${agencyInfo.agencyInfoNo}'/>">
+                  	<a href="<c:url value='/main/board/agency/list.do?pageNo=${pageNo}'/>">
                    	 <button type="button" class="agency-insert__btn">
-                    	수정 
-                   	 </button>
-                    </a>
-                  	<a href="#" onclick="deleteAgency('/buskers/main/board/agency/delete.do?agencyInfoNo=',${agencyInfo.agencyInfoNo});">
-                   	 <button type="button" class="agency-insert__btn">
-                    	삭제 
+                    	확인
                    	 </button>
                     </a>
                   	<a href="<c:url value='/main/board/agency/list.do?pageNo=${pageNo}'/>">
@@ -188,18 +252,14 @@
                     </a>
                   </div>
                 </section>
+              </form>
             </div>
           </div>
         </main>
       </div>
     </div>
-    <script
-      src="https://code.jquery.com/jquery-3.4.1.min.js"
-      crossorigin="anonymous"
-    ></script>
+	<script src="<c:url value='/resources/js/jquery-3.4.1.min.js'/>"></script>
     <script src="<c:url value='/resources/js/main/board/agency/side-bar.js'/>"></script>
-    <script src="<c:url value='/resources/js/main/board/agency/detail.js'/>"></script>
-    <script type="text/javascript">
-    </script>
+<%--     <script src="<c:url value='/resources/js/main/board/agency/updateform.js'/>"></script> --%>
   </body>
 </html>

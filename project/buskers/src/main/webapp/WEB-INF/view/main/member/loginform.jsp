@@ -7,10 +7,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link
-      rel="stylesheet"
-      href="<c:url value='/resources/css/main/member/login.css'/>"
-    />
+    <link rel="stylesheet" href="<c:url value='/resources/css/main/member/login.css'/>" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.js"></script>
     <title>buskers</title>
 </head>
 <body>
@@ -37,15 +35,15 @@
                 <div class="lb-header">
                     <span class="active" id="login-box-link">로그인</span>
                 </div>
-                <form class="email-login">
+                <form class="email-login" method="post">
                     <div class="u-form-group">
-                        <input type="id" placeholder="Id"/>
+                        <input type="id" name="id" id="id" placeholder="Id"/>
                     </div>
                     <div class="u-form-group">
-                        <input type="password" placeholder="Password"/>
+                        <input type="password" name="pass" id="pass" placeholder="Password"/>
                     </div>
                     <div class="u-form-group">
-                        <button>로그인</button>
+                        <button id="login">로그인</button>
                     </div>
                     <div class="u-form-group">
                         <a href="findIdform.do" class="forgot-id">아이디 찾기</a>
@@ -82,5 +80,24 @@
             <h1>Copyright © 2019 .... - Buskers.</h1>
         </div>
     </footer>
+    <script>
+    	$("#login").click(function() {
+    		var id = $("#id").val();
+    		var pass = $("#pass").val();
+    		if(id == ""){
+    			alert("아이디를 입력하세요.");
+    			$("#id").focus();
+    			return;
+    		}
+    		if(pass == ""){
+    			alert("비밀번호를 입력하세요.");
+    			$("#pass").focus();
+    			return;
+    		}
+    		$(".email-login").attr({
+   				"action": "login.do"
+    		});
+    	});
+    </script>
 </body>
 </html>

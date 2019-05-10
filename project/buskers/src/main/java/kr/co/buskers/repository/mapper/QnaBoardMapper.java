@@ -10,13 +10,14 @@ import kr.co.buskers.repository.domain.QnaBoardComment;
 public interface QnaBoardMapper {	
 	public void insertBoard(QnaBoard qnaBoard);
 	List<QnaBoard> selectBoard(FreePage freePage);
-	int selectBoardCount();
+	int selectBoardCount(FreePage freePage);
 	QnaBoard selectBoardByNo(int no);
 	void updateViewCnt(int no);
 	void deleteBoard(int no);	
 	void updateBoard(QnaBoard qnaBoard);
 	
-	List<QnaBoardComment> selectCommentByNo(int no);
+	List<QnaBoardComment> selectComment(int no);
+	List<QnaBoardComment> selectCommentReply(int no);
 	
 	void insertLike(Like like);
 	Like selectLike(Like like);
@@ -24,6 +25,8 @@ public interface QnaBoardMapper {
 	void updateLikeQnaBoardPlus(QnaBoard qnaBoard);
 	void updateLikeQnaBoardMinus(QnaBoard qnaBoard);
 	void deleteLike(int no);
+	
+	void insertComment(QnaBoardComment qnaBoardComment);
 	
 	
 	

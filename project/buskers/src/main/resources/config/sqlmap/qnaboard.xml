@@ -13,22 +13,72 @@
 	
 	<!-- 전체글 조회 -->
 	<select id="selectBoard" parameterType="qnaBoard" resultType="qnaBoard">
-			select *
+		select *
   		  from (select @rownum:=@rownum+1 rnum, a.*
 		          from ( select *
 		                   from tb_qnaboard
 						  WHERE (@rownum:=0)=0
-		  					and is_delete = 'n'
-		                  order by board_no desc) a
+						  
+						<choose>
+							<when test="searchType == 'title'">
+								and title like concat('%', #{input}, '%')
+							</when>
+							<when test="searchType == 'content'">
+								and content like concat('%', #{input}, '%')
+							</when>
+							<when test="searchType == 'writer'">
+								and writer like concat('%', #{input}, '%')
+							</when>
+							<otherwise>
+							</otherwise>
+						</choose>
+						
+						<choose>
+							<when test="sortType == 'viewDESC'">
+								order by view_cnt desc
+							</when>
+							<when test="sortType == 'viewASC'">
+								order by view_cnt asc
+							</when>
+							<when test="sortType == 'likeDESC'">
+								order by like_cnt desc
+							</when>
+							<when test="sortType == 'likeASC'">
+								order by like_cnt asc
+							</when>
+							<when test="sortType == 'dateDESC'">
+								order by reg_date desc
+							</when>
+							<when test="sortType == 'dateASC'">
+								order by reg_date asc
+							</when>
+							<otherwise>
+								order by board_no desc
+							</otherwise>
+						</choose>
+						
+	                   ) a
 		       ) b
 		 where rnum between #{begin} and #{end}
-
 	</select>
 	
 	<!-- 페이지 이용 필요 카운트 -->
-	<select id="selectBoardCount" resultType="int">
+	<select id="selectBoardCount" parameterType="freePage" resultType="int">
 		select count(*)
 		  from tb_qnaboard
+		<choose>
+			<when test="searchType == 'title'">
+				where title like concat('%', #{input}, '%')
+			</when>
+			<when test="searchType == 'content'">
+				where content like concat('%', #{input}, '%')
+			</when>
+			<when test="searchType == 'writer'">
+				where writer like concat('%', #{input}, '%')
+			</when>
+			<otherwise>
+			</otherwise>
+		</choose>
 	</select>
 	
 	<!-- 게시글조회 -->
@@ -37,7 +87,9 @@
 		 from tb_qnaboard as a
 		inner join tb_like as b
 		   on a.board_no=b.board_no
-		where a.board_no=#{boardNo};
+		inner join tb_member as c
+		   on a.member_no=c.member_no
+		where a.board_no=#{boardNo}
 	 </select>	
 	
 	<!-- 조회수 증가 --> 
@@ -113,15 +165,31 @@
     </delete>    
     
 <!--     코멘트 불러오기 -->
-    <select id="selectCommentByNo" parameterType="int" resultType="qnaBoardComment">
+    <select id="selectComment" parameterType="int" resultType="qnaBoardComment">
 		select *
 		  from tb_qnaboard_comment as a
 		 inner join tb_member as b
 		    on a.member_no=b.member_no
 		 where board_no = #{boardNo}
-		 order by comment_no ;
+		   and reply_no = 0
+		 order by comment_no 
     </select>  
-    
+    <!-- 대댓글 불러오기 -->
+    <select id="selectCommentReply" parameterType="int" resultType="qnaBoardComment">
+    	select *
+  		  from tb_qnaboard_comment as a
+		 inner join tb_member as b
+		 where a.member_no = b.member_no
+		   and board_no=#{boardNo} 
+   		   and reply_no not in (0) ;
+    </select>
+    <!-- 코멘트 추가 -->
+	<insert id="insertComment" parameterType="qnaBoardComment">
+		insert into tb_qnaboard_comment(board_no, member_no, content)
+		values(#{boardNo},#{memberNo},#{content})
+	</insert>
+	
+		    
     
 </mapper>
 
