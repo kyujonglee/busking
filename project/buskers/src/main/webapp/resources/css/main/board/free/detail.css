@@ -30,7 +30,6 @@
 
 .board_article {
     margin-top: 20px;
-    height: 500px;
 }
 
 .board_article_info {
@@ -72,6 +71,7 @@
 }
 
 .board_article_content > div {
+	height: 400px;
 	padding: 30px 10px;
 }
 
@@ -97,3 +97,46 @@
     display: flex;
     justify-content: flex-end;
 }
+
+.board_article_comment {
+	min-height: 100px;
+}
+
+.board_article_comment_amount {
+	border-bottom: 1px solid #ddd;
+}
+
+.board_article_comment_amount_underline {
+	font-family: 'Nanum Gothic', sans-serif;
+	display:flex;
+	height: 100%;
+	width: 115px;
+	border-bottom: 1px solid #222222;
+}
+
+.board_article_comment_amount_underline > span {
+	height: 32px;
+	line-height: 32px;
+	font-weight: bold;
+	vertical-align: middle;
+	display: inline-block;
+}
+
+.comment_highlight {
+	color: tomato;
+	margin-left: 5px;
+}
+
+.board_article_comment_list {
+	margin-top: 10px;
+}
+
+.comment_list {
+	height: 100px;
+	width: 300px;
+	background: black;
+}
+
+
+
+
