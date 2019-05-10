@@ -68,6 +68,21 @@
 	                	${board.content}
                 	</div>
                 </div>
+                
+                <div class="board_article_comment">
+                	<div class="board_article_comment_amount">
+	                	<div class="board_article_comment_amount_underline">
+	                		<i class="fas fa-comment-dots fa-2x"></i>
+	                		<span><b class="comment_highlight">3</b>개의 댓글</span>
+	                	</div>
+	                	
+                	</div>
+                	<div class="board_article_comment_list">
+                		<div class="comment_list">sdfsdfd
+                		</div>
+                	</div>
+                </div>
+                
             </div>
             
             <br><br><br>
