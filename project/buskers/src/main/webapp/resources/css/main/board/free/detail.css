@@ -135,7 +135,16 @@
 	display: flex;
 }
 
+.comment_write_info {
+	display: flex;
+}
+
 .comment_info > div {
+	display: flex;
+	align-items: center;
+}
+
+.comment_write_info > div {
 	display: flex;
 	align-items: center;
 }

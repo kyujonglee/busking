@@ -13,6 +13,7 @@
 	href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" />
 <link rel="stylesheet" href="<c:url value='/resources/css/main/board/free/koo.css'/>" />
 <link rel="stylesheet" href="<c:url value='/resources/css/main/board/agency/agency.css'/>" />
+<link rel="stylesheet" href="<c:url value='/resources/css/main/board/free/test.css'/>" />
 <title>buskers</title>
 </head>
 <body class="body-background">
@@ -148,7 +149,7 @@
     	if ( (input != "") && searchType == "title" ) {
     		for (i = 0; i < $(".board_title_left > a").length; i++) {
     			$(".board_title_left > a:eq(" + i + ")").html( $(".board_title_left > a:eq(" + i + ")").html().replace(input, "<b class='search_keyword'>" + input + "</b>") );
-    		};
+    		}
     		$(".search_form_input").val(input);
     		$(".search_form_option > option:eq(0)").prop("selected", true);
     	};
