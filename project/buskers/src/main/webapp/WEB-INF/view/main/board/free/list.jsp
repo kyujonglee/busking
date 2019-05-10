@@ -17,44 +17,7 @@
 </head>
 <body class="body-background">
 	<div class="main-form">
-		<aside class="side-bar">
-			<a class="side-bar__tag">
-				<div class="side-bar__icon">
-					<i class="fas fa-bars fa-lg"></i> <span
-						class="side-bar__icon-content">메뉴바</span>
-				</div>
-			</a> 
-			<a class="side-bar__tag" href="<c:url value='/main/board/free/list.do'/>">
-         		 <div class="side-bar__icon">
-         		   <i class="fas fa-bullhorn fa-lg"></i>
-      		      <span class="side-bar__icon-content">공지게시판</span>
-     		     </div>
-   		    </a>
-			<a class="side-bar__tag" href="<c:url value='/main/board/free/list.do'/>">
-         		 <div class="side-bar__icon">
-         		   <i class="fas fa-comments fa-lg"></i>
-      		      <span class="side-bar__icon-content">자유게시판</span>
-     		     </div>
-   		    </a>
-     		   <a class="side-bar__tag" href="<c:url value='/main/board/qna/list.do'/>">
-     		     <div class="side-bar__icon">
-        		    <i class="fas fa-question fa-lg"></i>
-      		      <span class="side-bar__icon-content">질문게시판</span>
-      		    </div>
-      	 	 </a> 
-      	  	<a class="side-bar__tag">
-				<div class="side-bar__icon">
-					<i class="fas fa-music fa-lg"></i> <span
-						class="side-bar__icon-content">버스커소개</span>
-				</div>
-			</a> <a class="side-bar__tag" href="<c:url value='/main/board/agency/list.do'/>">
-				<div class="side-bar__icon">
-					<i class="fas fa-building fa-lg"></i> <span
-						class="side-bar__icon-content">업체 등록</span>
-				</div>
-			</a>
-			<div class="side-bar__icon">...</div>
-		</aside>
+		<%@ include file="../../../include/sidebar.jsp" %>
 		<div class="main-body">
 			<header class="header">
 				<div class="board_container">
@@ -108,21 +71,24 @@
 					</c:if>
 	               
 	                <c:forEach var="board" items="${list}">
-	               		<tr class="free_board_list">
-					    	<td>${board.boardNo}</td>
-							<td class="board_title_left">
-							<c:if test="${empty param.pageNo}">
-								<a href="detail.do?boardNo=${board.boardNo}&pageNo=1&input=${param.input}&sortType=${param.sortType}&searchType=${param.searchType}">${board.title}</a>
-							</c:if>
-							<c:if test="${!empty param.pageNo}">
-								<a href="detail.do?boardNo=${board.boardNo}&pageNo=${param.pageNo}&input=${param.input}&sortType=${param.sortType}&searchType=${param.searchType}">${board.title}</a>
-							</c:if>
-                
-  							</td>
-  						</tr>
-  					</c:forEach>
-					<br><br><br>
-			
+                    	 <tr class="free_board_list">
+               			    <td>${board.boardNo}</td>
+                		    <td class="board_title_left">
+				               	  <c:if test="${empty param.pageNo}">
+				                     <a href="detail.do?boardNo=${board.boardNo}&pageNo=1&input=${param.input}&sortType=${param.sortType}&searchType=${param.searchType}">${board.title}</a>
+				                  </c:if>
+				                  <c:if test="${!empty param.pageNo}">
+				                     <a href="detail.do?boardNo=${board.boardNo}&pageNo=${param.pageNo}&input=${param.input}&sortType=${param.sortType}&searchType=${param.searchType}">${board.title}</a>
+				                  </c:if>
+                 			</td>
+                  			<td>${board.memberNo}</td>
+                   			<td><fmt:formatDate value="${board.regDate}" pattern="MM-dd HH:mm" /></td>
+                 		    <td>${board.viewCnt}</td>
+                		    <td>${board.likeCnt}</td>
+                 	    </tr>
+            		</c:forEach>
+			</table>
+			<br><br><br>
 
             <div class="free_board_bottom">
 	            <div class="free_board_search">
@@ -336,7 +302,7 @@
    					if ( (input != "") && searchType == "title" ) {
    		        		for (i = 0; i < $(".board_title_left > a").length; i++) {
    		        			$(".board_title_left > a:eq(" + i + ")").html( $(".board_title_left > a:eq(" + i + ")").html().replace(input, "<b class='search_keyword'>" + input + "</b>") );
-   		        		};
+   		        		}
    		        	};
    				}
    			});

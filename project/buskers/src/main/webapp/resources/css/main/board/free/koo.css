@@ -78,16 +78,12 @@ body {
 	color: #DC143C;
 }
 
-<<<<<<< HEAD
 .free_board_search {
     width: 100%;
     height: 100px;
 }
 
 .main-freeboard th {
-=======
-th {
->>>>>>> 024f806e685e5bec6e4d0b5255a39b75fb612dab
     border-top: 2px solid black;
     height: 50px;
     font-size: 15px;

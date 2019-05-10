@@ -180,8 +180,8 @@
   		  from tb_qnaboard_comment as a
 		 inner join tb_member as b
 		 where a.member_no = b.member_no
-		   and board_no=#{boardNo} 
-   		   and reply_no not in (0) ;
+		   and board_no = #{boardNo} 
+   		   and reply_no not in (0)
     </select>
     <!-- 코멘트 추가 -->
 	<insert id="insertComment" parameterType="qnaBoardComment">
