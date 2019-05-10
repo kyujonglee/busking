@@ -16,19 +16,7 @@ public class AgencyInfo {
 	private String agencyCode;
 	private int memberNo;
 	private List<AgencyGenre> agencyGenreList;
-	
-	public List<AgencyGenre> getAgencyGenreList() {
-		return agencyGenreList;
-	}
-	public void setAgencyGenreList(List<AgencyGenre> agencyGenreList) {
-		this.agencyGenreList = agencyGenreList;
-	}
-	public int getMemberNo() {
-		return memberNo;
-	}
-	public void setMemberNo(int memberNo) {
-		this.memberNo = memberNo;
-	}
+	private List<String> agencyCheckbox;
 	public int getAgencyInfoNo() {
 		return agencyInfoNo;
 	}
@@ -89,5 +77,22 @@ public class AgencyInfo {
 	public void setAgencyCode(String agencyCode) {
 		this.agencyCode = agencyCode;
 	}
-	
+	public int getMemberNo() {
+		return memberNo;
+	}
+	public void setMemberNo(int memberNo) {
+		this.memberNo = memberNo;
+	}
+	public List<AgencyGenre> getAgencyGenreList() {
+		return agencyGenreList;
+	}
+	public void setAgencyGenreList(List<AgencyGenre> agencyGenreList) {
+		this.agencyGenreList = agencyGenreList;
+	}
+	public List<String> getAgencyCheckbox() {
+		return agencyCheckbox;
+	}
+	public void setAgencyCheckbox(List<String> agencyCheckbox) {
+		this.agencyCheckbox = agencyCheckbox;
+	}
 }

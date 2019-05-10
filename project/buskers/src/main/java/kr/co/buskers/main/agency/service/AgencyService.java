@@ -15,4 +15,5 @@ public interface AgencyService {
 	AgencyInfo selectAgencyInfoByNo(int agencyInfoNo);
 	void deleteAgencyInfoAll(int agencyInfoNo);
 	List<Genre> selectGenre();
+	void updateAgencyInfo(AgencyInfo agencyInfo,AgencyGenre agencyGenre);
 }

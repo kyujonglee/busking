@@ -1,0 +1,17 @@
+.board_container {
+	background-color: #333333 !important;
+	color: white !important;
+	font-family: 'Italianno', cursive;
+}
+
+.side-bar__tag:first-child {
+	background-color: #333333 !important;
+}
+
+.fa-bars {
+	color: white;
+}
+
+.fa-search {
+	color: black !important;
+}

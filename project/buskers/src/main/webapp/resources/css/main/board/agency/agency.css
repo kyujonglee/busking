@@ -97,9 +97,9 @@
 
 /* 사이드바 */
 .side-bar {
-  position: relative;
-  z-index: 1;
-  left : 140px;
+  position: fixed;
+  /* z-index: 1; */
+  /* left : 140px; */
   background-color: var(--color-white);
   width: 200px;
   height: 100vh;
@@ -114,6 +114,18 @@
   font-family: 'Nanum Gothic', sans-serif;
 }
 
+.side-bar__wrapper {
+	position : relative;
+	width: 200px;
+ 	height: 100vh;
+	left : 140px;
+}
+
+.side-bar__wrapper-fixed{
+	position : absolute;
+	z-index: 1;
+}
+
 .side-bar .side-bar__icon {
   border-left: 2px solid white;
   display: flex;
@@ -123,6 +135,7 @@
   width: 100%;
   box-sizing: border-box;
   padding-left: 20px;
+  cursor:pointer;
 }
 
 .side-bar .side-bar__icon i {
@@ -152,7 +165,7 @@
 }
 
 .main-agency {
-  height: 100vh;
+/*   height: 100vh; */
   border-right: 1px solid rgba(0, 0, 0, 0.1);
 }
 .main-body {
@@ -161,6 +174,7 @@
   z-index: 1;
   /* left : -190px; */
   background-color : var(--color-background);
+  background-color : white;
 }
 
 
