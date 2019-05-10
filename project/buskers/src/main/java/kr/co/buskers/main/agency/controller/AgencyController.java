@@ -73,7 +73,7 @@ public class AgencyController {
 	}
 	
 	@RequestMapping("update.do")
-	public String update(int agencyInfoNo,int pageNo) {
+	public String update(AgencyInfo agencyInfo,int pageNo) {
 		System.out.println("udpate 도달함");
 		return "redirect:list.do";
 	}

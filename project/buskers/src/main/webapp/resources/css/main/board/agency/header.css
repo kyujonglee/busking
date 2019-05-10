@@ -1,13 +1,14 @@
 .agency {
     width: 100%;
     align-self: flex-end;
-    padding : 50px 70px;
-    color : var(--color-orange);
+    padding : 0px 70px;
+    /* color : var(--color-orange); */
     /* font-family: "JUA",sans-serif; */
     box-sizing: border-box;
 }
 
 .agency .agency-header{
+	margin-top : 50px;
     color : var(--color-darkgray);
     font-size: 24px;
     height: 50px;
