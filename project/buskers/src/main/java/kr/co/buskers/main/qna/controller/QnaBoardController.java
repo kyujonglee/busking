@@ -63,6 +63,15 @@ public class QnaBoardController {
 		model.addAttribute("list", result.get("list"));
 		model.addAttribute("pageResult", result.get("pageResult"));
 	}
+	
+	@RequestMapping("list-ajax.do")
+	@ResponseBody
+	public Map<String, Object> sortList(FreePage freePage) {
+		Map<String, Object> result = service.sortList(freePage);
+		
+		return result;
+	}
+	
 
 	@RequestMapping("/like.do")		
 	@ResponseBody

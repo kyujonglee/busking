@@ -10,6 +10,7 @@ import kr.co.buskers.repository.domain.QnaBoardComment;
 public interface QnaBoardService {
 	public void write(QnaBoard qnaBoard);
 	public Map<String,Object> list(FreePage freePage);
+	public Map<String, Object> sortList(FreePage freePage);
 	public QnaBoard detail(int no);
 	public void updateViewCnt(int no);
 	public void delete(int no);

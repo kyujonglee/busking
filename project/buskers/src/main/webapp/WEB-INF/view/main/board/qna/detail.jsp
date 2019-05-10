@@ -198,7 +198,7 @@ let writeContent = $(".comment_write_input").val();
 
 //페이지 시작시 comment 불러옴
 window.onload=commentLoad();
-window.onload=commentReplyLoad();
+// window.onload=commentReplyLoad();
 
 //댓글 리스트(답글제외) 불러오기
 function commentLoad(){
@@ -253,15 +253,9 @@ function commentLoad(){
 				$(".comment_container").append(text);
 				//댓글숫자 불러오기
 				$(".comment_top").html("댓글("+result.length+")");
-				
-				
-				////////////////////reply ajax
-			
-								
-				
-				
 			}
 			
+			commentReplyLoad()
 		}).fail(function(xhr){
 			alert("서버 처리중 에러발생")
 			console.dir(xhr);
@@ -275,7 +269,7 @@ function commentReplyLoad(){
 		data: "no=${board.boardNo}",
 	})
 	.done(function (result) {
-		alert("성공이요");
+// 		alert("성공이요");
 		for(let i=0; i<result.length ; i++){
 			
 			
@@ -294,7 +288,7 @@ function commentReplyLoad(){
                     <div class="comment_profile">
                         <img class="profileImg" src="<c:url value='/resources/img/profile.png'/>">
                     </div>
-                    <div class="nickname commentNik">구본영</div>
+                    <div class="nickname commentNik">`+result[i].nickName+`</div>
                     <div></div>
                     <div class="buttonDiv">
                         <button class="answer">답글</button>
@@ -304,13 +298,13 @@ function commentReplyLoad(){
                         <i class="material-icons">
                         thumb_up_alt
                         </i></div>
-                    <div class="comment_like">21</div>
+                    <div class="comment_like">`+result[i].likeCnt+`</div>
                     <div class="comment_like_img">
                         <i class="material-icons">
                         thumb_down_alt
                         </i>
                     </div>
-                    <div class="comment_like">30</div>
+                    <div class="comment_like">+result[i].disLikeCnt+</div>
                 </div>
                 <div class="comment">
                 `+result[i].content+`
