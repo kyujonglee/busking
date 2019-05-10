@@ -114,6 +114,12 @@
                     </div>
                   </div>
                   <div class="agency-insert__item addr-search">
+               		 <div class="agency-insert__item-column"></div>
+               			 <div class="agency-insert__item-column">
+	              		 <button type="button" class="agency-insert__item-addr-search" onclick="goPopup();">주소검색</button>
+              		  </div>
+            	  </div>
+                  <div class="agency-insert__item addr-search">
                     <div class="agency-insert__item-column">
                       <span class="agency-insert__item-name">기본주소</span>
                     </div>
@@ -161,7 +167,7 @@
 				                    class="agency-insert__checkbox"
 				                    type="checkbox"
 				                    name="agencyCheckbox"
-				                    id=""
+				                    id="agencyCheckbox"
 				                    value="${genreItem.genreNo}"
 				                    checked
 				                  />
@@ -171,8 +177,8 @@
 				                    class="agency-insert__checkbox"
 				                    type="checkbox"
 				                    name="agencyCheckbox"
-				                    id=""
-				                    value="1"
+				                    id="agencyCheckbox"
+				                    value="${genreItem.genreNo}"
 				                  />
 	              	  			</c:otherwise>
 	              	  		</c:choose>
@@ -197,11 +203,11 @@
                     </div>
                   </div>
                   <div class="agency-insert__btn-content">
-                  	<a href="<c:url value='/main/board/agency/list.do?pageNo=${pageNo}'/>">
-                   	 <button type="button" class="agency-insert__btn">
+                  	<input type="hidden" name="pageNo" value="${pageNo}"/>
+                  	<input type="hidden" name="agencyInfoNo" value="${agencyInfo.agencyInfoNo}"/>
+                   	 <button type="button" onclick="updateAgency();"class="agency-insert__btn">
                     	확인
                    	 </button>
-                    </a>
                   	<a href="<c:url value='/main/board/agency/list.do?pageNo=${pageNo}'/>">
                    	 <button type="button" class="agency-insert__btn">
                     	목록 
@@ -217,6 +223,6 @@
     </div>
 	<script src="<c:url value='/resources/js/jquery-3.4.1.min.js'/>"></script>
     <script src="<c:url value='/resources/js/main/board/agency/side-bar.js'/>"></script>
-<%--     <script src="<c:url value='/resources/js/main/board/agency/updateform.js'/>"></script> --%>
+    <script src="<c:url value='/resources/js/main/board/agency/update.js'/>"></script>
   </body>
 </html>

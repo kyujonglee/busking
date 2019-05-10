@@ -45,4 +45,9 @@ public class AgencyServiceImpl implements AgencyService {
 	public List<Genre> selectGenre(){
 		return mapper.selectGenre();
 	}
+	public void updateAgencyInfo(AgencyInfo agencyInfo,AgencyGenre agencyGenre) {
+		mapper.deleteAgencyGenreByNo(agencyInfo.getAgencyInfoNo());
+		mapper.insertAgencyGenre(agencyGenre);
+		mapper.updateAgencyInfo(agencyInfo);
+	}
 }
