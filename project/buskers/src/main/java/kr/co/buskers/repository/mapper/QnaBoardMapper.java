@@ -16,7 +16,8 @@ public interface QnaBoardMapper {
 	void deleteBoard(int no);	
 	void updateBoard(QnaBoard qnaBoard);
 	
-	List<QnaBoardComment> selectCommentByNo(int no);
+	List<QnaBoardComment> selectComment(int no);
+	List<QnaBoardComment> selectCommentReply(int no);
 	
 	void insertLike(Like like);
 	Like selectLike(Like like);
@@ -24,6 +25,8 @@ public interface QnaBoardMapper {
 	void updateLikeQnaBoardPlus(QnaBoard qnaBoard);
 	void updateLikeQnaBoardMinus(QnaBoard qnaBoard);
 	void deleteLike(int no);
+	
+	void insertComment(QnaBoardComment qnaBoardComment);
 	
 	
 	
