@@ -181,7 +181,8 @@
 		 inner join tb_member as b
 		 where a.member_no = b.member_no
 		   and board_no=#{boardNo} 
-   		   and reply_no not in (0) ;
+   		   and reply_no not in (0)
+      order by comment_no asc
     </select>
     <!-- 코멘트 추가 -->
 	<insert id="insertComment" parameterType="qnaBoardComment">
