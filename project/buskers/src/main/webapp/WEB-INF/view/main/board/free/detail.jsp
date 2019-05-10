@@ -1,40 +1,80 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>  
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
-    <link href="https://fonts.googleapis.com/css?family=Italianno" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic" rel="stylesheet">
-    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-    <link rel="stylesheet" href="<c:url value='/resources/css/main/board/free/koo.css'/>"/>
-    <link rel="stylesheet" href="<c:url value='/resources/css/main/board/free/detail.css'/>"/>
-    <title>Document</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.0/moment.min.js"></script>
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" />
+<link rel="stylesheet" href="<c:url value='/resources/css/main/board/free/koo.css'/>" />
+<link rel="stylesheet" href="<c:url value='/resources/css/main/board/agency/agency.css'/>" />
+<title>buskers</title>
 </head>
-<body>
-    
-    <div class="board_container">
-        <div class="board_container_head">
-            buskers
-        </div>
-
-        <div class="container_side">
-            <ul class="side_menu">
-                <li></li>
-                <li><a href="#"><span class="fas fa-bullhorn"></span>공지사항</a></li>
-                <li><a href="#"><span class="fas fa-comments"></span>자유게시판</a></li>
-                <li><a href="#"><span class="fas fa-question"></span>질문게시판</a></li>
-                <li><a href="<c:url value='/main/board/agency/list.do'/>"><span class="fas fa-building"></span>업체게시판</a></li>
-            </ul>
-        </div>
-
-        <div class="board_container_body">
+<body class="body-background">
+	<div class="main-form">
+		<aside class="side-bar">
+			<a class="side-bar__tag">
+				<div class="side-bar__icon">
+					<i class="fas fa-bars fa-lg"></i> <span
+						class="side-bar__icon-content">메뉴바</span>
+				</div>
+			</a> 
+			<a class="side-bar__tag" href="<c:url value='/main/board/free/list.do'/>">
+         		 <div class="side-bar__icon">
+         		   <i class="fas fa-bullhorn fa-lg"></i>
+      		      <span class="side-bar__icon-content">공지게시판</span>
+     		     </div>
+   		    </a>
+			<a class="side-bar__tag" href="<c:url value='/main/board/free/list.do'/>">
+         		 <div class="side-bar__icon">
+         		   <i class="fas fa-comments fa-lg"></i>
+      		      <span class="side-bar__icon-content">자유게시판</span>
+     		     </div>
+   		    </a>
+     		   <a class="side-bar__tag" href="<c:url value='/main/board/qna/list.do'/>">
+     		     <div class="side-bar__icon">
+        		    <i class="fas fa-question fa-lg"></i>
+      		      <span class="side-bar__icon-content">질문게시판</span>
+      		    </div>
+      	 	 </a> 
+      	  	<a class="side-bar__tag">
+				<div class="side-bar__icon">
+					<i class="fas fa-music fa-lg"></i> <span
+						class="side-bar__icon-content">버스커소개</span>
+				</div>
+			</a> <a class="side-bar__tag" href="<c:url value='/main/board/agency/list.do'/>">
+				<div class="side-bar__icon">
+					<i class="fas fa-building fa-lg"></i> <span
+						class="side-bar__icon-content">업체 등록</span>
+				</div>
+			</a>
+			<div class="side-bar__icon">...</div>
+		</aside>
+		<div class="main-body">
+			<header class="header">
+				<div class="board_container">
+					<div class="header-columns">
+						<i class="fas fa-search fa-lg"></i> <input type="text"
+							placeholder="search" />
+					</div>
+					<div class="header-columns">
+						<span class="header__title">Buskers</span>
+					</div>
+					<div class="header-columns">
+						<span class="header__user"> <i class="fas fa-crown fa-lg"></i>
+							kyujong93 님
+						</span> <i class="fas fa-angle-down "></i> <i class="fas fa-bell fa-lg"></i>
+						<i class="fas fa-cog fa-lg"></i>
+					</div>
+				</div>
+			</header>
+			<main class="main-freeboard">
+			<div class="agency">
             <div class="board_title">
                 <div class="board_title_underline">
                     <a href="<c:url value='/main/board/free/list.do'/>">자유게시판</a>
@@ -77,13 +117,14 @@
             </div>
 
             <br><br><br>
-
-            <div class="footer"></div>
-        </div>
-    
-    </div>
-    
-    <script>
+				</div>
+			</main>
+         	   <div class="footer"></div>
+		</div>
+	</div>
+	<script src="<c:url value='/resources/js/jquery-3.4.1.min.js'/>"></script>
+	<script src="<c:url value='/resources/js/main/board/agency/side-bar.js'/>"></script>
+	<script>
     	
     </script>
 </body>

@@ -17,18 +17,15 @@
   --color-blue: #3a5dfb;
 }
 
-a {
-  text-decoration: none;
-  color: inherit;
-}
-
 .body-background {
   background-color: var(--color-background);
-  padding-top: 50px;
+/*   padding-top: 50px; */
 }
 
 .header {
-  /* font-family: "Jua", sans-serif; */
+/*   position : relative; */
+/*   top: -50px; */
+  font-family: 'Nanum Gothic', sans-serif;
 }
 
 .header .board_container{
@@ -114,7 +111,7 @@ a {
   box-sizing: border-box;
   color: var(--color-gray);
   border-right: 1px solid rgba(0, 0, 0, 0.1);
-  /* font-family: "JUA", sans-serif; */
+  font-family: 'Nanum Gothic', sans-serif;
 }
 
 .side-bar .side-bar__icon {

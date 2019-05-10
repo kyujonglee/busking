@@ -12,6 +12,8 @@
 	href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" />
 <link rel="stylesheet"
 	href="<c:url value='/resources/css/main/board/agency/agency.css'/>" />
+<link rel="stylesheet"
+	href="<c:url value='/resources/css/main/board/free/koo.css'/>" />
 <title>buskers</title>
 </head>
 <body class="body-background">
