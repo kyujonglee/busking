@@ -99,6 +99,17 @@
 		 where agency_info_no = #{agencyInfoNo}
 	</delete>
 	
+	<!-- update -->
+	<update id="updateAgencyInfo" parameterType="agencyInfo">
+		update tb_agency_info
+		   set agency_name = #{agencyName},
+		       email = #{email},
+		       phone = #{phone},
+		       basic_addr = #{basicAddr},
+		       detail_addr = #{detailAddr},
+		       purpose = #{purpose}
+		 where agency_info_no = #{agencyInfoNo}
+	</update>
 </mapper>
 
 

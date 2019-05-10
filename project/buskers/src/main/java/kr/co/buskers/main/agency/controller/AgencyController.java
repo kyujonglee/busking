@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import kr.co.buskers.common.page.AgencyPageResult;
 import kr.co.buskers.main.agency.service.AgencyService;
@@ -41,16 +42,14 @@ public class AgencyController {
 	public void insertform() {}
 	
 	@PostMapping("insert.do")
-	public String insert(AgencyInfo agencyInfo,AgencyGenre agencyGenre,HttpSession session) {
-		System.out.println(session.getAttribute("user"));
+	public String insert(AgencyInfo agencyInfo,HttpSession session) throws Exception{
 		Member mem = (Member)session.getAttribute("user");
 //		// 자바스크립트에서 조건을 줄 것!
-		System.out.println(mem.getMemberNo());
 		agencyInfo.setMemberNo(mem.getMemberNo());
-		System.out.println(agencyInfo.getMemberNo());
 		service.insertAgencyInfo(agencyInfo);
-		System.out.println("등록됨");
+		AgencyGenre agencyGenre = new AgencyGenre();
 		agencyGenre.setAgencyInfoNo(agencyInfo.getAgencyInfoNo());
+		agencyGenre.setAgencyCheckbox(agencyInfo.getAgencyCheckbox());
 		service.insertAgencyGenre(agencyGenre);
 		return "redirect:list.do";
 	}
@@ -73,13 +72,26 @@ public class AgencyController {
 	}
 	
 	@RequestMapping("update.do")
-	public String update(AgencyInfo agencyInfo,int pageNo) {
-		System.out.println("udpate 도달함");
-		return "redirect:list.do";
+	public ModelAndView update(AgencyInfo agencyInfo,int pageNo,int agencyInfoNo) {
+		System.out.println(agencyInfo.getAgencyCheckbox());
+		System.out.println(agencyInfo.getAgencyCheckbox().get(0));
+		
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("agencyInfoNo",agencyInfoNo);
+		mav.addObject("pageNo",pageNo);
+		mav.setViewName("redirect:detail.do");
+		
+		AgencyGenre agencyGenre = new AgencyGenre();
+		agencyGenre.setAgencyInfoNo(agencyInfo.getAgencyInfoNo());
+		agencyGenre.setAgencyCheckbox(agencyInfo.getAgencyCheckbox());
+		service.updateAgencyInfo(agencyInfo,agencyGenre);
+		
+		return mav;
 	}
 	@RequestMapping("updateform.do")
-	public void updateform(int agencyInfoNo, Model model) {
+	public void updateform(int agencyInfoNo,int pageNo, Model model) {
 		model.addAttribute("agencyInfo",service.selectAgencyInfoByNo(agencyInfoNo));
 		model.addAttribute("genre",service.selectGenre());
+		model.addAttribute("pageNo",pageNo);
 	}
 }

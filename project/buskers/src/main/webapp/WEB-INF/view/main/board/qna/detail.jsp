@@ -82,40 +82,7 @@
                 <!--comment 글 1개 끝-->
               
                 <!--comment글 ----답글----- -->
-                <div>
-                    <hr>
-                    <div class="answer_comment_content">
-                        <div class="answer_icon">
-                            <i class="material-icons">
-                                subdirectory_arrow_right
-                            </i>
-                        </div>
-                        <div class="comment_profile">
-                            <img class="profileImg" src="<c:url value='/resources/img/profile.png'/>">
-                        </div>
-                        <div class="nickname commentNik">구본영</div>
-                        <div></div>
-                        <div class="buttonDiv">
-                            <button class="answer">답글</button>
-                        </div>
-                        <div class="comment_date">2010/04/05 12:34</div>
-                        <div class="comment_like_img">
-                            <i class="material-icons">
-                            thumb_up_alt
-                            </i></div>
-                        <div class="comment_like">21</div>
-                        <div class="comment_like_img">
-                            <i class="material-icons">
-                            thumb_down_alt
-                            </i>
-                        </div>
-                        <div class="comment_like">30</div>
-                    </div>
-                    <div class="comment">
-                        Lorem Lorem ipLorem10 Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, necessitatibus. sum dolor sit amet consectetur adipisicing elit. Repellendus, laudantium? . Consectetur eaque perandae, iste quas soluta, in, non tempore quasi cupiditate sequi excepturi sapiente itaque nisi quam ratione aut doloribus veniam? 
-                    </div>
-                </div>
-                <hr>
+              	<hr>
            	 </div>
            </div>
         </form>
@@ -217,7 +184,7 @@ function commentLoad(){
 	  		let dt = getTimeStamp(d);
 			
 				let text = `
-				<div class="comment_heigh" id="comment`+result[i].commentNo+`">
+				<div class="comment_heiggh" id="comment`+result[i].commentNo+`">
 					<hr>
 	              <div class="comment_content">
 	                  <div class="comment_profile">
@@ -271,15 +238,17 @@ function commentReplyLoad(){
 	.done(function (result) {
 // 		alert("성공이요");
 		for(let i=0; i<result.length ; i++){
+		console.log(result[i]);
 			
+		let writer = $("#comment"+result[i].replyNo).find(".nickname").text();
 			
 		d = new Date(result[i].regDate);
   		let dt = getTimeStamp(d);
 			
 			let text = `
-				<div>
+				<div id="comment`+result[i].commentNo+`">
                 <hr>
-                <div class="answer_comment_content">
+                <div class="answer_comment_content"  >
                     <div class="answer_icon">
                         <i class="material-icons">
                             subdirectory_arrow_right
@@ -289,11 +258,13 @@ function commentReplyLoad(){
                         <img class="profileImg" src="<c:url value='/resources/img/profile.png'/>">
                     </div>
                     <div class="nickname commentNik">`+result[i].nickName+`</div>
-                    <div></div>
+                    <div>@
+                    `+writer+`
+                    </div>
                     <div class="buttonDiv">
                         <button class="answer">답글</button>
                     </div>
-                    <div class="comment_date">2010/04/05 12:34</div>
+                    <div class="comment_date">`+dt+`</div>
                     <div class="comment_like_img">
                         <i class="material-icons">
                         thumb_up_alt
