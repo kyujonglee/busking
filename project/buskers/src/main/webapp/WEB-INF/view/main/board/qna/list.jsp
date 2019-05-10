@@ -1,50 +1,48 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>  
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.0/moment.min.js"></script>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
-    <link href="https://fonts.googleapis.com/css?family=Italianno" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic" rel="stylesheet">
-    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-    <link rel="stylesheet" href="<c:url value='/resources/css/main/board/free/koo.css'/>"/>
-    <title>Document</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.0/moment.min.js"></script>
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" />
+<link rel="stylesheet" href="<c:url value='/resources/css/main/board/free/koo.css'/>" />
+<link rel="stylesheet" href="<c:url value='/resources/css/main/board/agency/agency.css'/>" />
+<title>buskers</title>
 </head>
-<body>
-    
-    <div class="board_container">
-        <div class="board_container_head">
-            buskers
-        </div>
-
-        <div class="container_side">
-            <ul class="side_menu">
-                <li></li>
-                <li><a href="#"><span class="fas fa-bullhorn"></span>공지사항</a></li>
-                <li><a href="#"><span class="fas fa-comments"></span>자유게시판</a></li>
-                <li><a href="<c:url value='/main/board/qna/list.do'/>"><span class="fas fa-question"></span>질문게시판</a></li>
-                <li><a href="<c:url value='/main/board/agency/list.do'/>"><span class="fas fa-building"></span>업체게시판</a></li>
-            </ul>
-        </div>
-
-
-
-        <div class="board_container_body">
-            <div class="board_title">
-                <div class="board_title_underline">
+<body class="body-background">
+	<div class="main-form">
+		<%@ include file="../../../include/sidebar.jsp" %>
+		<div class="main-body">
+			<header class="header">
+				<div class="board_container">
+					<div class="header-columns">
+						<i class="fas fa-search fa-lg"></i> <input type="text"
+							placeholder="search" />
+					</div>
+					<div class="header-columns">
+						<span class="header__title">Buskers</span>
+					</div>
+					<div class="header-columns">
+						<span class="header__user"> <i class="fas fa-crown fa-lg"></i>
+							kyujong93 님
+						</span> <i class="fas fa-angle-down "></i> <i class="fas fa-bell fa-lg"></i>
+						<i class="fas fa-cog fa-lg"></i>
+					</div>
+				</div>
+			</header>
+			<main class="main-freeboard">
+			<div class="agency">
+				<div class="board_title">
+               	  <div class="board_title_underline">
                     <a href="<c:url value='/main/board/qna/list.do'/>">질문게시판</a>
+                  </div>
                 </div>
-                
-            </div>
-        
-            
 
             <table class="free_board">
                 <tr class="free_board_head">
@@ -56,22 +54,6 @@
                     <th class="free_board_like"><a class="fas fa-caret-down" id="likeDESC">추천</a></th>
                 </tr>
                 
-                <c:if test="${param.pageNo eq 1 || empty param.pageNo}">
-					<c:forEach var="notify" items="${notifyList}">
-               			<tr class="free_board_notice">
-					    	<td><span class="board_notify">공지</span></td>
-							<td class="board_title_left" id="board_notify_title">
-								<a href="detail.do?no=${notify.boardNo}">${notify.title}</a>
-								<i class="fas fa-comment"><a>2</a></i>
-							</td>
-							<td>${notify.memberNo}</td>
-						    <td><fmt:formatDate value="${notify.regDate}" pattern="MM-dd HH:mm" /></td>
-						    <td>${notify.viewCnt}</td>
-						    <td>${notify.likeCnt}</td>
-						</tr>
-					</c:forEach>
-				</c:if>
-               
                 <c:forEach var="board" items="${list}">
                		<tr class="free_board_list">
 				    	<td>${board.boardNo}</td>
@@ -89,12 +71,10 @@
 					    <td>${board.likeCnt}</td>
                		</tr>
 				</c:forEach>
-            </table>
-			
+			</table>
 			<br><br><br>
-			
+
             <div class="free_board_bottom">
-                
                 <div class="free_board_search">
 	            <form action="list.do" class="search_form">
 	            	<select class= "search_form_option" name='searchType'>
@@ -116,60 +96,62 @@
             <br><br><br>
             
             
-            <div class="pagination">
-                <c:if test="${pageResult.prev eq true}">
-					<a href="list.do?pageNo=${pageResult.beginPage - 1}&sortType=${param.sortType}&searchType=${param.searchType}&input=${param.input}">
-					<i class="fas fa-angle-left"></i></a>
-				</c:if>
-				<c:forEach var="i" begin="${pageResult.beginPage}" end="${pageResult.endPage}">
-					<c:if test="${param.pageNo eq i}">
-						<a href="list.do?pageNo=${i}&sortType=${param.sortType}&searchType=${param.searchType}&input=${param.input}" class="active">${i}</a>
+	            <div class="pagination">
+	                <c:if test="${pageResult.prev eq true}">
+						<a href="list.do?pageNo=${pageResult.beginPage - 1}&sortType=${param.sortType}&searchType=${param.searchType}&input=${param.input}">
+						<i class="fas fa-angle-left"></i></a>
 					</c:if>
-					<c:if test="${param.pageNo ne i}">
-						<a href="list.do?pageNo=${i}&sortType=${param.sortType}&searchType=${param.searchType}&input=${param.input}">${i}</a>
-					</c:if>
-				</c:forEach>
-				<c:if test="${pageResult.next eq true}">
-					<a href="list.do?pageNo=${pageResult.endPage + 1}&sortType=${param.sortType}&searchType=${param.searchType}&input=${param.input}">
-					<i class="fas fa-angle-right"></i></a>
-				</c:if>	
-            </div>
+					<c:forEach var="i" begin="${pageResult.beginPage}" end="${pageResult.endPage}">
+						<c:if test="${param.pageNo eq i}">
+							<a href="list.do?pageNo=${i}&sortType=${param.sortType}&searchType=${param.searchType}&input=${param.input}" class="active">${i}</a>
+						</c:if>
+						<c:if test="${param.pageNo ne i}">
+							<a href="list.do?pageNo=${i}&sortType=${param.sortType}&searchType=${param.searchType}&input=${param.input}">${i}</a>
+						</c:if>
+					</c:forEach>
+					<c:if test="${pageResult.next eq true}">
+						<a href="list.do?pageNo=${pageResult.endPage + 1}&sortType=${param.sortType}&searchType=${param.searchType}&input=${param.input}">
+						<i class="fas fa-angle-right"></i></a>
+					</c:if>	
+	            </div>
             
-            <br><br><br>
+         	   <br><br><br>
 
-            <div class="footer"></div>
-        </div>
-    
-    </div>
-
-    <script>
-    let sortType = "${param.sortType}";
+				</div>
+			</main>
+         	   <div class="footer"></div>
+		</div>
+	</div>
+	<script src="<c:url value='/resources/js/jquery-3.4.1.min.js'/>"></script>
+	<script src="<c:url value='/resources/js/main/board/agency/side-bar.js'/>"></script>
+	<script>
+    	let sortType = "${param.sortType}";
     	let searchType = "${param.searchType}";
     	let input = "${param.input}";
     	
     	if ( (input != "") && searchType == "title" ) {
     		for (i = 0; i < $(".board_title_left > a").length; i++) {
     			$(".board_title_left > a:eq(" + i + ")").html( $(".board_title_left > a:eq(" + i + ")").html().replace(input, "<b class='search_keyword'>" + input + "</b>") );
-    		}
+    		};
     		$(".search_form_input").val(input);
     		$(".search_form_option > option:eq(0)").prop("selected", true);
-    	}
+    	};
     	
     	if ( (input != "") && searchType == "content" ) {
     		$(".search_form_input").val(input);
     		$(".search_form_option > option:eq(1)").prop("selected", true);
-    	}
+    	};
 		
 	    if( $(".pagination > a").hasClass("active") == false ) {
 	    	$(".pagination > a:eq(0)").attr("class", "active");
-	    } 
+	    } ;
 
 	    $(".pagination > a").click(function() {
 	        $(".pagination > a").attr("class", "disabled");
 	        $(this).attr("class", "active");
 	    });
     
-	    /** 정렬 아이콘 변경 */ 
+	    /** 정렬 아이콘 변경 */
         $(".free_board_date").click(function () {
             if ( $(this).children("a").attr("id") == "dateDESC" ) {
                 $(this).children("a").attr("id", "dateASC");
@@ -177,7 +159,7 @@
             } else {
                 $(this).children("a").attr("id", "dateDESC");
                 $(this).children("a").attr("class", "fas fa-caret-up");
-            }
+            };
         });
         
         $(".free_board_view").click(function () {
@@ -199,7 +181,7 @@
                 $(this).children("a").attr("class", "fas fa-caret-up");
             }
         });
-
+        
         /** 정렬 버튼 변경 */
         switch (sortType) {
 	        case "viewDESC":
@@ -226,9 +208,9 @@
         }
 		
         
-        $(".free_board_head > th > a").on("click", function () {
+        $(".free_board_head th a").on("click", function () {
         	
-        	$(".free_board_head > th > a").css({
+        	$(".free_board_head th a").css({
         		"text-decoration": ""
         	});
         	
@@ -272,7 +254,7 @@
    						html += 	'<td>' + board.likeCnt + '</td>';
    						html += '</tr>';
    					}
-  
+   					
    					/** 페이징 */
    					if (pageResult.prev) {
    						pageHtml += '<a href="list.do?pageNo=' + beginPage + '&sortType=' + sort + '&input=' + input + '&searchType=' + searchType + '">';
@@ -300,17 +282,16 @@
    					} else {
    						$(".free_board_head").nextAll().remove();
    						$(".free_board > tbody").append(html);
-   					}
+   					};
    					
    					if ( (input != "") && searchType == "title" ) {
    		        		for (i = 0; i < $(".board_title_left > a").length; i++) {
    		        			$(".board_title_left > a:eq(" + i + ")").html( $(".board_title_left > a:eq(" + i + ")").html().replace(input, "<b class='search_keyword'>" + input + "</b>") );
-   		        		}
-   		        	}
+   		        		};
+   		        	};
    				}
    			});
         });
-        
     </script>
 </body>
 </html>
