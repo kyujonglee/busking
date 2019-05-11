@@ -75,16 +75,17 @@
 
 	<select id="selectBoardCount" parameterType="freePage" resultType="int">
 		select count(*)
-		  from tb_freeboard
+		  from tb_freeboard f, tb_member m
+		 where f.member_no = m.member_no
 		<choose>
 			<when test="searchType == 'title'">
-				where title like concat('%', #{input}, '%')
+				and title like concat('%', #{input}, '%')
 			</when>
 			<when test="searchType == 'content'">
-				where content like concat('%', #{input}, '%')
+				and content like concat('%', #{input}, '%')
 			</when>
 			<when test="searchType == 'nickName'">
-				where nick_name like concat('%', #{input}, '%')
+				and nick_name like concat('%', #{input}, '%')
 			</when>
 			<otherwise>
 			</otherwise>
