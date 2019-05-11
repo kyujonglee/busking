@@ -11,8 +11,28 @@ public class FreeBoard {
 	private Date regDate;
 	private int viewCnt;
 	private String isNotify;
-	private int group_no;
+	private int groupNo;
+	private String id;
+	private int commentCount;
 	
+	public int getCommentCount() {
+		return commentCount;
+	}
+	public void setCommentCount(int commentCount) {
+		this.commentCount = commentCount;
+	}
+	public int getGroupNo() {
+		return groupNo;
+	}
+	public void setGroupNo(int groupNo) {
+		this.groupNo = groupNo;
+	}
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
 	public String getIsNotify() {
 		return isNotify;
 	}
@@ -60,11 +80,5 @@ public class FreeBoard {
 	}
 	public void setViewCnt(int viewCnt) {
 		this.viewCnt = viewCnt;
-	}
-	public int getGroup_no() {
-		return group_no;
-	}
-	public void setGroup_no(int group_no) {
-		this.group_no = group_no;
 	}
 }

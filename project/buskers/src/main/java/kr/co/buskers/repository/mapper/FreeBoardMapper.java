@@ -4,6 +4,7 @@ package kr.co.buskers.repository.mapper;
 import java.util.List;
 
 import kr.co.buskers.repository.domain.FreeBoard;
+import kr.co.buskers.repository.domain.FreeBoardComment;
 import kr.co.buskers.repository.domain.FreePage;
 
 public interface FreeBoardMapper {
@@ -13,4 +14,6 @@ public interface FreeBoardMapper {
 	FreeBoard selectBoardByNo(int boardNo);
 	void updateBoardViewCount(int boardNo);
 	void insertBoard(FreeBoard freeBoard);
+	List<FreeBoardComment> selectCommentList(int boardNo);
+	void insertComment(FreeBoardComment freeBoardComment);
 }

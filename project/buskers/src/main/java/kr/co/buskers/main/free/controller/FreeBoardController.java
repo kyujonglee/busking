@@ -11,6 +11,7 @@ import org.springframework.web.servlet.view.UrlBasedViewResolver;
 
 import kr.co.buskers.main.free.service.FreeService;
 import kr.co.buskers.repository.domain.FreeBoard;
+import kr.co.buskers.repository.domain.FreeBoardComment;
 import kr.co.buskers.repository.domain.FreePage;
 
 @Controller
@@ -40,9 +41,22 @@ public class FreeBoardController {
 		return result;
 	}
 	
+	@RequestMapping("comment-ajax.do")
+	@ResponseBody
+	public Map<String, Object> insertComment(FreeBoardComment freeBoardComment, Model model) {
+		Map<String, Object> result = service.insertComment(freeBoardComment);
+		
+		model.addAttribute("comment", result.get("comment"));
+		
+		return result;
+	}
+	
 	@RequestMapping("detail.do")
 	public void detail(int boardNo, Model model) {
-		model.addAttribute("board", service.detail(boardNo));
+		Map<String, Object> result = service.detail(boardNo);
+		
+		model.addAttribute("comment", result.get("comment"));
+		model.addAttribute("board", result.get("board"));
 	}
 	
 	@RequestMapping("write-form.do")

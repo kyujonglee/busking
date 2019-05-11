@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import kr.co.buskers.common.page.FreePageResult;
 import kr.co.buskers.repository.domain.FreeBoard;
+import kr.co.buskers.repository.domain.FreeBoardComment;
 import kr.co.buskers.repository.domain.FreePage;
 import kr.co.buskers.repository.mapper.FreeBoardMapper;
 
@@ -31,9 +32,15 @@ public class FreeServiceImpl implements FreeService {
 		return map;
 	}	
 	
-	public FreeBoard detail(int boardNo) {
+	public Map<String, Object> detail(int boardNo) {
+		Map<String, Object> map = new HashMap<>();
+		
 		mapper.updateBoardViewCount(boardNo);
-		return mapper.selectBoardByNo(boardNo);
+		
+		map.put("comment", mapper.selectCommentList(boardNo));
+		map.put("board", mapper.selectBoardByNo(boardNo));
+		
+		return map;
 	}
 	
 	public Map<String, Object> sortList(FreePage freePage) {
@@ -45,6 +52,16 @@ public class FreeServiceImpl implements FreeService {
 		map.put("notifyList", mapper.selectNoticeBoard());
 		map.put("list", mapper.selectBoard(freePage));
 		map.put("pageResult", new FreePageResult(freePage.getPageNo(), mapper.selectBoardCount(freePage)));
+		
+		return map;
+	}
+	
+	public Map<String, Object> insertComment(FreeBoardComment freeBoardComment) {
+		Map<String, Object> map = new HashMap<>();
+		
+		mapper.insertComment(freeBoardComment);
+		map.put("comment", mapper.selectCommentList(freeBoardComment.getBoardNo()));
+		
 		return map;
 	}
 	

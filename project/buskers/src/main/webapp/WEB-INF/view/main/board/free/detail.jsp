@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%> 
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -14,6 +15,7 @@
 <link rel="stylesheet" href="<c:url value='/resources/css/main/board/free/koo.css'/>" />
 <link rel="stylesheet" href="<c:url value='/resources/css/main/board/agency/agency.css'/>" />
 <link rel="stylesheet" href="<c:url value='/resources/css/main/board/free/test.css'/>" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.0/moment.min.js"></script>
 <title>buskers</title>
 </head>
 <body class="body-background">
@@ -56,7 +58,7 @@
             <div class="board_article">
                 <div class="board_article_info">
                     <div class="board_article_info_left">
-                        <i class="fas fa-user"></i><span><c:out value="${board.memberNo}" /></span>
+                        <i class="fas fa-user"></i><span id="board_article_info_id"><c:out value="${board.id}" /></span>
                         <i class="far fa-eye"></i><span><c:out value="${board.viewCnt}" /></span>
                         <i class="fas fa-heart"></i><span><c:out value="${board.likeCnt}" /></span>
                     </div>
@@ -71,56 +73,56 @@
                 	<div>
 	                	${board.content}
                 	</div>
+                	
                 </div>
+                
+               	<div class="board_article_like">
+               		<div class="board_article_like_wrapper">
+	               		<i class="far fa-heart fa-2x"></i>
+	               		<a>추천</a>
+               		</div>
+               	</div>
                 
                 <div class="board_article_comment">
                 	<div class="board_article_comment_amount">
 	                	<div class="board_article_comment_amount_underline">
-	                		<i class="fas fa-comment-dots fa-2x"></i>
-	                		<span><b class="comment_highlight">3</b>개의 댓글</span>
+	                		<i class="fas fa-comment-dots"></i>
+	                		<span><b class="comment_highlight">${fn:length(comment)}</b>개의 댓글</span>
 	                	</div>
 	                	
                 	</div>
+                	
                 	<div class="board_article_comment_list">
-                		<div class="comment_list">
-                			<div class="comment_info">
+                	
+	                	<c:forEach var="comment" items="${comment}">
+	                	<div class="comment_list">
+	               			<div class="comment_info">
 	                			<span class="board_img_title">
 				                	<img src="<c:url value='/resources/img/boyoung.jpg'/>"/>
 				                </span>
-                				<div class="comment_id">박보영</div>
-                				<div class="comment_date"><i class="far fa-clock"></i>05/05 10:10</div>
-                			</div>
+	               				<div class="comment_id">${comment.id}</div>
+	               				<div class="comment_date">
+		               				<i class="far fa-clock comment_clock"></i>
+		               				<fmt:formatDate value="${comment.regDate}" pattern="MM-dd HH:mm:ss" />
+	               				</div>
+	               				<div class="comment_update_button"><i class="fas fa-pen-alt"></i></div>
+	               				<div class="comment_delete_button"><i class="far fa-trash-alt"></i></div>
+	               			</div>
 			                
-	               			<div class="bubble"><p>댓글 내용<p></div>
-                		</div>
-                		<div class="comment_list">
-                			<div class="comment_info">
-	                			<span class="board_img_title">
-				                	<img src="<c:url value='/resources/img/boyoung.jpg'/>"/>
-				                </span>
-                				<div class="comment_id">박보영</div>
-                				<div class="comment_date"><i class="far fa-clock"></i>05/05 10:10</div>
-                			</div>
-			                
-	               			<div class="bubble"><p>댓글 내용ㄹㅇㅁㄻㅇㄴㅁㄻㄴㅇㄹㅁㄴㄹㅇㅁㄹㄴㄴㅁㅁ</p></div>
-                		</div>
-                		<div class="comment_list">
-                			<div class="comment_info">
-	                			<span class="board_img_title">
-				                	<img src="<c:url value='/resources/img/boyoung.jpg'/>"/>
-				                </span>
-                				<div class="comment_id">박보영</div>
-                				<div class="comment_date"><i class="far fa-clock"></i>05/05 10:10</div>
-                			</div>
-			                
-	               			<div class="bubble"><p>댓글 내용ㅁㄹㅇㄴㅁㄹㅇㅁㄹㅇ</p></div>
-                		</div>
-                	</div>
+	               			<div class="bubble"><p>${comment.content}</p></div>
+	               		</div>
+						</c:forEach>
+					
+					</div>
                 </div>
                 
                 <br><br><br>
                 
                 <div class="comment_write_form">
+           			<div class="board_article_comment_amount_underline">
+                		<i class="fas fa-feather"></i><span> 댓글 작성</span>
+                	</div>
+                	
                 	<div class="comment_write_info">
 	          			<span class="board_img_title">
 	              			<img src="<c:url value='/resources/img/boyoung.jpg'/>"/>
@@ -128,6 +130,14 @@
 	       				<div class="comment_id">박보영</div>
        				</div>
            			
+           			
+           			<div class="comment_content_wrapper">
+	           			<textarea class="comment_content" name="content"></textarea>
+	           			
+           			</div>
+           			<div class="comment_submit_button">
+	           			<a class="far fa-edit"> 댓글 등록</a>
+           			</div>
                 </div>
                 
             </div>
@@ -149,12 +159,105 @@
 	<script src="<c:url value='/resources/js/main/board/agency/side-bar.js'/>"></script>
 	
 	<script>
-		let width = $(".bubble > p:eq(0)").width();
-		if (width < 500) {
+		let sortType = "${param.sortType}";
+		let searchType = "${param.searchType}";
+		let input = "${param.input}";
+		let pageNo = "${param.pageNo}";
+		let boardNo = "${param.boardNo}";
+		let memberNo = 2;
+		
+		/** 동적으로 댓글 div의 width 변경 */
+		for (let i = 0; i < $(".bubble").length; i++) {
+			let width = $(".bubble:eq(" + i + ") > p").width();
+			if (width < 600) {
 			console.log(width);
-			$(".bubble:eq(0)").css({"width": width});
+			$(".bubble:eq(" + i + ")").css({"width": width});
+			}
 		}
 		
+		$(".comment_submit_button > a").click(function () {
+			let content = $(".comment_content").val();
+			if ( $(".comment_content").val() == "" ) {
+				alert("댓글 내용을 입력해주세요.")
+				return;
+			}
+			$.ajax({
+   				type: "POST",
+   				url: "comment-ajax.do",
+   				data: 
+   					{
+   					sortType : sortType, 
+   					pageNo : pageNo, 
+   					searchType : searchType, 
+   					input : input,
+   					memberNo : memberNo,
+   					boardNo : boardNo,
+   					content : content
+   					},
+   				dataType: "json",
+   				success: function (commentResult) {
+					let commentList = commentResult.comment
+					let html = "";
+   					for (let i = 0; i < commentList.length; i++) {
+   						let comment = commentList[i];
+   						let date = moment(comment.regDate).format("MM-DD HH:mm");
+   						
+                		html += '<div class="comment_list">';
+                		html += 	'<div class="comment_info">';
+                		html += 		'<span class="board_img_title">';
+                		html +=     		'<img src="<c:url value='/resources/img/boyoung.jpg'/>"/>';
+               			html +=     	'</span>';
+               			html += 		'<div class="comment_id">' + comment.id + '</div>';
+               			html += 		'<div class="comment_date">';
+               			html += 			'<i class="far fa-clock comment_clock"></i>' + date;
+           				html += 		'</div>';
+           				html += 		'<div class="comment_update_button"><i class="fas fa-pen-alt"></i></div>';
+           				html += 		'<div class="comment_delete_button"><i class="far fa-trash-alt"></i></div>';
+       					html += 	'</div>';
+          				html += 	'<div class="bubble"><p>' + comment.content + '</p></div>';
+          				html += '</div>';
+   						
+   					}
+   					
+   					$(".board_article_comment_list").html(html);
+   					
+   					/** 동적으로 댓글 div의 width 변경 */
+   					for (let i = 0; i < $(".bubble").length; i++) {
+   						let width = $(".bubble:eq(" + i + ") > p").width();
+   						if (width < 600) {
+   						console.log(width);
+   						$(".bubble:eq(" + i + ")").css({"width": width});
+   						}
+   					}
+   				}
+			});
+		});
+		
+		/** 추천 클릭 이벤트 */
+		$(".board_article_like_wrapper").click(function () {
+			if ( $(this).children("i").attr("class") == "far fa-heart fa-2x" ) {
+				$(this).children("i").attr("class", "fas fa-heart fa-2x");
+				$(this).css({"border": "2px solid #FC2E5A"});
+				
+				$.ajax({
+	   				type: "POST",
+	   				url: "like-ajax.do",
+	   				data: 
+	   					{
+	   					boardNo : boardNo,
+	   					},
+	   				dataType: "json",
+	   				success: function (result) {
+	   					alert("성공");
+	   				}
+				});
+				
+			} else {
+				$(this).children("i").attr("class", "far fa-heart fa-2x");
+				$(this).css({"border": "2px solid #C7C7C7"});
+			}
+		});
+	
     </script>
 </body>
 </html>
