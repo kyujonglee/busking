@@ -3,6 +3,8 @@ package kr.co.buskers.main.free.service;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,6 +12,8 @@ import kr.co.buskers.common.page.FreePageResult;
 import kr.co.buskers.repository.domain.FreeBoard;
 import kr.co.buskers.repository.domain.FreeBoardComment;
 import kr.co.buskers.repository.domain.FreePage;
+import kr.co.buskers.repository.domain.Like;
+import kr.co.buskers.repository.domain.Member;
 import kr.co.buskers.repository.mapper.FreeBoardMapper;
 
 @Service
@@ -32,8 +36,16 @@ public class FreeServiceImpl implements FreeService {
 		return map;
 	}	
 	
-	public Map<String, Object> detail(int boardNo) {
+	public Map<String, Object> detail(int boardNo, HttpSession session) {
 		Map<String, Object> map = new HashMap<>();
+		
+		if (session.getAttribute("user") != null) {
+			Like like = new Like();
+			Member member = (Member)session.getAttribute("user");
+			like.setMemberNo(member.getMemberNo());
+			like.setBoardNo(boardNo);
+			map.put("like", mapper.selectBoardIsLike(like));
+		}
 		
 		mapper.updateBoardViewCount(boardNo);
 		

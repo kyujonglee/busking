@@ -121,6 +121,13 @@
 		)
 	</insert>
 	
+	<select id="selectBoardIsLike" parameterType="like" resultType="like">
+		select *
+		  from tb_like
+		 where board_no = #{boardNo}
+		   and member_no = #{memberNo}
+	</select>
+	
 </mapper>
 
 

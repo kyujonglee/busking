@@ -3,6 +3,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%> 
+<%@ page session="true" %>
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -124,17 +126,17 @@
                 	</div>
                 	
                 	<div class="comment_write_info">
-                		<c:if test="${SessionScope.user eq null}">
+                		<c:if test="${sessionScope.user eq null}">
                 			<span class="board_img_title">	
                 				<img src="<c:url value='/resources/img/profile.png'/>"/>
                				</span>
                				<a class="comment_id" id="go_login_form" href="<c:url value='/main/member/loginform.do'/>">로그인이 필요합니다.</a>
 	          			</c:if>
-	          			<c:if test="${SessionScope.user ne null}">
+	          			<c:if test="${sessionScope.user ne null}">
 		          			<span class="board_img_title">
 		              			<img src="<c:url value='/resources/img/boyoung.jpg'/>"/>
 		           			</span>
-		       				<div class="comment_id">${SessionScope.user.memberNo}</div>
+		       				<div class="comment_id">${sessionScope.user.nickName}</div>
 	           			</c:if>
        				</div>
            			
@@ -167,6 +169,13 @@
 	<script src="<c:url value='/resources/js/main/board/agency/side-bar.js'/>"></script>
 	
 	<script>
+
+		let like = "${like.likeStatus}";
+		if (like == 'Y') {
+			$(".board_article_like_wrapper").children("i").attr("class", "fas fa-heart fa-2x");
+			$(".board_article_like_wrapper").css({"border": "2px solid #FC2E5A"});
+		}
+	
 		let sortType = "${param.sortType}";
 		let searchType = "${param.searchType}";
 		let input = "${param.input}";
@@ -246,19 +255,6 @@
 			if ( $(this).children("i").attr("class") == "far fa-heart fa-2x" ) {
 				$(this).children("i").attr("class", "fas fa-heart fa-2x");
 				$(this).css({"border": "2px solid #FC2E5A"});
-				
-				$.ajax({
-	   				type: "POST",
-	   				url: "like-ajax.do",
-	   				data: 
-	   					{
-	   					boardNo : boardNo,
-	   					},
-	   				dataType: "json",
-	   				success: function (result) {
-	   					alert("성공");
-	   				}
-				});
 				
 			} else {
 				$(this).children("i").attr("class", "far fa-heart fa-2x");

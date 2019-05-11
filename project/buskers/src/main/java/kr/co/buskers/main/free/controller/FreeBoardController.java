@@ -2,6 +2,8 @@ package kr.co.buskers.main.free.controller;
 
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,6 +15,7 @@ import kr.co.buskers.main.free.service.FreeService;
 import kr.co.buskers.repository.domain.FreeBoard;
 import kr.co.buskers.repository.domain.FreeBoardComment;
 import kr.co.buskers.repository.domain.FreePage;
+import kr.co.buskers.repository.domain.Member;
 
 @Controller
 @RequestMapping("main/board/free")
@@ -22,7 +25,7 @@ public class FreeBoardController {
 	private FreeService service;
 	
 	@RequestMapping("list.do")
-	public void list(FreePage freePage, Model model) {
+	public void list(FreePage freePage, Model model, HttpSession session) {
 		Map<String, Object> result = service.list(freePage);
 		System.out.println(result.get("searchType"));
 		model.addAttribute("searchType", result.get("searchType"));
@@ -52,9 +55,13 @@ public class FreeBoardController {
 	}
 	
 	@RequestMapping("detail.do")
-	public void detail(int boardNo, Model model) {
-		Map<String, Object> result = service.detail(boardNo);
+	public void detail(int boardNo, Model model, HttpSession session) {
 		
+		Map<String, Object> result = service.detail(boardNo, session);
+		
+		if (session.getAttribute("user") != null) {
+			model.addAttribute("like", result.get("like"));
+		}
 		model.addAttribute("comment", result.get("comment"));
 		model.addAttribute("board", result.get("board"));
 	}
