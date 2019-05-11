@@ -66,7 +66,7 @@
 				                  	 	<i class="fas fa-comment"><a>${notify.commentCount}</a></i>
 				                  	</c:if>	
 								</td>
-								<td>${notify.id}</td>
+								<td>${notify.nickName}</td>
 							    <td><fmt:formatDate value="${notify.regDate}" pattern="MM-dd HH:mm" /></td>
 							    <td>${notify.viewCnt}</td>
 							    <td>${notify.likeCnt}</td>
@@ -91,7 +91,7 @@
 					                  	 </c:if>	
 				                  </c:if>
                  			</td>
-                  			<td>${board.id}</td>
+                  			<td>${board.nickName}</td>
                    			<td><fmt:formatDate value="${board.regDate}" pattern="MM-dd HH:mm" /></td>
                  		    <td>${board.viewCnt}</td>
                 		    <td>${board.likeCnt}</td>
@@ -106,7 +106,7 @@
 		            	<select class= "search_form_option" name='searchType'>
 						    <option value='title'>제목</option>
 						    <option value='content'>내용</option>
-						    <option value='id'>작성자</option>
+						    <option value='nickName'>작성자</option>
 						</select>
 		            	
 			            <input class="search_form_input" name="input" placeholder="검색어를 입력하세요." />
@@ -167,7 +167,7 @@
     		$(".search_form_option > option:eq(1)").prop("selected", true);
     	}
     	
-    	if ( (input != "") && searchType == "id" ) {
+    	if ( (input != "") && searchType == "nickName" ) {
     		for (i = 0; i < $(".free_board_list").length; i++) {
     			$(".free_board_list:eq(" + i + ") > td:eq(2)").html( $(".free_board_list:eq(" + i + ") > td:eq(2)").html().replace(input, "<b class='search_keyword'>" + input + "</b>") );
     		}
@@ -284,7 +284,7 @@
 							html += '<i class="fas fa-comment"><a>' + board.commentCount + '</a></i>'
 						}
    						html += 	'</td>';
-   						html += 	'<td>' + board.id + '</td>';
+   						html += 	'<td>' + board.nickName + '</td>';
    						html += 	'<td>' + date + '</td>';
    						html += 	'<td>' + board.viewCnt + '</td>';
    						html += 	'<td>' + board.likeCnt + '</td>';
@@ -324,15 +324,13 @@
    		        		for (i = 0; i < $(".board_title_left > a").length; i++) {
    		        			$(".board_title_left > a:eq(" + i + ")").html( $(".board_title_left > a:eq(" + i + ")").html().replace(input, "<b class='search_keyword'>" + input + "</b>") );
    		        		}
-   		        	};
+   		        	}
    		        	
-   		        	if ( (input != "") && searchType == "id" ) {
-   		     		for (i = 0; i < $(".free_board_list").length; i++) {
-   		     			$(".free_board_list:eq(" + i + ") > td:eq(2)").html( $(".free_board_list:eq(" + i + ") > td:eq(2)").html().replace(input, "<b class='search_keyword'>" + input + "</b>") );
+   		        	if ( (input != "") && searchType == "nickName" ) {
+	   		     		for (i = 0; i < $(".free_board_list").length; i++) {
+	   		     			$(".free_board_list:eq(" + i + ") > td:eq(2)").html( $(".free_board_list:eq(" + i + ") > td:eq(2)").html().replace(input, "<b class='search_keyword'>" + input + "</b>") );
+	   		     		}
    		     		}
-   		     		$(".search_form_input").val(input);
-   		     		$(".search_form_option > option:eq(2)").prop("selected", true);
-   		     	}
    				}
    			});
         });

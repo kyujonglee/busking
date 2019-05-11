@@ -12,7 +12,7 @@ public class FreeBoard {
 	private int viewCnt;
 	private String isNotify;
 	private int groupNo;
-	private String id;
+	private String nickName;
 	private int commentCount;
 	
 	public int getCommentCount() {
@@ -27,11 +27,11 @@ public class FreeBoard {
 	public void setGroupNo(int groupNo) {
 		this.groupNo = groupNo;
 	}
-	public String getId() {
-		return id;
+	public String getNickName() {
+		return nickName;
 	}
-	public void setId(String id) {
-		this.id = id;
+	public void setNickName(String nickName) {
+		this.nickName = nickName;
 	}
 	public String getIsNotify() {
 		return isNotify;

@@ -58,7 +58,7 @@
             <div class="board_article">
                 <div class="board_article_info">
                     <div class="board_article_info_left">
-                        <i class="fas fa-user"></i><span id="board_article_info_id"><c:out value="${board.id}" /></span>
+                        <i class="fas fa-user"></i><span id="board_article_info_id"><c:out value="${board.nickName}" /></span>
                         <i class="far fa-eye"></i><span><c:out value="${board.viewCnt}" /></span>
                         <i class="fas fa-heart"></i><span><c:out value="${board.likeCnt}" /></span>
                     </div>
@@ -100,7 +100,7 @@
 	                			<span class="board_img_title">
 				                	<img src="<c:url value='/resources/img/boyoung.jpg'/>"/>
 				                </span>
-	               				<div class="comment_id">${comment.id}</div>
+	               				<div class="comment_id">${comment.nickName}</div>
 	               				<div class="comment_date">
 		               				<i class="far fa-clock comment_clock"></i>
 		               				<fmt:formatDate value="${comment.regDate}" pattern="MM-dd HH:mm:ss" />
@@ -124,10 +124,18 @@
                 	</div>
                 	
                 	<div class="comment_write_info">
-	          			<span class="board_img_title">
-	              			<img src="<c:url value='/resources/img/boyoung.jpg'/>"/>
-	           			</span>
-	       				<div class="comment_id">박보영</div>
+                		<c:if test="${SessionScope.user eq null}">
+                			<span class="board_img_title">	
+                				<img src="<c:url value='/resources/img/profile.png'/>"/>
+               				</span>
+               				<a class="comment_id" id="go_login_form" href="<c:url value='/main/member/loginform.do'/>">로그인이 필요합니다.</a>
+	          			</c:if>
+	          			<c:if test="${SessionScope.user ne null}">
+		          			<span class="board_img_title">
+		              			<img src="<c:url value='/resources/img/boyoung.jpg'/>"/>
+		           			</span>
+		       				<div class="comment_id">${SessionScope.user.memberNo}</div>
+	           			</c:if>
        				</div>
            			
            			
@@ -207,7 +215,7 @@
                 		html += 		'<span class="board_img_title">';
                 		html +=     		'<img src="<c:url value='/resources/img/boyoung.jpg'/>"/>';
                			html +=     	'</span>';
-               			html += 		'<div class="comment_id">' + comment.id + '</div>';
+               			html += 		'<div class="comment_id">' + comment.nickName + '</div>';
                			html += 		'<div class="comment_date">';
                			html += 			'<i class="far fa-clock comment_clock"></i>' + date;
            				html += 		'</div>';

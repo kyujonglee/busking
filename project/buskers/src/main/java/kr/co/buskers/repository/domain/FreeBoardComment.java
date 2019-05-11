@@ -11,14 +11,15 @@ public class FreeBoardComment {
 	private Date regDate;
 	private int likeCnt;
 	private int disLikeCnt;
-	private String id;
+	private String nickName;
 
-	public String getId() {
-		return id;
+	
+	public String getNickName() {
+		return nickName;
 	}
 
-	public void setId(String id) {
-		this.id = id;
+	public void setNickName(String nickName) {
+		this.nickName = nickName;
 	}
 
 	public int getMemberNo() {

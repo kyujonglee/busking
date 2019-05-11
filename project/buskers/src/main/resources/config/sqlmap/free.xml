@@ -6,7 +6,7 @@
 	<select id="selectBoard" parameterType="freePage" resultType="freeBoard">
 		select *
   		  from (select @rownum:=@rownum+1 rnum, a.*
-		          from ( select f.*, count(c.board_no) as comment_count, id
+		          from ( select f.*, count(c.board_no) as comment_count, nick_name
 		                   from tb_freeboard f
                            left join tb_freeboard_comment c on f.board_no = c.board_no
 		                  inner join tb_member m on m.member_no = f.member_no
@@ -17,10 +17,10 @@
 								and title like concat('%', #{input}, '%')
 							</when>
 							<when test="searchType == 'content'">
-								and content like concat('%', #{input}, '%')
+								and f.content like concat('%', #{input}, '%')
 							</when>
-							<when test="searchType == 'id'">
-								and id like concat('%', #{input}, '%')
+							<when test="searchType == 'nickName'">
+								and nick_name like concat('%', #{input}, '%')
 							</when>
 							<otherwise>
 							</otherwise>
@@ -58,7 +58,7 @@
 	</select>
 	
 	<select id="selectNoticeBoard" resultType="freeBoard">
-		select f.*, count(c.board_no) as comment_count, id
+		select f.*, count(c.board_no) as comment_count, nick_name
 		  from tb_freeboard f
 		  left join tb_freeboard_comment c on f.board_no = c.board_no
 		 inner join tb_member m on m.member_no = f.member_no
@@ -83,8 +83,8 @@
 			<when test="searchType == 'content'">
 				where content like concat('%', #{input}, '%')
 			</when>
-			<when test="searchType == 'writer'">
-				where writer like concat('%', #{input}, '%')
+			<when test="searchType == 'nickName'">
+				where nick_name like concat('%', #{input}, '%')
 			</when>
 			<otherwise>
 			</otherwise>

@@ -338,4 +338,9 @@
 	color: #FC2E5A;
 }
 
+#go_login_form {
+	display: flex;
+	align-items: center;
+}
+
 
