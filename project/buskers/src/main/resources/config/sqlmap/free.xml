@@ -121,11 +121,44 @@
 		)
 	</insert>
 	
+	<insert id="insertLikeStatus" parameterType="like">
+		insert into tb_like(
+			board_no, board_type, member_no
+		)values(
+			#{boardNo}, 1, #{memberNo}
+		)
+	</insert>
+	
 	<select id="selectBoardIsLike" parameterType="like" resultType="like">
 		select *
 		  from tb_like
 		 where board_no = #{boardNo}
 		   and member_no = #{memberNo}
+	</select>
+	
+	<update id="updateLikeStatus" parameterType="like">
+		update tb_like
+  		   set like_status = #{likeStatus}
+		 where board_no = #{boardNo}
+		   and member_no = #{memberNo}
+	</update>
+	
+	<update id="updateAddLike" parameterType="int">
+		update tb_freeboard
+		   set like_cnt = like_cnt + 1
+		 where board_no = #{boardNo}
+	</update>
+	
+	<update id="updateRemoveLike" parameterType="int">
+		update tb_freeboard
+		   set like_cnt = like_cnt - 1
+		 where board_no = #{boardNo}
+	</update>
+	
+	<select id="selectBoardLikeCount" parameterType="int" resultType="int">
+		select like_cnt
+		  from tb_freeboard
+		 where board_no = #{boardNo}
 	</select>
 	
 </mapper>

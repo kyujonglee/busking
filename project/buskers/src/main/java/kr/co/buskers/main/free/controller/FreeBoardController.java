@@ -15,7 +15,7 @@ import kr.co.buskers.main.free.service.FreeService;
 import kr.co.buskers.repository.domain.FreeBoard;
 import kr.co.buskers.repository.domain.FreeBoardComment;
 import kr.co.buskers.repository.domain.FreePage;
-import kr.co.buskers.repository.domain.Member;
+import kr.co.buskers.repository.domain.Like;
 
 @Controller
 @RequestMapping("main/board/free")
@@ -42,6 +42,13 @@ public class FreeBoardController {
 		Map<String, Object> result = service.sortList(freePage);
 		
 		return result;
+	}
+	
+	@RequestMapping("like-ajax.do")
+	@ResponseBody
+	public int updateLikeStatus(Like like, Model model) {
+		
+		return service.updateLikeStatus(like);
 	}
 	
 	@RequestMapping("comment-ajax.do")

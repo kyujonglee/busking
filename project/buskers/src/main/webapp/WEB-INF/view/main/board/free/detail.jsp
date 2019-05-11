@@ -171,7 +171,7 @@
 	<script>
 
 		let like = "${like.likeStatus}";
-		if (like == 'Y') {
+		if (like == 'y') {
 			$(".board_article_like_wrapper").children("i").attr("class", "fas fa-heart fa-2x");
 			$(".board_article_like_wrapper").css({"border": "2px solid #FC2E5A"});
 		}
@@ -256,9 +256,38 @@
 				$(this).children("i").attr("class", "fas fa-heart fa-2x");
 				$(this).css({"border": "2px solid #FC2E5A"});
 				
+				$.ajax({
+	   				type: "POST",
+	   				url: "like-ajax.do",
+	   				data: 
+	   					{
+	   					memberNo : memberNo,
+	   					boardNo : boardNo,
+	   					likeStatus : "y"
+	   					},
+	   				success: function (result) {
+	   					$(".board_article_info_left > span:eq(2)").text(result);
+	   				}
+				});
+				
 			} else {
 				$(this).children("i").attr("class", "far fa-heart fa-2x");
 				$(this).css({"border": "2px solid #C7C7C7"});
+				
+				$.ajax({
+	   				type: "POST",
+	   				url: "like-ajax.do",
+	   				data: 
+	   					{
+	   					memberNo : memberNo,
+	   					boardNo : boardNo,
+	   					likeStatus : "n"
+	   					},
+	   				success: function (result) {
+	   					$(".board_article_info_left > span:eq(2)").text(result);
+	   				}
+				});
+				
 			}
 		});
 	

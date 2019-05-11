@@ -18,4 +18,11 @@ public interface FreeBoardMapper {
 	List<FreeBoardComment> selectCommentList(int boardNo);
 	void insertComment(FreeBoardComment freeBoardComment);
 	Like selectBoardIsLike(Like like);
+	void updateLikeStatus(Like like);
+	void insertLikeStatus(Like like);
+	void updateAddLike(int boardNo);
+	void updateRemoveLike(int boardNo);
+	int selectBoardLikeCount(int boardNo);
 }
+
+

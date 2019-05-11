@@ -45,6 +45,11 @@ public class FreeServiceImpl implements FreeService {
 			like.setMemberNo(member.getMemberNo());
 			like.setBoardNo(boardNo);
 			map.put("like", mapper.selectBoardIsLike(like));
+			
+			if (mapper.selectBoardIsLike(like) == null) {
+				mapper.insertLikeStatus(like);
+			}
+			
 		}
 		
 		mapper.updateBoardViewCount(boardNo);
@@ -79,5 +84,18 @@ public class FreeServiceImpl implements FreeService {
 	
 	public void write(FreeBoard freeBoard) {
 		mapper.insertBoard(freeBoard);
+	}
+	
+	public int updateLikeStatus(Like like) {
+		System.out.println("좋아요 상태 : " + like.getLikeStatus());
+		
+		mapper.updateLikeStatus(like);
+		if (like.getLikeStatus() == 'y') {
+			mapper.updateAddLike(like.getBoardNo());
+		} else {
+			mapper.updateRemoveLike(like.getBoardNo());
+		}
+		
+		return mapper.selectBoardLikeCount(like.getBoardNo());
 	}
 }
