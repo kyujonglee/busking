@@ -169,7 +169,7 @@
 	<script src="<c:url value='/resources/js/main/board/agency/side-bar.js'/>"></script>
 	
 	<script>
-
+		let user = "${sessionScope.user}";
 		let like = "${like.likeStatus}";
 		if (like == 'y') {
 			$(".board_article_like_wrapper").children("i").attr("class", "fas fa-heart fa-2x");
@@ -252,6 +252,10 @@
 		
 		/** 추천 클릭 이벤트 */
 		$(".board_article_like_wrapper").click(function () {
+			if (user == "") {
+				alert("추천은 로그인 후 가능합니다.");
+				return;
+			}
 			if ( $(this).children("i").attr("class") == "far fa-heart fa-2x" ) {
 				$(this).children("i").attr("class", "fas fa-heart fa-2x");
 				$(this).css({"border": "2px solid #FC2E5A"});
@@ -271,6 +275,10 @@
 				});
 				
 			} else {
+				if (user == "") {
+					alert("추천은 로그인 후 가능합니다.");
+					return;
+				}
 				$(this).children("i").attr("class", "far fa-heart fa-2x");
 				$(this).css({"border": "2px solid #C7C7C7"});
 				
