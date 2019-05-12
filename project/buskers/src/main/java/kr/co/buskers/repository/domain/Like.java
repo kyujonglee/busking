@@ -7,6 +7,7 @@ public class Like {
 	private int boardType;
 	private char likeStatus;
 	private char dislikeStatus;
+	
 	public int getMemberNo() {
 		return memberNo;
 	}

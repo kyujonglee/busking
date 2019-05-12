@@ -131,12 +131,21 @@
 	margin-top: 10px;
 }
 
+.comment_list {
+	margin-top: 25px;
+}
+
+.reply_list {
+	margin-left: 60px;
+}
+
 .comment_info {
 	display: flex;
 }
 
 .comment_write_info {
 	display: flex;
+	margin-top: 10px;
 }
 
 .comment_info > div {
@@ -149,13 +158,16 @@
 	align-items: center;
 }
 
+.comment_clock {
+	margin-right: 5px;
+}
+
 .comment_id {
 	font-weight: bold;
 }
 
 .fa-clock {
 	padding-top: 1px;
-	margin-right: 5px;
 	color: #818181;
 }
 
@@ -164,8 +176,8 @@
 	margin-left: 20px;
 }
 
-.bubble {
-	max-width: 300px;
+.comment_list > .bubble {
+	max-width: 600px;
 	width: auto;
 	position: relative;
 	padding: 20px;
@@ -180,7 +192,30 @@
 	align-items: center;
 }
 
-.bubble:after {
+.reply_list > .bubble {
+	max-width: 600px;
+	width: auto;
+	position: relative;
+	padding: 20px;
+    padding: 12px 20px;
+    margin-bottom: 5px;
+    border-radius: 26px;
+	background: #f4f4f4;
+	color: black;
+	text-align: center;
+	margin-left: 60px;
+	display:flex;
+	align-items: center;
+}
+
+.bubble > p {
+	line-height: 1.2;
+	font-family:'Malgun Gothic';
+	text-align: left;
+	-webkit-font-smoothing: antialiased;
+}
+
+.comment_list > .bubble:after {
 	content: "";
 	display: block;
 	position: absolute;
@@ -190,7 +225,130 @@
 	left: -8px;
 }
 
+.reply_list > .bubble:after {
+	content: "";
+	display: block;
+	position: absolute;
+	border-bottom: 20px solid transparent;
+	border-right: 20px solid #f4f4f4;
+	top: 5px;
+	left: -8px;
+}
 
+.comment_content_wrapper {
+	display: flex;
+	width: 100%;
+	justify-content: center;
+}
 
+.comment_content {
+	margin-top: 10px;
+	background: #F5F5F5;
+    width: 100%;
+    height: 58px;
+    padding: 10px;
+    border: 1px solid #eee;
+    font-size: 12px;
+    line-height: 1.5;
+    resize: none;
+    box-sizing: border-box;
+    font-family: 'Noto Sans', sans-serif;
+    color: #666;
+    cursor: text;
+    border-radius: 10px;
+}
+
+.fa-feather {
+	margin-right: 10px;
+	line-height: 33px;
+	vertical-align: middle;
+}
+
+.fa-comment-dots {
+	line-height: 33px;
+	vertical-align: middle;
+}
+
+.comment_submit_button {
+	display: flex;
+	width: 100%;
+	justify-content: flex-start;
+}
+
+.fa-edit {
+	height: 30px;
+    min-width: 58px;
+    padding: 0px 12px;
+    border: 1px solid #d3d3d3;
+    line-height: 30px;
+    vertical-align: middle;
+    text-align: center;
+    text-decoration: none;
+    font-size: 13px;
+	margin-top: 10px;
+    background: #333333;
+    border-radius: 10px;
+    color: white;
+    cursor: pointer;
+}
+
+.fa-edit:hover {
+	color: tomato;
+}
+
+.fa-pen-alt {
+	margin-left: 15px;
+	cursor: pointer;
+}
+
+.fa-trash-alt {
+	margin-left: 10px;
+	cursor: pointer;
+}
+
+#board_article_info_id {
+	font-family: 'Malgun Gothic';
+	font-weight: bold;
+}
+
+.board_article_like {
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	font-size: 13px;
+	font-weight: 600;
+	cursor: pointer;
+	height: 25px;
+}
+
+.board_article_like_wrapper {
+	display: flex;
+	width: 100px;
+	padding: 5px;
+	height: 100%;
+	justify-content: center;
+	align-items: center;
+	border: 2px solid #C7C7C7;
+	border-radius: 25px;
+	transition: 0.3s;
+}
+
+.board_article_like_wrapper:hover {
+	border: 2px solid #FC2E5A !important;
+}
+
+.board_article_like > div > a {
+	margin-left : 10px;
+	font-size: 15px;
+}
+
+.fa-heart {
+	color: #FC2E5A;
+}
+
+#go_login_form {
+	display: flex;
+	align-items: center;
+}
 
 

@@ -9,7 +9,6 @@ public class Member {
 	private String pass;
 	private String salt;
 	private String email;
-	private String nickName;
 	private Date joinDate;
 	private char sex;
 	private String profileImg;
@@ -17,7 +16,15 @@ public class Member {
 	private char isAdmin;
 	private char isBusker;
 	private char isAgency;
+	private String nickName;
 	
+	
+	public String getNickName() {
+		return nickName;
+	}
+	public void setNickName(String nickName) {
+		this.nickName = nickName;
+	}
 	public char getIsBusker() {
 		return isBusker;
 	}
@@ -93,14 +100,5 @@ public class Member {
 	public void setProfileImgPath(String profileImgPath) {
 		this.profileImgPath = profileImgPath;
 	}
-	public String getNickName() {
-		return nickName;
-	}
-	public void setNickName(String nickName) {
-		this.nickName = nickName;
-	}
-	
-	
-	
 	
 }
