@@ -1,6 +1,7 @@
 package kr.co.buskers.main.free.service;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -54,6 +55,13 @@ public class FreeServiceImpl implements FreeService {
 		
 		mapper.updateBoardViewCount(boardNo);
 		
+		List<FreeBoardComment> list = mapper.selectReplyList(boardNo);
+		for (FreeBoardComment c : list) {
+			System.out.println("reply" + c.getContent());		
+		}
+		
+		System.out.println("REPLY" + mapper.selectReplyList(boardNo));
+		map.put("reply", mapper.selectReplyList(boardNo));
 		map.put("comment", mapper.selectCommentList(boardNo));
 		map.put("board", mapper.selectBoardByNo(boardNo));
 		

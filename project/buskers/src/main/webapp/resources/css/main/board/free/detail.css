@@ -131,6 +131,14 @@
 	margin-top: 10px;
 }
 
+.comment_list {
+	margin-top: 25px;
+}
+
+.reply_list {
+	margin-left: 60px;
+}
+
 .comment_info {
 	display: flex;
 }
@@ -168,7 +176,7 @@
 	margin-left: 20px;
 }
 
-.comment_list:nth-child(even) > .bubble {
+.comment_list > .bubble {
 	max-width: 600px;
 	width: auto;
 	position: relative;
@@ -184,7 +192,7 @@
 	align-items: center;
 }
 
-.comment_list:nth-child(odd) > .bubble {
+.reply_list > .bubble {
 	max-width: 600px;
 	width: auto;
 	position: relative;
@@ -207,7 +215,7 @@
 	-webkit-font-smoothing: antialiased;
 }
 
-.comment_list:nth-child(even) > .bubble:after {
+.comment_list > .bubble:after {
 	content: "";
 	display: block;
 	position: absolute;
@@ -217,7 +225,7 @@
 	left: -8px;
 }
 
-.comment_list:nth-child(odd) > .bubble:after {
+.reply_list > .bubble:after {
 	content: "";
 	display: block;
 	position: absolute;

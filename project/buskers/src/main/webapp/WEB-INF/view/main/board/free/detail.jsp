@@ -97,22 +97,42 @@
                 	<div class="board_article_comment_list">
                 	
 	                	<c:forEach var="comment" items="${comment}">
-	                	<div class="comment_list">
-	               			<div class="comment_info">
-	                			<span class="board_img_title">
-				                	<img src="<c:url value='/resources/img/boyoung.jpg'/>"/>
-				                </span>
-	               				<div class="comment_id">${comment.nickName}</div>
-	               				<div class="comment_date">
-		               				<i class="far fa-clock comment_clock"></i>
-		               				<fmt:formatDate value="${comment.regDate}" pattern="MM-dd HH:mm:ss" />
-	               				</div>
-	               				<div class="comment_update_button"><i class="fas fa-pen-alt"></i></div>
-	               				<div class="comment_delete_button"><i class="far fa-trash-alt"></i></div>
-	               			</div>
-			                
-	               			<div class="bubble"><p>${comment.content}</p></div>
-	               		</div>
+			                	<div class="comment_list">
+			               			<div class="comment_info">
+			                			<span class="board_img_title">
+						                	<img src="<c:url value='/resources/img/boyoung.jpg'/>"/>
+						                </span>
+			               				<div class="comment_id">${comment.nickName}</div>
+			               				<div class="comment_date">
+				               				<i class="far fa-clock comment_clock"></i>
+				               				<fmt:formatDate value="${comment.regDate}" pattern="MM-dd HH:mm:ss" />
+			               				</div>
+			               				<div class="comment_update_button"><i class="fas fa-pen-alt"></i></div>
+			               				<div class="comment_delete_button"><i class="far fa-trash-alt"></i></div>
+			               			</div>
+					                
+			               			<div class="bubble"><p>${comment.content}</p></div>
+			               		</div>
+		                	<c:forEach var="reply" items="${reply}">
+		                		<c:if test="${reply.replyNo eq comment.commentNo}">
+			                		<div class="reply_list">
+				               			<div class="comment_info">
+				                			<span class="board_img_title">
+							                	<img src="<c:url value='/resources/img/boyoung.jpg'/>"/>
+							                </span>
+				               				<div class="comment_id">${reply.nickName}</div>
+				               				<div class="comment_date">
+					               				<i class="far fa-clock comment_clock"></i>
+					               				<fmt:formatDate value="${reply.regDate}" pattern="MM-dd HH:mm:ss" />
+				               				</div>
+				               				<div class="comment_update_button"><i class="fas fa-pen-alt"></i></div>
+				               				<div class="comment_delete_button"><i class="far fa-trash-alt"></i></div>
+				               			</div>
+						                
+				               			<div class="bubble"><p>${reply.content}</p></div>
+				               		</div>
+		                		</c:if>
+		               		</c:forEach>
 						</c:forEach>
 					
 					</div>

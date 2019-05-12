@@ -16,6 +16,7 @@ public interface FreeBoardMapper {
 	void updateBoardViewCount(int boardNo);
 	void insertBoard(FreeBoard freeBoard);
 	List<FreeBoardComment> selectCommentList(int boardNo);
+	List<FreeBoardComment> selectReplyList(int boardNo);
 	void insertComment(FreeBoardComment freeBoardComment);
 	Like selectBoardIsLike(Like like);
 	void updateLikeStatus(Like like);

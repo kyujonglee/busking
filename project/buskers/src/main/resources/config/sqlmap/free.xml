@@ -111,6 +111,15 @@
 		  from tb_freeboard_comment c, tb_member m
 		 where c.member_no = m.member_no
 		   and c.board_no = #{boardNo}
+		   and reply_no = 0
+	</select>
+	
+	<select id="selectReplyList" parameterType="int" resultType="freeBoardComment">
+		select *
+		  from tb_freeboard_comment c, tb_member m
+		 where c.member_no = m.member_no
+		   and c.board_no = #{boardNo}
+		   and reply_no != 0
 	</select>
 	
 	<insert id="insertComment" parameterType="freeBoardComment">
