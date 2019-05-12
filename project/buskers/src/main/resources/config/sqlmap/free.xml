@@ -6,23 +6,27 @@
 	<select id="selectBoard" parameterType="freePage" resultType="freeBoard">
 		select *
   		  from (select @rownum:=@rownum+1 rnum, a.*
-		          from ( select *
-		                   from tb_freeboard
-						  WHERE (@rownum:=0)=0
+		          from ( select f.*, count(c.board_no) as comment_count, nick_name
+		                   from tb_freeboard f
+                           left join tb_freeboard_comment c on f.board_no = c.board_no
+		                  inner join tb_member m on m.member_no = f.member_no
+						  where (@rownum:=0)=0
 						  
 						<choose>
 							<when test="searchType == 'title'">
 								and title like concat('%', #{input}, '%')
 							</when>
 							<when test="searchType == 'content'">
-								and content like concat('%', #{input}, '%')
+								and f.content like concat('%', #{input}, '%')
 							</when>
-							<when test="searchType == 'writer'">
-								and writer like concat('%', #{input}, '%')
+							<when test="searchType == 'nickName'">
+								and nick_name like concat('%', #{input}, '%')
 							</when>
 							<otherwise>
 							</otherwise>
 						</choose>
+						
+						group by board_no
 						
 						<choose>
 							<when test="sortType == 'viewDESC'">
@@ -54,29 +58,34 @@
 	</select>
 	
 	<select id="selectNoticeBoard" resultType="freeBoard">
-		select * 
-		  from tb_freeboard
+		select f.*, count(c.board_no) as comment_count, nick_name
+		  from tb_freeboard f
+		  left join tb_freeboard_comment c on f.board_no = c.board_no
+		 inner join tb_member m on m.member_no = f.member_no
 		 where is_notify = 'Y'
+         group by board_no
 	</select>
 	
 	<select id="selectBoardByNo" parameterType="int" resultType="freeBoard">
 		select * 
-		  from tb_freeboard
-		 where board_no = #{boardNo}
+		  from tb_freeboard f, tb_member m
+		 where f.member_no = m.member_no
+		   and board_no = #{boardNo}
 	</select>
 
 	<select id="selectBoardCount" parameterType="freePage" resultType="int">
 		select count(*)
-		  from tb_freeboard
+		  from tb_freeboard f, tb_member m
+		 where f.member_no = m.member_no
 		<choose>
 			<when test="searchType == 'title'">
-				where title like concat('%', #{input}, '%')
+				and title like concat('%', #{input}, '%')
 			</when>
 			<when test="searchType == 'content'">
-				where content like concat('%', #{input}, '%')
+				and content like concat('%', #{input}, '%')
 			</when>
-			<when test="searchType == 'writer'">
-				where writer like concat('%', #{input}, '%')
+			<when test="searchType == 'nickName'">
+				and nick_name like concat('%', #{input}, '%')
 			</when>
 			<otherwise>
 			</otherwise>
@@ -96,4 +105,77 @@
 			#{memberNo}, #{content}, #{title}
 		)
 	</insert>
+	
+	<select id="selectCommentList" parameterType="int" resultType="freeBoardComment">
+		select *
+		  from tb_freeboard_comment c, tb_member m
+		 where c.member_no = m.member_no
+		   and c.board_no = #{boardNo}
+		   and reply_no = 0
+	</select>
+	
+	<select id="selectReplyList" parameterType="int" resultType="freeBoardComment">
+		select *
+		  from tb_freeboard_comment c, tb_member m
+		 where c.member_no = m.member_no
+		   and c.board_no = #{boardNo}
+		   and reply_no != 0
+	</select>
+	
+	<insert id="insertComment" parameterType="freeBoardComment">
+		insert into tb_freeboard_comment(
+			member_no, content, board_no
+		)values(
+			#{memberNo}, #{content}, #{boardNo}
+		)
+	</insert>
+	
+	<insert id="insertLikeStatus" parameterType="like">
+		insert into tb_like(
+			board_no, board_type, member_no
+		)values(
+			#{boardNo}, 1, #{memberNo}
+		)
+	</insert>
+	
+	<select id="selectBoardIsLike" parameterType="like" resultType="like">
+		select *
+		  from tb_like
+		 where board_no = #{boardNo}
+		   and member_no = #{memberNo}
+	</select>
+	
+	<update id="updateLikeStatus" parameterType="like">
+		update tb_like
+  		   set like_status = #{likeStatus}
+		 where board_no = #{boardNo}
+		   and member_no = #{memberNo}
+	</update>
+	
+	<update id="updateAddLike" parameterType="int">
+		update tb_freeboard
+		   set like_cnt = like_cnt + 1
+		 where board_no = #{boardNo}
+	</update>
+	
+	<update id="updateRemoveLike" parameterType="int">
+		update tb_freeboard
+		   set like_cnt = like_cnt - 1
+		 where board_no = #{boardNo}
+	</update>
+	
+	<select id="selectBoardLikeCount" parameterType="int" resultType="int">
+		select like_cnt
+		  from tb_freeboard
+		 where board_no = #{boardNo}
+	</select>
+	
 </mapper>
+
+
+
+
+
+
+
+
