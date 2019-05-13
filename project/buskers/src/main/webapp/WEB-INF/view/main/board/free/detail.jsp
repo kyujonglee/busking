@@ -206,53 +206,54 @@
 			$(".reply_wrapper").hide();
 		});
 		
-		$(".comment_delete_button").click(function () {
-			let commentNo = $(this).parent().siblings(".reply_wrapper").children(".reply_submit_button").attr("name");
-			if ( nickName != $(this).siblings(".comment_id").text() ) {
-				alert("삭제할 수 없습니다.");
-				return;
-			}
-			
-			if ( nickName == $(this).siblings(".comment_id").text() ) {
-				$.ajax({
-	   				type: "POST",
-	   				url: "delete-comment-ajax.do",
-	   				data: 
-	   					{
-	   					commentNo : commentNo
-	   					},
-	   				success: function (result) {
-	   					for (let i = 0; i < $(".bubble").length; i++) {
-	   						let width = $(".bubble:eq(" + i + ") > p").width();
-	   						if (width < 600) {
-	   						$(".bubble:eq(" + i + ")").css({"width": width});
-	   						}
-	   					}
-	   					if (result == "y") {
-	   						$(".reply_submit_button[name=" + commentNo + "]").parent().siblings(".bubble").children("p").text("*");
-	   						for (let i = 0; i < $(".bubble").length; i++) {
-	   							let width = $(".bubble:eq(" + i + ") > p").width();
-	   							if (width < 600) {
-	   							$(".bubble:eq(" + i + ")").css({"width": width});
-	   							}
-	   						}
-	   						return;
-	   					} else {
-	   						$(".reply_submit_button[name=" + commentNo + "]").parent().parent().remove();
-	   		  				$(".comment_highlight").text( parseInt( $(".comment_highlight").text() ) - 1 );
-	   					}
-	   				}
-				});
+		function deleteComment() {
+			$(".comment_delete_button").click(function () {
+				let commentNo = $(this).parent().siblings(".reply_wrapper").children(".reply_submit_button").attr("name");
+				if ( nickName != $(this).siblings(".comment_id").text() ) {
+					alert("삭제할 수 없습니다.");
+					return;
+				}
 				
-			}
-		});
+				if ( nickName == $(this).siblings(".comment_id").text() ) {
+					$.ajax({
+		   				type: "POST",
+		   				url: "delete-comment-ajax.do",
+		   				data: 
+		   					{
+		   					commentNo : commentNo
+		   					},
+		   				success: function (result) {
+		   					for (let i = 0; i < $(".bubble").length; i++) {
+		   						let width = $(".bubble:eq(" + i + ") > p").width();
+		   						if (width < 600) {
+		   						$(".bubble:eq(" + i + ")").css({"width": width});
+		   						}
+		   					}
+		   					if (result == "y") {
+		   						$(".reply_submit_button[name=" + commentNo + "]").parent().siblings(".bubble").children("p").text("*");
+		   						for (let i = 0; i < $(".bubble").length; i++) {
+		   							let width = $(".bubble:eq(" + i + ") > p").width();
+		   							if (width < 600) {
+		   							$(".bubble:eq(" + i + ")").css({"width": width});
+		   							}
+		   						}
+		   						return;
+		   					} else {
+		   						$(".reply_submit_button[name=" + commentNo + "]").parent().parent().remove();
+		   		  				$(".comment_highlight").text( parseInt( $(".comment_highlight").text() ) - 1 );
+		   					}
+		   				}
+					});
+					
+				}
+			});
+		}
+		
+		deleteComment();
 		
 		$(".comment_reply_button").click(function () {
 			$(this).parent().siblings(".reply_wrapper").slideToggle();
 		});
-		
-		
-	
 		
 		if (like == 'y') {
 			$(".board_article_like_wrapper").children("i").attr("class", "fas fa-heart fa-2x");
@@ -362,104 +363,116 @@
    					});
    					
    					$(".comment_highlight").text( parseInt( $(".comment_highlight").text() ) + 1 );
+   					
+   					deleteComment();
+   					replyComment();
    				}
 			});
 		});
 		
-		$(".reply_submit_button").click(function () {
-			let content = $(this).siblings().children().val();
-			let memberNo = "${sessionScope.user.memberNo}";
-			let replyNo = $(this).attr("name");
-			
-			if ( content == "" ) {
-				alert("답글 내용을 입력해주세요.")
-				return;
-			}
-			$.ajax({
-   				type: "POST",
-   				url: "reply-ajax.do",
-   				data: 
-   					{
-   					replyNo : replyNo,
-   					memberNo : memberNo,
-   					boardNo : boardNo,
-   					content : content
-   					},
-   				dataType: "json",
-   				success: function (replyResult) {
-   					console.log(replyResult);
-   					let commentList = replyResult.comment;
-					let replyList = replyResult.reply;					
-					let html = "";
-   					for (let i = 0; i < commentList.length; i++) {
-   						let comment = commentList[i];
-   						let date = moment(comment.regDate).format("MM-DD HH:mm");
-   						
-                		html += '<div class="comment_list">';
-                		html += 	'<div class="comment_info">';
-                		html += 		'<span class="board_img_title">';
-                		html +=     		'<img src="<c:url value='/resources/img/boyoung.jpg'/>"/>';
-               			html +=     	'</span>';
-               			html += 		'<div class="comment_id">' + comment.nickName + '</div>';
-               			html += 		'<div class="comment_date">';
-               			html += 			'<i class="far fa-clock comment_clock"></i>' + date;
-           				html += 		'</div>';
-           				html += 		'<div class="comment_update_button"><i class="fas fa-pen-alt"></i></div>';
-           				html += 		'<div class="comment_delete_button"><i class="far fa-trash-alt"></i></div>';
-           				html += 		'<div class="comment_reply_button"><i class="fas fa-reply">답글</i></div>';
-       					html += 	'</div>';
-          				html += 	'<div class="bubble"><p>' + comment.content + '</p></div>';
-          				html +=		'<div class="reply_wrapper">';
-          				html +=			'<div class="reply_content_wrapper">';
-          				html +=				'<textarea class="reply_content" name="content"></textarea>';
-          				html +=			'</div>';
-          				html +=			'<div class="reply_submit_button" name="' + comment.commentNo + '">';
-          				html +=				'<a class="far fa-edit"> 답글 등록</a>';
-          				html +=			'</div>';
-          				html +=		'</div>';
-          				html += '</div>';
-   						
-          				for (let i = 0; i < replyList.length; i++) {
-       						let reply = replyList[i];
-       						let date = moment(reply.regDate).format("MM-DD HH:mm");
-       						
-       						if (reply.replyNo == comment.commentNo) {
-       							html += '<div class="reply_list">';
-                        		html += 	'<div class="comment_info">';
-                        		html += 		'<span class="board_img_title">';
-                        		html +=     		'<img src="<c:url value='/resources/img/boyoung.jpg'/>"/>';
-                       			html +=     	'</span>';
-                       			html += 		'<div class="comment_id">' + reply.nickName + '</div>';
-                       			html += 		'<div class="comment_date">';
-                       			html += 			'<i class="far fa-clock comment_clock"></i>' + date;
-                   				html += 		'</div>';
-                   				html += 		'<div class="comment_update_button"><i class="fas fa-pen-alt"></i></div>';
-                   				html += 		'<div class="comment_delete_button"><i class="far fa-trash-alt"></i></div>';
-               					html += 	'</div>';
-                  				html += 	'<div class="bubble"><p>' + reply.content + '</p></div>';
-                  				html += '</div>';
-       						}
-          				}
-   					}
-   					
-   					$(".board_article_comment_list").html(html);
-   					
-   					/** 동적으로 댓글 div의 width 변경 */
-   					for (let i = 0; i < $(".bubble").length; i++) {
-   						let width = $(".bubble:eq(" + i + ") > p").width();
-   						if (width < 600) {
-   						$(".bubble:eq(" + i + ")").css({"width": width});
-   						}
-   					}
-   					
-   					$(".reply_wrapper").hide();
-   					
-   					$(".comment_reply_button").click(function () {
-   						$(this).parent().siblings(".reply_wrapper").slideToggle();
-   					});
-   				}
+		function replyComment() {
+		
+			$(".reply_submit_button").click(function () {
+				let content = $(this).siblings().children().val();
+				let memberNo = "${sessionScope.user.memberNo}";
+				let replyNo = $(this).attr("name");
+				
+				if ( content == "" ) {
+					alert("답글 내용을 입력해주세요.")
+					return;
+				}
+				$.ajax({
+	   				type: "POST",
+	   				url: "reply-ajax.do",
+	   				data: 
+	   					{
+	   					replyNo : replyNo,
+	   					memberNo : memberNo,
+	   					boardNo : boardNo,
+	   					content : content
+	   					},
+	   				dataType: "json",
+	   				success: function (replyResult) {
+	   					console.log(replyResult);
+	   					let commentList = replyResult.comment;
+						let replyList = replyResult.reply;					
+						let html = "";
+	   					for (let i = 0; i < commentList.length; i++) {
+	   						let comment = commentList[i];
+	   						let date = moment(comment.regDate).format("MM-DD HH:mm");
+	   						
+	                		html += '<div class="comment_list">';
+	                		html += 	'<div class="comment_info">';
+	                		html += 		'<span class="board_img_title">';
+	                		html +=     		'<img src="<c:url value='/resources/img/boyoung.jpg'/>"/>';
+	               			html +=     	'</span>';
+	               			html += 		'<div class="comment_id">' + comment.nickName + '</div>';
+	               			html += 		'<div class="comment_date">';
+	               			html += 			'<i class="far fa-clock comment_clock"></i>' + date;
+	           				html += 		'</div>';
+	           				html += 		'<div class="comment_update_button"><i class="fas fa-pen-alt"></i></div>';
+	           				html += 		'<div class="comment_delete_button"><i class="far fa-trash-alt"></i></div>';
+	           				html += 		'<div class="comment_reply_button"><i class="fas fa-reply">답글</i></div>';
+	       					html += 	'</div>';
+	          				html += 	'<div class="bubble"><p>' + comment.content + '</p></div>';
+	          				html +=		'<div class="reply_wrapper">';
+	          				html +=			'<div class="reply_content_wrapper">';
+	          				html +=				'<textarea class="reply_content" name="content"></textarea>';
+	          				html +=			'</div>';
+	          				html +=			'<div class="reply_submit_button" name="' + comment.commentNo + '">';
+	          				html +=				'<a class="far fa-edit"> 답글 등록</a>';
+	          				html +=			'</div>';
+	          				html +=		'</div>';
+	          				html += '</div>';
+	   						
+	          				for (let i = 0; i < replyList.length; i++) {
+	       						let reply = replyList[i];
+	       						let date = moment(reply.regDate).format("MM-DD HH:mm");
+	       						
+	       						if (reply.replyNo == comment.commentNo) {
+	       							html += '<div class="reply_list">';
+	                        		html += 	'<div class="comment_info">';
+	                        		html += 		'<span class="board_img_title">';
+	                        		html +=     		'<img src="<c:url value='/resources/img/boyoung.jpg'/>"/>';
+	                       			html +=     	'</span>';
+	                       			html += 		'<div class="comment_id">' + reply.nickName + '</div>';
+	                       			html += 		'<div class="comment_date">';
+	                       			html += 			'<i class="far fa-clock comment_clock"></i>' + date;
+	                   				html += 		'</div>';
+	                   				html += 		'<div class="comment_update_button"><i class="fas fa-pen-alt"></i></div>';
+	                   				html += 		'<div class="comment_delete_button"><i class="far fa-trash-alt"></i></div>';
+	               					html += 	'</div>';
+	                  				html += 	'<div class="bubble"><p>' + reply.content + '</p></div>';
+	                  				html += '</div>';
+	       						}
+	          				}
+	   					}
+	   					
+	   					$(".board_article_comment_list").html(html);
+	   					
+	   					/** 동적으로 댓글 div의 width 변경 */
+	   					for (let i = 0; i < $(".bubble").length; i++) {
+	   						let width = $(".bubble:eq(" + i + ") > p").width();
+	   						if (width < 600) {
+	   						$(".bubble:eq(" + i + ")").css({"width": width});
+	   						}
+	   					}
+	   					
+	   					$(".reply_wrapper").hide();
+	   					
+	   					$(".comment_reply_button").click(function () {
+	   						$(this).parent().siblings(".reply_wrapper").slideToggle();
+	   					});
+	   					
+	   					$(".comment_highlight").text( parseInt( $(".comment_highlight").text() ) + 1 );
+	   					
+	   					deleteComment();
+	   					replyComment();
+	   				}
+				});
 			});
-		});
+		}
+		replyComment();
 		
 		/** 추천 클릭 이벤트 */
 		$(".board_article_like_wrapper").click(function () {
