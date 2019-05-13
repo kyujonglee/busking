@@ -118,7 +118,7 @@
 					               			<div class="reply_content_wrapper">
 							           			<textarea class="reply_content" name="content"></textarea>
 						           			</div>
-						           			<div class="reply_submit_button" name="${comment.commentNo}">
+						           			<div class="reply_submit_button" name="${comment.commentNo}" nick="${comment.nickName}" type="comment">
 							           			<a class="far fa-edit"> 답글 등록</a>
 						           			</div>
 					           			</div>
@@ -137,9 +137,18 @@
 					               				</div>
 					               				<div class="comment_update_button"><i class="fas fa-pen-alt"></i></div>
 					               				<div class="comment_delete_button"><i class="far fa-trash-alt"></i></div>
+					               				<div class="comment_reply_button"><i class="fas fa-reply">답글</i></div>
 					               			</div>
 							                
 					               			<div class="bubble"><p>${reply.content}</p></div>
+					               			<div class="reply_wrapper">
+					               			<div class="reply_content_wrapper">
+							           			<textarea class="reply_content" name="content"></textarea>
+						           			</div>
+						           			<div class="reply_submit_button" name="${comment.commentNo}" nick="${reply.nickName}" type="reply">
+							           			<a class="far fa-edit"> 답글 등록</a>
+						           			</div>
+					           			</div>
 					               		</div>
 			                		</c:if>
 			               		</c:forEach>
@@ -201,6 +210,7 @@
 		let user = "${sessionScope.user}";
 		let like = "${like.likeStatus}";
 		let nickName = "${sessionScope.user.nickName}";
+		let memberNo = "${sessionScope.user.memberNo}";
 	
 		$(document).ready(function () {
 			$(".reply_wrapper").hide();
@@ -210,41 +220,28 @@
 			$(".comment_delete_button").click(function () {
 				let commentNo = $(this).parent().siblings(".reply_wrapper").children(".reply_submit_button").attr("name");
 				if ( nickName != $(this).siblings(".comment_id").text() ) {
-					alert("삭제할 수 없습니다.");
+					alert("본인이 작성하지 않은 댓글은 삭제할 수 없습니다.");
 					return;
 				}
 				
-				if ( nickName == $(this).siblings(".comment_id").text() ) {
-					$.ajax({
-		   				type: "POST",
-		   				url: "delete-comment-ajax.do",
-		   				data: 
-		   					{
-		   					commentNo : commentNo
-		   					},
-		   				success: function (result) {
-		   					for (let i = 0; i < $(".bubble").length; i++) {
-		   						let width = $(".bubble:eq(" + i + ") > p").width();
-		   						if (width < 600) {
-		   						$(".bubble:eq(" + i + ")").css({"width": width});
-		   						}
-		   					}
-		   					if (result == "y") {
-		   						$(".reply_submit_button[name=" + commentNo + "]").parent().siblings(".bubble").children("p").text("*");
-		   						for (let i = 0; i < $(".bubble").length; i++) {
-		   							let width = $(".bubble:eq(" + i + ") > p").width();
-		   							if (width < 600) {
-		   							$(".bubble:eq(" + i + ")").css({"width": width});
-		   							}
-		   						}
-		   						return;
-		   					} else {
-		   						$(".reply_submit_button[name=" + commentNo + "]").parent().parent().remove();
-		   		  				$(".comment_highlight").text( parseInt( $(".comment_highlight").text() ) - 1 );
-		   					}
-		   				}
-					});
-					
+				$.ajax({
+	   				type: "POST",
+	   				url: "delete-comment-ajax.do",
+	   				data: 
+	   					{
+	   					commentNo : commentNo
+	   					},
+	   				success: function (result) {
+	   				}
+				});
+				
+				if ( $(this).parent().siblings(".reply_content_wrapper").children(".reply_content").attr("name") == "reply" ) {
+					$(this).parent().parent().remove();
+	  				$(".comment_highlight").text( parseInt( $(".comment_highlight").text() ) - 1 );
+	  				return;
+				}
+				if ( $(this).parent().parent().next().attr("class") == "reply_list" ) {
+					$(this).parent().siblings(".bubble").children("p").text("삭제되었습니다.");
 				}
 			});
 		}
@@ -265,7 +262,6 @@
 		let input = "${param.input}";
 		let pageNo = "${param.pageNo}";
 		let boardNo = "${param.boardNo}";
-		let memberNo = 2;
 		
 		/** 동적으로 댓글 div의 width 변경 */
 		for (let i = 0; i < $(".bubble").length; i++) {
@@ -275,8 +271,14 @@
 			}
 		}
 		
+		/** 댓글 작성 */
 		$(".comment_submit_button > a").click(function () {
 			let content = $(".comment_content").val();
+			if ( user == "" ) {
+				alert("댓글 작성은 로그인 후에 가능합니다.");
+				return;
+			}
+			
 			if ( $(".comment_content").val() == "" ) {
 				alert("댓글 내용을 입력해주세요.")
 				return;
@@ -317,7 +319,7 @@
           				html +=			'<div class="reply_content_wrapper">';
           				html +=				'<textarea class="reply_content" name="content"></textarea>';
           				html +=			'</div>';
-          				html +=			'<div class="reply_submit_button" name="' + comment.commentNo + '">';
+          				html +=			'<div class="reply_submit_button" name="' + comment.commentNo + '" nick="' + comment.nickName + '">';
           				html +=				'<a class="far fa-edit"> 답글 등록</a>';
           				html +=			'</div>';
           				html +=		'</div>';
@@ -339,8 +341,17 @@
                    				html += 		'</div>';
                    				html += 		'<div class="comment_update_button"><i class="fas fa-pen-alt"></i></div>';
                    				html += 		'<div class="comment_delete_button"><i class="far fa-trash-alt"></i></div>';
+                   				html += 		'<div class="comment_reply_button"><i class="fas fa-reply">답글</i></div>';
                					html += 	'</div>';
                   				html += 	'<div class="bubble"><p>' + reply.content + '</p></div>';
+                  				html +=		'<div class="reply_wrapper">';
+                  				html +=			'<div class="reply_content_wrapper">';
+                  				html +=				'<textarea class="reply_content" name="content"></textarea>';
+                  				html +=			'</div>';
+                  				html +=			'<div class="reply_submit_button" name="' + comment.commentNo + '" nick="' + reply.nickName + '">';
+                  				html +=				'<a class="far fa-edit"> 답글 등록</a>';
+                  				html +=			'</div>';
+                  				html +=		'</div>';
                   				html += '</div>';
        						}
           				}
@@ -370,12 +381,18 @@
 			});
 		});
 		
+		/** 답글 작성 */
 		function replyComment() {
 		
 			$(".reply_submit_button").click(function () {
 				let content = $(this).siblings().children().val();
 				let memberNo = "${sessionScope.user.memberNo}";
 				let replyNo = $(this).attr("name");
+				let replyName = $(this).attr("nick");
+
+				console.log(replyNo);
+				content = "<b class='reply_name'>" + "@" + replyName + "</b>" + " " + content;
+				console.log(content);
 				
 				if ( content == "" ) {
 					alert("답글 내용을 입력해주세요.")
@@ -419,7 +436,7 @@
 	          				html +=			'<div class="reply_content_wrapper">';
 	          				html +=				'<textarea class="reply_content" name="content"></textarea>';
 	          				html +=			'</div>';
-	          				html +=			'<div class="reply_submit_button" name="' + comment.commentNo + '">';
+	          				html +=			'<div class="reply_submit_button" name="' + comment.commentNo + '" nick="' + comment.nickName + '">';
 	          				html +=				'<a class="far fa-edit"> 답글 등록</a>';
 	          				html +=			'</div>';
 	          				html +=		'</div>';
@@ -441,8 +458,17 @@
 	                   				html += 		'</div>';
 	                   				html += 		'<div class="comment_update_button"><i class="fas fa-pen-alt"></i></div>';
 	                   				html += 		'<div class="comment_delete_button"><i class="far fa-trash-alt"></i></div>';
+	                   				html += 		'<div class="comment_reply_button"><i class="fas fa-reply">답글</i></div>';
 	               					html += 	'</div>';
 	                  				html += 	'<div class="bubble"><p>' + reply.content + '</p></div>';
+	                  				html +=		'<div class="reply_wrapper">';
+	                  				html +=			'<div class="reply_content_wrapper">';
+	                  				html +=				'<textarea class="reply_content" name="content"></textarea>';
+	                  				html +=			'</div>';
+	                  				html +=			'<div class="reply_submit_button" name="' + comment.commentNo + '" nick="' + reply.nickName + '">';
+	                  				html +=				'<a class="far fa-edit"> 답글 등록</a>';
+	                  				html +=			'</div>';
+	                  				html +=		'</div>';
 	                  				html += '</div>';
 	       						}
 	          				}
@@ -522,6 +548,9 @@
 				
 			}
 		});
+		
+		$(".bubble > p").text()
+		
 	
     </script>
 </body>
