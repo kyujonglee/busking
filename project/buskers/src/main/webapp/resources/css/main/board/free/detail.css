@@ -387,4 +387,7 @@
 	align-items: center;
 }
 
-
+.reply_name {
+	color: #003569;
+	font-weight: bold;
+}
