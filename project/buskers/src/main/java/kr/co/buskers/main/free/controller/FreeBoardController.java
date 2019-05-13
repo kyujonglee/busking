@@ -15,7 +15,7 @@ import kr.co.buskers.main.free.service.FreeService;
 import kr.co.buskers.repository.domain.FreeBoard;
 import kr.co.buskers.repository.domain.FreeBoardComment;
 import kr.co.buskers.repository.domain.FreePage;
-import kr.co.buskers.repository.domain.Member;
+import kr.co.buskers.repository.domain.Like;
 
 @Controller
 @RequestMapping("main/board/free")
@@ -44,12 +44,39 @@ public class FreeBoardController {
 		return result;
 	}
 	
+	@RequestMapping("like-ajax.do")
+	@ResponseBody
+	public int updateLikeStatus(Like like, Model model) {
+		
+		return service.updateLikeStatus(like);
+	}
+	
 	@RequestMapping("comment-ajax.do")
 	@ResponseBody
 	public Map<String, Object> insertComment(FreeBoardComment freeBoardComment, Model model) {
 		Map<String, Object> result = service.insertComment(freeBoardComment);
 		
 		model.addAttribute("comment", result.get("comment"));
+		model.addAttribute("reply", result.get("reply"));
+		
+		return result;
+	}
+	
+	@RequestMapping("delete-comment-ajax.do")
+	@ResponseBody
+	public String deleteComment(int commentNo) {
+		String hasReply = service.deleteComment(commentNo);
+		
+		return hasReply;
+	}
+	
+	@RequestMapping("reply-ajax.do")
+	@ResponseBody
+	public Map<String, Object> insertReply(FreeBoardComment freeBoardComment, Model model) {
+		Map<String, Object> result = service.insertReply(freeBoardComment);
+		
+		model.addAttribute("comment", result.get("comment"));
+		model.addAttribute("reply", result.get("reply"));
 		
 		return result;
 	}
@@ -62,6 +89,8 @@ public class FreeBoardController {
 		if (session.getAttribute("user") != null) {
 			model.addAttribute("like", result.get("like"));
 		}
+		
+		model.addAttribute("reply", result.get("reply"));
 		model.addAttribute("comment", result.get("comment"));
 		model.addAttribute("board", result.get("board"));
 	}

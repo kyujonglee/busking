@@ -111,6 +111,15 @@
 		  from tb_freeboard_comment c, tb_member m
 		 where c.member_no = m.member_no
 		   and c.board_no = #{boardNo}
+		   and reply_no = 0
+	</select>
+	
+	<select id="selectReplyList" parameterType="int" resultType="freeBoardComment">
+		select *
+		  from tb_freeboard_comment c, tb_member m
+		 where c.member_no = m.member_no
+		   and c.board_no = #{boardNo}
+		   and reply_no != 0
 	</select>
 	
 	<insert id="insertComment" parameterType="freeBoardComment">
@@ -121,11 +130,69 @@
 		)
 	</insert>
 	
+	<insert id="insertLikeStatus" parameterType="like">
+		insert into tb_like(
+			board_no, board_type, member_no
+		)values(
+			#{boardNo}, 1, #{memberNo}
+		)
+	</insert>
+	
 	<select id="selectBoardIsLike" parameterType="like" resultType="like">
 		select *
 		  from tb_like
 		 where board_no = #{boardNo}
 		   and member_no = #{memberNo}
+	</select>
+	
+	<update id="updateLikeStatus" parameterType="like">
+		update tb_like
+  		   set like_status = #{likeStatus}
+		 where board_no = #{boardNo}
+		   and member_no = #{memberNo}
+	</update>
+	
+	<update id="updateAddLike" parameterType="int">
+		update tb_freeboard
+		   set like_cnt = like_cnt + 1
+		 where board_no = #{boardNo}
+	</update>
+	
+	<update id="updateRemoveLike" parameterType="int">
+		update tb_freeboard
+		   set like_cnt = like_cnt - 1
+		 where board_no = #{boardNo}
+	</update>
+	
+	<select id="selectBoardLikeCount" parameterType="int" resultType="int">
+		select like_cnt
+		  from tb_freeboard
+		 where board_no = #{boardNo}
+	</select>
+	
+	<insert id="insertReply" parameterType="freeBoardComment">
+		insert into tb_freeboard_comment(
+			member_no, content, board_no, reply_no
+		)values(
+			#{memberNo}, #{content}, #{boardNo}, #{replyNo}
+		)
+	</insert>
+	
+	<update id="updateDeleteComment" parameterType="int">
+		update tb_freeboard_comment
+		   set content = '삭제된 댓글 입니다.'
+ 		 where comment_no = #{commentNo}
+	</update>
+	
+	<delete id="deleteComment" parameterType="int">
+		delete from tb_freeboard_comment
+ 		 where comment_no = #{commentNo}
+	</delete>
+	
+	<select id="selectCommentHasReply" parameterType="int" resultType="int">
+		select count(*) 
+		  from tb_freeboard_comment
+		 where reply_no = #{commentNo}
 	</select>
 	
 </mapper>
