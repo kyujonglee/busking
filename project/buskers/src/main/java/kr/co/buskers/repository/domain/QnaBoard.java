@@ -12,6 +12,14 @@ public class QnaBoard {
 	private String likeStatus;
 	private String isDelete;
 	private String nickName;
+	private int commentCount;
+	
+	public int getCommentCount() {
+		return commentCount;
+	}
+	public void setCommentCount(int commentCount) {
+		this.commentCount = commentCount;
+	}
 	public String getNickName() {
 		return nickName;
 	}
