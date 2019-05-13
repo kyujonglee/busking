@@ -36,7 +36,6 @@ public class QnaBoardServiceImpl implements QnaBoardService {
 		map.put("input", freePage.getInput());
 		map.put("sortType", freePage.getSortType());
 		map.put("list", mapper.selectBoard(freePage));
-		System.out.println(mapper.selectBoard(freePage).size());
 		map.put("pageResult", new FreePageResult(freePage.getPageNo(), mapper.selectBoardCount(freePage)));
 		return map;
 	}
@@ -69,6 +68,9 @@ public class QnaBoardServiceImpl implements QnaBoardService {
 		mapper.deleteBoard(no);
 		
 	}
+	public void deleteComment(int no) {
+		mapper.deleteComment(no);
+	}
 
 	public void update(QnaBoard qnaBoard) {
 		mapper.updateBoard(qnaBoard);
@@ -78,30 +80,81 @@ public class QnaBoardServiceImpl implements QnaBoardService {
 		return mapper.selectBoardByNo(no);
 	}
 
-	public Map<String,Object> likeStatusUpdate(QnaBoard qnaBoard) {
+	public Map<String,Object> likeStatusUpdate(QnaBoard qnaBoard,int boardType,String likeKind) {
 		Like like = new Like();
 		like.setBoardNo(qnaBoard.getBoardNo());
 		like.setMemberNo(qnaBoard.getMemberNo());
-		like.setBoardType(3);
-		//현재 상태
+		like.setBoardType(boardType);
+		System.out.println(qnaBoard.getBoardNo());
+		System.out.println(qnaBoard.getMemberNo());
+		System.out.println(boardType);
 		char status = mapper.selectLike(like).getLikeStatus();
-//		System.out.println("현재상태는"+status);
-		if(status=='y') {
-			like.setLikeStatus('n');
-			mapper.updateLike(like);
-			mapper.updateLikeQnaBoardMinus(qnaBoard);
-		}else if(status=='n') {
-			like.setLikeStatus('y');
-			mapper.updateLike(like);
-			mapper.updateLikeQnaBoardPlus(qnaBoard);
-		}
-//		System.out.println("update이후 좋아요 개수는"+qnaBoard.getLikeCnt());
 		Map<String,Object> result = new HashMap<>();
-		result.put("likeStatus",like.getLikeStatus());
-		result.put("likeCnt",qnaBoard.getLikeCnt());
-		return result;
-		
+		//게시판 좋아요 관련 
+		if(boardType==3) {
+			//현재 상태
+			if(status=='y') {
+				like.setLikeStatus('n');
+				mapper.updateLike(like);
+				mapper.updateLikeQnaBoardMinus(qnaBoard);
+			}else if(status=='n') {
+				like.setLikeStatus('y');
+				mapper.updateLike(like);
+				mapper.updateLikeQnaBoardPlus(qnaBoard);
+			}
+			result.put("likeStatus",like.getLikeStatus());
+			result.put("likeCnt",qnaBoard.getLikeCnt());
+
+			//댓글 좋아요 관련
+		}else {
+			//누른것이 좋아요   //qnaBoard 넘버는 CommentNo로 생각해야함. ajax 부분에 코멘트 부분을 찾아서 업데이트 시키기위해 번호를 넘겨줘야함.
+			result.put("commentNo", qnaBoard.getBoardNo());
+			if(likeKind.equals("y")) {
+				QnaBoardComment qnaBoardComment = new QnaBoardComment();
+				qnaBoardComment.setCommentNo(qnaBoard.getBoardNo());
+				if(status=='y') {
+					like.setLikeStatus('n');
+					mapper.updateLike(like);
+					mapper.updateLikeQnaBoardCommentMinus(qnaBoardComment);
+					System.out.println("좋아요업데이트함 -");
+				}else if(status=='n') {
+					like.setLikeStatus('y');
+					mapper.updateLike(like);
+					mapper.updateLikeQnaBoardCommentPlus(qnaBoardComment);
+					System.out.println("좋아요업데이트함 +");
+				}
+				result.put("likeStatus",like.getLikeStatus());
+				result.put("likeCnt",qnaBoardComment.getLikeCnt());
+
+			//누른것이 싫어요
+			}else {
+				if(likeKind.equals("n")) {
+					char disLikeStatus = mapper.selectLike(like).getDislikeStatus();
+					System.out.println("실요상태"+disLikeStatus);
+					QnaBoardComment qnaBoardComment = new QnaBoardComment();
+					qnaBoardComment.setCommentNo(qnaBoard.getBoardNo());
+					if(disLikeStatus=='y') {
+						like.setDislikeStatus('n');
+						mapper.updateDisLike(like);
+						mapper.updateDisLikeQnaBoardCommentMinus(qnaBoardComment);
+						System.out.println("싫어요업데이트함 -");
+					}else if(disLikeStatus=='n') {
+						like.setDislikeStatus('y');;
+						mapper.updateDisLike(like);
+						mapper.updateDisLikeQnaBoardCommentPlus(qnaBoardComment);
+						System.out.println("싫어요업데이트함 +");
+					}
+					result.put("likeStatus",like.getLikeStatus());
+					result.put("disLikeCnt",qnaBoardComment.getDisLikeCnt());
+				}
+			}
+		}
+			return result;
 	}
+	
+	
+	
+	
 	
 	
 	public List<QnaBoardComment> commentList(int no){
@@ -113,6 +166,11 @@ public class QnaBoardServiceImpl implements QnaBoardService {
 
 	public void writeComment(QnaBoardComment qnaBoardComment) {
 		mapper.insertComment(qnaBoardComment);
+		Like like = new Like();
+		like.setBoardNo(qnaBoardComment.getCommentNo());
+		like.setMemberNo(qnaBoardComment.getMemberNo());
+		like.setBoardType(4);
+		mapper.insertLike(like);
 	}
 
 }

@@ -118,9 +118,13 @@
 		insert into tb_like(
 			member_no,board_no,board_type
 		) values (
-			#{memberNo}, #{boardNo},3
+			#{memberNo}, #{boardNo},#{boardType}
 		)
 	</insert>
+	
+	
+	
+	
 	<!-- 현재 like테이블 상태를 알기-->
 	  <select id="selectLike" parameterType="like" resultType="like">
     	select *
@@ -130,6 +134,9 @@
     	   and board_type=#{boardType}
     </select>
     
+    
+    
+    
 	<!-- 현재 like테이블  상태 업데이트-->
     <update id="updateLike" parameterType="like" >
     	update tb_like
@@ -138,14 +145,20 @@
     	   and member_no = #{memberNo}
     	   and board_type = #{boardType}
     </update>	 
-    <!-- 좋아요값 + - -->
+    <update id="updateDisLike" parameterType="like" >
+    	update tb_like
+    	   set dislike_status = #{dislikeStatus}
+    	 where board_no = #{boardNo}
+    	   and member_no = #{memberNo}
+    	   and board_type = #{boardType}
+    </update>	 
       <update id="updateLikeQnaBoardPlus" parameterType="qnaBoard">
       		
     	update tb_qnaboard
 		   set like_cnt = like_cnt + 1
 		 where board_no = #{boardNo}  
 		 <selectKey keyProperty="likeCnt" resultType="int" order="AFTER">
-    			select like_cnt from tb_qnaboard where board_no=#{boardNo}
+ 	    select like_cnt from tb_qnaboard where board_no=#{boardNo}
    		</selectKey>
     </update>
     	 
@@ -157,6 +170,51 @@
     			select like_cnt from tb_qnaboard where board_no=#{boardNo}
    		</selectKey>
     </update>	 
+    
+<!-- 댓글 좋아요 -->    
+      <update id="updateLikeQnaBoardCommentPlus" parameterType="qnaBoard">
+      		
+    	update tb_qnaboard_comment
+		   set like_cnt = like_cnt + 1
+		 where comment_no = #{commentNo}  
+		 <selectKey keyProperty="likeCnt" resultType="int" order="AFTER">
+ 	    select like_cnt from tb_qnaboard_comment where comment_no=#{commentNo}
+   		</selectKey>
+    </update>
+    	 
+    <update id="updateDisLikeQnaBoardCommentMinus"  parameterType="qnaBoard" >
+    	update tb_qnaboard_comment
+		   set dislike_cnt = dislike_cnt - 1
+		 where comment_no = #{commentNo}  
+		 <selectKey keyProperty="likeCnt" resultType="int" order="AFTER">
+    			select like_cnt from tb_qnaboard_comment where comment_no=#{commentNo}
+   		</selectKey>
+    </update>	 
+      <update id="updateDisLikeQnaBoardCommentPlus" parameterType="qnaBoard">
+      		
+    	update tb_qnaboard_comment
+		   set dislike_cnt = dislike_cnt + 1
+		 where comment_no = #{commentNo}  
+		 <selectKey keyProperty="disLikeCnt" resultType="int" order="AFTER">
+ 	    select dislike_cnt from tb_qnaboard_comment where comment_no=#{commentNo}
+   		</selectKey>
+    </update>
+    	 
+    <update id="updateLikeQnaBoardCommentMinus"  parameterType="qnaBoard" >
+    	update tb_qnaboard_comment
+		   set like_cnt = like_cnt - 1
+		 where comment_no = #{commentNo}  
+		 <selectKey keyProperty="disLikeCnt" resultType="int" order="AFTER">
+    			select dislike_cnt from tb_qnaboard_comment where comment_no=#{commentNo}
+   		</selectKey>
+    </update>	 
+    
+    
+    
+    
+    
+    
+    
     <!-- 라이크테이블 삭제 -->
     <delete id="deleteLike" parameterType="int">
     	delete 
@@ -182,15 +240,20 @@
 		 where a.member_no = b.member_no
 		   and board_no=#{boardNo} 
    		   and reply_no not in (0)
-      order by comment_no asc
+      order by comment_no desc
     </select>
     <!-- 코멘트 추가 -->
-	<insert id="insertComment" parameterType="qnaBoardComment">
+	<insert id="insertComment" parameterType="qnaBoardComment" useGeneratedKeys="true" keyProperty="commentNo">
 		insert into tb_qnaboard_comment(board_no, member_no, content)
 		values(#{boardNo},#{memberNo},#{content})
 	</insert>
 	
-		    
+	<!-- 코멘트 삭제 -->
+	 <delete id="deleteComment" parameterType="int">
+    	update tb_qnaboard_comment
+    	   set is_delete = 'y'
+    	 where comment_no = #{commentNo}
+    </delete>   		    
     
 </mapper>
 
