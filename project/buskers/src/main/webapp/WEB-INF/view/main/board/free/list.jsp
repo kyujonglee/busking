@@ -8,14 +8,13 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.0/moment.min.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.0/moment.min.js"></script> -->
 <link rel="stylesheet"
 	href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" />
 <link rel="stylesheet" href="<c:url value='/resources/css/main/board/free/koo.css'/>" />
 <link rel="stylesheet" href="<c:url value='/resources/css/main/board/agency/agency.css'/>" />
 <link rel="stylesheet" href="<c:url value='/resources/css/main/board/free/test.css'/>" />
 <title>buskers</title>
-</head>
 <body class="body-background">
 	<div class="main-form">
 		<%@ include file="../../../include/sidebar.jsp" %>
@@ -157,7 +156,7 @@
     	if ( (input != "") && searchType == "title" ) {
     		for (i = 0; i < $(".board_title_left > a").length; i++) {
     			$(".board_title_left > a:eq(" + i + ")").html( $(".board_title_left > a:eq(" + i + ")").html().replace(input, "<b class='search_keyword'>" + input + "</b>") );
-    		}
+    		};
     		$(".search_form_input").val(input);
     		$(".search_form_option > option:eq(0)").prop("selected", true);
     	};
@@ -323,7 +322,7 @@
    					if ( (input != "") && searchType == "title" ) {
    		        		for (i = 0; i < $(".board_title_left > a").length; i++) {
    		        			$(".board_title_left > a:eq(" + i + ")").html( $(".board_title_left > a:eq(" + i + ")").html().replace(input, "<b class='search_keyword'>" + input + "</b>") );
-   		        		}
+   		        		};
    		        	}
    		        	
    		        	if ( (input != "") && searchType == "nickName" ) {

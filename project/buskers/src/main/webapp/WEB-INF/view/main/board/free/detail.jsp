@@ -43,145 +43,173 @@
 			</header>
 			<main class="main-freeboard">
 			<div class="agency">
-            <div class="board_title">
-                <div class="board_title_underline">
-                    <a href="<c:url value='/main/board/free/list.do'/>">자유게시판</a>
-                </div>
-            </div>
+				<div class="freeboard__detail">
+	            <div class="board_title">
+	                <div class="board_title_underline">
+	                    <a href="<c:url value='/main/board/free/list.do'/>">자유게시판</a>
+	                </div>
+	            </div>
 
-            <div class="board_head_line">
-                <span class="board_img_title">
-                	<img src="<c:url value='/resources/img/boyoung.jpg'/>"/>
-                </span>
-   				<c:out value="${board.title}" />
-            </div>
+	            <div class="board_head_line">
+	                <span class="board_img_title">
+	                	<img src="<c:url value='/resources/img/boyoung.jpg'/>"/>
+	                </span>
+	   				<c:out value="${board.title}" />
+	            </div>
+	            
             
-            
-            <div class="board_article">
-                <div class="board_article_info">
-                    <div class="board_article_info_left">
-                        <i class="fas fa-user"></i><span id="board_article_info_id"><c:out value="${board.nickName}" /></span>
-                        <i class="far fa-eye"></i><span><c:out value="${board.viewCnt}" /></span>
-                        <i class="fas fa-heart"></i><span><c:out value="${board.likeCnt}" /></span>
-                    </div>
-
-                    <div class="board_article_info_right">
-                        <i class="fas fa-clock"></i>
-                        <span><fmt:formatDate value="${board.regDate}" pattern="MM-dd HH:mm" /></span>
-                    </div>
-                </div>
-                
-                <div class="board_article_content">
-                	<div>
-	                	${board.content}
-                	</div>
-                	
-                </div>
-                
-               	<div class="board_article_like">
-               		<div class="board_article_like_wrapper">
-	               		<i class="far fa-heart fa-2x"></i>
-	               		<a>추천</a>
-               		</div>
-               	</div>
-                
-                <div class="board_article_comment">
-                	<div class="board_article_comment_amount">
-	                	<div class="board_article_comment_amount_underline">
-	                		<i class="fas fa-comment-dots"></i>
-	                		<span><b class="comment_highlight">${fn:length(comment)}</b>개의 댓글</span>
+	            <div class="board_article">
+	                <div class="board_article_info">
+	                    <div class="board_article_info_left">
+	                        <i class="fas fa-user"></i><span id="board_article_info_id"><c:out value="${board.nickName}" /></span>
+	                        <i class="far fa-eye"></i><span><c:out value="${board.viewCnt}" /></span>
+	                        <i class="fas fa-heart"></i><span><c:out value="${board.likeCnt}" /></span>
+	                    </div>
+	
+	                    <div class="board_article_info_right">
+	                        <i class="fas fa-clock"></i>
+	                        <span><fmt:formatDate value="${board.regDate}" pattern="MM-dd HH:mm" /></span>
+	                    </div>
+	                </div>
+	                
+	                <div class="board_article_content">
+	                	<div>
+		                	${board.content}
 	                	</div>
 	                	
-                	</div>
-                	
-                	<div class="board_article_comment_list">
-                	
-	                	<c:forEach var="comment" items="${comment}">
-			                	<div class="comment_list">
-			               			<div class="comment_info">
-			                			<span class="board_img_title">
-						                	<img src="<c:url value='/resources/img/boyoung.jpg'/>"/>
-						                </span>
-			               				<div class="comment_id">${comment.nickName}</div>
-			               				<div class="comment_date">
-				               				<i class="far fa-clock comment_clock"></i>
-				               				<fmt:formatDate value="${comment.regDate}" pattern="MM-dd HH:mm:ss" />
-			               				</div>
-			               				<div class="comment_update_button"><i class="fas fa-pen-alt"></i></div>
-			               				<div class="comment_delete_button"><i class="far fa-trash-alt"></i></div>
-			               			</div>
-					                
-			               			<div class="bubble"><p>${comment.content}</p></div>
-			               		</div>
-		                	<c:forEach var="reply" items="${reply}">
-		                		<c:if test="${reply.replyNo eq comment.commentNo}">
-			                		<div class="reply_list">
+	                </div>
+	                
+	               	<div class="board_article_like">
+	               		<div class="board_article_like_wrapper">
+		               		<i class="far fa-heart fa-2x"></i>
+		               		<a>추천</a>
+	               		</div>
+	               	</div>
+	                
+	                <div class="board_article_comment">
+	                	<div class="board_article_comment_amount">
+		                	<div class="board_article_comment_amount_underline">
+		                		<i class="fas fa-comment-dots"></i>
+		                		<span><b class="comment_highlight">${fn:length(comment) + fn:length(reply)}</b>개의 댓글</span>
+		                	</div>
+		                	
+	                	</div>
+	                	
+	                	<div class="board_article_comment_list">
+	                	
+		                	<c:forEach var="comment" items="${comment}">
+				                	<div class="comment_list">
 				               			<div class="comment_info">
 				                			<span class="board_img_title">
 							                	<img src="<c:url value='/resources/img/boyoung.jpg'/>"/>
 							                </span>
-				               				<div class="comment_id">${reply.nickName}</div>
+				               				<div class="comment_id">${comment.nickName}</div>
 				               				<div class="comment_date">
 					               				<i class="far fa-clock comment_clock"></i>
-					               				<fmt:formatDate value="${reply.regDate}" pattern="MM-dd HH:mm:ss" />
+					               				<fmt:formatDate value="${comment.regDate}" pattern="MM-dd HH:mm:ss" />
 				               				</div>
-				               				<div class="comment_update_button"><i class="fas fa-pen-alt"></i></div>
-				               				<div class="comment_delete_button"><i class="far fa-trash-alt"></i></div>
+				               				<div class="comment_update_button"><i class="fas fa-pen-alt">수정</i></div>
+				               				<div class="comment_delete_button"><i class="far fa-trash-alt">삭제</i></div>
+				               				<div class="comment_reply_button"><i class="fas fa-reply">답글</i></div>
 				               			</div>
 						                
-				               			<div class="bubble"><p>${reply.content}</p></div>
+				               			<div class="bubble"><p>${comment.content}</p></div>
+				               			
+<!-- 				               			<div class="reply_wrapper"> -->
+<!-- 					               			<div class="reply_content_wrapper"> -->
+<!-- 							           			<textarea class="reply_content" name="content"></textarea> -->
+<!-- 						           			</div> -->
+<%-- 						           			<div class="reply_submit_button" name="${comment.commentNo}" nick="${comment.nickName}" type="comment" no="${comment.commentNo}"> --%>
+<!-- 							           			<a class="far fa-edit"> 댓글 수정</a> -->
+<!-- 						           			</div> -->
+<!-- 					           			</div> -->
+				               			
+				               			<div class="reply_wrapper">
+					               			<div class="reply_content_wrapper">
+							           			<textarea class="reply_content" name="content"></textarea>
+						           			</div>
+						           			<div class="reply_submit_button" name="${comment.commentNo}" nick="${comment.nickName}" type="comment" no="${comment.commentNo}">
+							           			<a class="far fa-edit"> 답글 등록</a>
+						           			</div>
+					           			</div>
 				               		</div>
-		                		</c:if>
-		               		</c:forEach>
-						</c:forEach>
-					
-					</div>
-                </div>
+			                	<c:forEach var="reply" items="${reply}">
+			                		<c:if test="${reply.replyNo eq comment.commentNo}">
+				                		<div class="reply_list">
+					               			<div class="comment_info">
+					                			<span class="board_img_title">
+								                	<img src="<c:url value='/resources/img/boyoung.jpg'/>"/>
+								                </span>
+					               				<div class="comment_id">${reply.nickName}</div>
+					               				<div class="comment_date">
+						               				<i class="far fa-clock comment_clock"></i>
+						               				<fmt:formatDate value="${reply.regDate}" pattern="MM-dd HH:mm:ss" />
+					               				</div>
+					               				<div class="comment_update_button"><i class="fas fa-pen-alt">수정</i></div>
+					               				<div class="comment_delete_button"><i class="far fa-trash-alt">삭제</i></div>
+					               				<div class="comment_reply_button"><i class="fas fa-reply">답글</i></div>
+					               			</div>
+							                
+					               			<div class="bubble"><p>${reply.content}</p></div>
+					               			<div class="reply_wrapper">
+						               			<div class="reply_content_wrapper">
+								           			<textarea class="reply_content" name="content"></textarea>
+							           			</div>
+						           			<div class="reply_submit_button" name="${comment.commentNo}" nick="${reply.nickName}" type="reply" no="${reply.commentNo}">
+							           			<a class="far fa-edit"> 답글 등록</a>
+						           			</div>
+					           			</div>
+					               		</div>
+			                		</c:if>
+			               		</c:forEach>
+							</c:forEach>
+						
+						</div>
+	                </div>
                 
-                <br><br><br>
-                
-                <div class="comment_write_form">
-           			<div class="board_article_comment_amount_underline">
-                		<i class="fas fa-feather"></i><span> 댓글 작성</span>
-                	</div>
-                	
-                	<div class="comment_write_info">
-                		<c:if test="${sessionScope.user eq null}">
-                			<span class="board_img_title">	
-                				<img src="<c:url value='/resources/img/profile.png'/>"/>
-               				</span>
-               				<a class="comment_id" id="go_login_form" href="<c:url value='/main/member/loginform.do'/>">로그인이 필요합니다.</a>
-	          			</c:if>
-	          			<c:if test="${sessionScope.user ne null}">
-		          			<span class="board_img_title">
-		              			<img src="<c:url value='/resources/img/boyoung.jpg'/>"/>
-		           			</span>
-		       				<div class="comment_id">${sessionScope.user.nickName}</div>
-	           			</c:if>
-       				</div>
-           			
-           			
-           			<div class="comment_content_wrapper">
-	           			<textarea class="comment_content" name="content"></textarea>
+	                <br><br><br>
+	                
+	                <div class="comment_write_form">
+	           			<div class="board_article_comment_amount_underline">
+	                		<i class="fas fa-feather"></i><span> 댓글 작성</span>
+	                	</div>
+	                	
+	                	<div class="comment_write_info">
+	                		<c:if test="${sessionScope.user eq null}">
+	                			<span class="board_img_title">	
+	                				<img src="<c:url value='/resources/img/profile.png'/>"/>
+	               				</span>
+	               				<a class="comment_id" id="go_login_form" href="<c:url value='/main/member/loginform.do'/>">로그인이 필요합니다.</a>
+		          			</c:if>
+		          			<c:if test="${sessionScope.user ne null}">
+			          			<span class="board_img_title">
+			              			<img src="<c:url value='/resources/img/boyoung.jpg'/>"/>
+			           			</span>
+			       				<div class="comment_id">${sessionScope.user.nickName}</div>
+		           			</c:if>
+	       				</div>
 	           			
-           			</div>
-           			<div class="comment_submit_button">
-	           			<a class="far fa-edit"> 댓글 등록</a>
-           			</div>
-                </div>
-                
-            </div>
-            
-            <br><br><br>
-        
-        	<div class="free_board_detail_bottom">
-                <a href="<c:url value='/main/board/free/list.do?pageNo=${param.pageNo}&input=${param.input}&sortType=${param.sortType}&searchType=${param.searchType}'/>" class="fas fa-list-ul"> 목록</a>
-            </div>
-
-            <br><br><br>
+	           			
+	           			<div class="comment_content_wrapper">
+		           			<textarea class="comment_content" name="content"></textarea>
+	           			</div>
+	           			<div class="comment_submit_button">
+		           			<a class="far fa-edit"> 댓글 등록</a>
+	           			</div>
+	                </div>
+	                
+	            </div>
+	            
+	            <br><br><br>
+	        
+	        	<div class="free_board_detail_bottom">
+	                <a href="<c:url value='/main/board/free/list.do?pageNo=${param.pageNo}&input=${param.input}&sortType=${param.sortType}&searchType=${param.searchType}'/>" class="fas fa-list-ul"> 목록</a>
+	            </div>
+	
+	            <br><br><br>
+				</div>
 				</div>
 			</main>
-         	   <div class="footer"></div>
 		</div>
 	</div>
 	
@@ -191,6 +219,54 @@
 	<script>
 		let user = "${sessionScope.user}";
 		let like = "${like.likeStatus}";
+		let nickName = "${sessionScope.user.nickName}";
+		let memberNo = "${sessionScope.user.memberNo}";
+	
+		$(document).ready(function () {
+			$(".reply_wrapper").hide();
+		});
+		
+		/** 댓글 삭제 */
+		function deleteComment() {
+			$(".comment_delete_button").click(function () {
+				let commentNo = $(this).parent().siblings(".reply_wrapper").children(".reply_submit_button").attr("no");
+				if ( nickName != $(this).siblings(".comment_id").text() ) {
+					alert("본인이 작성하지 않은 댓글은 삭제할 수 없습니다.");
+					return;
+				}
+				
+				$.ajax({
+	   				type: "POST",
+	   				url: "delete-comment-ajax.do",
+	   				data: 
+	   					{
+	   					commentNo : commentNo
+	   					},
+	   				success: function () {
+	   					alert("삭제 되었습니다.");
+	   				}
+				});
+				if ( $(this).parent().siblings(".reply_wrapper").children(".reply_submit_button").attr("type") == "reply" ) {
+					$(this).parent().parent().remove();
+	  				$(".comment_highlight").text( parseInt( $(".comment_highlight").text() ) - 1 );
+	  				return;
+				}
+				if ( $(this).parent().parent().next().attr("class") == "reply_list" ) {
+					$(this).parent().siblings(".bubble").css({"width": "143.1"});
+					$(this).parent().siblings(".bubble").children("p").text("삭제된 댓글 입니다.");
+				} else {
+					$(this).parent().parent().remove();
+	  				$(".comment_highlight").text( parseInt( $(".comment_highlight").text() ) - 1 );
+				}
+			});
+		}
+		deleteComment();
+		
+		
+		$(".comment_reply_button").click(function () {
+			$(this).parent().siblings(".reply_wrapper").slideToggle();
+		});
+		
 		if (like == 'y') {
 			$(".board_article_like_wrapper").children("i").attr("class", "fas fa-heart fa-2x");
 			$(".board_article_like_wrapper").css({"border": "2px solid #FC2E5A"});
@@ -201,19 +277,24 @@
 		let input = "${param.input}";
 		let pageNo = "${param.pageNo}";
 		let boardNo = "${param.boardNo}";
-		let memberNo = 2;
 		
 		/** 동적으로 댓글 div의 width 변경 */
 		for (let i = 0; i < $(".bubble").length; i++) {
 			let width = $(".bubble:eq(" + i + ") > p").width();
 			if (width < 600) {
-			console.log(width);
 			$(".bubble:eq(" + i + ")").css({"width": width});
 			}
 		}
 		
+		/** 댓글 작성 */
 		$(".comment_submit_button > a").click(function () {
 			let content = $(".comment_content").val();
+			
+			if ( user == "" ) {
+				alert("댓글 작성은 로그인 후에 가능합니다.");
+				return;
+			}
+			
 			if ( $(".comment_content").val() == "" ) {
 				alert("댓글 내용을 입력해주세요.")
 				return;
@@ -223,17 +304,15 @@
    				url: "comment-ajax.do",
    				data: 
    					{
-   					sortType : sortType, 
-   					pageNo : pageNo, 
-   					searchType : searchType, 
-   					input : input,
    					memberNo : memberNo,
    					boardNo : boardNo,
    					content : content
    					},
    				dataType: "json",
    				success: function (commentResult) {
-					let commentList = commentResult.comment
+   					$(".comment_content").val('');
+					let commentList = commentResult.comment;
+					let replyList = commentResult.reply;					
 					let html = "";
    					for (let i = 0; i < commentList.length; i++) {
    						let comment = commentList[i];
@@ -248,12 +327,51 @@
                			html += 		'<div class="comment_date">';
                			html += 			'<i class="far fa-clock comment_clock"></i>' + date;
            				html += 		'</div>';
-           				html += 		'<div class="comment_update_button"><i class="fas fa-pen-alt"></i></div>';
-           				html += 		'<div class="comment_delete_button"><i class="far fa-trash-alt"></i></div>';
+           				html += 		'<div class="comment_update_button"><i class="fas fa-pen-alt">수정</i></div>';
+           				html += 		'<div class="comment_delete_button"><i class="far fa-trash-alt">삭제</i></div>';
+           				html += 		'<div class="comment_reply_button"><i class="fas fa-reply">답글</i></div>';
        					html += 	'</div>';
           				html += 	'<div class="bubble"><p>' + comment.content + '</p></div>';
+          				html +=		'<div class="reply_wrapper">';
+          				html +=			'<div class="reply_content_wrapper">';
+          				html +=				'<textarea class="reply_content" name="content"></textarea>';
+          				html +=			'</div>';
+          				html +=			'<div class="reply_submit_button" name="' + comment.commentNo + '" nick="' + comment.nickName + '" no="' + comment.commentNo + '" type="comment">';
+          				html +=				'<a class="far fa-edit"> 답글 등록</a>';
+          				html +=			'</div>';
+          				html +=		'</div>';
           				html += '</div>';
    						
+          				for (let i = 0; i < replyList.length; i++) {
+       						let reply = replyList[i];
+       						let date = moment(reply.regDate).format("MM-DD HH:mm");
+       						
+       						if (reply.replyNo == comment.commentNo) {
+       							html += '<div class="reply_list">';
+                        		html += 	'<div class="comment_info">';
+                        		html += 		'<span class="board_img_title">';
+                        		html +=     		'<img src="<c:url value='/resources/img/boyoung.jpg'/>"/>';
+                       			html +=     	'</span>';
+                       			html += 		'<div class="comment_id">' + reply.nickName + '</div>';
+                       			html += 		'<div class="comment_date">';
+                       			html += 			'<i class="far fa-clock comment_clock"></i>' + date;
+                   				html += 		'</div>';
+                   				html += 		'<div class="comment_update_button"><i class="fas fa-pen-alt">수정</i></div>';
+                   				html += 		'<div class="comment_delete_button"><i class="far fa-trash-alt">삭제</i></div>';
+                   				html += 		'<div class="comment_reply_button"><i class="fas fa-reply">답글</i></div>';
+               					html += 	'</div>';
+                  				html += 	'<div class="bubble"><p>' + reply.content + '</p></div>';
+                  				html +=		'<div class="reply_wrapper">';
+                  				html +=			'<div class="reply_content_wrapper">';
+                  				html +=				'<textarea class="reply_content" name="content"></textarea>';
+                  				html +=			'</div>';
+                  				html +=			'<div class="reply_submit_button" name="' + comment.commentNo + '" nick="' + reply.nickName + '" no="' + comment.commentNo + '" type="reply">';
+                  				html +=				'<a class="far fa-edit"> 답글 등록</a>';
+                  				html +=			'</div>';
+                  				html +=		'</div>';
+                  				html += '</div>';
+       						}
+          				}
    					}
    					
    					$(".board_article_comment_list").html(html);
@@ -262,13 +380,250 @@
    					for (let i = 0; i < $(".bubble").length; i++) {
    						let width = $(".bubble:eq(" + i + ") > p").width();
    						if (width < 600) {
-   						console.log(width);
    						$(".bubble:eq(" + i + ")").css({"width": width});
    						}
    					}
+   					
+   					$(".reply_wrapper").hide();
+   					
+   					$(".comment_reply_button").click(function () {
+   						$(this).parent().siblings(".reply_wrapper").slideToggle();
+   					});
+   					
+   					$(".comment_highlight").text( parseInt( $(".comment_highlight").text() ) + 1 );
+   					
+   					replyComment();
+   					deleteComment();
    				}
 			});
 		});
+		
+		/** 답글 작성 */
+		function replyComment() {
+		
+			$(".reply_submit_button").click(function () {
+				let content = $(this).siblings().children().val();
+				let memberNo = "${sessionScope.user.memberNo}";
+				let replyNo = $(this).attr("name");
+				let replyName = $(this).attr("nick");
+
+				if ( content == "" ) {
+					alert("답글 내용을 입력해주세요.")
+					return;
+				}
+				console.log(replyNo);
+				content = "<b class='reply_name'>" + "@" + replyName + "</b>" + " " + content;
+				console.log(content);
+				
+				$.ajax({
+	   				type: "POST",
+	   				url: "reply-ajax.do",
+	   				data: 
+	   					{
+	   					replyNo : replyNo,
+	   					memberNo : memberNo,
+	   					boardNo : boardNo,
+	   					content : content
+	   					},
+	   				dataType: "json",
+	   				success: function (replyResult) {
+	   					console.log(replyResult);
+	   					let commentList = replyResult.comment;
+						let replyList = replyResult.reply;					
+						let html = "";
+	   					for (let i = 0; i < commentList.length; i++) {
+	   						let comment = commentList[i];
+	   						let date = moment(comment.regDate).format("MM-DD HH:mm");
+	   						
+	                		html += '<div class="comment_list">';
+	                		html += 	'<div class="comment_info">';
+	                		html += 		'<span class="board_img_title">';
+	                		html +=     		'<img src="<c:url value='/resources/img/boyoung.jpg'/>"/>';
+	               			html +=     	'</span>';
+	               			html += 		'<div class="comment_id">' + comment.nickName + '</div>';
+	               			html += 		'<div class="comment_date">';
+	               			html += 			'<i class="far fa-clock comment_clock"></i>' + date;
+	           				html += 		'</div>';
+	           				html += 		'<div class="comment_update_button"><i class="fas fa-pen-alt">수정</i></div>';
+	           				html += 		'<div class="comment_delete_button"><i class="far fa-trash-alt">삭제</i></div>';
+	           				html += 		'<div class="comment_reply_button"><i class="fas fa-reply">답글</i></div>';
+	       					html += 	'</div>';
+	          				html += 	'<div class="bubble"><p>' + comment.content + '</p></div>';
+	          				html +=		'<div class="reply_wrapper">';
+	          				html +=			'<div class="reply_content_wrapper">';
+	          				html +=				'<textarea class="reply_content" name="content"></textarea>';
+	          				html +=			'</div>';
+	          				html +=			'<div class="reply_submit_button" name="' + comment.commentNo + '" nick="' + comment.nickName + '" no="' + comment.commentNo + '" type="comment">';
+	          				html +=				'<a class="far fa-edit"> 답글 등록</a>';
+	          				html +=			'</div>';
+	          				html +=		'</div>';
+	          				html += '</div>';
+	   						
+	          				for (let i = 0; i < replyList.length; i++) {
+	       						let reply = replyList[i];
+	       						let date = moment(reply.regDate).format("MM-DD HH:mm");
+	       						
+	       						if (reply.replyNo == comment.commentNo) {
+	       							html += '<div class="reply_list">';
+	                        		html += 	'<div class="comment_info">';
+	                        		html += 		'<span class="board_img_title">';
+	                        		html +=     		'<img src="<c:url value='/resources/img/boyoung.jpg'/>"/>';
+	                       			html +=     	'</span>';
+	                       			html += 		'<div class="comment_id">' + reply.nickName + '</div>';
+	                       			html += 		'<div class="comment_date">';
+	                       			html += 			'<i class="far fa-clock comment_clock"></i>' + date;
+	                   				html += 		'</div>';
+	                   				html += 		'<div class="comment_update_button"><i class="fas fa-pen-alt">수정</i></div>';
+	                   				html += 		'<div class="comment_delete_button"><i class="far fa-trash-alt">삭제</i></div>';
+	                   				html += 		'<div class="comment_reply_button"><i class="fas fa-reply">답글</i></div>';
+	               					html += 	'</div>';
+	                  				html += 	'<div class="bubble"><p>' + reply.content + '</p></div>';
+	                  				html +=		'<div class="reply_wrapper">';
+	                  				html +=			'<div class="reply_content_wrapper">';
+	                  				html +=				'<textarea class="reply_content" name="content"></textarea>';
+	                  				html +=			'</div>';
+	                  				html +=			'<div class="reply_submit_button" name="' + comment.commentNo + '" nick="' + reply.nickName + '" no="' + comment.commentNo + '" type="reply">';
+	                  				html +=				'<a class="far fa-edit"> 답글 등록</a>';
+	                  				html +=			'</div>';
+	                  				html +=		'</div>';
+	                  				html += '</div>';
+	       						}
+	          				}
+	   					}
+	   					
+	   					$(".board_article_comment_list").html(html);
+	   					
+	   					/** 동적으로 댓글 div의 width 변경 */
+	   					for (let i = 0; i < $(".bubble").length; i++) {
+	   						let width = $(".bubble:eq(" + i + ") > p").width();
+	   						if (width < 600) {
+	   						$(".bubble:eq(" + i + ")").css({"width": width});
+	   						}
+	   					}
+	   					
+	   					$(".reply_wrapper").hide();
+	   					
+	   					$(".comment_reply_button").click(function () {
+	   						$(this).parent().siblings(".reply_wrapper").slideToggle();
+	   					});
+	   					
+	   					$(".comment_highlight").text( parseInt( $(".comment_highlight").text() ) + 1 );
+	   					
+	   					replyComment();
+	   					deleteComment();
+	   				}
+				});
+			});
+		}
+		replyComment();
+		
+		/** 댓글 수정 */
+		function updateComment() {
+		
+			$(".comment_update_button").click(function () {
+				let commentNo = $(this).parent().siblings(".reply_wrapper").children(".reply_submit_button").attr("no");
+				if ( nickName != $(this).siblings(".comment_id").text() ) {
+					alert("본인이 작성하지 않은 댓글은 수정할 수 없습니다.");
+					return;
+				}
+				
+				$.ajax({
+	   				type: "POST",
+	   				url: "delete-comment-ajax.do",
+	   				data: 
+	   					{
+	   					commentNo : commentNo
+	   					},
+	   				dataType: "json",
+	   				success: function (replyResult) {
+	   					console.log(replyResult);
+	   					let commentList = replyResult.comment;
+						let replyList = replyResult.reply;					
+						let html = "";
+	   					for (let i = 0; i < commentList.length; i++) {
+	   						let comment = commentList[i];
+	   						let date = moment(comment.regDate).format("MM-DD HH:mm");
+	   						
+	                		html += '<div class="comment_list">';
+	                		html += 	'<div class="comment_info">';
+	                		html += 		'<span class="board_img_title">';
+	                		html +=     		'<img src="<c:url value='/resources/img/boyoung.jpg'/>"/>';
+	               			html +=     	'</span>';
+	               			html += 		'<div class="comment_id">' + comment.nickName + '</div>';
+	               			html += 		'<div class="comment_date">';
+	               			html += 			'<i class="far fa-clock comment_clock"></i>' + date;
+	           				html += 		'</div>';
+	           				html += 		'<div class="comment_update_button"><i class="fas fa-pen-alt">수정</i></div>';
+	           				html += 		'<div class="comment_delete_button"><i class="far fa-trash-alt">삭제</i></div>';
+	           				html += 		'<div class="comment_reply_button"><i class="fas fa-reply">답글</i></div>';
+	       					html += 	'</div>';
+	          				html += 	'<div class="bubble"><p>' + comment.content + '</p></div>';
+	          				html +=		'<div class="reply_wrapper">';
+	          				html +=			'<div class="reply_content_wrapper">';
+	          				html +=				'<textarea class="reply_content" name="content"></textarea>';
+	          				html +=			'</div>';
+	          				html +=			'<div class="reply_submit_button" name="' + comment.commentNo + '" nick="' + comment.nickName + '" no="' + comment.commentNo + '" type="comment">';
+	          				html +=				'<a class="far fa-edit"> 답글 등록</a>';
+	          				html +=			'</div>';
+	          				html +=		'</div>';
+	          				html += '</div>';
+	   						
+	          				for (let i = 0; i < replyList.length; i++) {
+	       						let reply = replyList[i];
+	       						let date = moment(reply.regDate).format("MM-DD HH:mm");
+	       						
+	       						if (reply.replyNo == comment.commentNo) {
+	       							html += '<div class="reply_list">';
+	                        		html += 	'<div class="comment_info">';
+	                        		html += 		'<span class="board_img_title">';
+	                        		html +=     		'<img src="<c:url value='/resources/img/boyoung.jpg'/>"/>';
+	                       			html +=     	'</span>';
+	                       			html += 		'<div class="comment_id">' + reply.nickName + '</div>';
+	                       			html += 		'<div class="comment_date">';
+	                       			html += 			'<i class="far fa-clock comment_clock"></i>' + date;
+	                   				html += 		'</div>';
+	                   				html += 		'<div class="comment_update_button"><i class="fas fa-pen-alt">수정</i></div>';
+	                   				html += 		'<div class="comment_delete_button"><i class="far fa-trash-alt">삭제</i></div>';
+	                   				html += 		'<div class="comment_reply_button"><i class="fas fa-reply">답글</i></div>';
+	               					html += 	'</div>';
+	                  				html += 	'<div class="bubble"><p>' + reply.content + '</p></div>';
+	                  				html +=		'<div class="reply_wrapper">';
+	                  				html +=			'<div class="reply_content_wrapper">';
+	                  				html +=				'<textarea class="reply_content" name="content"></textarea>';
+	                  				html +=			'</div>';
+	                  				html +=			'<div class="reply_submit_button" name="' + comment.commentNo + '" nick="' + reply.nickName + '" no="' + comment.commentNo + '" type="reply">';
+	                  				html +=				'<a class="far fa-edit"> 답글 등록</a>';
+	                  				html +=			'</div>';
+	                  				html +=		'</div>';
+	                  				html += '</div>';
+	       						}
+	          				}
+	   					}
+	   					
+	   					$(".board_article_comment_list").html(html);
+	   					
+	   					/** 동적으로 댓글 div의 width 변경 */
+	   					for (let i = 0; i < $(".bubble").length; i++) {
+	   						let width = $(".bubble:eq(" + i + ") > p").width();
+	   						if (width < 600) {
+	   						$(".bubble:eq(" + i + ")").css({"width": width});
+	   						}
+	   					}
+	   					
+	   					$(".reply_wrapper").hide();
+	   					
+	   					$(".comment_reply_button").click(function () {
+	   						$(this).parent().siblings(".reply_wrapper").slideToggle();
+	   					});
+	   					
+	   					$(".comment_highlight").text( parseInt( $(".comment_highlight").text() ) + 1 );
+	   					
+	   					replyComment();
+	   					deleteComment();
+	   				}
+				});
+			});
+		}
 		
 		/** 추천 클릭 이벤트 */
 		$(".board_article_like_wrapper").click(function () {
@@ -318,7 +673,6 @@
 				
 			}
 		});
-	
     </script>
 </body>
 </html>
