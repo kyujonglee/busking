@@ -120,9 +120,9 @@ public class QnaBoardController {
 	
 	
 	 @RequestMapping(value = "/detail.do")
-	   public ModelAndView detail(HttpServletRequest request, HttpServletResponse response, HttpSession session, int no) {
+	   public ModelAndView detail(HttpServletRequest request, HttpServletResponse response, HttpSession session, int boardNo) {
 		 // 해당 게시판 번호를 받아 리뷰 상세페이지로 넘겨줌
-	        QnaBoard qnaBoard = service.detail(no);
+	        QnaBoard qnaBoard = service.detail(boardNo);
 	        ModelAndView view = new ModelAndView();
 	        Cookie[] cookies = request.getCookies();
 	        // 비교하기 위해 새로운 쿠키
@@ -132,7 +132,7 @@ public class QnaBoardController {
 	        if (cookies != null && cookies.length > 0) {
 	            for (int i = 0; i < cookies.length; i++){
 	                // Cookie의 name이 cookie + qnaBoardNo와 일치하는 쿠키를 viewCookie에 넣어줌 
-	                if (cookies[i].getName().equals("cookie"+no)){ 
+	                if (cookies[i].getName().equals("cookie"+boardNo)){ 
 	                    viewCookie = cookies[i];
 	                }
 	            }
@@ -144,12 +144,12 @@ public class QnaBoardController {
 	                System.out.println("cookie 없음");
 	                
 	                // 쿠키 생성(이름, 값)
-	                Cookie newCookie = new Cookie("cookie"+no, "|" + no + "|");
+	                Cookie newCookie = new Cookie("cookie"+boardNo, "|" + boardNo + "|");
 	                // 쿠키 추가
 	                response.addCookie(newCookie);
 	                                
 	                // 쿠키를 추가 시키고 조회수 증가시킴
-	                service.updateViewCnt(no);;
+	                service.updateViewCnt(boardNo);;
 	 
 	            }
 	            // viewCookie가 null이 아닐경우 쿠키가 있으므로 조회수 증가 로직을 처리하지 않음.
@@ -160,7 +160,7 @@ public class QnaBoardController {
 	                String value = viewCookie.getValue();
 //	                System.out.println("cookie 값 : " + value);
 	            }
-	            qnaBoard = service.detail(no);
+	            qnaBoard = service.detail(boardNo);
 	            view.addObject("board",	qnaBoard);
 	            view.setViewName("main/board/qna/detail");
 	        } 

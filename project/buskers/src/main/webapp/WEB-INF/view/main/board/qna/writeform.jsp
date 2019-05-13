@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+   <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
@@ -15,37 +15,42 @@
     <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css" rel="stylesheet">
     <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
-    <link href="https://fonts.googleapis.com/css?family=Italianno" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic" rel="stylesheet">
     <link rel="stylesheet" href="<c:url value='/resources/css/main/board/free/koo.css'/>"/>
-    <link rel="stylesheet" href="<c:url value='/resources/css/main/board/free/detail.css'/>"/>
-    <link rel="stylesheet" href="<c:url value='/resources/css/main/board/free/writeform.css'/>"/>
+    <link rel="stylesheet" href="<c:url value='/resources/css/main/board/agency/agency.css'/>" />
     <title>Document</title>
 </head>
 <body>
     
-    <div class="board_container">
-        <div class="board_container_head">
-            buskers
-        </div>
-
-        <div class="container_side">
-            <ul class="side_menu">
-                <li></li>
-                <li><a href="#"><span class="fas fa-bullhorn"></span>공지사항</a></li>
-                <li><a href="#"><span class="fas fa-comments"></span>자유게시판</a></li>
-                <li><a href="#"><span class="fas fa-question"></span>질문게시판</a></li>
-                <li><a href="<c:url value='/main/board/agency/list.do'/>"><span class="fas fa-building"></span>업체게시판</a></li>
-            </ul>
-        </div>
-
-        <div class="board_container_body">
-            <div class="board_title">
-                <div class="board_title_underline">
-                    <a href="<c:url value='/main/board/free/list.do'/>">자유게시판</a>
-                </div>
-            </div>
+<body class="body-background">
+	<div class="main-form">
+		<%@ include file="../../../include/sidebar.jsp" %>
+		<div class="main-body">
+			<header class="header">
+				<div class="board_container">
+					<div class="header-columns">
+						<i class="fas fa-search fa-lg"></i> <input type="text"
+							placeholder="search" />
+					</div>
+					<div class="header-columns">
+						<span class="header__title">Buskers</span>
+					</div>
+					<div class="header-columns">
+						<span class="header__user"> <i class="fas fa-crown fa-lg"></i>
+							kyujong93 님
+						</span> <i class="fas fa-angle-down "></i> <i class="fas fa-bell fa-lg"></i>
+						<i class="fas fa-cog fa-lg"></i>
+					</div>
+				</div>
+			</header>
+			
+			<main class="main-freeboard">
+			<div class="agency">
+			<div class="freeboard__insert">
+				<div class="board_title">
+               	 <div class="board_title_underline">
+                    <a href="<c:url value='/main/board/qna/list.do'/>">질문게시판</a>
+               	 </div>
+        	    </div>
 			
 			<form action="write.do" method="get" id="write_from">
 	            <div class="board_head_line">
@@ -59,45 +64,45 @@
 	            
             
             
-            <br><br><br>
+          	  <br><br><br>
         
-        	<div class="free_board_detail_bottom">
-        		<a class="fas fa-edit"> 등록</a>
-                <a href="<c:url value='/main/board/free/list.do'/>" class="fas fa-list-ul"> 목록</a>
-                <input type="hidden" name="memberNo" value="2">
-            </div>
+	        	<div class="free_board_detail_bottom">
+	        		<a class="fas fa-edit"> 등록</a>
+	                <a href="<c:url value='/main/board/qna/list.do'/>" class="fas fa-list-ul"> 목록</a>
+	                <input type="hidden" name="memberNo" value="2">
+	            </div>
 
-            <br><br><br>
+          	  <br><br><br>
 			</form>
-
-            <div class="footer"></div>
-        </div>
-    
-    </div>
-    
+				</div>
+				</div>
+			</main>
+         	   <div class="footer"></div>
+		</div>
+	</div>
     <script>
-    	$(".fa-edit").click(function () {
-   			if ( $(".write_form_title").val() == "" ) {
-   				alert("제목을 입력하세요");
-   				return;
-   			}
-   			
-   			if ( $(".board_write_form").val() == "" ) {
-   				alert("내용을 입력하세요");
-   				return;
-   			}
-   			
-    		$("#write_from").submit();
-    	});
-	    
+    $(".fa-edit").click(function () {
+			if ( $(".write_form_title").val() == "" ) {
+				alert("제목을 입력하세요");
+				return;
+			}
+			
+			if ( $(".board_write_form").val() == "" ) {
+				alert("내용을 입력하세요");
+				return;
+			}
+			
+		$("#write_from").submit();
+	});
     
-	    $(document).ready(function() {
-	        $('.board_write_form').summernote({
-                height: 500,                 // set editor height
-                width: 800,
-                focus: false                  // set focus to editable area after initializing summernote
-	        });
-	    });
+
+    $(document).ready(function() {
+        $('.board_write_form').summernote({
+            height: 500,                 // set editor height
+            width: 1060,
+            focus: false                  // set focus to editable area after initializing summernote
+        });
+    });
     </script>
 </body>
 </html>

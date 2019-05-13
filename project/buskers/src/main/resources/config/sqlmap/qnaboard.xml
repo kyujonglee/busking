@@ -15,23 +15,27 @@
 	<select id="selectBoard" parameterType="qnaBoard" resultType="qnaBoard">
 		select *
   		  from (select @rownum:=@rownum+1 rnum, a.*
-		          from ( select *
-		                   from tb_qnaboard
-						  WHERE (@rownum:=0)=0
+		          from ( select f.*, count(c.board_no) as comment_count, nick_name
+		                   from tb_qnaboard f
+                           left join tb_qnaboard_comment c on f.board_no = c.board_no
+		                  inner join tb_member m on m.member_no = f.member_no
+						  where (@rownum:=0)=0
 						  
 						<choose>
 							<when test="searchType == 'title'">
 								and title like concat('%', #{input}, '%')
 							</when>
 							<when test="searchType == 'content'">
-								and content like concat('%', #{input}, '%')
+								and f.content like concat('%', #{input}, '%')
 							</when>
-							<when test="searchType == 'writer'">
-								and writer like concat('%', #{input}, '%')
+							<when test="searchType == 'nickName'">
+								and nick_name like concat('%', #{input}, '%')
 							</when>
 							<otherwise>
 							</otherwise>
 						</choose>
+						
+						group by board_no
 						
 						<choose>
 							<when test="sortType == 'viewDESC'">
