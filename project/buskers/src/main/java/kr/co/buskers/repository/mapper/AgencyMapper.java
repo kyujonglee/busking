@@ -10,12 +10,16 @@ import kr.co.buskers.repository.domain.Genre;
 public interface AgencyMapper {
 	List<AgencyInfo> selectAgencyInfo(AgencyPage page);
 	int selectAgencyInfoCount();
-	void insertAgencyInfo(AgencyInfo agencyInfo);
-	void insertAgencyGenre(AgencyGenre agencyGenre);
 	AgencyInfo selectAgencyInfoByNo(int agencyInfoNo);
 	List<AgencyGenre> selectAgencyGenreByNo(int agencyInfoNo);
+	List<Genre> selectGenre();
+	
+	void insertAgencyInfo(AgencyInfo agencyInfo);
+	void insertAgencyGenre(AgencyGenre agencyGenre);
+	
 	void deleteAgencyInfoByNo(int agencyInfoNo);
 	void deleteAgencyGenreByNo(int agencyInfoNo);
 	void deleteAgencyByNo(int agencyInfoNo);
-	List<Genre> selectGenre();
+	
+	void updateAgencyInfo(AgencyInfo agencyInfo);
 }

@@ -4,6 +4,8 @@
   background-color: var(--color-white);
   padding: 20px;
   box-sizing: border-box;
+  margin-bottom : 20px;
+  border-radius : 10px;
 }
 
 .agency-insert__title {
@@ -19,6 +21,8 @@
 }
 
 .agency-insert__item .agency-insert__item-column:first-child {
+  color : var(--color-orange);
+  font-weight : 600;
   width: 15%;
   height: 20px;
   display: flex;
@@ -65,7 +69,7 @@
     width: 100px;
 }
 .agency-insert .agency-insert__item .agency-insert__item-addr {
-    width: 400px;
+    width: 700px;
 }
 
 .agency-insert__checkbox-title {

@@ -13,6 +13,8 @@
     />
     <link rel="stylesheet"
 	href="<c:url value='/resources/css/main/board/agency/agency.css'/>" />
+	<link rel="stylesheet" href="<c:url value='/resources/css/common/sweetalert2.min.css'/>" />
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
     <title>buskers</title>
   </head>
   <body class="body-background">
@@ -179,7 +181,7 @@
                 </div>
               </div>
               <div class="agency-insert__btn-content">
-                <button class="agency-insert__btn">등 록</button>
+                <button type="button" class="agency-insert__btn" onclick="insertAgency();">등 록</button>
               </div>
             </section>
             </form>
@@ -190,7 +192,5 @@
     <script src="<c:url value='/resources/js/jquery-3.4.1.min.js'/>"></script>
     <script src="<c:url value='/resources/js/main/board/agency/side-bar.js'/>"></script>
     <script src="<c:url value='/resources/js/main/board/agency/insert.js'/>"></script>
-    <script type="text/javascript">
-    </script>
   </body>
 </html>

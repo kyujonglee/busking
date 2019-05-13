@@ -6,7 +6,7 @@ public class FreePage {
 	private String searchType;
 	private String input;
 
-	
+	 
 	public String getInput() {
 		return input;
 	}

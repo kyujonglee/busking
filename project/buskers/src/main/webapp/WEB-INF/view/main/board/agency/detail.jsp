@@ -128,7 +128,7 @@
                     </div>
                   </div>
                   <div class="agency-insert__btn-content">
-                  	<a href="<c:url value='/main/board/agency/updateform.do?agencyInfoNo=${agencyInfo.agencyInfoNo}'/>">
+                  	<a href="<c:url value='/main/board/agency/updateform.do?agencyInfoNo=${agencyInfo.agencyInfoNo}&pageNo=${pageNo}'/>">
                    	 <button type="button" class="agency-insert__btn">
                     	수정 
                    	 </button>
@@ -150,10 +150,7 @@
         </main>
       </div>
     </div>
-    <script
-      src="https://code.jquery.com/jquery-3.4.1.min.js"
-      crossorigin="anonymous"
-    ></script>
+    <script src="<c:url value='/resources/js/jquery-3.4.1.min.js'/>"></script>
     <script src="<c:url value='/resources/js/main/board/agency/side-bar.js'/>"></script>
     <script src="<c:url value='/resources/js/main/board/agency/detail.js'/>"></script>
     <script type="text/javascript">

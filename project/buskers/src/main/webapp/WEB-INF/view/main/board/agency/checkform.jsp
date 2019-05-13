@@ -55,7 +55,7 @@
                 <button class="agency-check__ok-button">확인</button>
               </section>
               <section class="agency-check__section">
-                업체등록번호를 모르시나요?
+              <span class="agency-check__section-question">업체등록번호를 모르시나요?</span>
                 <a href="<c:url value='/main/board/agency/insertform.do'/>">
                   <span class="agency-check__insert-link"
                     >업체 등록신청하러 가기</span
