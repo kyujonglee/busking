@@ -18,7 +18,7 @@
   <body class="body-background">
     <div class="main-form">
       <%@ include file="../../../include/sidebar.jsp" %>
-      <div class="main-body">
+      <div class="main-body main-body__agency">
         <header class="header">
           <div class="board_container">
             <div class="header-columns">

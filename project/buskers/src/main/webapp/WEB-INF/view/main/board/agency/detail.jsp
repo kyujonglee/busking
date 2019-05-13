@@ -19,26 +19,8 @@
   <body class="body-background">
     <div class="main-form">
       <%@ include file="../../../include/sidebar.jsp" %>
-      <div class="main-body">
-        <header class="header">
-          <div class="board_container">
-            <div class="header-columns">
-              <i class="fas fa-search fa-lg"></i>
-              <input type="text" placeholder="search" />
-            </div>
-            <div class="header-columns">
-              <span class="header__title">Buskers</span>
-            </div>
-            <div class="header-columns">
-              <span class="header__user">
-                <i class="fas fa-crown fa-lg"></i>
-                kyujong93 님
-              </span>
-              <i class="fas fa-angle-down "></i>
-              <i class="fas fa-bell fa-lg"></i>
-            </div>
-          </div>
-        </header>
+      <div class="main-body main-body__agency">
+        <%@ include file="/WEB-INF/view/include/header.jsp" %>
         <main class="main-agency">
           <div class="container">
             <div class="agency">

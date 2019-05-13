@@ -108,17 +108,27 @@
 					               				<i class="far fa-clock comment_clock"></i>
 					               				<fmt:formatDate value="${comment.regDate}" pattern="MM-dd HH:mm:ss" />
 				               				</div>
-				               				<div class="comment_update_button"><i class="fas fa-pen-alt"></i></div>
-				               				<div class="comment_delete_button"><i class="far fa-trash-alt"></i></div>
+				               				<div class="comment_update_button"><i class="fas fa-pen-alt">수정</i></div>
+				               				<div class="comment_delete_button"><i class="far fa-trash-alt">삭제</i></div>
 				               				<div class="comment_reply_button"><i class="fas fa-reply">답글</i></div>
 				               			</div>
 						                
 				               			<div class="bubble"><p>${comment.content}</p></div>
+				               			
+<!-- 				               			<div class="reply_wrapper"> -->
+<!-- 					               			<div class="reply_content_wrapper"> -->
+<!-- 							           			<textarea class="reply_content" name="content"></textarea> -->
+<!-- 						           			</div> -->
+<%-- 						           			<div class="reply_submit_button" name="${comment.commentNo}" nick="${comment.nickName}" type="comment" no="${comment.commentNo}"> --%>
+<!-- 							           			<a class="far fa-edit"> 댓글 수정</a> -->
+<!-- 						           			</div> -->
+<!-- 					           			</div> -->
+				               			
 				               			<div class="reply_wrapper">
 					               			<div class="reply_content_wrapper">
 							           			<textarea class="reply_content" name="content"></textarea>
 						           			</div>
-						           			<div class="reply_submit_button" name="${comment.commentNo}" nick="${comment.nickName}" type="comment">
+						           			<div class="reply_submit_button" name="${comment.commentNo}" nick="${comment.nickName}" type="comment" no="${comment.commentNo}">
 							           			<a class="far fa-edit"> 답글 등록</a>
 						           			</div>
 					           			</div>
@@ -135,17 +145,17 @@
 						               				<i class="far fa-clock comment_clock"></i>
 						               				<fmt:formatDate value="${reply.regDate}" pattern="MM-dd HH:mm:ss" />
 					               				</div>
-					               				<div class="comment_update_button"><i class="fas fa-pen-alt"></i></div>
-					               				<div class="comment_delete_button"><i class="far fa-trash-alt"></i></div>
+					               				<div class="comment_update_button"><i class="fas fa-pen-alt">수정</i></div>
+					               				<div class="comment_delete_button"><i class="far fa-trash-alt">삭제</i></div>
 					               				<div class="comment_reply_button"><i class="fas fa-reply">답글</i></div>
 					               			</div>
 							                
 					               			<div class="bubble"><p>${reply.content}</p></div>
 					               			<div class="reply_wrapper">
-					               			<div class="reply_content_wrapper">
-							           			<textarea class="reply_content" name="content"></textarea>
-						           			</div>
-						           			<div class="reply_submit_button" name="${comment.commentNo}" nick="${reply.nickName}" type="reply">
+						               			<div class="reply_content_wrapper">
+								           			<textarea class="reply_content" name="content"></textarea>
+							           			</div>
+						           			<div class="reply_submit_button" name="${comment.commentNo}" nick="${reply.nickName}" type="reply" no="${reply.commentNo}">
 							           			<a class="far fa-edit"> 답글 등록</a>
 						           			</div>
 					           			</div>
@@ -216,9 +226,10 @@
 			$(".reply_wrapper").hide();
 		});
 		
+		/** 댓글 삭제 */
 		function deleteComment() {
 			$(".comment_delete_button").click(function () {
-				let commentNo = $(this).parent().siblings(".reply_wrapper").children(".reply_submit_button").attr("name");
+				let commentNo = $(this).parent().siblings(".reply_wrapper").children(".reply_submit_button").attr("no");
 				if ( nickName != $(this).siblings(".comment_id").text() ) {
 					alert("본인이 작성하지 않은 댓글은 삭제할 수 없습니다.");
 					return;
@@ -231,22 +242,26 @@
 	   					{
 	   					commentNo : commentNo
 	   					},
-	   				success: function (result) {
+	   				success: function () {
+	   					alert("삭제 되었습니다.");
 	   				}
 				});
-				
-				if ( $(this).parent().siblings(".reply_content_wrapper").children(".reply_content").attr("name") == "reply" ) {
+				if ( $(this).parent().siblings(".reply_wrapper").children(".reply_submit_button").attr("type") == "reply" ) {
 					$(this).parent().parent().remove();
 	  				$(".comment_highlight").text( parseInt( $(".comment_highlight").text() ) - 1 );
 	  				return;
 				}
 				if ( $(this).parent().parent().next().attr("class") == "reply_list" ) {
-					$(this).parent().siblings(".bubble").children("p").text("삭제되었습니다.");
+					$(this).parent().siblings(".bubble").css({"width": "143.1"});
+					$(this).parent().siblings(".bubble").children("p").text("삭제된 댓글 입니다.");
+				} else {
+					$(this).parent().parent().remove();
+	  				$(".comment_highlight").text( parseInt( $(".comment_highlight").text() ) - 1 );
 				}
 			});
 		}
-		
 		deleteComment();
+		
 		
 		$(".comment_reply_button").click(function () {
 			$(this).parent().siblings(".reply_wrapper").slideToggle();
@@ -274,6 +289,7 @@
 		/** 댓글 작성 */
 		$(".comment_submit_button > a").click(function () {
 			let content = $(".comment_content").val();
+			
 			if ( user == "" ) {
 				alert("댓글 작성은 로그인 후에 가능합니다.");
 				return;
@@ -294,6 +310,7 @@
    					},
    				dataType: "json",
    				success: function (commentResult) {
+   					$(".comment_content").val('');
 					let commentList = commentResult.comment;
 					let replyList = commentResult.reply;					
 					let html = "";
@@ -310,8 +327,8 @@
                			html += 		'<div class="comment_date">';
                			html += 			'<i class="far fa-clock comment_clock"></i>' + date;
            				html += 		'</div>';
-           				html += 		'<div class="comment_update_button"><i class="fas fa-pen-alt"></i></div>';
-           				html += 		'<div class="comment_delete_button"><i class="far fa-trash-alt"></i></div>';
+           				html += 		'<div class="comment_update_button"><i class="fas fa-pen-alt">수정</i></div>';
+           				html += 		'<div class="comment_delete_button"><i class="far fa-trash-alt">삭제</i></div>';
            				html += 		'<div class="comment_reply_button"><i class="fas fa-reply">답글</i></div>';
        					html += 	'</div>';
           				html += 	'<div class="bubble"><p>' + comment.content + '</p></div>';
@@ -319,7 +336,7 @@
           				html +=			'<div class="reply_content_wrapper">';
           				html +=				'<textarea class="reply_content" name="content"></textarea>';
           				html +=			'</div>';
-          				html +=			'<div class="reply_submit_button" name="' + comment.commentNo + '" nick="' + comment.nickName + '">';
+          				html +=			'<div class="reply_submit_button" name="' + comment.commentNo + '" nick="' + comment.nickName + '" no="' + comment.commentNo + '" type="comment">';
           				html +=				'<a class="far fa-edit"> 답글 등록</a>';
           				html +=			'</div>';
           				html +=		'</div>';
@@ -339,8 +356,8 @@
                        			html += 		'<div class="comment_date">';
                        			html += 			'<i class="far fa-clock comment_clock"></i>' + date;
                    				html += 		'</div>';
-                   				html += 		'<div class="comment_update_button"><i class="fas fa-pen-alt"></i></div>';
-                   				html += 		'<div class="comment_delete_button"><i class="far fa-trash-alt"></i></div>';
+                   				html += 		'<div class="comment_update_button"><i class="fas fa-pen-alt">수정</i></div>';
+                   				html += 		'<div class="comment_delete_button"><i class="far fa-trash-alt">삭제</i></div>';
                    				html += 		'<div class="comment_reply_button"><i class="fas fa-reply">답글</i></div>';
                					html += 	'</div>';
                   				html += 	'<div class="bubble"><p>' + reply.content + '</p></div>';
@@ -348,7 +365,7 @@
                   				html +=			'<div class="reply_content_wrapper">';
                   				html +=				'<textarea class="reply_content" name="content"></textarea>';
                   				html +=			'</div>';
-                  				html +=			'<div class="reply_submit_button" name="' + comment.commentNo + '" nick="' + reply.nickName + '">';
+                  				html +=			'<div class="reply_submit_button" name="' + comment.commentNo + '" nick="' + reply.nickName + '" no="' + comment.commentNo + '" type="reply">';
                   				html +=				'<a class="far fa-edit"> 답글 등록</a>';
                   				html +=			'</div>';
                   				html +=		'</div>';
@@ -375,8 +392,8 @@
    					
    					$(".comment_highlight").text( parseInt( $(".comment_highlight").text() ) + 1 );
    					
-   					deleteComment();
    					replyComment();
+   					deleteComment();
    				}
 			});
 		});
@@ -390,14 +407,14 @@
 				let replyNo = $(this).attr("name");
 				let replyName = $(this).attr("nick");
 
-				console.log(replyNo);
-				content = "<b class='reply_name'>" + "@" + replyName + "</b>" + " " + content;
-				console.log(content);
-				
 				if ( content == "" ) {
 					alert("답글 내용을 입력해주세요.")
 					return;
 				}
+				console.log(replyNo);
+				content = "<b class='reply_name'>" + "@" + replyName + "</b>" + " " + content;
+				console.log(content);
+				
 				$.ajax({
 	   				type: "POST",
 	   				url: "reply-ajax.do",
@@ -427,8 +444,8 @@
 	               			html += 		'<div class="comment_date">';
 	               			html += 			'<i class="far fa-clock comment_clock"></i>' + date;
 	           				html += 		'</div>';
-	           				html += 		'<div class="comment_update_button"><i class="fas fa-pen-alt"></i></div>';
-	           				html += 		'<div class="comment_delete_button"><i class="far fa-trash-alt"></i></div>';
+	           				html += 		'<div class="comment_update_button"><i class="fas fa-pen-alt">수정</i></div>';
+	           				html += 		'<div class="comment_delete_button"><i class="far fa-trash-alt">삭제</i></div>';
 	           				html += 		'<div class="comment_reply_button"><i class="fas fa-reply">답글</i></div>';
 	       					html += 	'</div>';
 	          				html += 	'<div class="bubble"><p>' + comment.content + '</p></div>';
@@ -436,7 +453,7 @@
 	          				html +=			'<div class="reply_content_wrapper">';
 	          				html +=				'<textarea class="reply_content" name="content"></textarea>';
 	          				html +=			'</div>';
-	          				html +=			'<div class="reply_submit_button" name="' + comment.commentNo + '" nick="' + comment.nickName + '">';
+	          				html +=			'<div class="reply_submit_button" name="' + comment.commentNo + '" nick="' + comment.nickName + '" no="' + comment.commentNo + '" type="comment">';
 	          				html +=				'<a class="far fa-edit"> 답글 등록</a>';
 	          				html +=			'</div>';
 	          				html +=		'</div>';
@@ -456,8 +473,8 @@
 	                       			html += 		'<div class="comment_date">';
 	                       			html += 			'<i class="far fa-clock comment_clock"></i>' + date;
 	                   				html += 		'</div>';
-	                   				html += 		'<div class="comment_update_button"><i class="fas fa-pen-alt"></i></div>';
-	                   				html += 		'<div class="comment_delete_button"><i class="far fa-trash-alt"></i></div>';
+	                   				html += 		'<div class="comment_update_button"><i class="fas fa-pen-alt">수정</i></div>';
+	                   				html += 		'<div class="comment_delete_button"><i class="far fa-trash-alt">삭제</i></div>';
 	                   				html += 		'<div class="comment_reply_button"><i class="fas fa-reply">답글</i></div>';
 	               					html += 	'</div>';
 	                  				html += 	'<div class="bubble"><p>' + reply.content + '</p></div>';
@@ -465,7 +482,7 @@
 	                  				html +=			'<div class="reply_content_wrapper">';
 	                  				html +=				'<textarea class="reply_content" name="content"></textarea>';
 	                  				html +=			'</div>';
-	                  				html +=			'<div class="reply_submit_button" name="' + comment.commentNo + '" nick="' + reply.nickName + '">';
+	                  				html +=			'<div class="reply_submit_button" name="' + comment.commentNo + '" nick="' + reply.nickName + '" no="' + comment.commentNo + '" type="reply">';
 	                  				html +=				'<a class="far fa-edit"> 답글 등록</a>';
 	                  				html +=			'</div>';
 	                  				html +=		'</div>';
@@ -492,13 +509,121 @@
 	   					
 	   					$(".comment_highlight").text( parseInt( $(".comment_highlight").text() ) + 1 );
 	   					
-	   					deleteComment();
 	   					replyComment();
+	   					deleteComment();
 	   				}
 				});
 			});
 		}
 		replyComment();
+		
+		/** 댓글 수정 */
+		function updateComment() {
+		
+			$(".comment_update_button").click(function () {
+				let commentNo = $(this).parent().siblings(".reply_wrapper").children(".reply_submit_button").attr("no");
+				if ( nickName != $(this).siblings(".comment_id").text() ) {
+					alert("본인이 작성하지 않은 댓글은 수정할 수 없습니다.");
+					return;
+				}
+				
+				$.ajax({
+	   				type: "POST",
+	   				url: "delete-comment-ajax.do",
+	   				data: 
+	   					{
+	   					commentNo : commentNo
+	   					},
+	   				dataType: "json",
+	   				success: function (replyResult) {
+	   					console.log(replyResult);
+	   					let commentList = replyResult.comment;
+						let replyList = replyResult.reply;					
+						let html = "";
+	   					for (let i = 0; i < commentList.length; i++) {
+	   						let comment = commentList[i];
+	   						let date = moment(comment.regDate).format("MM-DD HH:mm");
+	   						
+	                		html += '<div class="comment_list">';
+	                		html += 	'<div class="comment_info">';
+	                		html += 		'<span class="board_img_title">';
+	                		html +=     		'<img src="<c:url value='/resources/img/boyoung.jpg'/>"/>';
+	               			html +=     	'</span>';
+	               			html += 		'<div class="comment_id">' + comment.nickName + '</div>';
+	               			html += 		'<div class="comment_date">';
+	               			html += 			'<i class="far fa-clock comment_clock"></i>' + date;
+	           				html += 		'</div>';
+	           				html += 		'<div class="comment_update_button"><i class="fas fa-pen-alt">수정</i></div>';
+	           				html += 		'<div class="comment_delete_button"><i class="far fa-trash-alt">삭제</i></div>';
+	           				html += 		'<div class="comment_reply_button"><i class="fas fa-reply">답글</i></div>';
+	       					html += 	'</div>';
+	          				html += 	'<div class="bubble"><p>' + comment.content + '</p></div>';
+	          				html +=		'<div class="reply_wrapper">';
+	          				html +=			'<div class="reply_content_wrapper">';
+	          				html +=				'<textarea class="reply_content" name="content"></textarea>';
+	          				html +=			'</div>';
+	          				html +=			'<div class="reply_submit_button" name="' + comment.commentNo + '" nick="' + comment.nickName + '" no="' + comment.commentNo + '" type="comment">';
+	          				html +=				'<a class="far fa-edit"> 답글 등록</a>';
+	          				html +=			'</div>';
+	          				html +=		'</div>';
+	          				html += '</div>';
+	   						
+	          				for (let i = 0; i < replyList.length; i++) {
+	       						let reply = replyList[i];
+	       						let date = moment(reply.regDate).format("MM-DD HH:mm");
+	       						
+	       						if (reply.replyNo == comment.commentNo) {
+	       							html += '<div class="reply_list">';
+	                        		html += 	'<div class="comment_info">';
+	                        		html += 		'<span class="board_img_title">';
+	                        		html +=     		'<img src="<c:url value='/resources/img/boyoung.jpg'/>"/>';
+	                       			html +=     	'</span>';
+	                       			html += 		'<div class="comment_id">' + reply.nickName + '</div>';
+	                       			html += 		'<div class="comment_date">';
+	                       			html += 			'<i class="far fa-clock comment_clock"></i>' + date;
+	                   				html += 		'</div>';
+	                   				html += 		'<div class="comment_update_button"><i class="fas fa-pen-alt">수정</i></div>';
+	                   				html += 		'<div class="comment_delete_button"><i class="far fa-trash-alt">삭제</i></div>';
+	                   				html += 		'<div class="comment_reply_button"><i class="fas fa-reply">답글</i></div>';
+	               					html += 	'</div>';
+	                  				html += 	'<div class="bubble"><p>' + reply.content + '</p></div>';
+	                  				html +=		'<div class="reply_wrapper">';
+	                  				html +=			'<div class="reply_content_wrapper">';
+	                  				html +=				'<textarea class="reply_content" name="content"></textarea>';
+	                  				html +=			'</div>';
+	                  				html +=			'<div class="reply_submit_button" name="' + comment.commentNo + '" nick="' + reply.nickName + '" no="' + comment.commentNo + '" type="reply">';
+	                  				html +=				'<a class="far fa-edit"> 답글 등록</a>';
+	                  				html +=			'</div>';
+	                  				html +=		'</div>';
+	                  				html += '</div>';
+	       						}
+	          				}
+	   					}
+	   					
+	   					$(".board_article_comment_list").html(html);
+	   					
+	   					/** 동적으로 댓글 div의 width 변경 */
+	   					for (let i = 0; i < $(".bubble").length; i++) {
+	   						let width = $(".bubble:eq(" + i + ") > p").width();
+	   						if (width < 600) {
+	   						$(".bubble:eq(" + i + ")").css({"width": width});
+	   						}
+	   					}
+	   					
+	   					$(".reply_wrapper").hide();
+	   					
+	   					$(".comment_reply_button").click(function () {
+	   						$(this).parent().siblings(".reply_wrapper").slideToggle();
+	   					});
+	   					
+	   					$(".comment_highlight").text( parseInt( $(".comment_highlight").text() ) + 1 );
+	   					
+	   					replyComment();
+	   					deleteComment();
+	   				}
+				});
+			});
+		}
 		
 		/** 추천 클릭 이벤트 */
 		$(".board_article_like_wrapper").click(function () {
@@ -548,10 +673,6 @@
 				
 			}
 		});
-		
-		$(".bubble > p").text()
-		
-	
     </script>
 </body>
 </html>
