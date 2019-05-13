@@ -1,5 +1,6 @@
 @import "../../../common/common.css";
 @import 'detail.css';
+@import 'writeform.css';
 
 * {
     margin: 0;
