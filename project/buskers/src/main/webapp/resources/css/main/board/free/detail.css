@@ -340,6 +340,7 @@
 .fa-trash-alt {
 	margin-left: 10px;
 	cursor: pointer;
+	font-weight: bold;
 }
 
 #board_article_info_id {
