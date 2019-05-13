@@ -19,6 +19,7 @@
         vertical-align: middle;
         width: 30px;
         padding-left: 15px;
+        align-items : center;
     }
     .header-b2 {
     	display: inline-flex;

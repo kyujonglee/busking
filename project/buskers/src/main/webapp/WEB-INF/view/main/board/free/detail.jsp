@@ -673,8 +673,6 @@
 				
 			}
 		});
-		
-	
     </script>
 </body>
 </html>
