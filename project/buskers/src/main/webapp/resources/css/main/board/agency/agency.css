@@ -5,18 +5,6 @@
 @import 'check.css';
 @import 'detail.css';
 
-:root {
-  --color-background: #f5f7fc;
-  --color-gray: #808e94;
-  --color-darkgray: #282e30;
-  --color-orange: #f37420;
-  --color-white: #ffffff;
-  --color-black: #293234;
-  --color-green: #33c634;
-  --color-pink: #f4326c;
-  --color-blue: #3a5dfb;
-}
-
 .main-body__agency {
 	background-color : var(--color-background);
 }
