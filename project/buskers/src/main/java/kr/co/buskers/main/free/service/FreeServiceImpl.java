@@ -100,17 +100,13 @@ public class FreeServiceImpl implements FreeService {
 		mapper.insertBoard(freeBoard);
 	}
 	
-	public String deleteComment(int commentNo) {
-		String hasReply = "y";
+	public void deleteComment(int commentNo) {
 		
 		if (mapper.selectCommentHasReply(commentNo) == 0) {
-			hasReply = "n";
 			mapper.deleteComment(commentNo);
 		} else {
 			mapper.updateDeleteComment(commentNo);
 		}
-		
-		return hasReply;
 	}
 	
 	public int updateLikeStatus(Like like) {

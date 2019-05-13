@@ -64,10 +64,8 @@ public class FreeBoardController {
 	
 	@RequestMapping("delete-comment-ajax.do")
 	@ResponseBody
-	public String deleteComment(int commentNo) {
-		String hasReply = service.deleteComment(commentNo);
-		
-		return hasReply;
+	public void deleteComment(int commentNo) {
+		service.deleteComment(commentNo);
 	}
 	
 	@RequestMapping("reply-ajax.do")
