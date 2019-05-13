@@ -1,17 +1,32 @@
 console.log("insert");
-const insertButton = $(".agency-insert__btn");
-const insertForm = $("#insertForm");
-const email1 = insertForm.find("input[name='email1']");
-const email2 = insertForm.find("input[name='email2']");
-const email = insertForm.find("input[name='email']");
-console.log(email);
-console.log(email1.val());
-console.log(email2.val());
-function insertAgency(){
-	console.log(email1.val()+"@"+email2.val());
-	email.val(email1.val()+"@"+email2.val());
-	console.log(email.val());
+const insertForm = document.insertForm;
+const email1 = insertForm.email1;
+const email2 = insertForm.email2;
+const email = insertForm.email;
+const agencyName = insertForm.agencyName;
+const purpose = insertForm.purpose;
+const phone = insertForm.phone;
+const searchAddr = insertForm.searchAddr;
+searchAddr.setAttribute('checkAddr','n');
+
+$("#searchAddr").click(function(){
+	$(this).attr('checkAddr','n');
+});
+
+function allCheck(){
+	email.value = email1.value + email2.value;
+	console.log(email.value);
+	if (isEmpty(agencyName, "업체명을 입력해주세요"))return false;
+	if (isEmpty(purpose, "목적을 입력해주세요"))return false;
+	if (isEmpty(email, "이메일을 입력해주세요"))return false;
+	if (isEmpty(phone, "연락처를 입력해주세요"))return false;
 	
+	return insertAgency();
+}
+
+function insertAgency(){
+//	console.log(email1.val()+"@"+email2.val());
+	email.val(email1.val()+"@"+email2.val());
 	Swal.fire({
 	  title:'등록되었습니다.',
 	  text:'허가가 날 때까지 기다려주시기 바랍니다.',
@@ -19,10 +34,18 @@ function insertAgency(){
 	  timer:2000
 	});
 	setTimeout(function(){
-		insertForm.submit();
-		console.log("");
+		return true;
 	},2000);
 };
+
+function isEmpty(ele, msg) {
+	if (ele.value == "") {
+		alert(msg);
+		ele.focus();
+		return true;
+	}
+	return false;
+}
 
 
 //팝업주소띄우기!

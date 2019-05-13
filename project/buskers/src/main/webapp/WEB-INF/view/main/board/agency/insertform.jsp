@@ -15,6 +15,7 @@
 	href="<c:url value='/resources/css/main/board/agency/agency.css'/>" />
 	<link rel="stylesheet" href="<c:url value='/resources/css/common/sweetalert2.min.css'/>" />
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+	<script src="<c:url value='/resources/js/jquery-3.4.1.min.js'/>"></script>
     <title>buskers</title>
   </head>
   <body class="body-background">
@@ -28,7 +29,7 @@
               <a href=""><i class="fas fa-home fa-lg"></i></a>
               <span class="agency-title ">업체 등록 </span>
             </header>
-            <form id="insertForm" method="post" action="<c:url value='/main/board/agency/insert.do'/>">
+            <form name="insertForm" id="insertForm" method="post" action="<c:url value='/main/board/agency/insert.do'/>" onsubmit="return allCheck();">
             <section class="agency-insert">
               <div class="agency-insert__item">
                 <div class="agency-insert__item-column">
@@ -82,7 +83,7 @@
               <div class="agency-insert__item addr-search">
                 <div class="agency-insert__item-column"></div>
                 <div class="agency-insert__item-column">
-	                <button type="button" class="agency-insert__item-addr-search" onclick="goPopup();">주소검색</button>
+	                <button type="button" id="searchAddr" name="searchAddr" class="agency-insert__item-addr-search" onclick="goPopup();">주소검색</button>
                 </div>
               </div>
               <div class="agency-insert__item addr-search">
@@ -163,7 +164,7 @@
                 </div>
               </div>
               <div class="agency-insert__btn-content">
-                <button type="button" class="agency-insert__btn" onclick="insertAgency();">등 록</button>
+                <button class="agency-insert__btn">등 록</button>
               </div>
             </section>
             </form>
@@ -171,7 +172,7 @@
         </main>
       </div>
     </div>
-    <script src="<c:url value='/resources/js/jquery-3.4.1.min.js'/>"></script>
+    
     <script src="<c:url value='/resources/js/main/board/agency/side-bar.js'/>"></script>
     <script src="<c:url value='/resources/js/main/board/agency/insert.js'/>"></script>
   </body>

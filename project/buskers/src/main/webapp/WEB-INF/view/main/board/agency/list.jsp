@@ -91,7 +91,11 @@
 		<%= (mem==null)?null:1 %>
 		function checkUser(){
 			if(user === null){
-				alert('로그인 후 이용가능합니다.');
+				Swal.fire({
+				  title:'로그인 후 이용가능합니다.',
+				  type:'info',
+				  timer:2000
+				});
 			}else {
 				location.href = "<c:url value='/main/board/agency/checkform.do'/>";
 			}
