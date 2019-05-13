@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="<c:url value='/resources/css/main/member/login.css'/>" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.js"></script>
+    <script src="<c:url value='/resources/js/jquery-3.4.1.min.js'/>"></script>
     <title>buskers</title>
 </head>
 <body>

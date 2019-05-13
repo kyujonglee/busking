@@ -57,6 +57,24 @@ public class FreeBoardController {
 		Map<String, Object> result = service.insertComment(freeBoardComment);
 		
 		model.addAttribute("comment", result.get("comment"));
+		model.addAttribute("reply", result.get("reply"));
+		
+		return result;
+	}
+	
+	@RequestMapping("delete-comment-ajax.do")
+	@ResponseBody
+	public void deleteComment(int commentNo) {
+		service.deleteComment(commentNo);
+	}
+	
+	@RequestMapping("reply-ajax.do")
+	@ResponseBody
+	public Map<String, Object> insertReply(FreeBoardComment freeBoardComment, Model model) {
+		Map<String, Object> result = service.insertReply(freeBoardComment);
+		
+		model.addAttribute("comment", result.get("comment"));
+		model.addAttribute("reply", result.get("reply"));
 		
 		return result;
 	}

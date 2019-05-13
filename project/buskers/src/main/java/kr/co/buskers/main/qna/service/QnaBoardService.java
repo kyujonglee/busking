@@ -19,10 +19,10 @@ public interface QnaBoardService {
 	public QnaBoard updateForm(int no);
 	List<QnaBoardComment> commentList(int no);
 	List<QnaBoardComment> commentReplyList(int no);
-	
+	public void deleteComment(int no);
 	
 	//좋아요상태 업데이트
-	public Map<String,Object> likeStatusUpdate(QnaBoard qnaBoard);
+	public Map<String,Object> likeStatusUpdate(QnaBoard qnaBoard,int boardType,String likeKind);
 	
 	public void writeComment(QnaBoardComment qnaBoardComment);
 	

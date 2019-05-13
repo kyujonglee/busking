@@ -11,8 +11,29 @@ public class QnaBoardComment {
 	private Date regDate;
 	private int likeCnt;
 	private int disLikeCnt;
+	private String isDelete;
 	private String nickName;
+	private String likeStatus;
+	private String disLikeStatus;
 	
+	public String getLikeStatus() {
+		return likeStatus;
+	}
+	public void setLikeStatus(String likeStatus) {
+		this.likeStatus = likeStatus;
+	}
+	public String getDisLikeStatus() {
+		return disLikeStatus;
+	}
+	public void setDisLikeStatus(String disLikeStatus) {
+		this.disLikeStatus = disLikeStatus;
+	}
+	public String getIsDelete() {
+		return isDelete;
+	}
+	public void setIsDelete(String isDelete) {
+		this.isDelete = isDelete;
+	}
 	public String getNickName() {
 		return nickName;
 	}

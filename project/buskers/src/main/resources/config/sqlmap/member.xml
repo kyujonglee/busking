@@ -6,7 +6,7 @@
 	<!-- 일반 회원 가입 -->
 	<insert id="signupMember" parameterType="member">
 		insert into tb_member (
-			id, pass, salt, email, sex, nickname
+			id, pass, salt, email, sex, nick_name
 		) values (
 			#{id}, #{pass}, #{salt}, #{email}, #{sex}, #{nickName}
 		);
