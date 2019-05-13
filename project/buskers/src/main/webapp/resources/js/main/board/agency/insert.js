@@ -10,17 +10,18 @@ const searchAddr = insertForm.searchAddr;
 searchAddr.setAttribute('checkAddr','n');
 
 $("#searchAddr").click(function(){
-	$(this).attr('checkAddr','n');
+	$(this).attr('checkAddr','y');
 });
 
 function allCheck(){
 	email.value = email1.value + email2.value;
 	console.log(email.value);
+//	console.log(searchAddr);
+	console.log(searchAddr.getAttribute('checkAddr'));
 	if (isEmpty(agencyName, "업체명을 입력해주세요"))return false;
 	if (isEmpty(purpose, "목적을 입력해주세요"))return false;
 	if (isEmpty(email, "이메일을 입력해주세요"))return false;
 	if (isEmpty(phone, "연락처를 입력해주세요"))return false;
-	
 	return insertAgency();
 }
 

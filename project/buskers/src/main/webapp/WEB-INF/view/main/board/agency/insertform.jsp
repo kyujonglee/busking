@@ -73,7 +73,7 @@
                   <span class="agency-insert__item-name">연락처</span>
                 </div>
                 <input
-                  class="agency-insert__item-input "
+                  class="agency-insert__item-input"
                   type="text"
                   placeholder="ex) 010-xxxx-xxxx"
                   name="phone"
@@ -117,7 +117,6 @@
                     class="agency-insert__checkbox"
                     type="checkbox"
                     name="agencyCheckbox"
-                    id=""
                     value="1"
                   />
                   <span class="agency-insert__checkbox-title">스트릿댄스</span>
@@ -127,7 +126,6 @@
                     class="agency-insert__checkbox"
                     type="checkbox"
                     name="agencyCheckbox"
-                    id=""
                     value="2"
                   />
                   <span class="agency-insert__checkbox-title">발라드</span>
@@ -137,7 +135,6 @@
                     class="agency-insert__checkbox"
                     type="checkbox"
                     name="agencyCheckbox"
-                    id=""
                     value="3"
                   />
                   <span class="agency-insert__checkbox-title">개그</span>
@@ -147,7 +144,6 @@
                     class="agency-insert__checkbox"
                     type="checkbox"
                     name="agencyCheckbox"
-                    id=""
                     value="4"
                   />
                   <span class="agency-insert__checkbox-title">악기연주</span>
@@ -157,7 +153,6 @@
                     class="agency-insert__checkbox"
                     type="checkbox"
                     name="agencyCheckbox"
-                    id=""
                     value="5"
                   />
                   <span class="agency-insert__checkbox-title">마술</span>
