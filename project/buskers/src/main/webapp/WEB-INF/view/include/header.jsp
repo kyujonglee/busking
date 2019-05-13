@@ -9,7 +9,9 @@
 				placeholder="search" />
 		</div>
 		<div class="header-columns">
-			<span class="header__title">Buskers</span>
+			<a href="<c:url value="/main/main.do"/>">
+				<span class="header__title">Buskers</span>
+			</a>
 		</div>
 		<div class="header-columns">
 			<c:if test="${sessionScope.user eq null}">

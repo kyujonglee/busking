@@ -509,7 +509,6 @@
 				
 			}
 		});
-	
     </script>
 </body>
 </html>
