@@ -75,10 +75,18 @@ public class QnaBoardController {
 
 	@RequestMapping("/like.do")		
 	@ResponseBody
-	public Map<String,Object> test01(QnaBoard qnaBoard) {
-		Map<String,Object> result = service.likeStatusUpdate(qnaBoard);
+	public Map<String,Object> BoardLike(QnaBoard qnaBoard,int boardType,String likeKind) {
+//		System.out.println(qnaBoard.getBoardNo()+"번호");
+//		System.out.println(likeKind+"종류");
+		Map<String,Object> result = service.likeStatusUpdate(qnaBoard,boardType,likeKind);
 		return result;
 	}
+	
+	
+	
+	
+	
+	
 	
 	@RequestMapping("/comment-list.do")
 	@ResponseBody
@@ -91,6 +99,12 @@ public class QnaBoardController {
 	public List<QnaBoardComment> commentReplyList(int no) {  
 		return service.commentReplyList(no);
 	}
+	@RequestMapping("/comment-delete.do")
+	@ResponseBody
+	public void commentDelete(int no) {  
+		System.out.println(no);
+		service.deleteComment(no);
+	}
 	
 	
 	
@@ -98,6 +112,7 @@ public class QnaBoardController {
 	@ResponseBody
 	public void commentWrite(QnaBoardComment qnaBoardComment) {  //int no 는 화면에서 넘겨준 파라미터값이 들어감.
 		service.writeComment(qnaBoardComment);
+	
 	}
 
 	
@@ -124,19 +139,18 @@ public class QnaBoardController {
 	        }
 	        
 	        if (qnaBoard != null) {
-	            view.addObject("qnaBoard", qnaBoard);
 	            
 	            if (viewCookie == null) {    
 	                System.out.println("cookie 없음");
 	                
 	                // 쿠키 생성(이름, 값)
 	                Cookie newCookie = new Cookie("cookie"+no, "|" + no + "|");
-	                                
 	                // 쿠키 추가
 	                response.addCookie(newCookie);
-	 
+	                                
 	                // 쿠키를 추가 시키고 조회수 증가시킴
 	                service.updateViewCnt(no);;
+	 
 	            }
 	            // viewCookie가 null이 아닐경우 쿠키가 있으므로 조회수 증가 로직을 처리하지 않음.
 	            else {
@@ -146,7 +160,7 @@ public class QnaBoardController {
 	                String value = viewCookie.getValue();
 //	                System.out.println("cookie 값 : " + value);
 	            }
-	            
+	            qnaBoard = service.detail(no);
 	            view.addObject("board",	qnaBoard);
 	            view.setViewName("main/board/qna/detail");
 	        } 

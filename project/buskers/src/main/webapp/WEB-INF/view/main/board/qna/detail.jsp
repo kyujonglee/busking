@@ -95,9 +95,9 @@
 
 //좋아요 기능 구현
 $("#like").click(function(e){
-	let likeInfo = {boardNo: "${board.boardNo}" , memberNo:1 , likeCnt : "${board.likeCnt}"};
+	let likeInfo = {boardNo: "${board.boardNo}" , memberNo:2,boardType:3};
 // 		alert($(this).attr("href"));   	//url확인
-	e.preventDefault();ㅋ
+	e.preventDefault();
 	$.ajax({
 		type : "POST",
 		data : likeInfo,
@@ -144,7 +144,7 @@ if (n.length < digits) {
 }
 return zero + n;
 }
-
+///////////////////////////////////////////////////////////댓글쓰기
 $("#comment_write_button").click(function(){
 let writeContent = $(".comment_write_input").val();
 // 	alert(writeContent);
@@ -158,7 +158,7 @@ let writeContent = $(".comment_write_input").val();
 		$(".comment_container").empty();
 		commentLoad();
 	}).fail(function(xhr){
-		alert("서버 처리중 에러발생")
+		alert("(쓰기)서버 처리중 에러발생")
 		console.dir(xhr);
 	});
 })
@@ -183,15 +183,21 @@ function commentLoad(){
 			d = new Date(result[i].regDate);
 	  		let dt = getTimeStamp(d);
 			
+					/* commentNoHidden 삭제시에 코멘트 번호를 날려줘야됨... hidden이용*/
+                     /* LikeKind 클릭했을때 dislike인지 like인지 값을 controller로 넘겨줌. like=y, dislike=n if문*/
 				let text = `
 				<div class="comment_heiggh" id="comment`+result[i].commentNo+`">
-					<hr>
+				<hr>
+				<input type=hidden value=`+result[i].commentNo+` id="commentNoHidden">
+				<input type=hidden value=`+result[i].isDelete+` id="commentDeleteStatus">
 	              <div class="comment_content">
 	                  <div class="comment_profile">
 	                      <img class="profileImg" src="<c:url value='/resources/img/profile.png'/>">
 	                  </div>
 	                  <div class="nickname commentNik">`+result[i].nickName+`</div>
-	                  <div></div>
+	                  <div>
+	                  	  <button type="button" class="commentDelete">댓글삭제</button>
+	                  </div>
 	                  <div class="buttonDiv">
 	                      <a class="comment_answer">
 		                  	  <button class="answer" type="button">
@@ -203,31 +209,39 @@ function commentLoad(){
 	                  <div class="comment_like_img" >
 	                      <i class="material-icons">
 	                      thumb_up_alt
+	                      <input type=hidden value="y" id="likeKind">
 	                      </i></div>
-	                  <div class="comment_like" >`+result[i].likeCnt+`</div>
+	                  <div class="comment_like" id="comment_like">`+result[i].likeCnt+`</div>
 	                  <div class="comment_like_img">
 	                      <i class="material-icons">
 	                      thumb_down_alt
+	                      <input type=hidden value="n" id="likeKind">
 	                      </i></div>
-	                  <div class="comment_like">`+result[i].disLikeCnt+`</div>
+	                  <div class="comment_like" id="comment_disLike">`+result[i].disLikeCnt+`</div>
 	              </div>
 	              <div class="comment">
 	              	`+result[i].content+`
 	              </div>
               	</div>
 				`
+				
 				//댓글 불러오기
 				$(".comment_container").append(text);
 				//댓글숫자 불러오기
 				$(".comment_top").html("댓글("+result.length+")");
+				//댓글 삭제 처리
+				if($("#comment"+result[i].commentNo).find("#commentDeleteStatus").val()=='y'){
+					$("#comment"+result[i].commentNo).find(".comment").text("삭제된 댓글입니다.");
+				}
 			}
 			
 			commentReplyLoad()
 		}).fail(function(xhr){
-			alert("서버 처리중 에러발생")
+			alert("(댓글불러오기)서버 처리중 에러발생")
 			console.dir(xhr);
 		});
 }
+
 
 /////////////////////////////////////////////////reply
 function commentReplyLoad(){
@@ -238,15 +252,18 @@ function commentReplyLoad(){
 	.done(function (result) {
 // 		alert("성공이요");
 		for(let i=0; i<result.length ; i++){
-		console.log(result[i]);
+// 		console.log(result[i]);
 			
 		let writer = $("#comment"+result[i].replyNo).find(".nickname").text();
 			
 		d = new Date(result[i].regDate);
   		let dt = getTimeStamp(d);
 			
+				/* 삭제시에 코멘트 번호를 날려줘야됨... hidden이용*/
 			let text = `
-				<div id="comment`+result[i].commentNo+`">
+			<div id="comment`+result[i].commentNo+`">
+				<input type=hidden value=`+result[i].commentNo+` id="commentNoHidden">
+				<input type=hidden value=`+result[i].isDelete+` id="commentDeleteStatus">
                 <hr>
                 <div class="answer_comment_content"  >
                     <div class="answer_icon">
@@ -259,7 +276,7 @@ function commentReplyLoad(){
                     </div>
                     <div class="nickname commentNik">`+result[i].nickName+`</div>
                     <div>@
-                    `+writer+`
+                    `+writer+`<button type="button" class="commentDelete">댓글삭제</button>
                     </div>
                     <div class="buttonDiv">
                         <button class="answer">답글</button>
@@ -267,48 +284,91 @@ function commentReplyLoad(){
                     <div class="comment_date">`+dt+`</div>
                     <div class="comment_like_img">
                         <i class="material-icons">
+                        <input type=hidden value="y" id="likeKind">
                         thumb_up_alt
                         </i></div>
-                    <div class="comment_like">`+result[i].likeCnt+`</div>
+                    <div class="comment_like"  id="comment_like">`+result[i].likeCnt+`</div>
                     <div class="comment_like_img">
                         <i class="material-icons">
                         thumb_down_alt
+                        <input type=hidden value="n" id="likeKind">
                         </i>
                     </div>
-                    <div class="comment_like">`+result[i].disLikeCnt+`</div>
+                    <div class="comment_like"  id="comment_disLike">`+result[i].disLikeCnt+`</div>
                 </div>
                 <div class="comment">
                 `+result[i].content+`
                 </div>
             </div>
 			`
-			console.log(result);
-			$("#comment"+result[i].replyNo).append(text);
-			$(".comment_top").html("댓글("+result.length+")");
-			$(".nickName").html()
+// 			console.log(result);
+			//대댓글추가
+			$("#comment"+result[i].replyNo).after(text);
+			//대댓글삭제
+			if($("#comment"+result[i].commentNo).find("#commentDeleteStatus").val()=='y'){
+				$("#comment"+result[i].commentNo).find(".comment").text("삭제된 댓글입니다.");
+			}
 		}
 		
 	}).fail(function(xhr){
-		alert("서버 처리중 에러발생")
+		alert("(대댓글)서버 처리중 에러발생")
 		console.dir(xhr);
 	});
 
 }
 
 
+
+////////////////////////////////////////////////////////댓글삭제
+
+$(document).on("click",".commentDelete",function(){	
+	let no =$(this).parent().parent().parent().find("#commentNoHidden").val();
+	let del = $(this).parent().parent().parent().find("#commentDeleteStatus").val();
+	$.ajax({
+			
+		url: "<c:url value="/main/board/qna/comment-delete.do" />",
+		data: "no="+no,
+	})
+	.done(function (result) {
+// 		alert("삭제성공");
+			$(".comment_container").empty();
+			commentLoad();
+		if(del=='y'){
+
+		}else{
+			
+		}
+	})
+	
+	
+})
 //댓글 좋아요 //////////////////////////////////////////////////////////////////
-let k=0;
-$(".material-icons").click(function(){
-let commentLikeCnt=$(this).parent().next().text();
-if(k==0){
-    $(this).parent().next().text(parseInt(commentLikeCnt)+1);
-    k++;
-}else{
-    $(this).parent().next().text(parseInt(commentLikeCnt)-1);
-    k--;
-}
+$(document).on("click",".material-icons",function(e){
+	let commentNo = $(this).parent().parent().parent().find("#commentNoHidden").val();
+	let likeKind = $(this).find("#likeKind").val();
+// 	alert(commentNo)
+	let likeInfo = {boardNo: commentNo , memberNo:1 , boardType:4, likeKind:likeKind};
+// 	alert($(this).attr("href"));   	//url확인
+	e.preventDefault();
+	$.ajax({
+		type : "POST",
+		data : likeInfo,
+		url: "<c:url value="/main/board/qna/like.do" />",
+	}).done(function(result){
+// 		alert(result.commentNo)
+		$("#comment"+result.commentNo).find("#comment_like").text(result.likeCnt);
+		$("#comment"+result.commentNo).find("#comment_disLike").text(result.disLikeCnt);
+		
+	})
+	.fail(function(xhr){
+		alert("서버 처리중 에러발생")
+		console.dir(xhr);
+	})
 })
 
+
+
+/////////////////////////////////////////////////////////////////////쓰기폼
 let result=`
 	<div class="comment_write">
    	 	<div class="profile">
