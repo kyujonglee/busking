@@ -23,6 +23,17 @@
 		$("#logout").click(function() {
 			alert("로그아웃 하셨습니다.");
 		});
+		document.onkeyup = function(event){
+			console.log("fucking");
+			if( (event.ctrlKey == true && (event.keyCode == 78 || event.keyCode == 82)) //ctrl+N , ctrl+R 
+			|| (event.keyCode == 116)) // function F5
+			{
+				event.keyCode = 0;
+				event.cancelBubble = true;
+				event.returnValue = false;
+				console.log("what");
+			}
+		};
 	</script>
 	<script src="<c:url value='/resources/js/main/board/agency/side-bar.js'/>"></script>
 </body>

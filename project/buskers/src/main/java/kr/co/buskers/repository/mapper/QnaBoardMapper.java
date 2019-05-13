@@ -18,13 +18,21 @@ public interface QnaBoardMapper {
 	
 	List<QnaBoardComment> selectComment(int no);
 	List<QnaBoardComment> selectCommentReply(int no);
+	void deleteComment(int no);
+	
 	
 	void insertLike(Like like);
 	Like selectLike(Like like);
 	void updateLike(Like like);
+	void updateDisLike(Like like);
 	void updateLikeQnaBoardPlus(QnaBoard qnaBoard);
 	void updateLikeQnaBoardMinus(QnaBoard qnaBoard);
+	void updateLikeQnaBoardCommentPlus(QnaBoardComment qnaBoardComment);
+	void updateLikeQnaBoardCommentMinus(QnaBoardComment qnaBoardComment);
+	void updateDisLikeQnaBoardCommentPlus(QnaBoardComment qnaBoardComment);
+	void updateDisLikeQnaBoardCommentMinus(QnaBoardComment qnaBoardComment);
 	void deleteLike(int no);
+	
 	
 	void insertComment(QnaBoardComment qnaBoardComment);
 	

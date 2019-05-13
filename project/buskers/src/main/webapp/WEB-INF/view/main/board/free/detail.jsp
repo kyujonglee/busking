@@ -43,154 +43,154 @@
 			</header>
 			<main class="main-freeboard">
 			<div class="agency">
-            <div class="board_title">
-                <div class="board_title_underline">
-                    <a href="<c:url value='/main/board/free/list.do'/>">자유게시판</a>
-                </div>
-            </div>
+				<div class="freeboard__detail">
+	            <div class="board_title">
+	                <div class="board_title_underline">
+	                    <a href="<c:url value='/main/board/free/list.do'/>">자유게시판</a>
+	                </div>
+	            </div>
 
-            <div class="board_head_line">
-                <span class="board_img_title">
-                	<img src="<c:url value='/resources/img/boyoung.jpg'/>"/>
-                </span>
-   				<c:out value="${board.title}" />
-            </div>
+	            <div class="board_head_line">
+	                <span class="board_img_title">
+	                	<img src="<c:url value='/resources/img/boyoung.jpg'/>"/>
+	                </span>
+	   				<c:out value="${board.title}" />
+	            </div>
+	            
             
-            
-            <div class="board_article">
-                <div class="board_article_info">
-                    <div class="board_article_info_left">
-                        <i class="fas fa-user"></i><span id="board_article_info_id"><c:out value="${board.nickName}" /></span>
-                        <i class="far fa-eye"></i><span><c:out value="${board.viewCnt}" /></span>
-                        <i class="fas fa-heart"></i><span><c:out value="${board.likeCnt}" /></span>
-                    </div>
-
-                    <div class="board_article_info_right">
-                        <i class="fas fa-clock"></i>
-                        <span><fmt:formatDate value="${board.regDate}" pattern="MM-dd HH:mm" /></span>
-                    </div>
-                </div>
-                
-                <div class="board_article_content">
-                	<div>
-	                	${board.content}
-                	</div>
-                	
-                </div>
-                
-               	<div class="board_article_like">
-               		<div class="board_article_like_wrapper">
-	               		<i class="far fa-heart fa-2x"></i>
-	               		<a>추천</a>
-               		</div>
-               	</div>
-                
-                <div class="board_article_comment">
-                	<div class="board_article_comment_amount">
-	                	<div class="board_article_comment_amount_underline">
-	                		<i class="fas fa-comment-dots"></i>
-	                		<span><b class="comment_highlight">${fn:length(comment) + fn:length(reply)}</b>개의 댓글</span>
+	            <div class="board_article">
+	                <div class="board_article_info">
+	                    <div class="board_article_info_left">
+	                        <i class="fas fa-user"></i><span id="board_article_info_id"><c:out value="${board.nickName}" /></span>
+	                        <i class="far fa-eye"></i><span><c:out value="${board.viewCnt}" /></span>
+	                        <i class="fas fa-heart"></i><span><c:out value="${board.likeCnt}" /></span>
+	                    </div>
+	
+	                    <div class="board_article_info_right">
+	                        <i class="fas fa-clock"></i>
+	                        <span><fmt:formatDate value="${board.regDate}" pattern="MM-dd HH:mm" /></span>
+	                    </div>
+	                </div>
+	                
+	                <div class="board_article_content">
+	                	<div>
+		                	${board.content}
 	                	</div>
 	                	
-                	</div>
-                	
-                	<div class="board_article_comment_list">
-                	
-	                	<c:forEach var="comment" items="${comment}">
-			                	<div class="comment_list">
-			               			<div class="comment_info">
-			                			<span class="board_img_title">
-						                	<img src="<c:url value='/resources/img/boyoung.jpg'/>"/>
-						                </span>
-			               				<div class="comment_id">${comment.nickName}</div>
-			               				<div class="comment_date">
-				               				<i class="far fa-clock comment_clock"></i>
-				               				<fmt:formatDate value="${comment.regDate}" pattern="MM-dd HH:mm:ss" />
-			               				</div>
-			               				<div class="comment_update_button"><i class="fas fa-pen-alt"></i></div>
-			               				<div class="comment_delete_button"><i class="far fa-trash-alt"></i></div>
-			               				<div class="comment_reply_button"><i class="fas fa-reply">답글</i></div>
-			               			</div>
-					                
-			               			<div class="bubble"><p>${comment.content}</p></div>
-			               			<div class="reply_wrapper">
-				               			<div class="reply_content_wrapper">
-						           			<textarea class="reply_content" name="content"></textarea>
-					           			</div>
-					           			<div class="reply_submit_button" name="${comment.commentNo}">
-						           			<a class="far fa-edit"> 답글 등록</a>
-					           			</div>
-				           			</div>
-			               		</div>
-		                	<c:forEach var="reply" items="${reply}">
-		                		<c:if test="${reply.replyNo eq comment.commentNo}">
-			                		<div class="reply_list">
+	                </div>
+	                
+	               	<div class="board_article_like">
+	               		<div class="board_article_like_wrapper">
+		               		<i class="far fa-heart fa-2x"></i>
+		               		<a>추천</a>
+	               		</div>
+	               	</div>
+	                
+	                <div class="board_article_comment">
+	                	<div class="board_article_comment_amount">
+		                	<div class="board_article_comment_amount_underline">
+		                		<i class="fas fa-comment-dots"></i>
+		                		<span><b class="comment_highlight">${fn:length(comment) + fn:length(reply)}</b>개의 댓글</span>
+		                	</div>
+		                	
+	                	</div>
+	                	
+	                	<div class="board_article_comment_list">
+	                	
+		                	<c:forEach var="comment" items="${comment}">
+				                	<div class="comment_list">
 				               			<div class="comment_info">
 				                			<span class="board_img_title">
 							                	<img src="<c:url value='/resources/img/boyoung.jpg'/>"/>
 							                </span>
-				               				<div class="comment_id">${reply.nickName}</div>
+				               				<div class="comment_id">${comment.nickName}</div>
 				               				<div class="comment_date">
 					               				<i class="far fa-clock comment_clock"></i>
-					               				<fmt:formatDate value="${reply.regDate}" pattern="MM-dd HH:mm:ss" />
+					               				<fmt:formatDate value="${comment.regDate}" pattern="MM-dd HH:mm:ss" />
 				               				</div>
 				               				<div class="comment_update_button"><i class="fas fa-pen-alt"></i></div>
 				               				<div class="comment_delete_button"><i class="far fa-trash-alt"></i></div>
+				               				<div class="comment_reply_button"><i class="fas fa-reply">답글</i></div>
 				               			</div>
 						                
-				               			<div class="bubble"><p>${reply.content}</p></div>
+				               			<div class="bubble"><p>${comment.content}</p></div>
+				               			<div class="reply_wrapper">
+					               			<div class="reply_content_wrapper">
+							           			<textarea class="reply_content" name="content"></textarea>
+						           			</div>
+						           			<div class="reply_submit_button" name="${comment.commentNo}">
+							           			<a class="far fa-edit"> 답글 등록</a>
+						           			</div>
+					           			</div>
 				               		</div>
-		                		</c:if>
-		               		</c:forEach>
-						</c:forEach>
-					
-					</div>
-                </div>
+			                	<c:forEach var="reply" items="${reply}">
+			                		<c:if test="${reply.replyNo eq comment.commentNo}">
+				                		<div class="reply_list">
+					               			<div class="comment_info">
+					                			<span class="board_img_title">
+								                	<img src="<c:url value='/resources/img/boyoung.jpg'/>"/>
+								                </span>
+					               				<div class="comment_id">${reply.nickName}</div>
+					               				<div class="comment_date">
+						               				<i class="far fa-clock comment_clock"></i>
+						               				<fmt:formatDate value="${reply.regDate}" pattern="MM-dd HH:mm:ss" />
+					               				</div>
+					               				<div class="comment_update_button"><i class="fas fa-pen-alt"></i></div>
+					               				<div class="comment_delete_button"><i class="far fa-trash-alt"></i></div>
+					               			</div>
+							                
+					               			<div class="bubble"><p>${reply.content}</p></div>
+					               		</div>
+			                		</c:if>
+			               		</c:forEach>
+							</c:forEach>
+						
+						</div>
+	                </div>
                 
-                <br><br><br>
-                
-                <div class="comment_write_form">
-           			<div class="board_article_comment_amount_underline">
-                		<i class="fas fa-feather"></i><span> 댓글 작성</span>
-                	</div>
-                	
-                	<div class="comment_write_info">
-                		<c:if test="${sessionScope.user eq null}">
-                			<span class="board_img_title">	
-                				<img src="<c:url value='/resources/img/profile.png'/>"/>
-               				</span>
-               				<a class="comment_id" id="go_login_form" href="<c:url value='/main/member/loginform.do'/>">로그인이 필요합니다.</a>
-	          			</c:if>
-	          			<c:if test="${sessionScope.user ne null}">
-		          			<span class="board_img_title">
-		              			<img src="<c:url value='/resources/img/boyoung.jpg'/>"/>
-		           			</span>
-		       				<div class="comment_id">${sessionScope.user.nickName}</div>
-	           			</c:if>
-       				</div>
-           			
-           			
-           			<div class="comment_content_wrapper">
-	           			<textarea class="comment_content" name="content"></textarea>
+	                <br><br><br>
+	                
+	                <div class="comment_write_form">
+	           			<div class="board_article_comment_amount_underline">
+	                		<i class="fas fa-feather"></i><span> 댓글 작성</span>
+	                	</div>
+	                	
+	                	<div class="comment_write_info">
+	                		<c:if test="${sessionScope.user eq null}">
+	                			<span class="board_img_title">	
+	                				<img src="<c:url value='/resources/img/profile.png'/>"/>
+	               				</span>
+	               				<a class="comment_id" id="go_login_form" href="<c:url value='/main/member/loginform.do'/>">로그인이 필요합니다.</a>
+		          			</c:if>
+		          			<c:if test="${sessionScope.user ne null}">
+			          			<span class="board_img_title">
+			              			<img src="<c:url value='/resources/img/boyoung.jpg'/>"/>
+			           			</span>
+			       				<div class="comment_id">${sessionScope.user.nickName}</div>
+		           			</c:if>
+	       				</div>
 	           			
-           			</div>
-           			<div class="comment_submit_button">
-	           			<a class="far fa-edit"> 댓글 등록</a>
-           			</div>
-                </div>
-                
-            </div>
-            
-            <br><br><br>
-        
-        	<div class="free_board_detail_bottom">
-                <a href="<c:url value='/main/board/free/list.do?pageNo=${param.pageNo}&input=${param.input}&sortType=${param.sortType}&searchType=${param.searchType}'/>" class="fas fa-list-ul"> 목록</a>
-            </div>
-
-            <br><br><br>
+	           			
+	           			<div class="comment_content_wrapper">
+		           			<textarea class="comment_content" name="content"></textarea>
+	           			</div>
+	           			<div class="comment_submit_button">
+		           			<a class="far fa-edit"> 댓글 등록</a>
+	           			</div>
+	                </div>
+	                
+	            </div>
+	            
+	            <br><br><br>
+	        
+	        	<div class="free_board_detail_bottom">
+	                <a href="<c:url value='/main/board/free/list.do?pageNo=${param.pageNo}&input=${param.input}&sortType=${param.sortType}&searchType=${param.searchType}'/>" class="fas fa-list-ul"> 목록</a>
+	            </div>
+	
+	            <br><br><br>
+				</div>
 				</div>
 			</main>
-         	   <div class="footer"></div>
 		</div>
 	</div>
 	

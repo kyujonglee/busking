@@ -75,7 +75,7 @@
 	padding: 30px 10px;
 }
 
-.fa-list-ul {
+.freeboard__detail .fa-list-ul {
     min-width: 56px;
     padding: 9px 12px;
     border: 1px solid #d3d3d3;
@@ -87,7 +87,7 @@
     color: white;
 }
 
-.fa-list-ul:hover {
+.freeboard__detail .fa-list-ul:hover {
     text-decoration: underline;
     cursor: pointer;
     color: tomato;
@@ -306,7 +306,7 @@
 	margin-left: 60px;
 }
 
-.fa-edit {
+.freeboard__detail .fa-edit {
 	height: 30px;
     min-width: 58px;
     padding: 0px 12px;
@@ -323,11 +323,11 @@
     cursor: pointer;
 }
 
-.fa-edit:hover {
+.freeboard__detail .fa-edit:hover {
 	color: tomato;
 }
 
-.fa-pen-alt {
+.freeboard__detail .fa-pen-alt {
 	margin-left: 15px;
 	cursor: pointer;
 }

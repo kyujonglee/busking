@@ -1,3 +1,4 @@
+<%@page import="kr.co.buskers.repository.domain.Member"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -42,7 +43,7 @@
 					<span class="agency-title">업체게시판 </span>
 				</header>
 				<div class="agency-bottom">
-					<a class="agency-bottom__button" href='<c:url value='/main/board/agency/checkform.do'/>'>등록</a>
+					<a class="agency-bottom__button" href='#' onclick="return checkUser();" >등록</a>
 				</div>
 				<table class="agency-table">
 					<tr>
@@ -78,8 +79,9 @@
 							<tr>
 								<td>${agency.agencyInfoNo}</td>
 								<td>
-									<a href="<c:url value='/main/board/agency/detail.do?agencyInfoNo=${agency.agencyInfoNo}&pageNo=${pageNo}'/>">${agency.agencyName}</a>
-									<i class="fas fa-lock fa-lg"></i>
+									<a href="<c:url value='/main/board/agency/detail.do?agencyInfoNo=${agency.agencyInfoNo}&pageNo=${pageNo}'/>">${agency.agencyName}
+										<i class="fas fa-lock fa-lg"></i>
+									</a>
 								</td>
 								<td><fmt:formatDate value="${agency.regDate}"
 										pattern="yyyy-MM-dd HH:mm" type="both" />
@@ -120,5 +122,19 @@
 	</div>
 	<script src="<c:url value='/resources/js/jquery-3.4.1.min.js'/>"></script>
 	<script src="<c:url value='/resources/js/main/board/agency/side-bar.js'/>"></script>
+	<script>
+		const user = 
+		<%= 
+			(Member)session.getAttribute("user")!=null?1:null
+		%>;
+		console.log(user);
+		function checkUser(){
+			if(user === null){
+				alert('로그인 후 이용가능합니다.');
+			}else {
+				location.href = "<c:url value='/main/board/agency/checkform.do'/>";
+			}
+		}
+	</script>
 </body>
 </html>
