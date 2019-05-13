@@ -4,6 +4,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.UrlBasedViewResolver;
@@ -35,6 +36,15 @@ public class MemberController {
 //			session.setMaxInactiveInterval(10);
 			mav.setViewName("redirect:/index.jsp");
 		}
+		return mav;
+	}
+	
+	// 로그인 세션이 없을때 처리
+	@RequestMapping("needlogin.do")
+	public ModelAndView needlogin() {
+		ModelAndView mav = new ModelAndView("/main/member/needLogin");
+		mav.addObject("msg", "로그인 후 이용해주시기 바랍니다.");
+		
 		return mav;
 	}
 	
