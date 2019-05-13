@@ -28,7 +28,8 @@
 					<span class="agency-title">업체게시판 </span>
 				</header>
 				<div class="agency-bottom">
-					<a class="agency-bottom__button" href='#' onclick="checkUser();" >등록</a>
+<!-- 					<a class="agency-bottom__button" href='#' onclick="checkUser();" >등록</a> -->
+					<a class="agency-bottom__button" href='<c:url value='/main/board/agency/checkform.do'/>' >등록</a>
 				</div>
 				<table class="agency-table">
 					<tr>
@@ -86,20 +87,20 @@
 	</div>
 	<script src="<c:url value='/resources/js/main/board/agency/side-bar.js'/>"></script>
 	<script>
-		<% Member mem = (Member)session.getAttribute("user"); %>
-		const user =
-		<%= (mem==null)?null:1 %>
-		function checkUser(){
-			if(user === null){
-				Swal.fire({
-				  title:'로그인 후 이용가능합니다.',
-				  type:'info',
-				  timer:2000
-				});
-			}else {
-				location.href = "<c:url value='/main/board/agency/checkform.do'/>";
-			}
-		}
+<%-- 		<% Member mem = (Member)session.getAttribute("user"); %> --%>
+// 		const user =
+<%-- 		<%= (mem==null)?null:1 %> --%>
+// 		function checkUser(){
+// 			if(user === null){
+// 				Swal.fire({
+// 				  title:'로그인 후 이용가능합니다.',
+// 				  type:'info',
+// 				  timer:2000
+// 				});
+// 			}else {
+// 				location.href = "<c:url value='/main/board/agency/checkform.do'/>";
+// 			}
+// 		}
 		function agencyDetail(url,agencyMemberNo,memberNo){
 			if(memberNo === parseInt(agencyMemberNo)){
 				location.href = url;

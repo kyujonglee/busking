@@ -16,13 +16,31 @@ $("#searchAddr").click(function(){
 function allCheck(){
 	email.value = email1.value + email2.value;
 	console.log(email.value);
-//	console.log(searchAddr);
 	console.log(searchAddr.getAttribute('checkAddr'));
 	if (isEmpty(agencyName, "업체명을 입력해주세요"))return false;
 	if (isEmpty(purpose, "목적을 입력해주세요"))return false;
 	if (isEmpty(email, "이메일을 입력해주세요"))return false;
 	if (isEmpty(phone, "연락처를 입력해주세요"))return false;
+	if (!isCellPhone(phone.value)){
+		
+	}
 	return insertAgency();
+}
+
+function alertInfo(sen){
+	// sweetalert 쓰기 
+	// isEmpty function 도 고치기
+}
+
+// 연락처 유효성 검사.
+function isCellPhone(p) {
+	const phonenum = $('#phone').val();
+	const regPhone = /(01[0|1|6|9|7])[-](\d{3}|\d{4})[-](\d{4}$)/g;
+	if(!regPhone.test(phonenum)){
+		$('#phone').select();
+		return false;    
+	}
+	return true;
 }
 
 function insertAgency(){
