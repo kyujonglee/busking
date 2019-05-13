@@ -24,6 +24,10 @@ public interface FreeBoardMapper {
 	void updateAddLike(int boardNo);
 	void updateRemoveLike(int boardNo);
 	int selectBoardLikeCount(int boardNo);
+	void insertReply(FreeBoardComment freeBoardComment);
+	void updateDeleteComment(int commentNo);
+	void deleteComment(int commentNo);
+	int selectCommentHasReply(int commentNo);
 }
 
 

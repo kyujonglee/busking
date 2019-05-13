@@ -170,6 +170,31 @@
 		 where board_no = #{boardNo}
 	</select>
 	
+	<insert id="insertReply" parameterType="freeBoardComment">
+		insert into tb_freeboard_comment(
+			member_no, content, board_no, reply_no
+		)values(
+			#{memberNo}, #{content}, #{boardNo}, #{replyNo}
+		)
+	</insert>
+	
+	<update id="updateDeleteComment" parameterType="int">
+		update tb_freeboard_comment
+		   set content = '삭제된 댓글 입니다.'
+ 		 where comment_no = #{commentNo}
+	</update>
+	
+	<delete id="deleteComment" parameterType="int">
+		delete from tb_freeboard_comment
+ 		 where comment_no = #{commentNo}
+	</delete>
+	
+	<select id="selectCommentHasReply" parameterType="int" resultType="int">
+		select count(*) 
+		  from tb_freeboard_comment
+		 where reply_no = #{commentNo}
+	</select>
+	
 </mapper>
 
 

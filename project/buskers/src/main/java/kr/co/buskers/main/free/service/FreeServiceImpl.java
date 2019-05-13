@@ -55,12 +55,6 @@ public class FreeServiceImpl implements FreeService {
 		
 		mapper.updateBoardViewCount(boardNo);
 		
-		List<FreeBoardComment> list = mapper.selectReplyList(boardNo);
-		for (FreeBoardComment c : list) {
-			System.out.println("reply" + c.getContent());		
-		}
-		
-		System.out.println("REPLY" + mapper.selectReplyList(boardNo));
 		map.put("reply", mapper.selectReplyList(boardNo));
 		map.put("comment", mapper.selectCommentList(boardNo));
 		map.put("board", mapper.selectBoardByNo(boardNo));
@@ -86,12 +80,37 @@ public class FreeServiceImpl implements FreeService {
 		
 		mapper.insertComment(freeBoardComment);
 		map.put("comment", mapper.selectCommentList(freeBoardComment.getBoardNo()));
+		map.put("reply", mapper.selectReplyList(freeBoardComment.getBoardNo()));
+		
+		return map;
+	}
+	
+	public Map<String, Object> insertReply(FreeBoardComment freeBoardComment) {
+		
+		Map<String, Object> map = new HashMap<>();
+		
+		mapper.insertReply(freeBoardComment);
+		map.put("comment", mapper.selectCommentList(freeBoardComment.getBoardNo()));
+		map.put("reply", mapper.selectReplyList(freeBoardComment.getBoardNo()));
 		
 		return map;
 	}
 	
 	public void write(FreeBoard freeBoard) {
 		mapper.insertBoard(freeBoard);
+	}
+	
+	public String deleteComment(int commentNo) {
+		String hasReply = "y";
+		
+		if (mapper.selectCommentHasReply(commentNo) == 0) {
+			hasReply = "n";
+			mapper.deleteComment(commentNo);
+		} else {
+			mapper.updateDeleteComment(commentNo);
+		}
+		
+		return hasReply;
 	}
 	
 	public int updateLikeStatus(Like like) {
