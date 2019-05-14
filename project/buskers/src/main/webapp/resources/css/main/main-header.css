@@ -123,6 +123,7 @@
   box-sizing: border-box;
   padding-left: 20px;
   cursor:pointer;
+  color : var(--color-gray);
 }
 
 .side-bar .side-bar__icon i {

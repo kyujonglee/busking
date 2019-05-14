@@ -777,7 +777,6 @@
 	   					$(".board_article_info_left > span:eq(2)").text(result);
 	   				}
 				});
-				
 			}
 		});
     </script>

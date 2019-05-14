@@ -96,6 +96,16 @@
     	<aop:advisor advice-ref="txAdvice" pointcut-ref="pCut"/>
     </aop:config>
      
+
+	<!-- 로그인상태 session 처리용 인터셉터 설정 -->
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/main/board/agency/checkform.do"/>
+<!-- 			<mvc:mapping path="/main/**"/> -->
+<!-- 			<mvc:exclude-mapping path="/main/member/**"/> -->
+			<bean class="kr.co.buskers.main.member.util.LoginInterceptor" />
+		</mvc:interceptor>
+	</mvc:interceptors>
     
     
 	
