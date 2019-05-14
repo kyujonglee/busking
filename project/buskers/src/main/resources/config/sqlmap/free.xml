@@ -195,6 +195,13 @@
 		 where reply_no = #{commentNo}
 	</select>
 	
+	<update id="updateComment" parameterType="freeBoardComment">
+		update tb_freeboard_comment
+	 	   set content = #{content}
+		 where comment_no = #{commentNo}
+		
+	</update>
+	
 </mapper>
 
 
