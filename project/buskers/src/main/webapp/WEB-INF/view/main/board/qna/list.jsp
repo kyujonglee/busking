@@ -97,7 +97,7 @@
 			            <button class="fas fa-search search_form_button"> 검색</button>
 			        </form>
 	            </div>
-                <a href="write-form.do" class="fas fa-pen"> 글쓰기</a>
+                <a href="writeform.do" class="fas fa-pen"> 글쓰기</a>
                 <a href="list.do" class="fas fa-sort-amount-up"> 초기화</a>
             </div>
 
