@@ -343,6 +343,10 @@
 	font-weight: bold;
 }
 
+.modal-backdrop {
+	z-index: 0 !important;
+}
+
 #board_article_info_id {
 	font-family: 'Malgun Gothic';
 	font-weight: bold;

@@ -79,6 +79,17 @@ public class FreeBoardController {
 		return result;
 	}
 	
+	@RequestMapping("update-comment-ajax.do")
+	@ResponseBody
+	public Map<String, Object> updateComment(FreeBoardComment freeBoardComment, Model model) {
+		Map<String, Object> result = service.updateComment(freeBoardComment);
+		
+		model.addAttribute("comment", result.get("comment"));
+		model.addAttribute("reply", result.get("reply"));
+		
+		return result;
+	}
+	
 	@RequestMapping("detail.do")
 	public void detail(int boardNo, Model model, HttpSession session) {
 		

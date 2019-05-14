@@ -96,6 +96,17 @@ public class FreeServiceImpl implements FreeService {
 		return map;
 	}
 	
+	public Map<String, Object> updateComment(FreeBoardComment freeBoardComment) {
+		
+		Map<String, Object> map = new HashMap<>();
+		
+		mapper.updateComment(freeBoardComment);
+		map.put("comment", mapper.selectCommentList(freeBoardComment.getBoardNo()));
+		map.put("reply", mapper.selectReplyList(freeBoardComment.getBoardNo()));
+		
+		return map;
+	}
+	
 	public void write(FreeBoard freeBoard) {
 		mapper.insertBoard(freeBoard);
 	}

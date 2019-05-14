@@ -28,6 +28,7 @@ public interface FreeBoardMapper {
 	void updateDeleteComment(int commentNo);
 	void deleteComment(int commentNo);
 	int selectCommentHasReply(int commentNo);
+	void updateComment(FreeBoardComment freeBoardComment);
 }
 
 
