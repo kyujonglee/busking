@@ -2,8 +2,8 @@
 @import "agency-header.css";
 @import "agency-insert.css";
 @import "agency-table.css";
-@import 'agency-check.css';
-@import 'agency-detail.css';
+@import "agency-check.css";
+@import "agency-detail.css";
 
 :root {
   --color-background: #f5f7fc;
@@ -102,7 +102,7 @@ a {
 .side-bar {
   position: relative;
   z-index: 1;
-  left : 140px;
+  left: 140px;
   background-color: var(--color-white);
   width: 200px;
   height: 100vh;
@@ -151,7 +151,7 @@ a {
   justify-content: flex-start;
   width: 1500px;
   margin: 0 auto;
-  padding : 0 auto;
+  padding: 0 auto;
 }
 
 .main-agency {
@@ -162,9 +162,8 @@ a {
   position: relative;
   z-index: 1;
   /* left : -190px; */
-  background-color : var(--color-background);
+  background-color: var(--color-background);
 }
-
 
 /* paging */
 /* menu tab */

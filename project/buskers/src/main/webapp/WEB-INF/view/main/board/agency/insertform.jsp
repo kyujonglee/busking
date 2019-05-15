@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <link rel="stylesheet" href="<c:url value='/resources/css/main/board/agency/agency.css'/>" />
         <main class="main-agency">
-          <div class="agency">
+          <div class="board">
             <header class="agency-header agency-insert__title">
               <a href=""><i class="fas fa-home fa-lg"></i></a>
               <span class="agency-title ">업체 등록 </span>
@@ -117,31 +117,40 @@
                   </label>
                 </div>
                 <div class="agency-insert__checkbox-item">
+                <label for="agencyCheckbox3" style="cursor:pointer">
                   <input
                     class="agency-insert__checkbox"
                     type="checkbox"
                     name="agencyCheckbox"
                     value="3"
+                    id="agencyCheckbox3"
                   />
                   <span class="agency-insert__checkbox-title">개그</span>
+                  </label>
                 </div>
                 <div class="agency-insert__checkbox-item">
+                <label for="agencyCheckbox4" style="cursor:pointer">
                   <input
                     class="agency-insert__checkbox"
                     type="checkbox"
                     name="agencyCheckbox"
                     value="4"
+                    id="agencyCheckbox4"
                   />
                   <span class="agency-insert__checkbox-title">악기연주</span>
+                  </label>
                 </div>
                 <div class="agency-insert__checkbox-item">
+                <label for="agencyCheckbox5" style="cursor:pointer">
                   <input
                     class="agency-insert__checkbox"
                     type="checkbox"
                     name="agencyCheckbox"
                     value="5"
+                    id="agencyCheckbox5"
                   />
                   <span class="agency-insert__checkbox-title">마술</span>
+                  </label>
                 </div>
               </div>
               <div class="agency-insert__btn-content">

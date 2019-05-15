@@ -4,7 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <link rel="stylesheet" href="<c:url value='/resources/css/main/board/agency/agency.css'/>" />
 <main class="main-agency main-board">
-<div class="agency">
+<div class="board">
 	<header class="agency-header">
 		<a href="<c:url value='/main/board/agency/list.do'/>"> <i
 			class="fas fa-home fa-lg"></i>

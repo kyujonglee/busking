@@ -6,6 +6,11 @@ body {
     background: #F4F7FC;
 }
 
+.main-freeboard {
+	background-color : white;
+}
+
+
 .board_container_head {
     position: fixed;
     top: 0;

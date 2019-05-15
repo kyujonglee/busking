@@ -18,18 +18,26 @@ $("#searchAddr").click(function(){
 });
 
 function allCheck(){
-	email.value = email1.value + email2.value;
+	email.value = email1.value +'@'+ email2.value;
 	if (isEmpty(agencyName, "업체명을 입력해주세요"))return false;
 	if (isEmpty(purpose, "목적을 입력해주세요"))return false;
 	if (isEmpty(email, "이메일을 입력해주세요"))return false;
 	
+	if (!checkEmail(email)) {
+		alertInfo("이메일을 형식에 맞게 입력해주세요","ex) kyu****@naver.com");
+		return false;
+	}
 	// email유효성 검사 할 것!!
 	// 체크박스 선택범위 늘리기!!
 	
-	if (isEmpty(phone, "연락처를 입력해주세요"))return false;
-	if (!isCellPhone(phone.value)){
-		alertInfo("연락처를 형식에 맞게 입력해주세요","ex) 010-3333-3333");
+	if (phone.value === ""){
+		alertInfo("연락처를 입력해주세요");
 		return false;
+	}else {
+		if (!isCellPhone(phone.value)){
+			alertInfo("연락처를 형식에 맞게 입력해주세요","ex) 010-3333-3333");
+			return false;
+		}
 	}
 	if (searchAddr.getAttribute('checkaddr') === 'n'){
 		alertInfo("주소검색 버튼을 눌러주세요.","버튼을 눌러 주소를 선택해주세요.");
@@ -42,6 +50,12 @@ function allCheck(){
 		return false;
 	}
 	return insertAgency();
+}
+
+function checkEmail(email){
+	const emailVal = email.value;
+	const regExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+	return (emailVal.match(regExp) == null)? false:true;
 }
 
 function checkbox(agencyCheckbox){

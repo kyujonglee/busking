@@ -1,4 +1,4 @@
-.agency {
+.board {
     width: 100%;
     align-self: flex-end;
     padding : 0px 70px;
@@ -7,7 +7,7 @@
     box-sizing: border-box;
 }
 
-.agency .agency-header{
+.board .agency-header{
 	margin-top : 50px;
     color : var(--color-darkgray);
     font-size: 24px;
