@@ -6,9 +6,9 @@
 	<!-- 일반 회원 가입 -->
 	<insert id="signupMember" parameterType="member">
 		insert into tb_member (
-			id, pass, salt, email, sex, nick_name
+			id, pass, email, sex, nick_name
 		) values (
-			#{id}, #{pass}, #{salt}, #{email}, #{sex}, #{nickName}
+			#{id}, #{pass}, #{email}, #{sex}, #{nickName}
 		);
 	</insert>
 	
@@ -17,7 +17,6 @@
 		select *
 		  from tb_member
 		 where id = #{id}
-		   and pass = #{pass}
 	</select>
 	
 	<!-- 아이디 중복체크 -->
