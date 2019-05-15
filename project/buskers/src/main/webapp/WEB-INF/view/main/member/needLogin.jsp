@@ -16,9 +16,7 @@ Swal.fire({
   type:'info',
   timer: 2000
 });
-setTimeout(function(){
-	window.location.href="/buskers/main/member/loginform.do";
-},2000);
+setTimeout( () => window.location.href="/buskers/main/member/loginform.do",1500);
 </script>
 </body>
 </html>
