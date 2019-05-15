@@ -76,7 +76,6 @@
 					</div>
 				</a>
 			</div>
-			
 		</div>
 	</div>
 </aside>

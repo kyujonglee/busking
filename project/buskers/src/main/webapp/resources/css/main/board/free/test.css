@@ -4,8 +4,12 @@
 	font-family: 'Italianno', cursive;
 }
 
-.side-bar__tag:first-child {
+.side-bar__column .side-bar__tag:first-child .side-bar__icon {
 	background-color: #333333 !important;
+}
+
+.side-bar__column:first-child .side-bar__icon:first-child{
+	border-top-left-radius: 10px;
 }
 
 .fa-bars {
