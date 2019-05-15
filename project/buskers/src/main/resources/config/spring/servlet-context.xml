@@ -106,6 +106,21 @@
 			<bean class="kr.co.buskers.main.member.util.LoginInterceptor" />
 		</mvc:interceptor>
 	</mvc:interceptors>
+	
+	<mvc:annotation-driven >
+	<!-- Ajax 한글 -->
+		<mvc:message-converters>
+			<bean class="org.springframework.http.converter.StringHttpMessageConverter">
+				<property name="supportedMediaTypes">
+					<list>
+						<value>test/plain; charset=UTF-8</value>
+						<value>text/html; charset=UTF-8</value>
+					</list>
+				</property>
+			</bean>		
+		</mvc:message-converters>
+	</mvc:annotation-driven>
+	
     
     
 	
