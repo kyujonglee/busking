@@ -60,7 +60,7 @@
 	                <input class="write_form_title" name="title" placeholder="제목을 입력하세요." />
 	            </div>
 	            
-	            <textarea class="board_write_form" name="content"></textarea>
+	            <textarea class="board_write_form" id="summernote" name="content"></textarea>
 	            
             
             
@@ -95,14 +95,46 @@
 		$("#write_from").submit();
 	});
     
+    $(document).ready(function(){
+   	   $('#summernote').summernote({
+   	    	height: 500,                 
+   	        width: 1060,
+   	        focus: false,
+   	        callbacks: { // 콜백을 사용
+   		        // 이미지를 업로드할 경우 이벤트를 발생
+   		        onImageUpload: function(files, editor, welEditable) {
+   		        	alert("콜백실행")
+   			    	sendFile(files[0],editor,welEditable);
+   		        	alert("콜백종료")
+   				}
+   			}
+   	    });
+		////////업로드시 실행할 함수
+	   	function sendFile(file,editor,welEditable) {
+	        // 파일 전송을 위한 폼생성
+			data = new FormData();
+		    data.append("file", file);
+		    $.ajax({ // ajax를 통해 파일 업로드 처리
+		        data : data,
+		        type : "POST",
+		        url :  "<c:url value="/main/board/qna/imageupload.do" />",
+		        cache : false,
+		        contentType : false,
+		        processData : false,
+		        success : function(url) { // 처리가 성공할 경우
+	             alert("sendFile함수 들어옴")
+	             // 에디터에 이미지 출력
+	             alert(url);
+	             $("#summernote").summernote('editor.insertImage', url);
+		        }
+		    });
+		}  
+    })
+   
+ 
+    
 
-    $(document).ready(function() {
-        $('.board_write_form').summernote({
-            height: 500,                 // set editor height
-            width: 1060,
-            focus: false                  // set focus to editable area after initializing summernote
-        });
-    });
+
     </script>
 </body>
 </html>

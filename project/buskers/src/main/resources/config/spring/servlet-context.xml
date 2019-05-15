@@ -120,6 +120,21 @@
     <beans:bean id="tilesViewResolver" class="org.springframework.web.servlet.view.UrlBasedViewResolver">
         <beans:property name="viewClass" value="org.springframework.web.servlet.view.tiles3.TilesView" />
         <beans:property name="order" value="1" />
-    </beans:bean>    
+    </beans:bean>   
+     
+	<mvc:annotation-driven >
+	<!-- Ajax 한글 -->
+		<mvc:message-converters>
+			<bean class="org.springframework.http.converter.StringHttpMessageConverter">
+				<property name="supportedMediaTypes">
+					<list>
+						<value>test/plain; charset=UTF-8</value>
+						<value>text/html; charset=UTF-8</value>
+					</list>
+				</property>
+			</bean>		
+		</mvc:message-converters>
+	</mvc:annotation-driven>
+    
 	
 </beans>
