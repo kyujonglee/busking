@@ -1,0 +1,20 @@
+@import "common/common.css";
+.news-wrap{
+    display:block;
+    height:500px;
+    display:grid;
+    grid-template-columns:50% 50%;
+}
+.thumbnail-wrap{
+    background-color: antiquewhite;
+}
+.view-wrap{
+    background-color: azure;
+}
+.thumbnail-wrap{
+    display:grid;
+    grid-template-columns: 90% 10%;
+}
+.news-button-wrap{
+    background-color:red;
+}

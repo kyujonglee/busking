@@ -7,6 +7,15 @@
 /*   position : relative; */
 /*   top: -50px; */
   font-family: 'Nanum Gothic', sans-serif;
+  position : fixed;
+}
+
+.header__wrapper {
+	position : relative;
+}
+.header__wrapper-fixed {
+	position : absolute;
+	z-index: 1;
 }
 
 .header .board_container{
@@ -146,18 +155,25 @@
 }
 
 .main-agency {
-/*   height: 100vh; */
-  border-right: 1px solid rgba(0, 0, 0, 0.1);
+  height: 100vh;
+  position : absolute;
+  top : 40px;
+  width: 100%;
 }
+
+.main-board {
+	position : absolute;
+	top : 40px;	
+	width : 100%; 
+}
+
 .main-body {
-  /* width : 1200px; */
+  overflow: auto;
+  border-right: 1px solid rgba(0, 0, 0, 0.1);
+  width : 1200px;
   position: relative;
   z-index: 1;
   /* left : -190px; */
-  background-color : var(--color-background);
+  /* background-color : var(--color-background); */
   background-color : white;
 }
-
-
-/* paging */
-/* menu tab */
