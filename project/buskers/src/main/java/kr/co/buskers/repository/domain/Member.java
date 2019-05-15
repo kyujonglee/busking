@@ -7,7 +7,6 @@ public class Member {
 	private int memberNo;
 	private String id;
 	private String pass;
-	private String salt;
 	private String email;
 	private Date joinDate;
 	private char sex;
@@ -67,12 +66,6 @@ public class Member {
 	}
 	public void setPass(String pass) {
 		this.pass = pass;
-	}
-	public String getSalt() {
-		return salt;
-	}
-	public void setSalt(String salt) {
-		this.salt = salt;
 	}
 	public String getEmail() {
 		return email;
