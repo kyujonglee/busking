@@ -8,6 +8,7 @@
 	href="<c:url value='/resources/css/main/board/agency/agency.css'/>" />
 <link rel="stylesheet"
 	href="<c:url value='/resources/css/main/board/free/test.css'/>" />
+	
 <main class="main-freeboard main-board">
 <div class="agency">
 	<div class="board_title">
@@ -86,8 +87,10 @@
 				<button class="fas fa-search search_form_button">검색</button>
 			</form>
 		</div>
-		<a href="write-form.do" class="fas fa-pen"> 글쓰기</a> <a href="list.do"
-			class="fas fa-sort-amount-up"> 초기화</a>
+		<c:if test="${sessionScope.user ne null}">
+		<a href="write-form.do" class="fas fa-pen"> 글쓰기</a>
+		</c:if>
+		<a href="list.do" class="fas fa-sort-amount-up"> 초기화</a>
 	</div>
 
 	<br> <br> <br>

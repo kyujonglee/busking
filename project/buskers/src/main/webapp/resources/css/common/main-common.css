@@ -168,7 +168,6 @@
 }
 
 .main-body {
-  overflow: auto;
   border-right: 1px solid rgba(0, 0, 0, 0.1);
   width : 1200px;
   position: relative;

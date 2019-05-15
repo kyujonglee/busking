@@ -1,6 +1,7 @@
 @import "../../../common/common.css";
 @import 'detail.css';
 @import 'writeform.css';
+@import 'updateform.css';
 
 body {
     background: #F4F7FC;
@@ -58,6 +59,10 @@ body {
 .free_board {
     border-collapse: collapse;
     width: 100%;
+}
+
+.main-freeboard {
+	background: white;	
 }
 
 .main-freeboard .board_title_left {
