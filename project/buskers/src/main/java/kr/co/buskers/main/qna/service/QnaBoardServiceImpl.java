@@ -6,6 +6,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import kr.co.buskers.common.page.FreePageResult;
 import kr.co.buskers.repository.domain.FreePage;
@@ -152,11 +153,6 @@ public class QnaBoardServiceImpl implements QnaBoardService {
 			return result;
 	}
 	
-	
-	
-	
-	
-	
 	public List<QnaBoardComment> commentList(int no){
 		return mapper.selectComment(no);
 	}
@@ -172,5 +168,10 @@ public class QnaBoardServiceImpl implements QnaBoardService {
 		like.setBoardType(4);
 		mapper.insertLike(like);
 	}
+	
+	///////////////파일업로드
+//	public String fileUpload(MultipartFile file) {
+		
+//	};
 
 }

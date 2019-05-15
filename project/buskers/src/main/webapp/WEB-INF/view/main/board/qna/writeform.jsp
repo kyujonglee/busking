@@ -103,9 +103,9 @@
    	        callbacks: { // 콜백을 사용
    		        // 이미지를 업로드할 경우 이벤트를 발생
    		        onImageUpload: function(files, editor, welEditable) {
-   		        	alert("콜백실행")
+//    		        	alert("콜백실행")
    			    	sendFile(files[0],editor,welEditable);
-   		        	alert("콜백종료")
+//    		        	alert("콜백종료")
    				}
    			}
    	    });
@@ -122,7 +122,7 @@
 		        contentType : false,
 		        processData : false,
 		        success : function(url) { // 처리가 성공할 경우
-	             alert("sendFile함수 들어옴")
+// 	             alert("sendFile함수 들어옴")
 	             // 에디터에 이미지 출력
 	             alert(url);
 	             $("#summernote").summernote('editor.insertImage', url);

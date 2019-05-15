@@ -123,7 +123,7 @@ public class QnaBoardController {
 	//이미지 업로드
 	@RequestMapping("/imageupload.do")
 	@ResponseBody
-	public String profileUpload(MultipartFile file, HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public String profileUpload(MultipartFile file) throws Exception {
 //		System.out.println("이미지 업로드 들어왔음.");
 		// 업로드할 폴더 경로
 		String realFolder = "C:/bit2019/tomcat-work/wtpwebapps/buskers/resources/img";
@@ -136,7 +136,7 @@ public class QnaBoardController {
 		File f = new File(filePath);
 		file.transferTo(f);
 		System.out.println("리턴됨");
-		String serverPath = request.getContextPath()+"/resources/img/"+org_filename;
+		String serverPath = "/buskers/resources/img/"+org_filename;
 		System.out.println(serverPath);
 
 		return serverPath;

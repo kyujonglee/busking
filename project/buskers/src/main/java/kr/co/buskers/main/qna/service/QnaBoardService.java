@@ -3,6 +3,8 @@ package kr.co.buskers.main.qna.service;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import kr.co.buskers.repository.domain.FreePage;
 import kr.co.buskers.repository.domain.QnaBoard;
 import kr.co.buskers.repository.domain.QnaBoardComment;
@@ -26,4 +28,5 @@ public interface QnaBoardService {
 	
 	public void writeComment(QnaBoardComment qnaBoardComment);
 	
+//	public String fileUpload(MultipartFile file);
 }
