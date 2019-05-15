@@ -480,7 +480,6 @@
 	   					replyComment();
 	   					updateComment();
 	   					deleteComment();
-	   					writeComment();
 	   					commentLike();
 	   					commentIsLiked();
 	   				}
