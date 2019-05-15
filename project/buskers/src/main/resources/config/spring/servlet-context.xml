@@ -9,13 +9,15 @@
 	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
 	xmlns:aop="http://www.springframework.org/schema/aop"
 	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:beans="http://www.springframework.org/schema/beans"
 	xsi:schemaLocation="http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-4.3.xsd
 		http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
-		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
 	<context:component-scan base-package="kr.co.buskers" />
 	
@@ -98,14 +100,41 @@
      
 
 	<!-- 로그인상태 session 처리용 인터셉터 설정 -->
-<!-- 	<mvc:interceptors> -->
-<!-- 		<mvc:interceptor> -->
-<!-- 			<mvc:mapping path="/main/**"/> -->
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/main/board/agency/checkform.do"/>
+<!--  			<mvc:mapping path="/main/**"/> -->
 <!-- 			<mvc:exclude-mapping path="/main/member/**"/> -->
-<!-- 			<bean class="kr.co.buskers.main.member.util.LoginInterceptor" /> -->
-<!-- 		</mvc:interceptor> -->
-<!-- 	</mvc:interceptors> -->
-    
+			<bean class="kr.co.buskers.main.member.util.LoginInterceptor" />
+		</mvc:interceptor>
+	</mvc:interceptors>
+	
+    <!-- tiles 설정 -->
+    <beans:bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
+        <beans:property name="definitions">
+            <beans:list>
+                <beans:value>/WEB-INF/tiles/tiles.xml</beans:value>
+            </beans:list>
+        </beans:property>
+    </beans:bean>        
+    <beans:bean id="tilesViewResolver" class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+        <beans:property name="viewClass" value="org.springframework.web.servlet.view.tiles3.TilesView" />
+        <beans:property name="order" value="1" />
+    </beans:bean>   
+     
+	<mvc:annotation-driven >
+	<!-- Ajax 한글 -->
+		<mvc:message-converters>
+			<bean class="org.springframework.http.converter.StringHttpMessageConverter">
+				<property name="supportedMediaTypes">
+					<list>
+						<value>test/plain; charset=UTF-8</value>
+						<value>text/html; charset=UTF-8</value>
+					</list>
+				</property>
+			</bean>		
+		</mvc:message-converters>
+	</mvc:annotation-driven>
     
 	
 </beans>

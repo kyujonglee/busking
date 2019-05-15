@@ -22,7 +22,7 @@
 			<header class="header">
 				<div class="board_container">
 					<div class="header-columns">
-						<i class="fas fa-search fa-lg"></i> <input type="text"
+						<i class="fas fa-search fa-lg"></i> <input type="text"                              
 							placeholder="search" />
 					</div>
 					<div class="header-columns">
@@ -36,6 +36,7 @@
 					</div>
 				</div>
 			</header>
+			
 			<main class="main-freeboard">
 			<div class="agency">
 				<div class="board_title">
@@ -43,52 +44,59 @@
                     <a href="<c:url value='/main/board/qna/list.do'/>">질문게시판</a>
                   </div>
                 </div>
-
-            <table class="free_board">
-                <tr class="free_board_head">
-                    <th class="free_board_no"></th>
-                    <th class="free_board_title">제목</th>
-                    <th class="free_board_writer">작성자</th>
-                    <th class="free_board_date"><a class="fas fa-caret-down" id="dateDESC">작성일</a></th>
-                    <th class="free_board_view"><a class="fas fa-caret-down" id="viewDESC">조회</a></th>
-                    <th class="free_board_like"><a class="fas fa-caret-down" id="likeDESC">추천</a></th>
-                </tr>
-                
-                <c:forEach var="board" items="${list}">
-               		<tr class="free_board_list">
-				    	<td>${board.boardNo}</td>
-						<td class="board_title_left">
-						<c:if test="${empty param.pageNo}">
-							<a href="detail.do?no=${board.boardNo}&pageNo=1&input=${param.input}&sortType=${param.sortType}&searchType=${param.searchType}">${board.title}</a>
-						</c:if>
-						<c:if test="${!empty param.pageNo}">
-							<a href="detail.do?no=${board.boardNo}&pageNo=${param.pageNo}&input=${param.input}&sortType=${param.sortType}&searchType=${param.searchType}">${board.title}</a>
-						</c:if>
-						</td>
-						<td>${board.memberNo}</td>
-					    <td><fmt:formatDate value="${board.regDate}" pattern="MM-dd HH:mm" /></td>
-					    <td>${board.viewCnt}</td>
-					    <td>${board.likeCnt}</td>
-               		</tr>
-				</c:forEach>
+        
+	            <table class="free_board">
+	                <tr class="free_board_head">
+	                    <th class="free_board_no"></th>
+	                    <th class="free_board_title">제목</th>
+	                    <th class="free_board_writer">작성자</th>
+	                    <th class="free_board_date"><a class="fas fa-caret-down" id="dateDESC">작성일</a></th>
+	                    <th class="free_board_view"><a class="fas fa-caret-down" id="viewDESC">조회</a></th>
+	                    <th class="free_board_like"><a class="fas fa-caret-down" id="likeDESC">추천</a></th>
+	                </tr>
+	                
+	               
+	               
+	                <c:forEach var="board" items="${list}">
+                    	 <tr class="free_board_list">
+               			    <td>${board.boardNo}</td>
+                		    <td class="board_title_left">
+				               	  <c:if test="${empty param.pageNo}">
+				                     <a href="detail.do?boardNo=${board.boardNo}&pageNo=1&input=${param.input}&sortType=${param.sortType}&searchType=${param.searchType}">${board.title}</a>
+					                  	 <c:if test="${board.commentCount ne 0}">
+					                  	 	<i class="fas fa-comment"><a>${board.commentCount}</a></i>
+					                  	 </c:if>		
+				                  </c:if>
+				                  <c:if test="${!empty param.pageNo}">
+				                     <a href="detail.do?boardNo=${board.boardNo}&pageNo=${param.pageNo}&input=${param.input}&sortType=${param.sortType}&searchType=${param.searchType}">${board.title}</a>
+				                  	 	 <c:if test="${board.commentCount ne 0}">
+					                  	 	<i class="fas fa-comment"><a>${board.commentCount}</a></i>
+					                  	 </c:if>	
+				                  </c:if>
+                 			</td>
+                  			<td>${board.nickName}</td>
+                   			<td><fmt:formatDate value="${board.regDate}" pattern="MM-dd HH:mm" /></td>
+                 		    <td>${board.viewCnt}</td>
+                		    <td>${board.likeCnt}</td>
+                 	    </tr>
+            		</c:forEach>
 			</table>
 			<br><br><br>
 
             <div class="free_board_bottom">
-                <div class="free_board_search">
-	            <form action="list.do" class="search_form">
-	            	<select class= "search_form_option" name='searchType'>
-					    <option value='title'>제목</option>
-					    <option value='content'>내용</option>
-					    <option value='writer'>작성자</option>
-					</select>
-	            	
-		            <input class="search_form_input" name="input" placeholder="검색어를 입력하세요." />
-		            
-		            <button class="search_form_button">검색</button>
-		        </form>
-            	</div>
-            	
+	            <div class="free_board_search">
+		            <form action="list.do" class="search_form">
+		            	<select class= "search_form_option" name='searchType'>
+						    <option value='title'>제목</option>
+						    <option value='content'>내용</option>
+						    <option value='nickName'>작성자</option>
+						</select>
+		            	
+			            <input class="search_form_input" name="input" placeholder="검색어를 입력하세요." />
+			            
+			            <button class="fas fa-search search_form_button"> 검색</button>
+			        </form>
+	            </div>
                 <a href="writeform.do" class="fas fa-pen"> 글쓰기</a>
                 <a href="list.do" class="fas fa-sort-amount-up"> 초기화</a>
             </div>
@@ -140,11 +148,19 @@
     	if ( (input != "") && searchType == "content" ) {
     		$(".search_form_input").val(input);
     		$(".search_form_option > option:eq(1)").prop("selected", true);
-    	};
+    	}
+    	
+    	if ( (input != "") && searchType == "nickName" ) {
+    		for (i = 0; i < $(".free_board_list").length; i++) {
+    			$(".free_board_list:eq(" + i + ") > td:eq(2)").html( $(".free_board_list:eq(" + i + ") > td:eq(2)").html().replace(input, "<b class='search_keyword'>" + input + "</b>") );
+    		}
+    		$(".search_form_input").val(input);
+    		$(".search_form_option > option:eq(2)").prop("selected", true);
+    	}
 		
 	    if( $(".pagination > a").hasClass("active") == false ) {
 	    	$(".pagination > a:eq(0)").attr("class", "active");
-	    } ;
+	    } 
 
 	    $(".pagination > a").click(function() {
 	        $(".pagination > a").attr("class", "disabled");
@@ -159,7 +175,7 @@
             } else {
                 $(this).children("a").attr("id", "dateDESC");
                 $(this).children("a").attr("class", "fas fa-caret-up");
-            };
+            }
         });
         
         $(".free_board_view").click(function () {
@@ -247,8 +263,11 @@
    						html += 	'<td>' + board.boardNo + '</td>';
    						html += 	'<td class="board_title_left">';
    						html += 		'<a href="detail.do?boardNo=' + board.boardNo + '&pageNo=' + pageNo + '&sortType=' + sort + '&input=' + input + '&searchType=' + searchType + '">' + board.title + '</a>';
+						if (board.commentCount != 0) {
+							html += '<i class="fas fa-comment"><a>' + board.commentCount + '</a></i>'
+						}
    						html += 	'</td>';
-   						html += 	'<td>' + board.memberNo + '</td>';
+   						html += 	'<td>' + board.nickName + '</td>';
    						html += 	'<td>' + date + '</td>';
    						html += 	'<td>' + board.viewCnt + '</td>';
    						html += 	'<td>' + board.likeCnt + '</td>';
@@ -282,16 +301,23 @@
    					} else {
    						$(".free_board_head").nextAll().remove();
    						$(".free_board > tbody").append(html);
-   					};
+   					}
    					
    					if ( (input != "") && searchType == "title" ) {
    		        		for (i = 0; i < $(".board_title_left > a").length; i++) {
    		        			$(".board_title_left > a:eq(" + i + ")").html( $(".board_title_left > a:eq(" + i + ")").html().replace(input, "<b class='search_keyword'>" + input + "</b>") );
-   		        		};
-   		        	};
+   		        		}
+   		        	}
+   		        	
+   		        	if ( (input != "") && searchType == "nickName" ) {
+	   		     		for (i = 0; i < $(".free_board_list").length; i++) {
+	   		     			$(".free_board_list:eq(" + i + ") > td:eq(2)").html( $(".free_board_list:eq(" + i + ") > td:eq(2)").html().replace(input, "<b class='search_keyword'>" + input + "</b>") );
+	   		     		}
+   		     		}
    				}
    			});
         });
     </script>
+    <script src="<c:url value='/resources/js/main/board/agency/side-bar.js'/>"></script>
 </body>
 </html>
