@@ -343,6 +343,10 @@
 	font-weight: bold;
 }
 
+.modal-backdrop {
+	z-index: 0 !important;
+}
+
 #board_article_info_id {
 	font-family: 'Malgun Gothic';
 	font-weight: bold;
@@ -392,3 +396,54 @@
 	color: #003569;
 	font-weight: bold;
 }
+
+.comment_info i {
+	font-size: 12px;
+	color: grey;
+}
+
+.comment_info i:hover {
+	color: black;
+}
+
+.update_submit_button {
+	margin-left: 60px;
+}
+
+.comment_like_button > i {
+	color: grey;
+	cursor: pointer;
+}
+
+.comment_like_button > i > a {
+	margin-left: 5px;
+}
+
+.comment_like_button > i {
+	color: grey;
+	cursor: pointer;
+}
+
+.comment_like_button > i:hover {
+	color: #FC2E5A;
+}
+
+.fa-heart {
+	margin-left: 10px;
+}
+
+.comment_dislike_button > .fa-exclamation > a {
+	margin-left: 5px;
+}
+
+.comment_dislike_button > .fa-exclamation {
+	margin-left: 10px;
+	cursor: pointer;
+}
+
+.comment_dislike_button {
+	font-size: 12px;
+}
+
+
+

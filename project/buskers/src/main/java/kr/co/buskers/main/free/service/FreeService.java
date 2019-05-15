@@ -14,8 +14,11 @@ public interface FreeService {
 	public Map<String, Object> sortList(FreePage freePage);
 	public Map<String, Object> insertComment(FreeBoardComment freeBoardComment);
 	public Map<String, Object> insertReply(FreeBoardComment freeBoardComment);
+	public Map<String, Object> updateComment(FreeBoardComment freeBoardComment);
 	public Map<String, Object> detail(int boardNo, HttpSession session);
 	public void write(FreeBoard freeBoard);
 	public int updateLikeStatus(Like like);
 	public void deleteComment(int commentNo);
+	public Map<String, String> insertCommentLike(Like like);
+	public Map<String, Object> listIsLikedComment(int memberNo);
 }

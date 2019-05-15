@@ -195,6 +195,71 @@
 		 where reply_no = #{commentNo}
 	</select>
 	
+	<update id="updateComment" parameterType="freeBoardComment">
+		update tb_freeboard_comment
+	 	   set content = #{content}
+		 where comment_no = #{commentNo}
+		
+	</update>
+	
+	<!-- 댓글 추천 -->
+    <insert id="insertCommentLike" parameterType="like">
+		insert into tb_like(
+			member_no, board_no, board_type, like_status
+		) values (
+			#{memberNo}, #{boardNo}, 2, 'y'
+		)
+	</insert>
+	
+    <select id="selectCommentLikeCount" parameterType="int" resultType="int">
+    	select like_cnt 
+		  from tb_freeboard_comment
+		 where comment_no = #{commentNo};
+    </select>
+	
+    <select id="selectCommentLike" parameterType="like" resultType="like">
+    	select *
+    	  from tb_like
+    	 where board_no = #{boardNo}
+    	   and member_no = #{memberNo}
+    	   and board_type = 2
+    </select>
+	
+    <update id="updateCommentLikeStatusY" parameterType="int" >
+    	update tb_like
+    	   set like_status = 'y'
+    	 where board_no = #{boardNo}
+    	   and board_type = 2
+    </update>
+    
+    <update id="updateCommentLikeStatusN" parameterType="int" >
+    	update tb_like
+    	   set like_status = 'n'
+    	 where board_no = #{boardNo}
+    	   and board_type = 2
+    </update>
+    
+    <update id="updateCommentLikePlus" parameterType="int">
+   		update tb_freeboard_comment
+		   set like_cnt = like_cnt + 1
+		 where comment_no = #{commentNo} 
+    </update>
+    	 
+    <update id="updateCommentLikeMinus" parameterType="int" >
+    	update tb_freeboard_comment
+		   set like_cnt = like_cnt - 1
+		 where comment_no = #{commentNo}  
+    </update>	
+    
+    <select id="selectCommentIsLiked" parameterType="int" resultType="like">
+    	select *
+		  from tb_like
+		 where member_no = #{memberNo}
+		   and board_type = 2
+		   and like_status = 'y'
+    </select>
+    
+	
 </mapper>
 
 

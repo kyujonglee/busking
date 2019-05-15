@@ -1,0 +1,51 @@
+<!DOCTYPE tiles-definitions PUBLIC
+  "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+  "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+ 
+<tiles-definitions>
+
+ 
+    <!-- 메뉴 표시 -->
+    <definition name="base" template="/WEB-INF/tiles/template.jsp">
+        <put-attribute name="side"   value="/WEB-INF/tiles/side.jsp" />
+        <put-attribute name="header"   value="/WEB-INF/tiles/header.jsp" />
+    </definition>
+    
+    <definition name="main/board/*/*" extends="base">
+        <put-attribute name="body" value="/WEB-INF/view/main/board/{1}/{2}.jsp" />
+    </definition>
+    <definition name="main/*" extends="base">
+        <put-attribute name="body" value="/WEB-INF/view/main/{1}.jsp" />
+    </definition>
+    
+    
+    
+<!--     <definition name="*/*.page" extends="base"> -->
+<!--          <put-attribute name="body" value="/WEB-INF/views/{1}/{2}.jsp" /> -->
+<!--     </definition> -->
+    
+    <!-- 메뉴 미표시 -->
+<!--     <definition name="baseEmpty" template="/WEB-INF/tiles/templateEmpty.jsp"> -->
+<!--     </definition> -->
+    
+<!--     <definition name="main/board/agency/*.notiles" extends="baseEmpty"> -->
+<!--         <put-attribute name="body" value="/WEB-INF/view/main/board/agency/{1}.jsp" /> -->
+<!--     </definition> -->
+    
+<!--     <definition name="*.part" extends="baseEmpty"> -->
+<!--         <put-attribute name="body" value="/WEB-INF/view/{1}.jsp" /> -->
+<!--     </definition> -->
+ 
+<!--      <definition name="*/*.part" extends="baseEmpty"> -->
+<!--          <put-attribute name="body" value="/WEB-INF/view/{1}/{2}.jsp" /> -->
+<!--      </definition> -->
+    
+<!--     <definition name="*/*/*.part" extends="baseEmpty"> -->
+<!--         <put-attribute name="body" value="/WEB-INF/view/{1}/{2}/{3}.jsp" /> -->
+<!--     </definition> -->
+            
+<!--     <definition name="*/*/*.part" extends="baseEmpty"> -->
+<!--         <put-attribute name="body" value="/WEB-INF/view/{1}/{2}/{3}/{4}.jsp" /> -->
+<!--     </definition>         -->
+    
+</tiles-definitions>
