@@ -114,4 +114,25 @@ public class FreeBoardController {
 		service.write(freeBoard);
 		return UrlBasedViewResolver.REDIRECT_URL_PREFIX + "list.do";
 	}
+	
+	@RequestMapping("like-comment-ajax.do")		
+	@ResponseBody
+	public Map<String, String> insertCommentLike(Like like, Model model) {
+		Map<String, String> result = service.insertCommentLike(like);
+		
+		model.addAttribute("likeCount", result.get("likeCount"));
+		model.addAttribute("likeStatus", result.get("likeStatus"));
+		
+		return result;
+	}
+	
+	@RequestMapping("is-liked-comment-ajax.do")		
+	@ResponseBody
+	public Map<String, Object> listIsLikedComment(int memberNo, Model model) {
+		Map<String, Object> result = service.listIsLikedComment(memberNo);
+		
+		model.addAttribute("isLikedComment", result.get("isLikedComment"));
+		
+		return result;
+	}
 }

@@ -10,7 +10,7 @@ public class FreeBoardComment {
 	private String content;
 	private Date regDate;
 	private int likeCnt;
-	private int disLikeCnt;
+	private int dislikeCnt;
 	private String nickName;
 
 	
@@ -78,11 +78,12 @@ public class FreeBoardComment {
 		this.likeCnt = likeCnt;
 	}
 
-	public int getDisLikeCnt() {
-		return disLikeCnt;
+	public int getDislikeCnt() {
+		return dislikeCnt;
 	}
 
-	public void setDisLikeCnt(int disLikeCnt) {
-		this.disLikeCnt = disLikeCnt;
+	public void setDislikeCnt(int dislikeCnt) {
+		this.dislikeCnt = dislikeCnt;
 	}
+
 }

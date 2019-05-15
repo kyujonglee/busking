@@ -1,7 +1,6 @@
 package kr.co.buskers.main.free.service;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -107,6 +106,14 @@ public class FreeServiceImpl implements FreeService {
 		return map;
 	}
 	
+	public Map<String, Object> listIsLikedComment(int memberNo) {
+		Map<String, Object> map = new HashMap<>();
+		
+		map.put("isLikedComment", mapper.selectCommentIsLiked(memberNo));
+		
+		return map;
+	}
+	
 	public void write(FreeBoard freeBoard) {
 		mapper.insertBoard(freeBoard);
 	}
@@ -132,4 +139,33 @@ public class FreeServiceImpl implements FreeService {
 		
 		return mapper.selectBoardLikeCount(like.getBoardNo());
 	}
+	
+	public Map<String, String> insertCommentLike(Like like) {
+		Map<String, String> map = new HashMap<>();
+		
+		if (mapper.selectCommentLike(like) == null) {
+			mapper.insertCommentLike(like);
+			mapper.updateCommentLikePlus(like.getBoardNo());
+			map.put("likeCount", "1");
+		} else {
+			if (mapper.selectCommentLike(like).getLikeStatus() == 'n') {
+				mapper.updateCommentLikePlus(like.getBoardNo());
+				mapper.updateCommentLikeStatusY(like.getBoardNo());
+				map.put("likeCount", String.valueOf(mapper.selectCommentLikeCount(like.getBoardNo())));
+				map.put("likeStatus", String.valueOf(mapper.selectCommentLike(like).getLikeStatus()));
+				
+				return map;
+				
+			} else {
+				mapper.updateCommentLikeMinus(like.getBoardNo());
+				mapper.updateCommentLikeStatusN(like.getBoardNo());
+				map.put("likeCount", String.valueOf(mapper.selectCommentLikeCount(like.getBoardNo())));
+				map.put("likeStatus", String.valueOf(mapper.selectCommentLike(like).getLikeStatus()));
+				
+				return map;
+			}
+		}
+		return map;
+	}
+	
 }

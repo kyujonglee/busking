@@ -88,6 +88,7 @@ public class QnaBoardController {
 	
 	
 	
+	
 	@RequestMapping("/comment-list.do")
 	@ResponseBody
 	public List<QnaBoardComment> commentList(int no) {  //int no 는 화면에서 넘겨준 파라미터값이 들어감.

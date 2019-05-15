@@ -19,4 +19,6 @@ public interface FreeService {
 	public void write(FreeBoard freeBoard);
 	public int updateLikeStatus(Like like);
 	public void deleteComment(int commentNo);
+	public Map<String, String> insertCommentLike(Like like);
+	public Map<String, Object> listIsLikedComment(int memberNo);
 }

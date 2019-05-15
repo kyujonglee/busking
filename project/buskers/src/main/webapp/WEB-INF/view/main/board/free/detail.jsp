@@ -106,11 +106,15 @@
 				               				<div class="comment_id">${comment.nickName}</div>
 				               				<div class="comment_date">
 					               				<i class="far fa-clock comment_clock"></i>
-					               				<fmt:formatDate value="${comment.regDate}" pattern="MM-dd HH:mm:ss" />
+					               				<fmt:formatDate value="${comment.regDate}" pattern="MM-dd HH:mm" />
 				               				</div>
+			               					<c:if test="${sessionScope.user.memberNo eq comment.memberNo}">
 				               				<div class="comment_update_button"><i class="fas fa-pen-alt">수정</i></div>
 				               				<div class="comment_delete_button"><i class="far fa-trash-alt">삭제</i></div>
+				               				</c:if>
 				               				<div class="comment_reply_button"><i class="fas fa-reply">답글</i></div>
+				               				<div class="comment_like_button"><i class="fas fa-heart">추천<a>${comment.likeCnt}</a></i></div>
+				               				<div class="comment_dislike_button"><i class="fas fa-exclamation">신고<a>${comment.dislikeCnt}</a></i></div>
 				               			</div>
 						                
 				               			<div class="bubble"><p>${comment.content}</p></div>
@@ -143,11 +147,15 @@
 					               				<div class="comment_id">${reply.nickName}</div>
 					               				<div class="comment_date">
 						               				<i class="far fa-clock comment_clock"></i>
-						               				<fmt:formatDate value="${reply.regDate}" pattern="MM-dd HH:mm:ss" />
+						               				<fmt:formatDate value="${reply.regDate}" pattern="MM-dd HH:mm" />
 					               				</div>
+				               					<c:if test="${sessionScope.user.memberNo eq reply.memberNo}">
 					               				<div class="comment_update_button"><i class="fas fa-pen-alt">수정</i></div>
 					               				<div class="comment_delete_button"><i class="far fa-trash-alt">삭제</i></div>
+					               				</c:if>
 					               				<div class="comment_reply_button"><i class="fas fa-reply">답글</i></div>
+					               				<div class="comment_like_button"><i class="fas fa-heart">추천<a>${reply.likeCnt}</a></i></div>
+				               					<div class="comment_dislike_button"><i class="fas fa-exclamation">신고<a>${reply.dislikeCnt}</a></i></div>
 					               			</div>
 							                
 					               			<div class="bubble"><p>${reply.content}</p></div>
@@ -156,7 +164,7 @@
 						               			<div class="reply_content_wrapper">
 								           			<textarea class="reply_content" name="content"></textarea>
 							           			</div>
-							           			<div class="update_submit_button" name="${comment.commentNo}" nick="${reply.nickName}" type="comment" no="${reply.commentNo}">
+							           			<div class="update_submit_button" name="${comment.commentNo}" nick="${reply.nickName}" type="reply" no="${reply.commentNo}">
 								           			<a class="far fa-edit"> 댓글 수정</a>
 							           			</div>
 						           			</div>
@@ -165,10 +173,10 @@
 						               			<div class="reply_content_wrapper">
 								           			<textarea class="reply_content" name="content"></textarea>
 							           			</div>
-						           			<div class="reply_submit_button" name="${comment.commentNo}" nick="${reply.nickName}" type="reply" no="${reply.commentNo}">
-							           			<a class="far fa-edit"> 답글 등록</a>
-						           			</div>
-					           			</div>
+							           			<div class="reply_submit_button" name="${comment.commentNo}" nick="${reply.nickName}" type="reply" no="${reply.commentNo}">
+								           			<a class="far fa-edit"> 답글 등록</a>
+							           			</div>
+					           				</div>
 					               		</div>
 			                		</c:if>
 			               		</c:forEach>
@@ -236,6 +244,27 @@
 			$(".reply_wrapper").hide();
 			$(".update_wrapper").hide();
 		});
+		
+		function commentIsLiked() {
+			$.ajax({
+				type: "POST",
+				url: "is-liked-comment-ajax.do",
+				data: 
+					{
+					memberNo : memberNo,
+					},
+				dataType: "json",
+				success: function (result) {
+						let isLikeCommentList = result.isLikedComment;
+					for (let i = 0; i < isLikeCommentList.length; i++) {
+						let isLikedCommentNo = isLikeCommentList[i];
+ 						$(".reply_submit_button[no=" + isLikedCommentNo.boardNo + "]").parent().siblings(".comment_info").find(".fa-heart").css("color","#FC2E5A");
+					}
+				}
+			});
+		}
+		commentIsLiked();
+		
 		
 		/** 댓글 삭제 */
 		function deleteComment() {
@@ -352,9 +381,13 @@
 	               			html += 		'<div class="comment_date">';
 	               			html += 			'<i class="far fa-clock comment_clock"></i>' + date;
 	           				html += 		'</div>';
-	           				html += 		'<div class="comment_update_button"><i class="fas fa-pen-alt">수정</i></div>';
-	           				html += 		'<div class="comment_delete_button"><i class="far fa-trash-alt">삭제</i></div>';
+	           				if ( "${sessionScope.user.memberNo}" == comment.memberNo ) {
+		           				html += 		'<div class="comment_update_button"><i class="fas fa-pen-alt">수정</i></div>';
+		           				html += 		'<div class="comment_delete_button"><i class="far fa-trash-alt">삭제</i></div>';
+	           				}
 	           				html += 		'<div class="comment_reply_button"><i class="fas fa-reply">답글</i></div>';
+           					html += 		'<div class="comment_like_button"><i class="fas fa-heart">추천<a>' + comment.likeCnt + '</a></i></div>';
+	           				html += 		'<div class="comment_dislike_button"><i class="fas fa-exclamation">신고<a>' + comment.dislikeCnt + '</a></i></div>';
 	       					html += 	'</div>';
 	          				html += 	'<div class="bubble"><p>' + comment.content + '</p></div>';
 	          				html +=		'<div class="update_wrapper">';
@@ -389,16 +422,20 @@
 	                       			html += 		'<div class="comment_date">';
 	                       			html += 			'<i class="far fa-clock comment_clock"></i>' + date;
 	                   				html += 		'</div>';
-	                   				html += 		'<div class="comment_update_button"><i class="fas fa-pen-alt">수정</i></div>';
-	                   				html += 		'<div class="comment_delete_button"><i class="far fa-trash-alt">삭제</i></div>';
+	                   				if ( "${sessionScope.user.memberNo}" == reply.memberNo ) {
+	    		           				html += 		'<div class="comment_update_button"><i class="fas fa-pen-alt">수정</i></div>';
+	    		           				html += 		'<div class="comment_delete_button"><i class="far fa-trash-alt">삭제</i></div>';
+	    	           				}
 	                   				html += 		'<div class="comment_reply_button"><i class="fas fa-reply">답글</i></div>';
-	               					html += 	'</div>';
+    	           					html += 		'<div class="comment_like_button"><i class="fas fa-heart">추천<a>' + reply.likeCnt + '</a></i></div>';
+    		           				html += 		'<div class="comment_dislike_button"><i class="fas fa-exclamation">신고<a>' + reply.dislikeCnt + '</a></i></div>'; 		'<div class="comment_dislike_button"><i class="fas fa-exclamation">신고</i></div>';
+	    	           				html += 	'</div>';
 	                  				html += 	'<div class="bubble"><p>' + reply.content + '</p></div>';
 	                  				html +=		'<div class="update_wrapper">';
 	                  				html +=			'<div class="reply_content_wrapper">';
 	                  				html +=				'<textarea class="reply_content" name="content"></textarea>';
 	                  				html +=			'</div>';
-	                  				html +=			'<div class="update_submit_button" name="' + comment.commentNo + '" nick="' + reply.nickName + '" no="' + reply.commentNo + '" type="comment">';
+	                  				html +=			'<div class="update_submit_button" name="' + comment.commentNo + '" nick="' + reply.nickName + '" no="' + reply.commentNo + '" type="reply">';
 	                  				html +=				'<a class="far fa-edit"> 댓글 수정</a>';
 	                  				html +=			'</div>';
 	                  				html +=		'</div>';
@@ -444,6 +481,8 @@
 	   					updateComment();
 	   					deleteComment();
 	   					writeComment();
+	   					commentLike();
+	   					commentIsLiked();
 	   				}
 				});
 			});
@@ -498,9 +537,13 @@
 	               			html += 		'<div class="comment_date">';
 	               			html += 			'<i class="far fa-clock comment_clock"></i>' + date;
 	           				html += 		'</div>';
-	           				html += 		'<div class="comment_update_button"><i class="fas fa-pen-alt">수정</i></div>';
-	           				html += 		'<div class="comment_delete_button"><i class="far fa-trash-alt">삭제</i></div>';
+	           				if ( "${sessionScope.user.memberNo}" == comment.memberNo ) {
+		           				html += 		'<div class="comment_update_button"><i class="fas fa-pen-alt">수정</i></div>';
+		           				html += 		'<div class="comment_delete_button"><i class="far fa-trash-alt">삭제</i></div>';
+	           				}		
 	           				html += 		'<div class="comment_reply_button"><i class="fas fa-reply">답글</i></div>';
+           					html += 		'<div class="comment_like_button"><i class="fas fa-heart">추천<a>' + comment.likeCnt + '</a></i></div>';
+	           				html += 		'<div class="comment_dislike_button"><i class="fas fa-exclamation">신고<a>' + comment.dislikeCnt + '</a></i></div>';
 	       					html += 	'</div>';
 	          				html += 	'<div class="bubble"><p>' + comment.content + '</p></div>';
 	          				html +=		'<div class="update_wrapper">';
@@ -535,16 +578,20 @@
 	                       			html += 		'<div class="comment_date">';
 	                       			html += 			'<i class="far fa-clock comment_clock"></i>' + date;
 	                   				html += 		'</div>';
-	                   				html += 		'<div class="comment_update_button"><i class="fas fa-pen-alt">수정</i></div>';
-	                   				html += 		'<div class="comment_delete_button"><i class="far fa-trash-alt">삭제</i></div>';
+	                   				if ( "${sessionScope.user.memberNo}" == reply.memberNo ) {
+	    		           				html += 		'<div class="comment_update_button"><i class="fas fa-pen-alt">수정</i></div>';
+	    		           				html += 		'<div class="comment_delete_button"><i class="far fa-trash-alt">삭제</i></div>';
+	    	           				}	
 	                   				html += 		'<div class="comment_reply_button"><i class="fas fa-reply">답글</i></div>';
+    	           					html += 		'<div class="comment_like_button"><i class="fas fa-heart">추천<a>' + reply.likeCnt + '</a></i></div>';
+    		           				html += 		'<div class="comment_dislike_button"><i class="fas fa-exclamation">신고<a>' + reply.dislikeCnt + '</a></i></div>';
 	               					html += 	'</div>';
 	                  				html += 	'<div class="bubble"><p>' + reply.content + '</p></div>';
 	                  				html +=		'<div class="update_wrapper">';
 	                  				html +=			'<div class="reply_content_wrapper">';
 	                  				html +=				'<textarea class="reply_content" name="content"></textarea>';
 	                  				html +=			'</div>';
-	                  				html +=			'<div class="update_submit_button" name="' + comment.commentNo + '" nick="' + reply.nickName + '" no="' + reply.commentNo + '" type="comment">';
+	                  				html +=			'<div class="update_submit_button" name="' + comment.commentNo + '" nick="' + reply.nickName + '" no="' + reply.commentNo + '" type="reply">';
 	                  				html +=				'<a class="far fa-edit"> 댓글 수정</a>';
 	                  				html +=			'</div>';
 	                  				html +=		'</div>';
@@ -589,7 +636,8 @@
 	   					replyComment();
 	   					updateComment();
 	   					deleteComment();
-	   					writeComment();
+	   					commentLike();
+	   					commentIsLiked();
 	   				}
 				});
 			});
@@ -603,6 +651,16 @@
 				let content = $(this).siblings().children().val();
 				let boardNo = "${param.boardNo}";
 				let commentNo = $(this).attr("no");
+				if (content == "") {
+					alert("댓글 내용을 입력해주세요.");
+					return;
+				}
+				
+				if ( $(this).attr("type") == "reply" ) {
+					let replyName = $(this).parent().siblings(".bubble").children().text();
+					replyName = replyName.substring(1, replyName.indexOf(" "));
+					content = "<b class='reply_name'>" + "@" + replyName + "</b>" + " " + content;
+				}
 				
 				if ( nickName != $(this).attr("nick") ) {
 					alert("본인이 작성하지 않은 댓글은 수정할 수 없습니다.");
@@ -636,9 +694,13 @@
 	               			html += 		'<div class="comment_date">';
 	               			html += 			'<i class="far fa-clock comment_clock"></i>' + date;
 	           				html += 		'</div>';
-	           				html += 		'<div class="comment_update_button"><i class="fas fa-pen-alt">수정</i></div>';
-	           				html += 		'<div class="comment_delete_button"><i class="far fa-trash-alt">삭제</i></div>';
+	           				if ( "${sessionScope.user.memberNo}" == comment.memberNo ) {
+		           				html += 		'<div class="comment_update_button"><i class="fas fa-pen-alt">수정</i></div>';
+		           				html += 		'<div class="comment_delete_button"><i class="far fa-trash-alt">삭제</i></div>';
+	           				}	
 	           				html += 		'<div class="comment_reply_button"><i class="fas fa-reply">답글</i></div>';
+           					html += 		'<div class="comment_like_button"><i class="fas fa-heart">추천<a>' + comment.likeCnt + '</a></i></div>';
+	           				html += 		'<div class="comment_dislike_button"><i class="fas fa-exclamation">신고<a>' + comment.dislikeCnt + '</a></i></div>';
 	       					html += 	'</div>';
 	          				html += 	'<div class="bubble"><p>' + comment.content + '</p></div>';
 	          				html +=		'<div class="update_wrapper">';
@@ -673,16 +735,20 @@
 	                       			html += 		'<div class="comment_date">';
 	                       			html += 			'<i class="far fa-clock comment_clock"></i>' + date;
 	                   				html += 		'</div>';
-	                   				html += 		'<div class="comment_update_button"><i class="fas fa-pen-alt">수정</i></div>';
-	                   				html += 		'<div class="comment_delete_button"><i class="far fa-trash-alt">삭제</i></div>';
+	                   				if ( "${sessionScope.user.memberNo}" == reply.memberNo ) {
+	    		           				html += 		'<div class="comment_update_button"><i class="fas fa-pen-alt">수정</i></div>';
+	    		           				html += 		'<div class="comment_delete_button"><i class="far fa-trash-alt">삭제</i></div>';
+	    	           				}	
 	                   				html += 		'<div class="comment_reply_button"><i class="fas fa-reply">답글</i></div>';
+    	           					html += 		'<div class="comment_like_button"><i class="fas fa-heart">추천<a>' + reply.likeCnt + '</a></i></div>';
+    		           				html += 		'<div class="comment_dislike_button"><i class="fas fa-exclamation">신고<a>' + reply.dislikeCnt + '</a></i></div>';
 	               					html += 	'</div>';
 	                  				html += 	'<div class="bubble"><p>' + reply.content + '</p></div>';
 	                  				html +=		'<div class="update_wrapper">';
 	                  				html +=			'<div class="reply_content_wrapper">';
 	                  				html +=				'<textarea class="reply_content" name="content"></textarea>';
 	                  				html +=			'</div>';
-	                  				html +=			'<div class="update_submit_button" name="' + comment.commentNo + '" nick="' + reply.nickName + '" no="' + reply.commentNo + '" type="comment">';
+	                  				html +=			'<div class="update_submit_button" name="' + comment.commentNo + '" nick="' + reply.nickName + '" no="' + reply.commentNo + '" type="reply">';
 	                  				html +=				'<a class="far fa-edit"> 댓글 수정</a>';
 	                  				html +=			'</div>';
 	                  				html +=		'</div>';
@@ -726,6 +792,8 @@
 	   					updateComment();
 	   					deleteComment();
 	   					writeComment();
+	   					commentLike();
+	   					commentIsLiked();
 	   				}
 				});
 			});
@@ -779,6 +847,35 @@
 				});
 			}
 		});
+		
+		/** 댓글 좋아요 */
+		function commentLike() {
+			$(".comment_like_button").click(function () {
+				let commentNo = $(this).parent().siblings(".reply_wrapper").find(".reply_submit_button").attr("no");
+				let element = $(this).children();
+				
+				$.ajax({
+	   				type: "POST",
+	   				url: "like-comment-ajax.do",
+	   				data: 
+	   					{
+	   					memberNo : memberNo,
+	   					boardNo : commentNo,
+	   					},
+	   				success: function (result) {
+	   					element.children().text(result.likeCount);
+	   					if (result.likeStatus == "n") {
+	   						element.css("color", "grey");
+	   					} else {
+	   						element.css("color", "#FC2E5A");
+	   					}
+	   				}
+				});
+			});
+		}
+		commentLike();
+		
+		
     </script>
 </body>
 </html>
