@@ -7,27 +7,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" />
+	<link rel="stylesheet" href="<c:url value='/resources/css/main/main-header.css'/>" />
     <link rel="stylesheet" href="<c:url value='/resources/css/main/member/login.css'/>" />
     <script src="<c:url value='/resources/js/jquery-3.4.1.min.js'/>"></script>
     <title>buskers</title>
 </head>
 <body>
-    <!-- HEADER -->
-    <header class="header">
-        <div class="container">
-
-            <div class="menu">
-                <a href="#">Menu</a>
-            </div>
-            <div class="title">
-                <span>Buskers</span>
-            </div>
-            <div class="user">
-                <a href="<c:url value='/main/member/loginform.do'/>">로그인</a>
-            </div>
-        </div>
-            
-    </header>
+    <div class="main-form">
+		<%@ include file="/WEB-INF/view/include/sidebar.jsp" %>
+		<div class="main-body">
+			<%@ include file="/WEB-INF/view/include/header.jsp" %>
+		</div>
+	</div>
     
     <!-- CONTAINER -->
     <div class="login-body">
