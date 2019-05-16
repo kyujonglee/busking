@@ -196,10 +196,6 @@ public class QnaBoardServiceImpl implements QnaBoardService {
 		
 		System.out.println("SELECTGROUPNO:"+cmapper.selectGroupNo());
 		
-		
-
-		
-		
 		//날짜별 경로 선언
 		String path = modulePath+sdf.format(new Date())+"/";
 		String org_fileName = file.getOriginalFilename();
@@ -216,7 +212,7 @@ public class QnaBoardServiceImpl implements QnaBoardService {
 	    }
 	    //파일 업로드시행
 		file.transferTo(f);
-
+		System.out.println("filePath:"+filePath);
 		return filePath;
 	}
 	

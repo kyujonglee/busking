@@ -125,23 +125,10 @@ public class QnaBoardController {
 	//이미지 업로드
 	@RequestMapping("/imageupload.do")
 	@ResponseBody
-	public String profileUpload(MultipartFile file) throws Exception {
-//		System.out.println("이미지 업로드 들어왔음.");
-		// 업로드할 폴더 경로
-		String realFolder = "C:/bit2019/tomcat-work/wtpwebapps/buskers/resources/img";
-//		System.out.println("파일"+file);
-		// 업로드할 파일 이름 
-		String org_filename = file.getOriginalFilename();
-
-		String filePath = realFolder+ "/" + org_filename;
-
-		File f = new File(filePath);
-		file.transferTo(f);
-		System.out.println("리턴됨");
-		String serverPath = "/buskers/resources/img/"+org_filename;
-		System.out.println(serverPath);
-
-		return serverPath;
+	public String profileUpload(MultipartFile file,HttpServletRequest request) throws Exception {
+        String path = request.getRequestURI();
+        String modulePath =path.substring(0,path.lastIndexOf("/")+1);
+        return service.uploadImage(file,modulePath);
 	}
 	
 	@RequestMapping("download.do")

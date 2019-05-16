@@ -32,7 +32,7 @@
 		               		</div>
 		        	    </div>
 					
-						<form action="write.do" method="get" id="write_from">
+						<form action="write.do" method="get" id="write_from">	
 				            <div class="board_head_line">
 				                <span class="board_img_title">
 				                	<img src="<c:url value='/resources/img/boyoung.jpg'/>"/>
@@ -84,6 +84,10 @@
    				}
    			}
    	    });
+   	   
+   	   	
+   	   	let fileUrl = new Array();
+   	   	
 		////////업로드시 실행할 함수
 	   	function sendFile(file,editor,welEditable) {
 	        // 파일 전송을 위한 폼생성
@@ -99,7 +103,16 @@
 		        success : function(url) { // 처리가 성공할 경우
 // 	             alert("sendFile함수 들어옴")
 	             // 에디터에 이미지 출력
-	             alert(url);
+// 	             alert(url)
+				
+					 
+				 let fileNames=url;
+				 $(".free_board_detail_bottom").click(function(){
+					 alert(fileUrl[0]);
+					 alert(fileUrl[1]);
+					 console.log(fileUrl);
+				 });
+			   			     
 	             $("#summernote").summernote('editor.insertImage', "download.do?path="+url);
 	             
 		        }
