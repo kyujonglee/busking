@@ -6,8 +6,3 @@
 	<div class="agency">
 	</div>
 </main>
-<script>
-	$("#logout").click(function() {
-		alert("로그아웃 하셨습니다.");
-	});
-</script>
