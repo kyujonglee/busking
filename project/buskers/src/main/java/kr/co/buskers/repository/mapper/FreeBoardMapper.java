@@ -29,6 +29,8 @@ public interface FreeBoardMapper {
 	void deleteComment(int commentNo);
 	int selectCommentHasReply(int commentNo);
 	void updateComment(FreeBoardComment freeBoardComment);
+	void updateBoard(FreeBoard freeBoard);
+	void deleteBoard(FreeBoard freeBoard);
 	
 	void insertCommentLike(Like like);
 	void updateCommentLike(Like like);
@@ -40,14 +42,16 @@ public interface FreeBoardMapper {
 	void updateCommentLikeStatusN(int likeNo);
 	List<Like> selectCommentIsLiked(int memberNo);
 	
-	void updateLike(Like like);
-	void updateDisLike(Like like);
-	void insertLike(Like like);
-	void updateLikeFreeBoardCommentPlus(FreeBoardComment freeBoardComment);
-	void updateLikeFreeBoardCommentMinus(FreeBoardComment freeBoardComment);
-	void updateDisLikeFreeBoardCommentPlus(FreeBoardComment freeBoardComment);
-	void updateDisLikeFreeBoardCommentMinus(FreeBoardComment freeBoardComment);
-	void deleteLike(int no);
+	void insertCommentDislike(Like like);
+	void updateCommentDislike(Like like);
+	Like selectCommentDislike(Like like);
+	int updateCommentDislikePlus(int commentNo);
+	int updateCommentDislikeMinus(int commentNo);
+	int selectCommentDislikeCount(int commentNo);
+	void updateCommentDislikeStatusY(int likeNo);
+	void updateCommentDislikeStatusN(int likeNo);
+	List<Like> selectCommentIsDisliked(int memberNo);
+	
 }
 
 

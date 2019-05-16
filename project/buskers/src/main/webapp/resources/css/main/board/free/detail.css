@@ -1,3 +1,4 @@
+
 .board_img_title {
     display: inline-block;
     width: 50px;
@@ -75,19 +76,18 @@
 	padding: 30px 10px;
 }
 
-.freeboard__detail .fa-list-ul {
+.free_board_detail_bottom > a {
     min-width: 56px;
     padding: 9px 12px;
     border: 1px solid #d3d3d3;
     text-align: center;
     text-decoration: none;
     font-size: 13px;
-    margin-right: 20px;
     background: #333333;
     color: white;
 }
 
-.freeboard__detail .fa-list-ul:hover {
+.free_board_detail_bottom > a:hover {
     text-decoration: underline;
     cursor: pointer;
     color: tomato;
@@ -352,9 +352,9 @@
 	font-weight: bold;
 }
 
-.board_article_like {
+.board_article_bottom {
 	display: flex;
-	justify-content: flex-end;
+	justify-content: space-between;
 	align-items: center;
 	font-size: 13px;
 	font-weight: 600;
@@ -444,6 +444,22 @@
 .comment_dislike_button {
 	font-size: 12px;
 }
+
+.comment_dislike_button > i:hover {
+	color: #EE7C01;
+}
+
+.free_board_detail_bottom > a {
+	margin-left: 25px;
+}
+
+.board_file_list {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+
 
 
 

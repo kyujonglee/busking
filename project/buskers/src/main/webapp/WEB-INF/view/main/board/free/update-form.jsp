@@ -20,32 +20,29 @@
                	 </div>
         	    </div>
 			
-			<form action="write.do" method="get" id="write_form">
+			<form action="update.do" method="post" id="update_form">
 	            <div class="board_head_line">
 	                <span class="board_img_title">
 	                	<img src="<c:url value='/resources/img/boyoung.jpg'/>"/>
 	                </span>
-	                <input class="write_form_title" name="title" placeholder="제목을 입력하세요." />
+	                <input class="write_form_title" name="title" value="${board.title}" />
 	            </div>
 	            
-	            <textarea class="board_write_form" name="content"></textarea>
-	            
-            
+	            <textarea class="board_write_form" name="content">${board.content}</textarea>
+            	<input type="hidden" name="boardNo" value="${board.boardNo}" />
             
           	  <br><br><br>
         
 	        	<div class="free_board_detail_bottom">
 	        		<a class="fas fa-edit"> 등록</a>
 	                <a href="<c:url value='/main/board/free/list.do'/>" class="fas fa-list-ul"> 목록</a>
-	                <input type="hidden" name="memberNo" value="${sessionScope.user.memberNo}">
 	            </div>
 
           	  <br><br><br>
 			</form>
-				</div>
-				</div>
-			</main>
-         	   <div class="footer"></div>
+			</div>
+			</div>
+		</main>
     <script>
     	$(".fa-edit").click(function () {
    			if ( $(".write_form_title").val() == "" ) {
@@ -58,7 +55,7 @@
    				return;
    			}
    			
-    		$("#write_form").submit();
+    		$("#update_form").submit();
     	});
 	    
     

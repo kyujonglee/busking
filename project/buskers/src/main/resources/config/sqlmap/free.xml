@@ -11,6 +11,7 @@
                            left join tb_freeboard_comment c on f.board_no = c.board_no
 		                  inner join tb_member m on m.member_no = f.member_no
 						  where (@rownum:=0)=0
+						    and is_deleted = 'N'
 						  
 						<choose>
 							<when test="searchType == 'title'">
@@ -63,6 +64,7 @@
 		  left join tb_freeboard_comment c on f.board_no = c.board_no
 		 inner join tb_member m on m.member_no = f.member_no
 		 where is_notify = 'Y'
+		   and is_deleted = 'N'
          group by board_no
 	</select>
 	
@@ -77,6 +79,7 @@
 		select count(*)
 		  from tb_freeboard f, tb_member m
 		 where f.member_no = m.member_no
+		   and is_deleted = 'N'
 		<choose>
 			<when test="searchType == 'title'">
 				and title like concat('%', #{input}, '%')
@@ -96,6 +99,7 @@
 		update tb_freeboard
 		  set view_cnt = view_cnt + 1
 		where board_no = #{boardNo}
+		  and is_deleted = 'N'
 	</update>
 	
 	<insert id="insertBoard" parameterType="freeBoard">
@@ -259,6 +263,75 @@
 		   and like_status = 'y'
     </select>
     
+	<!-- 댓글 신고 -->
+    <insert id="insertCommentDislike" parameterType="like">
+		insert into tb_like(
+			member_no, board_no, board_type, dislike_status
+		) values (
+			#{memberNo}, #{boardNo}, 2, 'y'
+		)
+	</insert>
+	
+    <select id="selectCommentDislikeCount" parameterType="int" resultType="int">
+    	select dislike_cnt 
+		  from tb_freeboard_comment
+		 where comment_no = #{commentNo};
+    </select>
+	
+    <select id="selectCommentDislike" parameterType="like" resultType="like">
+    	select *
+    	  from tb_like
+    	 where board_no = #{boardNo}
+    	   and member_no = #{memberNo}
+    	   and board_type = 2
+    </select>
+	
+    <update id="updateCommentDislikeStatusY" parameterType="int" >
+    	update tb_like
+    	   set dislike_status = 'y'
+    	 where board_no = #{boardNo}
+    	   and board_type = 2
+    </update>
+    
+    <update id="updateCommentDislikeStatusN" parameterType="int" >
+    	update tb_like
+    	   set dislike_status = 'n'
+    	 where board_no = #{boardNo}
+    	   and board_type = 2
+    </update>
+    
+    <update id="updateCommentDislikePlus" parameterType="int">
+   		update tb_freeboard_comment
+		   set dislike_cnt = dislike_cnt + 1
+		 where comment_no = #{commentNo} 
+    </update>
+    	 
+    <update id="updateCommentDislikeMinus" parameterType="int" >
+    	update tb_freeboard_comment
+		   set dislike_cnt = dislike_cnt - 1
+		 where comment_no = #{commentNo}  
+    </update>	
+    
+    <select id="selectCommentIsDisliked" parameterType="int" resultType="like">
+    	select *
+		  from tb_like
+		 where member_no = #{memberNo}
+		   and board_type = 2
+		   and dislike_status = 'y'
+    </select>
+    
+	<update id="updateBoard" parameterType="freeBoard">
+		update tb_freeboard
+		   set title = #{title},
+		       content = #{content}
+		 where board_no = #{boardNo}
+	</update>
+	
+	<update id="deleteBoard" parameterType="int">
+		update tb_freeboard
+		   set is_deleted = 'Y'
+		 where board_no = #{boardNo}
+	</update>
 	
 </mapper>
 

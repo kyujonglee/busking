@@ -5,12 +5,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%> 
 <%@ page session="true" %>
 
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta http-equiv="X-UA-Compatible" content="ie=edge" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.0/moment.min.js"></script>
 <link rel="stylesheet"
 	href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" />
@@ -18,31 +12,8 @@
 <link rel="stylesheet" href="<c:url value='/resources/css/main/board/agency/agency.css'/>" />
 <link rel="stylesheet" href="<c:url value='/resources/css/main/board/free/test.css'/>" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.0/moment.min.js"></script>
-<title>buskers</title>
-</head>
-<body class="body-background">
-	<div class="main-form">
-		<%@ include file="../../../include/sidebar.jsp" %>
-		<div class="main-body">
-			<header class="header">
-				<div class="board_container">
-					<div class="header-columns">
-						<i class="fas fa-search fa-lg"></i> <input type="text"
-							placeholder="search" />
-					</div>
-					<div class="header-columns">
-						<span class="header__title">Buskers</span>
-					</div>
-					<div class="header-columns">
-						<span class="header__user"> <i class="fas fa-crown fa-lg"></i>
-							kyujong93 님
-						</span> <i class="fas fa-angle-down "></i> <i class="fas fa-bell fa-lg"></i>
-						<i class="fas fa-cog fa-lg"></i>
-					</div>
-				</div>
-			</header>
-			<main class="main-freeboard">
-			<div class="agency">
+		<main class="main-freeboard main-board">
+			<div class="board">
 				<div class="freeboard__detail">
 	            <div class="board_title">
 	                <div class="board_title_underline">
@@ -79,7 +50,13 @@
 	                	
 	                </div>
 	                
-	               	<div class="board_article_like">
+	               	<div class="board_article_bottom">
+	                	<div class="board_image_list">
+	                		<div class="board_image">fsd</div>
+	                		<div>fsd</div>
+	                		<div>fsd</div>
+	                	</div>
+	                	
 	               		<div class="board_article_like_wrapper">
 		               		<i class="far fa-heart fa-2x"></i>
 		               		<a>추천</a>
@@ -221,6 +198,10 @@
 	            <br><br><br>
 	        
 	        	<div class="free_board_detail_bottom">
+	        		<c:if test="${sessionScope.user.memberNo eq board.memberNo}">
+	                <a href="<c:url value='/main/board/free/update-form.do?pageNo=${param.pageNo}&input=${param.input}&sortType=${param.sortType}&searchType=${param.searchType}&boardNo=${param.boardNo}'/>" class="fas fa-eraser"> 수정</a>
+	                <a href="<c:url value='/main/board/free/delete.do?pageNo=${param.pageNo}&input=${param.input}&sortType=${param.sortType}&searchType=${param.searchType}&boardNo=${param.boardNo}'/>" class="fas fa-pen-square"> 삭제</a>
+	                </c:if>
 	                <a href="<c:url value='/main/board/free/list.do?pageNo=${param.pageNo}&input=${param.input}&sortType=${param.sortType}&searchType=${param.searchType}'/>" class="fas fa-list-ul"> 목록</a>
 	            </div>
 	
@@ -228,12 +209,6 @@
 				</div>
 				</div>
 			</main>
-		</div>
-	</div>
-	
-	<script src="<c:url value='/resources/js/jquery-3.4.1.min.js'/>"></script>
-	<script src="<c:url value='/resources/js/main/board/agency/side-bar.js'/>"></script>
-	
 	<script>
 		let user = "${sessionScope.user}";
 		let like = "${like.likeStatus}";
@@ -264,6 +239,26 @@
 			});
 		}
 		commentIsLiked();
+		
+		function commentIsDisliked() {
+			$.ajax({
+				type: "POST",
+				url: "is-disliked-comment-ajax.do",
+				data: 
+					{
+					memberNo : memberNo,
+					},
+				dataType: "json",
+				success: function (result) {
+						let isDislikeCommentList = result.isDislikedComment;
+					for (let i = 0; i < isDislikeCommentList.length; i++) {
+						let isDislikedCommentNo = isDislikeCommentList[i];
+ 						$(".reply_submit_button[no=" + isDislikedCommentNo.boardNo + "]").parent().siblings(".comment_info").find(".fa-exclamation").css("color","#EE7C01");
+					}
+				}
+			});
+		}
+		commentIsDisliked();
 		
 		
 		/** 댓글 삭제 */
@@ -482,6 +477,8 @@
 	   					deleteComment();
 	   					commentLike();
 	   					commentIsLiked();
+	   					commentDislike();
+	   					commentIsDisliked();
 	   				}
 				});
 			});
@@ -637,6 +634,8 @@
 	   					deleteComment();
 	   					commentLike();
 	   					commentIsLiked();
+	   					commentDislike();
+	   					commentIsDisliked();
 	   				}
 				});
 			});
@@ -793,6 +792,8 @@
 	   					writeComment();
 	   					commentLike();
 	   					commentIsLiked();
+	   					commentDislike();
+	   					commentIsDisliked();
 	   				}
 				});
 			});
@@ -874,8 +875,33 @@
 		}
 		commentLike();
 		
+		/** 댓글 신고 */
+		function commentDislike() {
+			$(".comment_dislike_button").click(function () {
+				let commentNo = $(this).parent().siblings(".reply_wrapper").find(".reply_submit_button").attr("no");
+				let element = $(this).children();
+				
+				$.ajax({
+	   				type: "POST",
+	   				url: "dislike-comment-ajax.do",
+	   				data: 
+	   					{
+	   					memberNo : memberNo,
+	   					boardNo : commentNo,
+	   					},
+	   				success: function (result) {
+	   					element.children().text(result.dislikeCount);
+	   					if (result.dislikeStatus == "n") {
+	   						element.css("color", "grey");
+	   					} else {
+	   						element.css("color", "#EE7C01");
+	   					}
+	   				}
+				});
+			});
+		}
+		commentDislike();
+		
 		
     </script>
-</body>
-</html>
 

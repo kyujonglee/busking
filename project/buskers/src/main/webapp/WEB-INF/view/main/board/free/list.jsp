@@ -8,8 +8,9 @@
 	href="<c:url value='/resources/css/main/board/agency/agency.css'/>" />
 <link rel="stylesheet"
 	href="<c:url value='/resources/css/main/board/free/test.css'/>" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.0/moment.min.js"></script>
 <main class="main-freeboard main-board">
-<div class="agency">
+<div class="board">
 	<div class="board_title">
 		<div class="board_title_underline">
 			<a href="<c:url value='/main/board/free/list.do'/>">자유게시판</a>
@@ -86,8 +87,10 @@
 				<button class="fas fa-search search_form_button">검색</button>
 			</form>
 		</div>
-		<a href="write-form.do" class="fas fa-pen"> 글쓰기</a> <a href="list.do"
-			class="fas fa-sort-amount-up"> 초기화</a>
+		<c:if test="${sessionScope.user ne null}">
+		<a href="write-form.do" class="fas fa-pen"> 글쓰기</a>
+		</c:if>
+		<a href="list.do" class="fas fa-sort-amount-up"> 초기화</a>
 	</div>
 
 	<br> <br> <br>

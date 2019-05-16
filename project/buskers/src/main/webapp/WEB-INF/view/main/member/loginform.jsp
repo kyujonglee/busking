@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" />
-<link rel="stylesheet" href="<c:url value='/resources/css/main/member/login.css'/>" />
-<script src="<c:url value='/resources/js/jquery-3.4.1.min.js'/>"></script>
-
-<main class="main-board">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" />
+    <link rel="stylesheet" href="<c:url value='/resources/css/main/member/login.css'/>" />
+    <script src="<c:url value='/resources/js/jquery-3.4.1.min.js'/>"></script>
+<main class="main-board">    
+    <!-- CONTAINER -->
     <div class="login-body">
         <div class="login-box">
             <div class="lb-header">
@@ -50,22 +50,23 @@
         </div>
     </div>
 </main>
-<script>
-	$("#login").click(function() {
-		var id = $("#id").val();
-		var pass = $("#pass").val();
-		if(id == ""){
-			alert("아이디를 입력하세요.");
-			$("#id").focus();
-			return;
-		}
-		if(pass == ""){
-			alert("비밀번호를 입력하세요.");
-			$("#pass").focus();
-			return;
-		}
-		$(".email-login").attr({
-			"action": "login.do"
-		});
-	});
-</script>
+    <script>
+    	$("#login").click(function() {
+    		var id = $("#id").val();
+    		var pass = $("#pass").val();
+    		if(id == ""){
+    			alert("아이디를 입력하세요.");
+    			$("#id").focus();
+    			return false;
+    		}
+    		if(pass == ""){
+    			alert("비밀번호를 입력하세요.");
+    			$("#pass").focus();
+    			return false;
+    		}
+    		$(".email-login").attr({
+   				"action": "login.do"
+    		});
+    	});
+    </script>
+</html>
