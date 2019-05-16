@@ -117,3 +117,9 @@
     background-color : var(--color-white);
     line-height : 30px;
 }
+
+.agency-insert__checkbox-item {
+	display: flex;
+	justify-content : center;
+	align-items : center;	
+}

@@ -17,6 +17,9 @@
     <definition name="main/*" extends="base">
         <put-attribute name="body" value="/WEB-INF/view/main/{1}.jsp" />
     </definition>
+    <definition name="main/member/*" extends="base">
+        <put-attribute name="body" value="/WEB-INF/view/main/member/{1}.jsp" />
+    </definition>
     
     
     

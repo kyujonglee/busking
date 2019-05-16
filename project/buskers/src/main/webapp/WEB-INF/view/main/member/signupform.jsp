@@ -27,7 +27,6 @@
 //       			return false;
 //       		}
 //       	}
-      	
 //       	$("#write_form").submit(availability($("#id"), "ID를 입력해주세요!!!!"))
 
       	
@@ -153,9 +152,9 @@
                         <div>성별&nbsp;</div>
                         <div class="radio">                        
                             <label for="sex1">남</label>
-                            <input type="radio" id="sex1" name="sex" value="남"/>
+                            <input type="radio" id="sex1" name="sex" value="M"/>
                             <label for="sex2">여</label>
-                            <input type="radio" id="sex2" name="sex" value="여"/>
+                            <input type="radio" id="sex2" name="sex" value="F"/>
                         </div>
                     </div>
                     <br>

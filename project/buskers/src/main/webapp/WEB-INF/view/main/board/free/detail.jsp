@@ -12,9 +12,8 @@
 <link rel="stylesheet" href="<c:url value='/resources/css/main/board/agency/agency.css'/>" />
 <link rel="stylesheet" href="<c:url value='/resources/css/main/board/free/test.css'/>" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.0/moment.min.js"></script>
-			
 		<main class="main-freeboard main-board">
-			<div class="agency">
+			<div class="board">
 				<div class="freeboard__detail">
 	            <div class="board_title">
 	                <div class="board_title_underline">
@@ -226,10 +225,6 @@
 				</div>
 				</div>
 			</main>
-	
-	<script src="<c:url value='/resources/js/jquery-3.4.1.min.js'/>"></script>
-	<script src="<c:url value='/resources/js/main/board/agency/side-bar.js'/>"></script>
-	
 	<script>
 		let user = "${sessionScope.user}";
 		let like = "${like.likeStatus}";
@@ -925,6 +920,4 @@
 		
 		
     </script>
-</body>
-</html>
 

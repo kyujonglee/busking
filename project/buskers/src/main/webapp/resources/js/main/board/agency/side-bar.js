@@ -1,12 +1,14 @@
 let slideFlag = true;
-$(".side-bar__icon:first").click(function(){
+$(".side-bar__column .side-bar__icon:first").click(function(){
     if(!slideFlag){
-        $(".side-bar__wrapper").animate({left : "140px"},500);
-        $(".side-bar__wrapper").css({"z-index" : 0});
+    	console.log("사이드바 사라짐");
+    	$(".side-bar").animate({width : "60px"},300);
+    	$(".side-bar .side-bar__column:nth-child(2)").fadeOut(200);
         slideFlag = true;
     }else {
-        $(".side-bar__wrapper").animate({left : "0px"},500);
-        $(".side-bar__wrapper").css({"z-index" : 1});
+    	console.log("사이드바 나타남");
+        $(".side-bar").animate({width : "200px"},300);
+        $(".side-bar .side-bar__column:nth-child(2)").fadeIn('slow');
         slideFlag = false;
     }
 });
