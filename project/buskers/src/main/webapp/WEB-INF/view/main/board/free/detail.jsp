@@ -52,9 +52,9 @@
 	                
 	               	<div class="board_article_bottom">
 	                	<div class="board_image_list">
-	                		<div class="board_image">fsd</div>
-	                		<div>fsd</div>
-	                		<div>fsd</div>
+	                		<div class="board_image fas fa-image"><a>이미지1</a></div>
+	                		<div class="board_image fas fa-image"><a>이미지2</a></div>
+	                		<div class="board_image fas fa-image"><a>이미지3</a></div>
 	                	</div>
 	                	
 	               		<div class="board_article_like_wrapper">
@@ -73,8 +73,24 @@
 	                	</div>
 	                	
 	                	<div class="board_article_comment_list">
+	                				
+                				<div class="best_comment comment_list">
+			               			<div class="comment_info">
+			                			<span class="board_img_title">
+						                	<img src="<c:url value='/resources/img/boyoung.jpg'/>"/>
+						                </span>
+			               				<div class="comment_id">닉네임</div>
+			               				<div class="comment_date">
+				               				<i class="far fa-clock comment_clock"></i>
+				               				05-15 05:05
+			               				</div>
+			               				<div class="comment_like"><i class="fas fa-heart">추천<a>99</a></i></div>
+			               				<div class="comment_best"><i class="fas fa-medal fa-1x"></i></div>
+			               			</div>
+			               			<div class="bubble"><p>베스트 댓글</p></div>
+		               			</div>
 	                	
-		                	<c:forEach var="comment" items="${comment}">
+	                		<c:forEach var="comment" items="${comment}">
 				                	<div class="comment_list">
 				               			<div class="comment_info">
 				                			<span class="board_img_title">
@@ -901,7 +917,6 @@
 			});
 		}
 		commentDislike();
-		
 		
     </script>
 

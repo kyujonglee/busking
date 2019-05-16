@@ -9,6 +9,7 @@
 <link rel="stylesheet"
 	href="<c:url value='/resources/css/main/board/free/test.css'/>" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.0/moment.min.js"></script>
+
 <main class="main-freeboard main-board">
 <div class="board">
 	<div class="board_title">
@@ -274,7 +275,7 @@
    					
    					/** 페이징 */
    					if (pageResult.prev) {
-   						pageHtml += '<a href="list.do?pageNo=' + beginPage + '&sortType=' + sort + '&input=' + input + '&searchType=' + searchType + '">';
+   						pageHtml += '<a href="list.do?pageNo=' + beginPage + '&sortType=' + sort + '&input=' + input + '&searchType=' + searchType + '&sortTypeAjax=' + sortTypeAjax + '">';
    						pageHtml += '<i class="fas fa-angle-left"></i></a>';
    					}
    					
@@ -283,7 +284,7 @@
    							pageHtml += '<a href="list.do?pageNo=' + i + '&sortType=' + sort + '&input=' + input + '&searchType=' + searchType + '" class="active">' + i + '</a>';
    							continue;
    						}
-   						pageHtml += '<a href="list.do?pageNo=' + i + '&sortType=' + sort + '&input=' + input + '&searchType=' + searchType + '">' + i + '</a>';
+   						pageHtml += '<a href="list.do?pageNo=' + i + '&sortType=' + sort + '&input=' + input + '&searchType=' + searchType  + '">' + i + '</a>';
    					}
    					
    					if (pageResult.next) {
