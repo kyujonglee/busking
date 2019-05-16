@@ -93,7 +93,7 @@
     width:100%;
     margin-bottom: 10px;
   }
-  .u-form-group input[type="id"],
+  .u-form-group input[type="text"],
   .u-form-group input[type="password"]{
     width: calc(50% - 22px);
     height:45px;

@@ -7,6 +7,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.UrlBasedViewResolver;
 
 import kr.co.buskers.main.member.service.MemberService;
@@ -28,43 +29,41 @@ public class MemberController {
 	
 	// 로그인 처리
 	@RequestMapping("login.do")
-	public ModelAndView login(HttpSession session, Member member) {
-		ModelAndView mav = new ModelAndView();
+	public String login(HttpSession session, Member member,RedirectAttributes rttr) {
 		Member user = service.login(member);
 		
-		// 관리자 로그인인지 아닌지 체크
-		if (user.getIsAdmin() == 'y' && user.getPass().equals(member.getPass())) {
-			session.setAttribute("user", user);
-			session.setMaxInactiveInterval(60 * 60);
-			mav.setViewName("redirect:/index.jsp");
-			return mav;
+		// DB 값 체크
+		if(user != null) {
+			boolean passMatch = passEncoder.matches(member.getPass(), user.getPass());
+			// passMatch 를 통과 true 값일때
+			if(passMatch) {
+				session.setAttribute("user", user);
+				session.setMaxInactiveInterval(60 * 60);
+				return "redirect:/index.jsp";
+			} 
+			// DB 가데이터 로그인 체크용
+			else if(user.getIsAdmin() == 'y' && user.getPass().equals(member.getPass())) {
+				session.setAttribute("user", user);
+				session.setMaxInactiveInterval(60 * 60);
+				return "redirect:/index.jsp";
+			} 
+			// passMatch 통과 실패 false 값일때
+			else {
+				rttr.addFlashAttribute("msg", "msgPass");
+				return "redirect:loginform.do";
+			}
 		} 
-		
-		boolean passMatch = passEncoder.matches(member.getPass(), user.getPass());
-		
-		if(user != null && passMatch) {
-			session.setAttribute("user", user);
-			session.setMaxInactiveInterval(60 * 60);
-			mav.setViewName("redirect:/index.jsp");
-		} else {
-			mav.setViewName("redirect:wronglogin.do");
+		// DB내의 id값과 로그인폼에 입력한 id 값이 일치하는것이 없을때
+		else {
+			rttr.addFlashAttribute("msg", "msgId");
+			return "redirect:loginform.do";
 		}
-		return mav;
-	}
-	
-	// 로그인 틀렸을때
-	@RequestMapping("wronglogin.do")
-	public ModelAndView wronglogin() {
-		ModelAndView mav = new ModelAndView("/main/member/wrongLogin");
-		mav.addObject("msg", "아이디 혹은 비밀번호가 틀렸습니다!");
-		return mav;
 	}
 	
 	// 로그인 세션이 없을때 처리
 	@RequestMapping("needlogin.do")
 	public ModelAndView needlogin() {
 		ModelAndView mav = new ModelAndView("/main/member/needLogin");
-		
 		return mav;
 	}
 	
