@@ -13,6 +13,7 @@
 	<select id="selectFileMaxNo" resultType="file">
 		select * 
 		  from tb_file 
- 		 where group_no = (select max(group_no) from tb_file);
+ 		 where group_no = (select max(group_no) from tb_file)
+ 		 group by group_no
 	</select>
 </mapper>
