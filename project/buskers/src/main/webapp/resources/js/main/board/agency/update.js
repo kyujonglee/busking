@@ -12,9 +12,7 @@ function updateAgency(){
 	  type:'info',
 	  timer: 2000
 	});
-	setTimeout(function(){
-		insertForm.submit();
-	},2000);
+	setTimeout(() => insertForm.submit() ,2000);
 }
 
 

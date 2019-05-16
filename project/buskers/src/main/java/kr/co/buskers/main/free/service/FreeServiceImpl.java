@@ -1,7 +1,6 @@
 package kr.co.buskers.main.free.service;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -107,6 +106,29 @@ public class FreeServiceImpl implements FreeService {
 		return map;
 	}
 	
+	public Map<String, Object> listIsLikedComment(int memberNo) {
+		Map<String, Object> map = new HashMap<>();
+		
+		map.put("isLikedComment", mapper.selectCommentIsLiked(memberNo));
+		
+		return map;
+	}
+	
+	public Map<String, Object> listIsDislikedComment(int memberNo) {
+		Map<String, Object> map = new HashMap<>();
+		
+		map.put("isDislikedComment", mapper.selectCommentIsDisliked(memberNo));
+		
+		return map;
+	}
+	
+	public Map<String, Object> updateForm(int boardNo) {
+		Map<String, Object> map = new HashMap<>();
+		
+		map.put("board", mapper.selectBoardByNo(boardNo));
+		return map;
+	}
+	
 	public void write(FreeBoard freeBoard) {
 		mapper.insertBoard(freeBoard);
 	}
@@ -118,6 +140,16 @@ public class FreeServiceImpl implements FreeService {
 		} else {
 			mapper.updateDeleteComment(commentNo);
 		}
+	}
+	
+	public void update(FreeBoard freeBoard) {
+		
+		mapper.updateBoard(freeBoard);
+	}
+	
+	public void delete(FreeBoard freeBoard) {
+		
+		mapper.deleteBoard(freeBoard);
 	}
 	
 	public int updateLikeStatus(Like like) {
@@ -132,4 +164,61 @@ public class FreeServiceImpl implements FreeService {
 		
 		return mapper.selectBoardLikeCount(like.getBoardNo());
 	}
+	
+	public Map<String, String> insertCommentLike(Like like) {
+		Map<String, String> map = new HashMap<>();
+		
+		if (mapper.selectCommentLike(like) == null) {
+			mapper.insertCommentLike(like);
+			mapper.updateCommentLikePlus(like.getBoardNo());
+			map.put("likeCount", "1");
+		} else {
+			if (mapper.selectCommentLike(like).getLikeStatus() == 'n') {
+				mapper.updateCommentLikePlus(like.getBoardNo());
+				mapper.updateCommentLikeStatusY(like.getBoardNo());
+				map.put("likeCount", String.valueOf(mapper.selectCommentLikeCount(like.getBoardNo())));
+				map.put("likeStatus", String.valueOf(mapper.selectCommentLike(like).getLikeStatus()));
+				
+				return map;
+				
+			} else {
+				mapper.updateCommentLikeMinus(like.getBoardNo());
+				mapper.updateCommentLikeStatusN(like.getBoardNo());
+				map.put("likeCount", String.valueOf(mapper.selectCommentLikeCount(like.getBoardNo())));
+				map.put("likeStatus", String.valueOf(mapper.selectCommentLike(like).getLikeStatus()));
+				
+				return map;
+			}
+		}
+		return map;
+	}
+	
+	public Map<String, String> insertCommentDislike(Like like) {
+		Map<String, String> map = new HashMap<>();
+		
+		if (mapper.selectCommentDislike(like) == null) {
+			mapper.insertCommentDislike(like);
+			mapper.updateCommentDislikePlus(like.getBoardNo());
+			map.put("dislikeCount", "1");
+		} else {
+			if (mapper.selectCommentDislike(like).getDislikeStatus() == 'n') {
+				mapper.updateCommentDislikePlus(like.getBoardNo());
+				mapper.updateCommentDislikeStatusY(like.getBoardNo());
+				map.put("dislikeCount", String.valueOf(mapper.selectCommentDislikeCount(like.getBoardNo())));
+				map.put("dislikeStatus", String.valueOf(mapper.selectCommentDislike(like).getDislikeStatus()));
+				
+				return map;
+				
+			} else {
+				mapper.updateCommentDislikeMinus(like.getBoardNo());
+				mapper.updateCommentDislikeStatusN(like.getBoardNo());
+				map.put("dislikeCount", String.valueOf(mapper.selectCommentDislikeCount(like.getBoardNo())));
+				map.put("dislikeStatus", String.valueOf(mapper.selectCommentDislike(like).getDislikeStatus()));
+				
+				return map;
+			}
+		}
+		return map;
+	}
+	
 }

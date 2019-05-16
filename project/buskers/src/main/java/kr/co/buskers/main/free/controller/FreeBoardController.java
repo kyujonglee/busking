@@ -109,9 +109,71 @@ public class FreeBoardController {
 		
 	}
 	
-	@RequestMapping("/write.do")
+	@RequestMapping("update-form.do")
+	public Map<String, Object> updateForm(int boardNo, Model model) {
+		Map<String, Object> result = service.updateForm(boardNo);
+		model.addAttribute("board", result.get("board"));
+		
+		return result;
+	}
+	
+	@RequestMapping("write.do")
 	public String write(FreeBoard freeBoard) {
 		service.write(freeBoard);
 		return UrlBasedViewResolver.REDIRECT_URL_PREFIX + "list.do";
+	}
+	
+	@RequestMapping("update.do")
+	public String update(FreeBoard freeBoard) {
+		service.update(freeBoard);
+		return UrlBasedViewResolver.REDIRECT_URL_PREFIX + "list.do";
+	}
+	
+	@RequestMapping("delete.do")
+	public String delete(FreeBoard freeBoard) {
+		service.delete(freeBoard);
+		return UrlBasedViewResolver.REDIRECT_URL_PREFIX + "list.do";
+	}
+	
+	@RequestMapping("like-comment-ajax.do")		
+	@ResponseBody
+	public Map<String, String> insertCommentLike(Like like, Model model) {
+		Map<String, String> result = service.insertCommentLike(like);
+		
+		model.addAttribute("likeCount", result.get("likeCount"));
+		model.addAttribute("likeStatus", result.get("likeStatus"));
+		
+		return result;
+	}
+	
+	@RequestMapping("is-liked-comment-ajax.do")		
+	@ResponseBody
+	public Map<String, Object> listIsLikedComment(int memberNo, Model model) {
+		Map<String, Object> result = service.listIsLikedComment(memberNo);
+		
+		model.addAttribute("isLikedComment", result.get("isLikedComment"));
+		
+		return result;
+	}
+	
+	@RequestMapping("dislike-comment-ajax.do")		
+	@ResponseBody
+	public Map<String, String> insertCommentDislike(Like like, Model model) {
+		Map<String, String> result = service.insertCommentDislike(like);
+		
+		model.addAttribute("dislikeCount", result.get("dislikeCount"));
+		model.addAttribute("dislikeStatus", result.get("dislikeStatus"));
+		
+		return result;
+	}
+	
+	@RequestMapping("is-disliked-comment-ajax.do")		
+	@ResponseBody
+	public Map<String, Object> listIsDislikedComment(int memberNo, Model model) {
+		Map<String, Object> result = service.listIsDislikedComment(memberNo);
+		
+		model.addAttribute("isDislikedComment", result.get("isDislikedComment"));
+		
+		return result;
 	}
 }

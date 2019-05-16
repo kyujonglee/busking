@@ -1,10 +1,12 @@
-package kr.co.buskers.common.main;
+package kr.co.buskers.main;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
+@RequestMapping("/main")
 public class MainController {
-	@RequestMapping("/main/main.do")
+	
+	@RequestMapping("main.do")
 	public void main() {}
 }

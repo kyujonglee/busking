@@ -182,7 +182,7 @@
     .header-i9 {
         color: rgb(204, 204, 204);
         margin-top: 6px;
-        margin-bottom: 6px;
+        line-height: 20px;
     }
     .header-i9 > span {
         color: rgb(0, 0, 0);

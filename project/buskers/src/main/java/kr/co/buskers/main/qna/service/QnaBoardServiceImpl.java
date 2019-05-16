@@ -1,8 +1,12 @@
 package kr.co.buskers.main.qna.service;
 
+import java.io.File;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,6 +17,7 @@ import kr.co.buskers.repository.domain.FreePage;
 import kr.co.buskers.repository.domain.Like;
 import kr.co.buskers.repository.domain.QnaBoard;
 import kr.co.buskers.repository.domain.QnaBoardComment;
+import kr.co.buskers.repository.mapper.CommonMapper;
 import kr.co.buskers.repository.mapper.QnaBoardMapper;
 
 @Service
@@ -20,6 +25,12 @@ public class QnaBoardServiceImpl implements QnaBoardService {
 	
 	@Autowired
 	private QnaBoardMapper mapper;
+//	
+	@Autowired
+	private CommonMapper cmapper;
+////	
+	
+	
 	
 	public void write(QnaBoard qnaBoard) {
 		mapper.insertBoard(qnaBoard);
@@ -153,6 +164,11 @@ public class QnaBoardServiceImpl implements QnaBoardService {
 			return result;
 	}
 	
+	
+	
+	
+	
+	
 	public List<QnaBoardComment> commentList(int no){
 		return mapper.selectComment(no);
 	}
@@ -169,9 +185,52 @@ public class QnaBoardServiceImpl implements QnaBoardService {
 		mapper.insertLike(like);
 	}
 	
-	///////////////파일업로드
-//	public String fileUpload(MultipartFile file) {
+	//파일 첨부
+	//사진파일 업로드
+	public String uploadImage(MultipartFile file,String modulePath) throws Exception{
+		UUID uuid = UUID.randomUUID();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+		String uploadRoot = "C:/bit2019/upload";
+		kr.co.buskers.repository.domain.File dbFile = new kr.co.buskers.repository.domain.File();
+		//파일 객체 선언
 		
-//	};
+		System.out.println("SELECTGROUPNO:"+cmapper.selectGroupNo());
+		
+		
+
+		
+		
+		//날짜별 경로 선언
+		String path = modulePath+sdf.format(new Date())+"/";
+		String org_fileName = file.getOriginalFilename();
+		//변경후 파일 이름
+		String str_fileName = uuid.toString()+org_fileName;
+		//최종 경로+파일이름
+		String filePath = uploadRoot+path+str_fileName;
+		//파일객체 생성
+		File f = new File(filePath);
+		
+		//디렉토리 생성
+	    if(f.exists()==false)  {
+	    	  f.mkdirs();
+	    }
+	    //파일 업로드시행
+		file.transferTo(f);
+
+		return filePath;
+	}
+	
+	/* 기존 성공 파일
+	  //업로드할 파일 경로
+		String realFolder = "C:/bit2019/upload";
+		//업로드할 파일 이름
+		String org_fileName = file.getOriginalFilename();
+		String filePath = realFolder+ "/" + org_fileName;
+		File f = new File(filePath);
+		file.transferTo(f);
+		System.out.println("리턴됨");
+		return org_fileName;
+	}
+	 */
 
 }

@@ -54,10 +54,6 @@ public class AgencyController {
 		return "redirect:list.do";
 	}
 	
-	// 주소 팝업창 띄우기
-	@RequestMapping("jusopopup.do")
-	public void jusopopup() {}
-	
 	@RequestMapping("detail.do")
 	public void detail(int agencyInfoNo,int pageNo,Model model) {
 		model.addAttribute("pageNo",pageNo);

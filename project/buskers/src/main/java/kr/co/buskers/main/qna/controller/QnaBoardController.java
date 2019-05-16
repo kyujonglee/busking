@@ -1,7 +1,11 @@
 package kr.co.buskers.main.qna.controller;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
 import java.io.File;
-import java.io.PrintWriter;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.util.List;
 import java.util.Map;
 
@@ -10,12 +14,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
@@ -142,29 +144,30 @@ public class QnaBoardController {
 		return serverPath;
 	}
 	
+	@RequestMapping("download.do")
+	public void download(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		//파라미터 정보 추출하기
+			String path = request.getParameter("path");
+			File f = new File(path);
+			FileInputStream fis = new FileInputStream(f);
+			BufferedInputStream bis = new BufferedInputStream(fis);
+			OutputStream out = response.getOutputStream();
+			BufferedOutputStream bos = new BufferedOutputStream(out);
+			while(true) {
+				int ch = bis.read();
+				if(ch == -1) {
+					break;
+				}
+				bos.write(ch);
+			}
+			bis.close();
+			fis.close();
+			bos.close();
+			out.close();
+	}
 	
 	
 	
-	/*	@ResponseBody
-	public String imageUpload(MultipartFile attach) throws Exception{
-		//사용자가 파일을 올렸는지 안올렸는지 체크하는게 필요함
-		System.out.println("attach : "+attach);
-		
-		//파일 올렸는지 확인
-		if(attach.isEmpty()) {
-		System.out.println("파일 선택하지 않음");
-		}
-		//사용자가 파일을 선택한 경우 - 서버에 메모리에 있는 파일의 내용을 서버에 저장
-		System.out.println("사용자 파일 선택함.");
-		System.out.println("사용자가 선택한 파일명 : "+attach.getOriginalFilename());	
-		
-		//서버의 특정 공간에 저장
-		attach.transferTo(new File("c:/bit2019/upload/"+attach.getOriginalFilename()));
-		String uploadPath = "c:/bit2019/upload/"+attach.getOriginalFilename();
-
-		
-		return "redirect:/index04.jsp";
-	}*/
 	
 	
 	

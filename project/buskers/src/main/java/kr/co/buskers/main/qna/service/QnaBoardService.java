@@ -1,5 +1,6 @@
 package kr.co.buskers.main.qna.service;
 
+import java.io.File;
 import java.util.List;
 import java.util.Map;
 
@@ -28,5 +29,7 @@ public interface QnaBoardService {
 	
 	public void writeComment(QnaBoardComment qnaBoardComment);
 	
-//	public String fileUpload(MultipartFile file);
+	public String uploadImage(MultipartFile file,String modulePath) throws Exception; 
+		
+	
 }

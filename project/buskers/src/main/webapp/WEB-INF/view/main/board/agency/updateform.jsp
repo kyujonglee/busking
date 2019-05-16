@@ -6,6 +6,7 @@
 <main class="main-agency">
 <div class="container">
 	<div class="agency">
+	<div class="board">
 		<header class="agency-header agency-insert__title">
 			<a href="<c:url value='/main/board/agency/list.do'/>"><i
 				class="fas fa-home fa-lg"></i></a> <span class="agency-title ">업체

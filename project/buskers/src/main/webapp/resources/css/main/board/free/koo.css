@@ -1,15 +1,16 @@
 @import "../../../common/common.css";
 @import 'detail.css';
 @import 'writeform.css';
-
-* {
-    margin: 0;
-    padding: 0;
-}
+@import 'updateform.css';
 
 body {
     background: #F4F7FC;
 }
+
+.main-freeboard {
+	background-color : white;
+}
+
 
 .board_container_head {
     position: fixed;
@@ -63,6 +64,10 @@ body {
 .free_board {
     border-collapse: collapse;
     width: 100%;
+}
+
+.main-freeboard {
+	background: white;	
 }
 
 .main-freeboard .board_title_left {
