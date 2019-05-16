@@ -459,7 +459,43 @@
 	align-items: center;
 }
 
+.board_image {
+	margin-right: 10px;
+}
 
+.board_image:hover {
+	margin-right: 10px;
+	text-decoration: underline;
+}
 
+.board_image > a {
+	margin-left: 5px;
+}
 
+.comment_like > i > a {
+	margin-left: 5px;
+	color: black;
+}
 
+.comment_like > i > a {
+	margin-left: 5px;
+	color: black;
+}
+
+.comment_like > i {
+	color: #FC2E5A;
+}
+
+.best_comment {
+	border-radius: 20px;
+	padding: 10px;
+	box-shadow: 0 0 5px #5A5F73, inset 0 0 5px #5A5F73,
+    			0 0 2px #5A5F73, inset 0 0 2px #5A5F73,
+      			0 0 4px #5A5F73, inset 0 0 4px #5A5F73;
+}
+
+.comment_best .fa-medal {
+	font-size: 20px;
+	margin-left: 5px;
+	color: gold;
+}

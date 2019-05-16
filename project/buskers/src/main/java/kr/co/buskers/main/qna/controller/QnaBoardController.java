@@ -1,7 +1,11 @@
 package kr.co.buskers.main.qna.controller;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
 import java.io.File;
-import java.io.PrintWriter;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.util.List;
 import java.util.Map;
 
@@ -10,12 +14,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
@@ -93,7 +95,6 @@ public class QnaBoardController {
 	
 	
 	
-	
 	@RequestMapping("/comment-list.do")
 	@ResponseBody
 	public List<QnaBoardComment> commentList(int no) {  //int no 는 화면에서 넘겨준 파라미터값이 들어감.
@@ -124,48 +125,36 @@ public class QnaBoardController {
 	//이미지 업로드
 	@RequestMapping("/imageupload.do")
 	@ResponseBody
-	public String profileUpload(MultipartFile file, HttpServletRequest request, HttpServletResponse response) throws Exception {
-//		System.out.println("이미지 업로드 들어왔음.");
-		// 업로드할 폴더 경로
-		String realFolder = "C:/bit2019/tomcat-work/wtpwebapps/buskers/resources/img";
-//		System.out.println("파일"+file);
-		// 업로드할 파일 이름 
-		String org_filename = file.getOriginalFilename();
-
-		String filePath = realFolder+ "/" + org_filename;
-
-		File f = new File(filePath);
-		file.transferTo(f);
-		System.out.println("리턴됨");
-		String serverPath = request.getContextPath()+"/resources/img/"+org_filename;
-		System.out.println(serverPath);
-
-		return serverPath;
+	public String profileUpload(MultipartFile file,HttpServletRequest request) throws Exception {
+        String path = request.getRequestURI();
+        String modulePath =path.substring(0,path.lastIndexOf("/")+1);
+        return service.uploadImage(file,modulePath);
+	}
+	
+	@RequestMapping("download.do")
+	public void download(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		//파라미터 정보 추출하기
+			String path = request.getParameter("path");
+			File f = new File(path);
+			FileInputStream fis = new FileInputStream(f);
+			BufferedInputStream bis = new BufferedInputStream(fis);
+			OutputStream out = response.getOutputStream();
+			BufferedOutputStream bos = new BufferedOutputStream(out);
+			while(true) {
+				int ch = bis.read();
+				if(ch == -1) {
+					break;
+				}
+				bos.write(ch);
+			}
+			bis.close();
+			fis.close();
+			bos.close();
+			out.close();
 	}
 	
 	
 	
-	
-	/*	@ResponseBody
-	public String imageUpload(MultipartFile attach) throws Exception{
-		//사용자가 파일을 올렸는지 안올렸는지 체크하는게 필요함
-		System.out.println("attach : "+attach);
-		
-		//파일 올렸는지 확인
-		if(attach.isEmpty()) {
-		System.out.println("파일 선택하지 않음");
-		}
-		//사용자가 파일을 선택한 경우 - 서버에 메모리에 있는 파일의 내용을 서버에 저장
-		System.out.println("사용자 파일 선택함.");
-		System.out.println("사용자가 선택한 파일명 : "+attach.getOriginalFilename());	
-		
-		//서버의 특정 공간에 저장
-		attach.transferTo(new File("c:/bit2019/upload/"+attach.getOriginalFilename()));
-		String uploadPath = "c:/bit2019/upload/"+attach.getOriginalFilename();
-
-		
-		return "redirect:/index04.jsp";
-	}*/
 	
 	
 	
