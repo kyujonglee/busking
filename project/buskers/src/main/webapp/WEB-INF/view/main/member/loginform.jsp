@@ -1,26 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" />
-	<link rel="stylesheet" href="<c:url value='/resources/css/main/main-header.css'/>" />
     <link rel="stylesheet" href="<c:url value='/resources/css/main/member/login.css'/>" />
     <script src="<c:url value='/resources/js/jquery-3.4.1.min.js'/>"></script>
-    <title>buskers</title>
-</head>
-<body>
-    <div class="main-form">
-		<%@ include file="/WEB-INF/view/include/sidebar.jsp" %>
-		<div class="main-body">
-			<%@ include file="/WEB-INF/view/include/header.jsp" %>
-		</div>
-	</div>
-    
+<main class="main-board">    
     <!-- CONTAINER -->
     <div class="login-body">
             <div class="login-box">
@@ -66,12 +50,7 @@
             </div>
 
     </div>
-    <!-- FOOTER -->
-    <footer class="footer">
-        <div class="copyright">
-            <h1>Copyright © 2019 .... - Buskers.</h1>
-        </div>
-    </footer>
+</main>
     <script>
     	$("#login").click(function() {
     		var id = $("#id").val();
@@ -79,17 +58,16 @@
     		if(id == ""){
     			alert("아이디를 입력하세요.");
     			$("#id").focus();
-    			return;
+    			return false;
     		}
     		if(pass == ""){
     			alert("비밀번호를 입력하세요.");
     			$("#pass").focus();
-    			return;
+    			return false;
     		}
     		$(".email-login").attr({
    				"action": "login.do"
     		});
     	});
     </script>
-</body>
 </html>

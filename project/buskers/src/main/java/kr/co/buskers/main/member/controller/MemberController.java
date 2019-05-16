@@ -32,24 +32,31 @@ public class MemberController {
 		ModelAndView mav = new ModelAndView();
 		Member user = service.login(member);
 		
-		boolean passMatch = passEncoder.matches(member.getPass(), user.getPass());
-		
-		if (user.getIsAdmin() == 'y') {
+		// 관리자 로그인인지 아닌지 체크
+		if (user.getIsAdmin() == 'y' && user.getPass().equals(member.getPass())) {
 			session.setAttribute("user", user);
-//			session.setMaxInactiveInterval(10);
+			session.setMaxInactiveInterval(60 * 60);
 			mav.setViewName("redirect:/index.jsp");
 			return mav;
 		} 
 		
+		boolean passMatch = passEncoder.matches(member.getPass(), user.getPass());
 		
 		if(user != null && passMatch) {
 			session.setAttribute("user", user);
-//			session.setMaxInactiveInterval(10);
+			session.setMaxInactiveInterval(60 * 60);
 			mav.setViewName("redirect:/index.jsp");
 		} else {
-			session.setAttribute("user", null);
-			mav.setViewName("redirect:loginform.do");
+			mav.setViewName("redirect:wronglogin.do");
 		}
+		return mav;
+	}
+	
+	// 로그인 틀렸을때
+	@RequestMapping("wronglogin.do")
+	public ModelAndView wronglogin() {
+		ModelAndView mav = new ModelAndView("/main/member/wrongLogin");
+		mav.addObject("msg", "아이디 혹은 비밀번호가 틀렸습니다!");
 		return mav;
 	}
 	
@@ -57,7 +64,6 @@ public class MemberController {
 	@RequestMapping("needlogin.do")
 	public ModelAndView needlogin() {
 		ModelAndView mav = new ModelAndView("/main/member/needLogin");
-		mav.addObject("msg", "로그인 후 이용해주시기 바랍니다.");
 		
 		return mav;
 	}
