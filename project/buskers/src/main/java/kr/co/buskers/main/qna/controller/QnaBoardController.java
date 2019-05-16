@@ -127,8 +127,8 @@ public class QnaBoardController {
 	@ResponseBody
 	public String profileUpload(MultipartFile file,HttpServletRequest request) throws Exception {
         String path = request.getRequestURI();
-        String modulePath =path.substring(0,path.lastIndexOf("/")+1);
-        return service.uploadImage(file,modulePath);
+        String modulePath =path.substring(0, path.lastIndexOf("/") + 1);
+        return service.uploadImage(file, modulePath);
 	}
 	
 	@RequestMapping("download.do")

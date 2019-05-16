@@ -51,10 +51,17 @@
 	                </div>
 	                
 	               	<div class="board_article_bottom">
+
 	                	<div class="board_image_list">
-	                		<div class="board_image fas fa-image"><a>이미지1</a></div>
-	                		<div class="board_image fas fa-image"><a>이미지2</a></div>
-	                		<div class="board_image fas fa-image"><a>이미지3</a></div>
+	                		<c:if test="${file ne null}">
+		                		<c:forEach var="file" items="${file}">
+		   	               		<div class="board_image fas fa-image">
+									<a href="<c:url value='/file/download-file.do'/>?path=${fn:substring(file.path, 0, fn:length(file.path) - 1)}&name=${file.systemName}&dname=${file.name}">
+										${file.name}
+									</a>
+								</div>
+								</c:forEach>
+							</c:if>
 	                	</div>
 	                	
 	               		<div class="board_article_like_wrapper">

@@ -99,6 +99,7 @@ public class FreeBoardController {
 			model.addAttribute("like", result.get("like"));
 		}
 		
+		model.addAttribute("file", result.get("file"));
 		model.addAttribute("reply", result.get("reply"));
 		model.addAttribute("comment", result.get("comment"));
 		model.addAttribute("board", result.get("board"));

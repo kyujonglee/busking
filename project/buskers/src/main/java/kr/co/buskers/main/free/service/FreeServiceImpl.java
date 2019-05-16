@@ -51,9 +51,10 @@ public class FreeServiceImpl implements FreeService {
 			}
 			
 		}
-		
 		mapper.updateBoardViewCount(boardNo);
-		
+		if (mapper.selectGroupNo(boardNo) != null  ) {
+			map.put("file", mapper.selectFile(mapper.selectGroupNo(boardNo).getGroupNo()));
+		}
 		map.put("reply", mapper.selectReplyList(boardNo));
 		map.put("comment", mapper.selectCommentList(boardNo));
 		map.put("board", mapper.selectBoardByNo(boardNo));
@@ -130,7 +131,12 @@ public class FreeServiceImpl implements FreeService {
 	}
 	
 	public void write(FreeBoard freeBoard) {
-		mapper.insertBoard(freeBoard);
+		System.out.println("보드넘버 : " + freeBoard.getBoardNo());
+		if (freeBoard.getGroupNo() == 0) {
+			mapper.insertBoard(freeBoard);
+		} else {
+			mapper.insertBoardFile(freeBoard);
+		}
 	}
 	
 	public void deleteComment(int commentNo) {
@@ -220,5 +226,4 @@ public class FreeServiceImpl implements FreeService {
 		}
 		return map;
 	}
-	
 }

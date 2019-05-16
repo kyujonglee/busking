@@ -32,7 +32,7 @@
 		               		</div>
 		        	    </div>
 					
-						<form action="write.do" method="get" id="write_from">	
+						<form action="write.do" method="get" id="write_form">	
 				            <div class="board_head_line">
 				                <span class="board_img_title">
 				                	<img src="<c:url value='/resources/img/boyoung.jpg'/>"/>
@@ -67,58 +67,47 @@
 				return;
 			}
 			
-		$("#write_from").submit();
+		$("#write_form").submit();
 	});
     
-    $(document).ready(function(){
+    $(document).ready(function () {
    	   	$('#summernote').summernote({
    	    	height: 500,                 
    	        width: 1060,
    	        focus: false,
-   	        callbacks: { // 콜백을 사용
-   		        // 이미지를 업로드할 경우 이벤트를 발생
-   		        onImageUpload: function(files, editor, welEditable) {
-//    		        	alert("콜백실행")
-   			    	sendFile(files[0],editor,welEditable);
-//    		        	alert("콜백종료")
+   	        callbacks: { 
+   		        onImageUpload: function (files, editor, welEditable) {
+   			    	sendFile(files[0], editor, welEditable);
    				}
    			}
    	    });
-   	   
    	   	
    	   	let fileUrl = new Array();
    	   	
-		////////업로드시 실행할 함수
-	   	function sendFile(file,editor,welEditable) {
-	        // 파일 전송을 위한 폼생성
+	   	function sendFile(file, editor, welEditable) {
 			data = new FormData();
 		    data.append("file", file);
-		    $.ajax({ // ajax를 통해 파일 업로드 처리
+		    $.ajax({ 
 		        data : data,
 		        type : "POST",
-		        url :  "<c:url value="/main/board/qna/imageupload.do" />",
+		        url :  "<c:url value='/file/image-upload.do' />",
 		        cache : false,
 		        contentType : false,
 		        processData : false,
-		        success : function(url) { // 처리가 성공할 경우
-// 	             alert("sendFile함수 들어옴")
-	             // 에디터에 이미지 출력
-// 	             alert(url)
-				
+		        success : function (result) {
 					 
-				 let fileNames=url;
-				 $(".free_board_detail_bottom").click(function(){
-					 alert(fileUrl[0]);
-					 alert(fileUrl[1]);
-					 console.log(fileUrl);
-				 });
-			   			     
-	             $("#summernote").summernote('editor.insertImage', "download.do?path="+url);
+					let fileName = result.
+					
+					$(".fa-edit").click(function () {
+						
+					});
+				   			     
+		            $("#summernote").summernote('editor.insertImage', "<c:url value='/file/download.do' />" + "?path=" + result);
 	             
 		        }
-		    });
+	    	});
 		}  
-    })
+    });
    
  
     
