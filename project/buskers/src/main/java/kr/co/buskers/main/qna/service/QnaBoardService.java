@@ -1,7 +1,10 @@
 package kr.co.buskers.main.qna.service;
 
+import java.io.File;
 import java.util.List;
 import java.util.Map;
+
+import org.springframework.web.multipart.MultipartFile;
 
 import kr.co.buskers.repository.domain.FreePage;
 import kr.co.buskers.repository.domain.QnaBoard;
@@ -25,5 +28,8 @@ public interface QnaBoardService {
 	public Map<String,Object> likeStatusUpdate(QnaBoard qnaBoard,int boardType,String likeKind);
 	
 	public void writeComment(QnaBoardComment qnaBoardComment);
+	
+	public String uploadImage(MultipartFile file,String modulePath) throws Exception; 
+		
 	
 }

@@ -918,6 +918,5 @@
 		}
 		commentDislike();
 		
-		
     </script>
 

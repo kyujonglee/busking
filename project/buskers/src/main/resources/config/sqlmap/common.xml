@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.buskers.repository.mapper.CommonMapper">
+	<!-- 게시글 등록 -->
+	<select id="selectGroupNo" resultType="int">
+		select group_no
+  		  from tb_qnaboard
+		 where group_no = (select MAX(group_no) 
+		                     from tb_qnaboard);
+	</select>
+    
+</mapper>
+
