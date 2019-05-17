@@ -10,7 +10,7 @@ public class QnaBoardComment {
 	private String content;
 	private Date regDate;
 	private int likeCnt;
-	private int disLikeCnt;
+	private int dislikeCnt;
 	private String isDelete;
 	private String nickName;
 	private String likeStatus;
@@ -82,10 +82,11 @@ public class QnaBoardComment {
 	public void setLikeCnt(int likeCnt) {
 		this.likeCnt = likeCnt;
 	}
-	public int getDisLikeCnt() {
-		return disLikeCnt;
+	public int getDislikeCnt() {
+		return dislikeCnt;
 	}
-	public void setDisLikeCnt(int disLikeCnt) {
-		this.disLikeCnt = disLikeCnt;
+	public void setDislikeCnt(int dislikeCnt) {
+		this.dislikeCnt = dislikeCnt;
 	}
+	
 }
