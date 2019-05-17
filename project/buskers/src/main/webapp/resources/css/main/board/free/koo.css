@@ -9,6 +9,8 @@ body {
 
 .main-freeboard {
 	background-color : white;
+	padding : 0 70px;
+	box-sizing : border-box;
 }
 
 

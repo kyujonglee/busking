@@ -1,3 +1,29 @@
-a {
-    border-top-left-radius: 5px;
+@import "../agency/agency.css";
+@import 'header.css';
+@import 'search.css';
+@import 'view.css';
+
+.notice-board {
+  background-image: url("../../../../img/musician.jpg");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: relative;
 }
+.notice-board__main {
+  position: absolute;
+  /* top : 150px; */
+  display: block;
+  width: 100%;
+  height: auto;
+  background-color: var(--color-white);
+  padding: 0 70px;
+  box-sizing: border-box;
+  padding-bottom : 30px;
+}
+
+
+

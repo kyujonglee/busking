@@ -93,7 +93,7 @@
 					</div>
 					<div class="agency-insert__item-column">
 						<!-- 모든 장르도 가져오기 -->
-						<c:forEach var="genreItem" items="${genre}">
+						<c:forEach var="genreItem" items="${genre}" varStatus="status">
 							<c:set var="flag" value="n" />
 							<c:forEach var="agencyGenre"
 								items="${agencyInfo.agencyGenreList}">
@@ -102,19 +102,21 @@
 								</c:if>
 							</c:forEach>
 							<div class="agency-insert__checkbox-item">
+								<label for="agencyCheckbox${status.count}" style="cursor:pointer">
 								<c:choose>
 									<c:when test="${flag eq 'y'}">
 										<input class="agency-insert__checkbox" type="checkbox"
-											name="agencyCheckbox" id="agencyCheckbox"
+											name="agencyCheckbox" id="agencyCheckbox${status.count}"
 											value="${genreItem.genreNo}" checked />
 									</c:when>
 									<c:otherwise>
 										<input class="agency-insert__checkbox" type="checkbox"
-											name="agencyCheckbox" id="agencyCheckbox"
+											name="agencyCheckbox" id="agencyCheckbox${status.count}"
 											value="${genreItem.genreNo}" />
 									</c:otherwise>
 								</c:choose>
 								<span class="agency-insert__checkbox-title">${genreItem.name}</span>
+								</label>
 							</div>
 						</c:forEach>
 					</div>
