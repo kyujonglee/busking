@@ -48,7 +48,7 @@
 				<a class="fas fa-edit"> 등록</a>
 				<a href="<c:url value='/main/board/free/list.do'/>" class="fas fa-list-ul"> 목록</a> 
 				<input type="hidden" name="memberNo" value="${sessionScope.user.memberNo}">
-				<input type="hidden" class="groupNo" name="groupNo">
+				<input type="hidden" class="groupNo" name="groupNo" value="0">
 			</div>
 
 			<br><br><br>
@@ -90,7 +90,6 @@
 					filePath.push(result);		
 					let path = result.path;
 					let systemName = result.systemName;
-					console.log("경로 : " + path);
 		            $("#summernote").summernote('editor.insertImage', "<c:url value='/file/download.do' />" + "?path=" + path + systemName);
 				}
     		});
@@ -99,15 +98,17 @@
 	   	
 	   	$(".fa-edit").click(function () {
 	   		let groupNo = 0;
-			if ( $(".write_form_title").val() == "" ) {
-				alert("제목을 입력하세요");
-				return;
-			}
 			for (let i = 0; i < filePath.length; i++) {
-				if ( $('#summernote').val().includes(filePath[i]).path == false ) {
-    				continue;
+				console.log($('#summernote').val());
+				if ( $('#summernote').val().includes(filePath[i].systemName) == false ) {
+					continue;
 				}
-				
+			
+				if ( $(".write_form_title").val() == "" ) {
+					alert("제목을 입력하세요");
+					return;
+				}
+					
 				let name = filePath[i].name;
 				let path = filePath[i].path;
 				let systemName = filePath[i].systemName;
@@ -131,7 +132,8 @@
 	   					groupNo = result;
 	   				}
 				});
-			}	
+			}
+			
 			$("#write_form").submit();
 		});
     });
