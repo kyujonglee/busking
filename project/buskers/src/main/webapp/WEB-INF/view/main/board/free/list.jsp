@@ -39,7 +39,11 @@
 						href="detail.do?boardNo=${notify.boardNo}&pageNo=1&input=${param.input}&sortType=${param.sortType}&searchType=${param.searchType}">${notify.title}</a>
 						<c:if test="${notify.commentCount ne 0}">
 							<i class="fas fa-comment"><a>${notify.commentCount}</a></i>
-						</c:if></td>
+						</c:if>
+						<c:if test="${notify.groupNo ne 0}">
+							<i class="far fa-image"></i>
+						</c:if>
+					</td>
 					<td>${notify.nickName}</td>
 					<td><fmt:formatDate value="${notify.regDate}"
 							pattern="MM-dd HH:mm" /></td>
@@ -48,23 +52,30 @@
 				</tr>
 			</c:forEach>
 		</c:if>
-
+		
 		<c:forEach var="board" items="${list}">
 			<tr class="free_board_list">
 				<td>${board.boardNo}</td>
-				<td class="board_title_left"><c:if test="${empty param.pageNo}">
-						<a
-							href="detail.do?boardNo=${board.boardNo}&pageNo=1&input=${param.input}&sortType=${param.sortType}&searchType=${param.searchType}">${board.title}</a>
-						<c:if test="${board.commentCount ne 0}">
-							<i class="fas fa-comment"><a>${board.commentCount}</a></i>
-						</c:if>
-					</c:if> <c:if test="${!empty param.pageNo}">
-						<a
-							href="detail.do?boardNo=${board.boardNo}&pageNo=${param.pageNo}&input=${param.input}&sortType=${param.sortType}&searchType=${param.searchType}">${board.title}</a>
-						<c:if test="${board.commentCount ne 0}">
-							<i class="fas fa-comment"><a>${board.commentCount}</a></i>
-						</c:if>
-					</c:if></td>
+				<td class="board_title_left">
+				<c:if test="${empty param.pageNo}">
+					<a href="detail.do?boardNo=${board.boardNo}&pageNo=1&input=${param.input}&sortType=${param.sortType}&searchType=${param.searchType}">${board.title}</a>
+					<c:if test="${board.commentCount ne 0}">
+						<i class="fas fa-comment"><a>${board.commentCount}</a></i>
+					</c:if>
+					<c:if test="${board.groupNo ne 0}">
+						<i class="far fa-image"></i>
+					</c:if>
+				</c:if> 
+				<c:if test="${!empty param.pageNo}">
+					<a href="detail.do?boardNo=${board.boardNo}&pageNo=${param.pageNo}&input=${param.input}&sortType=${param.sortType}&searchType=${param.searchType}">${board.title}</a>
+					<c:if test="${board.commentCount ne 0}">
+						<i class="fas fa-comment"><a>${board.commentCount}</a></i>
+					</c:if>
+					<c:if test="${board.groupNo ne 0}">
+						<i class="far fa-image"></i>
+					</c:if>
+				</c:if>
+				</td>
 				<td>${board.nickName}</td>
 				<td><fmt:formatDate value="${board.regDate}"
 						pattern="MM-dd HH:mm" /></td>

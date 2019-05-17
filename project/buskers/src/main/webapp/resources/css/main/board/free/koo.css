@@ -11,6 +11,16 @@ body {
 	background-color : white;
 }
 
+.fa-image {
+	color: #03CF5D;
+	margin-left: 5px;
+}
+
+.fa-image > a {
+	color: black;
+	margin-left: 5px;
+}
+
 
 .board_container_head {
     position: fixed;
