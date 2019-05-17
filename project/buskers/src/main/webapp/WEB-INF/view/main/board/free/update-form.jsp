@@ -67,6 +67,5 @@
 	        });
 	    });
     </script>
-    <script src="<c:url value='/resources/js/main/board/agency/side-bar.js'/>"></script>
 </body>
 </html>

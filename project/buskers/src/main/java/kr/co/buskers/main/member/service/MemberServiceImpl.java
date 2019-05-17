@@ -26,6 +26,12 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 
+	// 아이디 중복 체크
+	@Override
+	public Member checkId(Member member) {
+		return mapper.checkId(member);
+	}
+
 
 	
 }

@@ -106,7 +106,20 @@
             return false;
         }
         
-        
+        if(confirm("회원가입을 하시겠습니까?")) {
+        	if (idck == 0) {
+        		alert("아이디 중복체크를 해주세요!");
+        		return false;
+        	} else if (emailck == 0) {
+        		alert("이메일 중복체크를 해주세요!");
+        		return false;
+        	} else if (nickNameck == 0) {
+        		alert("닉네임 중복체크를 해주세요!");
+        		return false;
+        	} else {
+        		alert("회원가입을 축하합니다!");
+        	}
+        }
 	}
 </script>
     <!-- CONTAINER -->

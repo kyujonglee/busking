@@ -92,6 +92,17 @@ public class MemberController {
 		return UrlBasedViewResolver.REDIRECT_URL_PREFIX + "loginform.do";
 	}
 	
+	// 아이디 체크
+	@RequestMapping("checkId.do")
+	public int checkId(Member member, ModelAndView mav) {
+		int result = 0;
+		Member user = service.checkId(member);
+		if (user != null) {
+			result = 1;
+		} 
+		
+		return result;
+	}
 	
 	
 	@RequestMapping("signupform-busker.do")
