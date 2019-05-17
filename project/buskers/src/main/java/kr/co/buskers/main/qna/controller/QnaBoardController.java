@@ -1,17 +1,7 @@
 package kr.co.buskers.main.qna.controller;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.OutputStream;
-import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,54 +9,29 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.UrlBasedViewResolver;
 
-import kr.co.buskers.main.qna.service.QnaBoardService;
+import kr.co.buskers.main.qna.service.QnaService;
 import kr.co.buskers.repository.domain.FreePage;
+import kr.co.buskers.repository.domain.Like;
 import kr.co.buskers.repository.domain.QnaBoard;
 import kr.co.buskers.repository.domain.QnaBoardComment;
 
 @Controller("kr.co.buskers.main.qna.controller.QnaBoardController")
 @RequestMapping("/main/board/qna")
 public class QnaBoardController {
-	
+
 	@Autowired
-	private QnaBoardService service;
+	private QnaService service;
 	
-	@RequestMapping("/writeform.do")
-	public void writeForm() {}
-		
-	@RequestMapping("/write.do")
-	public String write(QnaBoard qnaBoard) {
-		service.write(qnaBoard);
-		return UrlBasedViewResolver.REDIRECT_URL_PREFIX + "list.do";
-	}
-	
-	
-	@RequestMapping("/delete.do") public String delete(int no) {
-	   service.delete(no); 
-	   return UrlBasedViewResolver.REDIRECT_URL_PREFIX +"list.do"; 
-    }
-	
-
-	@RequestMapping("/update.do")
-	public String update(QnaBoard qnaBoard)  { 
-		service.update(qnaBoard);
-		return UrlBasedViewResolver.REDIRECT_URL_PREFIX + "detail.do?no="+qnaBoard.getBoardNo();
-	}
-	
-	@RequestMapping("/updateform.do")
-	public void updateForm(int no,Model model)  { 
-		model.addAttribute("board",service.updateForm(no));
-	}
- 
-
-	
-	@RequestMapping("/list.do")
-	public void list(FreePage freePage, Model model) {
+	@RequestMapping("list.do")
+	public void list(FreePage freePage, Model model, HttpSession session) {
 		Map<String, Object> result = service.list(freePage);
+		System.out.println(result.get("searchType"));
+		model.addAttribute("searchType", result.get("searchType"));
+		model.addAttribute("input", result.get("input"));
+		model.addAttribute("sortType", result.get("sortType"));
+		model.addAttribute("notifyList", result.get("notifyList"));
 		model.addAttribute("list", result.get("list"));
 		model.addAttribute("pageResult", result.get("pageResult"));
 	}
@@ -79,85 +44,136 @@ public class QnaBoardController {
 		return result;
 	}
 	
-
-	@RequestMapping("/like.do")		
+	@RequestMapping("like-ajax.do")
 	@ResponseBody
-	public Map<String,Object> BoardLike(QnaBoard qnaBoard,int boardType,String likeKind) {
-//		System.out.println(qnaBoard.getBoardNo()+"번호");
-//		System.out.println(likeKind+"종류");
-		Map<String,Object> result = service.likeStatusUpdate(qnaBoard,boardType,likeKind);
+	public int updateLikeStatus(Like like, Model model) {
+		
+		return service.updateLikeStatus(like);
+	}
+	
+	@RequestMapping("comment-ajax.do")
+	@ResponseBody
+	public Map<String, Object> insertComment(QnaBoardComment qnaBoardComment, Model model) {
+		Map<String, Object> result = service.insertComment(qnaBoardComment);
+		
+		model.addAttribute("comment", result.get("comment"));
+		model.addAttribute("reply", result.get("reply"));
+		
 		return result;
 	}
 	
-	
-	
-	
-	
-	
-	
-	@RequestMapping("/comment-list.do")
+	@RequestMapping("delete-comment-ajax.do")
 	@ResponseBody
-	public List<QnaBoardComment> commentList(int no) {  //int no 는 화면에서 넘겨준 파라미터값이 들어감.
-		return service.commentList(no);
+	public void deleteComment(int commentNo) {
+		service.deleteComment(commentNo);
 	}
 	
-	@RequestMapping("/comment-reply-list.do")
+	@RequestMapping("reply-ajax.do")
 	@ResponseBody
-	public List<QnaBoardComment> commentReplyList(int no) {  
-		return service.commentReplyList(no);
+	public Map<String, Object> insertReply(QnaBoardComment qnaBoardComment, Model model) {
+		Map<String, Object> result = service.insertReply(qnaBoardComment);
+		
+		model.addAttribute("comment", result.get("comment"));
+		model.addAttribute("reply", result.get("reply"));
+		
+		return result;
 	}
-	@RequestMapping("/comment-delete.do")
+	
+	@RequestMapping("update-comment-ajax.do")
 	@ResponseBody
-	public void commentDelete(int no) {  
-		System.out.println(no);
-		service.deleteComment(no);
+	public Map<String, Object> updateComment(QnaBoardComment qnaBoardComment, Model model) {
+		Map<String, Object> result = service.updateComment(qnaBoardComment);
+		
+		model.addAttribute("comment", result.get("comment"));
+		model.addAttribute("reply", result.get("reply"));
+		
+		return result;
 	}
 	
+	@RequestMapping("detail.do")
+	public void detail(int boardNo, Model model, HttpSession session) {
+		Map<String, Object> result = service.detail(boardNo, session);
+		if (session.getAttribute("user") != null) {
+			model.addAttribute("like", result.get("like"));
+		}
+		model.addAttribute("highestLikeComment", result.get("highestLikeComment"));
+		model.addAttribute("reply", result.get("reply"));
+		model.addAttribute("comment", result.get("comment"));
+		model.addAttribute("board", result.get("board"));
+	}
 	
+	@RequestMapping("write-form.do")
+	public void writeForm() {}
 	
-	@RequestMapping("/comment-write.do")
+	@RequestMapping("update-form.do")
+	public Map<String, Object> updateForm(int boardNo, Model model) {
+		Map<String, Object> result = service.updateForm(boardNo);
+		model.addAttribute("board", result.get("board"));
+		
+		return result;
+	}
+	
+	@RequestMapping("write.do")
+	public String write(QnaBoard qnaBoard) {
+		service.write(qnaBoard);
+		return UrlBasedViewResolver.REDIRECT_URL_PREFIX + "list.do";
+	}
+	
+	@RequestMapping("update.do")
+	public String update(QnaBoard qnaBoard) {
+		service.update(qnaBoard);
+		return UrlBasedViewResolver.REDIRECT_URL_PREFIX + "list.do";
+	}
+	
+	@RequestMapping("delete.do")
+	public String delete(QnaBoard qnaBoard) {
+		service.delete(qnaBoard);
+		return UrlBasedViewResolver.REDIRECT_URL_PREFIX + "list.do";
+	}
+	
+	@RequestMapping("like-comment-ajax.do")		
 	@ResponseBody
-	public void commentWrite(QnaBoardComment qnaBoardComment) {  //int no 는 화면에서 넘겨준 파라미터값이 들어감.
-		service.writeComment(qnaBoardComment);
-	
+	public Map<String, String> insertCommentLike(Like like, Model model) {
+		Map<String, String> result = service.insertCommentLike(like);
+		
+		model.addAttribute("likeCount", result.get("likeCount"));
+		model.addAttribute("likeStatus", result.get("likeStatus"));
+		
+		return result;
 	}
 	
-	//이미지 업로드
-	@RequestMapping("/imageupload.do")
+	@RequestMapping("is-liked-comment-ajax.do")		
 	@ResponseBody
-	public String profileUpload(MultipartFile file,HttpServletRequest request) throws Exception {
-        String path = request.getRequestURI();
-        String modulePath =path.substring(0, path.lastIndexOf("/") + 1);
-        return service.uploadImage(file, modulePath);
+	public Map<String, Object> listIsLikedComment(int memberNo, Model model) {
+		Map<String, Object> result = service.listIsLikedComment(memberNo);
+		
+		model.addAttribute("isLikedComment", result.get("isLikedComment"));
+		
+		return result;
 	}
 	
-	@RequestMapping("download.do")
-	public void download(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		//파라미터 정보 추출하기
-			String path = request.getParameter("path");
-			File f = new File(path);
-			FileInputStream fis = new FileInputStream(f);
-			BufferedInputStream bis = new BufferedInputStream(fis);
-			OutputStream out = response.getOutputStream();
-			BufferedOutputStream bos = new BufferedOutputStream(out);
-			while(true) {
-				int ch = bis.read();
-				if(ch == -1) {
-					break;
-				}
-				bos.write(ch);
-			}
-			bis.close();
-			fis.close();
-			bos.close();
-			out.close();
+	@RequestMapping("dislike-comment-ajax.do")		
+	@ResponseBody
+	public Map<String, String> insertCommentDislike(Like like, Model model) {
+		Map<String, String> result = service.insertCommentDislike(like);
+		
+		model.addAttribute("dislikeCount", result.get("dislikeCount"));
+		model.addAttribute("dislikeStatus", result.get("dislikeStatus"));
+		
+		return result;
 	}
 	
+	@RequestMapping("is-disliked-comment-ajax.do")		
+	@ResponseBody
+	public Map<String, Object> listIsDislikedComment(int memberNo, Model model) {
+		Map<String, Object> result = service.listIsDislikedComment(memberNo);
+		
+		model.addAttribute("isDislikedComment", result.get("isDislikedComment"));
+		
+		return result;
+	}
 	
-	
-	
-	
-	
+	/* 기존 디테일 조회
 	 @RequestMapping(value = "/detail.do")
 	   public ModelAndView detail(HttpServletRequest request, HttpServletResponse response, HttpSession session, int boardNo) {
 		 // 해당 게시판 번호를 받아 리뷰 상세페이지로 넘겨줌
@@ -204,5 +220,5 @@ public class QnaBoardController {
 	            view.setViewName("main/board/qna/detail");
 	        } 
 	        return view;
-	    }
+	    }*/
 }
