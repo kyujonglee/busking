@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-</head>detail2.jsp
+</head>
 <body>
 	<script>
 		location.href='<c:url value="/main/main.do"/>';
