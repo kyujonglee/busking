@@ -1,17 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="<c:url value='/resources/css/main/member/register.css'/>" />
-    <script src="<c:url value='/resources/js/jquery-3.4.1.min.js'/>"></script>
-    <title>buskers</title>
-</head>
-<body>
+<link rel="stylesheet" href="<c:url value='/resources/css/main/member/register.css'/>" />
+<script src="<c:url value='/resources/js/jquery-3.4.1.min.js'/>"></script>
+<title>buskers</title>
+<main class="main-board">  
 <script type="text/javascript">
 	function DosignUp() {
 		var getMail = RegExp(/^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/);
@@ -116,13 +109,6 @@
         
 	}
 </script>
-    <div class="main-form">
-		<%@ include file="/WEB-INF/view/include/sidebar.jsp" %>
-		<div class="main-body">
-			<%@ include file="/WEB-INF/view/include/header.jsp" %>
-		</div>
-	</div>
-    
     <!-- CONTAINER -->
     <div class="login-body">
             <div class="login-box">
@@ -167,12 +153,4 @@
             </div>
 
     </div>
-    
-    <!-- FOOTER -->
-    <footer class="footer">
-        <div class="copyright">
-            <h1>Copyright © 2019 .... - Buskers.</h1>
-        </div>
-    </footer>
-</body>
-</html>
+</main>

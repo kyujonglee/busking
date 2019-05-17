@@ -51,10 +51,17 @@
 	                </div>
 	                
 	               	<div class="board_article_bottom">
+
 	                	<div class="board_image_list">
-	                		<div class="board_image">fsd</div>
-	                		<div>fsd</div>
-	                		<div>fsd</div>
+	                		<c:if test="${file ne null}">
+		                		<c:forEach var="file" items="${file}">
+		   	               		<div class="board_image fas fa-image">
+									<a href="<c:url value='/file/download-file.do'/>?path=${fn:substring(file.path, 0, fn:length(file.path) - 1)}&name=${file.systemName}&dname=${file.name}">
+										${file.name}
+									</a>
+								</div>
+								</c:forEach>
+							</c:if>
 	                	</div>
 	                	
 	               		<div class="board_article_like_wrapper">
@@ -73,8 +80,24 @@
 	                	</div>
 	                	
 	                	<div class="board_article_comment_list">
+	                				
+                				<div class="best_comment comment_list">
+			               			<div class="comment_info">
+			                			<span class="board_img_title">
+						                	<img src="<c:url value='/resources/img/boyoung.jpg'/>"/>
+						                </span>
+			               				<div class="comment_id">닉네임</div>
+			               				<div class="comment_date">
+				               				<i class="far fa-clock comment_clock"></i>
+				               				05-15 05:05
+			               				</div>
+			               				<div class="comment_like"><i class="fas fa-heart">추천<a>99</a></i></div>
+			               				<div class="comment_best"><i class="fas fa-medal fa-1x"></i></div>
+			               			</div>
+			               			<div class="bubble"><p>베스트 댓글</p></div>
+		               			</div>
 	                	
-		                	<c:forEach var="comment" items="${comment}">
+	                		<c:forEach var="comment" items="${comment}">
 				                	<div class="comment_list">
 				               			<div class="comment_info">
 				                			<span class="board_img_title">
@@ -901,7 +924,6 @@
 			});
 		}
 		commentDislike();
-		
 		
     </script>
 

@@ -1,22 +1,29 @@
 package kr.co.buskers.repository.domain;
 
 public class File {
-	private int file_no;
-	private int group_no;	
+	private int fileNo;
+	private int groupNo;	
+	private String systemName;
 	private String name;	
 	private String path;
 	
-	public int getFile_no() {
-		return file_no;
+	public int getFileNo() {
+		return fileNo;
 	}
-	public void setFile_no(int file_no) {
-		this.file_no = file_no;
+	public void setFileNo(int fileNo) {
+		this.fileNo = fileNo;
 	}
-	public int getGroup_no() {
-		return group_no;
+	public int getGroupNo() {
+		return groupNo;
 	}
-	public void setGroup_no(int group_no) {
-		this.group_no = group_no;
+	public void setGroupNo(int groupNo) {
+		this.groupNo = groupNo;
+	}
+	public String getSystemName() {
+		return systemName;
+	}
+	public void setSystemName(String systemName) {
+		this.systemName = systemName;
 	}
 	public String getName() {
 		return name;

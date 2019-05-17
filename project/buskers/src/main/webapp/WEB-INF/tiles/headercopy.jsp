@@ -63,7 +63,9 @@
 												<a class="header-j2" href="#">마이 페이지</a>
 											</div>
 											<div>
-												<a class="header-j3" id="logout" target="_top">로그아웃</a>
+												<a class="header-j3" id="logout"
+													href="<c:url value='/main/member/logout.do'/>"
+													target="_top">로그아웃</a>
 											</div>
 										</div>
 									</div>
@@ -79,12 +81,5 @@
 <script>
 	$(".header-c").click(function() {
 		$(".h-toggle").toggle();
-	});
-	$("#logout").click(function() {
-		var result = confirm("로그아웃 하시겠습니까?");
-		if(result) {
-			alert("로그아웃 되셨습니다!");
-			location.href="<c:url value='/main/member/logout.do'/>";
-		}
 	});
 </script>

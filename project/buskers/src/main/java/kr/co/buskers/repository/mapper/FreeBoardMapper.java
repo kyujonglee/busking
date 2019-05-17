@@ -3,6 +3,7 @@ package kr.co.buskers.repository.mapper;
 
 import java.util.List;
 
+import kr.co.buskers.repository.domain.File;
 import kr.co.buskers.repository.domain.FreeBoard;
 import kr.co.buskers.repository.domain.FreeBoardComment;
 import kr.co.buskers.repository.domain.FreePage;
@@ -15,6 +16,7 @@ public interface FreeBoardMapper {
 	FreeBoard selectBoardByNo(int boardNo);
 	void updateBoardViewCount(int boardNo);
 	void insertBoard(FreeBoard freeBoard);
+	void insertBoardFile(FreeBoard freeBoard);
 	List<FreeBoardComment> selectCommentList(int boardNo);
 	List<FreeBoardComment> selectReplyList(int boardNo);
 	void insertComment(FreeBoardComment freeBoardComment);
@@ -31,6 +33,8 @@ public interface FreeBoardMapper {
 	void updateComment(FreeBoardComment freeBoardComment);
 	void updateBoard(FreeBoard freeBoard);
 	void deleteBoard(FreeBoard freeBoard);
+	FreeBoard selectGroupNo(int boardNo);
+	List<File> selectFile(int groupNo);
 	
 	void insertCommentLike(Like like);
 	void updateCommentLike(Like like);

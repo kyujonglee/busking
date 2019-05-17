@@ -16,7 +16,7 @@
 			<div class="freeboard__insert">
 				<div class="board_title">
                	 <div class="board_title_underline">
-                    <a href="<c:url value='/main/board/free/list.do'/>">자유게시판</a>
+                    <a href="<c:url value='/main/board/qna/list.do'/>">질문게시판</a>
                	 </div>
         	    </div>
 			
@@ -35,7 +35,7 @@
         
 	        	<div class="free_board_detail_bottom">
 	        		<a class="fas fa-edit"> 등록</a>
-	                <a href="<c:url value='/main/board/free/list.do'/>" class="fas fa-list-ul"> 목록</a>
+	                <a href="<c:url value='/main/board/qna/list.do'/>" class="fas fa-list-ul"> 목록</a>
 	            </div>
 
           	  <br><br><br>
@@ -67,5 +67,6 @@
 	        });
 	    });
     </script>
+    <script src="<c:url value='/resources/js/main/board/agency/side-bar.js'/>"></script>
 </body>
 </html>

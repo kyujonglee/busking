@@ -2,102 +2,136 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.0/moment.min.js"></script>
 <link rel="stylesheet"
-	href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" />
-<link rel="stylesheet" href="<c:url value='/resources/css/main/board/free/koo.css'/>" />
-<link rel="stylesheet" href="<c:url value='/resources/css/main/board/agency/agency.css'/>" />
-			<main class="main-freeboard main-board">
-			<div class="board">
-				<div class="board_title">
-               	  <div class="board_title_underline">
-                    <a href="<c:url value='/main/board/qna/list.do'/>">질문게시판</a>
-                  </div>
-                </div>
-        
-	            <table class="free_board">
-	                <tr class="free_board_head">
-	                    <th class="free_board_no"></th>
-	                    <th class="free_board_title">제목</th>
-	                    <th class="free_board_writer">작성자</th>
-	                    <th class="free_board_date"><a class="fas fa-caret-down" id="dateDESC">작성일</a></th>
-	                    <th class="free_board_view"><a class="fas fa-caret-down" id="viewDESC">조회</a></th>
-	                    <th class="free_board_like"><a class="fas fa-caret-down" id="likeDESC">추천</a></th>
-	                </tr>
-	                
-	               
-	               
-	                <c:forEach var="board" items="${list}">
-                    	 <tr class="free_board_list">
-               			    <td>${board.boardNo}</td>
-                		    <td class="board_title_left">
-				               	  <c:if test="${empty param.pageNo}">
-				                     <a href="detail.do?boardNo=${board.boardNo}&pageNo=1&input=${param.input}&sortType=${param.sortType}&searchType=${param.searchType}">${board.title}</a>
-					                  	 <c:if test="${board.commentCount ne 0}">
-					                  	 	<i class="fas fa-comment"><a>${board.commentCount}</a></i>
-					                  	 </c:if>		
-				                  </c:if>
-				                  <c:if test="${!empty param.pageNo}">
-				                     <a href="detail.do?boardNo=${board.boardNo}&pageNo=${param.pageNo}&input=${param.input}&sortType=${param.sortType}&searchType=${param.searchType}">${board.title}</a>
-				                  	 	 <c:if test="${board.commentCount ne 0}">
-					                  	 	<i class="fas fa-comment"><a>${board.commentCount}</a></i>
-					                  	 </c:if>	
-				                  </c:if>
-                 			</td>
-                  			<td>${board.nickName}</td>
-                   			<td><fmt:formatDate value="${board.regDate}" pattern="MM-dd HH:mm" /></td>
-                 		    <td>${board.viewCnt}</td>
-                		    <td>${board.likeCnt}</td>
-                 	    </tr>
-            		</c:forEach>
-			</table>
-			<br><br><br>
+	href="<c:url value='/resources/css/main/board/free/koo.css'/>" />
+<link rel="stylesheet"
+	href="<c:url value='/resources/css/main/board/agency/agency.css'/>" />
+<link rel="stylesheet"
+	href="<c:url value='/resources/css/main/board/free/test.css'/>" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.0/moment.min.js"></script>
 
-            <div class="free_board_bottom">
-	            <div class="free_board_search">
-		            <form action="list.do" class="search_form">
-		            	<select class= "search_form_option" name='searchType'>
-						    <option value='title'>제목</option>
-						    <option value='content'>내용</option>
-						    <option value='nickName'>작성자</option>
-						</select>
-		            	
-			            <input class="search_form_input" name="input" placeholder="검색어를 입력하세요." />
-			            
-			            <button class="fas fa-search search_form_button"> 검색</button>
-			        </form>
-	            </div>
-                <a href="writeform.do" class="fas fa-pen"> 글쓰기</a>
-                <a href="list.do" class="fas fa-sort-amount-up"> 초기화</a>
-            </div>
+<main class="main-freeboard main-board">
+<div class="board">
+	<div class="board_title">
+		<div class="board_title_underline">
+			<a href="<c:url value='/main/board/qna/list.do'/>">질문게시판</a>
+		</div>
+	</div>
 
-            <br><br><br>
-            
-            
-	            <div class="pagination">
-	                <c:if test="${pageResult.prev eq true}">
-						<a href="list.do?pageNo=${pageResult.beginPage - 1}&sortType=${param.sortType}&searchType=${param.searchType}&input=${param.input}">
-						<i class="fas fa-angle-left"></i></a>
-					</c:if>
-					<c:forEach var="i" begin="${pageResult.beginPage}" end="${pageResult.endPage}">
-						<c:if test="${param.pageNo eq i}">
-							<a href="list.do?pageNo=${i}&sortType=${param.sortType}&searchType=${param.searchType}&input=${param.input}" class="active">${i}</a>
+	<table class="free_board">
+		<tr class="free_board_head">
+			<th class="free_board_no"></th>
+			<th class="free_board_title">제목</th>
+			<th class="free_board_writer">작성자</th>
+			<th class="free_board_date"><a class="fas fa-caret-down"
+				id="dateDESC">작성일</a></th>
+			<th class="free_board_view"><a class="fas fa-caret-down"
+				id="viewDESC">조회</a></th>
+			<th class="free_board_like"><a class="fas fa-caret-down"
+				id="likeDESC">추천</a></th>
+		</tr>
+
+		<c:if test="${param.pageNo eq 1 || empty param.pageNo}">
+			<c:forEach var="notify" items="${notifyList}">
+				<tr class="free_board_notice">
+					<td><span class="board_notify">공지</span></td>
+					<td class="board_title_left" id="board_notify_title"><a
+						href="detail.do?boardNo=${notify.boardNo}&pageNo=1&input=${param.input}&sortType=${param.sortType}&searchType=${param.searchType}">${notify.title}</a>
+						<c:if test="${notify.commentCount ne 0}">
+							<i class="fas fa-comment"><a>${notify.commentCount}</a></i>
+						</c:if></td>
+					<td>${notify.nickName}</td>
+					<td><fmt:formatDate value="${notify.regDate}"
+							pattern="MM-dd HH:mm" /></td>
+					<td>${notify.viewCnt}</td>
+					<td>${notify.likeCnt}</td>
+				</tr>
+			</c:forEach>
+		</c:if>
+
+		<c:forEach var="board" items="${list}">
+			<tr class="free_board_list">
+				<td>${board.boardNo}</td>
+				<td class="board_title_left"><c:if test="${empty param.pageNo}">
+						<a
+							href="detail.do?boardNo=${board.boardNo}&pageNo=1&input=${param.input}&sortType=${param.sortType}&searchType=${param.searchType}">${board.title}</a>
+						<c:if test="${board.commentCount ne 0}">
+							<i class="fas fa-comment"><a>${board.commentCount}</a></i>
 						</c:if>
-						<c:if test="${param.pageNo ne i}">
-							<a href="list.do?pageNo=${i}&sortType=${param.sortType}&searchType=${param.searchType}&input=${param.input}">${i}</a>
+					</c:if> <c:if test="${!empty param.pageNo}">
+						<a
+							href="detail.do?boardNo=${board.boardNo}&pageNo=${param.pageNo}&input=${param.input}&sortType=${param.sortType}&searchType=${param.searchType}">${board.title}</a>
+						<c:if test="${board.commentCount ne 0}">
+							<i class="fas fa-comment"><a>${board.commentCount}</a></i>
 						</c:if>
-					</c:forEach>
-					<c:if test="${pageResult.next eq true}">
-						<a href="list.do?pageNo=${pageResult.endPage + 1}&sortType=${param.sortType}&searchType=${param.searchType}&input=${param.input}">
-						<i class="fas fa-angle-right"></i></a>
-					</c:if>	
-	            </div>
-            
-         	   <br><br><br>
+					</c:if></td>
+				<td>${board.nickName}</td>
+				<td><fmt:formatDate value="${board.regDate}"
+						pattern="MM-dd HH:mm" /></td>
+				<td>${board.viewCnt}</td>
+				<td>${board.likeCnt}</td>
+			</tr>
+		</c:forEach>
+	</table>
+	<br> <br> <br>
 
-				</div>
-			</main>
-	<script>
+	<div class="free_board_bottom">
+		<div class="free_board_search">
+			<form action="list.do" class="search_form">
+				<select class="search_form_option" name='searchType'>
+					<option value='title'>제목</option>
+					<option value='content'>내용</option>
+					<option value='nickName'>작성자</option>
+				</select> <input class="search_form_input" name="input"
+					placeholder="검색어를 입력하세요." />
+
+				<button class="fas fa-search search_form_button">검색</button>
+			</form>
+		</div>
+		<c:if test="${sessionScope.user ne null}">
+		<a href="write-form.do" class="fas fa-pen"> 글쓰기</a>
+		</c:if>
+		<a href="list.do" class="fas fa-sort-amount-up"> 초기화</a>
+	</div>
+
+	<br> <br> <br>
+
+
+	<div class="pagination">
+		<c:if test="${pageResult.prev eq true}">
+			<a
+				href="list.do?pageNo=${pageResult.beginPage - 1}&sortType=${param.sortType}&searchType=${param.searchType}&input=${param.input}">
+				<i class="fas fa-angle-left"></i>
+			</a>
+		</c:if>
+		<c:forEach var="i" begin="${pageResult.beginPage}"
+			end="${pageResult.endPage}">
+			<c:if test="${param.pageNo eq i}">
+				<a
+					href="list.do?pageNo=${i}&sortType=${param.sortType}&searchType=${param.searchType}&input=${param.input}"
+					class="active">${i}</a>
+			</c:if>
+			<c:if test="${param.pageNo ne i}">
+				<a
+					href="list.do?pageNo=${i}&sortType=${param.sortType}&searchType=${param.searchType}&input=${param.input}">${i}</a>
+			</c:if>
+		</c:forEach>
+		<c:if test="${pageResult.next eq true}">
+			<a
+				href="list.do?pageNo=${pageResult.endPage + 1}&sortType=${param.sortType}&searchType=${param.searchType}&input=${param.input}">
+				<i class="fas fa-angle-right"></i>
+			</a>
+		</c:if>
+	</div>
+
+	<br> <br> <br>
+</div>
+</main>
+
+<script src="<c:url value='/resources/js/jquery-3.4.1.min.js'/>"></script>
+<script
+	src="<c:url value='/resources/js/main/board/agency/side-bar.js'/>"></script>
+<script>
     	let sortType = "${param.sortType}";
     	let searchType = "${param.searchType}";
     	let input = "${param.input}";
@@ -271,7 +305,7 @@
    					if ( (input != "") && searchType == "title" ) {
    		        		for (i = 0; i < $(".board_title_left > a").length; i++) {
    		        			$(".board_title_left > a:eq(" + i + ")").html( $(".board_title_left > a:eq(" + i + ")").html().replace(input, "<b class='search_keyword'>" + input + "</b>") );
-   		        		}
+   		        		};
    		        	}
    		        	
    		        	if ( (input != "") && searchType == "nickName" ) {
@@ -282,4 +316,4 @@
    				}
    			});
         });
-    </script>
+</script>

@@ -16,33 +16,36 @@
 			<div class="freeboard__insert">
 				<div class="board_title">
                	 <div class="board_title_underline">
-                    <a href="<c:url value='/main/board/free/list.do'/>">자유게시판</a>
+                    <a href="<c:url value='/main/board/qna/list.do'/>">질문게시판</a>
                	 </div>
         	    </div>
 			
-			<form action="update.do" method="post" id="update_form">
+			<form action="write.do" method="get" id="write_form">
 	            <div class="board_head_line">
 	                <span class="board_img_title">
 	                	<img src="<c:url value='/resources/img/boyoung.jpg'/>"/>
 	                </span>
-	                <input class="write_form_title" name="title" value="${board.title}" />
+	                <input class="write_form_title" name="title" placeholder="제목을 입력하세요." />
 	            </div>
 	            
-	            <textarea class="board_write_form" name="content">${board.content}</textarea>
-            	<input type="hidden" name="boardNo" value="${board.boardNo}" />
+	            <textarea class="board_write_form" name="content"></textarea>
+	            
+            
             
           	  <br><br><br>
         
 	        	<div class="free_board_detail_bottom">
 	        		<a class="fas fa-edit"> 등록</a>
-	                <a href="<c:url value='/main/board/free/list.do'/>" class="fas fa-list-ul"> 목록</a>
+	                <a href="<c:url value='/main/board/qna/list.do'/>" class="fas fa-list-ul"> 목록</a>
+	                <input type="hidden" name="memberNo" value="${sessionScope.user.memberNo}">
 	            </div>
 
           	  <br><br><br>
 			</form>
-			</div>
-			</div>
-		</main>
+				</div>
+				</div>
+			</main>
+         	   <div class="footer"></div>
     <script>
     	$(".fa-edit").click(function () {
    			if ( $(".write_form_title").val() == "" ) {
@@ -55,7 +58,7 @@
    				return;
    			}
    			
-    		$("#update_form").submit();
+    		$("#write_form").submit();
     	});
 	    
     
@@ -67,5 +70,6 @@
 	        });
 	    });
     </script>
+    <script src="<c:url value='/resources/js/main/board/agency/side-bar.js'/>"></script>
 </body>
 </html>

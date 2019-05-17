@@ -1,4 +1,4 @@
-package kr.co.buskers.main.free.service;
+package kr.co.buskers.main.qna.service;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -9,34 +9,34 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.co.buskers.common.page.FreePageResult;
-import kr.co.buskers.repository.domain.FreeBoard;
-import kr.co.buskers.repository.domain.FreeBoardComment;
 import kr.co.buskers.repository.domain.FreePage;
 import kr.co.buskers.repository.domain.Like;
 import kr.co.buskers.repository.domain.Member;
-import kr.co.buskers.repository.mapper.FreeBoardMapper;
+import kr.co.buskers.repository.domain.QnaBoard;
+import kr.co.buskers.repository.domain.QnaBoardComment;
+import kr.co.buskers.repository.mapper.QnaBoardMapper;
 
 @Service
-public class FreeServiceImpl implements FreeService {
-	
+public class QnaServiceImpl implements QnaService {
+
 	@Autowired
-	private FreeBoardMapper mapper;
+	private QnaBoardMapper mapper;
 	
 	public Map<String, Object> list(FreePage freePage) {
 		Map<String, Object> map = new HashMap<>();
 
-		System.out.println("검색 타입 : " + freePage.getSearchType());
-		System.out.println("검색어 : " + freePage.getInput());
+//		System.out.println("검색 타입 : " + freePage.getSearchType());
+//		System.out.println("검색어 : " + freePage.getInput());
 		map.put("searchType", freePage.getSearchType());
 		map.put("input", freePage.getInput());
 		map.put("sortType", freePage.getSortType());
-		map.put("notifyList", mapper.selectNoticeBoard());
 		map.put("list", mapper.selectBoard(freePage));
 		map.put("pageResult", new FreePageResult(freePage.getPageNo(), mapper.selectBoardCount(freePage)));
 		return map;
 	}	
 	
 	public Map<String, Object> detail(int boardNo, HttpSession session) {
+		
 		Map<String, Object> map = new HashMap<>();
 		
 		if (session.getAttribute("user") != null) {
@@ -45,20 +45,29 @@ public class FreeServiceImpl implements FreeService {
 			like.setMemberNo(member.getMemberNo());
 			like.setBoardNo(boardNo);
 			map.put("like", mapper.selectBoardIsLike(like));
-			
 			if (mapper.selectBoardIsLike(like) == null) {
 				mapper.insertLikeStatus(like);
 			}
 			
 		}
 		mapper.updateBoardViewCount(boardNo);
-		if (mapper.selectGroupNo(boardNo) != null  ) {
-			map.put("file", mapper.selectFile(mapper.selectGroupNo(boardNo).getGroupNo()));
+		System.out.println("try실행");
+		try {
+			map.put("highestLikeComment", mapper.selectLikeHighestComment(boardNo));
+			
+		}catch(Exception e) {
+			System.out.println("오류캐치됨");
 		}
+		System.out.println("오류캐치끝남");
+		
+		
+		
+		
 		map.put("reply", mapper.selectReplyList(boardNo));
 		map.put("comment", mapper.selectCommentList(boardNo));
 		map.put("board", mapper.selectBoardByNo(boardNo));
-		
+		System.out.println("리턴직전");
+	
 		return map;
 	}
 	
@@ -68,41 +77,40 @@ public class FreeServiceImpl implements FreeService {
 		map.put("searchType", freePage.getSearchType());
 		map.put("input", freePage.getInput());
 		map.put("sortType", freePage.getSortType());
-		map.put("notifyList", mapper.selectNoticeBoard());
 		map.put("list", mapper.selectBoard(freePage));
 		map.put("pageResult", new FreePageResult(freePage.getPageNo(), mapper.selectBoardCount(freePage)));
 		
 		return map;
 	}
 	
-	public Map<String, Object> insertComment(FreeBoardComment freeBoardComment) {
+	public Map<String, Object> insertComment(QnaBoardComment qnaBoardComment) {
 		Map<String, Object> map = new HashMap<>();
 		
-		mapper.insertComment(freeBoardComment);
-		map.put("comment", mapper.selectCommentList(freeBoardComment.getBoardNo()));
-		map.put("reply", mapper.selectReplyList(freeBoardComment.getBoardNo()));
+		mapper.insertComment(qnaBoardComment);
+		map.put("comment", mapper.selectCommentList(qnaBoardComment.getBoardNo()));
+		map.put("reply", mapper.selectReplyList(qnaBoardComment.getBoardNo()));
 		
 		return map;
 	}
 	
-	public Map<String, Object> insertReply(FreeBoardComment freeBoardComment) {
+	public Map<String, Object> insertReply(QnaBoardComment qnaBoardComment) {
 		
 		Map<String, Object> map = new HashMap<>();
 		
-		mapper.insertReply(freeBoardComment);
-		map.put("comment", mapper.selectCommentList(freeBoardComment.getBoardNo()));
-		map.put("reply", mapper.selectReplyList(freeBoardComment.getBoardNo()));
+		mapper.insertReply(qnaBoardComment);
+		map.put("comment", mapper.selectCommentList(qnaBoardComment.getBoardNo()));
+		map.put("reply", mapper.selectReplyList(qnaBoardComment.getBoardNo()));
 		
 		return map;
 	}
 	
-	public Map<String, Object> updateComment(FreeBoardComment freeBoardComment) {
+	public Map<String, Object> updateComment(QnaBoardComment qnaBoardComment) {
 		
 		Map<String, Object> map = new HashMap<>();
 		
-		mapper.updateComment(freeBoardComment);
-		map.put("comment", mapper.selectCommentList(freeBoardComment.getBoardNo()));
-		map.put("reply", mapper.selectReplyList(freeBoardComment.getBoardNo()));
+		mapper.updateComment(qnaBoardComment);
+		map.put("comment", mapper.selectCommentList(qnaBoardComment.getBoardNo()));
+		map.put("reply", mapper.selectReplyList(qnaBoardComment.getBoardNo()));
 		
 		return map;
 	}
@@ -130,13 +138,8 @@ public class FreeServiceImpl implements FreeService {
 		return map;
 	}
 	
-	public void write(FreeBoard freeBoard) {
-		System.out.println("보드넘버 : " + freeBoard.getBoardNo());
-		if (freeBoard.getGroupNo() == 0) {
-			mapper.insertBoard(freeBoard);
-		} else {
-			mapper.insertBoardFile(freeBoard);
-		}
+	public void write(QnaBoard qnaBoard) {
+		mapper.insertBoard(qnaBoard);
 	}
 	
 	public void deleteComment(int commentNo) {
@@ -148,14 +151,14 @@ public class FreeServiceImpl implements FreeService {
 		}
 	}
 	
-	public void update(FreeBoard freeBoard) {
+	public void update(QnaBoard qnaBoard) {
 		
-		mapper.updateBoard(freeBoard);
+		mapper.updateBoard(qnaBoard);
 	}
 	
-	public void delete(FreeBoard freeBoard) {
+	public void delete(QnaBoard qnaBoard) {
 		
-		mapper.deleteBoard(freeBoard);
+		mapper.deleteBoard(qnaBoard);
 	}
 	
 	public int updateLikeStatus(Like like) {
@@ -226,4 +229,5 @@ public class FreeServiceImpl implements FreeService {
 		}
 		return map;
 	}
+	
 }
