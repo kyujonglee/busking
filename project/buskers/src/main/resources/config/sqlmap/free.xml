@@ -102,6 +102,14 @@
 		  and is_deleted = 'N'
 	</update>
 	
+	<insert id="insertBoardFile" parameterType="freeBoard">
+		insert into tb_freeboard(
+			member_no, content, title, group_no
+		)values(
+			#{memberNo}, #{content}, #{title}, #{groupNo}
+		)
+	</insert>
+	
 	<insert id="insertBoard" parameterType="freeBoard">
 		insert into tb_freeboard(
 			member_no, content, title
@@ -109,6 +117,18 @@
 			#{memberNo}, #{content}, #{title}
 		)
 	</insert>
+	
+	<select id="selectGroupNo" parameterType="int" resultType="freeBoard">
+		select *
+		  from tb_freeboard
+		 where board_no = #{boardNo}
+	</select>
+	
+	<select id="selectFile" parameterType="int" resultType="file">
+		select *
+		  from tb_file
+		 where group_no = #{groupNo}
+	</select>
 	
 	<select id="selectCommentList" parameterType="int" resultType="freeBoardComment">
 		select *
