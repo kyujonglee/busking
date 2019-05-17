@@ -13,7 +13,7 @@
             </div>
             <form class="email-login" method="post">
                 <div class="u-form-group">
-                    <input type="id" name="id" id="id" placeholder="Id"/>
+                    <input type="text" name="id" id="id" placeholder="Id"/>
                 </div>
                 <div class="u-form-group">
                     <input type="password" name="pass" id="pass" placeholder="Password"/>
@@ -51,6 +51,12 @@
     </div>
 </main>
     <script>
+    	let msg = '${msg}';
+    	if (msg === 'msgPass') {
+			alert("비밀번호가 틀렸습니다!");    		
+    	} else if (msg === 'msgId') {
+    		alert("아이디가 틀렸습니다!");
+    	}
     	$("#login").click(function() {
     		var id = $("#id").val();
     		var pass = $("#pass").val();
