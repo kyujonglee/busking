@@ -113,20 +113,10 @@ public class QnaBoardController {
 		return result;
 	}
 	
-<<<<<<< HEAD
 	@RequestMapping("write.do")
 	public String write(QnaBoard qnaBoard) {
 		service.write(qnaBoard);
 		return UrlBasedViewResolver.REDIRECT_URL_PREFIX + "list.do";
-=======
-	//이미지 업로드
-	@RequestMapping("/imageupload.do")
-	@ResponseBody
-	public String profileUpload(MultipartFile file,HttpServletRequest request) throws Exception {
-        String path = request.getRequestURI();
-        String modulePath =path.substring(0, path.lastIndexOf("/") + 1);
-        return service.uploadImage(file, modulePath);
->>>>>>> master
 	}
 	
 	@RequestMapping("update.do")
