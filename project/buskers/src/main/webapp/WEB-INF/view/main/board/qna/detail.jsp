@@ -262,6 +262,12 @@
                 	</c:forEach>
                 	</
                 `)
+                for (let i = 0; i < $(".bubble").length; i++) {
+					let width = $(".bubble:eq(" + i + ") > p").width();
+					if (width < 600) {
+					$(".bubble:eq(" + i + ")").css({"width": width});
+					}
+				}
 			}
 		}
 		
