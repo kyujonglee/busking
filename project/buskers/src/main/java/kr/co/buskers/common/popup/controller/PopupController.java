@@ -1,4 +1,4 @@
-package kr.co.buskers.common.popup;
+package kr.co.buskers.common.popup.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
