@@ -9,8 +9,19 @@ body {
 
 .main-freeboard {
 	background-color : white;
+	padding : 0 70px;
+	box-sizing : border-box;
 }
 
+.fa-image {
+	color: #03CF5D;
+	margin-left: 5px;
+}
+
+.fa-image > a {
+	color: black;
+	margin-left: 5px;
+}
 
 .board_container_head {
     position: fixed;

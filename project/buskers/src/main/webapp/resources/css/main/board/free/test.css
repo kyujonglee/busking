@@ -8,7 +8,7 @@
 	background-color: #333333 !important;
 }
 
-.side-bar__column:first-child .side-bar__icon:first-child{
+.side-bar__column:first-child .side-bar__tag:first-child .side-bar__icon{
 	border-top-left-radius: 10px;
 }
 

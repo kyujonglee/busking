@@ -1,11 +1,12 @@
-@import "../agency/agency.css";
+@import "../../../common/common.css";
+@import '../agency/agency.css';
 @import 'header.css';
 @import 'search.css';
 @import 'view.css';
 
 .notice-board {
-  background-image: url("../../../../img/musician.jpg");
-  background-position: center center;
+    background-image: url("../../../../img/musician.jpg");
+    background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
   display: block;
@@ -24,6 +25,4 @@
   box-sizing: border-box;
   padding-bottom : 30px;
 }
-
-
 

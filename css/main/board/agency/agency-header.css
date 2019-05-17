@@ -1,7 +1,7 @@
 .board {
     width: 100%;
     align-self: flex-end;
-    padding : 0px 70px;
+    /* padding : 0px 70px; */
     /* color : var(--color-orange); */
     /* font-family: "JUA",sans-serif; */
     box-sizing: border-box;

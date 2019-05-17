@@ -1,0 +1,39 @@
+.notice-board__header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 36px;
+    color: white;
+    font-weight: bolder;
+    height: 200px;
+  }
+  
+  .notice-board__header-title {
+    text-transform: capitalize;
+  }
+  
+  .notice-board__main-header {
+      border-bottom : 1px solid rgba(0, 0, 0, 0.3);
+      margin-top : 30px;
+  }
+  
+  .notice-board-main-header__tabs {
+      width : 30%;
+      margin : 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      height: 50px;
+      font-size : 24px;
+  }
+  
+  .notice-board__main .notice-board-main-header__tab {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-transform: uppercase;
+  }
+  
+  .tab-selected {
+      color : var(--color-orange);
+  }
