@@ -19,6 +19,7 @@
     width: 45%;
     overflow : auto;
     border-right: 2px solid rgba(0, 0, 0, 0.3);
+    /* position : relative; */
 }
 
 .notice-board-main__view-items {
@@ -128,4 +129,20 @@
 .notice-board-main__view-column .header-content__column-name{
     border-right : 1px solid rgba(0, 0, 0, 0.2);
     padding-right : 5px;
+}
+
+.notice-board-main__view-top-btn {
+    all: unset;
+    position: absolute;
+    bottom : 50px;
+    left: 440px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 40px;
+    height: 40px;
+    padding : 5px;
+    border-radius: 5px;
+    background-color : #dfe4ea;
+    cursor: pointer;
 }
