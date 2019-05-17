@@ -1,5 +1,5 @@
 let slideFlag = true;
-$(".side-bar__column .side-bar__icon:first").click(function(){
+$(".side-bar__column .side-bar__tag:first-child .side-bar__icon").click(function(){
     if(!slideFlag){
     	console.log("사이드바 사라짐");
     	$(".side-bar").animate({width : "60px"},300);

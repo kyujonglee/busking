@@ -11,7 +11,7 @@
 					</div>
 				</a>
 				<a class="side-bar__tag"
-				href="<c:url value='/main/board/free/list.do'/>">
+				href="<c:url value='/main/board/notice/list.do'/>">
 					<div class="side-bar__icon">
 						<i class="fas fa-bullhorn fa-lg"></i>
 					</div>
