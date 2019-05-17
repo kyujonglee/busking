@@ -56,7 +56,7 @@
 	                		<c:if test="${file ne null}">
 		                		<c:forEach var="file" items="${file}">
 		   	               		<div class="board_image fas fa-image">
-									<a href="<c:url value='/file/download-file.do'/>?path=${fn:substring(file.path, 0, fn:length(file.path) - 1)}&name=${file.systemName}&dname=${file.name}">
+									<a href="<c:url value='/file/download-file.do'/>?path=${fn:substring(file.path, 0, fn:length(file.path) - 1)}&systemName=${file.systemName}&name=${file.name}">
 										${file.name}
 									</a>
 								</div>

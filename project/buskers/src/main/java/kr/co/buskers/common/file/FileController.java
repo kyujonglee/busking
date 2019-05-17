@@ -7,7 +7,6 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,33 +58,20 @@ public class FileController {
 	}
 	
 	@RequestMapping("download-file.do")
-	public void fileDownload(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		// 파라미터 정보 추출하기
-		// path(저장된 파일의 경로), name(실제 저장된 파일이름)
+	public void fileDownload(kr.co.buskers.repository.domain.File file, HttpServletResponse response) throws IOException {
 		
-//		String uploadRoot = "c:/bit2019/upload";
+		String dName = file.getName();
 		
-		String path = request.getParameter("path");
-		String name = request.getParameter("name");
-		// 다운로드 할 파일 이름
-		String dName = request.getParameter("dname");
+		File f = new File(file.getPath(), file.getSystemName());
 		
-		System.out.println("path: " + path);
-		System.out.println("name: " + name);
-		
-		File f = new File(path, name);
-		
-		// 전송하는 데이터의 해석 정보
-		if (dName == null) {
+		if (file.getName() == null) {
 			response.setHeader("Content-Type", "image/jpg");
 		} else { 
 			response.setHeader("Content-Type", "application/octet-stream");
-			// 한글이름 처리하기
-			dName = new String(dName.getBytes("utf-8"), "8859_1");
+			dName = new String(file.getName().getBytes("utf-8"), "8859_1");
 			response.setHeader("Content-Disposition", "attachment;filename=" + dName);
 		}
 		
-		// 파일을 읽고 사용자에게 전송
 		FileInputStream fis = new FileInputStream(f);
 		BufferedInputStream bis = new BufferedInputStream(fis);
 		
