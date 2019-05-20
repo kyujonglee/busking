@@ -1,4 +1,5 @@
 .busker .busker-side {
+    font-family: "Nanum Gothic",sans-serif;
 }
 
 .busker-side .busker-side__profile {
@@ -7,8 +8,16 @@
 }
 
 .busker-side__header {
-  height: 10vh;
-  background-color: skyblue;
+  height: 5vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding : 5px;
+  padding-left : 10px;
+}
+
+.busker-side__profile .busker-side__header-title {
+    font-size : 24px;
 }
 
 .busker-side .busker-info__btn {

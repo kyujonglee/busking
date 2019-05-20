@@ -1,5 +1,6 @@
 @import "../common/common.css";
 @import 'side.css';
+@import 'header.css';
 
 .busker {
   width: 100%;
@@ -19,10 +20,6 @@
   transition: all 0.5s ease-in-out;
   display: grid;
   grid-template-rows: 6vh 1fr;
-}
-
-.busker-header {
-  background-color: red;
 }
 
 .busker-main {

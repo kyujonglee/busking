@@ -22,25 +22,29 @@
     <!-- <button>확인</button> -->
     <div class="busker">
       <aside class="busker-side">
-          <section class="busker-side__profile">
-              <header class="busker-side__header">
-                <div class="busker-info__btn">
-                  <i class="fas fa-angle-left fa-2x"></i>
-                </div>
-                <div class="busker-side__header-title">
-                  <i class="fas fa-street-view fa-2x"></i>
-                  Buskers
-                </div>
-              </header>
-            </section>
-            <section class="busker-side__menu"></section>
-            <section class="busker-side__buskers"></section>
-        </aside>
+        <section class="busker-side__profile">
+          <header class="busker-side__header">
+            <div class="busker-side__header-title">
+              <i class="fas fa-street-view fa-lg"></i>
+              Buskers
+            </div>
+            <div class="busker-info__btn">
+              <i class="fas fa-angle-left fa-2x"></i>
+            </div>
+          </header>
+          <article>
+
+          </article>
+        </section>
+        <section class="busker-side__menu"></section>
+        <section class="busker-side__buskers"></section>
+      </aside>
       <section class="busker-info"></section>
 
       <section class="busker-section">
-        <header class="busker-header"></header>
-
+        <header class="busker-header">
+            
+        </header>
         <main class="busker-main">
           <section class="busker-content"></section>
           <aside class="busker-chat"></aside>
@@ -48,9 +52,9 @@
       </section>
     </div>
     <script>
-      $(".busker-info__btn i").click(function(){
-          $(".busker-info").fadeToggle(50);
-      })
+      $(".busker-info__btn i").click(function() {
+        $(".busker-info").fadeToggle(50);
+      });
     </script>
   </body>
 </html>
