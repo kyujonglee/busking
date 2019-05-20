@@ -24,7 +24,7 @@
                     <br>
                     <div class="u-form-group">
                         <button class="submit-login">확인</button>&nbsp;&nbsp;
-                        <button type="button" class="back" onclick="location.href='login.html'">뒤로</button>
+                        <button type="button" class="back" onclick="location.href='loginform.do'">뒤로</button>
                     </div>
                     <div class="u-form-group">
                         <a href="findIdform.do" class="forgot-id">아이디 찾기</a>

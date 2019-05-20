@@ -26,6 +26,35 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 
+	// 아이디 중복 체크
+	@Override
+	public int checkId(Member member) {
+		return mapper.checkId(member);
+	}
 
+	// 이메일 중복 체크
+	@Override
+	public int checkEmail(Member member) {
+		return mapper.checkEmail(member);
+	}
+
+	// 닉네임 중복 체크
+	@Override
+	public int checkNickName(Member member) {
+		return mapper.checkNickName(member);
+	}
+
+
+	// 아이디 찾기
+	@Override
+	public Member findId(Member member) {
+		return mapper.findId(member);
+	}
+	
+	
+	
+	
+	
+	
 	
 }

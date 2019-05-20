@@ -32,7 +32,7 @@ public class FreePage {
 		this.pageNo = pageNo;
 	}
 	public int getBegin() {
-		return (this.pageNo -1) * 10 + 1;
+		return (this.pageNo -1) * 10 + 1;   
 	}
 	public int getEnd() {
 		return this.pageNo * 10;

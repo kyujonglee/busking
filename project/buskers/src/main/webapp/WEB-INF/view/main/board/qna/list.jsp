@@ -58,11 +58,17 @@
 						<c:if test="${board.commentCount ne 0}">
 							<i class="fas fa-comment"><a>${board.commentCount}</a></i>
 						</c:if>
+						<c:if test="${board.groupNo ne 0}">
+							<i class="far fa-image"></i>
+						</c:if>
 					</c:if> <c:if test="${!empty param.pageNo}">
 						<a
 							href="detail.do?boardNo=${board.boardNo}&pageNo=${param.pageNo}&input=${param.input}&sortType=${param.sortType}&searchType=${param.searchType}">${board.title}</a>
 						<c:if test="${board.commentCount ne 0}">
 							<i class="fas fa-comment"><a>${board.commentCount}</a></i>
+						</c:if>
+						<c:if test="${board.groupNo ne 0}">
+							<i class="far fa-image"></i>
 						</c:if>
 					</c:if></td>
 				<td>${board.nickName}</td>
