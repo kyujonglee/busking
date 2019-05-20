@@ -4,13 +4,97 @@
 <link rel="stylesheet" href="<c:url value='/resources/css/main/member/register.css'/>" />
 <script src="<c:url value='/resources/js/jquery-3.4.1.min.js'/>"></script>
 <title>buskers</title>
-<main class="main-board">  
 <script type="text/javascript">
+	let idck = 0;
+	let emailck = 0;
+	let nickNameck = 0;
+
+	// 아이디 중복 체크
+	$(function() {
+		$("#checkId").click(function() {
+			let id = $("#id").val();
+			console.log(id);
+			
+			if(id.length < 1) {
+				alert("아이디를 입력해주시기 바랍니다.");
+			} else {
+				$.ajax({
+					data: "id="+id,
+					url: "checkId.do",
+					success: function(result) {
+						if (result == 0) {
+							alert("사용가능한 아이디입니다.");
+							idck = 1;
+						} else if (result == 1) {
+							alert("아이디가 존재합니다. \n다른 아이디를 입력해주세요.");
+						} else {
+							alert("에러 발생");
+						}
+					}
+				});
+			}
+		});
+	});
+	
+	// 이메일 중복 체크
+	$(function() {
+		$("#checkEmail").click(function() {
+			let email = $("#email").val();
+			console.log(id);
+			
+			if(email.length < 1) {
+				alert("이메일을 입력해주시기 바랍니다.");
+			} else {
+				$.ajax({
+					data: "email="+email,
+					url: "checkEmail.do",
+					success: function(result) {
+						if (result == 0) {
+							alert("사용가능한 이메일입니다.");
+							emailck = 1;
+						} else if (result == 1) {
+							alert("이메일이 존재합니다. \n다른 이메일로 입력해주세요.");
+						} else {
+							alert("에러 발생");
+						}
+					}
+				});
+			}
+		});
+	});
+	
+	// 닉네임 중복 체크
+	$(function() {
+		$("#checkNickName").click(function() {
+			let nickName = $("#nickName").val();
+			console.log(id);
+			
+			if(nickName.length < 1) {
+				alert("닉네임을 입력해주시기 바랍니다.");
+			} else {
+				$.ajax({
+					data: "nickName="+nickName,
+					url: "checkNickName.do",
+					success: function(result) {
+						if (result == 0) {
+							alert("사용가능한 닉네임입니다.");
+							nickNameck = 1;
+						} else if (result == 1) {
+							alert("닉네임이 존재합니다. \n다른 닉네임으로 입력해주세요.");
+						} else {
+							alert("에러 발생");
+						}
+					}
+				});
+			}
+		});
+	});
+	
 	function DosignUp() {
-		var getMail = RegExp(/^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/);
-     	var getCheck = RegExp(/^[a-zA-Z0-9]{4,16}$/);
-     	var getCheckPwd = RegExp(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/);
-      	var getName = RegExp(/^[가-힣]+$/);
+		let getMail = RegExp(/^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/);
+     	let getCheck = RegExp(/^[a-zA-Z0-9]{4,16}$/);
+     	let getCheckPwd = RegExp(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/);
+      	let getName = RegExp(/^[가-힣]+$/);
       	
       	// 모듈화
 //       	function availability(ele, msg) {
@@ -117,11 +201,13 @@
         		alert("닉네임 중복체크를 해주세요!");
         		return false;
         	} else {
-        		alert("회원가입을 축하합니다!");
+	        	alert("회원가입을 축하합니다!");
+	        	return true;
         	}
         }
 	}
 </script>
+<main class="main-board">  
     <!-- CONTAINER -->
     <div class="login-body">
             <div class="login-box">

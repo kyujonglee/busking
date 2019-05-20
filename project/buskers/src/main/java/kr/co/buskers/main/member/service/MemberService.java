@@ -11,5 +11,11 @@ public interface MemberService {
 	public void signupMember(Member member);
 
 	// 아이디 중복 체크
-	public Member checkId(Member member);
+	public int checkId(Member member);
+
+	public int checkEmail(Member member);
+
+	public int checkNickName(Member member);
+
+	public Member findId(Member member);
 }

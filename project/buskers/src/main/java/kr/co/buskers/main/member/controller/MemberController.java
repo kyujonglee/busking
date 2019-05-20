@@ -1,11 +1,13 @@
 package kr.co.buskers.main.member.controller;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.UrlBasedViewResolver;
@@ -94,14 +96,58 @@ public class MemberController {
 	
 	// 아이디 체크
 	@RequestMapping("checkId.do")
-	public int checkId(Member member, ModelAndView mav) {
+	@ResponseBody
+	public int checkId(String id) {
 		int result = 0;
-		Member user = service.checkId(member);
-		if (user != null) {
-			result = 1;
-		} 
-		
+		Member member = new Member();
+		member.setId(id);
+        int user = service.checkId(member);
+        if(user != 0) {
+        	result = 1;
+        }
 		return result;
+	}
+	
+	// 이메일 체크
+	@RequestMapping("checkEmail.do")
+	@ResponseBody
+	public int checkEmail(String email) {
+		int result = 0;
+		Member member = new Member();
+		member.setEmail(email);
+        int user = service.checkEmail(member);
+        if(user != 0) {
+        	result = 1;
+        }
+		return result;
+	}
+	
+	// 닉네임 체크
+	@RequestMapping("checkNickName.do")
+	@ResponseBody
+	public int checkNickName(String nickName) {
+		int result = 0;
+		Member member = new Member();
+		member.setNickName(nickName);
+        int user = service.checkNickName(member);
+        if(user != 0) {
+        	result = 1;
+        }
+		return result;
+	}
+	
+	// 아이디 찾기 폼 이동
+	@RequestMapping("findIdform.do")
+	public void findIdform() {}
+	
+	// 아이디 찾기
+	@RequestMapping("findId.do")
+	public String findId(Member member) {
+//		String user = service.findId(member);
+//		
+//		if()
+		
+		return "/";
 	}
 	
 	
@@ -110,10 +156,6 @@ public class MemberController {
 		
 	}
 	
-	@RequestMapping("findIdform.do")
-	public void list4() {
-		
-	}
 	
 	@RequestMapping("findPasswordform.do")
 	public void list5() {

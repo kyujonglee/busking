@@ -12,6 +12,15 @@ public interface MemberMapper {
 	public void signupMember(Member member);
 	
 	// 아이디 중복 체크
-	public Member checkId(Member member);
+	public int checkId(Member member);
+
+	// 이메일 중복 체크
+	public int checkEmail(Member member);
+
+	// 닉네임 중복 체크
+	public int checkNickName(Member member);
+	
+	// 아이디 찾기
+	public Member findId(Member member);
 	
 }
