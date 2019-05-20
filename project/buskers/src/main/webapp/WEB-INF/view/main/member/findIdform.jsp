@@ -3,6 +3,25 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <link rel="stylesheet" href="<c:url value='/resources/css/main/member/findId.css'/>"/>
 <title>buskers</title>
+<script type="text/javascript">
+	$(function() {
+		$("#findId").click(function() {
+			let name = $("#name").val();
+			let email = $("#email").val();
+			
+			let postData = {'name' : name, 'email' : email};
+			
+			if(name.length < 1 || email.length <1) {
+				alert("이름 혹은 이메일을 입력해주시기 바랍니다.");
+			} else {
+				
+			}
+			
+			
+		}); 
+	});
+
+</script>
 <main class="main-board">  
     <!-- CONTAINER -->
     <div class="login-body">
@@ -12,17 +31,17 @@
                 </div>
                 <form class="email-login">
                     <div class="u-form-group">
-                        <div>이름&nbsp;</div><input type="name" placeholder="Name"/>&emsp;&emsp;
+                        <div>이름&nbsp;</div><input type="name" id="name" placeholder="Name"/>&emsp;&emsp;
                     </div>
                     <div class="u-form-group">
-                        <div>이메일&nbsp;</div><input type="email" placeholder="Email"/>&emsp;&emsp;
+                        <div>이메일&nbsp;</div><input type="email" id="email" placeholder="Email"/>&emsp;&emsp;
                     </div>
                     <br>
                     <br>
                     <br>
                     <div class="u-form-group">
-                        <button class="submit-login">확인</button>&nbsp;&nbsp;
-                        <button type="button" class="back" onclick="location.href='login.html'">뒤로</button>
+                        <button class="submit-login" id="findId">확인</button>&nbsp;&nbsp;
+                        <button type="button" class="back" onclick="location.href='loginform.do'">뒤로</button>
                     </div>
                     <div class="u-form-group">
                         <a href="findIdform.do" class="forgot-id">아이디 찾기</a>
