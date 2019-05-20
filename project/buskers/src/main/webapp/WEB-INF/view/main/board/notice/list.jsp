@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%> 
 <link rel="stylesheet"
 	href="<c:url value='/resources/css/main/board/notice/notice.css'/>" />
 <main class="notice-board main-board">
@@ -10,122 +12,266 @@
 			class="notice-board__header-subtitle">ㅡ</span>
 	</header>
 	<div class="notice-board__main">
-		<header class="notice-board__main-header">
-			<div class="notice-board-main-header__tabs">
-				<div class="notice-board-main-header__tab tab-selected">news</div>
-				<div class="notice-board-main-header__tab">culture</div>
-				<div class="notice-board-main-header__tab">gallery</div>
-			</div>
-		</header>
-		<section class="notice-board-main__search">
-			<form class="notice-board-main__search-form" action="">
-				<div class="notice-board-main__search-column">
-					<select class="notice-board-main__search-item" name="" id="">
-						<option value="" selected>전체</option>
-						<option value="">내용</option>
-					</select>
-				</div>
-				<div class="notice-board-main__search-column">
-					<input class="notice-board-main__search-item" type="text" />
-				</div>
-				<div class="notice-board-main__search-column">
-					<button class="notice-board-main__search-item">검색</button>
-				</div>
-			</form>
-		</section>
-		<section class="notice-board-main__view">
-			<div class="notice-board-main__view-column">
-				<button type="button" class="notice-board-main__view-top-btn">
-					<span class="view-top-btn">top</span> <i
-						class="fas fa-angle-up fa-2x"></i>
-				</button>
-
-				<ul class="notice-board-main__view-items">
-					<li class="notice-board-main__view-item"><a href="#">
-							<div class="view-item__top">
-								<div class="view-item__title">
-									<button class="view-item__notice-btn">공지</button>
-									3월 open project
-								</div>
-								<span class="view-item__date">9 APR 2019</span>
-							</div> <span class="view-item__content">삼성전자의
-								진화된 4K UHD만의 생생한 컬러 Lorem ipsum dolor, sit amet consectetur
-								adipisicing elit. Minus doloremque aut vitae fuga maiores
-								exercitationem velit ea eligendi iusto. Est provident quam culpa
-								ratione unde officiis quisquam incidunt impedit laboriosam.</span>
-					</a></li>
-					<li class="notice-board-main__view-item"><a href="#"> <span
-							class="view-item__top">
-								<div class="view-item__title">
-									<button class="view-item__notice-btn">공지</button>
-									3월 open project
-								</div> <span class="view-item__date">9 APR 2019</span>
-						</span> <span class="view-item__content">삼성전자의
-								진화된 4K UHD만의 생생한 컬러 Lorem ipsum dolor, sit amet consectetur
-								adipisicing elit. Minus doloremque aut vitae fuga maiores
-								exercitationem velit ea eligendi iusto. Est provident quam culpa
-								ratione unde officiis quisquam incidunt impedit laboriosam.</span>
-					</a></li>
-					<li class="notice-board-main__view-item"><a href="#"> <span
-							class="view-item__top">
-								<div class="view-item__title">
-									<button class="view-item__notice-btn">공지</button>
-									3월 open project
-								</div> <span class="view-item__date">9 APR 2019</span>
-						</span> <span class="view-item__content">삼성전자의
-								진화된 4K UHD만의 생생한 컬러 Lorem ipsum dolor, sit amet consectetur
-								adipisicing elit. Minus doloremque aut vitae fuga maiores
-								exercitationem velit ea eligendi iusto. Est provident quam culpa
-								ratione unde officiis quisquam incidunt impedit laboriosam.</span>
-					</a></li>
-					<li class="notice-board-main__view-item"><a href="#"> <span
-							class="view-item__top">
-								<div class="view-item__title">
-									<button class="view-item__notice-btn">공지</button>
-									3월 open project
-								</div> <span class="view-item__date">9 APR 2019</span>
-						</span> <span class="view-item__content">삼성전자의
-								진화된 4K UHD만의 생생한 컬러 Lorem ipsum dolor, sit amet consectetur
-								adipisicing elit. Minus doloremque aut vitae fuga maiores
-								exercitationem velit ea eligendi iusto. Est provident quam culpa
-								ratione unde officiis quisquam incidunt impedit laboriosam.</span>
-					</a></li>
-					<li class="notice-board-main__view-item"><a href="#"> <span
-							class="view-item__top">
-								<div class="view-item__title">
-									<button class="view-item__notice-btn">공지</button>
-									3월 open project
-								</div> <span class="view-item__date">9 APR 2019</span>
-						</span> <span class="view-item__content">삼성전자의
-								진화된 4K UHD만의 생생한 컬러 Lorem ipsum dolor, sit amet consectetur
-								adipisicing elit. Minus doloremque aut vitae fuga maiores
-								exercitationem velit ea eligendi iusto. Est provident quam culpa
-								ratione unde officiis quisquam incidunt impedit laboriosam.</span>
-					</a></li>
-				</ul>
-			</div>
-			<div class="notice-board-main__view-column">
-				<header class="notice-board__view-content-header">
-					<div class="view-content__header-title">2018 상반기 워크샵 안내</div>
-					<div class="view-content__header-content">
-						<div class="header-content__column">
-							<span class="header-content__column-name">작성자</span> <span
-								class="header-content__column-writer">관리자</span>
-						</div>
-						<div class="header-content__column">
-							<span class="header-content__column-name">작성일</span> <span
-								class="header-content__column-writer">2018.04.15</span>
-						</div>
-					</div>
-				</header>
-				<section class="notice-board__view-content">따뜻한 봄햇살과 함께 ★
-					다람미디어 전직원 상반기 워크샵을 갑니다. 바쁜 일상 업무속에서 단합과 지친몸 힐링이되는 워크샵이 되세요. 다음과 같이
-					일정을 안내드리며, 세부적인 행사 일정은 추후 다시 안내하겠습니다. ▶ 일 시 : 2018.04. 20~ 2018.
-					04.21 (1박 2일) ▶ 장 소 : 단양 페러마을 ▶ 일 정 : 자세한 일정 추후공지 ★ 4월20일 (금)요일은
-					워크샵으로 인한 (휴무) 입니다.</section>
-			</div>
-		</section>
+	    <header class="notice-board__main-header">
+	    	<div class="notice-board-main-header__tabs">
+	        	<div class="notice-board-main-header__tab tab-selected">
+	          		news
+	        	</div>
+		        <div class="notice-board-main-header__tab">culture</div>
+		        <div class="notice-board-main-header__tab">gallery</div>
+	      	</div>
+	    </header>
+	    <form>
+	       <section class="notice-board-main__search">
+	         <form action="<c:url value='list.do'/>" method="post" >
+	           <div class="notice-board-main__search-column">
+	             <select class="notice-board-main__search-item" name="searchType">
+	               <option value="title">제목</option>
+	               <option value="content">내용</option>
+	             </select>
+	           </div>
+	           <div class="notice-board-main__search-column">
+	             <input class="notice-board-main__search-item" type="text" name="input" placeholder="검색어를 입력하세요." />
+	           </div>
+	           <div class="notice-board-main__search-column">
+	             <button class="notice-board-main__search-item">검색</button>
+	           </div>
+	         </form>
+	       </section>
+	    </form>
+	    <section class="notice-board-main__view">
+	      <div class="notice-board-main__view-column" id="notice_board_main__view-list">
+	          <button type="button" class="notice-board-main__view-top-btn">
+	            <span class="view-top-btn">top</span>
+	              <i class="fas fa-angle-up fa-2x"></i>
+	          </button>
+	
+	        <ul class="notice-board-main__view-items" id="notice-board-main__view-items-wrapper">
+			  <c:forEach var="board" items="${list}">
+		          <li class="notice-board-main__view-item">
+		          	<a>
+		          	  <input type="hidden" id="boardNo" value="${board.boardNo}"/>
+		              <div class="view-item__top">
+		                <div class="view-item__title">
+		                  <button class="view-item__notice-btn">공지</button>
+		                  	${board.title} 
+		                </div>
+		                <span class="view-item__date">
+		                	<fmt:formatDate value="${board.regDate}" pattern="YYYY-MM-dd HH:mm" />
+		                </span>
+		              </div>
+		              <span class="view-item__content">
+		              	${board.content }
+		              </span>
+		              </a>
+		          </li>
+		          <li class="mouse-active-parent"><div class="mouse-active"></div></li>
+			  </c:forEach>	 
+	        </ul>
+	        
+	      </div>
+	      
+	      <div class="notice-board-main__view-column">
+	      	<input type="hidden" name="detail_boardNo" value="${list[0].boardNo}" id="detail_boardNo"/>
+	        <header class="notice-board__view-content-header">
+	          <div class="view-content__header-title">
+				<!-- 첫글의 제목 --> 
+				${list[0].title}
+	          </div>
+	          <div class="view-content__header-content">
+	            <div class="header-content__column">
+	              <span class="header-content__column-name">작성자</span>
+	              <span class="header-content__column-writer" id="detail_nickName">${list[0].nickName}</span>
+	            </div>
+	            <div class="header-content__column">
+	              <span class="header-content__column-name" >작성일</span>
+	              <span class="header-content__column-writer" id="detail_date">
+					<!-- 첫글의 작성일 -->
+					<fmt:formatDate value="${list[0].regDate}" pattern="YYYY-MM-dd HH:mm" />
+				  </span>
+	            </div>
+	          </div>
+	        </header>
+	        	  <section class="notice-board__view-content">
+		          	<!-- 첫글의 내용 -->   
+		          	${list[0].content}
+              	  </section>
+                </div>
+        	</section>
+    	</div>
 	</div>
-</div>
 </main>
-<script src="<c:url value='/resources/js/main/board/agency/detail.js'/>"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
+<script src="<c:url value='/resources/js/main/board/notice/list.js'/>"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+<script>
+
+	let searchType = "${param.searchType}";
+    let input = "${param.input}";
+	let itemLength = $(".notice-board-main__view-item").length;
+
+	//검색어 유지
+    if (input != "" && searchType == "title" ) {
+    	for (i = 0; i < itemLength; i++) {
+			$(".view-item__title:eq(" + i + ")").html( $(".view-item__title:eq(" + i + ")").html().replace(input, "<b class='search_keyword'>" + input + "</b>") );
+		};
+		$(".view-content__header-title").html( $(".view-content__header-title").html().replace(input, "<b class='search_keyword'>" + input + "</b>") );
+		$(".notice-board-main__search-item").val(input);
+		$(".notice-board-main__search-item > option:eq(0)").prop("selected", true);
+	};
+	
+	if ( (input != "") && searchType == "content" ) {
+		for (i = 0; i < itemLength; i++) {
+			$(".view-item__content:eq(" + i + ")").html( $(".view-item__content:eq(" + i + ")").html().replace(input, "<b class='search_keyword'>" + input + "</b>") );
+		};
+		$(".notice-board__view-content").html( $(".notice-board__view-content").html().replace(input, "<b class='search_keyword'>" + input + "</b>") );
+		$(".notice-board-main__search-item").val(input);
+		$(".notice-board-main__search-item > option:eq(1)").prop("selected", true);
+	}
+
+	
+	//검색어가 4개 미만일경우에는 top버튼 삭제함
+	
+	if(itemLength < 4){
+		$(".notice-board-main__view-top-btn").remove();
+	}
+	if(itemLength < 1){
+		Swal.fire({
+			  title:'등록된 게시글이 없습니다.',
+			  type:'info',
+			  timer:2000	
+			});
+	}
+	
+	
+	
+	
+	
+	//우측 공지사항 detail부분
+	$(document).on("click",".notice-board-main__view-item",function(){
+		let boardNo = $(this).find("#boardNo").val();
+		$.ajax({
+			type:"POST",
+			data:"boardNo="+boardNo,
+			url:"detail-ajax.do",
+		}).done(function(result){
+	 		//우측 내용변경
+			let date = moment(result.board.regDat).format("YYYY-MM-DD HH:mm");
+			$(".view-content__header-title").text("");
+			$(".view-content__header-title").append(result.board.title);
+	
+			$("#detail_date").text("");
+			$("#detail_date").append(date);
+		
+			$("#detail_nickName").text("");
+			$("#detail_nickName").append(result.board.nickName);
+			
+			$(".notice-board__view-content").text("");
+			$(".notice-board__view-content").append(result.board.content);
+			
+			$(".notice-board__view-content").text("");
+			$(".notice-board__view-content").append(result.board.content);
+
+			$("#detail_boardNo").val(result.board.boardNo);
+			
+		}).fail(function(xhr){
+			alert("서버 처리중 에러발생")
+			console.dir(xhr);
+		})
+	})
+	
+	var orgindex = 0;
+	$(document).on("click",".notice-board-main__view-item",function(){
+		orgindex = $(this).position().top;
+		$(".mouse-active").stop().animate({top:orgindex},300);
+		
+	})
+
+		
+		// 마우스 왔을때 box 이동   
+
+	$(document).on("mouseenter",".notice-board-main__view-item",function(){
+		let index = $(this).position().top;
+		console.log("자식좌표0"+$(this).position().top);
+		$(".mouse-active").stop().animate({top:index},300);
+	}).on("mouseleave",".notice-board-main__view-item",function(){
+		console.log(orgindex);
+		$(".mouse-active").stop().animate({top:orgindex},300);
+	});
+	
+	
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	//5개씩 가져옴..
+	let pageNo = 0;
+	// 무한스크롤
+	$("#notice_board_main__view-list").scroll(
+	  
+	  function(){
+	    let sh = $("#notice_board_main__view-list").scrollTop() + $("#notice_board_main__view-list").height();
+	    let dh = $("#notice-board-main__view-items-wrapper").height();
+	    
+	    if(sh >= dh-10){
+	      //Ajax로 서버의 데이터를 가져온다.
+	      pageNo = pageNo+5;
+	      $.ajax({
+			
+	    	type:"POST",
+			data:{ pageNo : pageNo, searchType : searchType, input : input },
+			url:"list-ajax.do",
+	
+	      }).done(function(result){
+	    	  let leng= result.listAjax.length;
+// 	    	  console.log(result.listAjax);
+			  
+			  for(let i = 0 ; i < leng ; i ++){
+			    let date = moment(result.listAjax.regDat).format("YYYY-MM-DD HH:mm");  
+			    $("#notice-board-main__view-items-wrapper").append( `
+	    	   	  <li class="notice-board-main__view-item">
+			        <a>
+			      	  <input type="hidden" id="boardNo" value=`+""+result.listAjax[i].boardNo+""+`  />
+			          <div class="view-item__top">
+			            <div class="view-item__title">
+			              <button class="view-item__notice-btn">공지</button>
+			              	`+result.listAjax[i].title+`
+			              </div>
+			            <span class="view-item__date">
+	 		            `+date+`
+			            </span>
+			          </div>
+			          <span class="view-item__content">
+		              	`+result.listAjax[i].content+`
+			          </span>
+			        </a>
+			      </li>
+			    `)
+			  }		  
+		  
+		  }).fail(function(xhr){
+			alert("서버 처리중 에러발생")
+			console.dir(xhr);
+		  })
+	      
+	        //success에서 할일
+	
+	    }
+	  }
+	)
+	
+	
+
+</script>
+
+
+

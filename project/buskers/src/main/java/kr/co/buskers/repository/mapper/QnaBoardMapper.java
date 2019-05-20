@@ -2,6 +2,8 @@ package kr.co.buskers.repository.mapper;
 
 import java.util.List;
 
+import kr.co.buskers.repository.domain.File;
+import kr.co.buskers.repository.domain.FreeBoard;
 import kr.co.buskers.repository.domain.FreePage;
 import kr.co.buskers.repository.domain.Like;
 import kr.co.buskers.repository.domain.QnaBoard;
@@ -13,6 +15,7 @@ public interface QnaBoardMapper {
 	QnaBoard selectBoardByNo(int boardNo);
 	void updateBoardViewCount(int boardNo);
 	void insertBoard(QnaBoard qnaBoard);
+	void insertBoardFile(QnaBoard qnaBoard);
 	List<QnaBoardComment> selectCommentList(int boardNo);
 	List<QnaBoardComment> selectReplyList(int boardNo);
 	void insertComment(QnaBoardComment qnaBoardComment);
@@ -39,6 +42,8 @@ public interface QnaBoardMapper {
 	void updateCommentLikeStatusY(int likeNo);
 	void updateCommentLikeStatusN(int likeNo);
 	List<Like> selectCommentIsLiked(int memberNo);
+	QnaBoard selectGroupNo(int boardNo);
+	List<File> selectFile(int groupNo);
 	
 	void insertCommentDislike(Like like);
 	void updateCommentDislike(Like like);
@@ -51,6 +56,8 @@ public interface QnaBoardMapper {
 	List<Like> selectCommentIsDisliked(int memberNo);
 	
 	List<QnaBoardComment> selectLikeHighestComment(int boardNo);
+	
+	
 //	QnaBoardComment selectLikeHighestComment(int boardNo);
 	
 	

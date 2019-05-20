@@ -93,6 +93,14 @@
 		  and is_deleted = 'N'
 	</update>
 	
+	<insert id="insertBoardFile" parameterType="qnaBoard">
+		insert into tb_qnaboard(
+			member_no, content, title, group_no
+		)values(
+			#{memberNo}, #{content}, #{title}, #{groupNo}
+		)
+	</insert>
+	
 	<insert id="insertBoard" parameterType="qnaBoard">
 		insert into tb_qnaboard(
 			member_no, content, title
@@ -335,6 +343,19 @@
 		                   from tb_qnaboard_comment as a
 				          where board_no=#{boardNo});
 	</select>
+	
+	<select id="selectGroupNo" parameterType="int" resultType="qnaBoard">
+		select *
+		  from tb_qnaboard
+		 where board_no = #{boardNo}
+	</select>
+	
+	<select id="selectFile" parameterType="int" resultType="file">
+		select *
+		  from tb_file
+		 where group_no = #{groupNo}
+	</select>
+	
 	
 </mapper>
 
