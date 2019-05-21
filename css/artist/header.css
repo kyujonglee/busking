@@ -1,3 +1,55 @@
 .busker-header{
-    
+    background-color : var(--color-orange);
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    padding : 5px 10px;
+    color : var(--color-white);
 }
+
+.busker-header .busker-header__search{
+    width: 40%;
+    display:flex;
+    align-items: center;
+    position: relative;
+}
+
+.busker-header__search svg{
+    position: absolute;
+    left : 10px;
+    opacity: 0.5;
+    fill: rgba(0, 0, 0, 0.8);
+}
+.busker-header i {
+    cursor: pointer;
+    font-size : 24px;
+    margin-left : 10px;
+    opacity: 0.8;
+}
+.busker-header i:last-child {
+    margin-right: 10px;
+}
+
+.busker-header__search-input {
+    all :unset;
+    padding : 5px;
+    padding-left : 40px;
+    border-radius: 5px;
+    border : 1.2px solid rgba(0, 0, 0, 0.4);
+    height: 2.5vh;
+    width : 50%;
+    transition : all .3s ease-in-out;
+    background-color : #d16e2c;
+}
+
+.busker-header__search-input:focus {
+    border-color : var(--color-gray);
+    background-color : var(--color-white);
+    color : var(--color-orange);
+}
+
+.busker-header__member .busker-header__id {
+    font-size : 18px;
+    padding-right : 10px;
+}
+

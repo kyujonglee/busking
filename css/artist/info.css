@@ -1,3 +1,25 @@
-.busker-info {
+.busker .busker-info {
     background-color : #1D1D1D;
+}
+
+.busker-info img {
+    height: 40vh;
+    width: 100%;
+}
+
+.busker-info__main {
+    color : white;
+    padding : 20px;
+    overflow: scroll;
+    box-sizing: border-box;
+}
+.busker-info__nickname {
+    font-size : 24px;
+    padding : 10px;
+}
+
+.busker-info__content {
+    color : rgb(163, 163, 163);
+    padding : 10px 0px;
+    line-height: 20px;
 }
