@@ -12,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.UrlBasedViewResolver;
 
+import kr.co.buskers.main.kakaomember.controller.KakaoApi;
 import kr.co.buskers.main.member.service.MemberService;
 import kr.co.buskers.repository.domain.Member;
 
@@ -21,6 +22,9 @@ public class MemberController {
 	
 	@Autowired
 	private MemberService service;
+	
+	@Autowired 
+	private KakaoApi kka;
 	
 	@Autowired
 	BCryptPasswordEncoder passEncoder;
@@ -72,6 +76,9 @@ public class MemberController {
 	// 로그아웃 처리
 	@RequestMapping("logout.do")
 	public ModelAndView logout(HttpSession session) {
+		Member mem = (Member)session.getAttribute("user");
+		kka.kakaoLogout(mem.getAccessToken());
+		session.removeAttribute("user");
 		session.invalidate();
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("redirect:/index.jsp");
