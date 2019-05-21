@@ -52,9 +52,9 @@
 		          	<a>
 		          	  <input type="hidden" id="boardNo" value="${board.boardNo}"/>
 		              <div class="view-item__top">
-		                <div class="view-item__title">
+		                <div class="view-item__header">
 		                  <button class="view-item__notice-btn">공지</button>
-		                  	${board.title} 
+		                  	<span class="view-item__title">${board.title}</span> 
 		                </div>
 		                <span class="view-item__date">
 		                	<fmt:formatDate value="${board.regDate}" pattern="YYYY-MM-dd HH:mm" />
@@ -145,8 +145,6 @@
 	
 	
 	
-	
-	
 	//우측 공지사항 detail부분
 	$(document).on("click",".notice-board-main__view-item",function(){
 		let boardNo = $(this).find("#boardNo").val();
@@ -183,13 +181,12 @@
 	var orgindex = 0;
 	$(document).on("click",".notice-board-main__view-item",function(){
 		orgindex = $(this).position().top;
-		$(".mouse-active").stop().animate({top:orgindex},300);
+		$(".mouse-active").stop().animate({top:orgindex},1000);
 		
 	})
 
 		
-		// 마우스 왔을때 box 이동   
-
+	// 마우스 왔을때 box 이동   
 	$(document).on("mouseenter",".notice-board-main__view-item",function(){
 		let index = $(this).position().top;
 		console.log("자식좌표0"+$(this).position().top);
