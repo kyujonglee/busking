@@ -1,15 +1,18 @@
 package kr.co.buskers.main.member.controller;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.UrlBasedViewResolver;
 
+import kr.co.buskers.main.kakaomember.controller.KakaoApi;
 import kr.co.buskers.main.member.service.MemberService;
 import kr.co.buskers.repository.domain.Member;
 
@@ -19,6 +22,9 @@ public class MemberController {
 	
 	@Autowired
 	private MemberService service;
+	
+	@Autowired 
+	private KakaoApi kka;
 	
 	@Autowired
 	BCryptPasswordEncoder passEncoder;
@@ -70,6 +76,9 @@ public class MemberController {
 	// 로그아웃 처리
 	@RequestMapping("logout.do")
 	public ModelAndView logout(HttpSession session) {
+		Member mem = (Member)session.getAttribute("user");
+		kka.kakaoLogout(mem.getAccessToken());
+		session.removeAttribute("user");
 		session.invalidate();
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("redirect:/index.jsp");
@@ -92,6 +101,61 @@ public class MemberController {
 		return UrlBasedViewResolver.REDIRECT_URL_PREFIX + "loginform.do";
 	}
 	
+	// 아이디 체크
+	@RequestMapping("checkId.do")
+	@ResponseBody
+	public int checkId(String id) {
+		int result = 0;
+		Member member = new Member();
+		member.setId(id);
+        int user = service.checkId(member);
+        if(user != 0) {
+        	result = 1;
+        }
+		return result;
+	}
+	
+	// 이메일 체크
+	@RequestMapping("checkEmail.do")
+	@ResponseBody
+	public int checkEmail(String email) {
+		int result = 0;
+		Member member = new Member();
+		member.setEmail(email);
+        int user = service.checkEmail(member);
+        if(user != 0) {
+        	result = 1;
+        }
+		return result;
+	}
+	
+	// 닉네임 체크
+	@RequestMapping("checkNickName.do")
+	@ResponseBody
+	public int checkNickName(String nickName) {
+		int result = 0;
+		Member member = new Member();
+		member.setNickName(nickName);
+        int user = service.checkNickName(member);
+        if(user != 0) {
+        	result = 1;
+        }
+		return result;
+	}
+	
+	// 아이디 찾기 폼 이동
+	@RequestMapping("findIdform.do")
+	public void findIdform() {}
+	
+	// 아이디 찾기
+	@RequestMapping("findId.do")
+	public String findId(Member member) {
+//		String user = service.findId(member);
+//		
+//		if()
+		
+		return "/";
+	}
 	
 	
 	@RequestMapping("signupform-busker.do")
@@ -99,10 +163,6 @@ public class MemberController {
 		
 	}
 	
-	@RequestMapping("findIdform.do")
-	public void list4() {
-		
-	}
 	
 	@RequestMapping("findPasswordform.do")
 	public void list5() {

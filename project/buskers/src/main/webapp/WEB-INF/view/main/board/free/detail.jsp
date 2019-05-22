@@ -50,7 +50,6 @@
 	                </div>
 	                
 	               	<div class="board_article_bottom">
-
 	                	<div class="board_image_list">
 	                		<c:if test="${file ne null}">
 		                		<c:forEach var="file" items="${file}">

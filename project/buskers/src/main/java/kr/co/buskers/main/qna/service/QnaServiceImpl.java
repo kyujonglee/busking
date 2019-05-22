@@ -50,23 +50,24 @@ public class QnaServiceImpl implements QnaService {
 			}
 			
 		}
+		
+		
 		mapper.updateBoardViewCount(boardNo);
 		System.out.println("try실행");
 		try {
 			map.put("highestLikeComment", mapper.selectLikeHighestComment(boardNo));
 			
 		}catch(Exception e) {
-			System.out.println("오류캐치됨");
 		}
-		System.out.println("오류캐치끝남");
 		
-		
+		if (mapper.selectGroupNo(boardNo) != null  ) {
+			map.put("file", mapper.selectFile(mapper.selectGroupNo(boardNo).getGroupNo()));
+		}
 		
 		
 		map.put("reply", mapper.selectReplyList(boardNo));
 		map.put("comment", mapper.selectCommentList(boardNo));
 		map.put("board", mapper.selectBoardByNo(boardNo));
-		System.out.println("리턴직전");
 	
 		return map;
 	}
@@ -139,7 +140,12 @@ public class QnaServiceImpl implements QnaService {
 	}
 	
 	public void write(QnaBoard qnaBoard) {
-		mapper.insertBoard(qnaBoard);
+		System.out.println("보드넘버 : " + qnaBoard.getBoardNo());
+		if (qnaBoard.getGroupNo() == 0) {
+			mapper.insertBoard(qnaBoard);
+		} else {
+			mapper.insertBoardFile(qnaBoard);
+		}
 	}
 	
 	public void deleteComment(int commentNo) {

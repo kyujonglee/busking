@@ -215,16 +215,7 @@
                     <span class="active" id="login-box-link">회원가입</span>
                 </div>
                 <form class="email-login" onsubmit="return DosignUp()" action="signup.do" method="post">
-                    <div class="u-form-group">
-                        <div>아이디&nbsp;</div><input type="text" id="id" name="id" maxlength="16" placeholder="Id(최소 4자이상)"/>
-                        <button type="button" id="checkId" class="check">중복확인</button>
-                    </div>
-                    <div class="u-form-group">
-                        <div>비밀번호&nbsp;</div><input type="password" id="pass" name="pass" maxlength="16" placeholder="Password(최소 8자이상)"/>&emsp;&emsp;&emsp;&emsp;&emsp;
-                    </div>
-                    <div class="u-form-group">
-                        <div>비밀번호 확인&nbsp;</div><input type="password" id="checkpass" name="passcheck" maxlength="16" placeholder="PasswordCheck"/>&emsp;&emsp;&emsp;&emsp;&emsp;
-                    </div>
+                        <input type="hidden" id="id" name="id"/>
                     <div class="u-form-group">
                         <div>이메일&nbsp;</div><input type="text" id="email" name="email" placeholder="email"/>
                         <button type="button" id="checkEmail" class="check">중복확인</button>

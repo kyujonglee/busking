@@ -97,6 +97,7 @@ public class QnaBoardController {
 			model.addAttribute("like", result.get("like"));
 		}
 		model.addAttribute("highestLikeComment", result.get("highestLikeComment"));
+		model.addAttribute("file", result.get("file"));
 		model.addAttribute("reply", result.get("reply"));
 		model.addAttribute("comment", result.get("comment"));
 		model.addAttribute("board", result.get("board"));
