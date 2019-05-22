@@ -128,7 +128,6 @@
 		$(".notice-board-main__search-item").val(input);
 		$(".notice-board-main__search-item > option:eq(1)").prop("selected", true);
 	}
-
 	
 	//검색어가 4개 미만일경우에는 top버튼 삭제함
 	
@@ -142,8 +141,6 @@
 			  timer:2000	
 			});
 	}
-	
-	
 	
 	//우측 공지사항 detail부분
 	$(document).on("click",".notice-board-main__view-item",function(){
@@ -184,7 +181,6 @@
 		$(".mouse-active").stop().animate({top:orgindex},1000);
 		
 	})
-
 		
 	// 마우스 왔을때 box 이동   
 	$(document).on("mouseenter",".notice-board-main__view-item",function(){
@@ -195,20 +191,6 @@
 		console.log(orgindex);
 		$(".mouse-active").stop().animate({top:orgindex},300);
 	});
-	
-	
-
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	//5개씩 가져옴..
 	let pageNo = 0;
@@ -259,9 +241,6 @@
 			alert("서버 처리중 에러발생")
 			console.dir(xhr);
 		  })
-	      
-	        //success에서 할일
-	
 	    }
 	  }
 	)

@@ -24,6 +24,10 @@ public class MemberServiceImpl implements MemberService {
 	public void signupMember(Member member) {
 		mapper.signupMember(member);
 	}
+	@Override
+	public void signupKakaoMember(Member member) {
+		mapper.signupKakaoMember(member);
+	}
 
 
 	// 아이디 중복 체크
