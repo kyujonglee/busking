@@ -5,6 +5,12 @@ import java.util.Date;
 public class Member {
 
 	private int memberNo;
+	public String getMemberType() {
+		return memberType;
+	}
+	public void setMemberType(String memberType) {
+		this.memberType = memberType;
+	}
 	private String id;
 	private String pass;
 	private String email;
@@ -16,8 +22,23 @@ public class Member {
 	private char isBusker;
 	private char isAgency;
 	private String nickName;
+	private String memberType;
+	private String accessToken;
+	private String refreshToken;
 	
 	
+	public String getAccessToken() {
+		return accessToken;
+	}
+	public void setAccessToken(String accessToken) {
+		this.accessToken = accessToken;
+	}
+	public String getRefreshToken() {
+		return refreshToken;
+	}
+	public void setRefreshToken(String refreshToken) {
+		this.refreshToken = refreshToken;
+	}
 	public String getNickName() {
 		return nickName;
 	}

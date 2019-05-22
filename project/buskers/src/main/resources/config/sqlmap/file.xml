@@ -11,9 +11,11 @@
 	</insert> 
 	
 	<select id="selectFileMaxNo" resultType="file">
-		select * 
-        from tb_file 
-        where group_no = (select max(group_no) from tb_file order by group_no desc)
-        group by group_no
+         select a.*
+		   from (
+       				 select * 
+       	   			from tb_file 
+          			group by group_no) a
+		  where group_no = (select max(group_no) from tb_file)
 	</select>
 </mapper>

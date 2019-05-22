@@ -3,14 +3,21 @@
 @import 'writeform.css';
 @import 'updateform.css';
 
-body {
-    background: #F4F7FC;
-}
-
 .main-freeboard {
 	background-color : white;
 	padding : 0 70px;
 	box-sizing : border-box;
+}
+
+.header_background {
+	overflow: hidden;
+	width: 100%;
+ 	height: 100px;
+}
+
+.header_background > img {
+	width: 100%;
+	height: auto;
 }
 
 .fa-image {

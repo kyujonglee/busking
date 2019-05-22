@@ -3,13 +3,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-<link
-	href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css"
-	rel="stylesheet">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-<script
-	src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
 <link
 	href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css"
 	rel="stylesheet">
@@ -24,7 +19,7 @@
 <link rel="stylesheet"
 	href="<c:url value='/resources/css/main/board/agency/agency.css'/>" />
 <main class="main-freeboard">
-<div class="agency">
+<div class="main-board">
 	<div class="freeboard__insert">
 		<div class="board_title">
 			<div class="board_title_underline">
@@ -64,7 +59,7 @@
 	$(document).ready(function () {
    	   	$('#summernote').summernote({
    	    	height: 500,                 
-   	        width: 1060,
+   	        width: 1200,
    	        focus: false,
    	        callbacks: { 
    		        onImageUpload: function (files, editor, welEditable) {

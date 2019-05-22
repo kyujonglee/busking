@@ -15,7 +15,7 @@
 	<div class="board_title">
 		<div class="board_title_underline">
 			<a href="<c:url value='/main/board/free/list.do'/>">자유게시판</a>
-		</div>
+		</div> 
 	</div>
 
 	<table class="free_board">

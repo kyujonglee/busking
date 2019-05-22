@@ -32,6 +32,7 @@ public interface FreeBoardMapper {
 	int selectCommentHasReply(int commentNo);
 	void updateComment(FreeBoardComment freeBoardComment);
 	void updateBoard(FreeBoard freeBoard);
+	void updateBoardFile(FreeBoard freeBoard);
 	void deleteBoard(FreeBoard freeBoard);
 	FreeBoard selectGroupNo(int boardNo);
 	List<File> selectFile(int groupNo);

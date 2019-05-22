@@ -4,6 +4,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" />
     <link rel="stylesheet" href="<c:url value='/resources/css/main/member/login.css'/>" />
     <script src="<c:url value='/resources/js/jquery-3.4.1.min.js'/>"></script>
+    <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 <main class="main-board">    
     <!-- CONTAINER -->
     <div class="login-body">
@@ -42,13 +43,25 @@
                 <i class="fa fa-naver fa-lg"></i>
                 네이버 로그인
                 </a>
-                <a href="#">
-                <i class="fa fa-kakao fa-lg"></i>
+                <a id="custom-login-btn" href="javascript:loginWithKakao()">
+                <i class="fa fa-naver fa-lg"></i>
                 카카오 로그인
                 </a>
             </div>
+<!--                 <a id="kakao-login-btn"> -->
+<!--                 <a href="https://kauth.kakao.com/oauth/authorize?client_id=0bb6a0ac8b05e537563536bc17b336e9&redirect_uri=http://localhost/buskers/kakaologin.do&response_type=code" id="kakao">카카오로그인</a> -->
         </div>
     </div>
+    <form id="kakao-member" method="POST" action="kakao-signup.do">
+    	<input type="hidden"  id="memberId" name="id"  value=""/>
+    	<input type="hidden"  id="nickName" name="nickName" value=""/>
+    	<input type="hidden"  id="accessToken" name="accessToken" value=""/>
+    </form>
+   <form id="kakao-login" method="POST" action="kakao-login.do">
+    	<input type="hidden"  id="memberId" name="id"  value=""/>
+    	<input type="hidden"  id="nickName" name="nickName" value=""/>
+    	<input type="hidden"  id="accessToken" name="accessToken" value=""/>
+    </form> 
 </main>
     <script>
     	let msg = '${msg}';
@@ -74,4 +87,113 @@
    				"action": "login.do"
     		});
     	});
+    		
+    	
+        // 사용할 앱의 JavaScript 키를 설정해 주세요.
+        Kakao.init('519496cf424356ba7d05e9feb9606800');
+        function loginWithKakao() {
+          // 로그인 창을 띄웁니다.
+          Kakao.Auth.loginForm({
+            success: function(authObj) {
+            	 Kakao.API.request({
+    		      	 url: '/v1/user/me',
+     			     success: function(res) {
+//     		             alert(JSON.stringify(res)); //<---- kakao.api.request 에서 불러온 결과값 json형태로 출력
+//     		             alert(JSON.stringify(authObj)); //<----Kakao.Auth.createLoginButton에서 불러온 결과값 json형태로 출력
+//     		             console.log("아이디"+res.id);//<---- 콘솔 로그에 id 정보 출력(id는 res안에 있기 때문에  res.id 로 불러온다)
+//     		             console.log("성별"+res.gender);//<---- 콘솔 로그에 email 정보 출력 (어딨는지 알겠죠?)
+//     		             console.log("닉네임"+res.properties['nickname']);//<---- 콘솔 로그에 닉네임 출력(properties에 있는 nickname 접근 
+//     		             console.log(res.kaccount_email);//<---- 콘솔 로그에 email 정보 출력 (어딨는지 알겠죠?)
+    		//           console.log(authObj.access_token);//<---- 콘솔 로그에 토큰값 출력
+    		//           console.log(authObj.refresh_token);//<---- 콘솔 로그에 토큰값 출력
+
+    		
+    					 let member = {id:res.id,gender:res.gender,email:res.kaccount_email,nickName:res.properties['nickname'],
+    					 accessToken:authObj.access_token,refreshToken:authObj.refresh_token}
+    					 $.ajax({
+    						type:"POST",
+    						data:member,
+    						url:"kakao-checkid.do",
+    					 }).done(function(result){
+    						alert(result);
+    						//회원 디비가 없을경우
+    						if(result == 0){
+    							 $("#kakao-member #memberId").val(res.id);
+    		    			     $("#kakao-member #nickName").val(res.properties['nickname']);
+    		    			     $("#kakao-member #accessToken").val(authObj.access_token);
+    							 $("#kakao-member").submit();
+    						}else{
+    							$("#kakao-login #memberId").val(res.id);
+    	    					$("#kakao-login #nickName").val(res.properties['nickname']);
+    	    					$("#kakao-login #accessToken").val(authObj.access_token);
+    							$("#kakao-login").submit();
+    						}
+    					}).fail(function(xhr){
+    						alert("서버 처리중 에러발생")
+    						console.dir(xhr);
+    					})
+              	 	}
+             	})
+            },
+            fail: function(err) {
+            	alert(JSON.stringify(err));
+            }
+          });
+        };
+    		
+    	/*
+		   // 사용할 앱의 JavaScript 키를 설정해 주세요.
+		   Kakao.init('519496cf424356ba7d05e9feb9606800');
+		   // 카카오 로그인 버튼을 생성합니다.
+		   Kakao.Auth.createLoginButton({
+		   container: '#kakao-login-btn',
+		   success: function(authObj) {
+		     Kakao.API.request({
+		      	 url: '/v1/user/me',
+ 			     success: function(res) {
+		             alert(JSON.stringify(res)); //<---- kakao.api.request 에서 불러온 결과값 json형태로 출력
+		             alert(JSON.stringify(authObj)); //<----Kakao.Auth.createLoginButton에서 불러온 결과값 json형태로 출력
+		             console.log("아이디"+res.id);//<---- 콘솔 로그에 id 정보 출력(id는 res안에 있기 때문에  res.id 로 불러온다)
+		             console.log("성별"+res.gender);//<---- 콘솔 로그에 email 정보 출력 (어딨는지 알겠죠?)
+		             console.log("닉네임"+res.properties['nickname']);//<---- 콘솔 로그에 닉네임 출력(properties에 있는 nickname 접근 
+		             console.log(res.kaccount_email);//<---- 콘솔 로그에 email 정보 출력 (어딨는지 알겠죠?)
+		//           console.log(authObj.access_token);//<---- 콘솔 로그에 토큰값 출력
+		//           console.log(authObj.refresh_token);//<---- 콘솔 로그에 토큰값 출력
+		
+					 //hidden에 값을 넣어줌.
+					 $("#memberId").val(res.id);
+					 $("#nickName").val(res.properties['nickname']);
+					 $("#accessToken").val(authObj.access_token);
+					 
+					 let member = {id:res.id,gender:res.gender,email:res.kaccount_email,nickName:res.properties['nickname'],
+					 accessToken:authObj.access_token,refreshToken:authObj.refresh_token}
+					 
+					 $.ajax({
+						type:"POST",
+						data:member,
+						url:"kakao-checkid.do",
+					 }).done(function(result){
+						alert(result);
+						//회원 디비가 없을경우
+						if(result == 0){
+							$("#kakao-member").submit();
+						}else{
+							$("#kakao-login").submit();
+							
+						}
+						
+					 }).fail(function(xhr){
+						alert("서버 처리중 에러발생")
+						console.dir(xhr);
+					 })
+           }
+         })
+       },
+       fail: function(error) {
+         alert(JSON.stringify(error));
+       }
+     });
+		     
+		  */   
+		  
     </script>

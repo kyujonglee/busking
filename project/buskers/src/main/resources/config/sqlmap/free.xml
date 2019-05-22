@@ -118,6 +118,21 @@
 		)
 	</insert>
 	
+	<update id="updateBoardFile" parameterType="freeBoard">
+		update tb_freeboard
+		   set title = #{title},
+		   	   content = #{content},
+		   	   group_no = #{groupNo}
+		 where board_no = #{boardNo} 
+	</update>
+	
+	<update id="updateBoard" parameterType="freeBoard">
+		update tb_freeboard
+		   set title = #{title},
+		   	   content = #{content}
+		 where board_no = #{boardNo} 
+	</update>
+	
 	<select id="selectGroupNo" parameterType="int" resultType="freeBoard">
 		select *
 		  from tb_freeboard
@@ -339,13 +354,6 @@
 		   and board_type = 2
 		   and dislike_status = 'y'
     </select>
-    
-	<update id="updateBoard" parameterType="freeBoard">
-		update tb_freeboard
-		   set title = #{title},
-		       content = #{content}
-		 where board_no = #{boardNo}
-	</update>
 	
 	<update id="deleteBoard" parameterType="int">
 		update tb_freeboard

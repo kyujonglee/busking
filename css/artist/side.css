@@ -1,0 +1,43 @@
+.busker .busker-side {
+    font-family: "Nanum Gothic",sans-serif;
+}
+
+.busker-side .busker-side__profile {
+  height: 30vh;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+}
+
+.busker-side__header {
+  height: 5vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding : 5px;
+  padding-left : 10px;
+}
+
+.busker-side__profile .busker-side__header-title {
+    font-size : 24px;
+}
+
+.busker-side .busker-info__btn {
+  display: flex;
+  justify-content: flex-end;
+  padding: 5px 10px;
+}
+
+.busker-info__btn i {
+    cursor: pointer;
+}
+
+.busker-side__header i:last-child {
+}
+
+.busker-side__menu {
+  height: 40vh;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+}
+
+.busker-side__buskers {
+    height: 30vh;
+}
