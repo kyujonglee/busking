@@ -50,10 +50,9 @@
         <c:if test="${sessionScope.user ne null}">
 			<span class="header__user">
 				<div class="header-a">
-					<div class="header-b1">
-						<i class="far fa-bell fa-lg"></i>
-					</div>
-					<div class="header-b2">Hello! ${sessionScope.user.nickName}</div>
+				<i class="far fa-bell fa-lg"></i>
+				<i class="far fa-envelope fa-lg"></i>
+					<div class="header-b2">${sessionScope.user.nickName}  님</div>
 					<div class="header-b3">
 						<div class="header-c">
 							<a class="header-d" role="button" 
@@ -119,4 +118,15 @@
 			$(".h-toggle").hide();
 		}
 	}); 
+	
+	let popupX = (window.screen.width / 2) - (500 / 2);
+	let popupY = (window.screen.height / 2) - (500 / 2);
+	
+	$(".fa-envelope").click(function () {
+		window.open('<c:url value="/popup/message.do"/>', 'message', 'top=' + popupY + ', left=' + popupX + ', scrollbars=no, resizable=no, width=500, height=500');
+	});
+	
 </script>
+
+
+

@@ -7,6 +7,7 @@
     <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Prata' rel='stylesheet' type='text/css'>
     <link href="https://fonts.googleapis.com/css?family=Italianno&display=swap" rel="stylesheet">
+    <title>Buskers</title>
 		<section id="mu-slider">
 			<div class="mu-slider-area">
 				<div class="mu-top-slider">
