@@ -43,9 +43,11 @@
 	
 		if(id.length < 1) {
 			alert("아이디를 입력해주시기 바랍니다.");
+			$("#id").focus();
 			return false;
 		} else if(email.length < 1) {
 			alert("이메일을 입력해주시기 바랍니다.");
+			$("#email").focus();
 			return false;
 		} else {
 			$(".email-login").attr({

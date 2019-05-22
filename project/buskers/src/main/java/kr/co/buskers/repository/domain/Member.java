@@ -5,12 +5,7 @@ import java.util.Date;
 public class Member {
 
 	private int memberNo;
-	public String getMemberType() {
-		return memberType;
-	}
-	public void setMemberType(String memberType) {
-		this.memberType = memberType;
-	}
+	
 	private String id;
 	private String pass;
 	private String email;
@@ -100,8 +95,12 @@ public class Member {
 	public void setJoinDate(Date joinDate) {
 		this.joinDate = joinDate;
 	}
-	
-	
+	public String getMemberType() {
+		return memberType;
+	}
+	public void setMemberType(String memberType) {
+		this.memberType = memberType;
+	}
 	public String getProfileImg() {
 		return profileImg;
 	}

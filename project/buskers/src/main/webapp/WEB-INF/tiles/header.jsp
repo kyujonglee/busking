@@ -85,7 +85,7 @@
 							</div>
 							<div class="header-j">
 								<div>
-									<a class="header-j2" href="#">마이 페이지</a>
+									<a class="header-j2" href="<c:url value='/main/member/myPage.do'/>">마이 페이지</a>
 								</div>
 								<div>
 									<a class="header-j3" id="logout" target="_top">로그아웃</a>
