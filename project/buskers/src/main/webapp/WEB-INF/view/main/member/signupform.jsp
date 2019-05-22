@@ -13,7 +13,6 @@
 	$(function() {
 		$("#checkId").click(function() {
 			let id = $("#id").val();
-			console.log(id);
 			
 			if(id.length < 1) {
 				alert("아이디를 입력해주시기 바랍니다.");

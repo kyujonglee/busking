@@ -1,11 +1,13 @@
 package kr.co.buskers.main.member.controller;
 
-import javax.servlet.http.HttpServletResponse;
+import java.util.Random;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -13,6 +15,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.UrlBasedViewResolver;
 
 import kr.co.buskers.main.member.service.MemberService;
+import kr.co.buskers.main.member.util.Email;
+import kr.co.buskers.main.member.util.EmailSender;
 import kr.co.buskers.repository.domain.Member;
 
 @Controller
@@ -21,6 +25,12 @@ public class MemberController {
 	
 	@Autowired
 	private MemberService service;
+	
+	@Autowired
+	private EmailSender emailSender;
+	
+	@Autowired
+	private Email email;
 	
 	@Autowired
 	BCryptPasswordEncoder passEncoder;
@@ -33,7 +43,7 @@ public class MemberController {
 	@RequestMapping("login.do")
 	public String login(HttpSession session, Member member,RedirectAttributes rttr) {
 		Member user = service.login(member);
-		
+		System.out.println(user);
 		// DB 값 체크
 		if(user != null) {
 			boolean passMatch = passEncoder.matches(member.getPass(), user.getPass());
@@ -94,7 +104,7 @@ public class MemberController {
 		return UrlBasedViewResolver.REDIRECT_URL_PREFIX + "loginform.do";
 	}
 	
-	// 아이디 체크
+	// 아이디 중복 체크
 	@RequestMapping("checkId.do")
 	@ResponseBody
 	public int checkId(String id) {
@@ -108,7 +118,7 @@ public class MemberController {
 		return result;
 	}
 	
-	// 이메일 체크
+	// 이메일 중복 체크
 	@RequestMapping("checkEmail.do")
 	@ResponseBody
 	public int checkEmail(String email) {
@@ -122,7 +132,7 @@ public class MemberController {
 		return result;
 	}
 	
-	// 닉네임 체크
+	// 닉네임 중복 체크
 	@RequestMapping("checkNickName.do")
 	@ResponseBody
 	public int checkNickName(String nickName) {
@@ -142,13 +152,75 @@ public class MemberController {
 	
 	// 아이디 찾기
 	@RequestMapping("findId.do")
-	public String findId(Member member) {
-//		String user = service.findId(member);
-//		
-//		if()
-		
-		return "/";
+	public String findId(Member member, RedirectAttributes rttr) {
+		Member user = service.findId(member);
+		if (user != null) {
+			String id = user.getId();
+			StringBuffer sb = new StringBuffer(id);
+			
+			String sbId = sb.replace(id.length()-3, id.length()-1, "**").toString();
+			rttr.addFlashAttribute("sbId", sbId);
+			return "redirect:findIdResult.do";
+		} else {
+			rttr.addFlashAttribute("msg", "msgEmail");
+			return "redirect:findIdform.do";
+		}
 	}
+	
+	// 아이디찾기 결과 폼
+	@RequestMapping("findIdResult.do")
+	public void findIdResult() {
+		
+	}
+	
+	// 비밀번호 찾기 폼
+	@RequestMapping("findPasswordform.do")
+	public void findPasswordform() {}
+		
+	// 비밀번호 찾기 및 새로운 비밀번호 생성
+	@RequestMapping("findPass.do")
+	public String newPassword(Member member, RedirectAttributes rttr) throws Exception {
+		Member user = service.findPass(member);
+		
+		if(user != null) {
+			// 임시비밀번호 발급
+			Random r = new Random();
+			int num = r.nextInt(89999) + 10000;
+			String npassword = "bapsi" + Integer.toString(num);
+			
+			// 스프링 시큐리티 암호화
+			String pass = passEncoder.encode(npassword);
+			member.setPass(pass);
+			
+			// DB에 업데이트해줌
+			service.newPass(member);
+			
+			
+			email.setContent("새로운 비밀번호는 " + npassword + " 입니다.");
+			email.setReceiver(member.getEmail());
+			email.setSubject("안녕하세요" + member.getId() + "님! 재설정된 비밀번호 입니다!");
+			emailSender.SendEmail(email);
+			
+			String email = member.getEmail();
+			StringBuffer sb = new StringBuffer(email);
+			
+			String sbEmail = sb.replace(2, 4, "**").toString();
+			
+			rttr.addFlashAttribute("sbEmail", sbEmail);
+			return "redirect:findPasswordResult.do";
+		} else {
+			rttr.addFlashAttribute("msg", "msgFalse");
+			return "redirect:findPasswordform.do";
+		}
+	}
+
+	// 비밀번호 찾기 결과창
+	@RequestMapping("findPasswordResult.do")
+	public void findPasswordResult() {
+		
+	}
+	
+	
 	
 	
 	@RequestMapping("signupform-busker.do")
@@ -156,10 +228,5 @@ public class MemberController {
 		
 	}
 	
-	
-	@RequestMapping("findPasswordform.do")
-	public void list5() {
-		
-	}
 	
 }

@@ -58,8 +58,8 @@
     		alert("아이디가 틀렸습니다!");
     	}
     	$("#login").click(function() {
-    		var id = $("#id").val();
-    		var pass = $("#pass").val();
+    		let id = $("#id").val();
+    		let pass = $("#pass").val();
     		if(id == ""){
     			alert("아이디를 입력하세요.");
     			$("#id").focus();
@@ -75,4 +75,3 @@
     		});
     	});
     </script>
-</html>

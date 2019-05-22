@@ -42,12 +42,27 @@
 	
 	
 	<!-- 아이디 찾기 -->
-	<select id="findId" parameterType="member" resultType="member">
+	<select id="findId"  resultType="member">
 		select id
 		  from tb_member
-		 where name = #{name}
+		 where email = #{email}
+	</select>
+	
+	<!-- 비밀번호 찾기 -->
+	<select id="findPass" resultType="member">
+		select pass
+		  from tb_member
+		 where id = #{id} 
 		   and email = #{email}
 	</select>
+	
+	<!-- 비밀번호 변경 -->
+	<update id="newPass" parameterType="member">
+		update tb_member
+		   set pass = #{pass}
+		 where id = #{id}
+		   and email = #{email}
+	</update>
 	
 	
 </mapper>
