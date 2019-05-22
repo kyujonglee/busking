@@ -11,6 +11,13 @@
     width: 320px;
     z-index: 987;
 }
+
+.header__user {
+	display: flex;
+	justify-content: center;
+  	align-items: center;
+}
+
 .header-b1, .header-b3 {
     display: inline-flex;
     height: 30px;
@@ -21,10 +28,12 @@
     align-items : center;
 }
 
-.header-b1 > i {
+.header-a > i {
 	color: white;
 	margin-right: 10px;
+	cursor: pointer;
 }
+
 .header-b2 {
 	font-family: 'Nanum Gothic', sans-serif;
 	color: white;

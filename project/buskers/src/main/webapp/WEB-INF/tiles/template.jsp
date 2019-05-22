@@ -13,8 +13,7 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
 <script src="<c:url value='/resources/js/jquery-3.4.1.min.js'/>"></script>
 <!-- Favicon -->
-    <link rel="shortcut icon" href="<c:url value='/resources/img/guitar_icon.png'/>" type="image/x-icon">
-<title>Insert title here</title>
+<link rel="shortcut icon" href="<c:url value='/resources/img/guitar_icon.png'/>" type="image/x-icon">
 </head>
 <body>
 	<tiles:insertAttribute name="header"/>
