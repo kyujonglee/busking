@@ -23,5 +23,10 @@ public interface MemberMapper {
 	
 	// 아이디 찾기
 	public Member findId(Member member);
+
+	// 비밀번호 찾기
+	public Member findPass(Member member);
 	
+	// 비밀번호 변경
+	public void newPass(Member member);
 }

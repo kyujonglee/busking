@@ -2,26 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <link rel="stylesheet" href="<c:url value='/resources/css/main/member/findId.css'/>"/>
+<script src="<c:url value='/resources/js/jquery-3.4.1.min.js'/>"></script>
 <title>buskers</title>
-<script type="text/javascript">
-	$(function() {
-		$("#findId").click(function() {
-			let name = $("#name").val();
-			let email = $("#email").val();
-			
-			let postData = {'name' : name, 'email' : email};
-			
-			if(name.length < 1 || email.length <1) {
-				alert("이름 혹은 이메일을 입력해주시기 바랍니다.");
-			} else {
-				
-			}
-			
-			
-		}); 
-	});
-
-</script>
 <main class="main-board">  
     <!-- CONTAINER -->
     <div class="login-body">
@@ -29,12 +11,12 @@
                 <div class="lb-header">
                     <span class="active" id="login-box-link">아이디 찾기</span>
                 </div>
-                <form class="email-login">
+                <form class="email-login" method="post">
                     <div class="u-form-group">
-                        <div>이름&nbsp;</div><input type="name" id="name" placeholder="Name"/>&emsp;&emsp;
+                        <div>이메일&nbsp;</div><input type="text" id="findEmail" placeholder="Email" name="email"/>&emsp;&emsp;
                     </div>
                     <div class="u-form-group">
-                        <div>이메일&nbsp;</div><input type="email" id="email" placeholder="Email"/>&emsp;&emsp;
+                        &nbsp;
                     </div>
                     <br>
                     <br>
@@ -56,3 +38,21 @@
 
     </div>
 </main>
+<script type="text/javascript">
+	$("#findId").click(function() {
+   		let email = $("#findEmail").val();
+   		if(email == ""){
+   			alert("이메일을 입력하세요.");
+   			$("#findEmail").focus();
+   			return false;
+   		}
+   		$(".email-login").attr({
+  				"action": "findId.do"
+   		});
+   		
+   	});
+	let msg = '${msg}';
+   	if (msg === 'msgEmail') {
+		alert("존재하지않는 이메일 입니다!");    		
+   	}
+</script>

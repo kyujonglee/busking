@@ -13,7 +13,9 @@
 		location.href='<c:url value="/main/main.do"/>';
 	</script>
 </body>
+
 </html>
+
 
 
 
