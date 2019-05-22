@@ -28,7 +28,7 @@
 	                <input class="write_form_title" name="title" value="${board.title}" />
 	            </div>
 	            
-	            <textarea class="board_write_form" name="content">${board.content}</textarea>
+	            <textarea class="board_write_form" name="content" id="summernote">${board.content}</textarea>
             	<input type="hidden" name="boardNo" value="${board.boardNo}" />
             
           	  <br><br><br>
@@ -36,6 +36,8 @@
 	        	<div class="free_board_detail_bottom">
 	        		<a class="fas fa-edit"> 등록</a>
 	                <a href="<c:url value='/main/board/free/list.do'/>" class="fas fa-list-ul"> 목록</a>
+	                <input type="hidden" class="groupNo" name="groupNo" value="${board.groupNo}">
+	                <input type="hidden" class="boardNo" name="boardNo" value="${board.boardNo}">
 	            </div>
 
           	  <br><br><br>
@@ -44,28 +46,84 @@
 			</div>
 		</main>
     <script>
-    	$(".fa-edit").click(function () {
-   			if ( $(".write_form_title").val() == "" ) {
-   				alert("제목을 입력하세요");
-   				return;
+    $(document).ready(function () {
+    	let prevGroupNo = "${board.groupNo}";
+   	   	$('#summernote').summernote({
+   	    	height: 500,                 
+   	        width: 1060,
+   	        focus: false,
+   	        callbacks: { 
+   		        onImageUpload: function (files, editor, welEditable) {
+   			    	sendFile(files[0], editor, welEditable);
+   				}
    			}
-   			
-   			if ( $(".board_write_form").val() == "" ) {
-   				alert("내용을 입력하세요");
-   				return;
-   			}
-   			
-    		$("#update_form").submit();
-    	});
-	    
-    
-	    $(document).ready(function() {
-	        $('.board_write_form').summernote({
-                height: 500,                 // set editor height
-                width: 1060,
-                focus: false                  // set focus to editable area after initializing summernote
-	        });
-	    });
+   	    });
+   	   	
+   	   	let filePath = new Array();
+   	   	let uriPath = "/buskers/main/board/free/";
+	   	function sendFile(file, editor, welEditable) {
+			data = new FormData();
+		    data.append("file", file);
+		    data.append("uriPath", uriPath);
+		    $.ajax({ 
+		    	data : data,
+		        type : "POST",
+		        url : "<c:url value='/file/image-upload.do' />",
+		        cache : false,
+		        contentType : false,
+		        processData : false,
+		        success : function (result) {
+					filePath.push(result);		
+					let path = result.path;
+					let systemName = result.systemName;
+		            $("#summernote").summernote('editor.insertImage', "<c:url value='/file/download.do' />" + "?path=" + path + systemName);
+				}
+    		});
+		}  
+	   	
+	   	$(".fa-edit").click(function () {
+	   		let groupNo = 0;
+			for (let i = 0; i < filePath.length; i++) {
+				console.log($('#summernote').val());
+				if ( $('#summernote').val().includes(filePath[i].systemName) == false ) {
+					continue;
+				}
+			
+				if ( $(".write_form_title").val() == "" ) {
+					alert("제목을 입력하세요");
+					return;
+				}
+					
+				let name = filePath[i].name;
+				let path = filePath[i].path;
+				let systemName = filePath[i].systemName;
+				console.log(name);
+				console.log(path);
+				console.log(systemName);
+				
+				$.ajax({
+	   				type: "POST",
+	   				url: "<c:url value='/file/insert-file-ajax.do' />",
+	   				async: false,
+	   				data: 
+	   					{
+	   					groupNo : groupNo,
+	   					name : name,
+	   					path : path,
+	   					systemName : systemName
+	   					},
+	   				success: function (result) {
+	   					if (prevGroupNo == "0") {
+		   					groupNo = result;
+		   					$(".groupNo").val(result);
+	   					}
+	   				}
+				});
+			}
+			
+			$("#update_form").submit();
+		});
+    });
     </script>
 </body>
 </html>

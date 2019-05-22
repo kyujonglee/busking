@@ -5,7 +5,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%> 
 <%@ page session="true" %>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.0/moment.min.js"></script>
 <link rel="stylesheet"
 	href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" />
 <link rel="stylesheet" href="<c:url value='/resources/css/main/board/free/koo.css'/>" />
@@ -80,7 +79,7 @@
 	                	</div>
 	                	
 	                	<div class="board_article_comment_list">
-	                				
+	                			<!--  
                 				<div class="best_comment comment_list">
 			               			<div class="comment_info">
 			                			<span class="board_img_title">
@@ -96,7 +95,7 @@
 			               			</div>
 			               			<div class="bubble"><p>베스트 댓글</p></div>
 		               			</div>
-	                	
+	                			-->
 	                		<c:forEach var="comment" items="${comment}">
 				                	<div class="comment_list">
 				               			<div class="comment_info">
@@ -117,7 +116,7 @@
 				               				<div class="comment_dislike_button"><i class="fas fa-exclamation">신고<a>${comment.dislikeCnt}</a></i></div>
 				               			</div>
 						                
-				               			<div class="bubble"><p>${comment.content}</p></div>
+				               			<div class="bubble"><p class="bubble-content">${comment.content}</p></div>
 				               			
 				               			<div class="update_wrapper">
 					               			<div class="reply_content_wrapper">
@@ -349,8 +348,9 @@
 		let boardNo = "${param.boardNo}";
 		
 		/** 동적으로 댓글 div의 width 변경 */
+		console.log( $(".bubble") );
 		for (let i = 0; i < $(".bubble").length; i++) {
-			let width = $(".bubble:eq(" + i + ") > p").width();
+			let width = parseInt($(".bubble:eq(" + i + ") > p").width()) + 40;
 			if (width < 600) {
 			$(".bubble:eq(" + i + ")").css({"width": width});
 			}
@@ -407,7 +407,7 @@
            					html += 		'<div class="comment_like_button"><i class="fas fa-heart">추천<a>' + comment.likeCnt + '</a></i></div>';
 	           				html += 		'<div class="comment_dislike_button"><i class="fas fa-exclamation">신고<a>' + comment.dislikeCnt + '</a></i></div>';
 	       					html += 	'</div>';
-	          				html += 	'<div class="bubble"><p>' + comment.content + '</p></div>';
+	          				html += 	'<div class="bubble"><p class="bubble-content">' + comment.content + '</p></div>';
 	          				html +=		'<div class="update_wrapper">';
 	          				html +=			'<div class="reply_content_wrapper">';
 	          				html +=				'<textarea class="reply_content" name="content"></textarea>';

@@ -7,8 +7,7 @@
  
     <!-- 메뉴 표시 -->
     <definition name="base" template="/WEB-INF/tiles/template.jsp">
-        <put-attribute name="side"   value="/WEB-INF/tiles/side.jsp" />
-        <put-attribute name="header"   value="/WEB-INF/tiles/header.jsp" />
+        <put-attribute name="header" value="/WEB-INF/tiles/header.jsp" />
     </definition>
     
     <definition name="main/board/*/*" extends="base">
