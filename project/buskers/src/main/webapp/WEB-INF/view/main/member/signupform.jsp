@@ -13,7 +13,6 @@
 	$(function() {
 		$("#checkId").click(function() {
 			let id = $("#id").val();
-			console.log(id);
 			
 			if(id.length < 1) {
 				alert("아이디를 입력해주시기 바랍니다.");
@@ -245,7 +244,7 @@
                     <br>
                     <div class="u-form-group">
                         <input type="submit" id="memberRegister" class="register" value="일반 회원가입"/>&nbsp;&nbsp;
-                        <button type="button" class="register" onclick="location.href='signupform-busker.do'">버스커 회원가입</button>
+                        <button type="button" class="register" onclick="location.href='loginform.do'">뒤로</button>
                     </div>
                 </form>
                 
