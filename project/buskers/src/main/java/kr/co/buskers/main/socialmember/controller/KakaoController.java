@@ -20,6 +20,7 @@ public class KakaoController {
 	// 카카오 로그인 디비에 없을시에 회원가입 처리후 메인으로 이동
 	@RequestMapping("social-signup.do")
 	public String signupMember(HttpSession session, Member member,RedirectAttributes rttr) {
+		System.out.println("소셜 사인업 들어옴");
 		service.signupSocialMember(member);
 		Member user = service.login(member);
 		session.setAttribute("user", user);
@@ -36,6 +37,7 @@ public class KakaoController {
         if(user != 0) {
         	result = 1;
         }
+        System.out.println("리턴하는값 "+result);
 		return result;
 	}
 	
