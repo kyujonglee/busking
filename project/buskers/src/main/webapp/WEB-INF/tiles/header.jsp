@@ -113,17 +113,22 @@
 		}
 	});
 	
+	/*
 	$(document).click(function(e) { 
+		console.log($(e.target).prop("class"));
 		if ( $(e.target).prop("class") != "profile_img" ) {
-			$(".h-toggle").hide();
+			if ( $(e.target).prop("class") != "header-h" ) {
+				$(".h-toggle").hide();
+			}
 		}
 	}); 
+	*/
 	
 	let popupX = (window.screen.width / 2) - (500 / 2);
 	let popupY = (window.screen.height / 2) - (500 / 2);
 	
 	$(".fa-envelope").click(function () {
-		window.open('<c:url value="/popup/message.do"/>', 'message', 'top=' + popupY + ', left=' + popupX + ', scrollbars=no, resizable=no, width=500, height=500');
+		window.open('<c:url value="/main/header/message/list.do"/>', '', 'top=' + popupY + ', left=' + popupX + ', scrollbars=no, resizable=no, width=500, height=500');
 	});
 	
 </script>

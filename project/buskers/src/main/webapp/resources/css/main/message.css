@@ -1,0 +1,123 @@
+.post_box_wrapper {
+	padding: 20px;
+	font-size: 12px;
+}
+
+.message_title {
+	font-family: 'Nanum Gothic', sans-serif;
+	font-size: 20px;
+    cursor: pointer;
+    margin-top: 10px;
+    margin-left: 30px;
+}
+
+* {
+	font-family:'Malgun Gothic';
+	
+}
+
+#post_box li {
+	font-size: 14px;
+}
+
+#post_box .active {
+	font-weight: bold;
+}
+
+#post_box a:hover {
+	color: tomato;
+	font-weight: bold;
+}
+
+#post_box a:focus {
+	color: white;
+	font-weight: bold;
+	background: #333333;
+}
+
+.nav-tabs > li > a {
+    line-height: 1 !important;
+}
+
+.tab-content th {
+	background: #333333;
+	color: white;
+}
+
+.tab-content th:nth-child(1) {
+	width: 5%;
+}
+.tab-content th:nth-child(2) {
+	width: 5%;
+}
+.tab-content th:nth-child(3) {
+	width: 60%;
+}
+.tab-content th:nth-child(4) {
+	width: 15%;
+}
+.tab-content th:nth-child(5) {
+	width: 15%;
+}
+
+.post_box_button {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.post_box_button > div > a {
+	font-weight: bold;
+	background: black;
+	color: white;
+	padding: 5px;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+.post_box_button > div > a:hover {
+	color: tomato;
+}
+
+.tab-content input {
+	margin: 0;
+	vertical-align: middle;
+}
+
+.write_form_submit_wrapper {
+	padding: 20px;
+}
+
+.write_form_submit > input {
+	margin-bottom: 10px;
+}
+
+.post_write_form_button {
+	margin-top: 20px;
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+}
+
+.post_write_form_button > div > a {
+	font-weight: bold;
+	background: black;
+	color: white;
+	padding: 5px;
+	border-radius: 5px;
+	cursor: pointer;
+	margin-left: 5px;
+}
+
+.post_write_form_button > div > a:hover {
+	color: tomato;
+}
+
+.write_form_submit_wrapper div {
+	font-weight: bold;
+}
+
+
+
+
+
