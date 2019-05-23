@@ -1,6 +1,5 @@
 package kr.co.buskers.main.member.controller;
 
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
