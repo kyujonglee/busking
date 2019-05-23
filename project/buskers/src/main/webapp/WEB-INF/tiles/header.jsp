@@ -121,16 +121,6 @@
 	 }); 
 	 */
 	 
-	 let popupX = (window.screen.width / 2) - (500 / 2);
-	 let popupY = (window.screen.height / 2) - (500 / 2);
-	 
-	 $(".fa-envelope").click(function () {
-	    window.open('<c:url value="/popup/message.do"/>', 'message', 'top=' + popupY + ', left=' + popupX + ', scrollbars=no, resizable=no, width=500, height=500');
-	 });
-
-
-
-
 
 	$("#logout").click(function() {
 		var result = confirm("로그아웃 하시겠습니까?");
