@@ -5,12 +5,6 @@ import java.util.Date;
 public class Member {
 
 	private int memberNo;
-	public String getMemberType() {
-		return memberType;
-	}
-	public void setMemberType(String memberType) {
-		this.memberType = memberType;
-	}
 	private String id;
 	private String pass;
 	private String email;
@@ -25,8 +19,20 @@ public class Member {
 	private String memberType;
 	private String accessToken;
 	private String refreshToken;
+	private String name;
 	
-	
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getMemberType() {
+		return memberType;
+	}
+	public void setMemberType(String memberType) {
+		this.memberType = memberType;
+	}
 	public String getAccessToken() {
 		return accessToken;
 	}

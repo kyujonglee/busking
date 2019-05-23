@@ -57,7 +57,7 @@
 		                  	<span class="view-item__title">${board.title}</span> 
 		                </div>
 		                <span class="view-item__date">
-		                	<fmt:formatDate value="${board.regDate}" pattern="YYYY-MM-dd HH:mm" />
+		                	<fmt:formatDate value="${board.regDate}" pattern="YYYY-MM-dd" />
 		                </span>
 		              </div>
 		              <span class="view-item__content">
@@ -109,14 +109,21 @@
 	let searchType = "${param.searchType}";
     let input = "${param.input}";
 	let itemLength = $(".notice-board-main__view-item").length;
-
+	
+	
+	function titleBold(){
+		$(".view-content__header-title").html( $(".view-content__header-title").html().replace(input, "<b class='search_keyword'>" + input + "</b>") );
+	}
+	function contentBold(){
+		$(".notice-board__view-content").html( $(".notice-board__view-content").html().replace(input, "<b class='search_keyword'>" + input + "</b>") );
+	}
 	//검색어 유지
     if (input != "" && searchType == "title" ) {
     	for (i = 0; i < itemLength; i++) {
 			$(".view-item__title:eq(" + i + ")").html( $(".view-item__title:eq(" + i + ")").html().replace(input, "<b class='search_keyword'>" + input + "</b>") );
 		};
-		$(".view-content__header-title").html( $(".view-content__header-title").html().replace(input, "<b class='search_keyword'>" + input + "</b>") );
 		$(".notice-board-main__search-item").val(input);
+		titleBold();
 		$(".notice-board-main__search-item > option:eq(0)").prop("selected", true);
 	};
 	
@@ -124,10 +131,11 @@
 		for (i = 0; i < itemLength; i++) {
 			$(".view-item__content:eq(" + i + ")").html( $(".view-item__content:eq(" + i + ")").html().replace(input, "<b class='search_keyword'>" + input + "</b>") );
 		};
-		$(".notice-board__view-content").html( $(".notice-board__view-content").html().replace(input, "<b class='search_keyword'>" + input + "</b>") );
 		$(".notice-board-main__search-item").val(input);
+		contentBold();
 		$(".notice-board-main__search-item > option:eq(1)").prop("selected", true);
 	}
+	
 	
 	//검색어가 4개 미만일경우에는 top버튼 삭제함
 	
@@ -168,7 +176,12 @@
 			$(".notice-board__view-content").append(result.board.content);
 
 			$("#detail_boardNo").val(result.board.boardNo);
-			
+			if (input != "" && searchType == "title" ) {
+				titleBold();
+			}
+			if ( (input != "") && searchType == "content" ) {
+				contentBold();
+			}
 		}).fail(function(xhr){
 			alert("서버 처리중 에러발생")
 			console.dir(xhr);
@@ -215,7 +228,7 @@
 // 	    	  console.log(result.listAjax);
 			  
 			  for(let i = 0 ; i < leng ; i ++){
-			    let date = moment(result.listAjax.regDat).format("YYYY-MM-DD HH:mm");  
+			    let date = moment(result.listAjax.regDat).format("YYYY-MM-DD");  
 			    $("#notice-board-main__view-items-wrapper").append( `
 	    	   	  <li class="notice-board-main__view-item">
 			        <a>

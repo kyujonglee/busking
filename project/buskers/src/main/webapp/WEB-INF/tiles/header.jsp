@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<meta name="google-signin-client_id" content="711343291168-unua7itp9em5gms7up15sl5rn2ei80vj.apps.googleusercontent.com">
 <link rel="stylesheet"
 	href="<c:url value='/resources/css/main/miniprofile.css'/>" />
 <header class="header__wrapper">
@@ -63,7 +64,8 @@
 												<a class="header-j2" href="#">마이 페이지</a>
 											</div>
 											<div>
-												<a class="header-j3" id="logout" target="_top">로그아웃</a>
+												<%-- 				                        <a class="header-j3" id="logout" href="<c:url value='/main/member/logout.do'/>" target="_top">로그아웃</a> --%>
+				                        <a class="header-j3" id="logout" target="_top">로그아웃</a>
 											</div>
 										</div>
 									</div>
@@ -76,15 +78,75 @@
 		</div>
 	</div>
 </header>
+<script src="https://apis.google.com/js/platform.js" async defer></script>]
+<script type="text/javascript" src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js" charset="utf-8"></script>
 <script>
+
+
+
 	$(".header-c").click(function() {
 		$(".h-toggle").toggle();
 	});
+
 	$("#logout").click(function() {
 		var result = confirm("로그아웃 하시겠습니까?");
 		if(result) {
-			alert("로그아웃 되셨습니다!");
+
+			//구글로그아웃
+			$.ajax({
+			        type : "POST",
+			        dataType : 'text',
+			        url : 'https://www.google.com/accounts/Logout?continue=https://appengine.google.com/_ah/logout?continue=http://localhost/application-name/logoutUser',
+			        crossDomain : true,
+			        xhrFields : {
+			           withCredentials : true
+			        }
+		     })
+		     /*
+		     function onLoad() {
+		         gapi.load('auth2', function() {
+		           gapi.auth2.init();
+		         });
+		       }
+		     function signOut() {
+		    	    var auth2 = gapi.auth2.getAuthInstance();
+		    	    auth2.signOut().then(function () {
+		    	    	alert("사인아웃실행됨");
+	    	        console.log('User signed out.');
+	    	    });
+	    	  }
+		   
+			onLoad();
+		    signOut();
+		    */
+			var naverLogin = new naver.LoginWithNaverId(	
+					{
+						clientId: "SPRQERrB_l9ca0FeJSNq",
+						callbackUrl: "http://localhost/buskers/main/member/loginform.do",
+						isPopup: false,
+						callbackHandle: true,
+					}
+			);
+			naverLogin.init();
+			// 네이버 세션 로그아웃 처리
+			naverLogin.logout();
+			// 네이버 로그아웃처리
+			 $.ajax({
+			        type : "POST",
+			        dataType : 'text',
+			        url : "http://nid.naver.com/nidlogin.logout",
+			        crossDomain : true,
+			        xhrFields : {
+			           withCredentials : true
+			        }
+		     })
 			location.href="<c:url value='/main/member/logout.do'/>";
+			alert("로그아웃 되셨습니다!");
 		}
 	});
+	
+	
+	
+	
+	
 </script>

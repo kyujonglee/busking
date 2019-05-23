@@ -12,11 +12,11 @@
 		);
 	</insert>
 	<!-- 카카오 회원가입 -->
-	<insert id="signupKakaoMember" parameterType="member">
+	<insert id="signupSocialMember" parameterType="member">
 		insert into tb_member (
-			id,nick_name,member_type
+			id,name,member_type
 		) values (
-			#{id}, #{nickName},'k'
+			#{id}, #{name},#{memberType}
 		);
 	</insert>
 	
