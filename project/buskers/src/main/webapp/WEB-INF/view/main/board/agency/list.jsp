@@ -2,16 +2,26 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<link rel="stylesheet" href="<c:url value='/resources/css/main/board/free/koo.css'/>" />
 <link rel="stylesheet" href="<c:url value='/resources/css/main/board/agency/agency.css'/>" />
+<title>업체게시판</title>
 <main class="main-agency main-board">
 <div class="agency">
 <div class="board">
+	<div class="board_title">
+		<div class="board_title_underline">
+			<a href="<c:url value='/main/board/qna/list.do'/>">업체게시판</a>
+		</div>
+	</div>
+	<!--  
 	<header class="agency-header">
-		<a href="<c:url value='/main/board/agency/list.do'/>"> <i
-			class="fas fa-home fa-lg"></i>
-		</a> <span class="agency-title">업체게시판</span>
+		<a href="<c:url value='/main/board/agency/list.do'/>"> 
+			<i class="fas fa-home fa-lg"></i>
+		</a>
+		<span class="agency-title">업체게시판</span>
 	</header>
 	<div class="agency-bottom">
+	-->
 		<!-- 					<a class="agency-bottom__button" href='#' onclick="checkUser();" >등록</a> -->
 		<a class="agency-bottom__button"
 			href='<c:url value='/main/board/agency/checkform.do'/>'>등록</a>

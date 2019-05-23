@@ -131,7 +131,6 @@ public class FreeServiceImpl implements FreeService {
 	}
 	
 	public void write(FreeBoard freeBoard) {
-		System.out.println("보드넘버 : " + freeBoard.getBoardNo());
 		if (freeBoard.getGroupNo() == 0) {
 			mapper.insertBoard(freeBoard);
 		} else {
@@ -149,8 +148,11 @@ public class FreeServiceImpl implements FreeService {
 	}
 	
 	public void update(FreeBoard freeBoard) {
-		
-		mapper.updateBoard(freeBoard);
+		if (freeBoard.getGroupNo() == 0) {
+			mapper.updateBoard(freeBoard);
+		} else {
+			mapper.updateBoardFile(freeBoard);
+		}
 	}
 	
 	public void delete(FreeBoard freeBoard) {

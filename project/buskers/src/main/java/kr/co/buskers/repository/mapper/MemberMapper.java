@@ -10,7 +10,9 @@ public interface MemberMapper {
 
 	// 일반 회원 가입
 	public void signupMember(Member member);
-	public void signupKakaoMember(Member member);
+	
+	//소셜 회원가입
+	public void signupSocialMember(Member member);
 	
 	// 아이디 중복 체크
 	public int checkId(Member member);
@@ -23,5 +25,10 @@ public interface MemberMapper {
 	
 	// 아이디 찾기
 	public Member findId(Member member);
+
+	// 비밀번호 찾기
+	public Member findPass(Member member);
 	
+	// 비밀번호 변경
+	public void newPass(Member member);
 }

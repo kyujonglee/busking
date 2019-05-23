@@ -2,12 +2,17 @@
 	margin-bottom: 10px;
 }
 
+.freeboard_detail {
+	width: 1200px;
+	margin: 0 auto;
+}
+
 .board_title_underline:hover {
 	text-decoration: none;
 }
 
 .write_form_title {
-	width: 50%;
+	width: 90%;
 	height: 35px;
 	margin-right: 10px;
 	padding-left: 10px;
@@ -57,4 +62,12 @@
     color: tomato;
 }
 
+.modal-content {
+	margin-top: 100px;
+}
+
+.form-control {
+	height: 40px;
+	margin-top: 5px;
+}
 

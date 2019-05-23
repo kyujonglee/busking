@@ -9,13 +9,14 @@
 <link rel="stylesheet"
 	href="<c:url value='/resources/css/main/board/free/test.css'/>" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.0/moment.min.js"></script>
+<title>자유게시판</title>
 
 <main class="main-freeboard main-board">
 <div class="board">
 	<div class="board_title">
 		<div class="board_title_underline">
 			<a href="<c:url value='/main/board/free/list.do'/>">자유게시판</a>
-		</div>
+		</div> 
 	</div>
 
 	<table class="free_board">

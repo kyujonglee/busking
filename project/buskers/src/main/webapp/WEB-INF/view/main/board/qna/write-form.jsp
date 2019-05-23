@@ -11,8 +11,9 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <link rel="stylesheet" href="<c:url value='/resources/css/main/board/free/koo.css'/>"/>
     <link rel="stylesheet" href="<c:url value='/resources/css/main/board/agency/agency.css'/>" />
+    <title>질문게시판</title>
 	<main class="main-freeboard">
-	<div class="agency">
+	<div class="main-board">
 		<div class="freeboard__insert">
 			<div class="board_title">
 				<div class="board_title_underline">
@@ -52,7 +53,7 @@
 	$(document).ready(function () {
    	   	$('#summernote').summernote({
    	    	height: 500,                 
-   	        width: 1060,
+   	        width: 1200,
    	        focus: false,
    	        callbacks: { 
    		        onImageUpload: function (files, editor, welEditable) {
