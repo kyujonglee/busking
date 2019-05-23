@@ -10,6 +10,7 @@ public interface MemberService {
 	// 일반 회원 가입
 	public void signupMember(Member member);
 	public void signupSocialMember(Member member);
+	public void updateNickNameSocialMember(Member member);
 
 	// 아이디 중복 체크
 	public int checkId(Member member);

@@ -59,14 +59,15 @@
             </div>
         </div>
     </div>
-    <form id="social-signup" method="POST" action="social-signup.do">
+    <form id="social-signup" method="POST" action="signupform-social.do">
     	<input type="hidden"  id="memberId" name="id"  value=""/>
     	<input type="hidden"  id="nickName" name="name" value=""/>
     	<input type="hidden"  id="memberType" name="memberType" value=""/>
     </form>
-   <form id="#social-login" method="POST" action="social-login.do">
+   <form id="social-login" method="POST" action="social-login.do">
     	<input type="hidden"  id="memberId" name="id"  value=""/>
     	<input type="hidden"  id="nickName" name="name" value=""/>
+    	<input type="hidden"  id="accessToken" name="accessToken" value=""/>
     </form> 
 </main>
     <script>
@@ -119,7 +120,7 @@
     						data:member,
     						url:"social-checkid.do",
     					 }).done(function(result){
-    						alert(result);  //결과값  0또는 1을 반환 , 0은 회원가입 1은 기존유저 확인
+//     						alert(result);  //결과값  0또는 1을 반환 , 0은 회원가입 1은 기존유저 확인
     						//회원 디비가 없을경우
     						if(result == 0){
     							 $("#social-signup #memberId").val(res.id);
@@ -130,7 +131,9 @@
 //     							alert("서브밋들옴");
     							$("#social-login #memberId").val(res.id);
     	    					$("#social-login #nickName").val(res.properties['nickname']);
-    							$("#social-login").submit();
+    	    					$("#social-login #accessToken").val(authObj.access_token);
+//     							$("#social-login").submit();
+    							 $("#social-signup").submit();
     						}
     					}).fail(function(xhr){
     						alert("서버 처리중 에러발생")
@@ -183,7 +186,7 @@
     						data:member,
     						url:"social-checkid.do",
     					}).done(function(result){	
-//     						alert(result);  //결과값  0또는 1을 반환 , 0은 회원가입 1은 기존유저 확인
+    						alert(result);  //결과값  0또는 1을 반환 , 0은 회원가입 1은 기존유저 확인
     						if(result == 0){
     							 $("#social-signup #memberId").val(id);
     		    			     $("#social-signup #nickName").val(name);

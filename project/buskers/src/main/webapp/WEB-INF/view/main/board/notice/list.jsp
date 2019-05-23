@@ -123,8 +123,8 @@
 			$(".view-item__title:eq(" + i + ")").html( $(".view-item__title:eq(" + i + ")").html().replace(input, "<b class='search_keyword'>" + input + "</b>") );
 		};
 		$(".notice-board-main__search-item").val(input);
-		titleBold();
 		$(".notice-board-main__search-item > option:eq(0)").prop("selected", true);
+		titleBold();
 	};
 	
 	if ( (input != "") && searchType == "content" ) {
@@ -132,8 +132,8 @@
 			$(".view-item__content:eq(" + i + ")").html( $(".view-item__content:eq(" + i + ")").html().replace(input, "<b class='search_keyword'>" + input + "</b>") );
 		};
 		$(".notice-board-main__search-item").val(input);
-		contentBold();
 		$(".notice-board-main__search-item > option:eq(1)").prop("selected", true);
+		contentBold();
 	}
 	
 	
@@ -168,9 +168,6 @@
 		
 			$("#detail_nickName").text("");
 			$("#detail_nickName").append(result.board.nickName);
-			
-			$(".notice-board__view-content").text("");
-			$(".notice-board__view-content").append(result.board.content);
 			
 			$(".notice-board__view-content").text("");
 			$(".notice-board__view-content").append(result.board.content);
@@ -229,13 +226,12 @@
 			  
 			  for(let i = 0 ; i < leng ; i ++){
 			    let date = moment(result.listAjax.regDat).format("YYYY-MM-DD");  
-			    $("#notice-board-main__view-items-wrapper").append( `
-	    	   	  <li class="notice-board-main__view-item">
+	    	   /*	  <li class="notice-board-main__view-item">
 			        <a>
 			      	  <input type="hidden" id="boardNo" value=`+""+result.listAjax[i].boardNo+""+`  />
 			          <div class="view-item__top">
-			            <div class="view-item__title">
 			              <button class="view-item__notice-btn">공지</button>
+				            <div class="view-item__title">
 			              	`+result.listAjax[i].title+`
 			              </div>
 			            <span class="view-item__date">
@@ -246,10 +242,39 @@
 		              	`+result.listAjax[i].content+`
 			          </span>
 			        </a>
-			      </li>
+			      </li>*/
+			    $("#notice-board-main__view-items-wrapper").append( `
+			    		<li class="notice-board-main__view-item">
+			          	<a>
+			          	<input type="hidden" id="boardNo" value=`+""+result.listAjax[i].boardNo+""+`  />
+			              <div class="view-item__top">
+			                <div class="view-item__header">
+			                  <button class="view-item__notice-btn">공지</button>
+			                  	<span class="view-item__title">`+result.listAjax[i].title+`</span> 
+			                </div>
+			                <span class="view-item__date">
+			                `+date+`
+			                </span>
+			              </div>
+			              <span class="view-item__content">
+			              `+result.listAjax[i].content+`
+			              </span>
+			              </a>
+			          </li>
 			    `)
-			  }		  
-		  
+			  }
+			  if (input != "" && searchType == "title" ) {
+				  itemLength = $(".notice-board-main__view-item").length;
+		    	 for (i = itemLength-5; i < itemLength; i++) {
+		    		$(".view-item__title:eq(" + i + ")").html($(".view-item__title:eq(" + i + ")").html().replace(input, "<b class='search_keyword'>" + input + "</b>"));
+				 };
+	  		  };
+			  if (input != "" && searchType == "content" ) {
+				  itemLength = $(".notice-board-main__view-item").length;
+		    	 for (i = itemLength-5; i < itemLength; i++) {
+		    		$(".view-item__content:eq(" + i + ")").html($(".view-item__title:eq(" + i + ")").html().replace(input, "<b class='search_keyword'>" + input + "</b>"));
+				 };
+	  		  };
 		  }).fail(function(xhr){
 			alert("서버 처리중 에러발생")
 			console.dir(xhr);
