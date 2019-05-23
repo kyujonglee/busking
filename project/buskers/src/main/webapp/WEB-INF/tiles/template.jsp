@@ -9,18 +9,22 @@
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" />
 <link rel="stylesheet" href="<c:url value='/resources/css/common/common.css'/>" />
 <link rel="stylesheet" href="<c:url value='/resources/css/common/sweetalert2.min.css'/>" />
+
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
 <script src="<c:url value='/resources/js/jquery-3.4.1.min.js'/>"></script>
-<title>Insert title here</title>
+<!-- Favicon -->
+<link rel="shortcut icon" href="<c:url value='/resources/img/guitar_icon.png'/>" type="image/x-icon">
 </head>
-<body class="body-background">
-	<div class="main-form">
-		<tiles:insertAttribute name="side" />
-		<div class="main-body main-body__agency">
-			<tiles:insertAttribute name="header" />
-			<tiles:insertAttribute name="body" />
-		</div>
+<body>
+	<tiles:insertAttribute name="header"/>
+	<div class="header_background">
+		<img src="<c:url value='/resources/img/street.jpeg'/>" alt="img">
 	</div>
-	<script src="<c:url value='/resources/js/main/board/agency/side-bar.js'/>"></script>
+	<div class="main-body">
+		<tiles:insertAttribute name="body" />
+	</div>
+<script src="<c:url value='/resources/js/main/header/bootstrap.js'/>"></script>  
+<script src="<c:url value='/resources/js/main/header/custom.js'/>"></script>
+<script src="<c:url value='/resources/js/main/header/slick.js'/>"></script>
 </body>
 </html>

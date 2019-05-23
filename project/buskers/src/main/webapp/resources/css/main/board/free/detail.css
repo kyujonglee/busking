@@ -209,11 +209,12 @@
 	align-items: center;
 }
 
-.bubble > p {
+.bubble .bubble-content {
 	line-height: 1.2;
 	font-family:'Malgun Gothic';
 	text-align: left;
 	-webkit-font-smoothing: antialiased;
+	box-sizing: none;
 }
 
 .comment_list > .bubble:after {
@@ -360,7 +361,7 @@
 	font-size: 13px;
 	font-weight: 600;
 	cursor: pointer;
-	height: 25px;
+	height: 35px;
 }
 
 .board_article_like_wrapper {

@@ -1,219 +1,23 @@
-.body-background {
-	background-color: var(--color-background);
-	/*   padding-top: 50px; */
-	width: 100%;
-	overflow: auto;
-}
-
-.board {
-    width: 100%;
-    align-self: flex-end;
-}
-
-
-.header {
-	font-family: 'Nanum Gothic', sans-serif;
-	position: absolute;
-	background-color: var(--color-white);
-}
-
-.header__wrapper {
-	position: relative;
-	height: 50px;
-	z-index: 2;
-}
-
-.header__wrapper-fixed {
-	position: fixed;
-	width: 1200px;
-	height: 50px;
-}
-
-.header .board_container {
-	display: grid;
-	grid-template-columns: repeat(3, 1fr);
-	background-color: var(--color-white);
-	height: 50px;
-	padding: 10px;
-	box-sizing: border-box;
-	border-left: 1px solid rgba(0, 0, 0, 0.1);
-}
-
-.header .header-columns:first-child {
-	display: flex;
-	align-items: center;
-	position: relative;
-}
-
-.header .header-columns:first-child input {
-	height: 28px;
-	border-radius: 5px;
-	border: 1px solid rgba(0, 0, 0, 0.05);
-	width: 200px;
-	padding-left: 40px;
-	opacity: 0.8;
-}
-
-.header .header-columns:first-child input:focus {
-	border-color: var(--color-darkgray);
-	transition: border-color 0.8s ease-in-out;
-}
-
-.header .header-columns:first-child i {
-	color: var(--color-darkgray);
-	position: absolute;
-	left: 10px;
-	font-weight: 600;
-}
-
-.header .header-columns:nth-child(2) {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-}
-
-.header .header-columns:last-child {
-	display: flex;
-	justify-content: flex-end;
-	align-items: center;
-	color: var(--color-gray);
-}
-
-.header .header-columns:last-child i {
-	margin-left: 8px;
-}
-
-.header .header-columns:last-child i:nth-child(3) {
-	color: #ffbc00;
-}
-
-.header-columns:last-child .header__user i {
-	color: var(- -color-blue);
-}
-
-.header .header-columns:nth-child(2) .header__title {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	font-size: 34px;
-}
-
-/* 사이드바 */
-.side-bar {
-	position: absolute;
-	background-color: var(--color-white);
-	width: 60px;
-	height: 100vh;
-	border-top-left-radius: 10px;
-	border-bottom-left-radius: 10px;
-	display: flex;
-	box-sizing: border-box;
-	color: var(--color-gray);
-	border-right: 1px solid rgba(0, 0, 0, 0.1);
-	font-family: 'Nanum Gothic', sans-serif;
-}
-
-.side-bar .side-bar__column {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-}
-
-.side-bar .side-bar__column:first-child {
-	width: 60px;
-}
-
-.side-bar .side-bar__column:last-child {
-	width: 140px;
-	display: none;
-}
-
-.side-bar__wrapper {
-	position: relative;
-	width: 60px;
-	height: 100%;
-	overflow: hidden;
-}
-
-.side-bar__wrapper-fixed {
-	position: fixed;
-	z-index: 2;
-	width: 60px;
-	height: 100%;
-	display: flex;
-	justify-content: flex-end;
-}
-
-.side-bar .side-bar__icon {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	height: 50px;
-	width: 100%;
-	box-sizing: border-box;
-	cursor: pointer;
-}
-
-.side-bar .side-bar__column:first-child .side-bar__icon:hover {
-	border-left: 2px solid var(--color-darkgray);
-	color: var(--color-darkgray);
-	transition: all 0.3s ease-in-out;
-}
-
-.side-bar .side-bar__column:last-child .side-bar__icon:hover {
-	color: var(--color-darkgray);
-	transition: all 0.3s ease-in-out;
-}
-
-.side-bar__icon-content {
-	width: 90%;
-	text-align: center;
-}
-
-.side-bar__tag {
-	width: 100%;
-}
-
-.main-form {
-	width: 1260px;
-	display: grid;
-	grid-template-columns: 60px 1200px;
-	margin: 0 auto;
-	padding: 0 auto;
-	height: 100%;
-}
 
 .main-agency {
 	height: 100vh;
-	position: absolute;
-	top: 40px;
+/* 	position: absolute; */
 	width: 100%;
-	background-color: var(--color-background);
+/* 	background-color: var(--color-background); */
 	padding : 0 70px;
 	box-sizing : border-box;
 }
 
 .main-board {
-	position: absolute;
-	width: 100%;
+	width: 1200px;
+    margin: 0 auto;
 }
 
 .main-body {
 	/* overflow: auto; */
+	width: 100%;
 	height: 100%;
 	border-right: 1px solid rgba(0, 0, 0, 0.1);
-	width: 1200px;
-	position: relative;
-	z-index: 1;
-	background-color: white;
-}
-
-@media screen and (max-width: 1400px) {
-	body{
-		background-color : red;
-	}
-	.main-form .side-bar__wrapper-fixed,
-	.main-form .header__wrapper-fixed {
-		position: absolute;
-	}
+	position : relative;
+	margin: 0 auto;
 }

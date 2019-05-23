@@ -17,8 +17,6 @@ public class FileServiceImpl implements FileService {
 	@Autowired
 	private FileMapper mapper;
 	
-	
-	
 	public int insertFile(kr.co.buskers.repository.domain.File file) throws Exception {
 		kr.co.buskers.repository.domain.File f = new kr.co.buskers.repository.domain.File();
 		if (mapper.selectFileMaxNo() == null) {

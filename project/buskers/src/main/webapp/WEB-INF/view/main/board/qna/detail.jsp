@@ -5,13 +5,13 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%> 
 <%@ page session="true" %>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.0/moment.min.js"></script>
 <link rel="stylesheet"
 	href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" />
 <link rel="stylesheet" href="<c:url value='/resources/css/main/board/free/koo.css'/>" />
 <link rel="stylesheet" href="<c:url value='/resources/css/main/board/agency/agency.css'/>" />
 <link rel="stylesheet" href="<c:url value='/resources/css/main/board/free/test.css'/>" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.0/moment.min.js"></script>
+<title>질문게시판</title>
 		<main class="main-freeboard main-board">
 			<div class="board">
 				<div class="freeboard__detail">
@@ -268,25 +268,13 @@
                 	</c:forEach>
                 `)
             for (let i = 0; i < $(".bubble").length; i++) {
-				let width = $(".bubble:eq(" + i + ") > p").width();
+				let width = $(".bubble:eq(" + i + ") > p").width() + 40.5;
 				if (width < 600) {
 					$(".bubble:eq(" + i + ")").css({"width": width});
 				}
 			}
 			}
 		}
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
 		
 		function commentIsLiked() {
 			$.ajax({
@@ -396,7 +384,7 @@
 		
 		/** 동적으로 댓글 div의 width 변경 */
 		for (let i = 0; i < $(".bubble").length; i++) {
-			let width = $(".bubble:eq(" + i + ") > p").width();
+			let width = parseInt($(".bubble:eq(" + i + ") > p").width()) + 41;
 			if (width < 600) {
 			$(".bubble:eq(" + i + ")").css({"width": width});
 			}
@@ -520,7 +508,7 @@
 	   					
 	   					/** 동적으로 댓글 div의 width 변경 */
 	   					for (let i = 0; i < $(".bubble").length; i++) {
-	   						let width = $(".bubble:eq(" + i + ") > p").width();
+	   						let width = parseInt($(".bubble:eq(" + i + ") > p").width()) + 41;
 	   						if (width < 600) {
 	   						$(".bubble:eq(" + i + ")").css({"width": width});
 	   						}
@@ -677,7 +665,7 @@
 	   					
 	   					/** 동적으로 댓글 div의 width 변경 */
 	   					for (let i = 0; i < $(".bubble").length; i++) {
-	   						let width = $(".bubble:eq(" + i + ") > p").width();
+	   						let width = parseInt($(".bubble:eq(" + i + ") > p").width()) + 41;
 	   						if (width < 600) {
 	   						$(".bubble:eq(" + i + ")").css({"width": width});
 	   						}
@@ -836,7 +824,7 @@
 	   					
 	   					/** 동적으로 댓글 div의 width 변경 */
 	   					for (let i = 0; i < $(".bubble").length; i++) {
-	   						let width = $(".bubble:eq(" + i + ") > p").width();
+	   						let width = parseInt($(".bubble:eq(" + i + ") > p").width()) + 41;
 	   						if (width < 600) {
 	   						$(".bubble:eq(" + i + ")").css({"width": width});
 	   						}
