@@ -20,7 +20,6 @@ public class NoticeServiceImpl implements NoticeService{
 	
 	public Map<String, Object> list(NoticePage noticePage) {
 		Map<String, Object> map = new HashMap<>();
-		System.out.println(noticePage.getPageNo());
 		map.put("list", mapper.selectBoard(noticePage));
 		return map;
 	}	

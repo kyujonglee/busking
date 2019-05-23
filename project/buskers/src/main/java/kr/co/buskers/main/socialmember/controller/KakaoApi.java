@@ -1,4 +1,4 @@
-package kr.co.buskers.main.kakaomember.controller;
+package kr.co.buskers.main.socialmember.controller;
 
 import java.io.BufferedReader;
 import java.io.IOException;
