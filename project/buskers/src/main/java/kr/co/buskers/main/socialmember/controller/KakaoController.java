@@ -1,14 +1,5 @@
 package kr.co.buskers.main.socialmember.controller;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.PrintWriter;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.Scanner;
-
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +11,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import kr.co.buskers.main.member.service.MemberService;
 import kr.co.buskers.repository.domain.Member;
 
-@Controller
+@Controller("kr.co.buskers.main.socialmember.controller.KakaoController")
 @RequestMapping("main/member")
 public class KakaoController {
 	@Autowired

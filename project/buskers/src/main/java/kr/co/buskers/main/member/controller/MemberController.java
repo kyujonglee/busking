@@ -1,6 +1,6 @@
 package kr.co.buskers.main.member.controller;
 
-import java.util.Random; 
+import java.util.Random;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -18,7 +18,6 @@ import org.springframework.web.servlet.view.UrlBasedViewResolver;
 import kr.co.buskers.main.member.service.MemberService;
 import kr.co.buskers.main.member.util.Email;
 import kr.co.buskers.main.member.util.EmailSender;
-import kr.co.buskers.main.socialmember.controller.KakaoApi;
 import kr.co.buskers.repository.domain.Member;
 
 @Controller
@@ -27,9 +26,6 @@ public class MemberController {
 	
 	@Autowired
 	private MemberService service;
-	
-	@Autowired 
-	private KakaoApi kka;
 	
 	@Autowired
 	private EmailSender emailSender;
