@@ -1,20 +1,20 @@
 package kr.co.buskers.main.member.controller;
 
 import java.util.Random;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.UrlBasedViewResolver;
 
-import kr.co.buskers.main.kakaomember.controller.KakaoApi;
 import kr.co.buskers.main.member.service.MemberService;
 import kr.co.buskers.main.member.util.Email;
 import kr.co.buskers.main.member.util.EmailSender;
@@ -26,9 +26,6 @@ public class MemberController {
 	
 	@Autowired
 	private MemberService service;
-	
-	@Autowired 
-	private KakaoApi kka;
 	
 	@Autowired
 	private EmailSender emailSender;
@@ -87,7 +84,6 @@ public class MemberController {
 	@RequestMapping("logout.do")
 	public ModelAndView logout(HttpSession session) {
 		Member mem = (Member)session.getAttribute("user");
-		kka.kakaoLogout(mem.getAccessToken());
 		session.removeAttribute("user");
 		session.invalidate();
 		ModelAndView mav = new ModelAndView();
@@ -206,7 +202,17 @@ public class MemberController {
 			email.setContent("새로운 비밀번호는 " + npassword + " 입니다.");
 			email.setReceiver(member.getEmail());
 			email.setSubject("안녕하세요" + member.getId() + "님! 재설정된 비밀번호 입니다!");
-			emailSender.SendEmail(email);
+			
+			// 멀티 쓰레드 사용
+			ExecutorService executor = Executors.newWorkStealingPool();
+			executor.execute(() -> {
+				try {
+					emailSender.SendEmail(email);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			});
+			
 			
 			String email = member.getEmail();
 			StringBuffer sb = new StringBuffer(email);
@@ -227,7 +233,11 @@ public class MemberController {
 		
 	}
 	
-	
+	// 마이페이지
+	@RequestMapping("myPage.do")
+	public void myPage() {
+		
+	}
 	
 	
 	@RequestMapping("signupform-busker.do")

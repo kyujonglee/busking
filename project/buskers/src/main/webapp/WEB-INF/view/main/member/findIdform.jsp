@@ -19,8 +19,6 @@
                         &nbsp;
                     </div>
                     <br>
-                    <br>
-                    <br>
                     <div class="u-form-group">
                         <button class="submit-login" id="findId">확인</button>&nbsp;&nbsp;
                         <button type="button" class="back" onclick="location.href='loginform.do'">뒤로</button>
