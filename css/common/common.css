@@ -4,6 +4,18 @@
 
 @import url("https://fonts.googleapis.com/css?family=Jua");
 
+:root {
+  --color-background: #f5f7fc;
+  --color-gray: #808e94;
+  --color-darkgray: #282e30;
+  --color-orange: #ff8534;
+  --color-white: #ffffff;
+  --color-black: #293234;
+  --color-green: #33c634;
+  --color-pink: #f4326c;
+  --color-blue: #3a5dfb;
+}
+
 /* 
 사용예시
 h1 {

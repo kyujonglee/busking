@@ -1,0 +1,198 @@
+.busker-content {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(250px, 1fr));
+  grid-template-rows: repeat(3, 31vh);
+  grid-auto-rows: 31vh;
+  grid-auto-flow: dense;
+  grid-gap: 5px;
+  justify-content: center;
+  height: 94vh;
+  overflow: scroll;
+  padding : 5px;
+}
+
+.busker-main .busker-content img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.busker-content .busker-content__item {
+  width: 100%;
+}
+
+.busker-content .busker-content__item:first-child {
+  grid-area: span 2 / span 2;
+}
+
+/* busker main 페이지의  팬 게시판 */
+
+.busker-board {
+  width: 100%;
+  height: 100%;
+}
+
+.busker-board__header {
+  background-color: orange;
+  display: grid;
+  grid-template-columns: 1fr 6fr 1fr;
+  height: 15%;
+  font-size : 120%;
+}
+.busker-board__header .busker-board__header-column {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.busker-board__header .busker-board__header-column:last-child {
+  opacity: 0.5;
+}
+
+.busker-content .busker-content__item:nth-child(2) {
+  grid-area: span 2 / span 2;
+}
+
+.busker-content__item .busker-board {
+  height: 100%;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.19), 0 3px 3px rgba(0, 0, 0, 0.23);
+}
+
+.busker-board__row {
+  height: 85%;
+  display: flex;
+  flex-direction: column;
+  overflow : scroll;
+  /* justify-content: center; */
+}
+.board-row__notice,
+.board-row__posts {
+  display: grid;
+  grid-template-columns: 1fr 7fr 2fr;
+  height: 30px;
+  background-color: var(--color-background);
+  border: 1px solid rgba(0, 0, 0, 0.19);
+  font-size : 100%;
+}
+
+.busker-board__row .board-row__date {
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 10px;
+}
+
+.busker-board__row i {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: firebrick;
+}
+.busker-board__row span {
+  display: flex;
+  /* line-height: 100%; */
+  opacity: 0.8;
+  align-items: center;
+}
+
+.busker-board__row .board-row__cnt {
+  color: orangered;
+  padding-left: 3px;
+  box-sizing: border-box;
+}
+
+.busker-board__row .board-row__content {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  /* width: 100px; */
+}
+
+.busker-board__row .board-row__posts {
+}
+
+.busker-board__row .board-row__num {
+  color: rgb(139, 91, 0);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+}
+
+/* 버스커 메인 페이지 후원 */
+.busker-content__support-wrapper {
+    width : 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.busker-content__support {
+    width: 100%;
+    height: 60%;
+    background-color : var(--color-background);;
+    border-radius: 10px;
+    overflow: scroll;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.19), 0 3px 3px rgba(0, 0, 0, 0.23);
+}
+
+.busker-content__support-header {
+    margin-top : 5px;
+    font-size : 100%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.busker-content__support-header .support-header__title {
+    display: flex;
+    color : rgb(190, 0, 89);
+    align-items: center;
+}
+
+.support-header__bar {
+    width: 60%;
+    position : relative;
+    height: 40px;
+    display: flex;
+    align-items: center;
+}
+.support-header__bar > div {
+    height: 3px;
+    position: absolute;
+}
+.busker-content__support .support-header__origin-bar {
+    width :100%;
+    background-color : rgb(255, 255, 255);
+}
+
+.busker-content__support .support-header__state-bar {
+    width: 40%;
+    background-color : var(--color-pink);
+}
+
+.busker-content__support-row {
+    margin : 3px 0px;
+    padding : 5px;
+    box-sizing: border-box;
+    width: 100%;
+    background-color : rgba(0, 0, 0, 0.1);
+    height: 30px;
+    border-radius: 5px;
+    display: grid;
+    grid-template-columns: 1fr 5fr 1fr;
+    font-size : 90%;
+    opacity: 0.8;
+    color : var(--color-darkgray);
+}
+
+.busker-content__support-user,
+.busker-content__support-date{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.busker-content__support-title {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
