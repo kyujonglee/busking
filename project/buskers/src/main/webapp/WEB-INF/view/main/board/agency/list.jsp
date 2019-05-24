@@ -34,6 +34,7 @@
 			<th>등록여부</th>
 		</tr>
 		<c:forEach var="agency" items="${list}">
+			<c:if test="${sessionScope.user.memberNo eq agency.memberNo}">
 			<tr>
 				<td>${agency.agencyInfoNo}</td>
 				<td>
@@ -57,6 +58,34 @@
 					</c:otherwise>
 				</c:choose>
 			</tr>
+			</c:if>
+		</c:forEach>
+		<c:forEach var="agency" items="${list}">
+			<c:if test="${sessionScope.user.memberNo ne agency.memberNo}">
+			<tr>
+				<td>${agency.agencyInfoNo}</td>
+				<td>
+					<%-- 									<a href="<c:url value='/main/board/agency/detail.do?agencyInfoNo=${agency.agencyInfoNo}&pageNo=${pageNo}'/>">${agency.agencyName}</a> --%>
+					<a href="#"
+					onclick="agencyDetail(`<c:url value='/main/board/agency/detail.do?agencyInfoNo=${agency.agencyInfoNo}&pageNo=${pageNo}'/>`,
+																`${agency.memberNo}`,${sessionScope.user.memberNo});">${agency.agencyName}
+					<c:if test="${sessionScope.user.memberNo ne agency.memberNo}">
+						<i class="fas fa-lock fa-lg"></i>
+					</c:if>
+					</a>
+				</td>
+				<td><fmt:formatDate value="${agency.regDate}"
+						pattern="yyyy-MM-dd HH:mm" type="both" /></td>
+				<c:choose>
+					<c:when test="${agency.permission eq 'n'}">
+						<td>신청중</td>
+					</c:when>
+					<c:otherwise>
+						<td>등록완료</td>
+					</c:otherwise>
+				</c:choose>
+			</tr>
+			</c:if>
 		</c:forEach>
 	</table>
 

@@ -84,6 +84,24 @@
 	   	$(".fa-edit").click(function () {
 	   		let groupNo = 0;
 	   		
+	   		if (prevGroupNo != "0") {
+	   			groupNo = prevGroupNo;
+	   			
+		   		$.ajax({
+	   				type: "POST",
+	   				url: "<c:url value='/file/delete-file-ajax.do' />",
+	   				async: false,
+	   				data: 
+	   					{
+	   					groupNo : groupNo,
+	   					},
+	   				success: function (fileList) {
+	   					let file = fileList.file;
+	   				}
+				});
+	   		}
+	   		
+	   		
 			for (let i = 0; i < filePath.length; i++) {
 				console.log($('#summernote').val());
 				if ( $('#summernote').val().includes(filePath[i].systemName) == false ) {
