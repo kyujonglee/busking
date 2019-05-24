@@ -6,11 +6,13 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
@@ -32,8 +34,12 @@ public class FileController {
 	
 	@RequestMapping("delete-file-ajax.do")
 	@ResponseBody
-	public void deleteFile(int groupNo) throws Exception {
-		service.deleteFile(groupNo);
+	public Map<String, Object> deleteFile(int groupNo, Model model) throws Exception {
+		Map<String, Object> result = service.deleteFile(groupNo);
+		
+		model.addAttribute("file", result.get("file"));
+		
+		return result;
 	}
 	
 	@RequestMapping("image-upload.do")
