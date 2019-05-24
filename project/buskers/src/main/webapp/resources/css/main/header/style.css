@@ -550,7 +550,7 @@ body::-webkit-scrollbar-button {display:none}
   color: white;
 }
 /* 메인 탑버튼*/
-.view-top-btn {
+.view-main-top-btn {
     all: unset;
     position: fixed;
     bottom : 50px;

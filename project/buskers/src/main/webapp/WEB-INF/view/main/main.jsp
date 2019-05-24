@@ -64,7 +64,7 @@
 
  		
  		<!-- 스크롤 버튼 -->
- 		<button type="button" class="view-top-btn">
+ 		<button type="button" class="view-main-top-btn">
 	    	<i class="fas fa-angle-up fa-2x"></i>
 	    </button>
 	    
