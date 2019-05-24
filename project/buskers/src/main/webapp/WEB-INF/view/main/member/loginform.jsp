@@ -59,7 +59,7 @@
             </div>
         </div>
     </div>
-    <form id="social-signup" method="POST" action="social-signup.do">
+    <form id="social-signup" method="POST" action="signupform-social.do">
     	<input type="hidden"  id="memberId" name="id"  value=""/>
     	<input type="hidden"  id="nickName" name="name" value=""/>
     	<input type="hidden"  id="memberType" name="memberType" value=""/>
@@ -67,6 +67,7 @@
    <form id="social-login" method="POST" action="social-login.do">
     	<input type="hidden"  id="memberId" name="id"  value=""/>
     	<input type="hidden"  id="nickName" name="name" value=""/>
+    	<input type="hidden"  id="accessToken" name="accessToken" value=""/>
     </form> 
 </main>
     <script>
@@ -103,6 +104,7 @@
             	 Kakao.API.request({
     		      	 url: '/v1/user/me',
      			     success: function(res) {
+//      			    	 alert("카카오로그인실행");
 //     		             alert(JSON.stringify(res)); //<---- kakao.api.request 에서 불러온 결과값 json형태로 출력
 //     		             alert(JSON.stringify(authObj)); //<----Kakao.Auth.createLoginButton에서 불러온 결과값 json형태로 출력
 //     		             console.log("아이디"+res.id);//<---- 콘솔 로그에 id 정보 출력(id는 res안에 있기 때문에  res.id 로 불러온다)
@@ -126,10 +128,12 @@
     		    			     $("#social-signup #memberType").val("k");
     							 $("#social-signup").submit();
     						}else{
+//     							alert("서브밋들옴");
     							$("#social-login #memberId").val(res.id);
     	    					$("#social-login #nickName").val(res.properties['nickname']);
     	    					$("#social-login #accessToken").val(authObj.access_token);
-    							$("#sogcial-login").submit();
+//     							$("#social-login").submit();
+    							 $("#social-signup").submit();
     						}
     					}).fail(function(xhr){
     						alert("서버 처리중 에러발생")
@@ -182,7 +186,7 @@
     						data:member,
     						url:"social-checkid.do",
     					}).done(function(result){	
-//     						alert(result);  //결과값  0또는 1을 반환 , 0은 회원가입 1은 기존유저 확인
+    						alert(result);  //결과값  0또는 1을 반환 , 0은 회원가입 1은 기존유저 확인
     						if(result == 0){
     							 $("#social-signup #memberId").val(id);
     		    			     $("#social-signup #nickName").val(name);

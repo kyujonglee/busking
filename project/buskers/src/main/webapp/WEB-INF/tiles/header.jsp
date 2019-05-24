@@ -51,7 +51,7 @@
          <span class="header__user">
             <div class="header-a">
             <i class="far fa-bell fa-lg"></i>
-            <i class="far fa-envelope fa-lg"></i>
+            <i class="far fa-envelope fa-lg"></i><span class="message_count">2</span>
                <div class="header-b2">${sessionScope.user.nickName}  님</div>
                <div class="header-b3">
                   <div class="header-c">
@@ -121,16 +121,6 @@
 	 }); 
 	 */
 	 
-	 let popupX = (window.screen.width / 2) - (500 / 2);
-	 let popupY = (window.screen.height / 2) - (500 / 2);
-	 
-	 $(".fa-envelope").click(function () {
-	    window.open('<c:url value="/popup/message.do"/>', 'message', 'top=' + popupY + ', left=' + popupX + ', scrollbars=no, resizable=no, width=500, height=500');
-	 });
-
-
-
-
 
 	$("#logout").click(function() {
 		var result = confirm("로그아웃 하시겠습니까?");
@@ -187,6 +177,24 @@
 			location.href="<c:url value='/main/member/logout.do'/>";
 			alert("로그아웃 되셨습니다!");
 		}
+	});
+	
+	/*
+	$(document).click(function(e) { 
+		console.log($(e.target).prop("class"));
+		if ( $(e.target).prop("class") != "profile_img" ) {
+			if ( $(e.target).prop("class") != "header-h" ) {
+				$(".h-toggle").hide();
+			}
+		}
+	}); 
+	*/
+	
+	let popupX = (window.screen.width / 2) - (500 / 2);
+	let popupY = (window.screen.height / 2) - (500 / 2);
+	
+	$(".fa-envelope").click(function () {
+		window.open('<c:url value="/main/header/message/list.do"/>', '', 'top=' + popupY + ', left=' + popupX + ', scrollbars=no, resizable=no, width=500, height=500');
 	});
 	
 </script>

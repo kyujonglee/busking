@@ -66,6 +66,11 @@ public class MemberServiceImpl implements MemberService {
 	public void newPass(Member member) {
 		mapper.newPass(member);
 	}
+
+
+	public void updateNickNameSocialMember(Member member) {
+		mapper.updateNickNameSocialMember(member);
+	}
 	
 	
 	
