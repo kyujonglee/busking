@@ -133,7 +133,7 @@
     	    					$("#social-login #nickName").val(res.properties['nickname']);
     	    					$("#social-login #accessToken").val(authObj.access_token);
 //     							$("#social-login").submit();
-    							 $("#social-signup").submit();
+    							 $("#social-login").submit();
     						}
     					}).fail(function(xhr){
     						alert("서버 처리중 에러발생")

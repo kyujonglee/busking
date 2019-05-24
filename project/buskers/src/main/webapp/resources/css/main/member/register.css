@@ -1,4 +1,4 @@
-@import "../common/common.css";
+@import "../../common/common.css";
 
 
 
@@ -106,6 +106,10 @@
     border: 1px solid #ddd;
     color: #fff;
     font-weight: bold;
+  }
+  .radio input[type="radio"] {
+  	margin-left: 0px;
+  	position: inherit;
   }
 
 

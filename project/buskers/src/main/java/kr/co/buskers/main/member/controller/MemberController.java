@@ -48,7 +48,7 @@ public class MemberController {
 	@RequestMapping("login.do")
 	public String login(HttpSession session, Member member,RedirectAttributes rttr) {
 		Member user = service.login(member);
-		System.out.println(user);
+//		System.out.println(user);
 		// DB 값 체크
 		if(user != null) {
 			boolean passMatch = passEncoder.matches(member.getPass(), user.getPass());
@@ -243,8 +243,8 @@ public class MemberController {
 	}
 	
 	// 마이페이지
-	@RequestMapping("myPage.do")
-	public void myPage() {
+	@RequestMapping("profile.do")
+	public void profile() {
 		
 	}
 	

@@ -3,6 +3,8 @@ package kr.co.buskers.common.file.service;
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,8 +19,13 @@ public class FileServiceImpl implements FileService {
 	@Autowired
 	private FileMapper mapper;
 	
-	public void deleteFile(int groupNo) throws Exception {
+	public Map<String, Object> deleteFile(int groupNo) throws Exception {
+		Map<String, Object> map = new HashMap<>();
+		
 		mapper.deleteFileAll(groupNo);
+		map.put("file", mapper.selectFileByGroupNo(groupNo));
+		
+		return map;
 	}
 	
 	public int insertFile(kr.co.buskers.repository.domain.File file) throws Exception {

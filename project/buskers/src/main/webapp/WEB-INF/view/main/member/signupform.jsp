@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <link rel="stylesheet" href="<c:url value='/resources/css/main/member/register.css'/>" />
 <script src="<c:url value='/resources/js/jquery-3.4.1.min.js'/>"></script>
-<title>buskers</title>
+<title>회원가입</title>
 <script type="text/javascript">
 	let idck = 0;
 	let emailck = 0;
@@ -39,7 +39,6 @@
 	$(function() {
 		$("#checkEmail").click(function() {
 			let email = $("#email").val();
-			console.log(id);
 			
 			if(email.length < 1) {
 				alert("이메일을 입력해주시기 바랍니다.");
@@ -66,7 +65,6 @@
 	$(function() {
 		$("#checkNickName").click(function() {
 			let nickName = $("#nickName").val();
-			console.log(id);
 			
 			if(nickName.length < 1) {
 				alert("닉네임을 입력해주시기 바랍니다.");
