@@ -11,6 +11,14 @@
     margin-left: 30px;
 }
 
+.message_title > a {
+	cursor: default;
+}
+
+.message_title > a:hover {
+	color: inherit;
+}
+
 * {
 	font-family:'Malgun Gothic';
 	
@@ -22,6 +30,12 @@
 
 #post_box .active {
 	font-weight: bold;
+}
+
+#post_box .active a {
+	color: white;
+	font-weight: bold;
+	background: #333333;
 }
 
 #post_box a:hover {
@@ -51,13 +65,13 @@
 	width: 5%;
 }
 .tab-content th:nth-child(3) {
-	width: 60%;
+	width: 50%;
 }
 .tab-content th:nth-child(4) {
 	width: 15%;
 }
 .tab-content th:nth-child(5) {
-	width: 15%;
+	width: 25%;
 }
 
 .post_box_button {
@@ -73,6 +87,7 @@
 	padding: 5px;
 	border-radius: 5px;
 	cursor: pointer;
+	font-size: 13px;
 }
 
 .post_box_button > div > a:hover {
@@ -92,14 +107,14 @@
 	margin-bottom: 10px;
 }
 
-.post_write_form_button {
+.post_bottom_button {
 	margin-top: 20px;
 	display: flex;
 	justify-content: flex-end;
 	align-items: center;
 }
 
-.post_write_form_button > div > a {
+.post_bottom_button > div > a {
 	font-weight: bold;
 	background: black;
 	color: white;
@@ -109,7 +124,7 @@
 	margin-left: 5px;
 }
 
-.post_write_form_button > div > a:hover {
+.post_bottom_button > div > a:hover {
 	color: tomato;
 }
 
@@ -117,7 +132,46 @@
 	font-weight: bold;
 }
 
+.message_detail {
+	padding: 20px;
+}
 
+.message_detail span {
+	font-weight: bold;
+	width: 80px;
+}
 
+.message_detail a {
+	margin-right: 20px;
+    font-weight: 100;
+}
 
+.post_bottom_button {
+	border: none !important;
+}
+
+#message_detail_content {
+	background: white;
+	cursor: default;
+	resize: none;
+}
+
+.post_bottom_button > div > a {
+	font-size: 13px;
+	margin: 0;
+}
+
+.fa-envelope {
+	color: tomato;
+}
+
+.fa-envelope-open {
+	color: grey;
+}
+
+.notime {
+	text-align: center;
+	margin: 0 auto;
+	font-size: 25px;
+}
 

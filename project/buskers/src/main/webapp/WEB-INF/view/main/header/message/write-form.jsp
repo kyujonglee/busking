@@ -26,11 +26,9 @@
 		<div>내용</div>
 		<textarea class="form-control" rows="10" name="content" placeholder="내용을 입력하세요"></textarea>
 		
-		<div class="post_write_form_button">
+		<div class="post_bottom_button">
 			<div>
-				<a href="write-form.do">취소</a>
-			</div>
-			<div>
+				<a href="list.do">취소</a>
 				<a class="write_form_submit">작성완료</a>
 			</div>
 		</div>
@@ -42,6 +40,8 @@
 
 <script>
 	$(".write_form_submit").click(function () {
+		$('textarea').val().replace(/\n/g, "<br>")
+
 		$(".write_form_submit_wrapper").submit();
 	});
 </script>

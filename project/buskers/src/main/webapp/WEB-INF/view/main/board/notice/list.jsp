@@ -5,6 +5,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%> 
 <link rel="stylesheet"
 	href="<c:url value='/resources/css/main/board/notice/notice.css'/>" />
+<title>공지사항</title>
 <main class="notice-board main-board">
 <div class="board">
 	<header class="notice-board__header">

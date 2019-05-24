@@ -1,8 +1,10 @@
-package kr.co.buskers.common.file;
+package kr.co.buskers.common.file.service;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +18,15 @@ public class FileServiceImpl implements FileService {
 	
 	@Autowired
 	private FileMapper mapper;
+	
+	public Map<String, Object> deleteFile(int groupNo) throws Exception {
+		Map<String, Object> map = new HashMap<>();
+		
+		mapper.deleteFileAll(groupNo);
+		map.put("file", mapper.selectFileByGroupNo(groupNo));
+		
+		return map;
+	}
 	
 	public int insertFile(kr.co.buskers.repository.domain.File file) throws Exception {
 		kr.co.buskers.repository.domain.File f = new kr.co.buskers.repository.domain.File();
@@ -36,6 +47,8 @@ public class FileServiceImpl implements FileService {
 		
 		return f.getGroupNo();
 	}
+	
+	
 	
 	public kr.co.buskers.repository.domain.File uploadImage(MultipartFile multipartFile, String uriPath) throws Exception {
 		UUID uuid = UUID.randomUUID();

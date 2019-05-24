@@ -113,7 +113,8 @@
     font-size: 15px;
     line-height: 50px;
     font-weight: bold;
-    background: #FFFFFF;
+    background: #F5F5F5;
+    text-align: center;
 }
 
 .main-freeboard th > a:hover {
@@ -360,6 +361,9 @@
 	font-weight: bold;
 }
 
-
+.main_board_update {
+	width: 1200px;
+	margin: 0 auto;
+}
 
 

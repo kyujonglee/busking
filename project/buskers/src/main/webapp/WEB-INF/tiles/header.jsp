@@ -48,53 +48,55 @@
           <a href="<c:url value='/main/member/signupform.do'/>">Join</a>
         </c:if>
         <c:if test="${sessionScope.user ne null}">
-         <span class="header__user">
-            <div class="header-a">
-            <i class="far fa-bell fa-lg"></i>
-            <i class="far fa-envelope fa-lg"></i>
-               <div class="header-b2">${sessionScope.user.nickName}  님</div>
-               <div class="header-b3">
-                  <div class="header-c">
-                     <a class="header-d" role="button" 
-                        tabindex="0" title="계정: ${sessionScope.user.id}  (${sessionScope.user.email})"
-                        aria-expanded="true">
-                        <span class="header-e" aria-hidden="true"><img class="profile_img" src="<c:url value='/resources/img/boyoung.jpg'/>"/></span>
-                     </a>
-                     <div class="header-f h-toggle"></div>
-                     <div class="header-g h-toggle"></div>
-                  </div>
-                  <div class="header-h h-toggle" aria-label="계정 정보"
-                     aria-hidden="false" img-loaded="1">
-                     <div class="header-i">
-                        <a class="header-i2" aria-label="프로필 사진 변경" href="#">
-                           <div class="header-i3" style="position: relative">
-                              <div class="header-i4" title="프로필"></div>
-                              <span class="header-i5">변경</span>
-                           </div>
-                        </a>
-                        <div class="header-i6">
-                           <div class="header-i7">${sessionScope.user.id}</div>
-                           <div class="header-i8">${sessionScope.user.email}</div>
-                           <div class="header-i9">
-                              <span>${sessionScope.user.nickName} 님</span><br>
-                              <span> 안녕하세요!</span>
-                           </div>
-                           <a class="header-i10" href="#">나의소셜 계정</a>
-                        </div>
-                     </div>
-                     <div class="header-j">
-                        <div>
-                           <a class="header-j2" href="#">마이 페이지</a>
-                        </div>
-                        <div>
-                           <a class="header-j3" id="logout" target="_top">로그아웃</a>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-            </div>
-         </span>
-      </c:if>
+			<span class="header__user">
+				<div class="header-a">
+				<i class="far fa-bell fa-lg"></i>
+				<i class="far fa-envelope fa-lg"></i><span class="message_count">2</span>
+					<div class="header-b2">${sessionScope.user.nickName}  님</div>
+					<div class="header-b3">
+						<div class="header-c">
+							<a class="header-d" role="button" 
+							   tabindex="0" title="계정: ${sessionScope.user.id}  (${sessionScope.user.email})"
+							   aria-expanded="true">
+							   <span class="header-e" aria-hidden="true"><img class="profile_img" src="<c:url value='/resources/img/boyoung.jpg'/>"/></span>
+							</a>
+							<div class="header-f h-toggle"></div>
+							<div class="header-g h-toggle"></div>
+						</div>
+						<div class="header-h h-toggle" aria-label="계정 정보"
+							aria-hidden="false" img-loaded="1">
+							<div class="header-i">
+								<a class="header-i2" aria-label="프로필 사진 변경" href="#">
+									<div class="header-i3" style="position: relative">
+										<div class="header-i4" title="프로필"></div>
+										<span class="header-i5">변경</span>
+									</div>
+								</a>
+								<div class="header-i6">
+									<div class="header-i7">${sessionScope.user.id}</div>
+									<div class="header-i8">
+										${sessionScope.user.email}
+									</div>
+									<div class="header-i9">
+										<span>${sessionScope.user.nickName} 님</span><br>
+										<span> 안녕하세요!</span>
+									</div>
+									<a class="header-i10" href="<c:url value='/main/member/profile.do'/>">프로필 설정</a>
+								</div>
+							</div>
+							<div class="header-j">
+								<div>
+									<a class="header-j2" href="#">나의 페이지</a>
+								</div>
+								<div>
+									<a class="header-j3" id="logout" target="_top">로그아웃</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</span>
+		</c:if>
         </div>
       </div> 
       

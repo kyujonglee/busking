@@ -243,8 +243,8 @@ public class MemberController {
 	}
 	
 	// 마이페이지
-	@RequestMapping("myPage.do")
-	public void myPage() {
+	@RequestMapping("profile.do")
+	public void profile() {
 		
 	}
 	
