@@ -160,8 +160,12 @@
     display: block;
     height: 96px;
     width: 96px;
-    background: red;
+    background: gray;
 }
+.miniprofile_img {
+	width: 96px;
+}
+
 .header-i5{
     background-color: rgba(0, 0, 0, 0.54);
     bottom: 0px;
