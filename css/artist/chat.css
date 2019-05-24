@@ -1,0 +1,79 @@
+:root {
+  --chat-color-white: #faf9fa;
+  --chat-border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.busker .busker-chat {
+  background-color: var(--chat-color-white);
+  border: var(--chat-border);
+  display: flex;
+  flex-direction: column;
+  border-collapse: collapse;
+}
+
+.busker-chat__header {
+  border-bottom: var(--chat-border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 10px;
+}
+.busker-chat__header i{
+    cursor: pointer;
+    opacity: 0.6;
+}
+
+.busker-chat__header .chat-header__title {
+  font-size: 14px;
+  line-height: 14px;
+  color: var(--color-darkgray);
+  align-self: flex-end;
+}
+
+.busker-chat__main {
+  height: 100%;
+  padding : 10px 8px;
+}
+.busker-chat__main .busker-chat__box {
+    margin-bottom: 5px;
+    color : gray;
+}
+
+
+.busker-chat__footer {
+  display: flex;
+  padding: 5px 10px;
+  justify-content: space-between;
+  align-items: center;
+  height: 8vh;
+  border-top: var(--chat-border);
+  border-collapse: collapse;
+}
+
+.busker-chat__footer .chat__footer-btn {
+  all: unset;
+  width: 45px;
+  font-size: 14px;
+  height: 30px;
+  border-radius: 5px;
+  border: 1px solid var(--color-orange);
+  text-align: center;
+  line-height: 30px;
+  color: var(--color-orange);
+}
+
+.busker-chat__footer .chat__footer-input {
+  all: unset;
+  width: 220px;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  background-color: #fff;
+  height: 30px;
+  border-radius: 5px;
+  padding: 5px 5px;
+  box-sizing: border-box;
+}
+
+.busker-chat__main .mychat {
+    color : var(--chat-darkgray);
+}
+

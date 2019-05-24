@@ -1,0 +1,50 @@
+@import "../../common/common.css";
+@import 'side.css';
+@import 'header.css';
+@import 'info.css';
+@import 'chat.css';
+@import 'main-content.css';
+@import 'schedule.css';
+@import 'busker-show-enroll.css';
+
+@import url('https://fonts.googleapis.com/css?family=Italianno&display=swap');
+
+a {
+    text-decoration: none;
+    color : inherit;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+.busker {
+  width: 100%;
+  height: 100vh;
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-columns: 200px minmax(300px, 1fr);
+  grid-auto-columns: minmax(700px,8fr);
+}
+
+
+.busker .busker-section {
+  /* background-color : skyblue; */
+  transition: all 0.5s ease-in-out;
+  display: grid;
+  grid-template-rows: 6vh 1fr;
+}
+
+.busker-main {
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-columns: 9fr;
+  grid-auto-columns:  minmax(300px, 1fr);
+}
+
+.busker-content {
+  background-color: #fff;
+}
+.busker-chat {
+    display: none;
+}

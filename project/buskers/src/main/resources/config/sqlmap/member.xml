@@ -12,13 +12,20 @@
 		);
 	</insert>
 	<!-- 카카오 회원가입 -->
-	<insert id="signupKakaoMember" parameterType="member">
+	<insert id="signupSocialMember" parameterType="member">
 		insert into tb_member (
-			id,nick_name,member_type
+			id,name,member_type,nick_name
 		) values (
-			#{id}, #{nickName},'k'
+			#{id}, #{name},#{memberType},#{nickName}
 		);
 	</insert>
+	
+	<!-- 소셜가입 닉네임 -->
+	<update id="updateNickNameSocialMember" parameterType="member">
+		update tb_member
+		   set nick_name = #{nickName}
+		 where id = #{id}
+	</update>
 	
 	<!-- 로그인 -->
 	<select id="loginAction" resultType="member">

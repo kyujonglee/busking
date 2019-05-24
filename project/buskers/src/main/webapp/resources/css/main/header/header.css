@@ -2,3 +2,19 @@
 @import 'slick.css';
 @import 'style.css';
 @import 'font-awesome.css';
+
+.message_count {
+	position: absolute;
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    right: 150px;
+    top: -5px;
+    font-size: 0.8em;
+    color: #fff;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 50%;
+    background-color: #f00;
+    z-index: 999;
+}

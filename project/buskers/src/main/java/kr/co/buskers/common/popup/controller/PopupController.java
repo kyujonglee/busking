@@ -9,7 +9,4 @@ public class PopupController {
 	
 	@RequestMapping("/jusopopup.do")
 	public void jusopopup() {}
-	
-	@RequestMapping("/message.do")
-	public void messagePopup() {}
 }
