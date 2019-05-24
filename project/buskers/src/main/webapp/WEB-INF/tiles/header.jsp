@@ -68,7 +68,9 @@
 							<div class="header-i">
 								<a class="header-i2" aria-label="프로필 사진 변경" href="#">
 									<div class="header-i3" style="position: relative">
-										<div class="header-i4" title="프로필"></div>
+										<div class="header-i4" title="프로필">
+											<img class="miniprofile_img" src="<c:url value='/resources/img/boyoung.jpg'/>"/>
+										</div>
 										<span class="header-i5">변경</span>
 									</div>
 								</a>

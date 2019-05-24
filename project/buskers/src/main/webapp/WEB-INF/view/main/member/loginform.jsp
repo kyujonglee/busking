@@ -34,28 +34,27 @@
                 </div>
             </form>
             <div class="social-login">
-                <a href="#">
-                	<i class="fa fa-facebook fa-lg"></i>
-               			 페이스북으로 로그인
-                </a>
-                <a href="#">
-         	       <i class="fa fa-google-plus fa-lg"></i>
-         			       구글 로그인
-                </a>
-                <a href="#">
-          	      <i class="fa fa-naver fa-lg"></i>
-      			          네이버 로그인
-                </a>
-                <a id="custom-login-btn" href="javascript:loginWithKakao()">
-           	  	  <i class="fa fa-naver fa-lg"></i>
-        			        카카오 로그인
-                </a>
-                
-                <!-- 네이버로그인 -->
-     		   <div id="naverIdLogin"></div>
-     		   
-     		   <!-- 구글로그인  -->
-     		   <div class="g-signin2" data-onsuccess="onSignIn"></div>
+            	<div class="social_div1">
+	                <a id="facebook" href="#">
+	               		페이스북으로 로그인
+	                </a>
+            	</div>
+            	<div class="social_div2">
+	                <!-- 구글로그인  -->
+	     		    <div class="g-signin2" data-onsuccess="onSignIn"></div>
+            	</div>
+     		    
+     		    <div class="social_div3">
+	                <!-- 네이버로그인 -->
+	     		    <div id="naverIdLogin"></div>
+     		    </div>
+     		    
+     		    <div class="social_div4">
+	                <a id="kakao" href="javascript:loginWithKakao()">
+	           	  	  <i class="fa fa-naver fa-lg"></i>
+	        			        카카오 로그인
+	                </a>
+     		    </div>
             </div>
         </div>
     </div>
@@ -133,7 +132,7 @@
     	    					$("#social-login #nickName").val(res.properties['nickname']);
     	    					$("#social-login #accessToken").val(authObj.access_token);
 //     							$("#social-login").submit();
-    							 $("#social-signup").submit();
+    							 $("#social-login").submit();
     						}
     					}).fail(function(xhr){
     						alert("서버 처리중 에러발생")

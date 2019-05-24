@@ -66,8 +66,8 @@
 		              </span>
 		              </a>
 		          </li>
-		          <li class="mouse-active-parent"><div class="mouse-active"></div></li>
 			  </c:forEach>	 
+		     <li class="mouse-active-parent"><div class="mouse-active"></div></li>
 	        </ul>
 	        
 	      </div>
