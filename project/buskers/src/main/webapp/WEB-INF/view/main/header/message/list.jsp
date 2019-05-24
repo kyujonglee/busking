@@ -16,19 +16,22 @@
 <body>
     <div class="message_title">
     	<i class="fas fa-comments"></i>
-    	<a href="<c:url value="/popup/message.do"/>"></a>
+    	<a></a>
     </div>
 
 	<div role="tabpanel" class="post_box_wrapper">
 
 		<!-- Nav tabs -->
 		<ul class="nav nav-tabs" role="tablist" id="post_box">
-			<li role="presentation" class="active"><a href="#received_box"
-				aria-controls="home" role="tab" data-toggle="tab">받은 쪽지함</a></li>
-			<li role="presentation"><a href="#sent_box"
-				aria-controls="profile" role="tab" data-toggle="tab">보낸 쪽지함</a></li>
-			<li role="presentation"><a href="#saved_box"
-				aria-controls="messages" role="tab" data-toggle="tab">쪽지 보관함</a></li>
+			<li role="presentation" <c:if test="${param.active ne 'sent_box'}">class="active"</c:if>>
+				<a href="#received_box"	aria-controls="received_box" role="tab" data-toggle="tab">받은 쪽지함</a>
+			</li>
+			<li role="presentation">
+				<a href="#sent_box"	aria-controls="sent_box" role="tab" data-toggle="tab">보낸 쪽지함</a>
+			</li>
+			<li role="presentation">
+				<a href="#saved_box" aria-controls="saved_box" role="tab" data-toggle="tab">쪽지 보관함</a>
+			</li>
 		</ul>
 
 		<!-- Tab panes -->
@@ -37,7 +40,7 @@
 				<table class="table table-striped .table-condensed">
 					<thead>
 						<tr>
-							<th><input type="checkbox" id="checkAll"></th>
+							<th><input type="checkbox" class="post_all"></th>
 							<th></th>
 							<th>제목</th>
 							<th>보낸사람</th>
@@ -45,31 +48,26 @@
 						</tr>
 					</thead>
 					<tbody>
-					
+					<form action="delete-received.do" class="delete_received_post_submit">
 					<c:forEach var="message" items="${message}">
 						<tr>
-							<td><input type="checkbox"></td>
-							<td></td>
-							<td>${message.title}</td>
-							<td>${message.senderMemberNo}</td>
-							<td><fmt:formatDate value="${message.sendDate}" pattern="yyyy-MM-dd HH:mm" /></td>
+							<td><input type="checkbox" name="msgNo" value="${message.msgNo}" class="post_all"></td>
+							<td></td>	
+							<td>
+							<c:if test="${message.readStatus eq 'N'}">
+							<i class="fas fa-envelope"></i>
+								<a href="detail.do?msgNo=${message.msgNo}">${message.title}</a>
+							</c:if>
+							<c:if test="${message.readStatus eq 'Y'}">
+							<i class="fas fa-envelope-open"></i>
+								<a href="detail.do?msgNo=${message.msgNo}">${message.title}</a>
+							</c:if>
+							</td>
+							<td>${message.nickName}</td>
+							<td><fmt:formatDate value="${message.sendDate}" pattern="yy/MM/dd HH:mm" /></td>
 						</tr>
 					</c:forEach>
-						
-						<tr>
-							<td><input type="checkbox"></td>
-							<td>2</td>
-							<td>데이터2</td>
-							<td>데이터3</td>
-							<td>데이터4</td>
-						</tr>
-						<tr>
-							<td><input type="checkbox"></td>
-							<td>3</td>
-							<td>데이터2</td>
-							<td>데이터3</td>
-							<td>데이터4</td>
-						</tr>
+					</form>
 					</tbody>
 				</table>
 			</div>
@@ -77,40 +75,32 @@
 				<table class="table table-striped .table-condensed">
 					<thead>
 						<tr>
-							<th><input type="checkbox" id="checkAll"></th>
+							<th><input type="checkbox" class="post_sent"></th>
 							<th></th>
 							<th>제목</th>
-							<th>보낸사람</th>
+							<th>받은사람</th>
 							<th>날짜</th>
 						</tr>
 					</thead>
 					<tbody>
+					<form action="delete-sent.do" class="delete_sent_post_submit">
+					<c:forEach var="sentMessage" items="${sentMessage}">
 						<tr>
-							<td><input type="checkbox"></td>
-							<td>1</td>
-							<td>보낸 쪽지 1</td>
-							<td>데이터3</td>
-							<td>데이터4</td>
+							<td><input type="checkbox" name="msgNo" value="${sentMessage.msgNo}" class="post_sent"></td>
+							<td></td>
+							<td>${sentMessage.title}</td>
+							<td>${sentMessage.nickName}</td>
+							<td><fmt:formatDate value="${sentMessage.sendDate}" pattern="yy/MM/dd HH:mm" /></td>
 						</tr>
-						<tr>
-							<td><input type="checkbox"></td>
-							<td>2</td>
-							<td>데이터2</td>
-							<td>데이터3</td>
-							<td>데이터4</td>
-						</tr>
-						<tr>
-							<td><input type="checkbox"></td>
-							<td>3</td>
-							<td>데이터2</td>
-							<td>데이터3</td>
-							<td>데이터4</td>
-						</tr>
+					</c:forEach>
+					</form>
 					</tbody>
 				</table>
 			</div>
-
+			
 			<div role="tabpanel" class="tab-pane" id="saved_box">
+			<br><br><br><div class="notime">공사중...</div><br><br><br>
+			<!-- 
 				<table class="table table-striped .table-condensed">
 					<thead>
 						<tr>
@@ -122,36 +112,25 @@
 						</tr>
 					</thead>
 					<tbody>
+					<c:forEach var="message" items="${message}">
 						<tr>
-							<td><input type="checkbox"></td>
-							<td>1</td>
-							<td>저장한 쪽지 1</td>
-							<td>데이터3</td>
-							<td>데이터4</td>
+							<td><input type="checkbox" name="${message.msgNo}"></td>
+							<td></td>
+							<td>${message.title}</td>
+							<td>${message.senderMemberNo}</td>
+							<td><fmt:formatDate value="${message.sendDate}" pattern="yy-MM-dd HH:mm" /></td>
 						</tr>
-						<tr>
-							<td><input type="checkbox"></td>
-							<td>2</td>
-							<td>데이터2</td>
-							<td>데이터3</td>
-							<td>데이터4</td>
-						</tr>
-						<tr>
-							<td><input type="checkbox"></td>
-							<td>3</td>
-							<td>데이터2</td>
-							<td>데이터3</td>
-							<td>데이터4</td>
-						</tr>
+					</c:forEach>
 					</tbody>
 				</table>
 			</div>
+		 -->
 		</div>
-
+		 
 		<div class="post_box_button">
 			<div>
 				<a>보관</a>
-				<a>삭제</a>
+				<a class="delete_post">삭제</a>
 			</div>
 			<div>
 				<a href="write-form.do" class="write_post">쪽지 쓰기</a>
@@ -176,9 +155,31 @@
 	    	$(".message_title a").text( $("li[class=active]").text() );
 	    });
 	    
-	    let popupX = (window.screen.width / 2) - (500 / 2) + 50;
-		let popupY = (window.screen.height / 2) - (500 / 2) + 50;
-    	
+	    $(".delete_post").click(function () {
+		    if ( $("#post_box").children(".active").children("a").attr("href") == "#received_box" ) {
+		    	$(".delete_received_post_submit").submit();
+		    }
+		    if ( $("#post_box").children(".active").children("a").attr("href") == "#sent_box" ) {
+		    	$(".delete_sent_post_submit").submit();
+		    }
+	    	
+	    });
+	    
+	    
+	    $("thead input").click(function(){
+	        let chk = $(this).is(":checked");
+	        let cls = $(this).attr("class");
+	        if(chk) $("." + cls + "").prop('checked', true);
+	        else  $("." + cls + "").prop('checked', false);
+	    });
+	    
+    	let active = "${param.active}";
+	    console.log(active);
+	    if (active == "sent_box") {
+	    	$("#post_box > li:eq(0)").attr("class", "");
+	    	$("#post_box > li:eq(1)").attr("class", "active");
+	    }
+
     </script>
 	
 

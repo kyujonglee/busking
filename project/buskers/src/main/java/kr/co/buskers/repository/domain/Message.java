@@ -9,11 +9,18 @@ public class Message {
     private Date sendDate;
     private String content;
     private String title;
-	private char readStatus;
-    private char saveStatus;
+	private String readStatus;
+    private String saveStatus;
     private String nickName;
+    private int[] msgNos;
     
-    public String getTitle() {
+	public int[] getMsgNos() {
+		return msgNos;
+	}
+	public void setMsgNos(int[] msgNos) {
+		this.msgNos = msgNos;
+	}
+	public String getTitle() {
     	return title;
     }
     public void setTitle(String title) {
@@ -55,16 +62,16 @@ public class Message {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	public char getReadStatus() {
+	public String getReadStatus() {
 		return readStatus;
 	}
-	public void setReadStatus(char readStatus) {
+	public void setReadStatus(String readStatus) {
 		this.readStatus = readStatus;
 	}
-	public char getSaveStatus() {
+	public String getSaveStatus() {
 		return saveStatus;
 	}
-	public void setSaveStatus(char saveStatus) {
+	public void setSaveStatus(String saveStatus) {
 		this.saveStatus = saveStatus;
 	}
 }

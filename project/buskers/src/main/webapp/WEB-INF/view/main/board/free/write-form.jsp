@@ -11,7 +11,7 @@
 	crossorigin="anonymous">
 <link rel="stylesheet" href="<c:url value='/resources/css/main/board/free/koo.css'/>" /> 
 <link rel="stylesheet" href="<c:url value='/resources/css/main/board/agency/agency.css'/>" />
-<title>자유게시판</title>
+<title>글쓰기</title>
 <main class="main-freeboard">
 <div class="main-board">
 	<div class="freeboard__insert">

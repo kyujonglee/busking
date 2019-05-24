@@ -41,7 +41,7 @@
 						<c:if test="${notify.commentCount ne 0}">
 							<i class="fas fa-comment"><a>${notify.commentCount}</a></i>
 						</c:if>
-						<c:if test="${notify.groupNo ne 0}">
+						<c:if test="${notify.groupNoCount ne 0}">
 							<i class="far fa-image"></i>
 						</c:if>
 					</td>
@@ -63,7 +63,7 @@
 					<c:if test="${board.commentCount ne 0}">
 						<i class="fas fa-comment"><a>${board.commentCount}</a></i>
 					</c:if>
-					<c:if test="${board.groupNo ne 0}">
+					<c:if test="${board.groupNoCount ne 0}">
 						<i class="far fa-image"></i>
 					</c:if>
 				</c:if> 
@@ -72,7 +72,7 @@
 					<c:if test="${board.commentCount ne 0}">
 						<i class="fas fa-comment"><a>${board.commentCount}</a></i>
 					</c:if>
-					<c:if test="${board.groupNo ne 0}">
+					<c:if test="${board.groupNoCount ne 0}">
 						<i class="far fa-image"></i>
 					</c:if>
 				</c:if>

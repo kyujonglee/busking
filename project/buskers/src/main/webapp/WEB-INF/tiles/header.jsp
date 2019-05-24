@@ -51,7 +51,7 @@
          <span class="header__user">
             <div class="header-a">
             <i class="far fa-bell fa-lg"></i>
-            <i class="far fa-envelope fa-lg"></i>
+            <i class="far fa-envelope fa-lg"></i><span class="message_count">2</span>
                <div class="header-b2">${sessionScope.user.nickName}  님</div>
                <div class="header-b3">
                   <div class="header-c">

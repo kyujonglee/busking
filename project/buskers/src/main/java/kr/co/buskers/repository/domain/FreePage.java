@@ -5,8 +5,21 @@ public class FreePage {
 	private String sortType;
 	private String searchType;
 	private String input;
-
-	 
+	private int receiverMemberNo;
+	private int senderMemberNo;
+	
+	public int getSenderMemberNo() {
+		return senderMemberNo;
+	}
+	public void setSenderMemberNo(int senderMemberNo) {
+		this.senderMemberNo = senderMemberNo;
+	}
+	public int getReceiverMemberNo() {
+		return receiverMemberNo;
+	}
+	public void setReceiverMemberNo(int receiverMemberNo) {
+		this.receiverMemberNo = receiverMemberNo;
+	}
 	public String getInput() {
 		return input;
 	}

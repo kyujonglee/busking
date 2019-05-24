@@ -14,7 +14,14 @@ public class FreeBoard {
 	private int groupNo;
 	private String nickName;
 	private int commentCount;
+	private int groupNoCount;
 	
+	public int getGroupNoCount() {
+		return groupNoCount;
+	}
+	public void setGroupNoCount(int groupNoCount) {
+		this.groupNoCount = groupNoCount;
+	}
 	public int getCommentCount() {
 		return commentCount;
 	}
