@@ -22,7 +22,7 @@
                         <input type="hidden" id="name"  name="name" value="${name}">
                         <input type="hidden" id="id" name="id" value="${id}">
                         <input type="hidden" id="memberType" name="memberType" value="${memberType}">
-                        <input type="submit" id="memberRegister" class="register" value="일반 회원가입"/>&nbsp;&nbsp;
+                        <input type="submit" id="memberRegister" class="register" value="소셜 회원가입"/>&nbsp;&nbsp;
                         <button type="button" class="register signout"  >뒤로</button>
                     </div>
                 </form>
