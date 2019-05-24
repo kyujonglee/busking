@@ -1,15 +1,14 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="ko">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <link rel="stylesheet" href="../../css/artist/artist.css" />
-    <script
-      src="https://code.jquery.com/jquery-3.4.1.min.js"
-      integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-      crossorigin="anonymous"
-    ></script>
+    <link rel="stylesheet" href="<c:url value='/resources/css/artist/main/artist.css' />" />
+    <script src="<c:url value='/resources/js/jquery-3.4.1.min.js'/>"></script>
     <link
       rel="stylesheet"
       href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
@@ -24,7 +23,7 @@
       <aside class="busker-side">
         <section class="busker-side__profile">
           <header class="busker-side__header">
-            <a href="artist.html"class="busker-side__header-title">
+            <a href="<c:url value='/artist/main/main.do'/>"class="busker-side__header-title">
               <i class="fas fa-street-view"></i>
               Buskers
             </a>
@@ -111,7 +110,7 @@
                 />
               </svg>
             </div>
-            <a href="insert-schedule.html" class="busker-side__menu-title">
+            <a href="<c:url value='/artist/board/enrollForm.do'/>" class="busker-side__menu-title">
               공연일정 등록
             </a>
           </li>
@@ -200,10 +199,7 @@
         <main class="busker-main">
           <section class="busker-content">
             <div class="busker-content__item">
-              <img src="../../img/piano.png" />
-            </div>
-            <div class="busker-content__item">
-              <img src="../../img/piano.png" />
+              <img src="<c:url value='/resources/img/piano.png' />" />
             </div>
             <div class="busker-content__item">
               <div class="busker-board">
@@ -329,9 +325,6 @@
               </div>
             </div>
             <div class="busker-content__item">
-              <img src="../../img/piano.png" />
-            </div>
-            <div class="busker-content__item">
               <div class="busker-content__support-wrapper">
                 <div class="busker-content__support">
                   <header class="busker-content__support-header">
@@ -374,26 +367,23 @@
                 </div>
               </div>
             </div>
-            <div class="busker-content__item">
-              <img src="../../img/piano.png" />
+            <div>
+            	<img src="<c:url value='/resources/img/piano.png' />" />
             </div>
-            <div class="busker-content__item">
-              <img src="../../img/piano.png" />
+            <div>
+            	<img src="<c:url value='/resources/img/piano.png' />" />
             </div>
-            <div class="busker-content__item">
-              <img src="../../img/piano.png" />
+            <div>
+            	<img src="<c:url value='/resources/img/piano.png' />" />
             </div>
-            <div class="busker-content__item">
-              <img src="../../img/piano.png" />
+            <div>
+            	<img src="<c:url value='/resources/img/piano.png' />" />
             </div>
-            <div class="busker-content__item">
-              <img src="../../img/piano.png" />
+            <div>
+            	<img src="<c:url value='/resources/img/piano.png' />" />
             </div>
-            <div class="busker-content__item">
-              <img src="../../img/piano.png" />
-            </div>
-            <div class="busker-content__item">
-              <img src="../../img/piano.png" />
+            <div>
+            	<img src="<c:url value='/resources/img/piano.png' />" />
             </div>
           </section>
           <aside class="busker-chat">
@@ -449,6 +439,6 @@
         </main>
       </section>
     </div>
-    <script src="../../js/artist/artist.js"></script>
+    <script src="<c:url value='/resources/js/artist/main/artist.js' />"></script>
   </body>
 </html>

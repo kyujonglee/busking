@@ -1,21 +1,28 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="ko">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <link rel="stylesheet" href="../../css/artist/artist.css" />
-    <script
-      src="https://code.jquery.com/jquery-3.4.1.min.js"
-      integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-      crossorigin="anonymous"
-    ></script>
+    <link rel="stylesheet" href="<c:url value='/resources/css/artist/main/artist.css' />" />
+    <script src="<c:url value='/resources/js/jquery-3.4.1.min.js'/>"></script>
     <link
       rel="stylesheet"
       href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
       integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay"
       crossorigin="anonymous"
     />
+    <!-- services와 clusterer, drawing 라이브러리 불러오기 -->
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=6ecd2e05e789f3a1417e2dfe2c1e4f40&libraries=services,clusterer,drawing"></script>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://npmcdn.com/flatpickr/dist/themes/material_orange.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <title>Buskers</title>
   </head>
   <body>
@@ -24,7 +31,7 @@
       <aside class="busker-side">
         <section class="busker-side__profile">
           <header class="busker-side__header">
-            <a href="artist.html"class="busker-side__header-title">
+            <a href="<c:url value='/artist/main/main.do'/>"class="busker-side__header-title">
               <i class="fas fa-street-view"></i>
               Buskers
             </a>
@@ -111,7 +118,7 @@
                 />
               </svg>
             </div>
-            <a href="insert-schedule.html" class="busker-side__menu-title">
+            <a href="<c:url value='/artist/board/enrollForm.do'/>" class="busker-side__menu-title">
               공연일정 등록
             </a>
           </li>
@@ -154,7 +161,7 @@
           <span>logout</span>
         </section>
       </aside>
-      <section class="busker-info">
+		<section class="busker-info">
         <img
           src="https://i.pinimg.com/564x/d4/12/4a/d4124a5565145151eeb2b40a8835155f.jpg"
         />
@@ -198,204 +205,21 @@
           </div>
         </header>
         <main class="busker-main">
-          <section class="busker-content">
-            <div class="busker-content__item">
-              <img src="../../img/piano.png" />
+          <section class="busker-show-enroll">
+            <div id="map"></div>
+            <div class="weather-date"></div>
+            <p><em>지도를 클릭해주세요!</em></p>
+            <div id="clickLatlng"></div>
+            <button id="weather">날씨보기</button>
+            <div>
+              <form class="weather-search">
+                <input type="text" class="weather-search__input" />
+              </form>
+              <!-- <input type="datetime-local" name="" id=""> -->
             </div>
-            <div class="busker-content__item">
-              <img src="../../img/piano.png" />
-            </div>
-            <div class="busker-content__item">
-              <div class="busker-board">
-                <header class="busker-board__header">
-                  <div class="busker-board__header-column"></div>
-                  <div class="busker-board__header-column">버스커 게시판</div>
-                  <div class="busker-board__header-column">
-                    <i class="fas fa-ellipsis-h"></i>
-                  </div>
-                </header>
-                <article class="busker-board__row">
-                  <div class="board-row__notice">
-                    <i class="fas fa-bullhorn"></i>
-                    <span class="board-row__content">
-                      오늘 공연은 쉽니다.
-                      <span class="board-row__cnt">[20]</span>
-                    </span>
-                    <span class="board-row__date">
-                      05-17
-                    </span>
-                  </div>
-                  <div class="board-row__notice">
-                    <i class="fas fa-bullhorn"></i>
-                    <span class="board-row__content">
-                      오늘 공연은 쉽니다.
-                      <span class="board-row__cnt">[20]</span>
-                    </span>
-                    <span class="board-row__date">
-                      05-17
-                    </span>
-                  </div>
-                  <div class="board-row__notice">
-                    <i class="fas fa-bullhorn"></i>
-                    <span class="board-row__content">
-                      말씀드릴 사항이 있습니다.
-                    </span>
-                    <span class="board-row__date">
-                      03-17
-                    </span>
-                  </div>
-                  <div class="board-row__posts">
-                    <span class="board-row__num">2</span>
-                    <span class="board-row__content">
-                      저번공연 너무 좋지 않았어요?? ditate! Lorem ipsum dolor
-                      sit amet consectetur, adipisicing elit. Aliquid ratione ab
-                      sint quaerat ea eaque dolores distinctio facere sequi,
-                      ipsam recusandae assumenda, vitae id hic a tempore
-                      expedita ipsa non?
-                    </span>
-                    <span class="board-row__date">
-                      05-12
-                    </span>
-                  </div>
-                  <div class="board-row__posts">
-                    <span class="board-row__num">3</span>
-                    <span class="board-row__content">
-                      저번공연 너무 좋지 않았어요?? ditate! Lorem ipsum dolor
-                      sit amet consectetur, adipisicing elit. Aliquid ratione ab
-                      sint quaerat ea eaque dolores distinctio facere sequi,
-                      ipsam recusandae assumenda, vitae id hic a tempore
-                      expedita ipsa non?
-                    </span>
-                    <span class="board-row__date">
-                      05-12
-                    </span>
-                  </div>
-                  <div class="board-row__posts">
-                    <span class="board-row__num">15</span>
-                    <span class="board-row__content">
-                      얼른 다시 뵙고싶어요!!
-                    </span>
-                    <span class="board-row__date">
-                      05-12
-                    </span>
-                  </div>
-                  <div class="board-row__posts">
-                    <span class="board-row__num">15</span>
-                    <span class="board-row__content">
-                      얼른 다시 뵙고싶어요!!
-                      <span class="board-row__cnt">[122]</span>
-                    </span>
-                    <span class="board-row__date">
-                      05-12
-                    </span>
-                  </div>
-                  <div class="board-row__posts">
-                    <span class="board-row__num">15</span>
-                    <span class="board-row__content">
-                      얼른 다시 뵙고싶어요!!
-                    </span>
-                    <span class="board-row__date">
-                      05-12
-                    </span>
-                  </div>
-                  <div class="board-row__posts">
-                    <span class="board-row__num">15</span>
-                    <span class="board-row__content">
-                      얼른 다시 뵙고싶어요!!
-                    </span>
-                    <span class="board-row__date">
-                      05-12
-                    </span>
-                  </div>
-                  <div class="board-row__posts">
-                    <span class="board-row__num">15</span>
-                    <span class="board-row__content">
-                      얼른 다시 뵙고싶어요!!
-                    </span>
-                    <span class="board-row__date">
-                      05-12
-                    </span>
-                  </div>
-                  <div class="board-row__posts">
-                    <span class="board-row__num">15</span>
-                    <span class="board-row__content">
-                      얼른 다시 뵙고싶어요!!
-                    </span>
-                    <span class="board-row__date">
-                      05-12
-                    </span>
-                  </div>
-                </article>
-              </div>
-            </div>
-            <div class="busker-content__item">
-              <img src="../../img/piano.png" />
-            </div>
-            <div class="busker-content__item">
-              <div class="busker-content__support-wrapper">
-                <div class="busker-content__support">
-                  <header class="busker-content__support-header">
-                    <div class="support-header__title">
-                      후원하기
-                    </div>
-                    <div class="support-header__bar">
-                      <div class="support-header__origin-bar"></div>
-                      <div class="support-header__state-bar"></div>
-                    </div>
-                  </header>
-                  <div class="busker-content__support-row">
-                    <div class="busker-content__support-user">jin</div>
-                    <div class="busker-content__support-title">
-                      응원합니다! 이정환님
-                    </div>
-                    <div class="busker-content__support-date">04-13</div>
-                  </div>
-                  <div class="busker-content__support-row">
-                    <div class="busker-content__support-user">kyu</div>
-                    <div class="busker-content__support-title">
-                      다음에 또 보러갈게요!
-                    </div>
-                    <div class="busker-content__support-date">04-13</div>
-                  </div>
-                  <div class="busker-content__support-row">
-                    <div class="busker-content__support-user">kyu</div>
-                    <div class="busker-content__support-title">
-                      다음에 또 보러갈게요!
-                    </div>
-                    <div class="busker-content__support-date">04-13</div>
-                  </div>
-                  <div class="busker-content__support-row">
-                    <div class="busker-content__support-user">kyu</div>
-                    <div class="busker-content__support-title">
-                      다음에 또 보러갈게요!
-                    </div>
-                    <div class="busker-content__support-date">04-13</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="busker-content__item">
-              <img src="../../img/piano.png" />
-            </div>
-            <div class="busker-content__item">
-              <img src="../../img/piano.png" />
-            </div>
-            <div class="busker-content__item">
-              <img src="../../img/piano.png" />
-            </div>
-            <div class="busker-content__item">
-              <img src="../../img/piano.png" />
-            </div>
-            <div class="busker-content__item">
-              <img src="../../img/piano.png" />
-            </div>
-            <div class="busker-content__item">
-              <img src="../../img/piano.png" />
-            </div>
-            <div class="busker-content__item">
-              <img src="../../img/piano.png" />
-            </div>
+            <input class="busker-enroll__date" />
           </section>
+
           <aside class="busker-chat">
             <header class="busker-chat__header">
               <span class="chat-header__title">버스커 채팅 </span>
@@ -449,6 +273,10 @@
         </main>
       </section>
     </div>
-    <script src="../../js/artist/artist.js"></script>
+    <script src="<c:url value='/resources/js/artist/main/artist.js' />"></script>
+    <script src="<c:url value='/resources/js/artist/board/map.js' />"></script>
+    <script>
+    	$(".busker-side__info-btn i").trigger("click");
+    </script>
   </body>
 </html>
