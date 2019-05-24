@@ -21,10 +21,10 @@ public class KakaoController {
 	// 카카오 로그인 디비에 없을시에 회원가입 처리후 메인으로 이동
 	@RequestMapping("social-signup.do")
 	public String signupMember(HttpSession session, Member member,RedirectAttributes rttr) {
-		System.out.println(member.getId());
-		System.out.println(member.getName());
-		System.out.println(member.getNickName());
-		System.out.println(member.getMemberType());
+//		System.out.println(member.getId());
+//		System.out.println(member.getName());
+//		System.out.println(member.getNickName());
+//		System.out.println(member.getMemberType());
 		//member에 닉네임이 있음
 //		Member mem = (Member)session.getAttribute("user");
 		//member에 아이디 설정

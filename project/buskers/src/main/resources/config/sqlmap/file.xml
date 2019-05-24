@@ -24,4 +24,10 @@
 		  from tb_file
 		 where group_no = #{groupNo}
 	</delete>
+	
+	<delete id="selectFileByGroupNo" parameterType="int">
+		select * 
+		  from tb_file
+		 where group_no = #{groupNo}
+	</delete>
 </mapper>

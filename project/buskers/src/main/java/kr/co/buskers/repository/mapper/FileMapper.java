@@ -9,4 +9,5 @@ public interface FileMapper {
 	List<File> selectFile(int groupNo);
 	File selectFileMaxNo();
 	void deleteFileAll(int groupNo);
+	List<File> selectFileByGroupNo(int groupNo);
 }
