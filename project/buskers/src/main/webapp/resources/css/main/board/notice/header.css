@@ -1,24 +1,27 @@
 .notice-board__header {
-	background-image: url("../../../../img/musician.jpg");
-	background-position: top center;
+	background-image: url("../../../../img/back01.jpg");
+	background-position: bottom;
 	background-repeat: no-repeat;
 	background-size: cover;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-end;
     align-items: center;
     font-size: 36px;
     color: white;
     font-weight: bolder;
     height: 200px;
+    padding-bottom: 40px;
   }
   
   .notice-board__header-title {
+    font-family: 'Nanum Gothic', sans-serif;
     text-transform: capitalize;
+    
   }
   
   .notice-board__main-header {
-      border-bottom : 1px solid rgba(0, 0, 0, 0.3);
+      border-bottom : 2px solid lightgrey;
       margin-top : 30px;
   }
   

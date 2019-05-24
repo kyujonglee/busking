@@ -69,7 +69,16 @@
     	<input type="hidden"  id="accessToken" name="accessToken" value=""/>
     </form> 
 </main>
-    <script>
+<script>
+//  뒤로가기 실행시 이전페이지로 이동하게끔(직접주소치면 의미가 없어짐!)
+// 	window.onpageshow = function(event) {
+// 	    if ( event.persisted || (window.performance && window.performance.navigation.type == 2)) {
+// 			alert("로그인상태로 로그인화면으로 넘어올수 없습니다!");
+// 			history.forward();
+// 	    }
+	
+// 	}
+
     	let msg = '${msg}';
     	if (msg === 'msgPass') {
 			alert("비밀번호가 틀렸습니다!");    		
@@ -244,11 +253,4 @@
 	  
 	}
 	
-	
-	
-	
-	
-	
-        
-		  
-    </script>
+</script>

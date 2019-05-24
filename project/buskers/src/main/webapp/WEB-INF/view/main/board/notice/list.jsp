@@ -5,11 +5,12 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%> 
 <link rel="stylesheet"
 	href="<c:url value='/resources/css/main/board/notice/notice.css'/>" />
+<link href="https://fonts.googleapis.com/css?family=Playball&display=swap" rel="stylesheet">
 <title>공지사항</title>
 <main class="notice-board main-board">
 <div class="board">
 	<header class="notice-board__header">
-		<span class="notice-board__header-title">notice</span> <span
+		<span class="notice-board__header-title">공지사항</span> <span
 			class="notice-board__header-subtitle">ㅡ</span>
 	</header>
 	<div class="notice-board__main">
