@@ -42,7 +42,12 @@ public class MemberController {
 	
 	// 로그인 화면
 	@RequestMapping("loginform.do")
-	public void loginform() {}
+	public String loginform(HttpSession session) {
+		if(session.getAttribute("user") != null) {
+			return "redirect:/index.jsp";
+		}
+		return "main/member/loginform";
+	}
 	
 	// 로그인 처리
 	@RequestMapping("login.do")
