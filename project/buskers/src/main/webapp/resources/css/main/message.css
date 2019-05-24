@@ -1,0 +1,177 @@
+.post_box_wrapper {
+	padding: 20px;
+	font-size: 12px;
+}
+
+.message_title {
+	font-family: 'Nanum Gothic', sans-serif;
+	font-size: 20px;
+    cursor: pointer;
+    margin-top: 10px;
+    margin-left: 30px;
+}
+
+.message_title > a {
+	cursor: default;
+}
+
+.message_title > a:hover {
+	color: inherit;
+}
+
+* {
+	font-family:'Malgun Gothic';
+	
+}
+
+#post_box li {
+	font-size: 14px;
+}
+
+#post_box .active {
+	font-weight: bold;
+}
+
+#post_box .active a {
+	color: white;
+	font-weight: bold;
+	background: #333333;
+}
+
+#post_box a:hover {
+	color: tomato;
+	font-weight: bold;
+}
+
+#post_box a:focus {
+	color: white;
+	font-weight: bold;
+	background: #333333;
+}
+
+.nav-tabs > li > a {
+    line-height: 1 !important;
+}
+
+.tab-content th {
+	background: #333333;
+	color: white;
+}
+
+.tab-content th:nth-child(1) {
+	width: 5%;
+}
+.tab-content th:nth-child(2) {
+	width: 5%;
+}
+.tab-content th:nth-child(3) {
+	width: 50%;
+}
+.tab-content th:nth-child(4) {
+	width: 15%;
+}
+.tab-content th:nth-child(5) {
+	width: 25%;
+}
+
+.post_box_button {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.post_box_button > div > a {
+	font-weight: bold;
+	background: black;
+	color: white;
+	padding: 5px;
+	border-radius: 5px;
+	cursor: pointer;
+	font-size: 13px;
+}
+
+.post_box_button > div > a:hover {
+	color: tomato;
+}
+
+.tab-content input {
+	margin: 0;
+	vertical-align: middle;
+}
+
+.write_form_submit_wrapper {
+	padding: 20px;
+}
+
+.write_form_submit > input {
+	margin-bottom: 10px;
+}
+
+.post_bottom_button {
+	margin-top: 20px;
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+}
+
+.post_bottom_button > div > a {
+	font-weight: bold;
+	background: black;
+	color: white;
+	padding: 5px;
+	border-radius: 5px;
+	cursor: pointer;
+	margin-left: 5px;
+}
+
+.post_bottom_button > div > a:hover {
+	color: tomato;
+}
+
+.write_form_submit_wrapper div {
+	font-weight: bold;
+}
+
+.message_detail {
+	padding: 20px;
+}
+
+.message_detail span {
+	font-weight: bold;
+	width: 80px;
+}
+
+.message_detail a {
+	margin-right: 20px;
+    font-weight: 100;
+}
+
+.post_bottom_button {
+	border: none !important;
+}
+
+#message_detail_content {
+	background: white;
+	cursor: default;
+	resize: none;
+}
+
+.post_bottom_button > div > a {
+	font-size: 13px;
+	margin: 0;
+}
+
+.fa-envelope {
+	color: tomato;
+}
+
+.fa-envelope-open {
+	color: grey;
+}
+
+.notime {
+	text-align: center;
+	margin: 0 auto;
+	font-size: 25px;
+}
+

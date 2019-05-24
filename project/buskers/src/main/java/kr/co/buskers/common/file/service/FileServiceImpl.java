@@ -1,4 +1,4 @@
-package kr.co.buskers.common.file;
+package kr.co.buskers.common.file.service;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
@@ -16,6 +16,10 @@ public class FileServiceImpl implements FileService {
 	
 	@Autowired
 	private FileMapper mapper;
+	
+	public void deleteFile(int groupNo) throws Exception {
+		mapper.deleteFileAll(groupNo);
+	}
 	
 	public int insertFile(kr.co.buskers.repository.domain.File file) throws Exception {
 		kr.co.buskers.repository.domain.File f = new kr.co.buskers.repository.domain.File();
@@ -36,6 +40,8 @@ public class FileServiceImpl implements FileService {
 		
 		return f.getGroupNo();
 	}
+	
+	
 	
 	public kr.co.buskers.repository.domain.File uploadImage(MultipartFile multipartFile, String uriPath) throws Exception {
 		UUID uuid = UUID.randomUUID();

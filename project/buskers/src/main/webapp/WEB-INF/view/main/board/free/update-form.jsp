@@ -11,14 +11,14 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <link rel="stylesheet" href="<c:url value='/resources/css/main/board/free/koo.css'/>"/>
     <link rel="stylesheet" href="<c:url value='/resources/css/main/board/agency/agency.css'/>" />
+    <title>글 수정</title>
 		<main class="main-freeboard">
-			<div class="agency">
-			<div class="freeboard__insert">
-				<div class="board_title">
-               	 <div class="board_title_underline">
-                    <a href="<c:url value='/main/board/free/list.do'/>">자유게시판</a>
-               	 </div>
-        	    </div>
+		<div class="main_board_update">
+			<div class="board_title">
+				<div class="board_title_underline">
+					<a href="<c:url value='/main/board/free/list.do'/>">자유게시판</a>
+				</div>
+			</div>
 			
 			<form action="update.do" method="post" id="update_form">
 	            <div class="board_head_line">
@@ -42,15 +42,15 @@
 
           	  <br><br><br>
 			</form>
-			</div>
-			</div>
+		</div>
 		</main>
     <script>
+    
     $(document).ready(function () {
     	let prevGroupNo = "${board.groupNo}";
    	   	$('#summernote').summernote({
    	    	height: 500,                 
-   	        width: 1060,
+   	        width: 1200,
    	        focus: false,
    	        callbacks: { 
    		        onImageUpload: function (files, editor, welEditable) {
@@ -83,6 +83,7 @@
 	   	
 	   	$(".fa-edit").click(function () {
 	   		let groupNo = 0;
+	   		
 			for (let i = 0; i < filePath.length; i++) {
 				console.log($('#summernote').val());
 				if ( $('#summernote').val().includes(filePath[i].systemName) == false ) {
@@ -113,10 +114,8 @@
 	   					systemName : systemName
 	   					},
 	   				success: function (result) {
-	   					if (prevGroupNo == "0") {
-		   					groupNo = result;
-		   					$(".groupNo").val(result);
-	   					}
+   						$(".groupNo").val(result);
+	   					groupNo = result;
 	   				}
 				});
 			}

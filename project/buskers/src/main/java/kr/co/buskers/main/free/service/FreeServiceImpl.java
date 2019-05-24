@@ -25,8 +25,6 @@ public class FreeServiceImpl implements FreeService {
 	public Map<String, Object> list(FreePage freePage) {
 		Map<String, Object> map = new HashMap<>();
 
-		System.out.println("검색 타입 : " + freePage.getSearchType());
-		System.out.println("검색어 : " + freePage.getInput());
 		map.put("searchType", freePage.getSearchType());
 		map.put("input", freePage.getInput());
 		map.put("sortType", freePage.getSortType());

@@ -1,4 +1,4 @@
-package kr.co.buskers.main.kakaomember.controller;
+package kr.co.buskers.main.socialmember.controller;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -8,7 +8,8 @@ import java.net.URL;
 
 import org.springframework.stereotype.Service;
 
-@Service
+
+@Service("kr.co.buskers.main.socialmember.controller.KakaoApi")
 public class KakaoApi {
 	public void kakaoLogout(String access_Token) {
 	    String reqURL = "https://kapi.kakao.com/v1/user/logout";

@@ -25,8 +25,8 @@ public class MemberServiceImpl implements MemberService {
 		mapper.signupMember(member);
 	}
 	@Override
-	public void signupKakaoMember(Member member) {
-		mapper.signupKakaoMember(member);
+	public void signupSocialMember(Member member) {
+		mapper.signupSocialMember(member);
 	}
 
 
@@ -65,6 +65,11 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public void newPass(Member member) {
 		mapper.newPass(member);
+	}
+
+
+	public void updateNickNameSocialMember(Member member) {
+		mapper.updateNickNameSocialMember(member);
 	}
 	
 	

@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.buskers.repository.mapper.HeaderMapper">
+	<select id="selectMessage" parameterType="freePage" resultType="message">
+		select *
+  		  from (select @rownum:=@rownum+1 rnum, a.*
+		          from ( select *
+		                   from tb_message m, tb_member mem
+		                  where m.sender_member_no = mem.member_no
+						    and (@rownum:=0)=0
+						    and receiver_member_no = #{receiverMemberNo}
+						    and receiver_is_deleted = 'N'
+						<choose>
+							<when test="searchType == 'title'">
+								and title like concat('%', #{input}, '%')
+							</when>
+							<when test="searchType == 'content'">
+								and f.content like concat('%', #{input}, '%')
+							</when>
+							<when test="searchType == 'nickName'">
+								and nick_name like concat('%', #{input}, '%')
+							</when>
+							<otherwise>
+							</otherwise>
+						</choose>
+						  order by msg_no desc
+						
+	                   ) a
+		       ) b
+		 where rnum between #{begin} and #{end}
+	</select>
+	
+	<select id="selectSentMessage" parameterType="freePage" resultType="message">
+		select *
+  		  from (select @rownum:=@rownum+1 rnum, a.*
+		          from ( select *
+		                   from tb_message m, tb_member mem
+		                  where m.receiver_member_no = mem.member_no
+						    and (@rownum:=0)=0
+						    and sender_member_no = #{senderMemberNo}
+						    and sender_is_deleted = 'N'
+						<choose>
+							<when test="searchType == 'title'">
+								and title like concat('%', #{input}, '%')
+							</when>
+							<when test="searchType == 'content'">
+								and f.content like concat('%', #{input}, '%')
+							</when>
+							<when test="searchType == 'nickName'">
+								and nick_name like concat('%', #{input}, '%')
+							</when>
+							<otherwise>
+							</otherwise>
+						</choose>
+						  order by msg_no desc
+						
+	                   ) a
+		       ) b
+		 where rnum between #{begin} and #{end}
+	</select>
+	
+	<select id="selectMemberNoByNickName" parameterType="String" resultType="int">
+		select member_no
+		  from tb_member
+		 where nick_name = #{nickName};
+	</select>
+	
+	<insert id="insertMessage" parameterType="message">
+		insert into tb_message(
+			sender_member_no, receiver_member_no, title, content
+		)values(
+			#{senderMemberNo}, #{receiverMemberNo}, #{title}, #{content}
+		)
+	</insert>
+	
+	<update id="deleteMessageList" parameterType="message">
+		update tb_message
+		   set receiver_is_deleted = 'Y'
+		 where msg_no in
+		<foreach item="msgNo" collection="msgNos" open="(" separator="," close=")">
+			#{msgNo,jdbcType=VARCHAR}
+		</foreach>
+
+	</update>
+	
+	<update id="deleteSentMessageList" parameterType="message">
+		update tb_message
+		   set sender_is_deleted = 'Y'
+		 where msg_no in
+		<foreach item="msgNo" collection="msgNos" open="(" separator="," close=")">
+			#{msgNo,jdbcType=VARCHAR}
+		</foreach>
+
+	</update>
+	
+	<select id="selectMessageByNo" parameterType="int" resultType="message">
+		select * 
+		  from tb_message m, tb_member mem
+		 where m.sender_member_no = mem.member_no
+		   and msg_no = #{msgNo}
+	</select>	
+	
+	<update id="updateMessageReadStatus" parameterType="int">
+		update tb_message
+		   set read_status = 'Y'
+		 where msg_no = #{msgNo}
+
+	</update>
+</mapper>

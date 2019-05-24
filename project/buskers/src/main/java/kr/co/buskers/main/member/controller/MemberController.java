@@ -15,10 +15,10 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.UrlBasedViewResolver;
 
-import kr.co.buskers.main.kakaomember.controller.KakaoApi;
 import kr.co.buskers.main.member.service.MemberService;
 import kr.co.buskers.main.member.util.Email;
 import kr.co.buskers.main.member.util.EmailSender;
+import kr.co.buskers.main.socialmember.controller.KakaoApi;
 import kr.co.buskers.repository.domain.Member;
 
 @Controller
@@ -28,14 +28,14 @@ public class MemberController {
 	@Autowired
 	private MemberService service;
 	
-	@Autowired 
-	private KakaoApi kka;
-	
 	@Autowired
 	private EmailSender emailSender;
 	
 	@Autowired
 	private Email email;
+	
+	@Autowired 
+	private KakaoApi kka;
 	
 	@Autowired
 	BCryptPasswordEncoder passEncoder;
@@ -88,7 +88,11 @@ public class MemberController {
 	@RequestMapping("logout.do")
 	public ModelAndView logout(HttpSession session) {
 		Member mem = (Member)session.getAttribute("user");
-		kka.kakaoLogout(mem.getAccessToken());
+		try {
+			kka.kakaoLogout(mem.getAccessToken());
+		}catch(Exception e) {
+			
+		}
 		session.removeAttribute("user");
 		session.invalidate();
 		ModelAndView mav = new ModelAndView();

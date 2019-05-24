@@ -1,4 +1,4 @@
-package kr.co.buskers.common.file;
+package kr.co.buskers.common.file.controller;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import kr.co.buskers.common.file.service.FileService;
+
 @RequestMapping("/file")
 @Controller
 public class FileController {
@@ -26,6 +28,12 @@ public class FileController {
 	@ResponseBody
 	public int insertFile(kr.co.buskers.repository.domain.File file) throws Exception {
 		return service.insertFile(file);
+	}
+	
+	@RequestMapping("delete-file-ajax.do")
+	@ResponseBody
+	public void deleteFile(int groupNo) throws Exception {
+		service.deleteFile(groupNo);
 	}
 	
 	@RequestMapping("image-upload.do")

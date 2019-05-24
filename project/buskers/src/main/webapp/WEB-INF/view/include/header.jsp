@@ -59,9 +59,13 @@
 				                        <a class="header-j2" href="#">마이 페이지</a>
 				                    </div>
 				                    <div>
-				                        <a class="header-j3" id="logout" href="<c:url value='/main/member/logout.do'/>" target="_top">로그아웃</a>
+<%-- 				                        <a class="header-j3" id="logout" href="<c:url value='/main/member/logout.do'/>" target="_top">로그아웃</a> --%>
+				                        <a class="header-j3" id="logout" target="_top">로그아웃</a>
 				                    </div>
 				                </div>
+				                <form id="social-logout" action="kakao-login.do" >
+				                	<input id="access_token" value="" name="accessToken">
+				                </form>
 				            </div>
 				        </div>
 				    </div>
@@ -73,5 +77,23 @@
         $(".header-c").click(function() {
             $(".h-toggle").toggle();
         });
+        $("#logout").click(function(){
+        	 $.ajax({
+                 type : "POST",
+                 dataType : 'text',
+                 url : "http://nid.naver.com/nidlogin.logout",
+                 crossDomain : true,
+                 xhrFields : {
+                    withCredentials : true
+                 }
+              }).done(function(data) {
+            	  alert("에이작스 로그아웃 다녀옴");
+      			 $("#access_token").val("${sessionScope.user.nickName}");
+                 $('#social-logout').submit();
+              }).fail(function(xhr, textStatus, errorThrown) {
+            	  alert("ajax실패")
+              });
+              alert("로그아웃 되었습니다");
+        })
     </script>
 </header>

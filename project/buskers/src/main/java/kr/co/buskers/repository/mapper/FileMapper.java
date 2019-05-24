@@ -8,4 +8,5 @@ public interface FileMapper {
 	void insertFile(File file);
 	List<File> selectFile(int groupNo);
 	File selectFileMaxNo();
+	void deleteFileAll(int groupNo);
 }

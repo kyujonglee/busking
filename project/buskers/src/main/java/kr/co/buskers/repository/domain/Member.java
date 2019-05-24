@@ -5,7 +5,6 @@ import java.util.Date;
 public class Member {
 
 	private int memberNo;
-	
 	private String id;
 	private String pass;
 	private String email;
@@ -20,51 +19,7 @@ public class Member {
 	private String memberType;
 	private String accessToken;
 	private String refreshToken;
-	
-	
-	public String getAccessToken() {
-		return accessToken;
-	}
-	public void setAccessToken(String accessToken) {
-		this.accessToken = accessToken;
-	}
-	public String getRefreshToken() {
-		return refreshToken;
-	}
-	public void setRefreshToken(String refreshToken) {
-		this.refreshToken = refreshToken;
-	}
-	public String getNickName() {
-		return nickName;
-	}
-	public void setNickName(String nickName) {
-		this.nickName = nickName;
-	}
-	public char getIsBusker() {
-		return isBusker;
-	}
-	public void setIsBusker(char isBusker) {
-		this.isBusker = isBusker;
-	}
-	public char getIsAgency() {
-		return isAgency;
-	}
-	public void setIsAgency(char isAgency) {
-		this.isAgency = isAgency;
-	}
-	
-	public char getSex() {
-		return sex;
-	}
-	public void setSex(char sex) {
-		this.sex = sex;
-	}
-	public char getIsAdmin() {
-		return isAdmin;
-	}
-	public void setIsAdmin(char isAdmin) {
-		this.isAdmin = isAdmin;
-	}
+	private String name;
 	public int getMemberNo() {
 		return memberNo;
 	}
@@ -95,11 +50,11 @@ public class Member {
 	public void setJoinDate(Date joinDate) {
 		this.joinDate = joinDate;
 	}
-	public String getMemberType() {
-		return memberType;
+	public char getSex() {
+		return sex;
 	}
-	public void setMemberType(String memberType) {
-		this.memberType = memberType;
+	public void setSex(char sex) {
+		this.sex = sex;
 	}
 	public String getProfileImg() {
 		return profileImg;
@@ -112,6 +67,54 @@ public class Member {
 	}
 	public void setProfileImgPath(String profileImgPath) {
 		this.profileImgPath = profileImgPath;
+	}
+	public char getIsAdmin() {
+		return isAdmin;
+	}
+	public void setIsAdmin(char isAdmin) {
+		this.isAdmin = isAdmin;
+	}
+	public char getIsBusker() {
+		return isBusker;
+	}
+	public void setIsBusker(char isBusker) {
+		this.isBusker = isBusker;
+	}
+	public char getIsAgency() {
+		return isAgency;
+	}
+	public void setIsAgency(char isAgency) {
+		this.isAgency = isAgency;
+	}
+	public String getNickName() {
+		return nickName;
+	}
+	public void setNickName(String nickName) {
+		this.nickName = nickName;
+	}
+	public String getMemberType() {
+		return memberType;
+	}
+	public void setMemberType(String memberType) {
+		this.memberType = memberType;
+	}
+	public String getAccessToken() {
+		return accessToken;
+	}
+	public void setAccessToken(String accessToken) {
+		this.accessToken = accessToken;
+	}
+	public String getRefreshToken() {
+		return refreshToken;
+	}
+	public void setRefreshToken(String refreshToken) {
+		this.refreshToken = refreshToken;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
 	}
 	
 }
