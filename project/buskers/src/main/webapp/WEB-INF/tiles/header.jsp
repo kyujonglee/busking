@@ -74,17 +74,19 @@
 								</a>
 								<div class="header-i6">
 									<div class="header-i7">${sessionScope.user.id}</div>
-									<div class="header-i8">${sessionScope.user.email}</div>
+									<div class="header-i8">
+										${sessionScope.user.email}
+									</div>
 									<div class="header-i9">
 										<span>${sessionScope.user.nickName} 님</span><br>
 										<span> 안녕하세요!</span>
 									</div>
-									<a class="header-i10" href="#">나의소셜 계정</a>
+									<a class="header-i10" href="<c:url value='/main/member/profile.do'/>">프로필 설정</a>
 								</div>
 							</div>
 							<div class="header-j">
 								<div>
-									<a class="header-j2" href="<c:url value='/main/member/myPage.do'/>">마이 페이지</a>
+									<a class="header-j2" href="#">나의 페이지</a>
 								</div>
 								<div>
 									<a class="header-j3" id="logout" target="_top">로그아웃</a>

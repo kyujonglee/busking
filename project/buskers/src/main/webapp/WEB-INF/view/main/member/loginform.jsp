@@ -5,6 +5,7 @@
     <link rel="stylesheet" href="<c:url value='/resources/css/main/member/login.css'/>" />
     <script src="<c:url value='/resources/js/jquery-3.4.1.min.js'/>"></script>
     <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+<title>로그인</title>    
 <main class="main-board">    
     <!-- CONTAINER -->
     <div class="login-body">

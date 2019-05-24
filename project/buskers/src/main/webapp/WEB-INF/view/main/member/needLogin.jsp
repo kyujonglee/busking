@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <link rel="stylesheet" href="<c:url value='/resources/css/common/sweetalert2.min.css'/>" />
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
-<title>Insert title here</title>
+<title>buskers</title>
 </head>
 <body>
 <script>
