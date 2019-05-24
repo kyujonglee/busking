@@ -34,11 +34,20 @@ public class FileController {
 	
 	@RequestMapping("delete-file-ajax.do")
 	@ResponseBody
-	public Map<String, Object> deleteFile(int groupNo, Model model) throws Exception {
-		Map<String, Object> result = service.deleteFile(groupNo);
+	public void deleteFile(int groupNo) throws Exception {
+		service.deleteFile(groupNo);
 		
+	}
+	
+	@RequestMapping("select-file-ajax.do")
+	@ResponseBody
+	public Map<String, Object> selectFile(int groupNo, Model model) throws Exception {
+		System.out.println("===============");
+		System.out.println(groupNo);
+		Map<String, Object> result = service.selectFile(groupNo);
 		model.addAttribute("file", result.get("file"));
-		
+		System.out.println(result.get("file"));
+		System.out.println("===============");
 		return result;
 	}
 	
