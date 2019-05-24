@@ -25,9 +25,9 @@
 		 where group_no = #{groupNo}
 	</delete>
 	
-	<delete id="selectFileByGroupNo" parameterType="int">
+	<select id="selectFileByGroupNo" parameterType="int" resultType="file">
 		select * 
 		  from tb_file
 		 where group_no = #{groupNo}
-	</delete>
+	</select>
 </mapper>

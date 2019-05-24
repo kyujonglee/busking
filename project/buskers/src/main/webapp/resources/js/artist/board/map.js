@@ -19,7 +19,7 @@ function getWeather(lat, lon) {
     });
 }
 
-let items = {};
+export let items = {};
 
 function mapInit(lat, lon) {
   const infowindow = new daum.maps.InfoWindow({ zIndex: 1 });
@@ -211,18 +211,21 @@ function init() {
   console.log("초기실행");
   let lat = 37.5642135;
   let lon = 127.0016985;
+  let flag = true;
   if (navigator.geolocation) {
     // GPS를 지원하면
     navigator.geolocation.getCurrentPosition(
-      function(position) {
+      function(position,flag) {
         lat = position.coords.latitude;
         lon = position.coords.longitude;
         mapInit(lat, lon);
-        return;
+        console.log("what");
+        flag = false;
       },
       function(error) {
         mapInit(lat, lon);
         console.error(error);
+        return;
       },
       {
         enableHighAccuracy: false,
@@ -232,8 +235,12 @@ function init() {
     );
   } else {
     alert("GPS를 지원하지 않습니다");
+    console.log(flag);
+    if(flag) {
+    	mapInit(lat, lon);
+    	console.log("fuck");
+    }
   }
-  mapInit(lat, lon);
 }
 init();
 

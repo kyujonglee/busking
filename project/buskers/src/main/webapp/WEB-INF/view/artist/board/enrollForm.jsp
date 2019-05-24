@@ -274,9 +274,7 @@
       </section>
     </div>
     <script src="<c:url value='/resources/js/artist/main/artist.js' />"></script>
-    <script src="<c:url value='/resources/js/artist/board/map.js' />"></script>
-    <script>
-    	$(".busker-side__info-btn i").trigger("click");
-    </script>
+    <script type="module" src="<c:url value='/resources/js/artist/board/map.js' />"></script>
+<%--     <script src="<c:url value='/resources/js/artist/board/test.js' />"></script> --%>
   </body>
 </html>

@@ -127,6 +127,7 @@ img {
 }
 
 .login_menu {
+  font-family:'Malgun Gothic';
   display: flex;
   justify-content: flex-end;
   align-items: center;
@@ -256,6 +257,10 @@ img {
   margin-left: 10px;
   margin-right: 10px;
   cursor: pointer;
+}
+
+#top-menu > li > a {
+  font-size: 15px;
 }
 
 #top-menu a:hover {
@@ -483,39 +488,6 @@ body::-webkit-scrollbar-button {display:none}
 	height: 1000px;
 }
 
-.buskers_map {
-	margin: 0 auto;
-	width: 100%;
-	margin-top: 50px;
-}
-
-.buskers_map_title > div:first-child {
-	display: flex;
-	justify-content: center;
-    font-family: 'Italianno', cursive;
-    color: #c1a35f;
-    font-size: 50px;
-}
-
-.buskers_map_title > div:last-child {
-	margin: 0 auto;
-	display: flex;
-	justify-content: center;
-	padding-bottom: 10px;
-	font-family: "Open Sans", sans-serif;
-	color: black;
-	font-size: 35px;
-	font-weight: bold;
-	margin-top: -30px;
-	width: 330px;
-	border-bottom: 2px solid tomato;
-}
-
-#mu-map {
-    height: 450px;
-    width: 100%;
-}
-
 
 /*==================
  FOOTER SECTION
@@ -582,4 +554,23 @@ body::-webkit-scrollbar-button {display:none}
   font-family: "Open Sans", sans-serif;
   color: white;
 }
+/* 메인 탑버튼*/
+.view-top-btn {
+    all: unset;
+    position: fixed;
+    bottom : 50px;
+    left: 190vh;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 5vh;
+    height: 5vh;
+    padding : 5px;
+    border-radius: 5px;
+    background-color : #dfe4ea;
+    cursor: pointer;
+    z-index:2;
+    opacity: 0.7;
+}
+
 
