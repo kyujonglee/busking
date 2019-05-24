@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <link rel="stylesheet" href="<c:url value='/resources/css/main/member/findPassword.css'/>"/>
-<title>buskers</title>
+<title>비밀번호 찾기</title>
 <main class="main-board">  
     <!-- CONTAINER -->
     <div class="login-body">
