@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <link rel="stylesheet" href="<c:url value='/resources/css/main/header/header.css'/>" />
+<link rel="stylesheet" href="<c:url value='/resources/css/main/main-map.css'/>" />
     <link href='https://fonts.googleapis.com/css?family=Tangerine' rel='stylesheet' type='text/css'>        
     <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Prata' rel='stylesheet' type='text/css'>
@@ -53,15 +54,21 @@
 					<div>Performance Stage</div>
 				</div>
 				
-				<div class="buskers_map">
+				<div class="buskers_map_detail">
 					<section id="mu-map">
 				        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d9207.358598888495!2d-85.64847801496286!3d30.183918972289003!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0000000000000000%3A0x2320479d70eb6202!2sDillard's!5e0!3m2!1sbn!2sbd!4v1462359735720" width="100%" height="100%" frameborder="0" allowfullscreen=""></iframe>
-					</section>
+					</section> 
 				</div>
 			</div>
 		</div>
 
- 
+ 		
+ 		<!-- 스크롤 버튼 -->
+ 		<button type="button" class="view-top-btn">
+	    	<i class="fas fa-angle-up fa-2x"></i>
+	    </button>
+	    
+	    
 		<!-- Start Footer -->
 		<footer id="mu-footer">
 		  <div class="container">
@@ -86,4 +93,24 @@
   
 	  <script>
 	  	$(".header_background").css({"display": "none"});
+	  	
+	  	let topbol = true;
+	  	$(document).on("click",".mu-readmore-btn",function(){
+			let index = $(".main_body_container").offset().top-10;
+	  		if(topbol){
+				$('html,body').stop().animate({scrollTop:index},1000);
+				topbol=false;	  			
+	  		}else{
+				$('html,body').stop().animate({scrollTop:index-60},1000);
+	  		}
+		});
+	  	
+	  	$( window ).scroll( function() {
+	  		if ( $( this ).scrollTop() > $(".main_body_container").position().top-80) {
+	  			$( '.buskers_map'  ).fadeIn();
+	  		} 
+	  	} );
+	  	$(".view-top-btn").click(function(){
+	  	  $('html,body').stop().animate({scrollTop:0},700);
+	  	})
 	  </script>

@@ -138,30 +138,6 @@
 		</mvc:message-converters>
 	</mvc:annotation-driven>
 	
-	<!-- gmail -->
-    <bean id="mailSender" class ="org.springframework.mail.javamail.JavaMailSenderImpl" >
-        <property name="host" value="smtp.gmail.com" />
-        <property name="port" value="587" />
-        <property name="defaultEncoding" value="utf-8"/>
-        <property name="username" value="pjhyum314@gmail.com" />
-        <property name="password" value="dbsqls0917" />
-       
-        <property name="javaMailProperties">
-            <props>
-                <prop key="mail.smtp.starttls.enable">true</prop>
-                <prop key="mail.smtp.auth">true</prop>
-               
-               
-            </props>
-        </property>
-       
-    </bean>
-    <bean id="email" class="kr.co.buskers.main.member.util.Email">
-    </bean>
-    <bean id="emailSender" class="kr.co.buskers.main.member.util.EmailSender">
-    </bean>
-
-
     
 	
 </beans>

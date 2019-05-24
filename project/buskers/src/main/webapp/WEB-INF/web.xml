@@ -27,6 +27,7 @@
 			<param-value>
 				classpath:config/spring/servlet-context.xml
 				classpath:config/spring/spring-security.xml
+				classpath:config/spring/mail-sender.xml
 			</param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>
