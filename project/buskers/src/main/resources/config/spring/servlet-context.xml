@@ -120,6 +120,9 @@
         <beans:property name="viewClass" value="org.springframework.web.servlet.view.tiles3.TilesView" />
         <beans:property name="order" value="1" />
     </beans:bean>   
+    
+    
+
      
 	<mvc:annotation-driven >
 	<!-- Ajax 한글 -->
