@@ -47,6 +47,7 @@
     <script>
     
     $(document).ready(function () {
+    	
     	let prevGroupNo = "${board.groupNo}";
    	   	$('#summernote').summernote({
    	    	height: 500,                 
@@ -59,7 +60,27 @@
    			}
    	    });
    	   	
-   	   	let filePath = new Array();
+   	 	let filePath = new Array();
+   	   	
+		if (prevGroupNo != "0") {
+	   		$.ajax({
+				type: "POST",
+				url: "<c:url value='/file/select-file-ajax.do' />",
+				async: false,
+				data: 
+					{
+					groupNo : prevGroupNo
+					},
+				dataType: "json",
+				success: function (fileMap) {
+					const fileList= fileMap.file;
+					for (let i = 0; i < fileList.length; i++) {
+						filePath.push(fileList[i]);		
+					}
+				}
+			});
+		}
+		console.log(filePath);
    	   	let uriPath = "/buskers/main/board/free/";
 	   	function sendFile(file, editor, welEditable) {
 			data = new FormData();
@@ -81,7 +102,9 @@
     		});
 		}  
 	   	
+	   	
 	   	$(".fa-edit").click(function () {
+		   	console.log(filePath);
 	   		let groupNo = 0;
 	   		
 	   		if (prevGroupNo != "0") {
@@ -92,22 +115,19 @@
 	   				url: "<c:url value='/file/delete-file-ajax.do' />",
 	   				async: false,
 	   				data: 
-	   					{
-	   					groupNo : groupNo,
-	   					},
-	   				success: function (fileList) {
-	   					let file = fileList.file;
-	   				}
+   					{
+   					groupNo : groupNo
+   					},
 				});
 	   		}
 	   		
 	   		
 			for (let i = 0; i < filePath.length; i++) {
-				console.log($('#summernote').val());
+				console.log($('#summernote').val().includes(filePath[i].systemName) == false);
+				
 				if ( $('#summernote').val().includes(filePath[i].systemName) == false ) {
 					continue;
 				}
-			
 				if ( $(".write_form_title").val() == "" ) {
 					alert("제목을 입력하세요");
 					return;
@@ -116,9 +136,6 @@
 				let name = filePath[i].name;
 				let path = filePath[i].path;
 				let systemName = filePath[i].systemName;
-				console.log(name);
-				console.log(path);
-				console.log(systemName);
 				
 				$.ajax({
 	   				type: "POST",
@@ -137,7 +154,6 @@
 	   				}
 				});
 			}
-			
 			$("#update_form").submit();
 		});
     });
