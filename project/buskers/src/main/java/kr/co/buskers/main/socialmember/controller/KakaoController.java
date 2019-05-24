@@ -4,6 +4,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -20,12 +21,25 @@ public class KakaoController {
 	// 카카오 로그인 디비에 없을시에 회원가입 처리후 메인으로 이동
 	@RequestMapping("social-signup.do")
 	public String signupMember(HttpSession session, Member member,RedirectAttributes rttr) {
-		System.out.println("소셜 사인업 들어옴");
+		System.out.println(member.getId());
+		System.out.println(member.getName());
+		System.out.println(member.getNickName());
+		System.out.println(member.getMemberType());
+		//member에 닉네임이 있음
+//		Member mem = (Member)session.getAttribute("user");
+		//member에 아이디 설정
+//		member.setId(mem.getId());
 		service.signupSocialMember(member);
+//		//유저업데이트
+//		service.updateNickNameSocialMember(member);
+		//기존세션제거
+//		session.removeAttribute("user");
+		//업데이트한 유저객체 받아옴
 		Member user = service.login(member);
+		
+		//세션에다시올려줌
 		session.setAttribute("user", user);
 		session.setMaxInactiveInterval(60 * 60);   //물어보기
-		
 		return "redirect:/index.jsp";
 	}
 	
@@ -37,7 +51,6 @@ public class KakaoController {
         if(user != 0) {
         	result = 1;
         }
-        System.out.println("리턴하는값 "+result);
 		return result;
 	}
 	
@@ -53,5 +66,19 @@ public class KakaoController {
 		return "redirect:/index.jsp";
 	}
 	
+	// 소셜 로그인 폼
+	@RequestMapping("signupform-social.do")
+	public void signupform(HttpSession session, Member member,RedirectAttributes rttr,Model model) {
+		try {
+			model.addAttribute("id",member.getId());
+			model.addAttribute("name",member.getName());
+			model.addAttribute("memberType",member.getMemberType());
+			
+			
+//			Member user = service.login(member);
+//			session.setAttribute("user", user);
+		}catch(Exception e) {
+		}
+	}
 	
 }

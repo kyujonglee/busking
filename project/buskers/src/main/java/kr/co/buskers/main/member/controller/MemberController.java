@@ -18,6 +18,7 @@ import org.springframework.web.servlet.view.UrlBasedViewResolver;
 import kr.co.buskers.main.member.service.MemberService;
 import kr.co.buskers.main.member.util.Email;
 import kr.co.buskers.main.member.util.EmailSender;
+import kr.co.buskers.main.socialmember.controller.KakaoApi;
 import kr.co.buskers.repository.domain.Member;
 
 @Controller
@@ -32,6 +33,9 @@ public class MemberController {
 	
 	@Autowired
 	private Email email;
+	
+	@Autowired 
+	private KakaoApi kka;
 	
 	@Autowired
 	BCryptPasswordEncoder passEncoder;
@@ -84,6 +88,11 @@ public class MemberController {
 	@RequestMapping("logout.do")
 	public ModelAndView logout(HttpSession session) {
 		Member mem = (Member)session.getAttribute("user");
+		try {
+			kka.kakaoLogout(mem.getAccessToken());
+		}catch(Exception e) {
+			
+		}
 		session.removeAttribute("user");
 		session.invalidate();
 		ModelAndView mav = new ModelAndView();
