@@ -110,7 +110,7 @@
 	  			$( '.buskers_map'  ).fadeIn();
 	  		} 
 	  	} );
-	  	$(".view-top-btn").click(function(){
+	  	$(".view-main-top-btn").click(function(){
 	  	  $('html,body').stop().animate({scrollTop:0},700);
 	  	})
 	  </script>
