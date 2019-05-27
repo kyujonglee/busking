@@ -18,6 +18,8 @@ public class LoginInterceptor extends HandlerInterceptorAdapter{
 			response.sendRedirect("/buskers/main/member/needlogin.do");
 			return false;
 		}
+		
+		
 		return true;
 	}
 	@Override

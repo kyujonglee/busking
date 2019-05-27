@@ -172,14 +172,14 @@
 	        if(chk) $("." + cls + "").prop('checked', true);
 	        else  $("." + cls + "").prop('checked', false);
 	    });
-	    
+	    /*
     	let active = "${param.active}";
 	    console.log(active);
 	    if (active == "sent_box") {
 	    	$("#post_box > li:eq(0)").attr("class", "");
 	    	$("#post_box > li:eq(1)").attr("class", "active");
 	    }
-
+		*/
     </script>
 	
 
