@@ -71,6 +71,7 @@
   border-radius: 5px;
   padding: 5px 5px;
   box-sizing: border-box;
+  font-size : 14px;
 }
 
 .busker-chat__main .mychat {
