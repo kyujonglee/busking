@@ -29,15 +29,30 @@ function getWeather(lat, lon, date) {
           console.log("what the fuck");
           $("#lat").val(lat);
           $("#lon").val(lon);
+<<<<<<< HEAD
+          $(".busker-show-enroll__form-column:nth-child(2) .enroll-form-column__content").html(`
+=======
           $(
             ".busker-show-enroll__form-column:nth-child(2) .enroll-form-column__content"
           ).html(`
+>>>>>>> master
               <span class="enroll-form-column__content-weather-icon"> 
               <img src="http://openweathermap.org/img/w/${
                 ele.weather[0].icon
               }.png" /> </span>
               <span class="enroll-form-column__content-weather"> ${weatherKorean} </span>
               <span class="enroll-form-column__content-temperature-icon"><i class="fas fa-temperature-high fa-lg"></i></span>
+<<<<<<< HEAD
+              <span class="enroll-form-column__content-temperature"> ${ele.main.temp} °C </span>
+              `);
+              // 기온 : ${ele.main.temp}
+              //  날짜 : ${date}
+              //  날씨 : ${weatherKorean}
+              //  아이콘 : 
+              //  <img src="http://openweathermap.org/img/w/${
+              //    ele.weather[0].icon
+              //  }.png" />
+=======
               <span class="enroll-form-column__content-temperature"> ${
                 ele.main.temp
               } °C </span>
@@ -49,15 +64,20 @@ function getWeather(lat, lon, date) {
           //  <img src="http://openweathermap.org/img/w/${
           //    ele.weather[0].icon
           //  }.png" />
+>>>>>>> master
           weatherFlag = false;
           break;
         }
         preDate = proDate;
       }
       if (weatherFlag) {
+<<<<<<< HEAD
+        $(".busker-show-enroll__form-column:nth-child(2) .enroll-form-column__content").html("❌");
+=======
         $(
           ".busker-show-enroll__form-column:nth-child(2) .enroll-form-column__content"
         ).html("❌");
+>>>>>>> master
       }
     });
 }
@@ -104,7 +124,11 @@ function mapInit(lat, lon) {
     const lon = marker.getPosition().getLng();
     map.setCenter(new daum.maps.LatLng(lat, lon));
     console.log(lat, lon);
+<<<<<<< HEAD
+    getWeather(lat,lon,$(".busker-enroll__date").val());
+=======
     getWeather(lat, lon, $(".busker-enroll__date").val());
+>>>>>>> master
     searchDetailAddrFromCoords(marker.getPosition(), function(result, status) {
       if (status === daum.maps.services.Status.OK) {
         let detailAddr = !!result[0].road_address
@@ -143,9 +167,13 @@ function mapInit(lat, lon) {
     map.setCenter(new daum.maps.LatLng(lat, lon));
     const value = $(".busker-enroll__date").val();
     if (value === "") {
+<<<<<<< HEAD
+      $(".busker-show-enroll__form-column:nth-child(2) .enroll-form-column__content").html("날짜를 입력해주세요.");
+=======
       $(
         ".busker-show-enroll__form-column:nth-child(2) .enroll-form-column__content"
       ).html("날짜를 입력해주세요.");
+>>>>>>> master
     } else {
       getWeather(lat, lon, value);
     }
@@ -238,9 +266,13 @@ function displayMarker(place) {
     map.setCenter(new daum.maps.LatLng(lat, lon));
     const val = $(".busker-enroll__date").val();
     if (val === "") {
+<<<<<<< HEAD
+      $(".busker-show-enroll__form-column:nth-child(2) .enroll-form-column__content").html("날짜를 입력해주세요.");
+=======
       $(
         ".busker-show-enroll__form-column:nth-child(2) .enroll-form-column__content"
       ).html("날짜를 입력해주세요.");
+>>>>>>> master
     } else {
       getWeather(lat, lon, val);
     }
