@@ -104,6 +104,13 @@ function mapInit(lat, lon) {
 	      ? result[0].road_address.region_2depth_name
 	      : "";
           $("#gu").val(gu);
+          const doo = !!result[0].address
+          ? result[0].address.region_1depth_name
+          		: !!result[0].road_address
+          		? result[0].road_address.region_1depth_name
+          				: "";
+          		console.log(result[0]);
+          $("#doo").val(doo);
         let detailAddr = !!result[0].road_address
           ? "<div>도로명주소 : " +
             result[0].road_address.address_name +
@@ -155,6 +162,14 @@ function mapInit(lat, lon) {
 	      ? result[0].road_address.region_2depth_name
 	      : "";
         $("#gu").val(gu);
+        const doo = !!result[0].address
+        ? result[0].address.region_1depth_name
+        		: !!result[0].road_address
+        		? result[0].road_address.region_1depth_name
+        				: "";
+        		console.log(result[0]);
+        		console.log(doo);
+        $("#doo").val(doo);
         let detailAddr = !!result[0].road_address
           ? "<div>도로명주소 : " +
             result[0].road_address.address_name +
