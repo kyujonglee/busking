@@ -38,31 +38,31 @@
   text-align: center;
 }
 
-.busker-show-enroll__header {
+.busker-show__header {
   padding : 30px;
   font-size: 16px;
   padding-bottom: 0px;
 }
 
-.busker-show-enroll__header-link {
+.busker-show__header-link {
   border-bottom: 3px solid var(--color-left);
 }
 
-.busker-show-enroll__header-top-menu {
+.busker-show__header-top-menu {
   color: rgba(0, 0, 0, 0.5);
   margin-bottom: 20px;
 }
 
-.busker-show-enroll__header-top-menu a:last-child {
+.busker-show__header-top-menu a:last-child {
   color: var(--color-darkgray);
   font-weight: 600;
 }
 
-.busker-show-enroll__header-top-menu i {
+.busker-show__header-top-menu i {
   color: var(--color-left);
 }
 
-.busker-show-enroll__header .busker-show-enroll__header-title {
+.busker-show__header .busker-show__header-title {
   margin: 30px;
   font-size: 30px;
   font-weight: 600;

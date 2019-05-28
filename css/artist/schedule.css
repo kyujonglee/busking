@@ -1,0 +1,17 @@
+.busker-show-list {
+    font-family: "Nanum Gothic", sans-serif;
+    width: 100%;
+    height: 100%;
+    background-color : #fff8f6;
+}
+
+.busker-show-list__main {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    grid-template-rows: 300px;
+    grid-auto-rows: 300px;
+}
+
+.busker-show-list__main .busker-show-list__item {
+    background-color :white;
+}
