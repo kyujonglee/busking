@@ -17,7 +17,7 @@ function getWeather(lat, lon, date) {
         if (preDate <= selDate && selDate <= proDate) {
           let weatherKorean = "❌";
           for (let i = 0; i < openweathermapKorean.length; i++) {
-            if(ele.weather[0].id === openweathermapKorean[i].Parameter){
+            if (ele.weather[0].id === openweathermapKorean[i].Parameter) {
               weatherKorean = openweathermapKorean[i].Korean;
               break;
             }
@@ -29,29 +29,35 @@ function getWeather(lat, lon, date) {
           console.log("what the fuck");
           $("#lat").val(lat);
           $("#lon").val(lon);
-          $(".busker-show-enroll__form-column:nth-child(2) .enroll-form-column__content").html(`
+          $(
+            ".busker-show-enroll__form-column:nth-child(2) .enroll-form-column__content"
+          ).html(`
               <span class="enroll-form-column__content-weather-icon"> 
               <img src="http://openweathermap.org/img/w/${
                 ele.weather[0].icon
               }.png" /> </span>
               <span class="enroll-form-column__content-weather"> ${weatherKorean} </span>
               <span class="enroll-form-column__content-temperature-icon"><i class="fas fa-temperature-high fa-lg"></i></span>
-              <span class="enroll-form-column__content-temperature"> ${ele.main.temp} °C </span>
+              <span class="enroll-form-column__content-temperature"> ${
+                ele.main.temp
+              } °C </span>
               `);
-              // 기온 : ${ele.main.temp}
-              //  날짜 : ${date}
-              //  날씨 : ${weatherKorean}
-              //  아이콘 : 
-              //  <img src="http://openweathermap.org/img/w/${
-              //    ele.weather[0].icon
-              //  }.png" />
+          // 기온 : ${ele.main.temp}
+          //  날짜 : ${date}
+          //  날씨 : ${weatherKorean}
+          //  아이콘 :
+          //  <img src="http://openweathermap.org/img/w/${
+          //    ele.weather[0].icon
+          //  }.png" />
           weatherFlag = false;
           break;
         }
         preDate = proDate;
       }
       if (weatherFlag) {
-        $(".busker-show-enroll__form-column:nth-child(2) .enroll-form-column__content").html("❌");
+        $(
+          ".busker-show-enroll__form-column:nth-child(2) .enroll-form-column__content"
+        ).html("❌");
       }
     });
 }
@@ -98,7 +104,7 @@ function mapInit(lat, lon) {
     const lon = marker.getPosition().getLng();
     map.setCenter(new daum.maps.LatLng(lat, lon));
     console.log(lat, lon);
-    getWeather(lat,lon,$(".busker-enroll__date").val());
+    getWeather(lat, lon, $(".busker-enroll__date").val());
     searchDetailAddrFromCoords(marker.getPosition(), function(result, status) {
       if (status === daum.maps.services.Status.OK) {
         let detailAddr = !!result[0].road_address
@@ -137,7 +143,9 @@ function mapInit(lat, lon) {
     map.setCenter(new daum.maps.LatLng(lat, lon));
     const value = $(".busker-enroll__date").val();
     if (value === "") {
-      $(".busker-show-enroll__form-column:nth-child(2) .enroll-form-column__content").html("날짜를 입력해주세요.");
+      $(
+        ".busker-show-enroll__form-column:nth-child(2) .enroll-form-column__content"
+      ).html("날짜를 입력해주세요.");
     } else {
       getWeather(lat, lon, value);
     }
@@ -146,6 +154,12 @@ function mapInit(lat, lon) {
     // resultDiv.innerHTML = message;
     searchDetailAddrFromCoords(mouseEvent.latLng, function(result, status) {
       if (status === daum.maps.services.Status.OK) {
+        const gu = !!result[0].address
+          ? result[0].address.region_2depth_name
+          : !!result[0].road_address
+          ? result[0].road_address.region_2depth_name
+          : "";
+        console.log(gu);
         let detailAddr = !!result[0].road_address
           ? "<div>도로명주소 : " +
             result[0].road_address.address_name +
@@ -224,7 +238,9 @@ function displayMarker(place) {
     map.setCenter(new daum.maps.LatLng(lat, lon));
     const val = $(".busker-enroll__date").val();
     if (val === "") {
-      $(".busker-show-enroll__form-column:nth-child(2) .enroll-form-column__content").html("날짜를 입력해주세요.");
+      $(
+        ".busker-show-enroll__form-column:nth-child(2) .enroll-form-column__content"
+      ).html("날짜를 입력해주세요.");
     } else {
       getWeather(lat, lon, val);
     }

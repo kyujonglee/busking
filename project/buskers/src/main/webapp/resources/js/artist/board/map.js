@@ -98,6 +98,12 @@ function mapInit(lat, lon) {
     getWeather(lat,lon,$(".busker-enroll__date").val());
     searchDetailAddrFromCoords(marker.getPosition(), function(result, status) {
       if (status === daum.maps.services.Status.OK) {
+		  const gu = !!result[0].address
+	      ? result[0].address.region_2depth_name
+	      : !!result[0].road_address
+	      ? result[0].road_address.region_2depth_name
+	      : "";
+          $("#gu").val(gu);
         let detailAddr = !!result[0].road_address
           ? "<div>도로명주소 : " +
             result[0].road_address.address_name +
@@ -143,6 +149,12 @@ function mapInit(lat, lon) {
     // resultDiv.innerHTML = message;
     searchDetailAddrFromCoords(mouseEvent.latLng, function(result, status) {
       if (status === daum.maps.services.Status.OK) {
+    	const gu = !!result[0].address
+	      ? result[0].address.region_2depth_name
+	      : !!result[0].road_address
+	      ? result[0].road_address.region_2depth_name
+	      : "";
+        $("#gu").val(gu);
         let detailAddr = !!result[0].road_address
           ? "<div>도로명주소 : " +
             result[0].road_address.address_name +
