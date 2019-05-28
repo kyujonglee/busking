@@ -1,10 +1,33 @@
 .busker-show-enroll {
+  font-family: "Nanum Gothic", sans-serif;
 }
 
 #map {
-  width: 40%;
-  height: 40%;
+  width: 400px;
+  height: 400px;
+  background-image : url('https://i.pinimg.com/564x/6a/e4/e1/6ae4e194ffef725f03e730562b546fef.jpg');
+  background-size: 30%;
+  background-repeat: no-repeat;
+  background-position: center center;
 }
 
 .busker-enroll__date {
+}
+
+.daumMap__bAddr {
+  width: 100%;
+  height: 150%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 3px 2px;
+  box-sizing: border-box;
+  font-size: 14px;
+}
+
+.daumMap__marker-content {
+  padding: 5px;
+  border-radius: 5px;
+  width: 100%;
+  text-align: center;
 }

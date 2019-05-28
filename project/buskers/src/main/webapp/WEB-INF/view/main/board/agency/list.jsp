@@ -20,12 +20,7 @@
 		</a>
 		<span class="agency-title">업체게시판</span>
 	</header>
-	<div class="agency-bottom">
 	-->
-		<!-- 					<a class="agency-bottom__button" href='#' onclick="checkUser();" >등록</a> -->
-		<a class="agency-bottom__button"
-			href='<c:url value='/main/board/agency/checkform.do'/>'>등록</a>
-	</div>
 	<table class="agency-table">
 		<tr>
 			<th>번호</th>
@@ -88,7 +83,11 @@
 			</c:if>
 		</c:forEach>
 	</table>
-
+	<div class="agency-bottom">
+		<!-- <a class="agency-bottom__button" href='#' onclick="checkUser();" >등록</a> -->
+		<a class="agency-bottom__button"
+			href='<c:url value='/main/board/agency/checkform.do'/>'>등록</a>
+	</div>
 	<div class="agency-paging__items">
 		<c:set var="link"
 			value="${pageContext.request.contextPath}/main/board/agency/list.do" />
