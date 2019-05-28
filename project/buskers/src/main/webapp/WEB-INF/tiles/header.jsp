@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <meta name="google-signin-client_id" content="711343291168-unua7itp9em5gms7up15sl5rn2ei80vj.apps.googleusercontent.com">  
    <link rel="stylesheet" href="<c:url value='/resources/css/main/header/header.css'/>" />
+   <link rel="stylesheet" href="<c:url value='/resources/css/main/toastr.min.css'/>" />
     <!-- Main style sheet -->
     <link href="<c:url value='/resources/css/main/miniprofile.css'/>" rel="stylesheet">    
     <!-- Google Fonts -->
@@ -51,7 +52,7 @@
 			<span class="header__user">
 				<div class="header-a">
 				<i class="far fa-bell fa-lg"></i>
-				<i class="far fa-envelope fa-lg"><span class="message_count">2</span></i>
+				<i class="far fa-envelope fa-lg"><span class="message_count"></span></i>
 					<div class="header-b2">${sessionScope.user.nickName}  님</div>
 					<div class="header-b3">
 						<div class="header-c">
@@ -107,25 +108,56 @@
 
 <script src="https://apis.google.com/js/platform.js" async defer></script>
 <script type="text/javascript" src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js" charset="utf-8"></script>
+<script src="<c:url value='/resources/js/toastr.min.js'/>"></script>
+<script src="http://localhost:10001/socket.io/socket.io.js"></script>
 <script>
+	
+	toastr.options.positionClass = 'toast-bottom-right';
+	toastr.options.closeButton = true;
 
-
+	/** 실시간 알림 */
+	const socket = io.connect("http://localhost:10001");
+	
+	socket.emit("login", "${sessionScope.user.nickName}");
+	
+	socket.on("msg", function (data) {
+		let sender = data.sender;
+		let title = data.title;
+		if (title.length > 12) {
+			title = title.substring(0, 11) + "...";
+		}
+		let msg = sender + "  :  " + title;
+		
+   		$.ajax({
+   			type: "POST",
+   			url: "/buskers/main/header/message/message-count-ajax.do",
+   			success: function (count) {
+   				if (count != 0) {
+   					$(".message_count").text(count);
+   					$(".message_count").show();
+   				}
+   			}
+   		});
+   		toastr.info(msg, '새 쪽지가 도착했습니다.');
+    });
+	
+	$(document).ready(function () {
+		$.ajax({
+			type: "POST",
+			url: "/buskers/main/header/message/message-count-ajax.do",
+			success: function (count) {
+				if (count != 0) {
+					$(".message_count").text(count);
+					$(".message_count").show();
+				}
+			}
+		});
+	});
+	
 	$(".header-c").click(function() {
 	    $(".h-toggle").toggle();
-	 });
+	});
 	 
-	 /*
-	 $(document).click(function(e) { 
-	    console.log($(e.target).prop("class"));
-	    if ( $(e.target).prop("class") != "profile_img" ) {
-	       if ( $(e.target).prop("class") != "header-h" ) {
-	          $(".h-toggle").hide();
-	       }
-	    }
-	 }); 
-	 */
-	 
-
 	$("#logout").click(function() {
 		var result = confirm("로그아웃 하시겠습니까?");
 		if(result) {
@@ -139,24 +171,8 @@
 			        xhrFields : {
 			           withCredentials : true
 			        }
-		     })
-		     /*
-		     function onLoad() {
-		         gapi.load('auth2', function() {
-		           gapi.auth2.init();
-		         });
-		       }
-		     function signOut() {
-		    	    var auth2 = gapi.auth2.getAuthInstance();
-		    	    auth2.signOut().then(function () {
-		    	    	alert("사인아웃실행됨");
-	    	        console.log('User signed out.');
-	    	    });
-	    	  }
-		   
-			onLoad();
-		    signOut();
-		    */
+		    })
+		     
 			var naverLogin = new naver.LoginWithNaverId(	
 					{
 						clientId: "SPRQERrB_l9ca0FeJSNq",
@@ -169,7 +185,7 @@
 			// 네이버 세션 로그아웃 처리
 			naverLogin.logout();
 			// 네이버 로그아웃처리
-			 $.ajax({
+			$.ajax({
 			        type : "POST",
 			        dataType : 'text',
 			        url : "http://nid.naver.com/nidlogin.logout",
@@ -177,22 +193,11 @@
 			        xhrFields : {
 			           withCredentials : true
 			        }
-		     })
+		    })
 			location.href="<c:url value='/main/member/logout.do'/>";
 			alert("로그아웃 되셨습니다!");
 		}
 	});
-	
-	/*
-	$(document).click(function(e) { 
-		console.log($(e.target).prop("class"));
-		if ( $(e.target).prop("class") != "profile_img" ) {
-			if ( $(e.target).prop("class") != "header-h" ) {
-				$(".h-toggle").hide();
-			}
-		}
-	}); 
-	*/
 	
 	let popupX = (window.screen.width / 2) - (500 / 2);
 	let popupY = (window.screen.height / 2) - (500 / 2);

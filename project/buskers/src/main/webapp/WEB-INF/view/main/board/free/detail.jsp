@@ -10,6 +10,7 @@
 <link rel="stylesheet" href="<c:url value='/resources/css/main/board/free/koo.css'/>" />
 <link rel="stylesheet" href="<c:url value='/resources/css/main/board/agency/agency.css'/>" />
 <link rel="stylesheet" href="<c:url value='/resources/css/main/board/free/test.css'/>" />
+<link rel="stylesheet" href="<c:url value='/resources/css/main/header/font-awesome.css'/>" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.0/moment.min.js"></script>
 <title>자유게시판</title>
 	<main class="main-freeboard main-board">
@@ -231,7 +232,32 @@
 			</div>
 			</div>
 		</main>
+		
+		<footer id="mu-footer">
+		  <div class="container">
+		    <div class="row">
+		      <div class="col-md-12">
+		      <div class="mu-footer-area">
+		         <div class="mu-footer-social">
+		          <a href="#"><span class="fa fa-facebook"></span></a>
+		          <a href="#"><span class="fa fa-twitter"></span></a>
+		          <a href="#"><span class="fa fa-google-plus"></span></a>
+		          <a href="#"><span class="fa fa-linkedin"></span></a>
+		          <a href="#"><span class="fa fa-youtube"></span></a>
+		        </div>
+		        <div class="mu-footer-copyright">
+		          <p>Bukers</p><a>Copyright 2019. koo. hoo. kyu. hyun.</a>
+		        </div>         
+		      </div>
+		    </div>
+		    </div>
+		  </div>
+		</footer>
+		
 	<script>
+		toastr.options.positionClass = 'toast-bottom-right';
+		toastr.options.closeButton = true;
+	
 		let user = "${sessionScope.user}";
 		let like = "${like.likeStatus}";
 		let nickName = "${sessionScope.user.nickName}";
@@ -371,6 +397,7 @@
 					alert("댓글 내용을 입력해주세요.")
 					return;
 				}
+				
 				$.ajax({
 	   				type: "POST",
 	   				url: "comment-ajax.do",
@@ -504,6 +531,8 @@
 	   					commentIsDisliked();
 	   				}
 				});
+				
+			    toastr.success('댓글이 등록되었습니다.');
 			});
 		}
 		writeComment();
@@ -661,6 +690,7 @@
 	   					commentIsDisliked();
 	   				}
 				});
+				toastr.success('답글이 등록되었습니다.')
 			});
 		}
 		replyComment();
@@ -819,6 +849,7 @@
 	   					commentIsDisliked();
 	   				}
 				});
+ 				toastr.success('댓글이 수정되었습니다.')
 			});
 		}
 		updateComment();
