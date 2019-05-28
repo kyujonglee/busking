@@ -115,3 +115,5 @@ buildNumber.properties
 .properties
 
 node_modules/
+
+package-lock.json
