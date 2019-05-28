@@ -50,6 +50,12 @@ public class HeaderServiceImpl implements HeaderService {
 		mapper.deleteSentMessageList(message);
 	}
 	
+	public int selectMessageCount(HttpSession session) {
+		Member member = (Member)session.getAttribute("user");
+		
+		return mapper.selectMessageCount(member.getMemberNo());
+	}
+	
 	public Map<String, Object> detail(int msgNo) {
 		Map<String, Object> map = new HashMap<>();
 		

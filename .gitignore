@@ -113,3 +113,7 @@ buildNumber.properties
 .history
 
 .properties
+
+node_modules/
+
+package-lock.json

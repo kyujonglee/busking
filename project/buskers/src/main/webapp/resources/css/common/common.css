@@ -26,27 +26,27 @@ h1 {
   --color-blue: #3a5dfb;
 }
 
-*::-webkit-scrollbar {
+/* *::-webkit-scrollbar {
   background-color:#fff;
   width:12px
 }
 
-/* background of the scrollbar except button or resizer */
+background of the scrollbar except button or resizer
 *::-webkit-scrollbar-track {
   background-color:#fff;
   
 }
 
-/* scrollbar itself */
+scrollbar itself
 *::-webkit-scrollbar-thumb {
   background-color:#000;
   border-radius:20px;
   border:2px solid #fff;
 }
 
-/* set button(top and bottom of the scrollbar) */
+set button(top and bottom of the scrollbar)
 *::-webkit-scrollbar-button {display:none}
-
+ */
 .board_container {
   width: 1200px;
   margin: 0 auto;

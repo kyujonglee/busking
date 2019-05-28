@@ -1,5 +1,4 @@
 .busker-content {
-  font-family : "Nanum Gothic", "sans-serif";
   display: grid;
   grid-template-columns: repeat(3, minmax(250px, 1fr));
   grid-template-rows: repeat(3, 31vh);
@@ -10,7 +9,7 @@
   height: 94vh;
   overflow: scroll;
   padding : 5px;
-  font-size : 12px;
+  background-color : #dcdde1;
   box-sizing : border-box;
 }
 
@@ -22,6 +21,8 @@
 
 .busker-content .busker-content__item {
   width: 100%;
+  display: flex;
+  align-items: center;
 }
 
 .busker-content .busker-content__item:first-child {
@@ -52,9 +53,9 @@
   opacity: 0.5;
 }
 
-/* .busker-content .busker-content__item:nth-child(4) {
+.busker-content .busker-content__item:nth-child(2) {
   grid-area: span 2 / span 2;
-} */
+}
 
 .busker-content__item .busker-board {
   height: 100%;
@@ -65,7 +66,7 @@
   height: 85%;
   display: flex;
   flex-direction: column;
-  overflow : auto;
+  overflow : scroll;
   /* justify-content: center; */
 }
 .board-row__notice,
@@ -75,7 +76,7 @@
   height: 30px;
   background-color: var(--color-background);
   border: 1px solid rgba(0, 0, 0, 0.19);
-  font-size : 100%;
+  font-size : 90%;
 }
 
 .busker-board__row .board-row__date {
@@ -135,7 +136,7 @@
     height: 60%;
     background-color : var(--color-background);;
     border-radius: 10px;
-    overflow: auto;
+    overflow: scroll;
     box-shadow: 0 4px 4px rgba(0, 0, 0, 0.19), 0 3px 3px rgba(0, 0, 0, 0.23);
 }
 
@@ -183,7 +184,7 @@
     border-radius: 5px;
     display: grid;
     grid-template-columns: 1fr 5fr 1fr;
-    font-size : 90%;
+    font-size : 80%;
     opacity: 0.8;
     color : var(--color-darkgray);
 }

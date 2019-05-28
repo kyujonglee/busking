@@ -37,13 +37,28 @@
 
 <script src="<c:url value='/resources/js/jquery-3.4.1.min.js'/>"></script>
 <script src="<c:url value='/resources/js/main/header/bootstrap.js'/>"></script> 
+<script src="http://localhost:10001/socket.io/socket.io.js"></script>
 
 <script>
+
 	$(".write_form_submit").click(function () {
 		$('textarea').val().replace(/\n/g, "<br>")
 
 		$(".write_form_submit_wrapper").submit();
+		
+		const socket = io.connect("http://localhost:10001");
+		
+		socket.emit(
+	        "msg", 
+	        {
+	        	receiver: $("input[name=nickName]").val(),
+	            sender: "${sessionScope.user.nickName}",
+	            title: $("input[name=title]").val()
+	        }
+		);
 	});
+
+
 </script>
 
 </body>

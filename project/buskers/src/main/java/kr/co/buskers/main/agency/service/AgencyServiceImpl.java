@@ -17,34 +17,42 @@ public class AgencyServiceImpl implements AgencyService {
 	@Autowired
 	private AgencyMapper mapper;
 	
+	@Override
 	public List<AgencyInfo> agencyInfoList(AgencyPage page){
 		return mapper.selectAgencyInfo(page);
 	}
 	
+	@Override
 	public int agencyInfoCount() {
 		return mapper.selectAgencyInfoCount();
 	}
 	
+	@Override
 	public void insertAgencyInfo(AgencyInfo agencyInfo){
 		mapper.insertAgencyInfo(agencyInfo);
 	}
 	
+	@Override
 	public void insertAgencyGenre(AgencyGenre agencyGenre){
 		mapper.insertAgencyGenre(agencyGenre);
 	}
 	
+	@Override
 	public AgencyInfo selectAgencyInfoByNo(int agencyInfoNo) {
 		return mapper.selectAgencyInfoByNo(agencyInfoNo);
 	}
 	
+	@Override
 	public void deleteAgencyInfoAll(int agencyInfoNo) {
 		mapper.deleteAgencyGenreByNo(agencyInfoNo);
 		mapper.deleteAgencyByNo(agencyInfoNo);
 		mapper.deleteAgencyInfoByNo(agencyInfoNo);
 	}
+	@Override
 	public List<Genre> selectGenre(){
 		return mapper.selectGenre();
 	}
+	@Override
 	public void updateAgencyInfo(AgencyInfo agencyInfo,AgencyGenre agencyGenre) {
 		mapper.deleteAgencyGenreByNo(agencyInfo.getAgencyInfoNo());
 		mapper.insertAgencyGenre(agencyGenre);
