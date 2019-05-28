@@ -140,7 +140,8 @@
 	
 
 	<script src="<c:url value='/resources/js/jquery-3.4.1.min.js'/>"></script>
-    <script src="<c:url value='/resources/js/main/header/bootstrap.js'/>"></script> 
+    <script src="<c:url value='/resources/js/main/header/bootstrap.js'/>"></script>
+    <script src="<c:url value='/resources/js/notify.js'/>"></script>
     <script>
 	    $('#post_box a').click(function (e) {
 	    	$(this).tab('show');

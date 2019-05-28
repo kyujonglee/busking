@@ -107,4 +107,14 @@
 		 where msg_no = #{msgNo}
 
 	</update>
+	
+	<select id="selectMessageCount" parameterType="int" resultType="int">
+		select count(*)
+		  from tb_message
+		 where read_status = 'N'
+		   and receiver_member_no = #{memberNo}
+	</select>
 </mapper>
+
+
+
