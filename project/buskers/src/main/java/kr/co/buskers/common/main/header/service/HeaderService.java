@@ -13,4 +13,5 @@ public interface HeaderService {
 	public void deleteMessage(int[] msgNos);
 	public void deleteSentMessage(int[] msgNos);
 	public Map<String, Object> detail(int msgNo);
+	public int selectMessageCount(HttpSession session);
 }

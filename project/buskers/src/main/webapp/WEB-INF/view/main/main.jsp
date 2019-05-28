@@ -4,6 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <link rel="stylesheet" href="<c:url value='/resources/css/main/header/header.css'/>" />
 <link rel="stylesheet" href="<c:url value='/resources/css/main/main-map.css'/>" />
+<link rel="stylesheet" href="<c:url value='/resources/css/main/main.css'/>" />
     <link href='https://fonts.googleapis.com/css?family=Tangerine' rel='stylesheet' type='text/css'>        
     <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Prata' rel='stylesheet' type='text/css'>
@@ -55,9 +56,17 @@
 				</div>
 				
 				<div class="buskers_map_detail">
-					<section id="mu-map">
-				        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d9207.358598888495!2d-85.64847801496286!3d30.183918972289003!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0000000000000000%3A0x2320479d70eb6202!2sDillard's!5e0!3m2!1sbn!2sbd!4v1462359735720" width="100%" height="100%" frameborder="0" allowfullscreen=""></iframe>
-					</section> 
+					<div class="buskers_map_left">
+						<section id="mu-map">
+					        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d9207.358598888495!2d-85.64847801496286!3d30.183918972289003!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0000000000000000%3A0x2320479d70eb6202!2sDillard's!5e0!3m2!1sbn!2sbd!4v1462359735720" width="100%" height="100%" frameborder="0" allowfullscreen=""></iframe>
+						</section> 
+					</div>
+					
+					<div class="buskers_map_right">
+						<div class="post">
+							<p class="calendar">7 <em>February</em></p>
+					    </div> 
+					</div>
 				</div>
 			</div>
 		</div>
@@ -110,7 +119,7 @@
 	  			$( '.buskers_map'  ).fadeIn();
 	  		} 
 	  	} );
-	  	$(".view-top-btn").click(function(){
+	  	$(".view-main-top-btn").click(function(){
 	  	  $('html,body').stop().animate({scrollTop:0},700);
 	  	})
 	  </script>
