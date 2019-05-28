@@ -10,7 +10,7 @@
 .busker-info__main {
     color : white;
     padding : 20px;
-    overflow: auto;
+    overflow: scroll;
     box-sizing: border-box;
 }
 .busker-info__nickname {

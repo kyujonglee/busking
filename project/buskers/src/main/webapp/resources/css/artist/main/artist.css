@@ -38,37 +38,14 @@ a:hover {
 }
 
 .busker-main {
-  display: grid;
-  grid-auto-flow: column;
-  grid-template-columns: 9fr;
-  grid-auto-columns:  minmax(300px, 1fr);
+	width: 100%;
+	position : relative;
+/*   display: grid; */
+/*   grid-auto-flow: column; */
+/*   grid-template-columns: 9fr; */
+/*   grid-auto-columns:  minmax(300px, 1fr); */
 }
 
 .busker-content {
   background-color: #fff;
 }
-.busker-chat {
-    display: none;
-}
-
-*::-webkit-scrollbar {
-  background-color:#fff;
-  width:12px
-}
-
-/* background of the scrollbar except button or resizer */
-*::-webkit-scrollbar-track {
-  background-color:#fff;
-  
-}
-
-/* scrollbar itself */
-*::-webkit-scrollbar-thumb {
-  background-color:#000;
-  border-radius:20px;
-  border:2px solid #fff;
-}
-
-/* set button(top and bottom of the scrollbar) */
-*::-webkit-scrollbar-button {display:none}
-

@@ -1,4 +1,4 @@
-package kr.co.buskers.busker.main.controller;
+package kr.co.buskers.artist.main.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

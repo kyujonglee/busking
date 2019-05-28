@@ -24,23 +24,34 @@ function getWeather(lat, lon, date) {
           }
           // 보여줄 것 : 기온, 날짜, 날씨, 날씨 아이콘
           // 날씨 : ${ele.weather[0].main}
-          $(".weather-date").html(`
-            기온 : ${ele.main.temp}
-             날짜 : ${date}
-             날씨 : ${weatherKorean}
-             아이콘 : 
-             <img src="http://openweathermap.org/img/w/${
-               ele.weather[0].icon
-             }.png" />
-
-        `);
+          console.log(lat);
+          console.log(lon);
+          console.log("what the fuck");
+          $("#lat").val(lat);
+          $("#lon").val(lon);
+          $(".busker-show-enroll__form-column:nth-child(2) .enroll-form-column__content").html(`
+              <span class="enroll-form-column__content-weather-icon"> 
+              <img src="http://openweathermap.org/img/w/${
+                ele.weather[0].icon
+              }.png" /> </span>
+              <span class="enroll-form-column__content-weather"> ${weatherKorean} </span>
+              <span class="enroll-form-column__content-temperature-icon"><i class="fas fa-temperature-high fa-lg"></i></span>
+              <span class="enroll-form-column__content-temperature"> ${ele.main.temp} °C </span>
+              `);
+              // 기온 : ${ele.main.temp}
+              //  날짜 : ${date}
+              //  날씨 : ${weatherKorean}
+              //  아이콘 : 
+              //  <img src="http://openweathermap.org/img/w/${
+              //    ele.weather[0].icon
+              //  }.png" />
           weatherFlag = false;
           break;
         }
         preDate = proDate;
       }
       if (weatherFlag) {
-        $(".weather-date").html("❌");
+        $(".busker-show-enroll__form-column:nth-child(2) .enroll-form-column__content").html("❌");
       }
     });
 }
@@ -86,7 +97,8 @@ function mapInit(lat, lon) {
     const lat = marker.getPosition().getLat();
     const lon = marker.getPosition().getLng();
     map.setCenter(new daum.maps.LatLng(lat, lon));
-    // console.log(lat, lon);
+    console.log(lat, lon);
+    getWeather(lat,lon,$(".busker-enroll__date").val());
     searchDetailAddrFromCoords(marker.getPosition(), function(result, status) {
       if (status === daum.maps.services.Status.OK) {
         let detailAddr = !!result[0].road_address
@@ -125,13 +137,13 @@ function mapInit(lat, lon) {
     map.setCenter(new daum.maps.LatLng(lat, lon));
     const value = $(".busker-enroll__date").val();
     if (value === "") {
-      $(".weather-date").html("날짜를 입력해주세요.");
+      $(".busker-show-enroll__form-column:nth-child(2) .enroll-form-column__content").html("날짜를 입력해주세요.");
     } else {
       getWeather(lat, lon, value);
     }
 
-    const resultDiv = document.getElementById("clickLatlng");
-    resultDiv.innerHTML = message;
+    // const resultDiv = document.getElementById("clickLatlng");
+    // resultDiv.innerHTML = message;
     searchDetailAddrFromCoords(mouseEvent.latLng, function(result, status) {
       if (status === daum.maps.services.Status.OK) {
         let detailAddr = !!result[0].road_address
@@ -212,7 +224,7 @@ function displayMarker(place) {
     map.setCenter(new daum.maps.LatLng(lat, lon));
     const val = $(".busker-enroll__date").val();
     if (val === "") {
-      $(".weather-date").html("날짜를 입력해주세요.");
+      $(".busker-show-enroll__form-column:nth-child(2) .enroll-form-column__content").html("날짜를 입력해주세요.");
     } else {
       getWeather(lat, lon, val);
     }
