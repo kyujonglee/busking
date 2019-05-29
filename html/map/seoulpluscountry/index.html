@@ -3,9 +3,17 @@
   <head>
     <meta charset="utf-8">
     <style>
+      /*  서울 지도 css! */ 
+      svg{
+        background: green;
+      
+      }
+      #map{
+      }
+
       #map .active {
-  fill: #ff8534;
-}
+         fill: #ff8534;
+      }
         svg circle {
           fill: lightblue;          /* 원  */
           opacity: .6;
@@ -44,34 +52,60 @@
         #title p {
             font-size: 10pt;
         }
-        .wrapper{
-          display:grid;
-          grid-template-columns:1fr 1fr;
+        /*  전국지도css!  */
+        .background {
+        fill: blue;       /* 지도 배경 */
+        pointer-events: all;
+        width:100vh;
+        height:100vh;
         }
-        #chart2{
-          background-color:red;
+        #states path {
+        fill: #ccece6;    /* 지도 색 */
+        stroke: #fff;     /*  지도 테두리 */
+        stroke-width:2px;
+        }
+
+        #states path:hover {
+            fill: wheat;
+        }
+
+        #states .active {
+            fill: orange;     /*  호버했을때 색지도색 */
+        }
+
+        #states path {
+            cursor: pointer;
+        }
+
+        #states text {
+            cursor: pointer;
+            font-size: 12px;
+        }
+        .mapwrapper{
+          display:grid;
+          grid-template-columns: 1fr 1fr 1fr;
         }
     </style>
   </head>
   <body>
-    <div class="wrapper">
-        <div id="chart1"></div>
-        <div id="chart"></div>
+    <div class="mapwrapper">
+      <div id="container" class="container"></div>
+      <div id="chart"></div>
+      <div></div>
     </div>
-    
 
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
     <script src="http://d3js.org/d3.v3.min.js"></script>
     <script src="http://d3js.org/topojson.v1.min.js"></script>
     <script>
-    var width = 750,
-        height = 600
+    var width = '700',
+        height ='700'
         ,centered;
 
     var projection = d3.geo.mercator()
-            .center([126.9895, 37.5651])
-            .scale(90000)
+            .center([126.9795, 37.5651])
+            .scale(87000)
             .translate([width/2, height/2]);
 
     var path = d3.geo.path().projection(projection);
@@ -80,24 +114,24 @@
                         .attr("width", width)
                         .attr("height", height);
 
-    var map = svg.append("g").attr("id", "map") ,
+    var map = svg.append("g").attr("id", "map")
         places = svg.append("g").attr("id", "places");
 
-    d3.json("seoul_municipalities_topo_simple.json", function(error, data) {
+    d3.json("seoul.json", function(error, data) {
       var features = topojson.feature(data, data.objects.seoul_municipalities_geo).features;
       map.selectAll('path')
           .data(features)
         .enter().append('path')
           .attr('class', function(d) { console.log(); return 'municipality c' + d.properties.code })
           .attr('d', path)
-          .on("click", clicked);
+          .on("click", seoulclicked);
 
       map.selectAll('text')
           .data(features)
         .enter().append("text")
           .attr("transform", function(d) { return "translate(" + path.centroid(d) + ")"; })
-          .attr("dy", ".35em")
-          .attr("class", "municipality-label")
+          .attr("dy", ".35em")                              //dy 추가
+          .attr("class", "municipality-label")      //클래스 추가
           .text(function(d) { return d.properties.name; })
     });
 
@@ -117,7 +151,7 @@
             .text(function(d) { return d.name });
     });
 /////////////////////////////////줌
-function clicked(d) {
+function seoulclicked(d) {
   var x, y, k;
 // console.dir(path.centroid(d));
 // console.dir(d.name);
@@ -150,6 +184,109 @@ console.log(d.properties.name)
       .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")scale(" + k + ")translate(" + -x + "," + -y + ")")
       .style("stroke-width", 1.5 / k + "px");
 }
+
+/* 전국지도 */
+var width = 600,
+    height = 700,
+    initialScale = 5500,
+    initialX = -11950,
+    initialY = 4050,
+    centered,
+    labels;
+
+var countryprojection = d3.geo.mercator()
+    .scale(initialScale)
+    .translate([initialX, initialY]);
+
+var qpath = d3.geo.path()
+    .projection(countryprojection);
+
+var zoom = d3.behavior.zoom()
+    .translate(countryprojection.translate())
+    .scale(countryprojection.scale())
+    .scaleExtent([height, 800 * height])
+    .on("zoom", zoom);
+
+var svg = d3.select("#container").append("svg")
+    .attr("width", width)
+    .attr("height", height)
+    .attr('id', 'map');
+
+var states = svg.append("g")
+    .attr("id", "states")
+    .call(zoom);
+
+states.append("rect")
+    .attr("class", "background")
+    .attr("width", width)
+    .attr("height", height);
+
+d3.json("korea.json", function(json) {
+  states.selectAll("path")
+      .data(json.features)
+    .enter().append("path")
+      .attr("d", qpath)
+      .attr("id", function(d) { return 'path-'+d.id; })
+      .on("click", click);
+      
+  labels = states.selectAll("text")
+    .data(json.features)
+    .enter().append("text")
+      .attr("transform", labelsTransform)
+      .attr("id", function(d) { return 'label-'+d.id; })
+      .attr('text-anchor', 'middle')
+      .attr("dy", ".35em")
+      .on("click", click)
+      .text(function(d) { return d.properties.Name; });
+
+
+      $("#path-15").addClass("active");
+});
+
+
+
+states.selectAll("path")
+      .classed("active", centered && function(d) { return d === centered; });
+
+function click(d) {
+  var x, y, k;
+
+  let localName = d.properties.id;
+
+  if (d && centered !== d) {
+    var centroid = qpath.centroid(d);
+    x = centroid[0];
+    y = centroid[1];
+    k = 4;
+    centered = d;
+  } else {
+    x = width / 2;
+    y = height / 2;
+    k = 1;
+    centered = null;
+  }
+  states.selectAll("path")
+      .classed("active", centered && function(d) { return d === centered; });
+
+
+
+}
+
+
+
+function labelsTransform(d) {
+  if (d.id == 8) {
+    var arr = qpath.centroid(d);
+    arr[1] += (d3.event && d3.event.scale) ? (d3.event.scale / height + 20) : (initialScale / height + 20);
+    return "translate(" + arr + ")";
+  } else {
+    return "translate(" + qpath.centroid(d) + ")";
+  }
+}
+
+
+
+
     </script>
   </body>
 </html>

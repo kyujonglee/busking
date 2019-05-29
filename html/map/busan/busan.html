@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <style>
+   
+        /*  전국지도css!  */
+        .background {
+        fill: blue;       /* 지도 배경 */
+        pointer-events: all;
+        }
+        #states path {
+        fill: #ccece6;    /* 지도 색 */
+        stroke: #fff;     /*  지도 테두리 */
+        stroke-width:2px;
+        }
+
+        #states path:hover {
+            fill: wheat;
+        }
+
+        #states .active {
+            fill: orange;     /*  호버했을때 색지도색 */
+        }
+
+        #states path {
+            cursor: pointer;
+        }
+
+        #states text {
+            cursor: pointer;
+            font-size: 12px;
+        }
+        .mapwrapper{
+          display:grid;
+          grid-template-columns: 1fr 1fr 1fr;
+        }
+    </style>
+  </head>
+  <body>
+    <div class="mapwrapper">
+      <div id="container" class="container"></div>
+      <div id="chart"></div>
+      <div></div>
+    </div>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="http://d3js.org/d3.v3.min.js"></script>
+    <script src="http://d3js.org/topojson.v1.min.js"></script>
+    <script>
+ 
+
+/* 전국지도 */
+var width = 1500,
+    height = 700,
+    initialScale = 4500,
+    initialX = -11900,
+    initialY = 4050,
+    centered,
+    labels;
+
+var countryprojection = d3.geo.mercator()
+    .scale(initialScale)
+    .translate([initialX, initialY]);
+
+var qpath = d3.geo.path()
+    .projection(countryprojection);
+
+var zoom = d3.behavior.zoom()
+    .translate(countryprojection.translate())
+    .scale(countryprojection.scale())
+    .scaleExtent([height, 800 * height])
+    .on("zoom", zoom);
+
+var svg = d3.select("#container").append("svg")
+    .attr("width", width)
+    .attr("height", height)
+    .attr('id', 'map');
+
+var states = svg.append("g")
+    .attr("id", "states")
+    .call(zoom);
+
+states.append("rect")
+    .attr("class", "background")
+    .attr("width", width)
+    .attr("height", height);
+
+d3.json("busan.geojson", function(json) {
+  states.selectAll("path")
+      .data(json.features)
+    .enter().append("path")
+      .attr("d", qpath)
+      .attr("id", function(d) { return 'path-'+d.id; })
+      .on("click", click);
+      
+  labels = states.selectAll("text")
+    .data(json.features)
+    .enter().append("text")
+      .attr("transform", labelsTransform)
+      .attr("id", function(d) { return 'label-'+d.id; })
+      .attr('text-anchor', 'middle')
+      .attr("dy", ".35em")
+      .on("click", click)
+      .text(function(d) { return d.properties.Name; });
+
+
+      $("#path-15").addClass("active");
+});
+
+
+
+states.selectAll("path")
+      .classed("active", centered && function(d) { return d === centered; });
+
+function click(d) {
+  var x, y, k;
+console.log(d);
+  let localName = d.properties.id;
+
+  if (d && centered !== d) {
+    var centroid = qpath.centroid(d);
+    x = centroid[0];
+    y = centroid[1];
+    k = 4;
+    centered = d;
+  } else {
+    x = width / 2;
+    y = height / 2;
+    k = 1;
+    centered = null;
+  }
+  states.selectAll("path")
+      .classed("active", centered && function(d) { return d === centered; });
+
+
+
+}
+
+
+
+function labelsTransform(d) {
+  if (d.id == 8) {
+    var arr = qpath.centroid(d);
+    arr[1] += (d3.event && d3.event.scale) ? (d3.event.scale / height + 20) : (initialScale / height + 20);
+    return "translate(" + arr + ")";
+  } else {
+    return "translate(" + qpath.centroid(d) + ")";
+  }
+}
+
+
+
+
+    </script>
+  </body>
+</html>
