@@ -11,6 +11,8 @@ public class ArtistShow {
 	private double lat;
 	private double lon;
 	private int buskerNo;
+	private String gu;
+	private String doo;
 	public int getShowNo() {
 		return showNo;
 	}
@@ -59,5 +61,16 @@ public class ArtistShow {
 	public void setBuskerNo(int buskerNo) {
 		this.buskerNo = buskerNo;
 	}
-	
+	public String getGu() {
+		return gu;
+	}
+	public void setGu(String gu) {
+		this.gu = gu;
+	}
+	public String getDoo() {
+		return doo;
+	}
+	public void setDoo(String doo) {
+		this.doo = doo;
+	}
 }

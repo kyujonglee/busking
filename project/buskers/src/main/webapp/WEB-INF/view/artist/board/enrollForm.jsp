@@ -50,6 +50,8 @@
 						</div>
 						<input type="hidden" name="lat" id="lat" /> 
 						<input type="hidden" name="lon" id="lon" />
+						<input type="hidden" name="gu" id="gu" />
+						<input type="hidden" name="doo" id="doo" />
 					</div>
 					<div class="busker-show-enroll__form-column">
 						<div class="enroll-form-column__title">
