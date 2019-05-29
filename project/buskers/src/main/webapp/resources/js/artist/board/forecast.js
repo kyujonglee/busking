@@ -82,7 +82,7 @@ function realTimeWeather() {
 // }
 
 
-export const openweathermapKorean = [{"Parameter":200,"English":"thunderstorm with light rain","Korean":"가벼운 비를 동반한 천둥구름"},
+const openweathermapKorean = [{"Parameter":200,"English":"thunderstorm with light rain","Korean":"가벼운 비를 동반한 천둥구름"},
 {"Parameter":201,"English":"thunderstorm with rain","Korean":"비를 동반한 천둥구름"},
 {"Parameter":202,"English":"thunderstorm with heavy rain","Korean":"폭우를 동반한 천둥구름"},
 {"Parameter":210,"English":"light thunderstorm","Korean":"약한 천둥구름"},

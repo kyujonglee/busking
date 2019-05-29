@@ -1,4 +1,4 @@
-import { openweathermapKorean } from "./forecast.js";
+//import { openweathermapKorean } from "./forecast.js";
 
 const API_KEY = "d3bf0d7d2d5b1152cc9ad6fde52607b6";
 
@@ -26,6 +26,9 @@ function getWeather(lat, lon, date) {
           // 날씨 : ${ele.weather[0].main}
           $("#lat").val(lat);
           $("#lon").val(lon);
+          $("#weatherIcon").val(`<img src="http://openweathermap.org/img/w/${ele.weather[0].icon}.png" />`);
+          $("#temperature").val(`${ele.main.temp}`);
+          $("#weather").val(`${weatherKorean}`);
           $(".busker-show-enroll__form-column:nth-child(2) .enroll-form-column__content").html(`
               <span class="enroll-form-column__content-weather-icon"> 
               <img src="http://openweathermap.org/img/w/${
@@ -53,7 +56,7 @@ function getWeather(lat, lon, date) {
     });
 }
 
-export let items = {};
+let items = {};
 
 function mapInit(lat, lon) {
   const infowindow = new daum.maps.InfoWindow({ zIndex: 1 });

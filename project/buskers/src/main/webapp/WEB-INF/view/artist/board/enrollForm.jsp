@@ -2,10 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!-- services와 clusterer, drawing 라이브러리 불러오기 -->
-<script type="text/javascript"
-	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=6ecd2e05e789f3a1417e2dfe2c1e4f40&libraries=services,clusterer,drawing"></script>
-<link rel="stylesheet" type="text/css"
-	href="https://npmcdn.com/flatpickr/dist/themes/material_orange.css" />
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=6ecd2e05e789f3a1417e2dfe2c1e4f40&libraries=services,clusterer,drawing"></script>
+<link rel="stylesheet" type="text/css" href="https://npmcdn.com/flatpickr/dist/themes/material_orange.css" />
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <section class="busker-show-enroll">
 	<header class="busker-show__header">
@@ -29,7 +27,7 @@
 				<span class="weather-search__title">✔ 장소검색</span> <input type="text"
 					class="weather-search__input" />
 			</form>
-			<form id="enrollForm" name="enrollForm" action="enroll.do" onsubmit="return check();" method="post">
+			<form id="enrollForm" name="enrollForm" action="<c:url value='/artist/board/enroll.do'/>" onsubmit="return check();" method="post">
 				<div class="busker-show-enroll__form">
 					<div class="busker-show-enroll__form-column">
 						<div class="enroll-form-column__title">
@@ -52,6 +50,9 @@
 						<input type="hidden" name="lon" id="lon" />
 						<input type="hidden" name="gu" id="gu" />
 						<input type="hidden" name="doo" id="doo" />
+						<input type="hidden" name="temperature" id="temperature" />
+						<input type="hidden" name="weather" id="weather" />
+						<input type="hidden" name="weatherIcon" id="weatherIcon" />
 					</div>
 					<div class="busker-show-enroll__form-column">
 						<div class="enroll-form-column__title">
@@ -88,15 +89,18 @@
 	</section>
 </section>
 
-<script type="module" src="<c:url value='/resources/js/artist/board/forecast.js' />"></script>
-<script type="module" src="<c:url value='/resources/js/artist/board/map.js' />"></script>
-<script type="module" src="<c:url value='/resources/js/artist/main/artist.js' />"></script>
+
+<script src="<c:url value='/resources/js/artist/board/forecast.js' />"></script>
+<script src="<c:url value='/resources/js/artist/board/map.js' />"></script>
 <script>
- 	  $(document).ready(() => {
+ 	  $(document).ready(function(){
         $(".busker-side__info-btn i").trigger("click");
       });
  	  function check(){
  		  $("#enrollDate").val( new Date($(".busker-enroll__date").val()) );
+ 		  console.log("shit");
+ 		  console.log($("#weather").val());
+ 		  console.log($("#weatherIcon").val());
  		  return true;
  	  }
 </script>
