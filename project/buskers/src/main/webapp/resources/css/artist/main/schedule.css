@@ -33,6 +33,11 @@
   animation-duration: 1.5s;
   animation-name: fall;
   position : relative;
+  transition : all 0.5s ease-in-out;
+}
+
+.busker-show-list__main .busker-show-list__item:hover {
+  transform : scale(1.05);
 }
 
 @keyframes fall {

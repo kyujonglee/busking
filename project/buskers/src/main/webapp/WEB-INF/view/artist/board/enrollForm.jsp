@@ -35,7 +35,7 @@
 						</div>
 						<div class="enroll-form-column__content">
 							<i class="far fa-calendar-alt fa-lg content-icon"></i> <input
-								type="text" class="busker-enroll__date" placeholder="날씨를 입력해주세요" />
+								type="text" class="busker-enroll__date" placeholder="날짜를 선택해주세요" />
 								<input type="hidden" name="enrollDate" id="enrollDate" />
 						</div>
 					</div>

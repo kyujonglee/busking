@@ -36,7 +36,7 @@
 						</div>
 						<div class="enroll-form-column__content">
 							<i class="far fa-calendar-alt fa-lg content-icon"></i> 
-							<input type="text" class="busker-enroll__date" placeholder="날씨를 입력해주세요" value="<fmt:formatDate value="${show.enrollDate}" pattern="yyyy-MM-dd HH:mm" type="both" />"/>
+							<input type="text" class="busker-enroll__date" placeholder="날짜를 선택해주세요" value="<fmt:formatDate value="${show.enrollDate}" pattern="yyyy-MM-dd HH:mm" type="both" />"/>
 								<input type="hidden" name="enrollDate" id="enrollDate" />
 						</div>
 					</div>
@@ -104,11 +104,17 @@
 
 <script src="<c:url value='/resources/js/artist/board/forecast.js' />"></script>
 <script src="<c:url value='/resources/js/artist/board/map.js' />"></script>
-<script src="<c:url value='/resources/js/artist/board/enroll.js' />"></script>
 <script>
  	  $(document).ready(function(){
         $(".busker-side__info-btn i").trigger("click");
       });
+ 	 	function init() {
+ 		  console.log("update 초기실행");
+ 		  const lat = '<c:out value="${show.lat}"/>';
+ 		  const lon = '<c:out value="${show.lon}"/>';
+ 		  mapInit(lat, lon);
+ 	 	}
+ 	 	init();
  	  function check(){
  		  $("#enrollDate").val( new Date($(".busker-enroll__date").val()) );
 		  if($("#temperature").val() === ""){
@@ -116,4 +122,6 @@
 		  }
  		  return true;
  	  }
+ 	  
+ 	  
 </script>
