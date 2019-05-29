@@ -60,7 +60,7 @@
 						</div>
 						<div class="enroll-form-column__content">
 							<i class="fas fa-map-marker-alt fa-lg content-icon"></i> <input
-								type="text" class="enroll-form-column__place" name="place"/>
+								type="text" class="enroll-form-column__place" name="place" id="place"/>
 						</div>
 					</div>
 					<div class="busker-show-enroll__form-column">
@@ -69,7 +69,7 @@
 						</div>
 						<div class="enroll-form-column__content">
 							<i class="fas fa-pencil-alt fa-lg content-icon"></i> <input
-								type="text" class="enroll-form-column__place" name="title"/>
+								type="text" class="enroll-form-column__place" name="title" id="title"/>
 						</div>
 					</div>
 					<div class="busker-show-enroll__form-column">
@@ -77,7 +77,7 @@
 							<span>✔ 공연내용</span>
 						</div>
 						<div class="enroll-form-column__content">
-							<textarea name="content" id="" class="enroll-form-column__textarea"></textarea>
+							<textarea name="content" id="content" class="enroll-form-column__textarea"></textarea>
 						</div>
 					</div>
 					<div class="busker-show-enroll__form-column">
@@ -98,7 +98,45 @@
         $(".busker-side__info-btn i").trigger("click");
       });
  	  function check(){
- 		  $("#enrollDate").val( new Date($(".busker-enroll__date").val()) );
+ 		  const lat = $("#lat").val();
+ 		  const enrollDate = $(".busker-enroll__date").val();
+ 		  const place = $("#place").val();
+ 		  const title = $("#title").val();
+ 		  const content = $("#content").val();
+ 		  
+ 		  if(lat === ""){
+ 			  alert("공연위치를 지도에서 클릭해주세요!");
+ 			  return false;
+ 		  }
+ 		  
+ 		  if(enrollDate === "") {
+ 			  alert("날짜를 선택해주세요.");
+ 			  return false;
+ 		  }else {
+ 			  if(new Date(enrollDate) < new Date()){
+ 				  alert("현재 날짜 이후로 선택 가능합니다.");
+ 				  return false;
+ 			  }
+ 		  }
+ 		  if(title === ""){
+ 			  alert("제목을 입력해주세요.");
+ 			  $("#title").focus();
+ 			  return false;
+ 		  }
+ 		  if(place === ""){
+ 			  alert("장소를 입력해주세요.");
+ 			  $("#place").focus();
+ 			  return false;
+ 		  }
+ 		  if(content === ""){
+ 			  alert("내용을 입력해주세요.");
+ 			  $("#content").focus();
+ 			  return false;
+ 		  }
+ 		  
+ 		  
+ 		  
+ 		  $("#enrollDate").val( new Date(enrollDate) );
 		  if($("#temperature").val() === ""){
 			  $("#temperature").val(0);
 		  }

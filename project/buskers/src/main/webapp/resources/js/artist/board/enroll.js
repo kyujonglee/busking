@@ -1,6 +1,6 @@
 $(".busker-enroll__date").flatpickr({
   enableTime: true,
-  onChange: function(selectedDates, dateStr, instance) {
+  onDayCreate: function(selectedDates, dateStr, instance) {
     const todayDate = new Date();
     if (selectedDates[0] < todayDate) {
       alert("현재 날짜 이후로 선택이 가능합니다.");
