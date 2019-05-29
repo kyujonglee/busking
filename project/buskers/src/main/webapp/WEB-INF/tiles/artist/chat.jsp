@@ -1,46 +1,97 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css'>
+<link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.2/css/font-awesome.min.css'>
+	
 <aside class="busker-chat">
-	<header class="busker-chat__header">
-		<span class="chat-header__title">버스커 채팅 </span> <i class="fas fa-cog"></i>
-	</header>
-	<section class="busker-chat__main">
-		<div class="busker-chat__box">
-			<span class="busker-chat__user">jin</span> <span
-				class="busker-chat__item">: 안녕하세요! </span>
+	<div id="frame">
+		<div class="content">
+			<div class="contact-profile">
+				<img src="http://emilcarlsson.se/assets/harveyspecter.png" alt="" />
+				<p>Harvey Specter</p>
+				<div class="social-media">
+					<i class="fa fa-facebook" aria-hidden="true"></i>
+					<i class="fa fa-twitter" aria-hidden="true"></i>
+					 <i class="fa fa-instagram" aria-hidden="true"></i>
+				</div>
+			</div>
+			
+			<div class="messages">
+				<ul>
+				</ul>
+			</div>
+			
+			<div class="message-input">
+				<div class="wrap">
+				<input type="text" placeholder="Write your message..." />
+				<button class="submit"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
+				</div>
+			</div>
 		</div>
-		<div class="busker-chat__box">
-			<span class="busker-chat__user">kyu</span> <span
-				class="busker-chat__item">: 이잉이잉잉잉! </span>
-		</div>
-		<div class="busker-chat__box">
-			<span class="busker-chat__user">jin</span> <span
-				class="busker-chat__item">: 안녕하세요! </span>
-		</div>
-		<div class="busker-chat__box">
-			<span class="busker-chat__user">jin</span> <span
-				class="busker-chat__item">: 안녕하세요! </span>
-		</div>
-		<div class="busker-chat__box">
-			<span class="busker-chat__user">jin</span> <span
-				class="busker-chat__item">: Lorem ipsum
-				dolor, sit amet consectetur adipisicing elit. Quibusdam numquam
-				nemo, praesentium dolorum incidunt rem est accusamus iste dicta
-				autem, optio quasi molestias architecto nihil amet nostrum labore
-				modi soluta? </span>
-		</div>
-		<div class="busker-chat__box mychat">
-			<span class="busker-chat__user">나</span> <span
-				class="busker-chat__item">: 안녕하세요! </span>
-		</div>
-		<div class="busker-chat__box">
-			<span class="busker-chat__user">jin</span> <span
-				class="busker-chat__item">: 안녕하세요! </span>
-		</div>
-	</section>
-	<footer class="busker-chat__footer">
-		<textarea class="chat__footer-input" cols="40" rows="5"
-			placeholder="팬만 참여하실 수 있습니다."></textarea>
-		<button class="chat__footer-btn">전송</button>
-	</footer>
+	</div>
 </aside>
+<script src="http://localhost:10001/socket.io/socket.io.js"></script>
+<script>
+	
+	const socket = io.connect("http://localhost:10001");
+	let color = "#" + Math.round(Math.random() * 0xffffff).toString(16);
+	
+	socket.on("chat", function (data) {
+		let html = "";
+		
+		html += "<li class='received'>";
+		html +=		"<span style='color:" + data.color + ";'><i class='fas fa-circle'></i>" + data.sender + "<time>" + data.date + "</time></span>";
+		html +=		"<div>";
+		html +=			"<p>" + data.content + "</p>";
+		html +=		"</div>";
+		html += "</li>";
+		
+        $(".messages > ul").append(html);
+        $(".messages").animate({ scrollTop: $(document).height() }, "fast");
+    });
+	
+	$(".submit").click(function () {
+		if ($(".message-input input").val() == "") {
+			return;
+		}
+		let date = new Date();
+		let hour = date.getHours();
+		let minutes = date.getMinutes();
+		if (parseInt(minutes) < 10) {
+			minutes = "0" + minutes;
+		}
+		
+		let html = "";
+		
+		html += "<li class='sent'>";
+		html +=		"<span><i class='fas fa-circle'></i>" + "${sessionScope.user.nickName}" + "<time>" + hour + " : " + minutes + "</time></span>";
+		html +=		"<div>";
+		html +=			"<p>" + $(".message-input input").val() + "</p>";
+		html +=		"</div>";
+		html += "</li>";
+		
+        $(".messages > ul").append(html);
+        
+        socket.emit(
+   	        "chat", 
+   	        {
+   	        	/*
+   	        	channel: 
+   	        	*/
+   	            sender: "${sessionScope.user.nickName}",
+   	            content: $(".message-input input").val(),
+   	            date: hour + " : " + minutes,
+   	            color: color
+   	        }
+   		);
+        $(".messages").animate({ scrollTop: $(document).height() }, "fast");
+        $(".message-input input").val("");
+	});
+	
+	$(window).on('keydown', function(e) {
+		if (e.which == 13) {
+			newMessage();
+			return false;
+		}
+	});
+</script>
