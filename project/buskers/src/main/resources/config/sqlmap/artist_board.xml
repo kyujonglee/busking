@@ -10,6 +10,12 @@
 		 order by enroll_date desc
 	</select>
 	
+	<select id="selectArtistShowByNo" parameterType="int" resultType="artistShow">
+		select *
+		  from tb_busker_show
+		 where show_no = #{showNo}
+	</select>
+
 	<insert id="insertArtistShow" parameterType="artistShow">
 		insert into tb_busker_show
 		(enroll_date, title, content, place, lat, lon, 
@@ -18,6 +24,28 @@
 		(#{enrollDate}, #{title}, #{content}, #{place}, #{lat}, #{lon},
 		#{gu}, #{doo},#{weather},#{weatherIcon}, #{temperature}, 1)
 	</insert>
+	
+	<update id="updateArtistShowByNo" parameterType="artistShow">
+		update tb_busker_show
+		   set enroll_date = #{enrollDate},
+		       title = #{title},
+		       content = #{content},
+		       place = #{place},
+		       lat = #{lat},
+		       lon = #{lon},
+		       gu = #{gu},
+		       doo = #{doo},
+		       weather = #{weather},
+		       weather_icon = #{weatherIcon},
+		       temperature = #{temperature}
+		 where show_no = #{showNo}
+	</update>
+	
+	<delete id="deleteArtistShowByNo" parameterType="int">
+		delete
+		  from tb_busker_show
+		 where show_no = #{showNo}
+	</delete>
 </mapper>
 
 
