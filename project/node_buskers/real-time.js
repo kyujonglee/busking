@@ -25,6 +25,18 @@ io.on("connection", function (socket) {
             }
         );
     });
+
+    socket.on("chat", function (data) {
+        socket.emit(
+            "chat", 
+            {
+                sender: data.sender,
+                content: data.content,
+                date: data.date,
+                color: data.color
+            }
+        );
+    });
 });
 
 server.listen(10001, function () {

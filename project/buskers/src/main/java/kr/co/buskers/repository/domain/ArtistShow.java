@@ -12,11 +12,28 @@ public class ArtistShow {
 	private double lon;
 	private int buskerNo;
 	private String gu;
-	public String getGu() {
-		return gu;
+	private String doo;
+	private String weather;
+	private String weatherIcon;
+	private double temperature;
+	
+	public String getWeather() {
+		return weather;
 	}
-	public void setGu(String gu) {
-		this.gu = gu;
+	public void setWeather(String weather) {
+		this.weather = weather;
+	}
+	public String getWeatherIcon() {
+		return weatherIcon;
+	}
+	public void setWeatherIcon(String weatherIcon) {
+		this.weatherIcon = weatherIcon;
+	}
+	public double getTemperature() {
+		return temperature;
+	}
+	public void setTemperature(double temperature) {
+		this.temperature = temperature;
 	}
 	public int getShowNo() {
 		return showNo;
@@ -66,5 +83,16 @@ public class ArtistShow {
 	public void setBuskerNo(int buskerNo) {
 		this.buskerNo = buskerNo;
 	}
-	
+	public String getGu() {
+		return gu;
+	}
+	public void setGu(String gu) {
+		this.gu = gu;
+	}
+	public String getDoo() {
+		return doo;
+	}
+	public void setDoo(String doo) {
+		this.doo = doo;
+	}
 }

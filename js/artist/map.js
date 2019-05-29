@@ -57,6 +57,7 @@ function getWeather(lat, lon, date) {
                 ele.main.temp
               } °C </span>
               `);
+<<<<<<< HEAD
           // 기온 : ${ele.main.temp}
           //  날짜 : ${date}
           //  날씨 : ${weatherKorean}
@@ -64,6 +65,8 @@ function getWeather(lat, lon, date) {
           //  <img src="http://openweathermap.org/img/w/${
           //    ele.weather[0].icon
           //  }.png" />
+>>>>>>> master
+=======
 >>>>>>> master
           weatherFlag = false;
           break;

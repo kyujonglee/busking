@@ -4,10 +4,16 @@
 @import 'info.css';
 @import 'chat.css';
 @import 'main-content.css';
-@import 'schedule.css';
 @import 'busker-show-enroll.css';
+@import 'schedule.css';
 
 @import url('https://fonts.googleapis.com/css?family=Italianno&display=swap');
+
+:root {
+  --color-left: #ff8c6f;
+  --color-right: #fe6679;
+}
+
 
 a {
     text-decoration: none;

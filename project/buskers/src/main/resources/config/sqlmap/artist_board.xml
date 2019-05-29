@@ -3,8 +3,45 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.co.buskers.repository.mapper.ArtistBoardMapper">
 	
+	
+	<select id="selectArtistShow" resultType="artistShow">
+		select *
+		  from tb_busker_show
+		 order by enroll_date desc
+	</select>
+	
 	<insert id="insertArtistShow" parameterType="artistShow">
-		insert into tb_busker_show(enroll_date, title, content, place, lat, lon, gu, busker_no)
-		values(#{enrollDate}, #{title}, #{content}, #{place}, #{lat}, #{lon}, #{gu}, 1)
+		insert into tb_busker_show
+		(enroll_date, title, content, place, lat, lon, 
+		gu, doo, weather, weather_icon,temperature, busker_no)
+		values
+		(#{enrollDate}, #{title}, #{content}, #{place}, #{lat}, #{lon},
+		#{gu}, #{doo},#{weather},#{weatherIcon}, #{temperature}, 1)
 	</insert>
 </mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+>>>>>>> master

@@ -3,10 +3,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <section class="busker-content">
 	<div class="busker-content__item">
-		<iframe width="100%" height="100%"
-			src="https://www.youtube.com/embed/saH2Odc3ba8" frameborder="0"
-			allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-			allowfullscreen></iframe>
+<!-- 		<iframe width="100%" height="100%" -->
+<!-- 			src="https://www.youtube.com/embed/saH2Odc3ba8" frameborder="0" -->
+<!-- 			allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" -->
+<!-- 			allowfullscreen></iframe> -->
 	</div>
 	<div class="busker-content__item">
 		<div class="busker-board">

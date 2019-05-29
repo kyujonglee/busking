@@ -1,9 +1,9 @@
-package kr.co.buskers.main;
+package kr.co.buskers.main.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-@Controller
+@Controller("kr.co.buskers.main.controller.MainController")
 @RequestMapping("/main")
 public class MainController {
 	

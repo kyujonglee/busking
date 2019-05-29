@@ -44,10 +44,6 @@
   padding-bottom: 0px;
 }
 
-.busker-show__header-link {
-  border-bottom: 3px solid var(--color-left);
-}
-
 .busker-show__header-top-menu {
   color: rgba(0, 0, 0, 0.5);
   margin-bottom: 20px;
@@ -63,10 +59,40 @@
 }
 
 .busker-show__header .busker-show__header-title {
+  display : flex;
+  justify-content : space-between;
+  align-items : center;
+}
+
+.busker-show__header .busker-show__header-link {
   margin: 30px;
   font-size: 30px;
   font-weight: 600;
   opacity: 0.8;
+  border-bottom: 3px solid var(--color-left);
+}  
+
+.busker-show__header-enroll-btn {
+	all : unset;
+	width: 120px;
+	padding : 5px;
+	box-sizing : border-box;
+	height : 40px;
+	background-color : var(--color-right);
+	color : white;
+	display : flex;
+	justify-content : center;
+	align-items : center;
+	border-radius : 5px;
+	font-size : 22px;
+	opacity : 0.8;
+	transition : all 0.5s ease-in-out;
+	cursor : pointer;
+	box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
+.busker-show__header-enroll-btn:hover {
+	box-shadow: 0 7px 10px rgba(0,0,0,0.25), 0 5px 5px rgba(0,0,0,0.22);
 }
 
 .busker-show-enroll__main {
