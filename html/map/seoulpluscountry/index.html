@@ -83,7 +83,20 @@
         }
         .mapwrapper{
           display:grid;
-          grid-template-columns: 1fr 1fr 1fr;
+          grid-template-columns: 550px 550px 1fr;
+        }
+        /* 우측 공연정보 */
+        .perfomance__info_wrapper{
+          height:590px;
+          width:  100%;
+          background: red;
+          overflow : scroll;
+        }
+        .perfomance_info{
+          cursor: pointer;
+          background:aqua;
+          height:100px;
+          margin: 10px 0px 10px 0px;
         }
     </style>
   </head>
@@ -91,7 +104,23 @@
     <div class="mapwrapper">
       <div id="container" class="container"></div>
       <div id="chart"></div>
-      <div></div>
+      <div class="perfomance__info_wrapper">
+					<div class="buskers_map_right">
+              <div class="post">
+                <p class="calendar">7 <em>February</em></p>
+                </div> 
+            </div>
+        <div class="perfomance_info">a공연     <br>날짜 : 2019년 5월 29일 17시   <br>장소 : 신촌 차없는거리</div>
+        <div class="perfomance_info">b공연</div>
+        <div class="perfomance_info">c공연</div>
+        <div class="perfomance_info">d공연</div>
+        <div class="perfomance_info">e공연</div>
+        <div class="perfomance_info">f공연</div>
+        <div class="perfomance_info">g공연</div>
+        <div class="perfomance_info">i공연</div>
+        <div class="perfomance_info">j공연</div>
+        <div class="perfomance_info">k공연</div>
+      </div>
     </div>
 
 
@@ -99,13 +128,13 @@
     <script src="http://d3js.org/d3.v3.min.js"></script>
     <script src="http://d3js.org/topojson.v1.min.js"></script>
     <script>
-    var width = '700',
-        height ='700'
+    var width = '550',
+        height ='590'
         ,centered;
 
     var projection = d3.geo.mercator()
             .center([126.9795, 37.5651])
-            .scale(87000)
+            .scale(70000)
             .translate([width/2, height/2]);
 
     var path = d3.geo.path().projection(projection);
@@ -155,8 +184,10 @@ function seoulclicked(d) {
   var x, y, k;
 // console.dir(path.centroid(d));
 // console.dir(d.name);
-console.log(d);
-console.log(d.properties.name)
+
+let localname = d.properties.name;
+
+console.log(localname);
 
   if (d && centered !== d) {
     var centroid = path.centroid(d);
@@ -186,8 +217,8 @@ console.log(d.properties.name)
 }
 
 /* 전국지도 */
-var width = 600,
-    height = 700,
+var width = 550,
+    height = 590,
     initialScale = 5500,
     initialX = -11950,
     initialY = 4050,

@@ -7,6 +7,13 @@
 		  from tb_busker_show
 		 order by enroll_date desc
 	</select>
+
+	<select id="selectMainArtistShow" parameterType="artistShow" resultType="artistShow">
+		select *
+		  from tb_busker_show
+		 where gu = #{gu}
+		 order by enroll_date desc
+	</select>
 	
 	<insert id="insertArtistShow" parameterType="artistShow">
 		insert into tb_busker_show
@@ -16,6 +23,7 @@
 		(#{enrollDate}, #{title}, #{content}, #{place}, #{lat}, #{lon},
 		#{gu}, #{doo},#{weather},#{weatherIcon}, #{temperature}, 1)
 	</insert>
+	
 </mapper>
 
 
