@@ -15,6 +15,12 @@
 		  from tb_busker_show
 		 where show_no = #{showNo}
 	</select>
+	
+	<select id="countArtistCurrentShow" resultType="int">
+		select count(*)
+		  from tb_busker_show
+		 where enroll_date > now()
+	</select>
 
 	<insert id="insertArtistShow" parameterType="artistShow">
 		insert into tb_busker_show

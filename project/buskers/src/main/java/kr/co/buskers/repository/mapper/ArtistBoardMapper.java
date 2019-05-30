@@ -8,7 +8,7 @@ public interface ArtistBoardMapper {
 	
 	List<ArtistShow> selectArtistShow();
 	ArtistShow selectArtistShowByNo(int showNo);
-	
+	int countArtistCurrentShow();
 	
 	void insertArtistShow(ArtistShow artistShow);
 	
