@@ -23,4 +23,19 @@ public class ArtistBoardServiceImpl implements ArtistBoardService {
 	public List<ArtistShow> selectArtistShow(){
 		return mapper.selectArtistShow();
 	}
+	
+	@Override
+	public ArtistShow selectArtistShowByNo(int showNo) {
+		return mapper.selectArtistShowByNo(showNo);
+	}
+	
+	@Override
+	public void updateArtistShowByNo(ArtistShow artistShow) {
+		mapper.updateArtistShowByNo(artistShow);
+	}
+	
+	@Override
+	public void deleteArtistShowByNo(int showNo) {
+		mapper.deleteArtistShowByNo(showNo);
+	}
 }
