@@ -247,9 +247,9 @@ public class MemberController {
 		
 	}
 	
-	// 마이페이지
-	@RequestMapping("profile.do")
-	public void profile() {
+	// 개인설정 페이지
+	@RequestMapping("setting.do")
+	public void setting() {
 		
 	}
 	
