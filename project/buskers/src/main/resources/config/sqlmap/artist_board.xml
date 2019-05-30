@@ -3,7 +3,6 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.co.buskers.repository.mapper.ArtistBoardMapper">
 	
-	
 	<select id="selectArtistShow" resultType="artistShow">
 		select *
 		  from tb_busker_show
@@ -53,28 +52,6 @@
 		 where show_no = #{showNo}
 	</delete>
 </mapper>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
