@@ -84,7 +84,7 @@
 										<span>${sessionScope.user.nickName} 님</span><br>
 										<span> 안녕하세요!</span>
 									</div>
-									<a class="header-i10" href="<c:url value='/main/member/profile.do'/>">프로필 설정</a>
+									<a class="header-i10" href="<c:url value='/main/member/setting.do'/>">개인 설정</a>
 								</div>
 							</div>
 							<div class="header-j">

@@ -8,5 +8,14 @@ public interface ArtistBoardMapper {
 	
 	List<ArtistShow> selectArtistShow();
 	
+	List<ArtistShow> selectMainArtistShow(ArtistShow artistShow);
+
+	ArtistShow selectArtistShowByNo(int showNo);
+	
 	void insertArtistShow(ArtistShow artistShow);
+	
+	void updateArtistShowByNo(ArtistShow artistShow);
+	
+	void deleteArtistShowByNo(int showNo);
+	
 }

@@ -16,25 +16,6 @@ public class ArtistShow {
 	private String weather;
 	private String weatherIcon;
 	private double temperature;
-	
-	public String getWeather() {
-		return weather;
-	}
-	public void setWeather(String weather) {
-		this.weather = weather;
-	}
-	public String getWeatherIcon() {
-		return weatherIcon;
-	}
-	public void setWeatherIcon(String weatherIcon) {
-		this.weatherIcon = weatherIcon;
-	}
-	public double getTemperature() {
-		return temperature;
-	}
-	public void setTemperature(double temperature) {
-		this.temperature = temperature;
-	}
 	public int getShowNo() {
 		return showNo;
 	}
@@ -95,4 +76,23 @@ public class ArtistShow {
 	public void setDoo(String doo) {
 		this.doo = doo;
 	}
+	public String getWeather() {
+		return weather;
+	}
+	public void setWeather(String weather) {
+		this.weather = weather;
+	}
+	public String getWeatherIcon() {
+		return weatherIcon;
+	}
+	public void setWeatherIcon(String weatherIcon) {
+		this.weatherIcon = weatherIcon;
+	}
+	public double getTemperature() {
+		return temperature;
+	}
+	public void setTemperature(double temperature) {
+		this.temperature = temperature;
+	}
+	
 }

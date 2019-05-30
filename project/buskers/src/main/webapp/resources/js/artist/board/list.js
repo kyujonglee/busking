@@ -23,18 +23,52 @@ $(document).ready(() => {
 		  const lat = show.lat;
 		  const lon = show.lon;
 		  const selDate = new Date(show.enrollDate);
+		  let end = "";
+		  if(selDate < new Date()){
+	    	  end = `<div class="busker-show-list__item-end"> 버스킹 종료 </div>`;
+	      }
+		  $(".busker-show-list__main").append(`
+    			  <div class="busker-show-list__item" id="busker-show${show.showNo}">
+    				<div class="busker-show-list__item-title">
+					  <a href="detail.do?showNo=${show.showNo}" class="busker-show-list__detail-link">
+	    					<span>${show.title}</span>
+						  ${end}
+					  </a>
+					  <a href="updateForm.do?showNo=${show.showNo}">
+				  		<i class="fas fa-pen"></i>
+				  	  </a>
+    				</div>
+    				<div class="busker-show-list__item-content">
+    					<div class="busker-show-list__item-row">
+    						<i class="far fa-clock fa-lg"></i>
+    						<div class="busker-show-list__item-row-content">
+    							${new Date(show.enrollDate).format('yy.MM.dd a/p hh시mm분 E')}
+    						</div>
+    					</div>
+    					<div class="busker-show-list__item-row">
+    						<i class="fas fa-map-marker-alt fa-lg"></i>
+    						<div class="busker-show-list__item-row-content">${show.place}</div>
+    					</div>
+    					<div class="busker-show-list__item-row">
+    						<span> <i class="fas fa-temperature-high fa-lg"></i>
+    						</span> 
+    					</div>
+    					<div class="busker-show-list__item-row">
+    						<i class="far fa-sticky-note fa-lg"></i>
+    						<div class="busker-show-list__item-row-content">${show.content}</div>
+    					</div>
+    				</div>
+    			</div>
+    		   `);
 		  
-//		  console.log(show.showNo);
-//		  weatherApi(lat,lon,API_KEY)
 		  fetch(
 		    `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`
 		  )
 		    .then(response => response.json())
 		    .then(json => {
-		    	console.log(show.showNo);
 		      let weatherFlag = true;
 		      let preDate = new Date(json.list[0].dt_txt);
-		      let weatherIcon,weather,temp,end="";
+		      let weatherIcon,weather,temp;
 		      for (let i = 1; i < json.list.length; i++) {
 		        const ele = json.list[i];
 		        const proDate = new Date(ele.dt_txt);
@@ -64,41 +98,13 @@ $(document).ready(() => {
 		    		weather = "날씨정보를 가져올 수 없습니다.";
 		    	}
 		      }
-		      if(selDate < new Date()){
-		    	  end = `<div class="busker-show-list__item-end"> 버스킹 종료 </div>`;
+		      if(weather !== "날씨정보를 가져올 수 없습니다."){
+		    	  $(`#busker-show${show.showNo} .busker-show-list__item-row:nth-child(3)`).append(`<span> ${temp}°C </span> <span> ${weatherIcon} </span> 
+		    	  <span> ${weather} </span>`);
+		      }else {
+		    	  $(`#busker-show${show.showNo} .busker-show-list__item-row:nth-child(3)`)
+		    	  .append(`<span> ${weather} </span>`);
 		      }
-		      // 오늘 날짜 이전의 공연일정의 경우 배경을 회색으로!
-		      // 
-// html 코드 추가
-		    	  $(".busker-show-list__main").append(`
-	    			  <div class="busker-show-list__item">
-	    				<div class="busker-show-list__item-title">
-	    					${show.title} ${show.showNo}<i class="fas fa-pen"></i>
-	    					${end}
-	    				</div>
-	    				<div class="busker-show-list__item-content">
-	    					<div class="busker-show-list__item-row">
-	    						<i class="far fa-clock fa-lg"></i>
-	    						<div class="busker-show-list__item-row-content">
-	    							${new Date(show.enrollDate).format('yy.MM.dd a/p HH시mm분 E')}
-	    						</div>
-	    					</div>
-	    					<div class="busker-show-list__item-row">
-	    						<i class="fas fa-map-marker-alt fa-lg"></i>
-	    						<div class="busker-show-list__item-row-content">${show.place}</div>
-	    					</div>
-	    					<div class="busker-show-list__item-row">
-	    						<span> <i class="fas fa-temperature-high fa-lg"></i>
-	    						</span> <span> ${temp}°C </span> <span> ${weatherIcon} </span> 
-	    						<span> ${weather} </span>
-	    					</div>
-	    					<div class="busker-show-list__item-row">
-	    						<i class="far fa-sticky-note fa-lg"></i>
-	    						<div class="busker-show-list__item-row-content">${show.content}</div>
-	    					</div>
-	    				</div>
-	    			</div>
-	    		   `);
 		  });
 	}
   })

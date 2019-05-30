@@ -9,7 +9,7 @@
 .busker-show-list__main {
   width : 100%;
   overflow : scroll;
-  padding-top: 20px;
+  padding-top: 25px;
   box-sizing : border-box;
   padding-bottom: 10px;
   display: grid;
@@ -18,7 +18,7 @@
   /* grid-auto-rows: 180px; */
   grid-auto-columns: minmax(350px,1fr);
   grid-auto-flow : column;
-  grid-gap: 10px 15px;
+  grid-gap: 10px 10px;
   position : absolute;
 }
 
@@ -33,6 +33,11 @@
   animation-duration: 1.5s;
   animation-name: fall;
   position : relative;
+  transition : all 0.5s ease-in-out;
+}
+
+.busker-show-list__main .busker-show-list__item:hover {
+  transform : scale(1.05);
 }
 
 @keyframes fall {
@@ -108,13 +113,29 @@
   font-size: 20px;
   padding: 10px 20px;
   padding-top: 15px;
-  display: flex;
-  justify-content: space-between;
-  align-items : center;
   color: var(--color-darkgray);
   position: relative;
   font-weight : 600;
+  transition : all 0.5s ease-in-out;
 }
+.busker-show-list__main .busker-show-list__detail-link{
+  display: flex;
+  justify-content: space-between;
+  align-items : center;
+  box-sizing : border-box;
+}
+.busker-show-list__main .busker-show-list__detail-link span{
+  display:inline-block;
+  border-bottom : 2px solid white;
+  box-sizing:border-box;
+}
+
+.busker-show-list__main .busker-show-list__detail-link span:hover{
+  color : var(--color-right);
+/*   text-decoration : underline; */
+  border-bottom : 2px solid var(--color-right);
+}
+
 .busker-show-list__main .busker-show-list__item-title i {
   width: 50px;
   height: 50px;

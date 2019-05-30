@@ -9,6 +9,8 @@
     <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Prata' rel='stylesheet' type='text/css'>
     <link href="https://fonts.googleapis.com/css?family=Italianno&display=swap" rel="stylesheet">
+    <script src="http://d3js.org/d3.v3.min.js"></script>
+    <script src="http://d3js.org/topojson.v1.min.js"></script>
     <title>Buskers</title>
 		<section id="mu-slider">
 			<div class="mu-slider-area">
@@ -49,24 +51,28 @@
 		</section>
 
 		<div class="main_body_container">
-			<div class="buskers_map">
+			<div class="b	uskers_map">
 				<div class="buskers_map_title">
 					<div>Buskers</div>
 					<div>Performance Stage</div>
 				</div>
 				
 				<div class="buskers_map_detail">
-					<div class="buskers_map_left">
-						<section id="mu-map">
-					        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d9207.358598888495!2d-85.64847801496286!3d30.183918972289003!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0000000000000000%3A0x2320479d70eb6202!2sDillard's!5e0!3m2!1sbn!2sbd!4v1462359735720" width="100%" height="100%" frameborder="0" allowfullscreen=""></iframe>
-						</section> 
-					</div>
+					<!--     추가부분      -->
+					<div class="mapwrapper">
+				      <div id="container" class="container"></div>
+				      <div id="chart"></div>
+				      <div class="perfomance__info_wrapper">
+						    <div class="buskers_map_right">
+				              <div class="post">
+				                <p class="calendar">7<em>February</em></p>
+				              </div> 
+				            </div>
+					       
 					
-					<div class="buskers_map_right">
-						<div class="post">
-							<p class="calendar">7 <em>February</em></p>
-					    </div> 
-					</div>
+				        </div>
+				    </div>
+					<!--           -->
 				</div>
 			</div>
 		</div>
@@ -122,4 +128,219 @@
 	  	$(".view-main-top-btn").click(function(){
 	  	  $('html,body').stop().animate({scrollTop:0},700);
 	  	})
+
+	  	
+	  	
+	  	
+	  	
+	  	// 전국지도
+	  	  var width = '550',
+        height ='590'
+        ,centered;
+
+    var projection = d3.geo.mercator()
+            .center([126.9795, 37.5651])
+            .scale(70000)
+            .translate([width/2, height/2]);
+
+    var path = d3.geo.path().projection(projection);
+
+    var svg = d3.select("#chart").append("svg")
+                        .attr("width", width)
+                        .attr("height", height);
+
+    var map = svg.append("g").attr("id", "map")
+        places = svg.append("g").attr("id", "places");
+
+    d3.json("<c:url value='/resources/etc/seoul.json' />", function(error, data) {
+      var features = topojson.feature(data, data.objects.seoul_municipalities_geo).features;
+      map.selectAll('path')
+          .data(features)
+        .enter().append('path')
+          .attr('class', function(d) { console.log(); return 'municipality c' + d.properties.code })
+          .attr('d', path)
+          .on("click", seoulclicked);
+
+      map.selectAll('text')
+          .data(features)
+        .enter().append("text")
+          .attr("transform", function(d) { return "translate(" + path.centroid(d) + ")"; })
+          .attr("dy", ".35em")                              //dy 추가
+          .attr("class", "municipality-label")      //클래스 추가
+          .text(function(d) { return d.properties.name; })
+    });
+
+    d3.csv("<c:url value='/resources/etc/places.csv' />", function(data) {
+        places.selectAll("circle")
+            .data(data)
+          .enter().append("circle")
+            .attr("cx", function(d) { return projection([d.lon, d.lat])[0]; })
+            .attr("cy", function(d) { return projection([d.lon, d.lat])[1]; })
+            .attr("r", 10);
+
+        places.selectAll("text")
+            .data(data)
+          .enter().append("text")
+            .attr("x", function(d) { return projection([d.lon, d.lat])[0]; })
+            .attr("y", function(d) { return projection([d.lon, d.lat])[1] + 8; })
+            .text(function(d) { return d.name });
+    });
+/////////////////////////////////줌
+function seoulclicked(d) {
+  var x, y, k;
+// console.dir(path.centroid(d));
+// console.dir(d.name);
+
+let gu = d.properties.name;
+
+
+  if (d && centered !== d) {
+    var centroid = path.centroid(d);
+    x = centroid[0];
+    y = centroid[1];
+    k = 4;
+    centered = d;
+  } else {
+    x = width / 2;
+    y = height / 2;
+    k = 1;
+    centered = null;
+  }
+
+  map.selectAll("path")
+      .classed("active", centered && function(d) { return d === centered; });
+
+  map.transition()
+      .duration(750)
+      .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")scale(" + k + ")translate(" + -x + "," + -y + ")")
+      .style("stroke-width", 1.5 / k + "px");
+
+  places.transition()
+      .duration(750)
+      .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")scale(" + k + ")translate(" + -x + "," + -y + ")")
+      .style("stroke-width", 1.5 / k + "px");
+
+  /* 클릭시 지역값 넘겨줌 */
+  $.ajax({
+  		type:"POST",
+		data: "gu="+gu,
+		url:"mainmap-ajax.do",
+
+    }).done(function(result){
+    	console.log(result);
+    	$(".perfomance__info_wrapper").html("");
+    	for(let i = 0; i < result.length; i++){
+    	$(".perfomance__info_wrapper").append(`
+    	        <div class="perfomance_info">`+""+result[i].title+""+`</div>
+    			`);
+    	}
+    	
+    	
+	  }).fail(function(xhr){
+			alert("서버 처리중 에러발생")
+			console.dir(xhr);
+	  })
+
+}
+
+/* 전국지도 */
+var width = 550,
+    height = 590,
+    initialScale = 5500,
+    initialX = -11950,
+    initialY = 4050,
+    centered,
+    labels;
+
+var countryprojection = d3.geo.mercator()
+    .scale(initialScale)
+    .translate([initialX, initialY]);
+
+var qpath = d3.geo.path()
+    .projection(countryprojection);
+
+var zoom = d3.behavior.zoom()
+    .translate(countryprojection.translate())
+    .scale(countryprojection.scale())
+    .scaleExtent([height, 800 * height])
+    .on("zoom", zoom);
+
+var svg = d3.select("#container").append("svg")
+    .attr("width", width)
+    .attr("height", height)
+    .attr('id', 'map');
+
+var states = svg.append("g")
+    .attr("id", "states")
+    .call(zoom);
+
+states.append("rect")
+    .attr("class", "background")
+    .attr("width", width)
+    .attr("height", height);
+
+d3.json("<c:url value='/resources/etc/korea.json' />", function(json) {
+  states.selectAll("path")
+      .data(json.features)
+    .enter().append("path")
+      .attr("d", qpath)
+      .attr("id", function(d) { return 'path-'+d.id; })
+      .on("click", click);
+      
+  labels = states.selectAll("text")
+    .data(json.features)
+    .enter().append("text")
+      .attr("transform", labelsTransform)
+      .attr("id", function(d) { return 'label-'+d.id; })
+      .attr('text-anchor', 'middle')
+      .attr("dy", ".35em")
+      .on("click", click)
+      .text(function(d) { return d.properties.Name; });
+
+
+      $("#path-15").addClass("active");
+});
+
+
+
+states.selectAll("path")
+      .classed("active", centered && function(d) { return d === centered; });
+
+function click(d) {
+  var x, y, k;
+
+  let localName = d.properties.id;
+
+  if (d && centered !== d) {
+    var centroid = qpath.centroid(d);
+    x = centroid[0];
+    y = centroid[1];
+    k = 4;
+    centered = d;
+  } else {
+    x = width / 2;
+    y = height / 2;
+    k = 1;
+    centered = null;
+  }
+  states.selectAll("path")
+      .classed("active", centered && function(d) { return d === centered; });
+
+
+
+}
+
+
+
+function labelsTransform(d) {
+  if (d.id == 8) {
+    var arr = qpath.centroid(d);
+    arr[1] += (d3.event && d3.event.scale) ? (d3.event.scale / height + 20) : (initialScale / height + 20);
+    return "translate(" + arr + ")";
+  } else {
+    return "translate(" + qpath.centroid(d) + ")";
+  }
+}
+
 	  </script>
+	  

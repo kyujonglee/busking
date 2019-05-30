@@ -24,8 +24,6 @@ function getWeather(lat, lon, date) {
           }
           // 보여줄 것 : 기온, 날짜, 날씨, 날씨 아이콘
           // 날씨 : ${ele.weather[0].main}
-          $("#lat").val(lat);
-          $("#lon").val(lon);
           $("#weatherIcon").val(`<img src="http://openweathermap.org/img/w/${ele.weather[0].icon}.png" />`);
           $("#temperature").val(`${ele.main.temp}`);
           $("#weather").val(`${weatherKorean}`);
@@ -148,6 +146,8 @@ function mapInit(lat, lon) {
     const lat = latlng.getLat();
     const lon = latlng.getLng();
     map.setCenter(new daum.maps.LatLng(lat, lon));
+    $("#lat").val(lat);
+    $("#lon").val(lon);
     const value = $(".busker-enroll__date").val();
     if (value === "") {
       $(".busker-show-enroll__form-column:nth-child(2) .enroll-form-column__content").html("날짜를 입력해주세요.");
@@ -249,6 +249,8 @@ function displayMarker(place) {
     const lat = marker.getPosition().getLat();
     const lon = marker.getPosition().getLng();
     map.setCenter(new daum.maps.LatLng(lat, lon));
+    $("#lat").val(lat);
+    $("#lon").val(lon);
     const val = $(".busker-enroll__date").val();
     if (val === "") {
       $(".busker-show-enroll__form-column:nth-child(2) .enroll-form-column__content").html("날짜를 입력해주세요.");
@@ -269,35 +271,7 @@ $(".weather-search").on("submit", event => {
   // });
 });
 
-function init() {
-  console.log("초기실행");
-  let lat = 37.5642135;
-  let lon = 127.0016985;
-  if (navigator.geolocation) {
-    // GPS를 지원하면
-    navigator.geolocation.getCurrentPosition(
-      function(position) {
-        lat = position.coords.latitude;
-        lon = position.coords.longitude;
-        mapInit(lat, lon);
-        return;
-      },
-      function(error) {
-        mapInit(lat, lon);
-        console.error(error);
-      },
-      {
-        enableHighAccuracy: false,
-        maximumAge: 0,
-        timeout: Infinity
-      }
-    );
-  } else {
-    alert("GPS를 지원하지 않습니다");
-    mapInit(lat, lon);
-  }
-}
-init();
+
 
 /*
 전체적인 로직에 따라서 하나씩 완성할 것!
@@ -319,13 +293,4 @@ init();
 
 */
 
-$(".busker-enroll__date").flatpickr({
-  enableTime: true,
-  onChange: function(selectedDates, dateStr, instance) {
-    const todayDate = new Date();
-    if (selectedDates[0] < todayDate) {
-      alert("현재 날짜 이후로 선택이 가능합니다.");
-      return false;
-    }
-  }
-});
+
