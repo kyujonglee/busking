@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <!-- 실시간 통신 하기 위한 js 호출 -->
+    <script src="http://localhost:10001/socket.io/socket.io.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <h2>실시간 통신 테스트</h2>
+    <input id="msg" type="text">
+    <button>데이터 전송</button>
+
+    <script>
+        // 연결 요청 : 서버 접속하기
+        const socket = io.connect();
+        console.dir(socket);
+
+        socket.on("echoMsg", function (data) {
+            alert(data);
+        });
+
+        $("button").click(function () {
+            // 서버로 데이터 전송
+            socket.emit("msg", $("#msg").val());
+            $("#msg").val("");
+
+        });
+    </script>
+</body>
+</html>

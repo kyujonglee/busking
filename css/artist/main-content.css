@@ -9,6 +9,7 @@
   height: 94vh;
   overflow: scroll;
   padding : 5px;
+  background-color : #dcdde1;
 }
 
 .busker-main .busker-content img {
@@ -19,6 +20,8 @@
 
 .busker-content .busker-content__item {
   width: 100%;
+  display: flex;
+  align-items: center;
 }
 
 .busker-content .busker-content__item:first-child {

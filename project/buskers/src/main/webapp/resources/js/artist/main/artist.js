@@ -17,11 +17,11 @@ $(".busker-side__info-btn i").click(function() {
 let chatFlag = true;
 $(".busker-header__member i:last-child").click(function(){
     if(chatFlag) {
-        $(".busker-chat").fadeOut(50);
+        $(".busker-chat").slideUp();
         $(this).attr("class","far fa-comment-dots fa-lg");
         chatFlag = false;
     }else {
-        $(".busker-chat").fadeIn(50);
+        $(".busker-chat").slideDown();
         $(this).attr("class","fas fa-comment-dots fa-lg");
         chatFlag = true;
     }

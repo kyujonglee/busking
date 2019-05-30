@@ -122,8 +122,8 @@
                 />
               </svg>
             </div>
-            <a href="insert-schedule.html" class="busker-side__menu-title">
-              공연일정 등록
+            <a href="schedule.html" class="busker-side__menu-title">
+              공연일정
             </a>
           </li>
           <li class="busker-side__menu-item">
@@ -165,7 +165,27 @@
           <span>logout</span>
         </section>
       </aside>
-
+      <section class="busker-info">
+        <img
+          src="https://i.pinimg.com/564x/d4/12/4a/d4124a5565145151eeb2b40a8835155f.jpg"
+        />
+        <div class="busker-info__main">
+          <div class="busker-info__nickname">피아노 치는 이정환</div>
+          <div class="busker-info__content">
+            1990년생 숭실대학교 화학공학과 학사인 피아노 연주자이자 작곡가.
+            그리고 스트리머. Lorem ipsum dolor sit, amet consectetur adipisicing
+            elit. Cum possimus modi, laudantium quos nobis temporibus molestiae
+            nemo excepturi reprehenderit amet animi odit rem veritatis eaque
+            culpa, vel aspernatur dicta illo.
+          </div>
+          <div class="busker-info__title">대표곡</div>
+          <div class="busker-info__content">Witch House, A Busy Airport...</div>
+          <div class="busker-info__title">주요 공연장소</div>
+          <div class="busker-info__content">신촌 홍익문고 앞</div>
+          <div class="busker-info__title">주요 공연시간</div>
+          <div class="busker-info__content">토요일 오후 6시</div>
+        </div>
+      </section>
       <section class="busker-section">
         <header class="busker-header">
           <div class="busker-header__search">
@@ -181,8 +201,12 @@
             </svg>
             <input class="busker-header__search-input" type="text" />
           </div>
+          <div class="busker-header__title">
+            <i class="fas fa-home"></i>
+            Buskers
+          </div>
           <div class="busker-header__member">
-            <span class="busker-header__id">kyujong93님</span>
+            <span class="busker-header__id"> kyujong93님 </span>
             <i class="far fa-bell fa-lg"></i>
             <i class="fas fa-user-circle fa-lg"></i>
             <i class="fas fa-comment-dots fa-lg"></i>
@@ -190,18 +214,109 @@
         </header>
         <main class="busker-main">
           <section class="busker-show-enroll">
-            <div id="map"></div>
+            <header class="busker-show__header">
+              <div class="busker-show__header-top-menu">
+                <a class="header-top-menu__content">
+                  <i class="fas fa-home fa-lg"></i> 버스커 홈
+                </a>
+                &gt
+                <a class="header-top-menu__content">
+                  공연일정
+                </a>
+                &gt
+                <a class="header-top-menu__content">
+                  등록
+                </a>
+              </div>
+              <div class="busker-show__header-title">
+                <a class="busker-show__header-link">공연일정 등록</a>
+              </div>
+            </header>
+            <section class="busker-show-enroll__main">
+              <div class="busker-show-enroll__main-columns">
+                <div id="map"></div>
+              </div>
+              <div class="busker-show-enroll__main-columns">
+                <form class="weather-search">
+                  <span class="weather-search__title">✔ 장소검색</span>
+                  <input type="text" class="weather-search__input" />
+                </form>
+                <form id="enrollForm">
+                  <div class="busker-show-enroll__form">
+                    <div class="busker-show-enroll__form-column">
+                      <div class="enroll-form-column__title">
+                        ️<span>✔ 날짜</span>
+                      </div>
+                      <div class="enroll-form-column__content">
+                        <i class="far fa-calendar-alt fa-lg content-icon"></i>
+                        <input
+                          type="text"
+                          class="busker-enroll__date"
+                          placeholder="날씨를 입력해주세요"
+                        />
+                      </div>
+                    </div>
+                    <div class="busker-show-enroll__form-column">
+                      <div class="enroll-form-column__title">
+                        <span>✔ 날씨 </span>
+                      </div>
+                      <div class="enroll-form-column__content">
+                        <span>.</span>
+                      </div>
+                      <input type="hidden" name="lat" id="lat" />
+                      <input type="hidden" name="lon" id="lon" />
+                    </div>
+                    <div class="busker-show-enroll__form-column">
+                      <div class="enroll-form-column__title">
+                        <span>✔ 장소</span>
+                      </div>
+                      <div class="enroll-form-column__content">
+                        <i class="fas fa-map-marker-alt fa-lg content-icon"></i>
+                        <input type="text" class="enroll-form-column__place" />
+                      </div>
+                    </div>
+                    <div class="busker-show-enroll__form-column">
+                      <div class="enroll-form-column__title">
+                        <span>✔ 공연제목</span>
+                      </div>
+                      <div class="enroll-form-column__content">
+                        <i class="fas fa-pencil-alt fa-lg content-icon"></i>
+                        <input type="text" class="enroll-form-column__place" />
+                      </div>
+                    </div>
+                    <div class="busker-show-enroll__form-column">
+                      <div class="enroll-form-column__title">
+                        <span>✔ 공연내용</span>
+                      </div>
+                      <div class="enroll-form-column__content">
+                        <textarea
+                          name=""
+                          id=""
+                          cols="60"
+                          rows="8"
+                          class="enroll-form-column__textarea"
+                        ></textarea>
+                      </div>
+                    </div>
+                    <div class="busker-show-enroll__form-column">
+                      <button type="button" class="busker-show-enroll__btn">
+                        확인
+                      </button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </section>
+            <!-- 
             <div class="weather-date"></div>
             <p><em>지도를 클릭해주세요!</em></p>
             <div id="clickLatlng"></div>
-            <button id="weather">날씨보기</button>
             <div>
               <form class="weather-search">
                 <input type="text" class="weather-search__input" />
               </form>
-              <!-- <input type="datetime-local" name="" id=""> -->
             </div>
-            <input class="busker-enroll__date" />
+            <input class="busker-enroll__date" /> -->
           </section>
 
           <aside class="busker-chat">
@@ -257,8 +372,13 @@
         </main>
       </section>
     </div>
-    <script src="../../js/artist/map.js"></script>
-    <script src="../../js/artist/artist.js"></script>
-    <!-- <script src="../../js/artist/forecast.js"></script> -->
+    <script type="module" src="../../js/artist/forecast.js"></script>
+    <script type="module" src="../../js/artist/map.js"></script>
+    <script type="module" src="../../js/artist/artist.js"></script>
+    <script>
+      $(document).ready(() => {
+        $(".busker-side__info-btn i").trigger("click");
+      });
+    </script>
   </body>
 </html>

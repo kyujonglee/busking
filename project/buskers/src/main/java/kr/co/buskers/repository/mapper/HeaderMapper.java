@@ -14,4 +14,5 @@ public interface HeaderMapper {
 	void deleteSentMessageList(Message message);
 	Message selectMessageByNo(int msgNo);
 	void updateMessageReadStatus(int msgNo);
+	int selectMessageCount(int memberNo);
 }

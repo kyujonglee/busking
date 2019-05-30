@@ -53,10 +53,9 @@ public class QnaServiceImpl implements QnaService {
 		
 		
 		mapper.updateBoardViewCount(boardNo);
-		System.out.println("try실행");
+//		System.out.println("try실행");
 		try {
 			map.put("highestLikeComment", mapper.selectLikeHighestComment(boardNo));
-			
 		}catch(Exception e) {
 		}
 		

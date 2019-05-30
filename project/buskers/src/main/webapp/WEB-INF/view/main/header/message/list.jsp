@@ -140,7 +140,8 @@
 	
 
 	<script src="<c:url value='/resources/js/jquery-3.4.1.min.js'/>"></script>
-    <script src="<c:url value='/resources/js/main/header/bootstrap.js'/>"></script> 
+    <script src="<c:url value='/resources/js/main/header/bootstrap.js'/>"></script>
+    <script src="<c:url value='/resources/js/notify.js'/>"></script>
     <script>
 	    $('#post_box a').click(function (e) {
 	    	$(this).tab('show');
@@ -172,14 +173,14 @@
 	        if(chk) $("." + cls + "").prop('checked', true);
 	        else  $("." + cls + "").prop('checked', false);
 	    });
-	    
+	    /*
     	let active = "${param.active}";
 	    console.log(active);
 	    if (active == "sent_box") {
 	    	$("#post_box > li:eq(0)").attr("class", "");
 	    	$("#post_box > li:eq(1)").attr("class", "active");
 	    }
-
+		*/
     </script>
 	
 

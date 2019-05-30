@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.view.UrlBasedViewResolver;
 
 import kr.co.buskers.common.main.header.service.HeaderService;
@@ -51,6 +52,13 @@ public class HeaderController {
 		
 		service.deleteSentMessage(msgNo);
 		return UrlBasedViewResolver.REDIRECT_URL_PREFIX + "list.do?active=sent_box";
+	}
+	
+	@RequestMapping("message-count-ajax.do")
+	@ResponseBody
+	public int selectMessageCount(HttpSession session) {
+		
+		return service.selectMessageCount(session);
 	}
 	
 	@RequestMapping("detail.do")

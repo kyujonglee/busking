@@ -366,3 +366,65 @@
 }
 
 
+#mu-footer {
+  background-color: #444;
+  display: inline;
+  float: left;
+  padding: 50px 0;
+  width: 100%;
+}
+
+#mu-footer .mu-footer-area {
+  display: inline;
+  float: left;
+  width: 100%;
+  text-align: center;
+}
+
+#mu-footer .mu-footer-area .mu-footer-social {
+	display: inline;
+	float: left;
+	width: 100%;
+	text-align: center;
+	margin-bottom: 10px;
+}
+
+#mu-footer .mu-footer-area .mu-footer-social a:hover {
+	background: tomato;
+}
+
+#mu-footer .mu-footer-area .mu-footer-social a {
+  background-color: #555;
+  color: #fff;
+  display: inline-block;
+  font-size: 20px;
+  height: 40px;
+  line-height: 32px;
+  margin: 5px;
+  padding: 5px;
+  text-align: center;
+  width: 50px;
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  -ms-transition: all 0.5s;
+  -o-transition: all 0.5s;
+  transition: all 0.5s;
+}
+
+#mu-footer .mu-footer-area .mu-footer-copyright {
+  display: inline;
+  float: left;
+  width: 100%;
+}
+
+#mu-footer .mu-footer-area .mu-footer-copyright p {
+  font-family: 'Italianno', cursive;
+  font-size: 30px;
+  letter-spacing: 0.5px;
+  color: #fff;
+}
+
+#mu-footer .mu-footer-area .mu-footer-copyright a {
+  font-family: "Open Sans", sans-serif;
+  color: white;
+}

@@ -1,25 +1,60 @@
+//import { openweathermapKorean } from "./forecast.js";
+
 const API_KEY = "d3bf0d7d2d5b1152cc9ad6fde52607b6";
 
-function getWeather(lat, lon) {
+function getWeather(lat, lon, date) {
+  const selDate = new Date(date);
   fetch(
     `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`
   )
     .then(response => response.json())
     .then(json => {
-      // console.log(json);
-      $(".weather-date").html(`
-         도시 : ${json.city.name}
-         날짜 : ${json.list[10].dt_txt}
-         날씨 : ${json.list[10].weather[0].main}
-         아이콘 : 
-         <img src="http://openweathermap.org/img/w/${
-           json.list[10].weather[0].icon
-         }.png" />
-    `);
+      let weatherFlag = true;
+      let preDate = new Date(json.list[0].dt_txt);
+      for (let i = 1; i < json.list.length; i++) {
+        const ele = json.list[i];
+        const proDate = new Date(ele.dt_txt);
+        if (preDate <= selDate && selDate <= proDate) {
+          let weatherKorean = "❌";
+          for (let i = 0; i < openweathermapKorean.length; i++) {
+            if(ele.weather[0].id === openweathermapKorean[i].Parameter){
+              weatherKorean = openweathermapKorean[i].Korean;
+              break;
+            }
+          }
+          // 보여줄 것 : 기온, 날짜, 날씨, 날씨 아이콘
+          // 날씨 : ${ele.weather[0].main}
+          $("#weatherIcon").val(`<img src="http://openweathermap.org/img/w/${ele.weather[0].icon}.png" />`);
+          $("#temperature").val(`${ele.main.temp}`);
+          $("#weather").val(`${weatherKorean}`);
+          $(".busker-show-enroll__form-column:nth-child(2) .enroll-form-column__content").html(`
+              <span class="enroll-form-column__content-weather-icon"> 
+              <img src="http://openweathermap.org/img/w/${
+                ele.weather[0].icon
+              }.png" /> </span>
+              <span class="enroll-form-column__content-weather"> ${weatherKorean} </span>
+              <span class="enroll-form-column__content-temperature-icon"><i class="fas fa-temperature-high fa-lg"></i></span>
+              <span class="enroll-form-column__content-temperature"> ${ele.main.temp} °C </span>
+              `);
+              // 기온 : ${ele.main.temp}
+              //  날짜 : ${date}
+              //  날씨 : ${weatherKorean}
+              //  아이콘 : 
+              //  <img src="http://openweathermap.org/img/w/${
+              //    ele.weather[0].icon
+              //  }.png" />
+          weatherFlag = false;
+          break;
+        }
+        preDate = proDate;
+      }
+      if (weatherFlag) {
+        $(".busker-show-enroll__form-column:nth-child(2) .enroll-form-column__content").html("날씨정보를 가져올 수 없습니다.");
+      }
     });
 }
 
-export let items = {};
+let items = {};
 
 function mapInit(lat, lon) {
   const infowindow = new daum.maps.InfoWindow({ zIndex: 1 });
@@ -60,10 +95,23 @@ function mapInit(lat, lon) {
     const lat = marker.getPosition().getLat();
     const lon = marker.getPosition().getLng();
     map.setCenter(new daum.maps.LatLng(lat, lon));
-    // console.log(lat, lon);
-    console.log("dragend");
+    console.log(lat, lon);
+    getWeather(lat,lon,$(".busker-enroll__date").val());
     searchDetailAddrFromCoords(marker.getPosition(), function(result, status) {
       if (status === daum.maps.services.Status.OK) {
+		  const gu = !!result[0].address
+	      ? result[0].address.region_2depth_name
+	      : !!result[0].road_address
+	      ? result[0].road_address.region_2depth_name
+	      : "";
+          $("#gu").val(gu);
+          const doo = !!result[0].address
+          ? result[0].address.region_1depth_name
+          		: !!result[0].road_address
+          		? result[0].road_address.region_1depth_name
+          				: "";
+          		console.log(result[0]);
+          $("#doo").val(doo);
         let detailAddr = !!result[0].road_address
           ? "<div>도로명주소 : " +
             result[0].road_address.address_name +
@@ -71,10 +119,10 @@ function mapInit(lat, lon) {
           : "";
         detailAddr +=
           "<div>지번 주소 : " + result[0].address.address_name + "</div>";
-
+        items["address"] = result[0].address.address_name;
         let content =
-          '<div class="bAddr">' +
-          '<span class="title">법정동 주소정보</span>' +
+          '<div class="daumMap__bAddr">' +
+          '<span class="daumMap__title">법정동 주소정보</span>' +
           detailAddr +
           "</div>";
         // 인포윈도우에 클릭한 위치에 대한 법정동 상세 주소정보를 표시합니다
@@ -98,11 +146,33 @@ function mapInit(lat, lon) {
     const lat = latlng.getLat();
     const lon = latlng.getLng();
     map.setCenter(new daum.maps.LatLng(lat, lon));
-    getWeather(lat, lon);
-    const resultDiv = document.getElementById("clickLatlng");
-    resultDiv.innerHTML = message;
+    $("#lat").val(lat);
+    $("#lon").val(lon);
+    const value = $(".busker-enroll__date").val();
+    if (value === "") {
+      $(".busker-show-enroll__form-column:nth-child(2) .enroll-form-column__content").html("날짜를 입력해주세요.");
+    } else {
+      getWeather(lat, lon, value);
+    }
+
+    // const resultDiv = document.getElementById("clickLatlng");
+    // resultDiv.innerHTML = message;
     searchDetailAddrFromCoords(mouseEvent.latLng, function(result, status) {
       if (status === daum.maps.services.Status.OK) {
+    	const gu = !!result[0].address
+	      ? result[0].address.region_2depth_name
+	      : !!result[0].road_address
+	      ? result[0].road_address.region_2depth_name
+	      : "";
+        $("#gu").val(gu);
+        const doo = !!result[0].address
+        ? result[0].address.region_1depth_name
+        		: !!result[0].road_address
+        		? result[0].road_address.region_1depth_name
+        				: "";
+        		console.log(result[0]);
+        		console.log(doo);
+        $("#doo").val(doo);
         let detailAddr = !!result[0].road_address
           ? "<div>도로명주소 : " +
             result[0].road_address.address_name +
@@ -112,8 +182,8 @@ function mapInit(lat, lon) {
           "<div>지번 주소 : " + result[0].address.address_name + "</div>";
 
         let content =
-          '<div class="bAddr">' +
-          '<span class="title">법정동 주소정보</span>' +
+          '<div class="daumMap__bAddr">' +
+          '<span class="daumMap__title">법정동 주소정보</span>' +
           detailAddr +
           "</div>";
 
@@ -127,30 +197,17 @@ function mapInit(lat, lon) {
       }
     });
   });
-
-  // function showMarker(value) {
-  //   obj.ps.keywordSearch(value, placesSearchCB);
-  //   obj.ps.categorySearch(value, placesSearchCB, {
-  //     useMapBounds: true
-  //   });
-  // }
 }
-
-// 키워드로 장소를 검색합니다
-// ps.keywordSearch("이태원 맛집", placesSearchCB);
-
 // 키워드 검색 완료 시 호출되는 콜백함수 입니다
 function placesSearchCB(data, status, pagination) {
   if (status === daum.maps.services.Status.OK) {
     // 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해
     // LatLngBounds 객체에 좌표를 추가합니다
     let bounds = new daum.maps.LatLngBounds();
-
     for (let i = 0; i < data.length; i++) {
       displayMarker(data[i]);
       bounds.extend(new daum.maps.LatLng(data[i].y, data[i].x));
     }
-
     // 검색된 장소 위치를 기준으로 지도 범위를 재설정합니다
     items["map"].setBounds(bounds);
   }
@@ -184,65 +241,37 @@ function displayMarker(place) {
   daum.maps.event.addListener(marker, "click", function() {
     // 마커를 클릭하면 장소명이 인포윈도우에 표출됩니다
     infowindow.setContent(
-      '<div style="padding:5px;font-size:12px;">' + place.place_name + "</div>"
+      '<div class="daumMap__marker-content" style="padding:5px;font-size:12px;">' +
+        place.place_name +
+        "</div>"
     );
     infowindow.open(map, marker);
-    const lat = marker.getPosition().jb;
-    const lon = marker.getPosition().ib;
-    console.log(marker.getPosition().jb);
-    console.log(marker.getPosition().ib);
-    getWeather(lat, lon);
+    const lat = marker.getPosition().getLat();
+    const lon = marker.getPosition().getLng();
     map.setCenter(new daum.maps.LatLng(lat, lon));
+    $("#lat").val(lat);
+    $("#lon").val(lon);
+    const val = $(".busker-enroll__date").val();
+    if (val === "") {
+      $(".busker-show-enroll__form-column:nth-child(2) .enroll-form-column__content").html("날짜를 입력해주세요.");
+    } else {
+      getWeather(lat, lon, val);
+    }
   });
 }
 
 $(".weather-search").on("submit", event => {
   event.preventDefault();
+  let ps = items["ps"];
   // showMarker($(".weather-search__input").val());
   const val = $(".weather-search__input").val();
-  ps = items["ps"];
   ps.keywordSearch(val, placesSearchCB);
   // ps.categorySearch(val, placesSearchCB, {
   //   useMapBounds: true
   // });
 });
 
-function init() {
-  console.log("초기실행");
-  let lat = 37.5642135;
-  let lon = 127.0016985;
-  let flag = true;
-  if (navigator.geolocation) {
-    // GPS를 지원하면
-    navigator.geolocation.getCurrentPosition(
-      function(position,flag) {
-        lat = position.coords.latitude;
-        lon = position.coords.longitude;
-        mapInit(lat, lon);
-        console.log("what");
-        flag = false;
-      },
-      function(error) {
-        mapInit(lat, lon);
-        console.error(error);
-        return;
-      },
-      {
-        enableHighAccuracy: false,
-        maximumAge: 0,
-        timeout: Infinity
-      }
-    );
-  } else {
-    alert("GPS를 지원하지 않습니다");
-    console.log(flag);
-    if(flag) {
-    	mapInit(lat, lon);
-    	console.log("fuck");
-    }
-  }
-}
-init();
+
 
 /*
 전체적인 로직에 따라서 하나씩 완성할 것!
@@ -264,6 +293,4 @@ init();
 
 */
 
-$(".busker-enroll__date").flatpickr({
-  enableTime: true
-});
+
