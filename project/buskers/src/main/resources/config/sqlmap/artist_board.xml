@@ -20,6 +20,13 @@
 		  from tb_busker_show
 		 where enroll_date > now()
 	</select>
+	
+	<select id="selectMainArtistShow" parameterType="artistShow" resultType="artistShow">
+		select *
+		  from tb_busker_show
+		 where gu = #{gu}
+		 order by enroll_date desc
+	</select>
 
 	<insert id="insertArtistShow" parameterType="artistShow">
 		insert into tb_busker_show
