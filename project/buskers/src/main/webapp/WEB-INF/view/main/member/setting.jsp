@@ -3,6 +3,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <link rel="stylesheet" href="<c:url value='/resources/css/main/member/setting.css'/>"/>
 <script src="<c:url value='/resources/js/jquery-3.4.1.min.js'/>"></script>
+<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+
 <title>개인설정</title>
 <main class="main-board profile-main">  
     <div class="profile">
@@ -106,11 +108,11 @@
 				    <div class="tab-pane2" id="notice" style="display: none;" >...33
 				    
 				    </div>
-				    <div class="tab-pane3" id="privacy" style="display: none;" >...44
-				    
+				    <div class="tab-pane3" id="privacy" style="display: none;" >
+				    	<%@ include file= "change-info.jsp" %>
 				    </div>
-				    <div class="tab-pane4" id="social" style="display: none;" >...55
-				    	<% %>@> 
+				    <div class="tab-pane4" id="social" style="display: none;" >
+				    	<%@ include file= "pay.jsp" %>
 				    </div>
 				</div>
 			</div>
