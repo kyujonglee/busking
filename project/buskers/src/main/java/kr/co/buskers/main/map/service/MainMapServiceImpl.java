@@ -44,12 +44,11 @@ public class MainMapServiceImpl implements MainMapService {
 	}
 	@Override
 	public List<ArtistShow> exportCSV(ArtistShow artistShow) {
-		System.out.println("구들어옴"+artistShow.getGu());
 		List<ArtistShow> ab = mapper.selectMainArtistShow(artistShow);
 		
 		try {
 			BufferedWriter fw = new BufferedWriter(new FileWriter(
-					"C:/bit2019/workspace/0.Busking/project/buskers/src/main/webapp/resources/etc/places.csv",false));
+					context.getRealPath("resources/etc/places.csv"),false));
 			fw.write("name,lat,lon");
 			fw.newLine();
 			for(int i =0;i < ab.size() ; i++) {

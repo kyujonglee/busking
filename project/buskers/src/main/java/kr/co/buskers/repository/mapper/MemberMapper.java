@@ -6,7 +6,6 @@ public interface MemberMapper {
 	
 	// 로그인 체크
 	public Member loginAction(Member member);
-	
 
 	// 일반 회원 가입
 	public void signupMember(Member member);
@@ -34,4 +33,7 @@ public interface MemberMapper {
 	
 	// 비밀번호 변경
 	public void newPass(Member member);
+	
+	//돈 충전
+	public void chargeMoney(Member member);
 }

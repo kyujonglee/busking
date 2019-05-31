@@ -71,6 +71,13 @@ public class MemberServiceImpl implements MemberService {
 	public void updateNickNameSocialMember(Member member) {
 		mapper.updateNickNameSocialMember(member);
 	}
+
+
+	@Override
+	public void chargeMoney(Member member) {
+		mapper.chargeMoney(member);
+		
+	}
 	
 	
 	

@@ -62,7 +62,7 @@
         #states path {
         fill: #ccece6;    /* 지도 색 */
         stroke: #fff;     /*  지도 테두리 */
-        stroke-width:2px;
+        stroke-width:0.8px;
         }
 
         #states path:hover {
@@ -288,7 +288,7 @@ function click(d) {
     var centroid = qpath.centroid(d);
     x = centroid[0];
     y = centroid[1];
-    k = 4;
+    k = 13;
     centered = d;
   } else {
     x = width / 2;
@@ -298,7 +298,10 @@ function click(d) {
   }
   states.selectAll("path")
       .classed("active", centered && function(d) { return d === centered; });
-
+      states.transition()
+      .duration(1000)
+      .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")scale(" + k + ")translate(" + -x + "," + -y + ")")
+      .style("stroke-width", 1.5 / k + "px");
 
 
 }
