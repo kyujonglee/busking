@@ -19,10 +19,13 @@ public class ArtistBoardController {
 	private ArtistBoardService service;
 	
 	@RequestMapping("enrollForm.do")
-	public void enrollForm() {}
+	public void enrollForm(Model model) {
+		model.addAttribute("genres",service.selectGenre());
+	}
 	
 	@RequestMapping("enroll.do")
 	public String insert(ArtistShow artistShow) {
+		System.out.println(artistShow.getGenreNo());
 		service.insertArtistShow(artistShow);
 		return "redirect:/artist/board/list.do";
 	}
