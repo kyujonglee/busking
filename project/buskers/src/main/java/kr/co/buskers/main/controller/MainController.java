@@ -7,7 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import kr.co.buskers.main.map.service.MainMapService;
+import kr.co.buskers.main.service.MainService;
 import kr.co.buskers.repository.domain.ArtistShow;
 
 @Controller("kr.co.buskers.main.controller.MainController")
@@ -16,7 +16,7 @@ public class MainController {
 	
 	
 	@Autowired
-	private MainMapService service;
+	private MainService service;
 	
 	@RequestMapping("main.do")
 	public void main() {

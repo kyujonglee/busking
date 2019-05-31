@@ -10,6 +10,7 @@
 <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
 <link href='https://fonts.googleapis.com/css?family=Prata' rel='stylesheet' type='text/css'>
 <link href="https://fonts.googleapis.com/css?family=Italianno&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
 <script src="http://d3js.org/d3.v3.min.js"></script>
 <script src="http://d3js.org/topojson.v1.min.js"></script>
     <title>Buskers</title>
@@ -65,12 +66,28 @@
 						<div id="chart"></div>
 					</div>
 					
-					<div class="perfomance__info_wrapper">
-		              <div class="perfomance__info_date">2019.05.30</div>
-		              <div class="perfomance__info_calendar"><p class="calendar">30<em>May</em></p></div>
-		                
+					<div class="performance__info_wrapper">
+						<div class="performance__info">
+							<div class="performance__info_calendar">
+								<div class="date_calendar_button">
+									<i class="fas fa-caret-left"></i>
+								</div>
+								<p class="calendar">30<em>5월</em></p></div>
+								<div class="date_calendar_button">
+									<i class="fas fa-caret-right"></i>
+								</div>
+							
+							<div class="performance_info_date_wrapper">
+								<div class="date_up_button">
+									<i class="fas fa-caret-up day-up"></i>
+								</div>
+								<div class="performance__info_date"></div>
+								<div class="date_down_button">
+									<i class="fas fa-caret-down day-down"></i>
+								</div>
+							</div>
+						</div>
 			        </div>
-			        
 				</div>
 			</div>
 		</div>
@@ -103,14 +120,64 @@
 		    </div>
 		  </div>
 		</footer>
-  
+<script src="http://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	  <script>
 	  let date = new Date();
-	  $('div.perfomance__info_date').click((e)=>{
+	  let year = date.getFullYear(); 
+	  let month = new String(date.getMonth()+1); 
+	  let day = new String(date.getDate()); 
+	  
+		if(month.length == 1) { 
+			month = "0" + month; 
+		} 
+		if(day.length == 1) { 
+			day = "0" + day; 
+		} 
+		
+		$(".performance__info_date").text(year + ". " + month + ". " + day);
+	  
+	  $('.day-up').click((e)=> {
 		  let $target = $(e.target);
 		  date.setDate(date.getDate() + 1);
-		  $target.text(date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate() );
+		  let year = date.getFullYear(); 
+		  let month = new String(date.getMonth() + 1); 
+		  let day = new String(date.getDate()); 
+		  if(month.length == 1) { 
+			month = "0" + month; 
+		  } 
+		  if(day.length == 1) { 
+				day = "0" + day; 
+			} 
+		  $(".performance__info_date").text(date.getFullYear() + '. ' + month + '. ' + day);
+		  $(".calendar").html(day + "<em>" + month + "월" + "</em>");
 	  });
+	  
+	  $('.day-down').click((e)=> {
+		  let $target = $(e.target);
+		  date.setDate(date.getDate() - 1);
+		  let year = date.getFullYear(); 
+		  let month = new String(date.getMonth() + 1); 
+		  let day = new String(date.getDate()); 
+		  if(month.length == 1) { 
+			month = "0" + month; 
+		  } 
+		  if(day.length == 1) { 
+				day = "0" + day; 
+			} 
+		  $(".performance__info_date").text(date.getFullYear() + '. ' + month + '. ' + day);
+		  $(".calendar").html(day + "<em>" + month + "월" + "</em>");
+	  });
+	  
+	  $(".performance_info_date_wrapper").mouseenter(function () {
+		 $(".day-up").css({visibility: "visible"});
+		 $(".day-down").css({visibility: "visible"});
+	  });
+	  
+	  $(".performance_info_date_wrapper").mouseleave(function () {
+		  $(".day-up").css({visibility: "hidden"});
+		  $(".day-down").css({visibility: "hidden"});
+	  });
+	  
 	  
 	  	$(".header_background").css({"display": "none"});
 	  	

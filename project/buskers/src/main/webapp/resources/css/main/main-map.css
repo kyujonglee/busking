@@ -80,6 +80,7 @@ svg circle {
 	fill: lightblue;          /* 원  */
 	opacity: .6;
 	stroke: #5F6B61;      /* 원테두리 */
+    cursor: pointer;
 }
 svg circle:hover {    /* 원 호 */
 	fill: white;     
@@ -157,33 +158,91 @@ svg #places text {
 .mapwrapper{
 	width:100%;
 	display:grid;
-	grid-template-columns: 550px 510px;
+	grid-template-columns: 500px 510px;
 }
 /* 우측 공연정보 */
 #chart {
 	margin-left: -20px;
 }
 
-.perfomance__info_wrapper {
-	width: 40%;
+.performance__info_wrapper {
+	width: 100%;
 	height: 100%;
 }
 
-.perfomance__info_date {
-	height: 50px;
+.performance__info_date {
+	height: 25px;
 	font-weight: bold;
     font-family: tahoma,sans-serif;
     font-size: 25px;
     color: #222;
     text-align: center;
-    margin-top: 50px;
+    padding-top: 15px;
+    padding-bottom: 30px;
 }
 
-.perfomance__info_calendar {
+.performance__info_calendar {
+	display: flex;
+	justify-content: center;
+	margin-right: 80px
+}
+
+.performance__info {
 	display: flex;
 	justify-content: center;
 }
 
+.date_up_button {
+	display: flex;
+	justify-content: flex-end;
+	height: 5px;
+	padding-right: 8px;
+	font-size: 25px;
+}
 
+.date_down_button {
+	display: flex;
+	justify-content: flex-end;
+	height: 5px;
+	padding-right: 8px;
+	font-size: 25px;
+}
 
+.day-up {
+	visibility: hidden;
+	cursor: pointer;
+}
+.fa-caret-up:hover {
+	color: tomato;
+	transition: 0.3s;
+}
+.day-down {
+	visibility: hidden;
+	cursor: pointer;
+}
+.fa-caret-down:hover {
+	color: tomato;
+	transition: 0.3s;
+}
 
+.date_calendar_button {
+	position: absolute;
+	z-index: 999;
+    margin-top: 20px;
+}
+
+.fa-caret-left {
+	visibility: hidden;
+	margin-left: -30px;
+	font-size: 20px;
+}
+
+.fa-caret-right {
+	visibility: hidden;
+    margin-right: 180px;
+    font-size: 20px;
+}
+
+.performance_info_date_wrapper {
+	height: 80px;
+}

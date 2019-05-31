@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.buskers.repository.mapper.MainMapper">
+
+	<select id="selectArtistShow" resultType="artistShow">
+		select *
+		from tb_busker_show
+		order by enroll_date desc
+	</select>
+
+	<select id="selectMainArtistShow" parameterType="artistShow"
+		resultType="artistShow">
+		select *
+		from tb_busker_show
+		where gu = #{gu}
+		  and enroll_date = #{enrollDate}
+		order by enroll_date desc
+	</select>
+
+</mapper>
+	
