@@ -3,6 +3,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <link rel="stylesheet" href="<c:url value='/resources/css/main/member/setting.css'/>"/>
 <script src="<c:url value='/resources/js/jquery-3.4.1.min.js'/>"></script>
+<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+
 <title>개인설정</title>
 <main class="main-board profile-main">  
     <div class="profile">
@@ -106,11 +108,11 @@
 				    <div class="tab-pane2" id="notice" style="display: none;" >...33
 				    
 				    </div>
-				    <div class="tab-pane3" id="privacy" style="display: none;" >...44
-				    
+				    <div class="tab-pane3" id="privacy" style="display: none;" >
+				    	<%@ include file= "change-info.jsp" %>
 				    </div>
-				    <div class="tab-pane4" id="social" style="display: none;" >...55
-				    	<% %>@> 
+				    <div class="tab-pane4" id="social" style="display: none;" >
+				    	<%@ include file= "pay.jsp" %>
 				    </div>
 				</div>
 			</div>
@@ -138,5 +140,241 @@ function tab_menu(num){
      	}
     }
 }
+
+
+
+
+
+
+
+
+/*  후승   */
+  	let userEmail = "${sessionScope.user.email}";
+  	let userNickName = "${sessionScope.user.nickName}";
+	let emailck = 0;
+	let nickNameck = 0;
+	
+	$("#modify").click(
+	function DosignUp() {
+		let getMail = RegExp(/^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/);
+     	let getCheck = RegExp(/^[a-zA-Z0-9]{4,16}$/);
+     	let getCheckPwd = RegExp(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/);
+      	let getName = RegExp(/^[가-힣]+$/);
+      	
+      	// 비밀번호 공백 확인
+      	if($("#pass").val() == "") {
+      		Swal.fire({
+				  title:'비밀번호를 입력해 주세요',
+				  type:'warning',
+				  timer:2000	
+			});
+      		return false;
+      	}
+      	
+      	
+      	// 비밀번호 유효성 검사
+      	if(!getCheckPwd.test($("#pass").val())) {
+	      	Swal.fire({
+				  title:'비밀번호는 특수문자를 제외한 영문,숫자를 혼용하여 8~16자를 입력해주세요!',
+				  type:'warning',
+				  timer:2000	
+			});
+	      	$("#pass").val("");
+	      	$("#pass").focus();
+	      	return false;
+      	}	
+      	
+     	// 비밀번호체크 공백 확인
+      	if($("#checkpass").val() == "") {
+      		Swal.fire({
+				  title:'비밀번호확인을 입력해 주세요',
+				  type:'warning',
+				  timer:2000	
+			});
+      		return false;
+      	}
+     
+        // 비밀번호와 비밀번호체크가 같은지 검사
+        if($("#pass").val() != ($("#checkpass").val())){ 
+        	Swal.fire({
+				  title:'비밀번호가 같지 않습니다.',
+				  type:'warning',
+				  timer:2000	
+			});
+	        $("#pass").val("");
+	        $("#checkpass").val("");
+	        $("#pass").focus();
+        	return false;
+        }
+        
+        // 이메일 공백 확인
+        if($("#email").val() == ""){
+          	alert("이메일을 입력해주세요!");
+          	$("#email").focus();
+          	return false;
+        }
+             
+        // 이메일 유효성 검사
+        if(!getMail.test($(".user__email").val())){
+          	alert("이메일형식에 맞게 입력해주세요!")
+          	$("#email").focus();
+          	return false;
+        }
+        
+    	
+        
+        
+        
+      
+       
+        
+        
+        Swal.fire({
+			  title: '개인정보를 변경하시겠습니까?',
+			  type: 'info',
+			  showCancelButton: true,
+			  confirmButtonColor: '#3085d6',
+			  cancelButtonColor: '#d33',
+			  confirmButtonText: '예',
+			  cancelButtonText: '아니오',
+			}).then((result) => {
+			  if (result.value) {
+				 	if (emailck == 0) {
+				 		Swal.fire({
+							  title:'이메일 중복체크를해 주세요',
+							  type:'warning',
+							  timer:2000	
+						});
+			       		return false;
+			       	}  else if (nickNameck == 0) {
+			       		Swal.fire({
+							  title:'닉네임 중복체크를해 주세요',
+							  type:'warning',
+							  timer:2000	
+						});
+			       		return false;
+			       	}  else {
+			       		Swal.fire({
+							  title:'정보가 변경되었습니다.',
+							  type:'success',
+							  timer:2000	
+						});
+			       		$("#user_info").submit();
+			        	return true;
+			       	}
+			  }
+		})
+	})
+	
+	
+
+	
+	
+	// 이메일 중복 체크
+	$(function() {
+		$("#checkEmail").click(function() {
+			let email = $(".user__email").val();
+			
+			/* 현재이메일과 같은경우 */ 
+			if(email==userEmail){
+				Swal.fire({
+					  title:'사용가능한 이메일 입니다',
+					  type:'info',
+					  timer:2000	
+				});
+				emailck = 1;
+				return;
+			
+			}
+			
+			//이메일 공백일때
+			if(email.length < 1) {
+				Swal.fire({
+					  title:'이메일을 입력해 주세요',
+					  type:'warning',
+					  timer:2000	
+				});
+			} else {
+				$.ajax({
+					data: "email="+email,
+					url: "checkEmail.do",
+					success: function(result) {
+						if (result == 0) {
+							Swal.fire({
+								  title:'사용가능한 이메일 입니다',
+								  type:'info',
+								  timer:2000	
+							});
+							emailck = 1;
+						} else if (result == 1) {
+							Swal.fire({
+								  title:'존재하는 이메일입니다.',
+								  type:'warning',
+								  timer:2000	
+							});
+						} else {
+							Swal.fire({
+								  title:'에러발생',
+								  type:'warning',
+								  timer:2000	
+							});
+						}
+					}
+				});
+			}
+		});
+	})
+	
+	/* 닉네임 중복체크 */
+	// 닉네임 중복 체크
+	$(function() {
+		$("#checkNickName").click(function() {
+			
+			let nickName = $(".user__nickName").val();
+			
+
+			/* 현재닉네임과 같은경우 */
+			if(nickName==userNickName){
+				Swal.fire({
+					  title:'사용가능한 닉네임 입니다',
+					  type:'info',
+					  timer:2000	
+				});
+				nickNameck = 1;
+				return;
+			
+			}			
+			
+			
+			if(nickName.length < 1) {
+				alert("닉네임을 입력해주시기 바랍니다.");
+			} else {
+				$.ajax({
+					data: "nickName="+nickName,
+					url: "checkNickName.do",
+					success: function(result) {
+						if (result == 0) {
+							Swal.fire({
+								  title:'사용가능한 닉네임 입니다',
+								  type:'info',
+								  timer:2000	
+							});
+							nickNameck = 1;
+						} else if (result == 1) {
+							Swal.fire({
+								  title:'이미 존재하는 닉네임입니다. 다른 닉네임을 입력해주세요',
+								  type:'warning',
+								  timer:2000	
+							});
+						} else {
+							alert("에러 발생");
+						}
+					}
+				});
+			}
+		});
+	});
+	
+ 
 </script>
 	

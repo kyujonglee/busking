@@ -34,6 +34,9 @@ public interface MemberMapper {
 	// 비밀번호 변경
 	public void newPass(Member member);
 	
-	//돈 충전
+	// 돈 충전
 	public void chargeMoney(Member member);
+	
+	// 멤버 업데이트
+	public void memberUpate(Member member);
 }

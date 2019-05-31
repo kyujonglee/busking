@@ -32,5 +32,8 @@ public interface MemberService {
 
 	// 돈 충전
 	public void chargeMoney(Member member);
+	
+	// 개인정보 업데이트
+	public void updateMember(Member member);
 
 }
