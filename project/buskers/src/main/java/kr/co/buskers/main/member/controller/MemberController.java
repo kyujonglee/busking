@@ -259,5 +259,10 @@ public class MemberController {
 		
 	}
 	
+	@RequestMapping("charge-money.do")
+	@ResponseBody
+	public void chargeMoney(Member member) {
+		service.chargeMoney(member);
+	}
 	
 }
