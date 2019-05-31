@@ -25,7 +25,6 @@ public class MainMapServiceImpl implements MainMapService {
 	public void exportCSV() {
 		List<ArtistShow> ab = mapper.selectArtistShow();
 		try {
-			System.out.println(context.getRealPath("resources/etc/places.csv"));
 			
 			BufferedWriter fw = new BufferedWriter(new FileWriter(
 					context.getRealPath("resources/etc/places.csv"),false));
@@ -37,7 +36,7 @@ public class MainMapServiceImpl implements MainMapService {
 			}
 			fw.flush();
 			fw.close();
-			System.out.println("cvs파일 저장완료");
+//			System.out.println("cvs파일 저장완료");
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
@@ -57,7 +56,7 @@ public class MainMapServiceImpl implements MainMapService {
 			}
 			fw.flush();
 			fw.close();
-			System.out.println("cvs파일 저장완료");
+//			System.out.println("cvs파일 저장완료");
 		}catch(Exception e) {
 			e.printStackTrace();
 		}

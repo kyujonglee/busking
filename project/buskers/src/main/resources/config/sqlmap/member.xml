@@ -82,8 +82,17 @@
 	<!-- 돈충전 -->
 	<update id="chargeMoney" parameterType="member">
 		update tb_member
-  		   set sum=#{sum}
- 		 where member_no=#{memberNo};
+  		   set sum=sum + #{sum}
+ 		 where member_no=#{memberNo}
+	</update>
+	
+	<!-- 개인정보 변경 -->
+	<update id="memberUpate" parameterType="member">
+		update tb_member
+  		   set email=#{email},
+               nick_name=#{nickName},
+               pass=#{pass}
+         where member_no=#{memberNo}
 	</update>
 	
 </mapper>
