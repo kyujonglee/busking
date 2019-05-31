@@ -5,12 +5,13 @@
 <link rel="stylesheet" href="<c:url value='/resources/css/main/header/header.css'/>" />
 <link rel="stylesheet" href="<c:url value='/resources/css/main/main-map.css'/>" />
 <link rel="stylesheet" href="<c:url value='/resources/css/main/main.css'/>" />
-    <link href='https://fonts.googleapis.com/css?family=Tangerine' rel='stylesheet' type='text/css'>        
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Prata' rel='stylesheet' type='text/css'>
-    <link href="https://fonts.googleapis.com/css?family=Italianno&display=swap" rel="stylesheet">
-    <script src="http://d3js.org/d3.v3.min.js"></script>
-    <script src="http://d3js.org/topojson.v1.min.js"></script>
+<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic|Nanum+Pen+Script&display=swap" rel="stylesheet">
+<link href='https://fonts.googleapis.com/css?family=Tangerine' rel='stylesheet' type='text/css'>        
+<link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Prata' rel='stylesheet' type='text/css'>
+<link href="https://fonts.googleapis.com/css?family=Italianno&display=swap" rel="stylesheet">
+<script src="http://d3js.org/d3.v3.min.js"></script>
+<script src="http://d3js.org/topojson.v1.min.js"></script>
     <title>Buskers</title>
 		<section id="mu-slider">
 			<div class="mu-slider-area">
@@ -51,7 +52,7 @@
 		</section>
 
 		<div class="main_body_container">
-			<div class="b	uskers_map">
+			<div class="buskers_map">
 				<div class="buskers_map_title">
 					<div>Buskers</div>
 					<div>Performance Stage</div>
@@ -60,19 +61,16 @@
 				<div class="buskers_map_detail">
 					<!--     추가부분      -->
 					<div class="mapwrapper">
-				      <div id="container" class="container"></div>
-				      <div id="chart"></div>
-				      <div class="perfomance__info_wrapper">
-						    <div class="buskers_map_right">
-				              <div class="post">
-				                <p class="calendar">7<em>February</em></p>
-				              </div> 
-				            </div>
-					       
+						<div id="container"></div>
+						<div id="chart"></div>
+					</div>
 					
-				        </div>
-				    </div>
-					<!--           -->
+					<div class="perfomance__info_wrapper">
+		              <div class="perfomance__info_date">2019.05.30</div>
+		              <div class="perfomance__info_calendar"><p class="calendar">30<em>May</em></p></div>
+		                
+			        </div>
+			        
 				</div>
 			</div>
 		</div>
@@ -107,6 +105,13 @@
 		</footer>
   
 	  <script>
+	  let date = new Date();
+	  $('div.perfomance__info_date').click((e)=>{
+		  let $target = $(e.target);
+		  date.setDate(date.getDate() + 1);
+		  $target.text(date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate() );
+	  });
+	  
 	  	$(".header_background").css({"display": "none"});
 	  	
 	  	let topbol = true;
@@ -247,7 +252,7 @@ let gu = d.properties.name;
 var width = 550,
     height = 590,
     initialScale = 5500,
-    initialX = -11950,
+    initialX = -12000,
     initialY = 4050,
     centered,
     labels;
