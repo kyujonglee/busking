@@ -269,7 +269,7 @@ public class MemberController {
 	
 	// 회원 가입 처리
 	@RequestMapping("userInfoUpdate.do")
-	public String memberUpdate(Member memberSHttpSession session) {
+	public String memberUpdate(Member member) {
 		
 		String inputPass = member.getPass();
 		String pass = passEncoder.encode(inputPass);
@@ -277,7 +277,7 @@ public class MemberController {
 
 		service.updateMember(member);
 		
-		session.removeAttribute("user");
+//		session.removeAttribute("user");
 		
 		return "main/member/setting";
 	}

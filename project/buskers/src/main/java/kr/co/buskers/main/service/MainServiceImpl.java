@@ -28,10 +28,10 @@ public class MainServiceImpl implements MainService {
 			
 			BufferedWriter fw = new BufferedWriter(new FileWriter(
 					context.getRealPath("resources/etc/places.csv"),false));
-			fw.write("name,lat,lon");
+			fw.write("name,lat,lon,id");
 			fw.newLine();
 			for(int i =0;i < ab.size() ; i++) {
-				fw.write(","+ab.get(i).getLat()+","+ab.get(i).getLon());
+				fw.write(","+ab.get(i).getLat()+","+ab.get(i).getLon()+","+ab.get(i).getShowNo());
 				fw.newLine();
 			}
 			fw.flush();
@@ -49,10 +49,10 @@ public class MainServiceImpl implements MainService {
 		try {
 			BufferedWriter fw = new BufferedWriter(new FileWriter(
 					context.getRealPath("resources/etc/places.csv"),false));
-			fw.write("name,lat,lon");
+			fw.write("name,lat,lon,id");
 			fw.newLine();
 			for(int i =0;i < ab.size() ; i++) {
-				fw.write(","+ab.get(i).getLat()+","+ab.get(i).getLon());
+				fw.write(","+ab.get(i).getLat()+","+ab.get(i).getLon()+","+ab.get(i).getShowNo());
 				fw.newLine();
 			}
 			fw.flush();
