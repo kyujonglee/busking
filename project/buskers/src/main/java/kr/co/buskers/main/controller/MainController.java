@@ -22,13 +22,17 @@ public class MainController {
 	public void main() {
 		service.exportCSV();
 	}
-
-	@RequestMapping("mainmap-ajax.do")
+	
+	@RequestMapping("map-ajax.do")
 	@ResponseBody
-	public List<ArtistShow> mainMap(ArtistShow artistShow) {
-		System.out.println("구는"+artistShow.getGu());
+	public void mapView(String enrollDate) {
+		service.mapView(enrollDate);
+	}
+
+	@RequestMapping("show-ajax.do")
+	@ResponseBody
+	public List<ArtistShow> mapDetail(ArtistShow artistShow) {
 		
-		
-		return service.exportCSV(artistShow);
+		return service.mapDetail(artistShow);
 	}
 }

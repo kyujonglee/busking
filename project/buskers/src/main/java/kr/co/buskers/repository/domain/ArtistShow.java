@@ -16,6 +16,21 @@ public class ArtistShow {
 	private String weather;
 	private String weatherIcon;
 	private double temperature;
+	private String activityName;
+	private int genreNo;
+	
+	public String getActivityName() {
+		return activityName;
+	}
+	public void setActivityName(String activityName) {
+		this.activityName = activityName;
+	}
+	public int getGenreNo() {
+		return genreNo;
+	}
+	public void setGenreNo(int genreNo) {
+		this.genreNo = genreNo;
+	}
 	public int getShowNo() {
 		return showNo;
 	}

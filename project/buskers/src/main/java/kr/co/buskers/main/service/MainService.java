@@ -6,5 +6,6 @@ import kr.co.buskers.repository.domain.ArtistShow;
 
 public interface MainService {
 	public void exportCSV();
-	public List<ArtistShow> exportCSV(ArtistShow artistShow);
+	public void mapView(String enrollDate);
+	public List<ArtistShow> mapDetail(ArtistShow artistShow);
 }

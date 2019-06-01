@@ -4,17 +4,22 @@
 
 	<select id="selectArtistShow" resultType="artistShow">
 		select *
-		from tb_busker_show
-		order by enroll_date desc
+		  from tb_busker_show
+	     where date(enroll_date) = date(now());
+	</select>
+	
+	<select id="selectArtistShowByDate" parameterType="String" resultType="artistShow">
+		select *
+		  from tb_busker_show
+	     where date(enroll_date) = #{enroll_date};
 	</select>
 
-	<select id="selectMainArtistShow" parameterType="artistShow"
-		resultType="artistShow">
-		select *
-		from tb_busker_show
-		where gu = #{gu}
-		  and enroll_date = #{enrollDate}
-		order by enroll_date desc
+	<select id="selectArtistShowDetail" parameterType="artistShow" resultType="artistShow">
+		select * 
+		  from tb_busker_show s, tb_busker b
+		 where s.busker_no = b.busker_no
+		   and gu = #{gu}
+		   and date(enroll_date) = #{enrollDate}
 	</select>
 
 </mapper>

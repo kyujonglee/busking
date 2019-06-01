@@ -2,6 +2,8 @@ package kr.co.buskers.main.service;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import javax.servlet.ServletContext;
@@ -20,9 +22,8 @@ public class MainServiceImpl implements MainService {
 	@Autowired
 	private ServletContext context;
 	
-	@Override
 	public void exportCSV() {
-		List<ArtistShow> ab = mapper.selectArtistShow();
+		List<ArtistShow> as = mapper.selectArtistShow();
 		try {
 			System.out.println(context.getRealPath("resources/etc/places.csv"));
 			
@@ -30,37 +31,47 @@ public class MainServiceImpl implements MainService {
 					context.getRealPath("resources/etc/places.csv"),false));
 			fw.write("name,lat,lon");
 			fw.newLine();
-			for(int i =0;i < ab.size() ; i++) {
-				fw.write(","+ab.get(i).getLat()+","+ab.get(i).getLon());
+			for(int i =0;i < as.size() ; i++) {
+				fw.write(","+as.get(i).getLat()+","+as.get(i).getLon());
 				fw.newLine();
 			}
 			fw.flush();
 			fw.close();
-			System.out.println("cvs파일 저장완료");
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
 	}
-	@Override
-	public List<ArtistShow> exportCSV(ArtistShow artistShow) {
-//		artistShow.setEnrollDate(enrollDate);
-		List<ArtistShow> ab = mapper.selectMainArtistShow(artistShow);
-		
+	
+	public void mapView(String enrollDate) {
+		List<ArtistShow> as = mapper.selectArtistShowByDate(enrollDate);
 		try {
 			BufferedWriter fw = new BufferedWriter(new FileWriter(
 					context.getRealPath("resources/etc/places.csv"),false));
 			fw.write("name,lat,lon");
 			fw.newLine();
-			for(int i =0;i < ab.size() ; i++) {
-				fw.write(","+ab.get(i).getLat()+","+ab.get(i).getLon());
+			for(int i =0;i < as.size() ; i++) {
+				fw.write(","+as.get(i).getLat()+","+as.get(i).getLon());
 				fw.newLine();
 			}
 			fw.flush();
 			fw.close();
-			System.out.println("cvs파일 저장완료");
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
-		return ab;
+	}
+	
+	public List<ArtistShow> mapDetail(ArtistShow artistShow) {
+		System.out.println(artistShow.getEnrollDate());
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		sdf.format(artistShow.getEnrollDate());
+		System.out.println(sdf.format(artistShow.getEnrollDate()));
+		System.out.println(artistShow.getGu());
+		try {
+			artistShow.setEnrollDate(sdf.parse(sdf.format(artistShow.getEnrollDate())));
+		} catch (ParseException e1) {
+			e1.printStackTrace();
+		}
+		List<ArtistShow> artistShowList = mapper.selectArtistShowDetail(artistShow);
+		return artistShowList;
 	}
 }
