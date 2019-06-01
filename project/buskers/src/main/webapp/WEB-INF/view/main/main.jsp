@@ -259,12 +259,12 @@
 		});
 	});
 	  
-	$(".performance_info_date_wrapper").mouseenter(function () {
+	$(".performance__info").mouseenter(function () {
 		$(".day-up").css({visibility: "visible"});
 		$(".day-down").css({visibility: "visible"});
 	});
 	
-	$(".performance_info_date_wrapper").mouseleave(function () {
+	$(".performance__info").mouseleave(function () {
 		$(".day-up").css({visibility: "hidden"});
 		$(".day-down").css({visibility: "hidden"});
 	});
