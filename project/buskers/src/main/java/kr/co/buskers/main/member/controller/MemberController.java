@@ -262,7 +262,26 @@ public class MemberController {
 	@RequestMapping("charge-money.do")
 	@ResponseBody
 	public void chargeMoney(Member member) {
+//		System.out.println(member.getSum()+"컨트롤러들어옴");
 		service.chargeMoney(member);
 	}
+	
+	
+	// 회원 가입 처리
+	@RequestMapping("userInfoUpdate.do")
+	public String memberUpdate(Member member) {
+		
+		String inputPass = member.getPass();
+		String pass = passEncoder.encode(inputPass);
+		member.setPass(pass);
+
+		service.updateMember(member);
+		
+//		session.removeAttribute("user");
+		
+		return "main/member/setting";
+	}
+	
+	
 	
 }
