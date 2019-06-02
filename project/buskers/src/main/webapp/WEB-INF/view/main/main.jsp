@@ -12,6 +12,8 @@
 <link href='https://fonts.googleapis.com/css?family=Prata' rel='stylesheet' type='text/css'>
 <link href="https://fonts.googleapis.com/css?family=Italianno&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<link rel="stylesheet" type="text/css" href="https://npmcdn.com/flatpickr/dist/themes/dark.css">
 <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic|Nanum+Pen+Script&display=swap" rel="stylesheet">
 <script src="http://d3js.org/d3.v3.min.js"></script>
 <script src="http://d3js.org/topojson.v1.min.js"></script>
@@ -78,6 +80,7 @@
 								<div class="date_calendar_button">
 									<i class="fas fa-caret-right"></i>
 								</div>
+								<input class="date_picker" />
 							
 							<div class="performance_info_date_wrapper">
 								<div class="date_up_button">
@@ -147,7 +150,9 @@
 <script src="http://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="<c:url value='/resources/js/waitMe.js'/>"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.0/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <script>
+
 	let date = new Date();
 	let year = date.getFullYear(); 
 	let month = new String(date.getMonth()+1); 
@@ -156,6 +161,90 @@
 	let dayOfWeek = week[date.getDay()];
 	let selDate = year + "-" + month + "-" + day;
 	  
+	$(".date_picker").flatpickr({
+	    enableTime: false,
+	    dateFormat: "Y-m-d",
+	});
+	
+	$(".date_picker").change(function () {
+		console.log($(".date_picker").val());
+		let setYear = $(".date_picker").val().split("-")[0];
+		let setMonth = $(".date_picker").val().split("-")[1];
+		let setDate = $(".date_picker").val().split("-")[2];
+		date.setFullYear(setYear, new String(parseInt(setMonth) - 1), setDate);
+		
+		let year = new String(date.getFullYear()); 
+		let month = new String(date.getMonth() + 1); 
+		let day = new String(date.getDate()); 
+		let dayOfWeek = week[date.getDay()];
+		selDate = year + "-" + month + "-" + day;
+		if(month.length == 1) { 
+			month = "0" + month; 
+		} 
+		if(day.length == 1) { 
+			day = "0" + day; 
+		} 
+		$(".performance__info_date").hide().html(date.getFullYear() + '. ' + month + '. ' + day + " " + "<day>" + dayOfWeek + "</day>").fadeIn();
+		$(".calendar").html(day + "<em>" + month + "월" + "</em>");
+		if (dayOfWeek == '일') {
+			$("day").css({"color": "hotpink"});
+			$("em").css({"background": "hotpink"});
+		} else if (dayOfWeek == '토') {
+			$("day").css({"color": "deepskyblue"});
+			$("em").css({"background": "skyblue"});
+		}
+		let enrollDate = new Date(selDate);
+		$.ajax({
+			type:"POST",
+			data: {enrollDate: enrollDate},
+			url:"show-ajax.do",
+		
+		}).done(function (result) {
+			console.log(result);
+			let html = "";
+			for (let i = 0; i < result.length; i++) {
+				let list = result[i];
+				let genre = "";
+				switch(list.genreNo) {
+				case 1:
+					genre = '<div class="third" style="background-color: #BAE1FF; "><img src="<c:url value='/resources/img/1.png'/>"></div>';
+					break;
+				case 2:
+					genre = '<div class="third" style="background-color: #FFDFBA; "><img src="<c:url value='/resources/img/2.png'/>"></div>';
+					break;
+				case 3:
+					genre = '<div class="third" style="background-color: #FFFFBA; "><img src="<c:url value='/resources/img/3.png'/>"></div>';
+					break;
+				case 4:
+					genre = '<div class="third" style="background-color: #FFB3BA; "><img src="<c:url value='/resources/img/4.png'/>"></div>';
+					break;
+				case 5:
+					genre = '<div class="third" style="background-color: #BAFFC9; "><img src="<c:url value='/resources/img/5.png'/>"></div>';
+					break;
+				}
+				html += '<section>';
+    			html += 	'<div class="img-btn">';
+  				html += 		'<img src="<c:url value='/resources/img/twilight.jpg'/>"/>';
+  				html += 		'<div class="artist_name">' + list.activityName + '</div>';
+   				html +=    '</div>';
+				html +=     '<div class="details-btn">';
+  				html +=    		'<h1>' + list.title + '</h1>';
+   				html +=    	'<h3><i class="fa fa-map-marker">&nbsp;' + list.place + '</i> &nbsp;&nbsp;<i class="fa fa-globe globe">&nbsp;' + list.enrollDate + '</i></h3>';
+   				html +=   		'<p>' + list.content +'</p>';
+   				html +=     '</div>';
+   				html +=     '<div class="SM-btn">';
+  				html += genre;
+  				html +=     '</div>';
+  				html += 	'<div class="layer"></div>';
+   				html += '</section>';
+			}
+			$(".performance_info_list").html(html);
+		    	
+		}).fail(function (xhr) { 
+			console.dir(xhr);
+		})
+	});
+	
 	if(month.length == 1) { 
 		month = "0" + month; 
 	} 
@@ -196,7 +285,7 @@
 			$("day").css({"color": "deepskyblue"});
 			$("em").css({"background": "skyblue"});
 		}
-		
+		/*
 		let enrollDate = year + month + day;
 		$.ajax({
 			type: "POST",
@@ -214,6 +303,7 @@
 				}, 4500);
 			}
 		});
+		*/
 	});
 	  
 	$('.day-down').click((e) => {
@@ -239,7 +329,7 @@
 			$("day").css({"color": "deepskyblue"});
 			$("em").css({"background": "skyblue"});
 		}
-		
+		/*
 		let enrollDate = year + month + day;
 		$.ajax({
 			type: "POST",
@@ -257,6 +347,7 @@
 				}, 4500);
 			}
 		});
+		*/
 	});
 	  
 	$(".performance__info").mouseenter(function () {

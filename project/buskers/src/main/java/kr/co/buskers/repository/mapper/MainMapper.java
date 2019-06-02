@@ -9,4 +9,5 @@ public interface MainMapper {
 	List<ArtistShow> selectMainArtistShow(ArtistShow artistShow);
 	List<ArtistShow> selectArtistShowByDate(String enrollDate);
 	List<ArtistShow> selectArtistShowDetail(ArtistShow artistShow);
+	List<ArtistShow> selectArtistShowDetailByDate(ArtistShow artistShow);
 }

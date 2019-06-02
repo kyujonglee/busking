@@ -5,7 +5,6 @@
 	<select id="selectArtistShow" resultType="artistShow">
 		select *
 		  from tb_busker_show
-	     where date(enroll_date) = date(now());
 	</select>
 	
 	<select id="selectArtistShowByDate" parameterType="String" resultType="artistShow">
@@ -19,6 +18,13 @@
 		  from tb_busker_show s, tb_busker b
 		 where s.busker_no = b.busker_no
 		   and gu = #{gu}
+		   and date(enroll_date) = #{enrollDate}
+	</select>
+	
+	<select id="selectArtistShowDetailByDate" parameterType="artistShow" resultType="artistShow">
+		select * 
+		  from tb_busker_show s, tb_busker b
+		 where s.busker_no = b.busker_no
 		   and date(enroll_date) = #{enrollDate}
 	</select>
 

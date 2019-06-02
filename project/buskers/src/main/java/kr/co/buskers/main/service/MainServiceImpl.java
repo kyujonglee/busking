@@ -71,6 +71,11 @@ public class MainServiceImpl implements MainService {
 		} catch (ParseException e1) {
 			e1.printStackTrace();
 		}
+		
+		if (artistShow.getGu() == null) {
+			List<ArtistShow> artistShowList = mapper.selectArtistShowDetailByDate(artistShow);
+			return artistShowList;
+		}
 		List<ArtistShow> artistShowList = mapper.selectArtistShowDetail(artistShow);
 		return artistShowList;
 	}
