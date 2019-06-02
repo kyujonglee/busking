@@ -193,6 +193,74 @@
 			$("day").css({"color": "deepskyblue"});
 			$("em").css({"background": "skyblue"});
 		}
+		
+		showDetail();
+		
+	});
+	
+	if(month.length == 1) { 
+		month = "0" + month; 
+	} 
+	if(day.length == 1) { 
+		day = "0" + day; 
+	} 
+		
+	$(".performance__info_date").html(year + '. ' + month + '. ' + day + " " + "<day>" + dayOfWeek + "</day>");
+	$(".calendar").html(day + "<em>" + month + "월" + "</em>");
+	if (dayOfWeek == '일') {
+	  $("day").css({"color": "hotpink"});
+	  $("em").css({"background": "hotpink"});
+	} else if (dayOfWeek == '토') {
+		$("day").css({"color": "deepskyblue"});
+		$("em").css({"background": "skyblue"});
+	}
+	  
+	$('.day-up').click((e) => {
+		let $target = $(e.target);
+		date.setDate(date.getDate() + 1);
+		let year = new String(date.getFullYear()); 
+		let month = new String(date.getMonth() + 1); 
+		let day = new String(date.getDate()); 
+		let dayOfWeek = week[date.getDay()];
+		selDate = year + "-" + month + "-" + day;
+		if(month.length == 1) { 
+			month = "0" + month; 
+		} 
+		if(day.length == 1) { 
+			day = "0" + day; 
+		} 
+		$(".performance__info_date").hide().html(date.getFullYear() + '. ' + month + '. ' + day + " " + "<day>" + dayOfWeek + "</day>").fadeIn();
+		$(".calendar").html(day + "<em>" + month + "월" + "</em>");
+		if (dayOfWeek == '일') {
+			$("day").css({"color": "hotpink"});
+			$("em").css({"background": "hotpink"});
+		} else if (dayOfWeek == '토') {
+			$("day").css({"color": "deepskyblue"});
+			$("em").css({"background": "skyblue"});
+		}
+		showDetail();
+		/*
+		let enrollDate = year + month + day;
+		$.ajax({
+			type: "POST",
+			url: "map-ajax.do",
+			data: {enrollDate : enrollDate},
+			success: function (result) {
+				mapView();
+				$("#chart").waitMe({
+					effect: "ios",
+					text: "처리중입니다.",
+					color: "pink"
+				});
+				setTimeout(function() {
+					$("#chart").waitMe("hide");
+				}, 4500);
+			}
+		});
+		*/
+	});
+	
+	function showDetail() {
 		let enrollDate = new Date(selDate);
 		$.ajax({
 			type:"POST",
@@ -243,68 +311,7 @@
 		}).fail(function (xhr) { 
 			console.dir(xhr);
 		})
-	});
-	
-	if(month.length == 1) { 
-		month = "0" + month; 
-	} 
-	if(day.length == 1) { 
-		day = "0" + day; 
-	} 
-		
-	$(".performance__info_date").html(year + '. ' + month + '. ' + day + " " + "<day>" + dayOfWeek + "</day>");
-	$(".calendar").html(day + "<em>" + month + "월" + "</em>");
-	if (dayOfWeek == '일') {
-	  $("day").css({"color": "hotpink"});
-	  $("em").css({"background": "hotpink"});
-	} else if (dayOfWeek == '토') {
-		$("day").css({"color": "deepskyblue"});
-		$("em").css({"background": "skyblue"});
 	}
-	  
-	$('.day-up').click((e) => {
-		let $target = $(e.target);
-		date.setDate(date.getDate() + 1);
-		let year = new String(date.getFullYear()); 
-		let month = new String(date.getMonth() + 1); 
-		let day = new String(date.getDate()); 
-		let dayOfWeek = week[date.getDay()];
-		selDate = year + "-" + month + "-" + day;
-		if(month.length == 1) { 
-			month = "0" + month; 
-		} 
-		if(day.length == 1) { 
-			day = "0" + day; 
-		} 
-		$(".performance__info_date").hide().html(date.getFullYear() + '. ' + month + '. ' + day + " " + "<day>" + dayOfWeek + "</day>").fadeIn();
-		$(".calendar").html(day + "<em>" + month + "월" + "</em>");
-		if (dayOfWeek == '일') {
-			$("day").css({"color": "hotpink"});
-			$("em").css({"background": "hotpink"});
-		} else if (dayOfWeek == '토') {
-			$("day").css({"color": "deepskyblue"});
-			$("em").css({"background": "skyblue"});
-		}
-		/*
-		let enrollDate = year + month + day;
-		$.ajax({
-			type: "POST",
-			url: "map-ajax.do",
-			data: {enrollDate : enrollDate},
-			success: function (result) {
-				mapView();
-				$("#chart").waitMe({
-					effect: "ios",
-					text: "처리중입니다.",
-					color: "pink"
-				});
-				setTimeout(function() {
-					$("#chart").waitMe("hide");
-				}, 4500);
-			}
-		});
-		*/
-	});
 	  
 	$('.day-down').click((e) => {
 		let $target = $(e.target);
@@ -329,6 +336,7 @@
 			$("day").css({"color": "deepskyblue"});
 			$("em").css({"background": "skyblue"});
 		}
+		showDetail();
 		/*
 		let enrollDate = year + month + day;
 		$.ajax({
@@ -539,24 +547,6 @@
 	}	  	
 	mapView();
     
-	
-	
-	function showList() {
-		$.ajax({
-			type: "POST",
-			url: "mainmap-ajax.do",
-			data: {gu : gu, enrollDate : enrollDate},
-			success: function (result) {
-				if (count != 0) {
-					$(".message_count").text(count);
-					$(".message_count").show();
-				}
-			}
-		});
-	}
-	
-	
-
 	/* 전국지도 */
 	var width = 530,
 	    height = 590,
