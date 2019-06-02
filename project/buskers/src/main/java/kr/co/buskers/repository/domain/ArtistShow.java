@@ -18,7 +18,14 @@ public class ArtistShow {
 	private int genreNo;
 	private double temperature;
 	private String activityName;
+	private Genre genre;
 	
+	public Genre getGenre() {
+		return genre;
+	}
+	public void setGenre(Genre genre) {
+		this.genre = genre;
+	}
 	public int getShowNo() {
 		return showNo;
 	}

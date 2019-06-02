@@ -9,7 +9,7 @@ $(".busker-audio-wrapper svg").click(function() {
     $(this).css({ "margin-right": "20px" });
     $(this)
       .parent()
-      .animate({ width: "50%" }, "800");
+      .animate({ width: "800px" }, "800");
     playFlag = false;
   } else {
     $(this)
@@ -121,4 +121,16 @@ $("#mute").click(function() {
 
 $("#volumeAudio").on("input", function() {
   audio.volume = this.value;
+});
+
+let menuFlag = true;
+// 메뉴 슬라이드
+$("#menu-btn").click(function() {
+    if(menuFlag){
+        $(".audio-menu").animate({"right":"70px"},"700");
+        menuFlag = false;
+    }else {
+        $(".audio-menu").animate({"right":"-320px"},"700");
+        menuFlag = true;
+    }
 });
