@@ -88,5 +88,12 @@ public class MemberServiceImpl implements MemberService {
 		System.out.println(member.getPass());
 		mapper.memberUpate(member);
 	}
+
+
+	@Override
+	public Member selectMember(int memberNo) {
+		
+		return mapper.selectUser(memberNo);
+	}
 	
 }

@@ -39,4 +39,6 @@ public interface MemberMapper {
 	
 	// 멤버 업데이트
 	public void memberUpate(Member member);
+	
+	public Member selectUser(int memberNo);
 }

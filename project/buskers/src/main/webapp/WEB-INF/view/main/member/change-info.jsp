@@ -3,15 +3,20 @@
 <div>개인정보변경</div>
 <hr>
 <form name="user_info"  id="user_info" action="userInfoUpdate.do"  method="post">
-	<div>비밀번호
-		<input type="password" class="user__password" id="pass" name="pass" maxlength="16">
-	</div>
+		
+	<c:if test="${sessionScope.user.memberType eq 'n' }">
+		<div>비밀번호
+			<input type="password" class="user__password" id="pass" name="pass" maxlength="16">
+		</div>
 		<hr>
+	</c:if>
 	
-	<div>비밀번호 확인
-		<input type="password" class="user__password__confirm" id="checkpass"  maxlength="16">
-	</div>
-	<hr>
+	<c:if test="${sessionScope.user.memberType eq 'n' }">
+		<div>비밀번호 확인
+			<input type="password" class="user__password__confirm" id="checkpass"  maxlength="16">
+		</div>
+		<hr>
+	</c:if>
 	
 	<div>이메일
 		<input type="text" class="user__email" name="email" value="${sessionScope.user.email}">

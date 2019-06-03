@@ -87,12 +87,19 @@
 	</update>
 	
 	<!-- 개인정보 변경 -->
-	<update id="memberUpate" parameterType="member">
+	<update id="memberUpate" parameterType="member" useGeneratedKeys="true" keyProperty="memberNo">
 		update tb_member
   		   set email=#{email},
                nick_name=#{nickName},
                pass=#{pass}
          where member_no=#{memberNo}
 	</update>
+	
+	<!-- 유저 뽑기 -->
+	<select id="selectUser" resultType="member">
+		select *
+		  from tb_member
+		 where member_no = #{memberNo}
+	</select>
 	
 </mapper>
