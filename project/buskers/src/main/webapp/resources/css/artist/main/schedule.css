@@ -55,7 +55,7 @@
 }
 
 .busker-show-list__item-row-content {
-  width: 100%;
+  width: 50%;
   margin-left: 5px;
   text-overflow: ellipsis;
   height: 30px;

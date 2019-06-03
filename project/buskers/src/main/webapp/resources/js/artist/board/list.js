@@ -20,6 +20,7 @@ $(document).ready(() => {
   .done((list)=>{
 	  console.log(list);
 	  for(let show of list){
+		  
 		  const lat = show.lat;
 		  const lon = show.lon;
 		  const selDate = new Date(show.enrollDate);
@@ -27,6 +28,9 @@ $(document).ready(() => {
 		  if(selDate < new Date()){
 	    	  end = `<div class="busker-show-list__item-end"> 버스킹 종료 </div>`;
 	      }
+		  if(show.genre === null) {
+			  show.genre.name = "";
+		  }
 		  $(".busker-show-list__main").append(`
     			  <div class="busker-show-list__item" id="busker-show${show.showNo}">
     				<div class="busker-show-list__item-title">
@@ -48,6 +52,9 @@ $(document).ready(() => {
     					<div class="busker-show-list__item-row">
     						<i class="fas fa-map-marker-alt fa-lg"></i>
     						<div class="busker-show-list__item-row-content">${show.place}</div>
+				  			<div class="busker-show-list__item-row-content">
+				  				<span class="busker-show-list__item-row-content-sub"> 장르 : </span> &nbsp;${show.genre.name}
+				  			</div>
     					</div>
     					<div class="busker-show-list__item-row">
     						<span> <i class="fas fa-temperature-high fa-lg"></i>

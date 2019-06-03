@@ -25,16 +25,17 @@
 		<property name="maxUploadSize" value="10000000" />
 	</bean>
 	
-	<mvc:annotation-driven>
+	<!-- Ajax 한글 -->
+	<mvc:annotation-driven >
 		<mvc:message-converters>
 			<bean class="org.springframework.http.converter.StringHttpMessageConverter">
 				<property name="supportedMediaTypes">
 					<list>
-						<value>text/plain; charset=UTF-8</value>
+						<value>test/plain; charset=UTF-8</value>
 						<value>text/html; charset=UTF-8</value>
 					</list>
 				</property>
-			</bean>
+			</bean>		
 		</mvc:message-converters>
 	</mvc:annotation-driven>
 	
@@ -120,24 +121,5 @@
         <beans:property name="viewClass" value="org.springframework.web.servlet.view.tiles3.TilesView" />
         <beans:property name="order" value="1" />
     </beans:bean>   
-    
-    
-
-     
-	<mvc:annotation-driven >
-	<!-- Ajax 한글 -->
-		<mvc:message-converters>
-			<bean class="org.springframework.http.converter.StringHttpMessageConverter">
-				<property name="supportedMediaTypes">
-					<list>
-						<value>test/plain; charset=UTF-8</value>
-						<value>text/html; charset=UTF-8</value>
-					</list>
-				</property>
-			</bean>		
-		</mvc:message-converters>
-	</mvc:annotation-driven>
-	
-    
 	
 </beans>

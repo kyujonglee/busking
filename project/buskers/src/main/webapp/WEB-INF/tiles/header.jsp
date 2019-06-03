@@ -109,20 +109,20 @@
 <script src="https://apis.google.com/js/platform.js" async defer></script>
 <script type="text/javascript" src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js" charset="utf-8"></script>
 <script src="<c:url value='/resources/js/toastr.min.js'/>"></script>
-<script src="http://192.168.0.54:10001/socket.io/socket.io.js"></script>
+<!-- <script src="http://192.168.0.54:10001/socket.io/socket.io.js"></script> -->
 <script>
 	
 	toastr.options.positionClass = 'toast-bottom-right';
 	toastr.options.closeButton = true;
 
 	/** 실시간 알림 */
+	/*
 	const socket = io.connect("http://192.168.0.54:10001");
 	
-	/*
 	if ("${sessionScope.user.nickName}" != "") {
 		socket.emit("login", "${sessionScope.user.nickName}");
 	}
-	*/
+	
 	
 	socket.on("msg", function (data) {
 		let sender = data.sender;
@@ -144,6 +144,7 @@
    		});
    		toastr.info(msg, '새 쪽지가 도착했습니다.');
     });
+	*/
 	
 	$(document).ready(function () {
 		$.ajax({

@@ -33,7 +33,6 @@ body {
 	font: bold 30px/60px "Lucida Sans Unicode", Arial Black, Arial,	Helvetica, sans-serif;
 	text-align: center;
 	color: #000;
-	text-shadow: #fff 0 1px 0;
 	-moz-border-radius: 3px;
 	-webkit-border-radius: 3px;
 	border-radius: 3px;
@@ -48,7 +47,6 @@ body {
 	display: block;
 	font: 17px/30px "Lucida Sans Unicode", Arial, Helvetica, sans-serif;
 	color: #fff;
-	text-shadow: #00365a 0 -1px 0;
 	background: #04599a;
 	background: -webkit-gradient(linear, left top, left bottom, from(#04599a),
 		to(#00365a));
@@ -59,7 +57,6 @@ body {
 	-moz-border-radius-bottomleft: 3px;
 	-webkit-border-bottom-left-radius: 3px;
 	border-bottom-left-radius: 3px;
-	border-top: 1px solid #00365a;
 	margin-top: -10px;
 }
 
