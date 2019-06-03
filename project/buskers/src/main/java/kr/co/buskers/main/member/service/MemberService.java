@@ -35,5 +35,7 @@ public interface MemberService {
 	
 	// 개인정보 업데이트
 	public void updateMember(Member member);
+	
+	public Member selectMember(int memberNo);
 
 }

@@ -191,13 +191,13 @@
 	                	</div>
 	                	
 	                	<div class="comment_write_info">
-	                		<c:if test="${sessionScope.user eq null}">
+	                		<c:if test="${sessionScope.user.memberType eq null}">
 	                			<span class="board_img_title">	
 	                				<img src="<c:url value='/resources/img/profile.png'/>"/>
 	               				</span>
 	               				<a class="comment_id" id="go_login_form" href="<c:url value='/main/member/loginform.do'/>">로그인이 필요합니다.</a>
 		          			</c:if>
-		          			<c:if test="${sessionScope.user ne null}">
+		          			<c:if test="${sessionScope.user.memberType eq null}">
 			          			<span class="board_img_title">
 			              			<img src="<c:url value='/resources/img/boyoung.jpg'/>"/>
 			           			</span>
