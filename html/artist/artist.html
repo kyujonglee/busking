@@ -446,9 +446,16 @@
       </section>
     </div>
     <div class="busker-audio-wrapper">
+      <div class="music">
+        <div class="music-title">심쿵해</div>
+        <div class="music-writer">aoa</div>
+      </div>
       <div class="busker-audio">
         <audio id="myAudio" loop="loop">
-          <source src="MyType.mp3" type="audio/mpeg" />
+          <source
+            src="다비치 (DAVICHI) - 너에게 못했던 내 마지막 말은.mp3"
+            type="audio/mpeg"
+          />
         </audio>
         <div class="busker-audio__column">
           <div class="now playing paused" id="music">
@@ -462,17 +469,17 @@
         <div class="busker-audio__column">
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            width="20"
-            height="20"
+            width="16"
+            height="16"
             viewBox="0 0 24 24"
           >
             <path d="M4 2v20h-2v-20h2zm18 0l-16 10 16 10v-20z" />
           </svg>
-          <i class="fas fa-play fa-lg" id="play"></i>
+          <i class="fas fa-play" id="play"></i>
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            width="20"
-            height="20"
+            width="16"
+            height="16"
             viewBox="0 0 24 24"
           >
             <path d="M20 22v-20h2v20h-2zm-18 0l16-10-16-10v20z" />
@@ -480,7 +487,7 @@
         </div>
         <div class="busker-audio__column">
           <div>
-            <canvas id="myCanvas" height="10px" width="200px"></canvas>
+            <canvas id="myCanvas" height="10px" width="150px"></canvas>
           </div>
           <div id="cTime">
             <span id="currentTime"> 00:00 </span> /
@@ -488,7 +495,7 @@
           </div>
         </div>
         <div class="busker-audio__column">
-          <i class="fas fa-volume-up fa-lg" id="mute"></i>
+          <i class="fas fa-volume-up" id="mute"></i>
           <input
             id="volumeAudio"
             type="range"
@@ -517,9 +524,15 @@
     <div class="audio-menu">
       <!-- 뮤직플레이어에 제목과 가수가 표시 되지 않는다는 단점!!-->
       <!-- 어떻게 보완할 것인지... 퍼블리싱!-->
+      <header class="audio-menu__header">
+        <span class="audio-menu__header-title"> 내 재생목록 </span>
+        <span class="audio-menu__header-cnt"> 5 곡 </span>
+      </header>
+      <ul class="audio-menu__content">
+        
+      </ul>
     </div>
     <script src="../../js/artist/artist.js"></script>
     <script src="../../js/common/audio/audio.js"></script>
   </body>
 </html>
-
