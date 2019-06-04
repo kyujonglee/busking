@@ -64,8 +64,8 @@ public class MainServiceImpl implements MainService {
 		System.out.println(artistShow.getEnrollDate());
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		sdf.format(artistShow.getEnrollDate());
-		System.out.println(sdf.format(artistShow.getEnrollDate()));
-		System.out.println(artistShow.getGu());
+//		System.out.println(sdf.format(artistShow.getEnrollDate()));
+//		System.out.println(artistShow.getGu());
 		try {
 			artistShow.setEnrollDate(sdf.parse(sdf.format(artistShow.getEnrollDate())));
 		} catch (ParseException e1) {
