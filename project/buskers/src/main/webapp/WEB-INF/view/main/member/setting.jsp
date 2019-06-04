@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 <link rel="stylesheet" href="<c:url value='/resources/css/main/member/setting.css'/>"/>
 <script src="<c:url value='/resources/js/jquery-3.4.1.min.js'/>"></script>
 <title>개인설정</title>
@@ -68,7 +68,7 @@
 				</div>
 				<div class="profile_content">
 			        <div class="tab-pane0" id="profile" style="display: block;">
-			        	<form class="form profile">
+			        	<div class="form profile">
 			        		<div class="profile__img__title">
 			        			<h3>프로필 사진</h3>
 			        		</div>	
@@ -82,8 +82,7 @@
 			        					</div>
 			        					<div class="img__update">
 			        						<div class="img__update__box">
-			        							<label for="ex__file">프로필 사진 업데이트</label>
-			        							<input type="file" class="img__update__button" id="ex__file" />
+			        							<button type="button" class="img__update__button" id="profileBtn">프로필 사진 업데이트</button>
 			        						</div>
 			        						<div class="img__update__ment">
 			        							<p>JPEG, PNG, GIF 중 하나여야 하며 10MB를 초과할 수 없습니다.</p>
@@ -98,7 +97,7 @@
 			        		<div class="profile__introduce__box">
 			        			<textarea class="introduce__textarea" placeholder="소개글을 써주세요!"></textarea>
 			        		</div>
-			        	</form>
+			        	</div>
 			        </div>
 				    <div class="tab-pane1" id="friend" style="display: none;" >...22
 				    
@@ -115,17 +114,36 @@
 				</div>
 			</div>
     	</div>
-    	<br>
-    	<br>
-    	<br>
-    	<br>
-    	<br>
-    	<br>
-    	<br>
-    	
+    	<div class="profile_title"></div>
 	</div>
+	
+	<!-- The Modal -->
+    <div id="myModal" class="modal">
+	    <!-- Modal content -->
+	    <form id="profileFrom" action="profileUpload.do" method="POST">
+	    <div class="modal-content">
+		    <div class="modal-header">
+		    	<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		    	<h4 class="modal-title">프로필 사진 업데이트</h4>
+		    </div>
+		    <div class="modal-body">
+		      	<button class="btn-file" id="btn___file">
+				    <input type="file" id="profile__img" name="userProfile" />
+		      		<img class="preview-profile" id="profile__preview" src="" />
+		      		<span class="btn-file-word">사진 업로드</span>
+				</button>
+		    </div>
+		    <div class="modal-footer">
+		    
+		    	<button type="button" class="closeBtn" >닫기</button>
+		    	<button type="button" class="saveBtn" >저장</button>
+		    </div>
+	    </div>
+	    </form>
+    </div>
 </main>
 <script type="text/javascript">
+// 탭이동
 function tab_menu(num){
     var f = $('.pro_tab_wapper').find('li');
     for ( var i = 0; i < f.length; i++ ) { 
@@ -138,5 +156,108 @@ function tab_menu(num){
      	}
     }
 }
+
+//Get the modal
+var modal = document.getElementById('myModal');
+var probtn = document.getElementById("profileBtn");
+var span = document.getElementsByClassName("close")[0];                                          
+var cbtn = document.getElementsByClassName("closeBtn")[0];                                          
+
+probtn.onclick = function() {
+    modal.style.display = "block";
+}
+
+span.onclick = function() {
+    modal.style.display = "none";
+}
+
+cbtn.onclick = function() {
+    modal.style.display = "none";
+}
+
+
+// 프로필 이미지 미리보기
+let sel_file;
+
+$(document).ready(function () {
+	$("#profile__img").on("change", handleImgFileSelect);
+});
+
+function handleImgFileSelect(e) {
+	e.preventDefault();
+	
+	let files = e.target.files;
+	let filesArr = Array.prototype.slice.call(files);
+	
+	filesArr.forEach(function (f) {
+		if(!f.type.match("image.*")) {
+			alert("확장자는 이미지 확장자만 가능합니다.");
+			return;
+		}
+		
+		sel_file = f;
+		
+		let reader = new FileReader();
+		reader.onload = function (e) {
+			$(".preview-profile").css('display','inline-block');
+			$(".btn-file-word").css('display','none');
+			console.log(e.target.result);
+// 			$(".btn-file").prepend('<img class="preview-profile" id="profile__preview" src="'+e.target.result+'"/>');
+			$("#profile__preview").attr("src", e.target.result);
+			
+		}
+		reader.readAsDataURL(f);
+	});
+}
+
+// let parent = document.getElementById("btn___file");
+// let child = document.getElementById("profile__preview");
+
+// $(".closeBtn").on("click", function() {
+// 	parent.removeChild(document.getElementById("profile__preview"));
+// 	$("#profile__preview").remove();
+// 	$(".preview-profile").css('display','none');
+// 	$(".btn-file-word").css('display','block');
+// });
+
+// $(".btn-file").on("click", function() {
+// 	$(this).prepend("<img class='preview-profile' id='profile__preview' />");
+// });
+
+
+// 프로필 이미지 업로드
+
+$(".saveBtn").click(function () {
+	if(($("#profile__img").val() == "" || $("#profile__img").val() == null)) {
+		alert("이미지 파일을 등록해주세요!");
+	} else {
+		let uriPath = "/buskers/main/board/member/";
+		let file = $("#profileFrom")[0];
+		console.log(file);
+		let formData = new FormData();
+		formData.append("file", file);
+		formData.append("uriPath", uriPath);
+		$.ajax({
+			type: 'POST',
+			url: "profileUpload.do",
+			data: formData,
+			processData: false,
+			contentType: false,
+			cache : false,
+			success: function(result) {
+				alert("프로필 이미지를 업로드 했습니다.");
+			},
+			error: function(error) {
+				alert("프로필 이미지 업로드에 실패하였습니다.");
+				console.log(error);
+				console.log(error.status);
+			}
+			
+		});
+		$("#profileFrom").submit();
+	}
+});
+
+
 </script>
 	

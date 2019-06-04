@@ -262,7 +262,7 @@ ul {
 }
 
 
-.img__update__box label { 
+.img__update__button { 
 	display: inline-block; 
 	padding: .5em .75em; 
 	color: #999; 
@@ -276,7 +276,7 @@ ul {
 	border-radius: .25em; 
 }
 
-.img__update__box label:hover {
+.img__update__button:hover {
 	background-color: whitesmoke; 
 	color: tomato;
 }
@@ -294,18 +294,133 @@ ul {
 }
 
 
+/* 프로필 모달뷰 파트 */
 
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
 
+/* Modal Content/Box */
+.modal-content {
+    background-color: #fefefe;
+    margin: 7% auto; /* 15% from the top and centered */
+    border: 1px solid #888;
+    width: 50%; /* Could be more or less, depending on screen size */                          
+}
+/* The Close Button */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
 
+.closeBtn {
+	display: inline-block;
+    padding: 6px 12px;
+    margin-right: 15px;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    border: 1px solid tomato;
+    border-radius: 4px;
+    background-color: whitesmoke;
+}
 
+.closeBtn:hover {
+	background: rgba(100,65,164,.05);
+	color: tomato;
+}
 
+.saveBtn {
+	display: inline-block;
+    padding: 6px 12px;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    border: 1px solid tomato;
+    border-radius: 4px;
+    background-color: whitesmoke;
+}
 
+.saveBtn:hover {
+	background: rgba(100,65,164,.05);
+	color: tomato;
+}
 
+.modal-header {
+	border-bottom: 1px solid gainsboro;
+}
 
+.modal-body {
+	background-color: whitesmoke; 
+}
 
+.modal-footer {
+	border-top: 0px;
+	background-color: whitesmoke; 
+}
 
+.modal-title {
+	font-weight: 800;
+}
 
+.btn-file {
+    position: relative;
+    overflow: hidden;
+    height: 300px;
+    width: 100%;
+    font-weight: 800;
+    background-color: #fff;
+    border: 1px solid gainsboro;
+    padding: 0;
+    border-radius: 5px;
+}
+.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;   
+    cursor: inherit;
+    display: block;
+}
 
+.btn-file:hover {
+	background: rgba(100,65,164,.05);
+}
 
+.preview-profile {
+	width: 60%;
+}
 
-
+.btn-file-word {
+	display: block;
+}
