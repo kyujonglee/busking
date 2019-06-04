@@ -1,21 +1,31 @@
-// npm install socket.io
 const app = require("express")();
 const server = require("http").createServer(app);
 const io = require("socket.io")(server);
 
-// 접속한 사용자 정보를 담는다.
+const chat = io.of("/chat");
+
 let members = [];
 
-// 사용자 소켓 접속할 때 발생
-io.on("connection", function (socket) {
-    console.log("사용자 접속했음..");
+chat.on("connection", function (socket) {
+    console.log("사용자 접속..");
 
-    socket.on("login", function (nickName) {
-        members[nickName] = socket.id;
+	socket.on("disconnect", function () {
+		for (let i = 0; i < Object.keys(members).length; i++) {
+            if (members[Object.keys(members)[i]] == socket.id) {
+                chat.emit("out", Object.keys(members)[i]);
+                delete members[Object.keys(members)[i]];
+                chat.emit("login", Object.keys(members));
+            }
+        }
+	});
 
-        io.emit("login", nickName);
+    socket.on("login", function (nickname) {
+        members[nickname] = socket.id;
+        chat.emit("login", Object.keys(members));
+        chat.emit("in", nickname);
     });
 
+    /*
     socket.on("msg", function (data) {
         io.to(members[data.receiver]).emit(
             "msg",
@@ -25,20 +35,35 @@ io.on("connection", function (socket) {
             }
         );
     });
+    */
 
     socket.on("chat", function (data) {
-        socket.emit(
-            "chat", 
-            {
-                sender: data.sender,
-                content: data.content,
-                date: data.date,
-                color: data.color
-            }
-        );
+        console.log(data);
+        if (data.receiver == "") {
+            socket.broadcast.emit(
+                "chat", 
+                {
+                    sender: data.sender,
+                    content: data.content,
+                    date: data.date,
+                    color: data.color
+                }
+            );
+        } else {
+            chat.to(members[data.receiver]).emit(
+                "whisper", 
+                {
+                    sender: data.sender,
+                    content: data.content,
+                    date: data.date,
+                    color: data.color
+                }
+            );
+        }
     });
 });
 
 server.listen(10001, function () {
     console.log("10001번 구동 중..");
 });
+

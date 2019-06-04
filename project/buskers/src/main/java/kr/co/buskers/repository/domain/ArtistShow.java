@@ -15,7 +15,17 @@ public class ArtistShow {
 	private String doo;
 	private String weather;
 	private String weatherIcon;
+	private int genreNo;
 	private double temperature;
+	private String activityName;
+	private Genre genre;
+	
+	public Genre getGenre() {
+		return genre;
+	}
+	public void setGenre(Genre genre) {
+		this.genre = genre;
+	}
 	public int getShowNo() {
 		return showNo;
 	}
@@ -88,11 +98,22 @@ public class ArtistShow {
 	public void setWeatherIcon(String weatherIcon) {
 		this.weatherIcon = weatherIcon;
 	}
+	public int getGenreNo() {
+		return genreNo;
+	}
+	public void setGenreNo(int genreNo) {
+		this.genreNo = genreNo;
+	}
 	public double getTemperature() {
 		return temperature;
 	}
 	public void setTemperature(double temperature) {
 		this.temperature = temperature;
 	}
-	
+	public String getActivityName() {
+		return activityName;
+	}
+	public void setActivityName(String activityName) {
+		this.activityName = activityName;
+	}
 }

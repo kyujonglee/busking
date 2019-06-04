@@ -62,7 +62,7 @@
         #states path {
         fill: #ccece6;    /* 지도 색 */
         stroke: #fff;     /*  지도 테두리 */
-        stroke-width:2px;
+        stroke-width:0.8px;
         }
 
         #states path:hover {
@@ -165,19 +165,29 @@
     });
 
     d3.csv("places.csv", function(data) {
-        places.selectAll("circle")
-            .data(data)
-          .enter().append("circle")
-            .attr("cx", function(d) { return projection([d.lon, d.lat])[0]; })
-            .attr("cy", function(d) { return projection([d.lon, d.lat])[1]; })
-            .attr("r", 10);
+          //  places.selectAll("circle")
+          //   .data(data)
+          // .enter().append("circle")
+          //   .attr("cx", function(d) { return projection([d.lon, d.lat])[0]; })
+          //   .attr("cy", function(d) { return projection([d.lon, d.lat])[1]; })
+          //   .attr("r", 10);
 
+             places.selectAll("circle")
+            .data(data)
+          .enter().append("image")
+            .attr("class","mark").attr("width","20").attr("height","20")
+          .attr("xlink:href",'mark.png') 
+          
+            .attr("x", function(d) { return projection([d.lon, d.lat])[0]; })
+            .attr("y", function(d) { return projection([d.lon, d.lat])[1]; })
+            .attr("r", 10);
         places.selectAll("text")
             .data(data)
           .enter().append("text")
             .attr("x", function(d) { return projection([d.lon, d.lat])[0]; })
             .attr("y", function(d) { return projection([d.lon, d.lat])[1] + 8; })
             .text(function(d) { return d.name });
+     
     });
 /////////////////////////////////줌
 function seoulclicked(d) {
@@ -288,7 +298,7 @@ function click(d) {
     var centroid = qpath.centroid(d);
     x = centroid[0];
     y = centroid[1];
-    k = 4;
+    k = 13;
     centered = d;
   } else {
     x = width / 2;
@@ -298,7 +308,10 @@ function click(d) {
   }
   states.selectAll("path")
       .classed("active", centered && function(d) { return d === centered; });
-
+      states.transition()
+      .duration(1000)
+      .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")scale(" + k + ")translate(" + -x + "," + -y + ")")
+      .style("stroke-width", 1.5 / k + "px");
 
 
 }

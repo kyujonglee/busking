@@ -36,4 +36,13 @@ public interface MemberService {
 
 	// 프로필 이미지 업로드
 	public Member uploadProfile(MultipartFile multipartFile, String uriPath, HttpSession session) throws Exception;
+	
+	// 돈 충전
+	public void chargeMoney(Member member);
+	
+	// 개인정보 업데이트
+	public void updateMember(Member member);
+	
+	public Member selectMember(int memberNo);
+
 }

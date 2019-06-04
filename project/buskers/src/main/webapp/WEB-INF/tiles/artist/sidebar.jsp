@@ -38,7 +38,7 @@
 				<i class="fas fa-video fa-lg"></i>
 			</div>
 			<div class="busker-side__menu-title">
-				영상 <span class="busker-side__menu-count">(30)</span>
+				영상 <span class="busker-side__menu-count">30</span>
 			</div>
 		</li>
 		<li class="busker-side__menu-item">
@@ -46,7 +46,7 @@
 				<i class="far fa-images fa-lg"></i>
 			</div>
 			<div class="busker-side__menu-title">
-				사진<span class="busker-side__menu-count">(99)</span>
+				사진<span class="busker-side__menu-count">99</span>
 			</div>
 		</li>
 		<li class="busker-side__menu-item">
@@ -73,7 +73,7 @@
 						d="M24 2v22h-24v-22h3v1c0 1.103.897 2 2 2s2-.897 2-2v-1h10v1c0 1.103.897 2 2 2s2-.897 2-2v-1h3zm-2 6h-20v14h20v-14zm-2-7c0-.552-.447-1-1-1s-1 .448-1 1v2c0 .552.447 1 1 1s1-.448 1-1v-2zm-14 2c0 .552-.447 1-1 1s-1-.448-1-1v-2c0-.552.447-1 1-1s1 .448 1 1v2zm6.687 13.482c0-.802-.418-1.429-1.109-1.695.528-.264.836-.807.836-1.503 0-1.346-1.312-2.149-2.581-2.149-1.477 0-2.591.925-2.659 2.763h1.645c-.014-.761.271-1.315 1.025-1.315.449 0 .933.272.933.869 0 .754-.816.862-1.567.797v1.28c1.067 0 1.704.067 1.704.985 0 .724-.548 1.048-1.091 1.048-.822 0-1.159-.614-1.188-1.452h-1.634c-.032 1.892 1.114 2.89 2.842 2.89 1.543 0 2.844-.943 2.844-2.518zm4.313 2.518v-7.718h-1.392c-.173 1.154-.995 1.491-2.171 1.459v1.346h1.852v4.913h1.711z" />
               </svg>
 			</div> <a href="<c:url value='/artist/board/list.do'/>"
-			class="busker-side__menu-title"> 공연일정 </a>
+			class="busker-side__menu-title"> 공연일정<span class="busker-side__menu-count" id="showCount"></span> </a>
 		</li>
 		<li class="busker-side__menu-item">
 			<div class="busker-side__menu-icon">
@@ -108,3 +108,13 @@
 		<span>logout</span>
 	</section>
 </aside>
+<script>
+	$.ajax({
+		url : "<c:url value='/artist/main/main-ajax.do'/>",
+		dateType : "json"
+	}).done((map)=>{
+		const showCount = map.showCount;
+		console.log(showCount);
+		$("#showCount").text(showCount);
+	});
+</script>

@@ -108,7 +108,28 @@ public class MemberServiceImpl implements MemberService {
 	}
 	
 	
-	
-	
+	// 돈 충전
+	@Override
+	public void chargeMoney(Member member) {
+		mapper.chargeMoney(member);
+	}
+
+
+	// 개인정보 업데이트
+	@Override
+	public void updateMember(Member member) {
+		System.out.println(member.getMemberNo());
+		System.out.println(member.getEmail());
+		System.out.println(member.getNickName());
+		System.out.println(member.getPass());
+		mapper.memberUpate(member);
+	}
+
+
+	@Override
+	public Member selectMember(int memberNo) {
+		
+		return mapper.selectUser(memberNo);
+	}
 	
 }

@@ -7,7 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import kr.co.buskers.main.map.service.MainMapService;
+import kr.co.buskers.main.service.MainService;
 import kr.co.buskers.repository.domain.ArtistShow;
 
 @Controller("kr.co.buskers.main.controller.MainController")
@@ -16,19 +16,23 @@ public class MainController {
 	
 	
 	@Autowired
-	private MainMapService service;
+	private MainService service;
 	
 	@RequestMapping("main.do")
 	public void main() {
 		service.exportCSV();
 	}
-
-	@RequestMapping("mainmap-ajax.do")
+	
+	@RequestMapping("map-ajax.do")
 	@ResponseBody
-	public List<ArtistShow> mainMap(ArtistShow artistShow) {
-		System.out.println("구는"+artistShow.getGu());
+	public void mapView(String enrollDate) {
+		service.mapView(enrollDate);
+	}
+
+	@RequestMapping("show-ajax.do")
+	@ResponseBody
+	public List<ArtistShow> mapDetail(ArtistShow artistShow) {
 		
-		
-		return service.exportCSV(artistShow);
+		return service.mapDetail(artistShow);
 	}
 }

@@ -65,6 +65,17 @@
 					</div>
 					<div class="busker-show-enroll__form-column">
 						<div class="enroll-form-column__title">
+							<span>✔ 장르</span>
+						</div>
+						<div class="enroll-form-column__content">
+							<c:forEach var="genre" items="${genres}">
+								<input class="busker-enroll-radio" TYPE='radio' id='genre${genre.genreNo}' name='genreNo' value='${genre.genreNo}' /><label for='genre${genre.genreNo}'>${genre.name}</label>
+								<%-- <input type="radio" name="genre" value="${genre.genreNo}"/><span>${genre.name}</span> --%>
+							</c:forEach>
+						</div>
+					</div>
+					<div class="busker-show-enroll__form-column">
+						<div class="enroll-form-column__title">
 							<span>✔ 공연제목</span>
 						</div>
 						<div class="enroll-form-column__content">

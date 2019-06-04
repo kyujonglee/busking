@@ -6,6 +6,8 @@ import java.util.concurrent.Executors;
 
 import javax.servlet.http.HttpSession;
 
+import org.apache.catalina.mapper.Mapper;
+import org.apache.ibatis.transaction.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -15,6 +17,8 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.UrlBasedViewResolver;
+
+import com.mysql.cj.Session;
 
 import kr.co.buskers.main.member.service.MemberService;
 import kr.co.buskers.main.member.util.Email;
@@ -266,5 +270,24 @@ public class MemberController {
 		
 	}
 	
+	@RequestMapping("charge-money.do")
+	@ResponseBody
+	public void chargeMoney(Member member) {
+//		System.out.println(member.getSum()+"컨트롤러들어옴");
+		service.chargeMoney(member);
+	}
 	
+	// 회원 가입 처리
+	@RequestMapping("userInfoUpdate.do")
+	public String memberUpdate(Member member,HttpSession session) {
+		String inputPass = member.getPass();
+		String pass = passEncoder.encode(inputPass);
+		member.setPass(pass);
+		service.updateMember(member);
+		session.removeAttribute("user");
+		Member user = service.selectMember(member.getMemberNo());
+		session.setAttribute("user", user);
+		session.setMaxInactiveInterval(60 * 60);
+		return "main/member/setting";
+	}
 }

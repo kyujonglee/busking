@@ -20,6 +20,13 @@ public class Member {
 	private String accessToken;
 	private String refreshToken;
 	private String name;
+	private int sum;
+	public int getSum() {
+		return sum;
+	}
+	public void setSum(int sum) {
+		this.sum = sum;
+	}
 	public int getMemberNo() {
 		return memberNo;
 	}

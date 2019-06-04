@@ -6,6 +6,7 @@
 .busker-show-enroll {
   font-family: "Nanum Gothic", sans-serif;
   box-sizing: border-box;
+  height : 100%;
   background-color : #fff8f6;
   /* background: linear-gradient(135deg,rgb(255, 202, 189),rgb(255, 229, 181)); */
 }
@@ -65,7 +66,8 @@
 }
 
 .busker-show__header .busker-show__header-link {
-  margin: 25px;
+  margin: 20px;
+  margin-top : 15px;
   font-size: 30px;
   font-weight: 600;
   opacity: 0.8;
@@ -147,7 +149,7 @@
   justify-content: center;
   align-items: center;
 }
-.busker-show-enroll__main input {
+.busker-show-enroll__main input[type="text"] {
   all: unset;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
   border-top-left-radius: 5px;
@@ -157,19 +159,19 @@
   transition: all 0.5s ease-in-out;
 }
 
-.busker-show-enroll__main input:focus {
+.busker-show-enroll__main input[type="text"]:focus {
   border-color: var(--color-right);
   background-color : white;
 }
 
-.enroll-form-column__content input {
+.enroll-form-column__content input[type="text"] {
   padding-left: 40px;
 }
 
 .busker-show-enroll__form .enroll-form-column__content {
   position: relative;
   font-size: 16px;
-  margin-top: 5px;
+  margin-top: 3px;
   display: flex;
   align-items: center;
 }
@@ -180,8 +182,8 @@
 
 .busker-show-enroll__form .enroll-form-column__title span {
   display: inline-block;
-  font-size: 18px;
-  margin-top: 13px;
+  font-size: 16px;
+  margin-top: 10px;
   color : white;
   opacity: 0.9;
   background-color : var(--color-left);
@@ -264,3 +266,16 @@
   align-items: center;
   height: 20px;
 }
+
+.enroll-form-column__content .busker-enroll-radio {
+	margin-left : 10px;
+}
+}
+.enroll-form-column__content .busker-enroll-radio:first-child {
+	margin-left : 3px;
+}
+.enroll-form-column__content label {
+	margin-left : 3px;
+}	
+
+

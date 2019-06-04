@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.buskers.repository.mapper.MainMapper">
+
+	<select id="selectArtistShow" resultType="artistShow">
+		select *
+		  from tb_busker_show
+	</select>
+	
+	<select id="selectArtistShowByDate" parameterType="String" resultType="artistShow">
+		select *
+		  from tb_busker_show
+	     where date(enroll_date) = #{enroll_date};
+	</select>
+
+	<select id="selectArtistShowDetail" parameterType="artistShow" resultType="artistShow">
+		select * 
+		  from tb_busker_show s, tb_busker b
+		 where s.busker_no = b.busker_no
+		   and gu = #{gu}
+		   and date(enroll_date) = #{enrollDate}
+	</select>
+	
+	<select id="selectArtistShowDetailByDate" parameterType="artistShow" resultType="artistShow">
+		select * 
+		  from tb_busker_show s, tb_busker b
+		 where s.busker_no = b.busker_no
+		   and date(enroll_date) = #{enrollDate}
+	</select>
+
+</mapper>
+	
