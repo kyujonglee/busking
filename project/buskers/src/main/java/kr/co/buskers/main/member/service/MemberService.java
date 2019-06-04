@@ -1,5 +1,9 @@
 package kr.co.buskers.main.member.service;
 
+import javax.servlet.http.HttpSession;
+
+import org.springframework.web.multipart.MultipartFile;
+
 import kr.co.buskers.repository.domain.Member;
 
 public interface MemberService {
@@ -30,6 +34,9 @@ public interface MemberService {
 	// 비밀번호 변경
 	public void newPass(Member member);
 
+	// 프로필 이미지 업로드
+	public Member uploadProfile(MultipartFile multipartFile, String uriPath, HttpSession session) throws Exception;
+	
 	// 돈 충전
 	public void chargeMoney(Member member);
 	

@@ -66,3 +66,4 @@ chat.on("connection", function (socket) {
 server.listen(10001, function () {
     console.log("10001번 구동 중..");
 });
+

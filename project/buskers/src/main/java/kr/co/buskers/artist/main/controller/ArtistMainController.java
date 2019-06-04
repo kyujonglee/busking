@@ -4,6 +4,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -17,7 +18,11 @@ public class ArtistMainController {
 	private ArtistMainService mainService;
 	
 	@RequestMapping("main.do")
-	public void main() {}
+	public void main(Model model) {
+//	public void main(Model model,int buskerNo) {
+		model.addAttribute("audioList",mainService.selectMusicByBuskerNo(1));
+//		model.addAttribute("audioList",mainService.selectMusicByBuskerNo(buskerNo));
+	}
 	
 	@RequestMapping("main-ajax.do")
 	@ResponseBody

@@ -13,6 +13,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.UrlBasedViewResolver;
@@ -257,6 +258,12 @@ public class MemberController {
 		
 	}
 	
+	// 프로필 이미지 업로드
+	@RequestMapping("profileUpload.do")
+	@ResponseBody
+	public Member profileUpload(MultipartFile file, String uriPath, HttpSession session) throws Exception {
+		return service.uploadProfile(file, uriPath, session);
+	}
 	
 	@RequestMapping("signupform-busker.do")
 	public void list3() {

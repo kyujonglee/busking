@@ -1,0 +1,124 @@
+.busker-show-detail {
+	font-family: "Nanum Gothic", sans-serif;
+	background-color : #fff8f6;
+	box-sizing: border-box;
+	height : 100%;
+}
+
+.busker-show-detail__main{
+	box-sizing: border-box;
+	padding: 0 30px;
+    display: grid;
+    grid-template-columns: minmax(450px,1fr) minmax(350px,1fr);
+}
+
+.busker-show-detail__main .busker-show-detail__main-columns:first-child {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding : 10px;
+}
+.busker-show-detail__main .busker-show-detail__main-columns:last-child {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding-left : 10px;
+  border-radius: 10px;
+}
+
+.busker-show-detail__main i{
+  width: 25px;
+  height: 25px;
+  font-size: 14px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--color-left), var(--color-right));
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right : 5px;
+}
+
+.busker-show-detail__main .busker-show-detail__items{
+	width: 100%;
+}
+
+.busker-show-detail__main .busker-show-detail__item:last-child{
+	display : flex;
+	justify-content : center;
+	align-items : center;
+}
+
+.busker-show-detail__item .detail-item__content{
+  padding: 5px 0px;
+  padding-left : 3px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  color : var(--color-gray);
+}
+
+.busker-show-detail__item .detail-item__title span{
+  display: inline-block;
+  font-size: 18px;
+  margin-top: 13px;
+  color : white;
+  opacity: 0.9;
+  background-color : var(--color-left);
+  padding : 5px;
+  border-radius: 10px;
+}
+
+.busker-show-detail__item button
+{
+	all : unset;
+  box-sizing: border-box;
+  margin-top : 10px;
+  width: 80px;
+  height: 40px;
+  background-color : var(--color-left);
+  border-radius: 10px;
+  border : 1px solid  var(--color-left);
+  color : white;
+  font-size : 18px;
+  line-height: 30px;
+  text-align: center;
+  transition: all 0.5s ease-in-out;
+  align-self: center;
+  margin-left : 3px;
+  cursor:pointer;
+}
+
+.busker-show-detail__item button:hover
+{
+  transform: scale(1.05);
+  background-color : var(--color-right);
+  box-shadow: 0 7px 10px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+
+
+.weather-search__input {
+  all: unset;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  height: 35px;
+  font-size: 18px;
+  transition: all 0.5s ease-in-out;
+  padding-left : 5px;
+}
+.weather-search__input:focus {
+  border-color: var(--color-right);
+  background-color : white;
+}
+
+
+
+
+
+
+
+
+

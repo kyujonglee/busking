@@ -4,9 +4,9 @@
 @import 'info.css';
 @import 'chat.css';
 @import 'main-content.css';
-@import 'schedule.css';
-@import 'busker-show-enroll.css';
-@import 'detail.css';
+@import '../board/schedule.css';
+@import '../board/busker-show-enroll.css';
+@import '../board/detail.css';
 
 @import url('https://fonts.googleapis.com/css?family=Italianno&display=swap');
 

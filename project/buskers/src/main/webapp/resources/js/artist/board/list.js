@@ -1,15 +1,7 @@
-//import { openweathermapKorean } from "./forecast.js";
 const API_KEY = "d3bf0d7d2d5b1152cc9ad6fde52607b6";
 $(document).ready(() => {
   $(".busker-side__info-btn i").trigger("click");
 });
-
-//async function weatherApi(lat, lon, API_KEY){
-//	const result = await fetch(
-//		    `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`
-//	);
-//	return result;
-//}
 
   $.ajax({
 	  type : "POST",
@@ -91,20 +83,34 @@ $(document).ready(() => {
 		          weather = weatherKorean;
 		          temp = `${ele.main.temp}`;
 		          
+		          // 날씨 api 에서 가져온 정보와 db에 있는 정보가 다를 경우 db에 있는 날씨 정보업뎃!
+		          if((weatherIcon !== show.weatherIcon) || (weather !== show.weather) || (parseFloat(temp) !== show.temperature)){
+		        	  $.ajax({
+		        		 url : "update-ajax.do",
+		        		 data : {weatherIcon:weatherIcon, weather:weather ,temperature:parseFloat(temp), showNo:show.showNo}
+		        	  }).fail((err)=>{
+		        		  console.log("날씨 update에 실패하였습니다.");
+		        	  })
+		          }
+		          
 		          weatherFlag = false;
 		          break;
 		        }
 		        preDate = proDate;
 		      }
+		      // 날씨 api에서 가져온 날짜들이 버스커가 등록한 날짜와 맞지 않을 때
 		      if (weatherFlag) {
 		    	if(selDate < new Date()){
+		    		// 현재 날짜이전의 공연정보일 경우 db에 있는 날씨정보를 뿌려줌.
 		    		weatherIcon = show.weatherIcon;
 		    		weather = show.weather;
 		    		temp = show.temperature;
 		    	}else {
+		    		// 날씨 api에서 가져온 정보는 5일치인데 그 이후의 공연일정이 있는 경우!
 		    		weather = "날씨정보를 가져올 수 없습니다.";
 		    	}
 		      }
+		      // 날씨 api에서 날씨정보를 잘 가져왔을 때
 		      if(weather !== "날씨정보를 가져올 수 없습니다."){
 		    	  $(`#busker-show${show.showNo} .busker-show-list__item-row:nth-child(3)`).append(`<span> ${temp}°C </span> <span> ${weatherIcon} </span> 
 		    	  <span> ${weather} </span>`);
