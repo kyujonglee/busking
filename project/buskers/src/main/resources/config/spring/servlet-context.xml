@@ -22,7 +22,7 @@
 	
 	<!-- 스프링을 이용한 파일 업로드 처리시 필수 클래스 -->
 	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-		<property name="maxUploadSize" value="10000000" />
+		<property name="maxUploadSize" value="100000000" />
 	</bean>
 	
 	<!-- Ajax 한글 -->

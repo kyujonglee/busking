@@ -162,6 +162,7 @@
     align-items: center;
     text-align: center;
     padding : 0px 5px;
+    padding-right : 20px;
 }
 
 .busker-side__menu .settings {

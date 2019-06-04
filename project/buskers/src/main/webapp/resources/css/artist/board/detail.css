@@ -9,7 +9,7 @@
 	box-sizing: border-box;
 	padding: 0 30px;
     display: grid;
-    grid-template-columns: 450px minmax(350px,600px);
+    grid-template-columns: minmax(450px,1fr) minmax(350px,1fr);
 }
 
 .busker-show-detail__main .busker-show-detail__main-columns:first-child {

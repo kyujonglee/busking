@@ -1,12 +1,15 @@
 $(".busker-enroll__date").flatpickr({
   enableTime: true,
   onChange: function(selectedDates, dateStr, instance) {
-	console.log("onchange event 발생");
     const val = $(".busker-enroll__date").val();
     if (val === "") {
       $(".busker-show-enroll__form-column:nth-child(2) .enroll-form-column__content").html("날짜를 입력해주세요.");
     } else {
-      getWeather($("#lat").val(), $("#lon").val(), val);
+      const lat = $("#lat").val();
+      const lon = $("#lon").val();
+      if(!((lat === "") || (lon === ""))){
+    	  getWeather(lat, lon, val);
+      }
     }
     const todayDate = new Date();
     if (selectedDates[0] < todayDate) {

@@ -45,6 +45,11 @@ public class ArtistBoardServiceImpl implements ArtistBoardService {
 	}
 	
 	@Override
+	public void updateWeather(ArtistShow artistShow) {
+		mapper.updateArtistShowWeather(artistShow);
+	}
+	
+	@Override
 	public void deleteArtistShowByNo(int showNo) {
 		mapper.deleteArtistShowByNo(showNo);
 	}

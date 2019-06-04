@@ -1,5 +1,7 @@
 @import "reset.css";
 @import "main-common.css";
+@import 'audio.css';
+
 /* font */
 
 @import url('https://fonts.googleapis.com/css?family=Italianno|Nanum+Gothic|Jua');

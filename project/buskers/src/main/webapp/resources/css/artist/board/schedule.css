@@ -63,6 +63,10 @@
   align-items: center;
 }
 
+.busker-show-list__item .busker-show-list__item-row:first-child .busker-show-list__item-row-content{
+	width : 100%;
+}
+
 .busker-show-list__item-row:last-child .busker-show-list__item-row-content {
   display: block;
   overflow: hidden;

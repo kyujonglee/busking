@@ -30,4 +30,17 @@
 		  from tb_file
 		 where group_no = #{groupNo}
 	</select>
+	
+	<select id="selectMusicByBuskerNo" parameterType="int" resultType="musicFile">
+		select *
+		  from tb_music_file
+		 where busker_no = #{buskerNo}
+	</select>
+	
+	<insert id="insertMusic" parameterType="musicFile">
+		insert into tb_music_file(name, title, writer, time, sysname, path, busker_no)
+		values(#{name}, #{title}, #{writer}, #{time}, #{sysname}, #{path}, 1 )
+	</insert>
+	
+	
 </mapper>
