@@ -208,8 +208,8 @@
 	$(".performance__info_date").html(year + '. ' + month + '. ' + day + " " + "<day>" + dayOfWeek + "</day>");
 	$(".calendar").html(day + "<em>" + month + "월" + "</em>");
 	if (dayOfWeek == '일') {
-	  $("day").css({"color": "hotpink"});
-	  $("em").css({"background": "hotpink"});
+		$("day").css({"color": "hotpink"});
+		$("em").css({"background": "hotpink"});
 	} else if (dayOfWeek == '토') {
 		$("day").css({"color": "deepskyblue"});
 		$("em").css({"background": "skyblue"});
@@ -441,15 +441,36 @@
 		    		.attr("xlink:href","<c:url value='/resources/img/marker.png'/>")
 		            .attr("x", function(d) { return projection([d.lon, d.lat])[0] - 17; })
 		            .attr("y", function(d) { return projection([d.lon, d.lat])[1] - 17; })
-		            .attr("r", 10);
+		            .attr("r", 10)
+		            .attr("id",function(d) {return d.id});
 		        places.selectAll("text")
 		            .data(data)
 		            .enter().append("text")
 		            .attr("x", function(d) { return projection([d.lon, d.lat])[0]; })
 		            .attr("y", function(d) { return projection([d.lon, d.lat])[1] + 8; })
 		            .text(function(d) { return d.name });
+		        $(".marker").hover(function () {
+		        	let x = $(this).attr("x");
+		        	let y = $(this).attr("y");
+		        	$(this).css({"width": "30", "height": "30", "transition": "0.3s"});
+		        	places.selectAll("circle")
+		        	.data(data)
+		         	.enter().append("image")
+		            .attr("class","thumbnail").attr("width","40").attr("height","40")
+		    		.attr("xlink:href","<c:url value='/resources/img/boyoung.jpg'/>")
+		            .attr("x", function(d) { return parseFloat(x) - 5; })
+		            .attr("y", function(d) { return parseFloat(y) - 50; })
+		            .attr("r", 10);
+		        	$(".thumbnail").css({"border-radius": "50%"});
+		        	
+			        $(this).mouseleave(function () {
+			        	$(this).css({"width": "25", "height": "25"});
+			        	$(".thumbnail").fadeOut("200");
+			        });
+		        });
+		        
     		});
-		}, 4500);
+		}, 3000);
     	
     	function seoulclicked(d) {
     		var x, y, k;
@@ -639,5 +660,5 @@
 	    	return "translate(" + qpath.centroid(d) + ")";
 		}
 	}
-
+	
 </script>

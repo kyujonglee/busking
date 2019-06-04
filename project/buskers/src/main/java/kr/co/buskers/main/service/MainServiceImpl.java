@@ -32,7 +32,7 @@ public class MainServiceImpl implements MainService {
 			fw.write("name,lat,lon,id");
 			fw.newLine();
 			for(int i =0;i < as.size() ; i++) {
-				fw.write(","+as.get(i).getLat()+","+as.get(i).getLon());
+				fw.write(","+as.get(i).getLat()+","+as.get(i).getLon()+","+as.get(i).getShowNo());
 				fw.newLine();
 			}
 			fw.flush();
