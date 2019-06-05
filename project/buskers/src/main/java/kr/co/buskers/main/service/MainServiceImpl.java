@@ -4,6 +4,7 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.ServletContext;
@@ -11,6 +12,7 @@ import javax.servlet.ServletContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import kr.co.buskers.common.page.FreePageResult;
 import kr.co.buskers.repository.domain.ArtistShow;
 import kr.co.buskers.repository.domain.SearchBoard;
 import kr.co.buskers.repository.domain.SearchPage;
@@ -85,6 +87,15 @@ public class MainServiceImpl implements MainService {
 	@Override
 	public List<SearchBoard> mainSearch(SearchPage searchPage) {
 		return mapper.selectSearchBoard(searchPage);
+	}
+	
+	@Override
+	public HashMap<String,Object> BoardListSearch(SearchPage searchPage) {
+		HashMap<String,Object> map = new HashMap<>();
+		map.put("pageResult", new FreePageResult(searchPage.getPageNo(), mapper.selectCountSearchBoard(searchPage)));
+//		System.out.println(mapper.selectCountSearchBoard(searchPage));
+		map.put("list",mapper.selectSearchBoard(searchPage));
+		return map;
 	}
 
 }

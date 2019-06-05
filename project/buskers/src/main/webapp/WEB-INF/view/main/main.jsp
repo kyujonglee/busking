@@ -120,7 +120,7 @@
 		</div>
 
 		<!-- 검색부분 임시  -->
-		<form action="<c:url value='/main/search.do'/>" />
+		<form action="<c:url value='/main/search/search.do'/>" />
 			<input type="text" name="input"/>
 			<button id="search">검색</button>
  		</form>

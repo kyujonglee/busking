@@ -6,7 +6,7 @@
   font-size: 16px;
   overflow: auto;
   position: absolute;
-  bottom: 70px;
+  bottom: 50px;
   right: -320px;
   /* right: 70px; */
   width: 280px;
@@ -53,6 +53,7 @@
   box-sizing: border-box;
   cursor: pointer;
   position: relative;
+  box-sizing: border-box;
 }
 
 .audio-menu .audio-menu__content-column:hover {

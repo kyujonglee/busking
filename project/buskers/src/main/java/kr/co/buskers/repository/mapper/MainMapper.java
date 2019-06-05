@@ -13,6 +13,6 @@ public interface MainMapper {
 	List<ArtistShow> selectArtistShowDetail(ArtistShow artistShow);
 	List<ArtistShow> selectArtistShowDetailByDate(ArtistShow artistShow);
 	
-	
 	List<SearchBoard> selectSearchBoard(SearchPage searchPage);
+	int selectCountSearchBoard(SearchPage searchPage);
 }
