@@ -20,7 +20,7 @@
 			</otherwise>
 		</choose>
          order by board_no desc
-         limit #{pageNo},5;
+         limit #{pageNo},5
 	</select>
 	
 	<select id="selectBoardByNo" parameterType="int" resultType="noticeBoard">
