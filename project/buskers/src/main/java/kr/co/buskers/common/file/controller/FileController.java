@@ -6,7 +6,9 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.net.URLEncoder;
 import java.util.Map;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -18,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import kr.co.buskers.common.file.service.FileService;
+import kr.co.buskers.repository.domain.MusicFile;
 
 @RequestMapping("/file")
 @Controller
@@ -42,12 +45,8 @@ public class FileController {
 	@RequestMapping("select-file-ajax.do")
 	@ResponseBody
 	public Map<String, Object> selectFile(int groupNo, Model model) throws Exception {
-		System.out.println("===============");
-		System.out.println(groupNo);
 		Map<String, Object> result = service.selectFile(groupNo);
 		model.addAttribute("file", result.get("file"));
-		System.out.println(result.get("file"));
-		System.out.println("===============");
 		return result;
 	}
 	
@@ -59,7 +58,6 @@ public class FileController {
 	
 	@RequestMapping("download.do")
 	public void download(String path, HttpServletResponse response) throws IOException {
-
 		File file = new File(path);
 		FileInputStream fis = new FileInputStream(file);
 		BufferedInputStream bis = new BufferedInputStream(fis);
@@ -112,5 +110,11 @@ public class FileController {
 		bos.close();
 		bis.close();
 		out.close();
+	}
+	
+	@RequestMapping("music-upload.do")
+	public String uploadMusic(MusicFile file) throws Exception{
+		service.insertMusic(file);
+		return "redirect:/artist/main/main.do";
 	}
 }

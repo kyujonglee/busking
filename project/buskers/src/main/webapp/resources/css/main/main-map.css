@@ -183,7 +183,7 @@ svg #places text {
 .performance__info_wrapper {
     width: 530px;
     height: 100%;
-    margin-left: 50px;
+    margin-left: 60px;
     margin-right: 80px;
 }
 
@@ -390,7 +390,7 @@ p {
     margin-right: 15px;
     border-radius: 10px;
     box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23); 
-    background: #E7F0F5;
+    background: white;
 }
 
 .performance_info_list::-webkit-scrollbar {
@@ -437,3 +437,8 @@ p {
 .flatpickr-current-month {
     padding: 1.16px 0 0 0 !important;
 }
+
+.thumbnail {
+	border-radius: 50% !important;
+}
+

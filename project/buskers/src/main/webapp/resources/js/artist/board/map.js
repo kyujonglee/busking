@@ -36,13 +36,6 @@ function getWeather(lat, lon, date) {
               <span class="enroll-form-column__content-temperature-icon"><i class="fas fa-temperature-high fa-lg"></i></span>
               <span class="enroll-form-column__content-temperature"> ${ele.main.temp} °C </span>
               `);
-              // 기온 : ${ele.main.temp}
-              //  날짜 : ${date}
-              //  날씨 : ${weatherKorean}
-              //  아이콘 : 
-              //  <img src="http://openweathermap.org/img/w/${
-              //    ele.weather[0].icon
-              //  }.png" />
           weatherFlag = false;
           break;
         }

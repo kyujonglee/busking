@@ -1,7 +1,15 @@
 package kr.co.buskers.main.member.service;
 
+import java.io.File;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.UUID;
+
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import kr.co.buskers.repository.domain.Member;
 import kr.co.buskers.repository.mapper.MemberMapper;
@@ -72,6 +80,34 @@ public class MemberServiceImpl implements MemberService {
 		mapper.updateNickNameSocialMember(member);
 	}
 
+
+	@Override
+	public Member uploadProfile(MultipartFile multipartFile, String uriPath, HttpSession session) throws Exception {
+		UUID uuid = UUID.randomUUID();
+		String uploadRoot = "C:/bit2019/upload";
+		String path = uriPath + session.getId() + "/";
+		String orgFileName = multipartFile.getOriginalFilename();
+		String sysFileName = uuid.toString() + orgFileName;
+		String filePath = uploadRoot + path;
+		
+		Member member = new Member();
+		member.setProfileImg(multipartFile.getOriginalFilename());
+		member.setProfileImgPath(filePath);
+		
+		File f = new File(filePath + sysFileName);
+		
+		System.out.println(filePath + sysFileName);
+		
+	    if(f.exists() == false) {
+    	  f.mkdirs();
+	    }
+	    
+	    multipartFile.transferTo(f);
+		
+		return member;
+	}
+	
+	
 	// 돈 충전
 	@Override
 	public void chargeMoney(Member member) {

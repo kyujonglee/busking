@@ -35,6 +35,13 @@ public class ArtistBoardController {
 	public List<ArtistShow> listAjax(){
 		return service.selectArtistShow();
 	}
+	
+	@RequestMapping("update-ajax.do")
+	@ResponseBody
+	public void updateAjax(ArtistShow artistShow) {
+		service.updateWeather(artistShow);
+	}
+	
 	@RequestMapping("list.do")
 	public void list(){}
 	
