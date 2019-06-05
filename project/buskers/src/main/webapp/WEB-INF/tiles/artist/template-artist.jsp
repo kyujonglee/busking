@@ -18,7 +18,7 @@
     />
     <title>Buskers</title>
   </head>
-  <body>
+  <body class="busker-body">
     <!-- <button>확인</button> -->
     <div class="busker">
       <tiles:insertAttribute name="sidebar" />

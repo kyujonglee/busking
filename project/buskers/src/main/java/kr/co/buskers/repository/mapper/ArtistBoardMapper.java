@@ -14,6 +14,7 @@ public interface ArtistBoardMapper {
 	void insertArtistShow(ArtistShow artistShow);
 	
 	void updateArtistShowByNo(ArtistShow artistShow);
+	void updateArtistShowWeather(ArtistShow artistShow);
 	
 	void deleteArtistShowByNo(int showNo);
 	

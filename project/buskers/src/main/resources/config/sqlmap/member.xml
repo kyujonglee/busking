@@ -14,10 +14,10 @@
 	<!-- 카카오 회원가입 -->
 	<insert id="signupSocialMember" parameterType="member">
 		insert into tb_member (
-			id,name,member_type,nick_name
+			id,member_type,nick_name
 		) values (
-			#{id}, #{name},#{memberType},#{nickName}
-		)
+			#{id},#{memberType},#{nickName}
+		);
 	</insert>
 	
 	<!-- 소셜가입 닉네임 -->

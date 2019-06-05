@@ -79,7 +79,8 @@
 			<div class="busker-side__menu-icon">
 				<i class="fas fa-music fa-lg"></i>
 			</div>
-			<div class="busker-side__menu-title">버스커 음악 등록</div>
+			<a href="<c:url value='/artist/music/music-insertForm.do'/>"
+			class="busker-side__menu-title"> 버스커 음악</a>
 		</li>
 		<li class="busker-side__menu-item settings">
 			<div class="busker-side__menu-icon">

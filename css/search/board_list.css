@@ -1,0 +1,75 @@
+@import "../common/common.css";
+
+.search__title{
+    font-size:1.1em;
+    font-weight: bold;
+    margin:30px 0px;
+}
+
+.search__board__detail{
+    height:160px;
+    display:grid;
+    grid-template-columns: 1fr 4fr;
+}
+.search__board__detail img{
+    width:100%;
+    height:100%;
+}
+.board__detail__img__wrapper{
+    height:120px;
+    padding:20px;
+}
+.search__board__board__wapper{
+    padding:20px;
+}   
+.search__board__board__wapper div span{
+    margin-left:50px;
+}
+.board__content{
+    height:75px;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    display:-webkit-box;
+    -webkit-line-clamp:5;
+    -webkit-box-orient: vertical;
+    word-wrap:break-word;
+}
+.title{
+    margin-bottom:10px;
+}
+.search__board__detai_not_photo{
+    height:160px;
+    display:grid;
+}
+.board__info{
+    margin-top:10px;
+}
+
+
+
+.pagination {
+    margin:30px 0px;
+    display: inline-block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+  
+.pagination a {
+	color: black;
+	float: left;
+	padding: 8px 11px;
+	font-size: px;
+	text-decoration: none;
+	transition: background-color .3s;
+	border: 1px solid #ddd;
+	cursor: pointer;
+}
+
+.pagination a.active {
+	background-color: #444444;
+	color: white;
+	border: 1px solid #444444;
+}
+
+.pagination a:hover:not(.active) {background-color: #ddd;}

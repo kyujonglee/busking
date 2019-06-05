@@ -119,7 +119,11 @@
 			</div>
 		</div>
 
- 		
+		<!-- 검색부분 임시  -->
+		<form action="<c:url value='/main/search/search.do'/>" />
+			<input type="text" name="input"/>
+			<button id="search">검색</button>
+ 		</form>
  		<!-- 스크롤 버튼 -->
  		<button type="button" class="view-main-top-btn">
 	    	<i class="fas fa-angle-up fa-2x"></i>
@@ -208,8 +212,8 @@
 	$(".performance__info_date").html(year + '. ' + month + '. ' + day + " " + "<day>" + dayOfWeek + "</day>");
 	$(".calendar").html(day + "<em>" + month + "월" + "</em>");
 	if (dayOfWeek == '일') {
-	  $("day").css({"color": "hotpink"});
-	  $("em").css({"background": "hotpink"});
+		$("day").css({"color": "hotpink"});
+		$("em").css({"background": "hotpink"});
 	} else if (dayOfWeek == '토') {
 		$("day").css({"color": "deepskyblue"});
 		$("em").css({"background": "skyblue"});
@@ -297,7 +301,7 @@
    				html +=    '</div>';
 				html +=     '<div class="details-btn">';
   				html +=    		'<h1>' + list.title + '</h1>';
-   				html +=    	'<h3><i class="fa fa-map-marker">&nbsp;' + list.place + '</i> &nbsp;&nbsp;<i class="fa fa-globe globe">&nbsp;' + list.enrollDate + '</i></h3>';
+   				html +=    	'<h3><i class="fa fa-map-marker">&nbsp;' + list.place + '</i> &nbsp;&nbsp;<i class="fa fa-globe globe">&nbsp;' + new Date(list.enrollDate).format('yyyy.MM.dd') + '</i></h3>';
    				html +=   		'<p>' + list.content +'</p>';
    				html +=     '</div>';
    				html +=     '<div class="SM-btn">';
@@ -441,15 +445,37 @@
 		    		.attr("xlink:href","<c:url value='/resources/img/marker.png'/>")
 		            .attr("x", function(d) { return projection([d.lon, d.lat])[0] - 17; })
 		            .attr("y", function(d) { return projection([d.lon, d.lat])[1] - 17; })
-		            .attr("r", 10);
+		            .attr("r", 10)
+		            .attr("id",function(d) {return d.id});
+				
 		        places.selectAll("text")
 		            .data(data)
 		            .enter().append("text")
 		            .attr("x", function(d) { return projection([d.lon, d.lat])[0]; })
 		            .attr("y", function(d) { return projection([d.lon, d.lat])[1] + 8; })
 		            .text(function(d) { return d.name });
+		        $(".marker").hover(function () {
+		        	let x = $(this).attr("x");
+		        	let y = $(this).attr("y");
+		        	$(this).css({"width": "30", "height": "30", "transition": "0.3s"});
+		        	places.selectAll("circle")
+		        	.data(data)
+		         	.enter().append("image")
+		            .attr("class","thumbnail").attr("width","40").attr("height","40")
+		    		.attr("xlink:href","<c:url value='/resources/img/boyoung.jpg'/>")
+		            .attr("x", function(d) { return parseFloat(x) - 5; })
+		            .attr("y", function(d) { return parseFloat(y) - 50; })
+		            .attr("r", 10);
+		        	$(".thumbnail").css({"border-radius": "50%"});
+		        	
+			        $(this).mouseleave(function () {
+			        	$(this).css({"width": "25", "height": "25"});
+			        	$(".thumbnail").fadeOut("200");
+			        });
+		        });
+		        
     		});
-		}, 4500);
+		}, 3000);
     	
     	function seoulclicked(d) {
     		var x, y, k;
@@ -529,7 +555,7 @@
        				html +=    '</div>';
     				html +=     '<div class="details-btn">';
       				html +=    		'<h1>' + list.title + '</h1>';
-       				html +=    	'<h3><i class="fa fa-map-marker">&nbsp;' + list.place + '</i> &nbsp;&nbsp;<i class="fa fa-globe globe">&nbsp;' + list.enrollDate + '</i></h3>';
+       				html +=    	'<h3><i class="fa fa-map-marker">&nbsp;' + list.place + '</i> &nbsp;&nbsp;<i class="fa fa-globe globe">&nbsp;' + new Date(list.enrollDate).format('yyyy.MM.dd') + '</i></h3>';
        				html +=   		'<p>' + list.content +'</p>';
        				html +=     '</div>';
        				html +=     '<div class="SM-btn">';
@@ -639,5 +665,33 @@
 	    	return "translate(" + qpath.centroid(d) + ")";
 		}
 	}
+	
+	Date.prototype.format = function(f) {
+	    if (!this.valueOf()) return " ";
+	 
+	    const weekName = ["일요일", "월요일", "화요일", "수요일", "목요일", "금요일", "토요일"];
+	    let d = this;
+	    let h;
+	     
+	    return f.replace(/(yyyy|yy|MM|dd|E|hh|mm|ss|a\/p)/gi, function($1) {
+	        switch ($1) {
+	            case "yyyy": return d.getFullYear();
+	            case "yy": return (d.getFullYear() % 1000).zf(2);
+	            case "MM": return (d.getMonth() + 1).zf(2);
+	            case "dd": return d.getDate().zf(2);
+	            case "E": return weekName[d.getDay()];
+	            case "HH": return d.getHours().zf(2);
+	            case "hh": return ((h = d.getHours() % 12) ? h : 12).zf(2);
+	            case "mm": return d.getMinutes().zf(2);
+	            case "ss": return d.getSeconds().zf(2);
+	            case "a/p": return d.getHours() < 12 ? "오전" : "오후";
+	            default: return $1;
+	        }
+	    });
+	};
+	 
+	String.prototype.string = function(len){var s = '', i = 0; while (i++ < len) { s += this; } return s;};
+	String.prototype.zf = function(len){return "0".string(len - this.length) + this;};
+	Number.prototype.zf = function(len){return this.toString().zf(len);};
 
 </script>

@@ -11,10 +11,11 @@ public interface ArtistBoardService {
 	ArtistShow selectArtistShowByNo(int showNo);
 	List<Genre> selectGenre();
 	
-	
 	void insertArtistShow(ArtistShow artistShow);
 	
 	void updateArtistShowByNo(ArtistShow artistShow);
+	void updateWeather(ArtistShow artistShow);
+	
 	
 	void deleteArtistShowByNo(int showNo);
 	

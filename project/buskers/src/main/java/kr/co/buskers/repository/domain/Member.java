@@ -19,7 +19,6 @@ public class Member {
 	private String memberType;
 	private String accessToken;
 	private String refreshToken;
-	private String name;
 	private int sum;
 	public int getSum() {
 		return sum;
@@ -117,11 +116,6 @@ public class Member {
 	public void setRefreshToken(String refreshToken) {
 		this.refreshToken = refreshToken;
 	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
+	
 	
 }
