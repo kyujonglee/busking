@@ -59,15 +59,29 @@ function whenPlayed() {
 }
 
 $(document).ready(() => {
-	whenPaused();
+	audio.addEventListener("canplay", function(){
+		  this.play();
+		  whenPaused();
+	});
 });
 
 canvas.onclick = function(e) {
+  console.log(e.offsetX / canvas.clientWidth);
+  console.log(audio.duration);
+  console.log((e.offsetX / canvas.clientWidth) * audio.duration);
+  console.log("audio.currentTime ",audio.currentTime);
+  audio.addEventListener("canplay", function(){
+		  audio.currentTime = (e.offsetX / canvas.clientWidth) * audio.duration;
+		  console.log("audio.currentTime ",audio.currentTime);
+          this.removeEventListener("canplay",arguments.callee);
+  });
   audio.currentTime = (e.offsetX / canvas.clientWidth) * audio.duration;
+  console.log("audio.currentTime ",audio.currentTime);
 };
 
 let colorFlag = true;
 audio.addEventListener("timeupdate", function() {
+  console.log("timeupdate ",audio.currentTime);
   const currentTime = parseInt(audio.currentTime);
   const duration = parseInt(audio.duration);
 
@@ -113,8 +127,7 @@ function pad(time) {
 }
 
 $("#play").click(function() {
-	console.log("click");
-	
+  console.log("click");
   if (audio.paused) {
     whenPaused();
     const play = audio.play();

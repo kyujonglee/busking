@@ -101,7 +101,8 @@ public class FileServiceImpl implements FileService {
 		File file = new File(path);
 		if(!file.exists()) file.mkdirs();
 		
-		path = "/Users/kyujong/Documents/bit2019/upload/"+"busker1/"+musicFile.getSysname();
+//		path = "/Users/kyujong/Documents/bit2019/upload/"+"busker1/"+musicFile.getSysname()+".mp3";
+		path = "/Users/kyujong/Documents/bit2019/upload/"+"busker1/"+musicFile.getName();
 		attach.transferTo(new File(path));
 		musicFile.setPath(path);
 		musicFile.setBuskerNo(1); // 로그인한 버스커에 대한 정보를 세션을 통해 받을 것!
