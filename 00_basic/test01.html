@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<!-- 라이브러리 충돌...  $ 선언시 jquery에서 도 $를 선언해서 덮어써버림 alert 호출 안됨... 밑으로 이동시 호출
+ -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="../js/jquery-3.2.1.js"></script>
+    <script type="text/javascript">
+        console.log($);
+        $('안녕하세요.');
+        var $ =function(msg){ alert(msg)}
+    </script>
+</head>
+<body></body>
+</html>

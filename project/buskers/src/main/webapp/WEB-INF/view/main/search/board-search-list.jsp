@@ -7,58 +7,28 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="<c:url value='/resources/css/main/search/search.css'/>" />
+<link rel="stylesheet" href="<c:url value='/resources/css/main/search/search-board-list.css'/>" />
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"/>
 <script
 	src="https://code.jquery.com/jquery-3.4.1.min.js"
 	integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-	crossorigin="anonymous">
-</script>
+	crossorigin="anonymous"></script>
 <title>Insert title here</title>
 </head>
+<body>
 <body class="search__body">
     <div class="container">
         <div class="search__wrapper">
             <div class="search__result"><b>'${input}'</b>에 대한 검색결과 입니다.</div>
-<!--        <hr> -->
-            <div class="search__artist__wrapper">
-                <div class="artist__search__title">아티스트 정보</div>
-                <div class="artist__search__info">
-                    <div class="artist__search__image">
-                        <img src="<c:url value='/resources/img/common.jpg'/>">
-                    </div>
-                    <div class="artist__search__explain">
-                        <div><a href="#">피아노치는 이정환</a></div>
-                        <div>아티스트의 정보를 입력,   </div>
-                    </div>
-                </div>
-                <div class="artist__search__video">
-                    <!--동영상 목록자리-->
-                </div>
-                <div class="artist__search__list" >
-                    <div class="search__title">아티스트 리스트</div>
-                    <div class="artist__search__list_detail">
-                        <div class="artist__search__list__info">
-                            <img src="<c:url value='/resources/img/common.jpg'/>">
-                            <div><a href="#">피아노치는 이정환</a></div>
-                            <div>이정환</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
         <div class="search__board__wrapper">
-<!--         <hr> -->
-            <div class="search__title">
-               	게시물 검색 결과
-            </div>
-            
+        
 			<c:if test="${list eq '[]'}">
 				<div class="no__result">
               	  '<b>${input }</b>'에 대한 게시물 정보가 없습니다.
               	</div>
 			</c:if>            
-           	<c:forEach var="board" items="${list}" begin="0" end="4" >
+           	<c:forEach var="board" items="${list}" begin="0" end="9">
            		<!-- 그룹no가 0일경우는 사진이 없는경우임 -->
 				
            		<c:if test="${board.groupNo eq 0}">
@@ -129,14 +99,35 @@
             
             
             
-			<c:if test="${fn:length(list) gt '5' }">
-	            <div class="board__more">
-            		<a href="board-search-list.do?input=${input}">
-            			게시글 검색결과 더보기
-            			<i class="fas fa-chevron-right"></i>
-            		</a>
-	            </div>
+		  <div class="pagination">
+	          <c:if test="${pageResult.prev eq true}">
+			      <a href="board-search-list.do?pageNo=${pageResult.beginPage - 1}&input=${param.input}">
+				      <i class="fas fa-angle-left"></i>
+			 	  </a>
+			  </c:if>
+              
+              
+              <c:forEach var="i" begin="${pageResult.beginPage}" end="${pageResult.endPage}">
+			  	<c:if test="${param.pageNo eq i}">
+					<a href="board-search-list.do?pageNo=${i}&input=${param.input}" class="active">
+						${i}
+					</a>
+				</c:if>
+				<c:if test="${param.pageNo ne i}">
+					<a href="board-search-list.do?pageNo=${i}&input=${param.input}">
+						${i}
+					</a>
+				</c:if>
+			  </c:forEach>
+			  
+			  <c:if test="${pageResult.next eq true}">
+				<a href="board-search-list.do?pageNo=${pageResult.endPage + 1}&input=${param.input}">
+					<i class="fas fa-angle-right"></i>
+				</a>
 			</c:if>
+	         
+	         
+          </div>
 			
             
             
@@ -159,5 +150,6 @@
 // 		}
     
     </script>
+</body>
 </body>
 </html>

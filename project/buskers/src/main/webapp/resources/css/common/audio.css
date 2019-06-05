@@ -1,8 +1,5 @@
 @import "audio-menu.css";
 
-body {
-  overflow: hidden;
-}
 
 :root {
   --color-audio-black: #212121;
@@ -45,7 +42,11 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+<<<<<<< HEAD
+/*   margin-top: 5px; */
+=======
   margin-top: 5px;
+>>>>>>> master
 }
 
 .busker-audio__column:nth-child(2) {

@@ -120,6 +120,17 @@
 		</div>
 	</div>
 	<div class="busker-audio-wrapper">
+		<div class="audio-menu">
+	      <!-- 뮤직플레이어에 제목과 가수가 표시 되지 않는다는 단점!!-->
+	      <!-- 어떻게 보완할 것인지... 퍼블리싱!-->
+	      <header class="audio-menu__header">
+	        <span class="audio-menu__header-title"> 내 재생목록 </span>
+	        <span class="audio-menu__header-cnt"> ${audioList.size()} 곡 </span>
+	      </header>
+	      <ul class="audio-menu__content">
+	        
+	      </ul>
+	    </div>
       <div class="music">
         <div class="music-title">${audioList[0].title}</div>
         <div class="music-writer">${audioList[0].writer}</div>
