@@ -143,7 +143,7 @@
 <!--             type="audio/mpeg" -->
 <!--           /> -->
           <source
-            src="/upload/busker1/shit.mp3"
+            src="${audioList[0].path}"
             type="audio/mpeg"
           />
         </audio>

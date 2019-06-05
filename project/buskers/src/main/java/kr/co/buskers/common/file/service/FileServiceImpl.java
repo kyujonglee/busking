@@ -96,21 +96,21 @@ public class FileServiceImpl implements FileService {
 		
 		musicFile.setSysname(uuid.toString());
 		musicFile.setName(attach.getOriginalFilename());
-		String path = "C:/bit2019/upload/"+"busker1/";
+		String path = "/Users/kyujong/Documents/bit2019/upload/"+"busker1";
 //		String path = "/Users/kyujong/Documents/bit2019/upload/"+musicFile.getBuskerName();
 		File file = new File(path);
 		if(!file.exists()) file.mkdirs();
 		
-//		path = "/Users/kyujong/Documents/bit2019/upload/"+"busker1/"+musicFile.getSysname()+".mp3";
-		path = "/Users/kyujong/Documents/bit2019/upload/"+"busker1/"+musicFile.getName();
+		path = "/Users/kyujong/Documents/bit2019/upload/"+"busker1/"+musicFile.getSysname()+".mp3";
 		attach.transferTo(new File(path));
+		
+		path = "/upload/" + "busker1";
+//		path = "/upload/" + musicFile.getBuskerName();
+		path = path + "/" +musicFile.getSysname()+".mp3";
 		musicFile.setPath(path);
 		musicFile.setBuskerNo(1); // 로그인한 버스커에 대한 정보를 세션을 통해 받을 것!
 //		musicFile.setBuskerNo(musicFile.getBuskerNo());
 		
-		// 서버에 지정한 path에 업로드!
-		
-		System.out.println("업로드 안됨!");
 		mapper.insertMusic(musicFile);
 	}
 }
