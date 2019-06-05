@@ -23,6 +23,7 @@ body {
   align-items: center;
   /* padding-right : 20px; */
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+  
 }
 
 .busker-audio-wrapper .busker-audio__btn {
