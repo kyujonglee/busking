@@ -19,6 +19,7 @@
                     </div>
                     <br>
                     <div class="u-form-group">
+                        <input type="hidden" id="name"  name="name" value="${name}">
                         <input type="hidden" id="id" name="id" value="${id}">
                         <input type="hidden" id="memberType" name="memberType" value="${memberType}">
                         <input type="submit" id="memberRegister" class="register" value="소셜 회원가입"/>&nbsp;&nbsp;

@@ -38,7 +38,7 @@
 				<i class="fas fa-video fa-lg"></i>
 			</div>
 			<div class="busker-side__menu-title">
-				영상 <span class="busker-side__menu-count">(30)</span>
+				영상 <span class="busker-side__menu-count">30</span>
 			</div>
 		</li>
 		<li class="busker-side__menu-item">
@@ -46,7 +46,7 @@
 				<i class="far fa-images fa-lg"></i>
 			</div>
 			<div class="busker-side__menu-title">
-				사진<span class="busker-side__menu-count">(99)</span>
+				사진<span class="busker-side__menu-count">99</span>
 			</div>
 		</li>
 		<li class="busker-side__menu-item">
@@ -79,7 +79,8 @@
 			<div class="busker-side__menu-icon">
 				<i class="fas fa-music fa-lg"></i>
 			</div>
-			<div class="busker-side__menu-title">버스커 음악 등록</div>
+			<a href="<c:url value='/artist/music/music-insertForm.do'/>"
+			class="busker-side__menu-title"> 버스커 음악</a>
 		</li>
 		<li class="busker-side__menu-item settings">
 			<div class="busker-side__menu-icon">
@@ -115,6 +116,6 @@
 	}).done((map)=>{
 		const showCount = map.showCount;
 		console.log(showCount);
-		$("#showCount").text("("+showCount+")");
+		$("#showCount").text(showCount);
 	});
 </script>
