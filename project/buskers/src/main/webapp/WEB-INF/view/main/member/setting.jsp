@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%> 
 <link rel="stylesheet" href="<c:url value='/resources/css/main/member/setting.css'/>"/>
 <script src="<c:url value='/resources/js/jquery-3.4.1.min.js'/>"></script>
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
@@ -18,7 +20,7 @@
 				<div class="profile_info_img">
 					<div class="profile_info_img2" aria-label="프로필 사진">
 						<div class="profile_info_img3">
-							<img class="profile_info_img4" src="<c:url value='/resources/img/boyoung.jpg'/>" title="프로필"/>
+							<img class="profile_info_img4" src="<c:url value='/file/download.do'/>?path=${sessionScope.user.profileImgPath}${sessionScope.user.profileImg}" title="프로필"/>
 						</div>
 					</div>
 					<div class="profile_info_img5">
@@ -52,19 +54,19 @@
 				<div class="profile_menu">
 					<ul class="pro_tab_wapper">
 						<li class="pro_tab active">
-							<a class="pro_tab_link" href="#profile;" onclick="tab_menu(0);" >프로필</a>
+							<a class="pro_tab_link"  onclick="tab_menu(0);" >프로필</a>
 						</li>
 						<li class="pro_tab">
-							<a class="pro_tab_link" href="#friend;" onclick="tab_menu(1);" >친구 관리</a>
+							<a class="pro_tab_link"  onclick="tab_menu(1);" >친구 관리</a>
 						</li>
 						<li class="pro_tab">
-							<a class="pro_tab_link" href="#notice;" onclick="tab_menu(2);" >알림</a>
+							<a class="pro_tab_link" onclick="tab_menu(2);" >알림</a>
 						</li>
 						<li class="pro_tab">
-							<a class="pro_tab_link" href="#privacy;" onclick="tab_menu(3);" >개인정보 관리</a>
+							<a class="pro_tab_link"  onclick="tab_menu(3);" >개인정보 관리</a>
 						</li>
 						<li class="pro_tab">
-							<a class="pro_tab_link" href="#social;" onclick="tab_menu(4);" >결제</a>
+							<a class="pro_tab_link"  onclick="tab_menu(4);" >결제</a>
 						</li>
 					</ul>
 				</div>
@@ -79,7 +81,7 @@
 			        				<div class="profile__img__setting">
 			        					<div class="img__box1">
 			        						<div class="img__box2">
-			        							<img class="img__box3" src="<c:url value='/resources/img/boyoung.jpg'/>" title="프로필 사진"/>
+			        							<img class="img__box3" src="<c:url value='/file/download.do'/>?path=${sessionScope.user.profileImgPath}${sessionScope.user.profileImg}" title="프로필 사진"/>
 			        						</div>
 			        					</div>
 			        					<div class="img__update">
@@ -122,26 +124,28 @@
 	<!-- The Modal -->
     <div id="myModal" class="modal">
 	    <!-- Modal content -->
-	    <form id="profileFrom" action="profileUpload.do" method="POST">
 	    <div class="modal-content">
 		    <div class="modal-header">
 		    	<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 		    	<h4 class="modal-title">프로필 사진 업데이트</h4>
 		    </div>
+		    <form id="profileFrom" action="profileUpload.do" method="POST">
 		    <div class="modal-body">
 		      	<button class="btn-file" id="btn___file">
-				    <input type="file" id="profile__img" name="userProfile" />
+				    <input type="file" id="profile__img" name="userProfile" enctype="multipart/form-data"/>
 		      		<img class="preview-profile" id="profile__preview" src="" />
 		      		<span class="btn-file-word">사진 업로드</span>
+		      		<input type="hidden" name="memberNo" value="${sessionScope.user.memberNo }"/>
+		      		<input type="hidden" name="id" value="${sessionScope.user.id }"/>
+		      		<input type="hidden" name="profileImg" value="${sessionScope.user.profileImg }"/>
 				</button>
 		    </div>
+		    </form>
 		    <div class="modal-footer">
-		    
 		    	<button type="button" class="closeBtn" >닫기</button>
 		    	<button type="button" class="saveBtn" >저장</button>
 		    </div>
 	    </div>
-	    </form>
     </div>
 </main>
 <script type="text/javascript">
@@ -188,8 +192,8 @@ $(document).ready(function () {
 function handleImgFileSelect(e) {
 	e.preventDefault();
 	
-	let files = e.target.files;
-	let filesArr = Array.prototype.slice.call(files);
+	let prvFiles = e.target.files;
+	let filesArr = Array.prototype.slice.call(prvFiles);
 	
 	filesArr.forEach(function (f) {
 		if(!f.type.match("image.*")) {
@@ -229,16 +233,23 @@ function handleImgFileSelect(e) {
 
 // 프로필 이미지 업로드
 
+
 $(".saveBtn").click(function () {
 	if(($("#profile__img").val() == "" || $("#profile__img").val() == null)) {
 		alert("이미지 파일을 등록해주세요!");
 	} else {
+		let file = $("#profile__img")[0].files[0];
 		let uriPath = "/buskers/main/board/member/";
-		let file = $("#profileFrom")[0];
-		console.log(file);
+		let memberNo = "${sessionScope.user.memberNo}";
+		let id = "${sessionScope.user.id}";
+		let profileImg = "${sessionScope.user.profileImg}";
+		
 		let formData = new FormData();
 		formData.append("file", file);
 		formData.append("uriPath", uriPath);
+		formData.append("memberNo", memberNo);
+		formData.append("id", id);
+		formData.append("profileImg", profileImg);
 		$.ajax({
 			type: 'POST',
 			url: "profileUpload.do",
@@ -248,6 +259,7 @@ $(".saveBtn").click(function () {
 			cache : false,
 			success: function(result) {
 				alert("프로필 이미지를 업로드 했습니다.");
+				modal.style.display = "none";
 			},
 			error: function(error) {
 				alert("프로필 이미지 업로드에 실패하였습니다.");
@@ -256,7 +268,6 @@ $(".saveBtn").click(function () {
 			}
 			
 		});
-		$("#profileFrom").submit();
 	}
 });
 
@@ -338,41 +349,41 @@ $(".saveBtn").click(function () {
     	
         
         
-        Swal.fire({
-			  title: '개인정보를 변경하시겠습니까?',
-			  type: 'info',
-			  showCancelButton: true,
-			  confirmButtonColor: '#3085d6',
-			  cancelButtonColor: '#d33',
-			  confirmButtonText: '예',
-			  cancelButtonText: '아니오',
-			}).then((result) => {
-			  if (result.value) {
-				 	if (emailck == 0) {
-				 		Swal.fire({
-							  title:'이메일 중복체크를해 주세요',
-							  type:'warning',
-							  timer:2000	
-						});
-			       		return false;
-			       	}  else if (nickNameck == 0) {
-			       		Swal.fire({
-							  title:'닉네임 중복체크를해 주세요',
-							  type:'warning',
-							  timer:2000	
-						});
-			       		return false;
-			       	}  else {
-			       		Swal.fire({
-							  title:'정보가 변경되었습니다.',
-							  type:'success',
-							  timer:2000	
-						});
-			       		$("#user_info").submit();
-			        	return true;
-			       	}
-			  }
-		})
+//         Swal.fire({
+// 			  title: '개인정보를 변경하시겠습니까?',
+// 			  type: 'info',
+// 			  showCancelButton: true,
+// 			  confirmButtonColor: '#3085d6',
+// 			  cancelButtonColor: '#d33',
+// 			  confirmButtonText: '예',
+// 			  cancelButtonText: '아니오',
+// 			}).then((result) => {
+// 			  if (result.value) {
+// 				 	if (emailck == 0) {
+// 				 		Swal.fire({
+// 							  title:'이메일 중복체크를해 주세요',
+// 							  type:'warning',
+// 							  timer:2000	
+// 						});
+// 			       		return false;
+// 			       	}  else if (nickNameck == 0) {
+// 			       		Swal.fire({
+// 							  title:'닉네임 중복체크를해 주세요',
+// 							  type:'warning',
+// 							  timer:2000	
+// 						});
+// 			       		return false;
+// 			       	}  else {
+// 			       		Swal.fire({
+// 							  title:'정보가 변경되었습니다.',
+// 							  type:'success',
+// 							  timer:2000	
+// 						});
+// 			       		$("#user_info").submit();
+// 			        	return true;
+// 			       	}
+// 			  }
+// 		})
 	})
 	
 	
