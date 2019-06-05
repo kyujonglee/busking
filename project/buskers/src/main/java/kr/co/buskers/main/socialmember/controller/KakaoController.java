@@ -71,7 +71,6 @@ public class KakaoController {
 	public void signupform(HttpSession session, Member member,RedirectAttributes rttr,Model model) {
 		try {
 			model.addAttribute("id",member.getId());
-			model.addAttribute("name",member.getName());
 			model.addAttribute("memberType",member.getMemberType());
 			
 			

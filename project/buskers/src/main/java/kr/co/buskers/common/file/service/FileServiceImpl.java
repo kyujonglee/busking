@@ -96,7 +96,7 @@ public class FileServiceImpl implements FileService {
 		
 		musicFile.setSysname(uuid.toString());
 		musicFile.setName(attach.getOriginalFilename());
-		String path = "/Users/kyujong/Documents/bit2019/upload/"+"busker1/";
+		String path = "C:/bit2019/upload/"+"busker1/";
 //		String path = "/Users/kyujong/Documents/bit2019/upload/"+musicFile.getBuskerName();
 		File file = new File(path);
 		if(!file.exists()) file.mkdirs();
