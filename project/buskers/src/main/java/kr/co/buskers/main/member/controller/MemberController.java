@@ -6,8 +6,7 @@ import java.util.concurrent.Executors;
 
 import javax.servlet.http.HttpSession;
 
-import org.apache.catalina.mapper.Mapper;
-import org.apache.ibatis.transaction.Transaction;
+import org.apache.tomcat.jni.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -17,8 +16,6 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.UrlBasedViewResolver;
-
-import com.mysql.cj.Session;
 
 import kr.co.buskers.main.member.service.MemberService;
 import kr.co.buskers.main.member.util.Email;
@@ -56,9 +53,8 @@ public class MemberController {
 	
 	// 로그인 처리
 	@RequestMapping("login.do")
-	public String login(HttpSession session, Member member,RedirectAttributes rttr) {
+	public String login(HttpSession session, Member member, RedirectAttributes rttr) {
 		Member user = service.login(member);
-//		System.out.println(user);
 		// DB 값 체크
 		if(user != null) {
 			boolean passMatch = passEncoder.matches(member.getPass(), user.getPass());
@@ -261,8 +257,24 @@ public class MemberController {
 	// 프로필 이미지 업로드
 	@RequestMapping("profileUpload.do")
 	@ResponseBody
-	public Member profileUpload(MultipartFile file, String uriPath, HttpSession session) throws Exception {
-		return service.uploadProfile(file, uriPath, session);
+	public void profileUpload(MultipartFile file, String uriPath, Member member, HttpSession session) throws Exception {
+		System.out.println(member.getId());
+		System.out.println(member.getMemberNo());
+		System.out.println(member.getProfileImg());
+		// 프로필 이미지가 이미 존재한다면
+//		if(member.getProfileImg() != null) {
+//			// 기존 이미지 삭제후 업로드
+//			service.uploadProfile(file, uriPath, member);
+//		} else {
+//		
+//	}
+		// 프로필 이미지가 없다면 바로 업로드
+		service.uploadProfile(file, uriPath, member);
+		
+		session.removeAttribute("user");
+		Member user = service.selectMember(member.getMemberNo());
+		session.setAttribute("user", user);
+		session.setMaxInactiveInterval(60 * 60);
 	}
 	
 	@RequestMapping("signupform-busker.do")
@@ -277,7 +289,7 @@ public class MemberController {
 		service.chargeMoney(member);
 	}
 	
-	// 회원 가입 처리
+	// 회원 정보 업데이트
 	@RequestMapping("userInfoUpdate.do")
 	public String memberUpdate(Member member,HttpSession session) {
 		String inputPass = member.getPass();
