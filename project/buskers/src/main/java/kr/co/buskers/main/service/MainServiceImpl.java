@@ -36,7 +36,7 @@ public class MainServiceImpl implements MainService {
 			fw.write("name,lat,lon,id");
 			fw.newLine();
 			for(int i =0;i < as.size() ; i++) {
-				fw.write(","+as.get(i).getLat()+","+as.get(i).getLon());
+				fw.write(","+as.get(i).getLat()+","+as.get(i).getLon()+","+as.get(i).getShowNo());
 				fw.newLine();
 			}
 			fw.flush();
@@ -68,8 +68,8 @@ public class MainServiceImpl implements MainService {
 		System.out.println(artistShow.getEnrollDate());
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		sdf.format(artistShow.getEnrollDate());
-		System.out.println(sdf.format(artistShow.getEnrollDate()));
-		System.out.println(artistShow.getGu());
+//		System.out.println(sdf.format(artistShow.getEnrollDate()));
+//		System.out.println(artistShow.getGu());
 		try {
 			artistShow.setEnrollDate(sdf.parse(sdf.format(artistShow.getEnrollDate())));
 		} catch (ParseException e1) {
