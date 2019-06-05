@@ -38,7 +38,10 @@ public interface MemberMapper {
 	public void chargeMoney(Member member);
 	
 	// 멤버 업데이트
-	public void memberUpate(Member member);
+	public void memberUpdate(Member member);
 	
 	public Member selectUser(int memberNo);
+	
+	// 프로필 이미지 업데이트
+	public void uploadProfile(Member member);
 }
