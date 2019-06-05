@@ -7,7 +7,14 @@ public class Busker {
 	private String phone;
 	private String genre;
 	private String activityName;
+	private String name;
 	
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
 	public String getPhone() {
 		return phone;
 	}

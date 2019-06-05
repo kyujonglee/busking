@@ -27,6 +27,23 @@
 		 where s.busker_no = b.busker_no
 		   and date(enroll_date) = #{enrollDate}
 	</select>
+	
+	<select id="selectSearchBoard" parameterType="searchPage" resultType="searchBoard" >
+		select c.*,f.path,f.system_name
+		  from (select title,content,reg_date,board_no, 'q' as 'board_type',group_no
+  				  from tb_qnaboard
+                 union all
+	    		select title,content,reg_date,board_no, 'f' as 'board_type',group_no
+			      from tb_freeboard ) as c
+          left outer join (select group_no,system_name,path
+                             from tb_file
+	   	                    group by group_no) as f	
+					           on c.group_no = f.group_no 
+         where title like concat('%', #{input}, '%')
+            or content like concat('%', #{input}, '%')
+         order by reg_date desc
+         limit 0,5 
+	</select>
 
 </mapper>
 	

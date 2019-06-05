@@ -119,7 +119,11 @@
 			</div>
 		</div>
 
- 		
+		<!-- 검색부분 임시  -->
+		<form action="<c:url value='/main/search.do'/>" />
+			<input type="text" name="input"/>
+			<button id="search">검색</button>
+ 		</form>
  		<!-- 스크롤 버튼 -->
  		<button type="button" class="view-main-top-btn">
 	    	<i class="fas fa-angle-up fa-2x"></i>
@@ -441,7 +445,8 @@
 		    		.attr("xlink:href","<c:url value='/resources/img/marker.png'/>")
 		            .attr("x", function(d) { return projection([d.lon, d.lat])[0] - 17; })
 		            .attr("y", function(d) { return projection([d.lon, d.lat])[1] - 17; })
-		            .attr("r", 10);
+		            .attr("r", 10)
+		            .attr("id",function(d) {return d.id});;
 		        places.selectAll("text")
 		            .data(data)
 		            .enter().append("text")
@@ -639,5 +644,8 @@
 	    	return "translate(" + qpath.centroid(d) + ")";
 		}
 	}
+	
+	
+
 
 </script>

@@ -12,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.co.buskers.repository.domain.ArtistShow;
+import kr.co.buskers.repository.domain.SearchBoard;
+import kr.co.buskers.repository.domain.SearchPage;
 import kr.co.buskers.repository.mapper.MainMapper;
 
 @Service
@@ -79,4 +81,10 @@ public class MainServiceImpl implements MainService {
 		List<ArtistShow> artistShowList = mapper.selectArtistShowDetail(artistShow);
 		return artistShowList;
 	}
+
+	@Override
+	public List<SearchBoard> mainSearch(SearchPage searchPage) {
+		return mapper.selectSearchBoard(searchPage);
+	}
+
 }
