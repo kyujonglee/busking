@@ -163,6 +163,7 @@ ul {
     text-align: center;
     font-size: 16px;
 	font-weight: 700;
+	cursor: pointer;
 }
 
 .profile_introduce1 {

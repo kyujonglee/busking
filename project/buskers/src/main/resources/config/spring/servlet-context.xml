@@ -103,6 +103,7 @@
 	<mvc:interceptors>
 		<mvc:interceptor>
 			<mvc:mapping path="/main/board/agency/checkform.do"/>
+			<mvc:mapping path="/main/member/setting.do"/>
 <!--  			<mvc:mapping path="/main/**"/> -->
 <!-- 			<mvc:exclude-mapping path="/main/member/**"/> -->
 			<bean class="kr.co.buskers.main.member.util.LoginInterceptor" />
@@ -121,5 +122,8 @@
         <beans:property name="viewClass" value="org.springframework.web.servlet.view.tiles3.TilesView" />
         <beans:property name="order" value="1" />
     </beans:bean>   
+    
+    <!-- 프로필 사진 경로 리소스 매핑 -->
+<!--     <resources mapping="/image/**" location="file:///C:/bit2019/upload" /> -->
 	
 </beans>
