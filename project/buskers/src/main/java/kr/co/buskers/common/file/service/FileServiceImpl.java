@@ -35,7 +35,6 @@ public class FileServiceImpl implements FileService {
 	}
 	
 	public int insertFile(kr.co.buskers.repository.domain.File file) throws Exception {
-		System.out.println("insertFile service 도");
 		kr.co.buskers.repository.domain.File f = new kr.co.buskers.repository.domain.File();
 		if (mapper.selectFileMaxNo() == null) {
 			f.setGroupNo(1);

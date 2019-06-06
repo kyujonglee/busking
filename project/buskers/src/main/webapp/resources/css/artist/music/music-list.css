@@ -1,0 +1,196 @@
+.busker-music {
+  width: 100%;
+  position: relative;
+  height: 100%;
+  font-family: "Nanum Gothic", sans-serif;
+}
+
+.busker-music__wrapper {
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-image: url("../../../img/audience.jpg");
+  background-position: center center;
+  background-size: cover;
+  filter: blur(1px);
+  opacity: 0.6;
+}
+
+.busker-music__main {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.busker-music__main .busker-music__main-column:first-child {
+  display: flex;
+  justify-content: center;
+}
+
+.busker-music__main .busker-music__main-column:last-child {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.busker-music__list-header-column {
+  display: flex;
+  justify-content: flex-end;
+  color: var(--color-darkgray);
+}
+
+.busker-music__list {
+  margin-top: 10px;
+  border: 5px solid var(--color-darkgray);
+  width: 270px;
+  height: 540px;
+  /* background-color: #f1f1f1;
+  background-color: #ffb7a4;
+  background-color: var(--color-insert); */
+  color: var(--color-darkgray);
+  padding: 10px 15px;
+  border-radius: 15px;
+  box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
+  overflow: hidden;
+}
+
+.busker-music__list-item .busker-music__album-img img {
+  display: block;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+}
+
+.busker-music__list-main-title {
+  font-size: 30px;
+  padding: 20px 0px;
+  font-weight: 600;
+  opacity: 0.8;
+}
+
+.busker-music__list-header .busker-music__list-header-column i {
+  margin-left: 3px;
+  color: var(--color-darkgray);
+}
+
+.busker-music__list-main .busker-music__list-items {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 10px;
+  grid-template-rows: 80px;
+  grid-auto-rows: 80px;
+  overflow: scroll;
+  height: 410px;
+}
+
+.busker-music__list-main .busker-music__list-item {
+  position: relative;
+}
+.busker-music__list-main .busker-music__list-columns {
+  padding: 3px;
+  border-radius: 10px;
+  background-color: var(--color-background);
+  opacity: 0.8;
+  display: grid;
+  grid-template-columns: 2fr 5fr 1fr;
+  height: 100%;
+}
+
+.busker-music__list-main .busker-music__list-columns div {
+  display: flex;
+  align-items: center;
+}
+
+.busker-music__list-main .busker-music__album-img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.busker-music__list-main .busker-music__content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 3px;
+}
+
+.busker-music__list-main .busker-music__content div {
+  padding: 1.5px;
+  box-sizing: border-box;
+  opacity: 0.8;
+  width: 180px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.busker-music__content .busker-music__content-title {
+  color: rgba(0, 0, 0, 0.9);
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.busker-music__list-main-title span {
+  padding-bottom: 2px;
+  padding-left: 3px;
+}
+
+.busker-music__content .busker-music__content-writer {
+  color: rgba(0, 0, 0, 0.8);
+  font-size: 14px;
+}
+
+.busker-music__content .busker-music__content-time {
+  color: rgba(0, 0, 0, 0.4);
+  font-size: 12px;
+}
+
+.busker-music__list-item .busker-music__submenu {
+  color: rgba(0, 0, 0, 0.3);
+  margin-right: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.busker-music__list-item-hidden {
+  position: absolute;
+  z-index: 10;
+  width: 70px;
+  bottom: 5px;
+  right: 20px;
+  /* display: flex; */
+  /* flex-direction: column; */
+  /* align-items: center; */
+  padding: 5px;
+  color: var(--color-background);
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  opacity: 1;
+  display: none;
+}
+
+.busker-music__list-item-hidden .busker-music__hidden-item {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  color: rgba(0, 0, 0, 0.5);
+  /* padding: 5px 10px; */
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.5s ease-in-out;
+}
+
+.busker-music__list-item-hidden .busker-music__hidden-item a {
+    transition: all 0.5s ease-in-out;
+}
+
+.busker-music__list-item-hidden .busker-music__hidden-item a:hover {
+  transform: scale(1.1);
+  color : var(--color-darkgray);
+}

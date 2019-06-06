@@ -7,10 +7,7 @@
 		<!-- 			src="https://www.youtube.com/embed/saH2Odc3ba8" frameborder="0" -->
 		<!-- 			allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" -->
 		<!-- 			allowfullscreen></iframe> -->
-		<iframe
-			src='https://serviceapi.rmcnmv.naver.com/flash/outKeyPlayer.nhn?vid=E2AAD2C6DCF0C24417497F0CCCD89C1657BB&outKey=V1290ce949b929670c94d021dc9e8493b2099d718280654009d9a021dc9e8493b2099&controlBarMovable=true&jsCallable=true&isAutoPlay=true&skinName=tvcast_white'
-			frameborder='no' scrolling='no' marginwidth='0' marginheight='0'
-			WIDTH='544' HEIGHT='306' allow='autoplay' allowfullscreen></iframe>
+		<iframe width="560" height="315" src="https://www.youtube.com/embed/y_oPqEzX_X4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 	</div>
 	<div class="busker-content__item">
 		<div class="busker-board">

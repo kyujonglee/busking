@@ -1,0 +1,6 @@
+@import 'music-list.css';
+@import 'music-form.css';
+
+:root {
+    --color-insert : #EA7283;
+}

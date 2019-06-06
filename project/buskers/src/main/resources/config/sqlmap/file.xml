@@ -31,6 +31,18 @@
 		 where group_no = #{groupNo}
 	</select>
 	
+	<select id="selectMusic" parameterType="int" resultType="musicFile">
+		select *
+		  from tb_music_file
+		 where busker_no = #{buskerNo}
+	</select>
+	
+	<select id="countMusic" parameterType="int" resultType="int">
+		select count(*)
+		  from tb_music_file
+		 where busker_no = #{buskerNo}
+	</select>
+	
 	<select id="selectMusicByBuskerNo" parameterType="int" resultType="musicFile">
 		select *
 		  from tb_music_file
@@ -41,6 +53,12 @@
 		insert into tb_music_file(name, title, writer, time, sysname, path, busker_no)
 		values(#{name}, #{title}, #{writer}, #{time}, #{sysname}, #{path}, 1 )
 	</insert>
+	
+	<delete id="deleteMusicByFileNo" parameterType="int">
+		delete
+		  from tb_music_file
+		 where file_no = #{fileNo}
+	</delete>
 	
 	
 </mapper>

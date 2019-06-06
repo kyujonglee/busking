@@ -79,8 +79,8 @@
 			<div class="busker-side__menu-icon">
 				<i class="fas fa-music fa-lg"></i>
 			</div>
-			<a href="<c:url value='/artist/music/music-insertForm.do'/>"
-			class="busker-side__menu-title"> 버스커 음악</a>
+			<a href="<c:url value='/artist/music/music-list.do?buskerNo=1'/>"
+			class="busker-side__menu-title"> 버스커 음악<span class="busker-side__menu-count" id="musicCount"></span></a>
 		</li>
 		<li class="busker-side__menu-item settings">
 			<div class="busker-side__menu-icon">
@@ -112,10 +112,12 @@
 <script>
 	$.ajax({
 		url : "<c:url value='/artist/main/main-ajax.do'/>",
-		dateType : "json"
-	}).done((map)=>{
+		dateType : "json",
+		data : "buskerNo="+ 1
+	}).done((map) => {
 		const showCount = map.showCount;
-		console.log(showCount);
+		const musicCount = map.musicCount;
 		$("#showCount").text(showCount);
+		$("#musicCount").text(musicCount);
 	});
 </script>
