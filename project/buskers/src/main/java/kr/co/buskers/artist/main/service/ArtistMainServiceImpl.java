@@ -18,12 +18,16 @@ public class ArtistMainServiceImpl implements ArtistMainService {
 	private ArtistBoardMapper boardMapper;
 	
 	@Autowired
+	private FileMapper mMapper;
+	
+	@Autowired
 	private FileMapper fMapper;
 	
 	@Override
-	public Map<String,Object> artistMain() {
+	public Map<String,Object> artistMain(int buskerNo) {
 		Map<String,Object> boardMap = new HashMap<>();
 		boardMap.put("showCount", boardMapper.countArtistCurrentShow() );
+		boardMap.put("musicCount", fMapper.countMusic(1) );
 		return boardMap;
 	}
 	

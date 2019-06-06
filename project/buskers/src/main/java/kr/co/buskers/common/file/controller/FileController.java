@@ -113,8 +113,9 @@ public class FileController {
 	}
 	
 	@RequestMapping("music-upload.do")
-	public String uploadMusic(MusicFile file) throws Exception{
+	@ResponseBody
+	public void uploadMusic(MusicFile file) throws Exception{
 		service.insertMusic(file);
-		return "redirect:/artist/main/main.do";
+//		return "redirect:/artist/music/music-list.do?buskerNo=1";
 	}
 }

@@ -6,7 +6,7 @@ import java.util.Map;
 import kr.co.buskers.repository.domain.MusicFile;
 
 public interface ArtistMainService {
-	Map<String,Object> artistMain();
+	Map<String,Object> artistMain(int buskerNo);
 	
 	List<MusicFile> selectMusicByBuskerNo(int buskerNo);
 }

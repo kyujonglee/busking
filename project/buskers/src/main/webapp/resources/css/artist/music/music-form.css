@@ -1,0 +1,72 @@
+.busker-music__form {
+  width: 80%;
+  height: 90%;
+  /* background-color: var(--color-background);
+  border-radius: 15px;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22); */
+  padding: 10px;
+  padding-top: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.busker-music__form input {
+  all: unset;
+  width: 300px;
+  height: 30px;
+  padding: 3px 0px;
+  padding-left: 5px;
+  border-radius: 5px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  background-color: var(--color-white);
+  font-size: 14px;
+  vertical-align: middle;
+  transition : all 0.5s ease-in-out;
+  border : 2px solid rgba(0, 0, 0, 0.001);
+  opacity: 0.8;
+  line-height: 1;
+}
+
+.busker-music__form input:hover {
+    border-color : var(--color-insert);
+}
+.busker-music__form input[name="file"] {
+    color : rgba(0, 0, 0, 0.16);
+    display: flex;
+    align-items: center;
+}
+
+.busker-music__form .busker-music__form-row {
+  display: flex;
+  flex-direction: column;
+  margin: 10px 0px;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px 0px;
+  align-items: center;
+}
+
+.busker-music__form-row .busker-music__form-row-title {
+  font-size: 20px;
+  color: var(--color-insert);
+  /* color: var(--color-darkgray); */
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+.busker-music__form-row .busker-music__btn {
+  all: unset;
+  display: block;
+  width: 70px;
+  height: 35px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  background-color: var(--color-insert);
+  /* background-color: #ffb7a4; */
+  /* background-color : var(--color-white); */
+  color: var(--color-white);
+  /* color: var(--color-darkgray); */
+  border-radius: 10px;
+  text-align: center;
+  cursor: pointer;
+}
