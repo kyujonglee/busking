@@ -969,8 +969,17 @@
 	font-weight: bold;
 }
 
+.sent c {
+	color: blueviolet;
+	font-weight: bold;
+}
+
 .whisper b {
 	color: black;
+	font-weight: bold;
+}
+
+.whisper p {
 	font-weight: bold;
 }
 
@@ -1001,4 +1010,10 @@
   border-radius: 50%;
   cursor: pointer;
   outline: none;
+}
+
+@-webkit-keyframes whisper { 
+	0% {color: white;}
+	50% {color: #3B1E1E;}
+	100% {color: white;}
 }

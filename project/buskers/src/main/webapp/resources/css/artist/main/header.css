@@ -81,4 +81,10 @@
     padding: 15px 15px 15px 50px;
 } 
 
+@-webkit-keyframes alarm { 
+	0% {color: white;}
+	50% {color: #00BAF7;} 
+	100% {color: white;}
+}
+
 

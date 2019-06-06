@@ -15,6 +15,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 <link rel="stylesheet" type="text/css" href="https://npmcdn.com/flatpickr/dist/themes/dark.css">
 <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic|Nanum+Pen+Script&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Lobster&display=swap" rel="stylesheet">
 <script src="http://d3js.org/d3.v3.min.js"></script>
 <script src="http://d3js.org/topojson.v1.min.js"></script>
     <title>Buskers</title>
@@ -60,7 +61,9 @@
 			<div class="buskers_map">
 				<div class="buskers_map_title">
 					<div>Buskers</div>
-					<div>Performance Stage</div>
+					<div class="neon">
+						<b>per<span>for</span>man<span>ce st</span>age</b>
+					</div>
 				</div>
 				
 				<div class="buskers_map_detail">
@@ -161,7 +164,7 @@
 	let year = date.getFullYear(); 
 	let month = new String(date.getMonth()+1); 
 	let day = new String(date.getDate()); 
-	let week = ['일', '월', '화', '수', '목', '금', '토'];
+	let week = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
 	let dayOfWeek = week[date.getDay()];
 	let selDate = year + "-" + month + "-" + day;
 	  
@@ -189,11 +192,11 @@
 			day = "0" + day; 
 		} 
 		$(".performance__info_date").hide().html(date.getFullYear() + '. ' + month + '. ' + day + " " + "<day>" + dayOfWeek + "</day>").fadeIn();
-		$(".calendar").html(day + "<em>" + month + "월" + "</em>");
-		if (dayOfWeek == '일') {
+		$(".calendar").html(day + "<em>" + month + "月" + "</em>");
+		if (dayOfWeek == 'SUN') {
 			$("day").css({"color": "hotpink"});
 			$("em").css({"background": "hotpink"});
-		} else if (dayOfWeek == '토') {
+		} else if (dayOfWeek == 'SAT') {
 			$("day").css({"color": "deepskyblue"});
 			$("em").css({"background": "skyblue"});
 		}
@@ -210,11 +213,11 @@
 	} 
 		
 	$(".performance__info_date").html(year + '. ' + month + '. ' + day + " " + "<day>" + dayOfWeek + "</day>");
-	$(".calendar").html(day + "<em>" + month + "월" + "</em>");
-	if (dayOfWeek == '일') {
+	$(".calendar").html(day + "<em>" + month + "月" + "</em>");
+	if (dayOfWeek == 'SUN') {
 		$("day").css({"color": "hotpink"});
 		$("em").css({"background": "hotpink"});
-	} else if (dayOfWeek == '토') {
+	} else if (dayOfWeek == 'SAT') {
 		$("day").css({"color": "deepskyblue"});
 		$("em").css({"background": "skyblue"});
 	}
@@ -234,11 +237,11 @@
 			day = "0" + day; 
 		} 
 		$(".performance__info_date").hide().html(date.getFullYear() + '. ' + month + '. ' + day + " " + "<day>" + dayOfWeek + "</day>").fadeIn();
-		$(".calendar").html(day + "<em>" + month + "월" + "</em>");
-		if (dayOfWeek == '일') {
+		$(".calendar").html(day + "<em>" + month + "月" + "</em>");
+		if (dayOfWeek == 'SUN') {
 			$("day").css({"color": "hotpink"});
 			$("em").css({"background": "hotpink"});
-		} else if (dayOfWeek == '토') {
+		} else if (dayOfWeek == 'SAT') {
 			$("day").css({"color": "deepskyblue"});
 			$("em").css({"background": "skyblue"});
 		}
@@ -606,8 +609,6 @@
 	
 	states.append("rect")
 	    .attr("class", "background")
-	    .attr("width", width)
-	    .attr("height", height);
 	
 	d3.json("<c:url value='/resources/etc/korea.json' />", function(json) {
 		states.selectAll("path")

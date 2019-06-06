@@ -141,8 +141,13 @@
    				}
    			}
    		});
+   		$(".fa-envelope").css({"animation": "alarm 1.5s linear infinite"});
    		toastr.info(msg, '새 쪽지가 도착했습니다.');
     });
+	
+	$(".fa-envelope").click(function () {
+		$(".fa-envelope").css({"animation": "none"});
+	});
 	
 	$(document).ready(function () {
 		$.ajax({

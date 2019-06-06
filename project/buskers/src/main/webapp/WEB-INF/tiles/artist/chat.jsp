@@ -121,7 +121,14 @@
 		
         $(".messages > ul").append(html);
         $(".messages").animate({ scrollTop: $(".messages")[0].scrollHeight }, "fast");
+        if ( $(".fa-comment-dots").attr("class") == "fas fa-comment-dots fa-lg" ) {
+        	$(".fa-comment-dots").css({"animation": "whisper 1.5s linear infinite"});
+        }        
     });
+    
+   	$(".fa-comment-dots").click(function () {
+   		$(".fa-comment-dots").css({"animation": "none"});
+   	});
 	
     chat.on("in", function (member) {
    		let html = "";
@@ -172,7 +179,7 @@
 		html +=		"<div>";
 		html +=			'<img src="<c:url value='/resources/img/boyoung.jpg'/>"/>';
 		if ($(".message-input input").val().startsWith("@")) {
-			html +=	"<p>" + "<b>" + "@" + receiver + " </b>" + content + "</p>";
+			html +=	"<p>" + "<b>" + "@" + receiver + " </b>" + "<c>" + content + " </c>" + "</p>";
 		} else {
 			html +=	"<p>" + content + "</p>";
 		}
