@@ -60,6 +60,13 @@
             or content like concat('%', #{input}, '%')
          order by reg_date desc
 	</select>
+	
+	<select id="selectMarker" parameterType="int" resultType="artistShow">
+		select * 
+		  from tb_busker_show s, tb_busker b
+		 where s.busker_no = b.busker_no
+		   and show_no = #{showNo}
+	</select>
 
 </mapper>
 	

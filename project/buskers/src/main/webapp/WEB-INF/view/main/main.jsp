@@ -405,7 +405,6 @@
 	$(".view-main-top-btn").click(function(){
 		$('html,body').stop().animate({scrollTop:0},700);
 	})
-
 		
 	function mapView() {
 		d3.select("#chart").html("");
@@ -477,6 +476,56 @@
 			        });
 		        });
 		        
+		        $(".marker").click(function () {
+		    		let showNo = $(this).attr("id");
+		    		$.ajax({
+		    			type:"POST",
+		    			data: {showNo: showNo},
+		    			url:"marker-ajax.do",
+		    		
+		    		}).done(function (result) {
+		    			console.log(result);
+		    			let html = "";
+	    				let list = result;
+	    				let genre = "";
+	    				switch(list.genreNo) {
+	    				case 1:
+							genre = '<div class="third" style="background-color: #BAE1FF; "><img src="<c:url value='/resources/img/1.png'/>"></div>';
+							break;
+	    				case 2:
+	    					genre = '<div class="third" style="background-color: #FFDFBA; "><img src="<c:url value='/resources/img/2.png'/>"></div>';
+	    					break;
+	    				case 3:
+	    					genre = '<div class="third" style="background-color: #FFFFBA; "><img src="<c:url value='/resources/img/3.png'/>"></div>';
+	    					break;
+	    				case 4:
+	    					genre = '<div class="third" style="background-color: #FFB3BA; "><img src="<c:url value='/resources/img/4.png'/>"></div>';
+	    					break;
+	    				case 5:
+	    					genre = '<div class="third" style="background-color: #BAFFC9; "><img src="<c:url value='/resources/img/5.png'/>"></div>';
+	    					break;
+	    				}
+	    				html += '<section>';
+	        			html += 	'<div class="img-btn">';
+	      				html += 		'<img src="<c:url value='/resources/img/twilight.jpg'/>"/>';
+	      				html += 		'<div class="artist_name">' + list.activityName + '</div>';
+	       				html +=    '</div>';
+	    				html +=     '<div class="details-btn">';
+	      				html +=    		'<h1>' + list.title + '</h1>';
+	       				html +=    	'<h3><i class="fa fa-map-marker">&nbsp;' + list.place + '</i> &nbsp;&nbsp;<i class="fa fa-globe globe">&nbsp;' + new Date(list.enrollDate).format('yyyy.MM.dd') + '</i></h3>';
+	       				html +=   		'<p>' + list.content +'</p>';
+	       				html +=     '</div>';
+	       				html +=     '<div class="SM-btn">';
+	      				html += genre;
+	      				html +=     '</div>';
+	      				html += 	'<div class="layer"></div>';
+	       				html += '</section>';
+		    			$(".performance_info_list").html(html);
+		    		    	
+		    		}).fail(function (xhr) { 
+		    			console.dir(xhr);
+		    		})
+		    	});
     		});
 		}, 3000);
     	

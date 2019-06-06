@@ -11,6 +11,7 @@ public interface MainService {
 	public void exportCSV();
 	public void mapView(String enrollDate);
 	public List<ArtistShow> mapDetail(ArtistShow artistShow);
+	public ArtistShow markerDetail(int showNo);
 	public List<SearchBoard> mainSearch(SearchPage searchPage);
 	HashMap<String, Object> BoardListSearch(SearchPage searchPage);
 }

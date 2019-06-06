@@ -417,7 +417,7 @@ p {
 }
 
 .performance_info_list::-webkit-scrollbar-thumb {
-  background-color:#000;
+  background-color: lightgrey;
   border-radius: 20px;
   border: 2px solid #fff;
 }
