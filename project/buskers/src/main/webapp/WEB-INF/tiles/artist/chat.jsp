@@ -54,16 +54,17 @@
 <script src="http://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 <script>
-	const socket = io("http://localhost:10001/chat");
+	
+	const chat = io("http://localhost:10001/chat");
 	
 	let color = "#" + Math.round(Math.random() * 0xffffff).toString(16);
 	
 	if ("${sessionScope.user.nickName}" != "") {
-		socket.emit("login", "${sessionScope.user.nickName}");
-		socket.emit("in", "${sessionScope.user.nickName}");
+		chat.emit("join", "${sessionScope.user.nickName}");
+		chat.emit("in", "${sessionScope.user.nickName}");
 	}
 	
-	socket.on("login", function (members) {
+	chat.on("join", function (members) {
 		let count = members.length;
 		console.log(members);
 		let html = "";
@@ -81,7 +82,7 @@
 		$(".online_user p").text("접속중인 회원 : " + count + "명");
     });
 	
-	socket.on("out", function (member) {
+	chat.on("out", function (member) {
 		let html = "";
 		
 		html += "<li class='out'>";
@@ -92,7 +93,7 @@
 		$(".messages").animate({ scrollTop: $(".messages")[0].scrollHeight }, "fast");
     });
 	
-	socket.on("chat", function (data) {
+	chat.on("chat", function (data) {
 		let html = "";
 		
 		html += "<li class='received'>";
@@ -107,7 +108,7 @@
         $(".messages").animate({ scrollTop: $(".messages")[0].scrollHeight }, "fast");
     });
 	
-	socket.on("whisper", function (data) {
+    chat.on("whisper", function (data) {
 		let html = "";
 		
 		html += "<li class='whisper'>";
@@ -122,7 +123,7 @@
         $(".messages").animate({ scrollTop: $(".messages")[0].scrollHeight }, "fast");
     });
 	
-   	socket.on("in", function (member) {
+    chat.on("in", function (member) {
    		let html = "";
    		
    		html += "<li class='in'>";
@@ -180,7 +181,7 @@
 		
         $(".messages > ul").append(html);
         
-        socket.emit(
+        chat.emit(
    	        "chat", 
    	        {
    	        	/*

@@ -2,15 +2,15 @@
    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <meta name="google-signin-client_id" content="711343291168-unua7itp9em5gms7up15sl5rn2ei80vj.apps.googleusercontent.com">  
-   <link rel="stylesheet" href="<c:url value='/resources/css/main/header/header.css'/>" />
-   <link rel="stylesheet" href="<c:url value='/resources/css/main/toastr.min.css'/>" />
-    <!-- Main style sheet -->
-    <link href="<c:url value='/resources/css/main/miniprofile.css'/>" rel="stylesheet">    
-    <!-- Google Fonts -->
-    <link href='https://fonts.googleapis.com/css?family=Tangerine' rel='stylesheet' type='text/css'>        
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Prata' rel='stylesheet' type='text/css'>
-    <link href="https://fonts.googleapis.com/css?family=Italianno&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="<c:url value='/resources/css/main/toastr.min.css'/>" />
+<link rel="stylesheet" href="<c:url value='/resources/css/main/header/header.css'/>" />
+<!-- Main style sheet -->
+<link href="<c:url value='/resources/css/main/miniprofile.css'/>" rel="stylesheet">    
+<!-- Google Fonts -->
+<link href='https://fonts.googleapis.com/css?family=Tangerine' rel='stylesheet' type='text/css'>        
+<link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Prata' rel='stylesheet' type='text/css'>
+<link href="https://fonts.googleapis.com/css?family=Italianno&display=swap" rel="stylesheet">
   
   <!-- Start header section -->
   <header class="main_header_wrapper">  
@@ -109,15 +109,14 @@
 <script src="https://apis.google.com/js/platform.js" async defer></script>
 <script type="text/javascript" src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js" charset="utf-8"></script>
 <script src="<c:url value='/resources/js/toastr.min.js'/>"></script>
-<!-- <script src="http://192.168.0.54:10001/socket.io/socket.io.js"></script> -->
+<script src="http://localhost:10001/socket.io/socket.io.js"></script>
 <script>
 	
 	toastr.options.positionClass = 'toast-bottom-right';
 	toastr.options.closeButton = true;
 
 	/** 실시간 알림 */
-	/*
-	const socket = io.connect("http://192.168.0.54:10001");
+	const socket = io.connect("http://localhost:10001");
 	
 	if ("${sessionScope.user.nickName}" != "") {
 		socket.emit("login", "${sessionScope.user.nickName}");
@@ -144,7 +143,6 @@
    		});
    		toastr.info(msg, '새 쪽지가 도착했습니다.');
     });
-	*/
 	
 	$(document).ready(function () {
 		$.ajax({
