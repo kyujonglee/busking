@@ -219,7 +219,7 @@
 		audioItemList.push({
 			title: "${item.title}",
 			writer : "${item.writer}",
-			path : '<c:url value="/file/download.do?path=${item.path}"/>',
+			path : "${item.path}",
 			duration : "${item.time}"
 		});
 	</c:forEach>

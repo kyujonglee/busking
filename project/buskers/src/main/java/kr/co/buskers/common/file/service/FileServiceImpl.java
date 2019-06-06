@@ -35,6 +35,7 @@ public class FileServiceImpl implements FileService {
 	}
 	
 	public int insertFile(kr.co.buskers.repository.domain.File file) throws Exception {
+		System.out.println("insertFile service 도");
 		kr.co.buskers.repository.domain.File f = new kr.co.buskers.repository.domain.File();
 		if (mapper.selectFileMaxNo() == null) {
 			f.setGroupNo(1);
@@ -48,8 +49,9 @@ public class FileServiceImpl implements FileService {
 		f.setName(file.getName());
 		f.setPath(file.getPath());
 		f.setSystemName(file.getSystemName());
-			
+		System.out.println("insert 전");
 		mapper.insertFile(f);
+		System.out.println("insert 후");
 		
 		return f.getGroupNo();
 	}
@@ -59,7 +61,7 @@ public class FileServiceImpl implements FileService {
 	public kr.co.buskers.repository.domain.File uploadImage(MultipartFile multipartFile, String uriPath) throws Exception {
 		UUID uuid = UUID.randomUUID();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
-		String uploadRoot = "C:/bit2019/upload";
+		String uploadRoot = "/Users/kyujong/Documents/bit2019/upload";
 		String path = uriPath + sdf.format(new Date()) + "/";
 		String orgFileName = multipartFile.getOriginalFilename();
 		String sysFileName = uuid.toString() + orgFileName;
