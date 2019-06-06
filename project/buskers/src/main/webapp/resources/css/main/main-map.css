@@ -43,7 +43,7 @@
 	color: black;
 	font-weight: bold;
 	margin-top: -20px;
-	width: 330px;
+	width: 410px;
 	border-bottom: 2px solid orange;
 }
 
@@ -398,8 +398,8 @@ p {
 
 .performance_info_list {
 	width: 505px;
+    max-height: 490px;
     padding: 10px;
-    height: 490px;
     overflow: auto;
     margin-right: 15px;
     border-radius: 10px;
@@ -471,7 +471,7 @@ rect {
 }
 
 .neon b {
-  font-size: 37px;
+  font-size: 45px;
   color: #fee;
   text-shadow: 0 -40px 100px, 0 0 2px, 0 0 1em #ff4444, 0 0 0.5em #ff4444, 0 0 0.1em #ff4444, 0 10px 3px #000;
 }
