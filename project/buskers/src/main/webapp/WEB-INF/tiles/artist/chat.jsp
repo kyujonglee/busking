@@ -60,7 +60,13 @@
 	let color = "#" + Math.round(Math.random() * 0xffffff).toString(16);
 	
 	if ("${sessionScope.user.nickName}" != "") {
-		chat.emit("join", "${sessionScope.user.nickName}");
+		chat.emit(
+			"join", 
+			{
+	            nickName: "${sessionScope.user.nickName}",
+	            profile: "${sessionScope.user.profileImgPath}" + "${sessionScope.user.profileImg}"
+        	}
+		);
 		chat.emit("in", "${sessionScope.user.nickName}");
 	}
 	
@@ -71,9 +77,9 @@
 		for(let i = 0; i < members.length; i++) {
 			html += "<li class='contact'>";
 			html += 	"<div class='wrap'>";
-			html +=			'<img src="<c:url value='/resources/img/boyoung.jpg'/>"/>';
+			html +=			'<img src="<c:url value='/file/download.do'/>?path=' + members[i].profile + `" onError="this.src='<c:url value='/resources/img/profile.png' />';"` +'"/>';
 			html +=			"<div class='meta'>";
-			html +=				"<p class='name'>" + members[i] + "</p>";
+			html +=				"<p class='name'>" + members[i].nickName + "</p>";
 			html +=			"</div>";
 			html += 	"</div>";
 			html += "</li>";
@@ -99,13 +105,16 @@
 		html += "<li class='received'>";
 		html +=		"<span style='color:" + data.color + ";'><i class='fas fa-circle'></i>" + data.sender + "<time>" + data.date + "</time></span>";
 		html +=		"<div>";
-		html +=			'<img src="<c:url value='/resources/img/boyoung.jpg'/>"/>';
+		html +=	'<img src="<c:url value='/file/download.do'/>?path=' + data.image + `" onError="this.src='<c:url value='/resources/img/profile.png' />';"` +'"/>';
 		html +=			"<p>" + data.content + "</p>";
 		html +=		"</div>";
 		html += "</li>";
 		
         $(".messages > ul").append(html);
         $(".messages").animate({ scrollTop: $(".messages")[0].scrollHeight }, "fast");
+        $("img").error(function () {
+            $("img").attr("src", "<c:url value='/resources/img/profile.png'/>");
+        });
     });
 	
     chat.on("whisper", function (data) {
@@ -177,7 +186,7 @@
 		html += "<li class='sent'>";
 		html +=		"<span><i class='fas fa-circle'></i>" + "${sessionScope.user.nickName}" + "<time>" + hour + " : " + minutes + "</time></span>";
 		html +=		"<div>";
-		html +=			'<img src="<c:url value='/file/download.do'/>?path=${sessionScope.user.profileImgPath}${sessionScope.user.profileImg}"/>';
+		html +=			'<img src="<c:url value='/file/download.do'/>?path=${sessionScope.user.profileImgPath}${sessionScope.user.profileImg}"' + ` onError="this.src='<c:url value='/resources/img/profile.png' />';"` +'"/>';
 		if ($(".message-input input").val().startsWith("@")) {
 			html +=	"<p>" + "<b>" + "@" + receiver + " </b>" + "<c>" + content + " </c>" + "</p>";
 		} else {
