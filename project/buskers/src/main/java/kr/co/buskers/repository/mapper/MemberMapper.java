@@ -1,5 +1,6 @@
 package kr.co.buskers.repository.mapper;
 
+import kr.co.buskers.repository.domain.Busker;
 import kr.co.buskers.repository.domain.Member;
 
 public interface MemberMapper {
@@ -44,4 +45,10 @@ public interface MemberMapper {
 	
 	// 프로필 이미지 업데이트
 	public void uploadProfile(Member member);
+
+	// 버스커 등록
+	public void signupBusker(Busker busker);
+
+	// isBusker 변경
+	public void changeBuskerType(Member member);
 }

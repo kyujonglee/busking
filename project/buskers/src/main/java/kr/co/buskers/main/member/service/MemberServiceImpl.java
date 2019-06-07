@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import kr.co.buskers.repository.domain.Busker;
 import kr.co.buskers.repository.domain.Member;
 import kr.co.buskers.repository.mapper.MemberMapper;
 
@@ -132,6 +133,19 @@ public class MemberServiceImpl implements MemberService {
 	public Member selectMember(int memberNo) {
 		
 		return mapper.selectUser(memberNo);
+	}
+
+	// 버스커 등록
+	@Override
+	public void signupBusker(Busker busker) {
+		mapper.signupBusker(busker);
+		
+	}
+
+	// 버스커 타입 변경
+	@Override
+	public void changeBuskerType(Member member) {
+		mapper.changeBuskerType(member);
 	}
 	
 }

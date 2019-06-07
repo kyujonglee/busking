@@ -5,7 +5,6 @@ public class Busker {
 	private int buskerNo;
 	private int memberNo;
 	private String phone;
-	private String genre;
 	private String activityName;
 	private String name;
 	
@@ -32,12 +31,6 @@ public class Busker {
 	}
 	public void setMemberNo(int memberNo) {
 		this.memberNo = memberNo;
-	}
-	public String getGenre() {
-		return genre;
-	}
-	public void setGenre(String genre) {
-		this.genre = genre;
 	}
 	public String getActivityName() {
 		return activityName;

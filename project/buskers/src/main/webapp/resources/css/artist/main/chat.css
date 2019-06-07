@@ -465,6 +465,7 @@
 
 #frame #sidepanel #contacts ul li.contact .wrap img {
 	width: 30px;
+	height: 30px;
 	border-radius: 50%;
 	float: left;
 	margin-right: 10px;

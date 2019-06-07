@@ -10,16 +10,17 @@
                 <div class="lb-header">
                     <span class="active" id="login-box-link">버스커 회원가입</span>
                 </div>
-                <form class="email-login">
+                <form class="email-login"  action="signup-busker.do" method="post" >
+                	<input type="hidden" name="memberNo" value="${sessionScope.user.memberNo }"/>
                     <div class="u-form-group">
-                        <div>이름&nbsp;</div><input type="text" placeholder="Name"/>&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;
+                        <div>이름&nbsp;</div><input type="text" id="name" name="name" placeholder="Name"/>&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;
                     </div>
                     <div class="u-form-group">
-                        <div>활동명&nbsp;</div><input type="text" placeholder="ActiveName"/>
+                        <div>활동명&nbsp;</div><input type="text" id="activityName" name="activityName" placeholder="ActivityName"/>
                         <button type="button" id="checkActiveName" class="check">중복확인</button>
                     </div>
                     <div class="u-form-group">
-                        <div>연락처&nbsp;</div><input type="text" placeholder="Phone"/>
+                        <div>연락처&nbsp;</div><input type="text" id="phone" name="phone" placeholder="Phone"/>
                         <button type="button" id="phone" class="check">본인인증</button>
                     </div>
                     <div class="u-form-group">
@@ -43,7 +44,7 @@
                     <br>
                     <div class="u-form-group">
                         <button class="register">등록</button>&nbsp;&nbsp;
-                        <button type="button" class="back" onclick="location.href='signupform.do'">뒤로</button>
+                        <button type="button" class="back" onclick="location.href='setting.do'">뒤로</button>
                     </div>
                 </form>
                 

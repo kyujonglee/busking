@@ -45,7 +45,7 @@
 						<div class="header-h h-toggle" aria-label="계정 정보"
 							aria-hidden="false" img-loaded="1">
 							<div class="header-i">
-								<a class="header-i2" aria-label="프로필 사진 변경" href="#">
+								<a class="header-i2" aria-label="프로필 사진 변경" href="setting.do">
 									<div class="header-i3" style="position: relative">
 										<div class="header-i4" title="프로필">
 											<img class="miniprofile_img" src="<c:url value='/file/download.do'/>?path=${sessionScope.user.profileImgPath}${sessionScope.user.profileImg}"
