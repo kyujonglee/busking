@@ -102,6 +102,7 @@ uri="http://java.sun.com/jsp/jstl/fmt"%>
                 name="attach"
                 id="attach"
                 placeholder="파일을 선택해주세요."
+                accept=".mp3, .wax"
               />
             </div>
           </div>
@@ -115,6 +116,11 @@ uri="http://java.sun.com/jsp/jstl/fmt"%>
     </div>
   </section>
 </section>
+<script>
+$(document).ready(() => {
+    $(".busker-side__info-btn i").trigger("click");
+});
+</script>
 <script>
   // list -> ajax 로 바꿀 것!
   function musicList(buskerNo) {

@@ -49,13 +49,13 @@
 		</div>
 	</div>
 </aside>
-<script src="http://localhost:10001/socket.io/socket.io.js"></script>
+<script src="http://${serverip}:10001/socket.io/socket.io.js"></script>
 <script src="<c:url value='/resources/js/jquery-3.4.1.min.js'/>"></script> 
 <script src="http://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 <script>
 	
-	const chat = io("http://localhost:10001/chat");
+	const chat = io("http://${serverip}:10001/chat");
 	
 	let color = "#" + Math.round(Math.random() * 0xffffff).toString(16);
 	

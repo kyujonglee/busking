@@ -2,19 +2,7 @@
 @import "main-common.css";
 @import 'audio.css';
 
-/* font */
-
 @import url('https://fonts.googleapis.com/css?family=Italianno|Nanum+Gothic|Jua');
-
-/* 
-사용예시
-h1 {
-    font-family: 'Jua', sans-serif;
-}
-
-*/
-
-/* color */
 
 :root {
   --color-background: #f5f7fc;
@@ -28,6 +16,10 @@ h1 {
   --color-blue: #3a5dfb;
 }
 
+
+* {
+    scrollbar-width: none;
+}
 /* *::-webkit-scrollbar {
   background-color:#fff;
   width:12px
