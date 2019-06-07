@@ -120,10 +120,10 @@ public class MemberServiceImpl implements MemberService {
 	// 개인정보 업데이트
 	@Override
 	public void updateMember(Member member) {
-		System.out.println(member.getMemberNo());
-		System.out.println(member.getEmail());
-		System.out.println(member.getNickName());
-		System.out.println(member.getPass());
+//		System.out.println(member.getMemberNo());
+//		System.out.println(member.getEmail());
+//		System.out.println(member.getNickName());
+//		System.out.println(member.getPass());
 		mapper.memberUpdate(member);
 	}
 

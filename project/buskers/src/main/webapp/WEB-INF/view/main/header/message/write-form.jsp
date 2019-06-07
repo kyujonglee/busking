@@ -18,7 +18,9 @@
 	<form class="write_form_submit_wrapper" action="write.do">
 		<div>받는 사람</div>
 		<input type="hidden" class="form-control" name="senderMemberNo" value="${sessionScope.user.memberNo}" placeholder="닉네임을 입력하세요">
-		<input type="text" class="form-control" name="nickName" placeholder="닉네임을 입력하세요">
+		<i class="fas fa-times confirm-nickname-icon-x"></i>
+		<i class="fas fa-check confirm-nickname-icon-o"></i>
+		<input type="text" id="nickName" class="form-control" name="nickName" placeholder="닉네임을 입력하세요"></input>
 		<br>
 		<div>제목</div>
 		<input type="text" class="form-control" name="title" placeholder="제목을 입력하세요">
@@ -40,8 +42,44 @@
 <script src="http://${serverip}:10001/socket.io/socket.io.js"></script>
 
 <script>
+	let confirm = 0;
+	$("#nickName").keyup(function(){
+		
+		
+		let nickName = $(".input-nickName").val();
+		console.log(nickName);
+		let input = $("#nickName");
+		$.ajax({
+			type:"POST",
+			data: {nickName:nickName},
+			url:"receive-member-ajax.do",
+		}).done(function (result) {
+			if(result == 1) {
+				$(input).removeClass("input-nickName");
+				$(".confirm-nickname-icon-x").hide();
+				$(".confirm-nickname-icon-o").show();
+				confirm = 1;
+			}else{
+				$(input).addClass("input-nickName");
+				$(".confirm-nickname-icon-o").hide();
+				$(".confirm-nickname-icon-x").show();
+				confirm = 0;
+			}
+			if(nickName==""){
+				$(".confirm-nickname-icon-x").hide();
+			}
+		})
+	})
 
+	
+	
+	
+	
 	$(".write_form_submit").click(function () {
+		if(confirm == '0'){
+			alert("받는 사람의 닉네임을 확인해주세요.");
+			return;
+		}
 		$('textarea').val().replace(/\n/g, "<br>")
 
 		$(".write_form_submit_wrapper").submit();
@@ -57,7 +95,10 @@
 	        }
 		);
 	});
-
+	
+	
+	
+	
 
 </script>
 
