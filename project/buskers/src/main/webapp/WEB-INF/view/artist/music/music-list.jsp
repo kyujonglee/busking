@@ -221,9 +221,6 @@ function insert(buskerNo){
   if (isEmpty(time, "연주시간을 입력해주세요"))return;
   if (isEmpty(attach, "파일을 선택해주세요"))return;
   
-  alert("유효성 검사 통과함");
- 
-  
   $.ajax({
     url : "<c:url value="/file/music-upload.do" />",
     type : "post",
