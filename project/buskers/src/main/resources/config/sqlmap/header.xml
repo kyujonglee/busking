@@ -114,6 +114,12 @@
 		 where read_status = 'N'
 		   and receiver_member_no = #{memberNo}
 	</select>
+	
+	<select id="selectMemberNickName" parameterType="String" resultType="int">
+		select count(*)
+		  from tb_member
+		 where nick_name=#{nickName}
+	</select>
 </mapper>
 
 

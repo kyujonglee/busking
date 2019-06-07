@@ -1,3 +1,4 @@
+
 package kr.co.buskers.common.main.header.controller;
 
 import java.util.Map;
@@ -68,5 +69,11 @@ public class HeaderController {
 		
 		model.addAttribute("message", result.get("message"));
 		
+	}
+	@RequestMapping("receive-member-ajax.do")
+	@ResponseBody
+	public int selectMemberNickName(String nickName) {
+		System.out.println(nickName);
+		return service.selectMemberNickName(nickName);
 	}
 }

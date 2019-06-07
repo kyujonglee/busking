@@ -19,6 +19,9 @@
     <definition name="main/member/*" extends="base">
         <put-attribute name="body" value="/WEB-INF/view/main/member/{1}.jsp" />
     </definition>
+    <definition name="main/search/*" extends="base">
+        <put-attribute name="body" value="/WEB-INF/view/main/search/{1}.jsp" />
+    </definition>
     
     <!-- 버스커 개인 페이지 -->
     <definition name="artist" template="/WEB-INF/tiles/artist/template-artist.jsp">
