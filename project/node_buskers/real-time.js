@@ -90,7 +90,8 @@ chat.on("connection", function (socket) {
                     sender: data.sender,
                     content: data.content,
                     date: data.date,
-                    color: data.color
+                    color: data.color,
+                    image: image
                 }
             );
         }
