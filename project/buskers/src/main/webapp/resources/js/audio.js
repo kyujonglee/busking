@@ -66,22 +66,22 @@ $(document).ready(() => {
 });
 
 canvas.onclick = function(e) {
-  console.log(e.offsetX / canvas.clientWidth);
-  console.log(audio.duration);
-  console.log((e.offsetX / canvas.clientWidth) * audio.duration);
-  console.log("audio.currentTime ",audio.currentTime);
+//  console.log(e.offsetX / canvas.clientWidth);
+//  console.log(audio.duration);
+//  console.log((e.offsetX / canvas.clientWidth) * audio.duration);
+//  console.log("audio.currentTime ",audio.currentTime);
   audio.addEventListener("canplay", function(){
 		  audio.currentTime = (e.offsetX / canvas.clientWidth) * audio.duration;
-		  console.log("audio.currentTime ",audio.currentTime);
+//		  console.log("audio.currentTime ",audio.currentTime);
           this.removeEventListener("canplay",arguments.callee);
   });
   audio.currentTime = (e.offsetX / canvas.clientWidth) * audio.duration;
-  console.log("audio.currentTime ",audio.currentTime);
+//  console.log("audio.currentTime ",audio.currentTime);
 };
 
 let colorFlag = true;
 audio.addEventListener("timeupdate", function() {
-  console.log("timeupdate ",audio.currentTime);
+//  console.log("timeupdate ",audio.currentTime);
   const currentTime = parseInt(audio.currentTime);
   const duration = parseInt(audio.duration);
 
