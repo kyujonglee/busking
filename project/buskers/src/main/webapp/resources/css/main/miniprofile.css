@@ -64,7 +64,6 @@
     outline:none; 
 }
 .header-e {
-    background-color: rgb(255, 0, 0);
     border-radius: 50%;
     cursor: pointer;
     display: block;
@@ -161,10 +160,10 @@
     display: block;
     height: 96px;
     width: 96px;
-    background: gray;
 }
 .miniprofile_img {
-	width: 96px;
+	width: 100%;
+	height: 100%;
 }
 
 .header-i5{

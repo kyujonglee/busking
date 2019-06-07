@@ -6,7 +6,6 @@ import java.util.concurrent.Executors;
 
 import javax.servlet.http.HttpSession;
 
-import org.apache.tomcat.jni.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -21,6 +20,7 @@ import kr.co.buskers.main.member.service.MemberService;
 import kr.co.buskers.main.member.util.Email;
 import kr.co.buskers.main.member.util.EmailSender;
 import kr.co.buskers.main.socialmember.controller.KakaoApi;
+import kr.co.buskers.repository.domain.Busker;
 import kr.co.buskers.repository.domain.Member;
 
 @Controller
@@ -64,8 +64,14 @@ public class MemberController {
 				session.setMaxInactiveInterval(60 * 60);
 				return "redirect:/index.jsp";
 			} 
-			// DB 가데이터 로그인 체크용
-			else if(user.getIsAdmin() == 'y' && user.getPass().equals(member.getPass())) {
+			// DB 가데이터(관리자) 로그인 체크용
+			else if(user.getIsAdmin().equals("y") && user.getPass().equals(member.getPass())) {
+				session.setAttribute("user", user);
+				session.setMaxInactiveInterval(60 * 60);
+				return "redirect:/index.jsp";
+			} 
+			// DB 가데이터(버스커) 로그인 체크용
+			else if(user.getIsBusker().equals("y") && user.getPass().equals(member.getPass())) {
 				session.setAttribute("user", user);
 				session.setMaxInactiveInterval(60 * 60);
 				return "redirect:/index.jsp";
@@ -277,11 +283,25 @@ public class MemberController {
 		session.setMaxInactiveInterval(60 * 60);
 	}
 	
+	// 버스커 등록 화면으로 이동
 	@RequestMapping("signupform-busker.do")
-	public void list3() {
+	public void signupformBusker() {}
+	
+	// 버스커 등록 처리
+	@RequestMapping("signup-busker.do")
+	public String signupBusker(Busker busker, Member member, HttpSession session) {
+		service.signupBusker(busker);
+		member.setIsBusker("y");
+		service.changeBuskerType(member);
 		
+		session.removeAttribute("user");
+		Member user = service.selectMember(member.getMemberNo());
+		session.setAttribute("user", user);
+		session.setMaxInactiveInterval(60 * 60);
+		return UrlBasedViewResolver.REDIRECT_URL_PREFIX + "setting.do";
 	}
 	
+	// 회원 결제 충전
 	@RequestMapping("charge-money.do")
 	@ResponseBody
 	public void chargeMoney(Member member) {

@@ -36,7 +36,7 @@
 							<a class="header-d" role="button" 
 							   tabindex="0" title="계정: ${sessionScope.user.id}  (${sessionScope.user.email})"
 							   aria-expanded="true">
-							   <span class="header-e" aria-hidden="true"><img class="profile_img" src="<c:url value='/resources/img/boyoung.jpg'/>"/></span>
+							   <span class="header-e" aria-hidden="true"><img class="profile_img" src="<c:url value='/file/download.do'/>?path=${sessionScope.user.profileImgPath}${sessionScope.user.profileImg}"/></span>
 							</a>
 							<div class="header-f h-toggle"></div>
 							<div class="header-g h-toggle"></div>
@@ -44,10 +44,10 @@
 						<div class="header-h h-toggle" aria-label="계정 정보"
 							aria-hidden="false" img-loaded="1">
 							<div class="header-i">
-								<a class="header-i2" aria-label="프로필 사진 변경" href="#">
+								<a class="header-i2" aria-label="프로필 사진 변경" href="setting.do">
 									<div class="header-i3" style="position: relative">
 										<div class="header-i4" title="프로필">
-											<img class="miniprofile_img" src="<c:url value='/resources/img/boyoung.jpg'/>"/>
+											<img class="miniprofile_img" src="<c:url value='/file/download.do'/>?path=${sessionScope.user.profileImgPath}${sessionScope.user.profileImg}"/>
 										</div>
 										<span class="header-i5">변경</span>
 									</div>
@@ -61,7 +61,7 @@
 										<span>${sessionScope.user.nickName} 님</span><br>
 										<span> 안녕하세요!</span>
 									</div>
-									<a class="header-i10" href="<c:url value='/main/member/profile.do'/>">프로필 설정</a>
+									<a class="header-i10" href="<c:url value='/main/member/setting.do'/>">프로필 설정</a>
 								</div>
 							</div>
 							<div class="header-j">

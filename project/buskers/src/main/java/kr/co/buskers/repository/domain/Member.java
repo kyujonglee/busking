@@ -12,9 +12,9 @@ public class Member {
 	private char sex;
 	private String profileImg;
 	private String profileImgPath;
-	private char isAdmin;
-	private char isBusker;
-	private char isAgency;
+	private String isAdmin;
+	private String isBusker;
+	private String isAgency;
 	private String nickName;
 	private String memberType;
 	private String accessToken;
@@ -74,22 +74,22 @@ public class Member {
 	public void setProfileImgPath(String profileImgPath) {
 		this.profileImgPath = profileImgPath;
 	}
-	public char getIsAdmin() {
+	public String getIsAdmin() {
 		return isAdmin;
 	}
-	public void setIsAdmin(char isAdmin) {
+	public void setIsAdmin(String isAdmin) {
 		this.isAdmin = isAdmin;
 	}
-	public char getIsBusker() {
+	public String getIsBusker() {
 		return isBusker;
 	}
-	public void setIsBusker(char isBusker) {
+	public void setIsBusker(String isBusker) {
 		this.isBusker = isBusker;
 	}
-	public char getIsAgency() {
+	public String getIsAgency() {
 		return isAgency;
 	}
-	public void setIsAgency(char isAgency) {
+	public void setIsAgency(String isAgency) {
 		this.isAgency = isAgency;
 	}
 	public String getNickName() {

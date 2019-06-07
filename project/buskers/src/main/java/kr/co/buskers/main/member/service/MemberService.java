@@ -2,6 +2,7 @@ package kr.co.buskers.main.member.service;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import kr.co.buskers.repository.domain.Busker;
 import kr.co.buskers.repository.domain.Member;
 
 public interface MemberService {
@@ -13,7 +14,10 @@ public interface MemberService {
 	public void signupMember(Member member);
 	public void signupSocialMember(Member member);
 	public void updateNickNameSocialMember(Member member);
-
+	
+	// 버스커 등록
+	public void signupBusker(Busker busker);
+	
 	// 아이디 중복 체크
 	public int checkId(Member member);
 	
@@ -42,5 +46,7 @@ public interface MemberService {
 	public void updateMember(Member member);
 	
 	public Member selectMember(int memberNo);
+
+	public void changeBuskerType(Member member);
 
 }

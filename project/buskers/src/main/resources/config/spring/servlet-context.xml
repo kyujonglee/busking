@@ -123,7 +123,6 @@
         <beans:property name="order" value="1" />
     </beans:bean>   
     
-    <!-- 프로필 사진 경로 리소스 매핑 -->
-<!--     <resources mapping="/image/**" location="file:///C:/bit2019/upload" /> -->
+    
 	
 </beans>
