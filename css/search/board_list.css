@@ -40,6 +40,7 @@
 .search__board__detai_not_photo{
     height:160px;
     display:grid;
+    grid
 }
 .board__info{
     margin-top:10px;

@@ -346,44 +346,6 @@ $(".saveBtn").click(function () {
           	return false;
         }
         
-    	
-        
-        
-//         Swal.fire({
-// 			  title: '개인정보를 변경하시겠습니까?',
-// 			  type: 'info',
-// 			  showCancelButton: true,
-// 			  confirmButtonColor: '#3085d6',
-// 			  cancelButtonColor: '#d33',
-// 			  confirmButtonText: '예',
-// 			  cancelButtonText: '아니오',
-// 			}).then((result) => {
-// 			  if (result.value) {
-// 				 	if (emailck == 0) {
-// 				 		Swal.fire({
-// 							  title:'이메일 중복체크를해 주세요',
-// 							  type:'warning',
-// 							  timer:2000	
-// 						});
-// 			       		return false;
-// 			       	}  else if (nickNameck == 0) {
-// 			       		Swal.fire({
-// 							  title:'닉네임 중복체크를해 주세요',
-// 							  type:'warning',
-// 							  timer:2000	
-// 						});
-// 			       		return false;
-// 			       	}  else {
-// 			       		Swal.fire({
-// 							  title:'정보가 변경되었습니다.',
-// 							  type:'success',
-// 							  timer:2000	
-// 						});
-// 			       		$("#user_info").submit();
-// 			        	return true;
-// 			       	}
-// 			  }
-// 		})
 	})
 	
 	
