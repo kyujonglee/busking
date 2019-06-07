@@ -64,7 +64,7 @@
 										<span>${sessionScope.user.nickName} 님</span><br>
 										<span> 안녕하세요!</span>
 									</div>
-									<a class="header-i10" href="<c:url value='/main/member/profile.do'/>">프로필 설정</a>
+									<a class="header-i10" href="<c:url value='/main/member/setting.do'/>">프로필 설정</a>
 								</div>
 							</div>
 							<div class="header-j">
@@ -87,14 +87,14 @@
 <script src="<c:url value='/resources/js/toastr.min.js'/>"></script>
 <script type="text/javascript" src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js" charset="utf-8"></script>
 <script src="<c:url value='/resources/js/toastr.min.js'/>"></script>
-<script src="http://localhost:10001/socket.io/socket.io.js"></script>
+<script src="http://${serverip}:10001/socket.io/socket.io.js"></script>
 <script>
 
 	toastr.options.positionClass = 'toast-bottom-right';
 	toastr.options.closeButton = true;
 	
 	/** 실시간 알림 */
-	const socket = io.connect("http://localhost:10001");
+	const socket = io.connect("http://${serverip}:10001");
 	
 	if ("${sessionScope.user.nickName}" != "") {
 		socket.emit("login", "${sessionScope.user.nickName}");

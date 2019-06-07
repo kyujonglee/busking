@@ -116,14 +116,14 @@
 <script src="https://apis.google.com/js/platform.js" async defer></script>
 <script type="text/javascript" src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js" charset="utf-8"></script>
 <script src="<c:url value='/resources/js/toastr.min.js'/>"></script>
-<script src="http://localhost:10001/socket.io/socket.io.js"></script>
+<script src="http://${serverip}:10001/socket.io/socket.io.js"></script>
 <script>
 	
 	toastr.options.positionClass = 'toast-bottom-right';
 	toastr.options.closeButton = true;
 
 	/** 실시간 알림 */
-	const socket = io.connect("http://localhost:10001");
+	const socket = io.connect("http://${serverip}:10001");
 	
 	if ("${sessionScope.user.nickName}" != "") {
 		socket.emit("login", "${sessionScope.user.nickName}");
