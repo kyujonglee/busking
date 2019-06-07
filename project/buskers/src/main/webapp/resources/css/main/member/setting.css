@@ -426,3 +426,45 @@ ul {
 .btn-file-word {
 	display: block;
 }
+
+.change_info_title{
+	font-size:18px;
+	font-weight:bold;
+	padding-left:30px;
+	padding-top:30px;
+}
+.change_info_title p{
+	font-size:16px;
+	font-weight:normal;
+	margin-bottom:30px;
+}
+
+.info_detail_wrapper{
+	display:grid;
+	grid-template-columns: 1fr 4fr;
+}
+.menu_title{
+	padding-left:20px;
+}
+
+.modifyWrapper{
+	padding-left:30px;
+	padding-bottom:20px;
+}
+
+.info_change_button{
+	height:27px;
+	background-color:white;
+	border:1px solid var(--color-orange);
+	color:black;
+}
+.info_change_button:hover{
+	background-color:var(--color-orange);
+	color:white;
+}
+
+.pay_money{
+	padding-left:30px;
+	padding-bottom:30px;
+}
+
