@@ -1,7 +1,5 @@
 package kr.co.buskers.repository.domain;
 
-import java.util.List;
-
 import org.springframework.web.multipart.MultipartFile;
 
 public class MusicFile {

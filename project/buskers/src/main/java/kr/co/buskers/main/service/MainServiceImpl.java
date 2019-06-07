@@ -83,6 +83,16 @@ public class MainServiceImpl implements MainService {
 		List<ArtistShow> artistShowList = mapper.selectArtistShowDetail(artistShow);
 		return artistShowList;
 	}
+	
+	public ArtistShow markerDetail(int showNo) {
+		ArtistShow artistShow = mapper.selectMarker(showNo);
+		return artistShow;
+	}
+	
+	public ArtistShow markerImage(int showNo) {
+		ArtistShow artistShow = mapper.selectMarker(showNo);
+		return artistShow;
+	}
 
 	@Override
 	public List<SearchBoard> mainSearch(SearchPage searchPage) {

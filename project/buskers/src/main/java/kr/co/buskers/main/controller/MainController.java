@@ -9,10 +9,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import kr.co.buskers.common.page.SearchPageResult;
 import kr.co.buskers.main.service.MainService;
 import kr.co.buskers.repository.domain.ArtistShow;
-import kr.co.buskers.repository.domain.SearchBoard;
 import kr.co.buskers.repository.domain.SearchPage;
 
 @Controller("kr.co.buskers.main.controller.MainController")
@@ -39,6 +37,20 @@ public class MainController {
 	public List<ArtistShow> mapDetail(ArtistShow artistShow) {
 
 		return service.mapDetail(artistShow);
+	}
+	
+	@RequestMapping("marker-ajax.do")
+	@ResponseBody
+	public ArtistShow markerDetail(int showNo) {
+		
+		return service.markerDetail(showNo);
+	}
+	
+	@RequestMapping("marker-hover-ajax.do")
+	@ResponseBody
+	public ArtistShow markerImage(int showNo) {
+		
+		return service.markerImage(showNo);
 	}
 	
 	@RequestMapping("/search/search.do")

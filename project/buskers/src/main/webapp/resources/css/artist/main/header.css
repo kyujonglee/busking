@@ -57,3 +57,34 @@
     padding-right : 10px;
 }
 
+.message_count {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    font-size: 13px;
+    margin-top: -13px;
+    margin-left: -9px;
+    color: #fff;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 50%;
+    background-color: #f00;
+    z-index: 999;
+    display: none;
+}
+
+#toast-container > div {
+    font-family: 'Malgun Gothic', sans-serif;
+    font-size: 14px;
+    line-height: 20px;
+    padding: 15px 15px 15px 50px;
+} 
+
+@-webkit-keyframes alarm { 
+	0% {color: white;}
+	50% {color: #00BAF7;} 
+	100% {color: white;}
+}
+
+

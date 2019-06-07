@@ -15,6 +15,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 <link rel="stylesheet" type="text/css" href="https://npmcdn.com/flatpickr/dist/themes/dark.css">
 <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic|Nanum+Pen+Script&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Lobster&display=swap" rel="stylesheet">
 <script src="http://d3js.org/d3.v3.min.js"></script>
 <script src="http://d3js.org/topojson.v1.min.js"></script>
     <title>Buskers</title>
@@ -60,7 +61,9 @@
 			<div class="buskers_map">
 				<div class="buskers_map_title">
 					<div>Buskers</div>
-					<div>Performance Stage</div>
+					<div class="neon">
+						<b>per<span>for</span>man<span>ce st</span>age</b>
+					</div>
 				</div>
 				
 				<div class="buskers_map_detail">
@@ -161,7 +164,7 @@
 	let year = date.getFullYear(); 
 	let month = new String(date.getMonth()+1); 
 	let day = new String(date.getDate()); 
-	let week = ['일', '월', '화', '수', '목', '금', '토'];
+	let week = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
 	let dayOfWeek = week[date.getDay()];
 	let selDate = year + "-" + month + "-" + day;
 	  
@@ -189,11 +192,11 @@
 			day = "0" + day; 
 		} 
 		$(".performance__info_date").hide().html(date.getFullYear() + '. ' + month + '. ' + day + " " + "<day>" + dayOfWeek + "</day>").fadeIn();
-		$(".calendar").html(day + "<em>" + month + "월" + "</em>");
-		if (dayOfWeek == '일') {
+		$(".calendar").html(day + "<em>" + month + "月" + "</em>");
+		if (dayOfWeek == 'SUN') {
 			$("day").css({"color": "hotpink"});
 			$("em").css({"background": "hotpink"});
-		} else if (dayOfWeek == '토') {
+		} else if (dayOfWeek == 'SAT') {
 			$("day").css({"color": "deepskyblue"});
 			$("em").css({"background": "skyblue"});
 		}
@@ -210,11 +213,11 @@
 	} 
 		
 	$(".performance__info_date").html(year + '. ' + month + '. ' + day + " " + "<day>" + dayOfWeek + "</day>");
-	$(".calendar").html(day + "<em>" + month + "월" + "</em>");
-	if (dayOfWeek == '일') {
+	$(".calendar").html(day + "<em>" + month + "月" + "</em>");
+	if (dayOfWeek == 'SUN') {
 		$("day").css({"color": "hotpink"});
 		$("em").css({"background": "hotpink"});
-	} else if (dayOfWeek == '토') {
+	} else if (dayOfWeek == 'SAT') {
 		$("day").css({"color": "deepskyblue"});
 		$("em").css({"background": "skyblue"});
 	}
@@ -234,11 +237,11 @@
 			day = "0" + day; 
 		} 
 		$(".performance__info_date").hide().html(date.getFullYear() + '. ' + month + '. ' + day + " " + "<day>" + dayOfWeek + "</day>").fadeIn();
-		$(".calendar").html(day + "<em>" + month + "월" + "</em>");
-		if (dayOfWeek == '일') {
+		$(".calendar").html(day + "<em>" + month + "月" + "</em>");
+		if (dayOfWeek == 'SUN') {
 			$("day").css({"color": "hotpink"});
 			$("em").css({"background": "hotpink"});
-		} else if (dayOfWeek == '토') {
+		} else if (dayOfWeek == 'SAT') {
 			$("day").css({"color": "deepskyblue"});
 			$("em").css({"background": "skyblue"});
 		}
@@ -296,7 +299,7 @@
 				}
 				html += '<section>';
     			html += 	'<div class="img-btn">';
-  				html += 		'<img src="<c:url value='/resources/img/twilight.jpg'/>"/>';
+  				html += 		'<img src="<c:url value='/file/download.do'/>?path=' + list.profileImgPath + list.profileImg + '"/>';
   				html += 		'<div class="artist_name">' + list.activityName + '</div>';
    				html +=    '</div>';
 				html +=     '<div class="details-btn">';
@@ -402,7 +405,6 @@
 	$(".view-main-top-btn").click(function(){
 		$('html,body').stop().animate({scrollTop:0},700);
 	})
-
 		
 	function mapView() {
 		d3.select("#chart").html("");
@@ -454,15 +456,30 @@
 		            .attr("x", function(d) { return projection([d.lon, d.lat])[0]; })
 		            .attr("y", function(d) { return projection([d.lon, d.lat])[1] + 8; })
 		            .text(function(d) { return d.name });
+		        /** 마커에 마우스 오버시 아티스트 프로필 사진 출력 */
 		        $(".marker").hover(function () {
+		        	let showNo = $(this).attr("id");
+		        	let profileImg = "";
+		        	let profileImgPath = "";
 		        	let x = $(this).attr("x");
 		        	let y = $(this).attr("y");
+		        	$.ajax({
+		    			type:"POST",
+		    			data: {showNo: showNo},
+		    			url:"marker-hover-ajax.do",
+		    			async: false
+		    		}).done(function (result) {
+		    			profileImg = result.profileImg;
+	    				profileImgPath = result.profileImgPath;
+		    		}).fail(function (xhr) { 
+		    			console.dir(xhr);
+		    		})
 		        	$(this).css({"width": "30", "height": "30", "transition": "0.3s"});
 		        	places.selectAll("circle")
 		        	.data(data)
 		         	.enter().append("image")
 		            .attr("class","thumbnail").attr("width","40").attr("height","40")
-		    		.attr("xlink:href","<c:url value='/resources/img/boyoung.jpg'/>")
+		    		.attr("xlink:href","<c:url value='/file/download.do'/>?path=" + profileImgPath + profileImg)
 		            .attr("x", function(d) { return parseFloat(x) - 5; })
 		            .attr("y", function(d) { return parseFloat(y) - 50; })
 		            .attr("r", 10);
@@ -474,6 +491,56 @@
 			        });
 		        });
 		        
+		        $(".marker").click(function () {
+		    		let showNo = $(this).attr("id");
+		    		$.ajax({
+		    			type:"POST",
+		    			data: {showNo: showNo},
+		    			url:"marker-ajax.do",
+		    		
+		    		}).done(function (result) {
+		    			console.log(result);
+		    			let html = "";
+	    				let list = result;
+	    				let genre = "";
+	    				switch(list.genreNo) {
+	    				case 1:
+							genre = '<div class="third" style="background-color: #BAE1FF; "><img src="<c:url value='/resources/img/1.png'/>"></div>';
+							break;
+	    				case 2:
+	    					genre = '<div class="third" style="background-color: #FFDFBA; "><img src="<c:url value='/resources/img/2.png'/>"></div>';
+	    					break;
+	    				case 3:
+	    					genre = '<div class="third" style="background-color: #FFFFBA; "><img src="<c:url value='/resources/img/3.png'/>"></div>';
+	    					break;
+	    				case 4:
+	    					genre = '<div class="third" style="background-color: #FFB3BA; "><img src="<c:url value='/resources/img/4.png'/>"></div>';
+	    					break;
+	    				case 5:
+	    					genre = '<div class="third" style="background-color: #BAFFC9; "><img src="<c:url value='/resources/img/5.png'/>"></div>';
+	    					break;
+	    				}
+	    				html += '<section>';
+	        			html += 	'<div class="img-btn">';
+	      				html += 		'<img src="<c:url value='/file/download.do'/>?path=' + list.profileImgPath + list.profileImg + '"/>';
+	      				html += 		'<div class="artist_name">' + list.activityName + '</div>';
+	       				html +=    '</div>';
+	    				html +=     '<div class="details-btn">';
+	      				html +=    		'<h1>' + list.title + '</h1>';
+	       				html +=    	'<h3><i class="fa fa-map-marker">&nbsp;' + list.place + '</i> &nbsp;&nbsp;<i class="fa fa-globe globe">&nbsp;' + new Date(list.enrollDate).format('yyyy.MM.dd') + '</i></h3>';
+	       				html +=   		'<p>' + list.content +'</p>';
+	       				html +=     '</div>';
+	       				html +=     '<div class="SM-btn">';
+	      				html += genre;
+	      				html +=     '</div>';
+	      				html += 	'<div class="layer"></div>';
+	       				html += '</section>';
+		    			$(".performance_info_list").html(html);
+		    		    	
+		    		}).fail(function (xhr) { 
+		    			console.dir(xhr);
+		    		})
+		    	});
     		});
 		}, 3000);
     	
@@ -550,7 +617,7 @@
     				}
     				html += '<section>';
         			html += 	'<div class="img-btn">';
-      				html += 		'<img src="<c:url value='/resources/img/twilight.jpg'/>"/>';
+      				html += 		'<img src="<c:url value='/file/download.do'/>?path=' + list.profileImgPath + list.profileImg + '"/>';
       				html += 		'<div class="artist_name">' + list.activityName + '</div>';
        				html +=    '</div>';
     				html +=     '<div class="details-btn">';
@@ -606,8 +673,6 @@
 	
 	states.append("rect")
 	    .attr("class", "background")
-	    .attr("width", width)
-	    .attr("height", height);
 	
 	d3.json("<c:url value='/resources/etc/korea.json' />", function(json) {
 		states.selectAll("path")

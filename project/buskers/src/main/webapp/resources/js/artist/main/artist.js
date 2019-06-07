@@ -14,17 +14,16 @@ $(".busker-side__info-btn i").click(function() {
 });
 
 // 챗팅창을 접는 버튼 동작
-let chatFlag = true;
-//$(".busker-chat").slideUp();
+let chatFlag = false;
 //chatFlag = false;
 $("#chat-icon").click(function(){
-    if(chatFlag) {
+    if (chatFlag) {
         $(".busker-chat").hide("slide", {direction: "right"});
-        $(this).attr("class","far fa-comment-dots fa-lg");
-        chatFlag = false;
-    }else {
-        $(".busker-chat").show("slide", {direction: "right"});
         $(this).attr("class","fas fa-comment-dots fa-lg");
+        chatFlag = false;
+    } else {
+        $(".busker-chat").show("slide", {direction: "right"});
+        $(this).attr("class","far fa-comment-dots fa-lg");
         chatFlag = true;
     }
     // $(".busker-chat").fadeToggle(50);

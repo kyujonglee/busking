@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <link href="<c:url value='/resources/css/main/miniprofile.css'/>" rel="stylesheet">
+<link rel="stylesheet" href="<c:url value='/resources/css/main/toastr.min.css'/>" />
 <header class="busker-header">
 	<div class="busker-header__search">
 		<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
@@ -36,7 +37,7 @@
 							<a class="header-d" role="button" 
 							   tabindex="0" title="계정: ${sessionScope.user.id}  (${sessionScope.user.email})"
 							   aria-expanded="true">
-							   <span class="header-e" aria-hidden="true"><img class="profile_img" src="<c:url value='/file/download.do'/>?path=${sessionScope.user.profileImgPath}${sessionScope.user.profileImg}"/></span>
+							   <span class="header-e" aria-hidden="true"><img class="profile_img" src="<c:url value='/file/download.do'/>?path=${sessionScope.user.profileImgPath}${sessionScope.user.profileImg}" onError="this.src='<c:url value='/resources/img/profile.png' />';"	/></span>
 							</a>
 							<div class="header-f h-toggle"></div>
 							<div class="header-g h-toggle"></div>
@@ -47,7 +48,9 @@
 								<a class="header-i2" aria-label="프로필 사진 변경" href="setting.do">
 									<div class="header-i3" style="position: relative">
 										<div class="header-i4" title="프로필">
-											<img class="miniprofile_img" src="<c:url value='/file/download.do'/>?path=${sessionScope.user.profileImgPath}${sessionScope.user.profileImg}"/>
+											<img class="miniprofile_img" src="<c:url value='/file/download.do'/>?path=${sessionScope.user.profileImgPath}${sessionScope.user.profileImg}"
+												 onError="this.src='<c:url value='/resources/img/profile.png' />';"											
+											/>
 										</div>
 										<span class="header-i5">변경</span>
 									</div>
@@ -81,10 +84,62 @@
 	</div>
 </header>
 <script src="https://apis.google.com/js/platform.js" async defer></script>
+<script src="<c:url value='/resources/js/toastr.min.js'/>"></script>
 <script type="text/javascript" src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js" charset="utf-8"></script>
 <script src="<c:url value='/resources/js/toastr.min.js'/>"></script>
+<script src="http://${serverip}:10001/socket.io/socket.io.js"></script>
 <script>
-$(".header-c").click(function() {
+
+	toastr.options.positionClass = 'toast-bottom-right';
+	toastr.options.closeButton = true;
+	
+	/** 실시간 알림 */
+	const socket = io.connect("http://${serverip}:10001");
+	
+	if ("${sessionScope.user.nickName}" != "") {
+		socket.emit("login", "${sessionScope.user.nickName}");
+	}
+	
+	socket.on("msg", function (data) {
+		let sender = data.sender;
+		let title = data.title;
+		if (title.length > 12) {
+			title = title.substring(0, 11) + "...";
+		}
+		let msg = sender + "  :  " + title;
+		
+   		$.ajax({
+   			type: "POST",
+   			url: "/buskers/main/header/message/message-count-ajax.do",
+   			success: function (count) {
+   				if (count != 0) {
+   					$(".message_count").text(count);
+   					$(".message_count").show();
+   				}
+   			}
+   		});
+   		$(".fa-envelope").css({"animation": "alarm 1.5s linear infinite"});
+   		toastr.info(msg, '새 쪽지가 도착했습니다.');
+    });
+	
+	$(".fa-envelope").click(function () {
+		$(".fa-envelope").css({"animation": "none"});
+	});
+
+	$(document).ready(function () {
+		$.ajax({
+			type: "POST",
+			url: "/buskers/main/header/message/message-count-ajax.do",
+			success: function (count) {
+				if (count != 0) {
+					$(".message_count").text(count);
+					$(".message_count").show();
+				}
+			}
+		});
+	});
+
+	$(".header-c").click(function() {
 	    $(".h-toggle").toggle();
 	});
 	 

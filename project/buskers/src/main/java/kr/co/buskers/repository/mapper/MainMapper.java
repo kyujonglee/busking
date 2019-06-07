@@ -12,6 +12,7 @@ public interface MainMapper {
 	List<ArtistShow> selectArtistShowByDate(String enrollDate);
 	List<ArtistShow> selectArtistShowDetail(ArtistShow artistShow);
 	List<ArtistShow> selectArtistShowDetailByDate(ArtistShow artistShow);
+	ArtistShow selectMarker(int showNo);
 	
 	List<SearchBoard> selectSearchBoard(SearchPage searchPage);
 	int selectCountSearchBoard(SearchPage searchPage);

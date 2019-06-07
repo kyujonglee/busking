@@ -26,8 +26,8 @@ public class ArtistMainController {
 	
 	@RequestMapping("main-ajax.do")
 	@ResponseBody
-	public Map<String,Object> mainAjax(){
-		Map<String,Object> boardMap = mainService.artistMain();
+	public Map<String,Object> mainAjax(int buskerNo){
+		Map<String,Object> boardMap = mainService.artistMain(buskerNo);
 		return boardMap;
 	}
 }

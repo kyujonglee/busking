@@ -20,7 +20,7 @@
 				<div class="profile_info_img">
 					<div class="profile_info_img2" aria-label="프로필 사진">
 						<div class="profile_info_img3">
-							<img class="profile_info_img4" src="<c:url value='/file/download.do'/>?path=${sessionScope.user.profileImgPath}${sessionScope.user.profileImg}" title="프로필"/>
+							<img class="profile_info_img4" src="<c:url value='/file/download.do'/>?path=${sessionScope.user.profileImgPath}${sessionScope.user.profileImg}" title="프로필" onError="this.src='<c:url value='/resources/img/profile.png' />';" />
 						</div>
 					</div>
 				</div>
@@ -82,7 +82,7 @@
 			        				<div class="profile__img__setting">
 			        					<div class="img__box1">
 			        						<div class="img__box2">
-			        							<img class="img__box3" src="<c:url value='/file/download.do'/>?path=${sessionScope.user.profileImgPath}${sessionScope.user.profileImg}" title="프로필 사진"/>
+			        							<img class="img__box3" src="<c:url value='/file/download.do'/>?path=${sessionScope.user.profileImgPath}${sessionScope.user.profileImg}" title="프로필 사진" onError="this.src='<c:url value='/resources/img/profile.png' />';"/>
 			        						</div>
 			        					</div>
 			        					<div class="img__update">
@@ -347,8 +347,6 @@ $(".saveBtn").click(function (f) {
           	$("#email").focus();
           	return false;
         }
-        
-    	
         
         
         Swal.fire({

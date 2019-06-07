@@ -13,6 +13,11 @@ public interface FileMapper {
 	List<File> selectFileByGroupNo(int groupNo);
 	
 //  music
+	List<MusicFile> selectMusic(int buskerNo);
 	List<MusicFile> selectMusicByBuskerNo(int buskerNo);
+	int countMusic(int buskerNo);
+	
 	void insertMusic(MusicFile musicFile);
+	
+	void deleteMusicByFileNo(int fileNo);
 }

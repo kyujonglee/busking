@@ -4,25 +4,52 @@ const io = require("socket.io")(server);
 
 const chat = io.of("/chat");
 
+let all_members = [];
 let members = [];
+let profile = [];
+
+io.on("connection", function (socket) {
+    console.log("메인에 사용자 접속..");
+
+    socket.on("login", function (nickname) {
+        all_members[nickname] = socket.id;
+        chat.emit("login", Object.keys(all_members));
+    });
+
+    socket.on("msg", function (data) {
+        io.to(all_members[data.receiver]).emit(
+            "msg",
+            {
+                sender: data.sender,
+                title: data.title
+            }
+        );
+    });
+});
 
 chat.on("connection", function (socket) {
-    console.log("사용자 접속..");
+    console.log("채팅방에 사용자 접속..");
 
 	socket.on("disconnect", function () {
 		for (let i = 0; i < Object.keys(members).length; i++) {
             if (members[Object.keys(members)[i]] == socket.id) {
                 chat.emit("out", Object.keys(members)[i]);
                 delete members[Object.keys(members)[i]];
-                chat.emit("login", Object.keys(members));
+                chat.emit("join", Object.keys(members));
             }
         }
 	});
 
-    socket.on("login", function (nickname) {
-        members[nickname] = socket.id;
-        chat.emit("login", Object.keys(members));
-        chat.emit("in", nickname);
+    socket.on("join", function (data) {
+        members[data.nickName] = socket.id;
+        
+        let profileFlag = true;
+        for (let i = 0; i < profile.length; i++) {
+            if (profile[i].nickName === data.nickName) profileFlag = false;
+        }
+        if (profileFlag) profile.push(data);
+        chat.emit("join", profile);
+        chat.emit("in", data.nickName);
     });
 
     /*
@@ -38,7 +65,13 @@ chat.on("connection", function (socket) {
     */
 
     socket.on("chat", function (data) {
-        console.log(data);
+        let image = "";
+        for (let i = 0; i < profile.length; i++) {
+            console.log(profile[i].nickName);
+            if (profile[i].nickName == data.sender) {
+                image = profile[i].profile;
+            }
+        }
         if (data.receiver == "") {
             socket.broadcast.emit(
                 "chat", 
@@ -46,7 +79,8 @@ chat.on("connection", function (socket) {
                     sender: data.sender,
                     content: data.content,
                     date: data.date,
-                    color: data.color
+                    color: data.color,
+                    image: image
                 }
             );
         } else {

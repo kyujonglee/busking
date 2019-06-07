@@ -49,30 +49,37 @@
 		</div>
 	</div>
 </aside>
-<script src="http://localhost:10001/socket.io/socket.io.js"></script>
+<script src="http://${serverip}:10001/socket.io/socket.io.js"></script>
 <script src="<c:url value='/resources/js/jquery-3.4.1.min.js'/>"></script> 
 <script src="http://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 <script>
-	const socket = io("http://localhost:10001/chat");
+	
+	const chat = io("http://${serverip}:10001/chat");
 	
 	let color = "#" + Math.round(Math.random() * 0xffffff).toString(16);
 	
 	if ("${sessionScope.user.nickName}" != "") {
-		socket.emit("login", "${sessionScope.user.nickName}");
-		socket.emit("in", "${sessionScope.user.nickName}");
+		chat.emit(
+			"join", 
+			{
+	            nickName: "${sessionScope.user.nickName}",
+	            profile: "${sessionScope.user.profileImgPath}" + "${sessionScope.user.profileImg}"
+        	}
+		);
+		chat.emit("in", "${sessionScope.user.nickName}");
 	}
 	
-	socket.on("login", function (members) {
+	chat.on("join", function (members) {
 		let count = members.length;
 		console.log(members);
 		let html = "";
 		for(let i = 0; i < members.length; i++) {
 			html += "<li class='contact'>";
 			html += 	"<div class='wrap'>";
-			html +=			'<img src="<c:url value='/resources/img/boyoung.jpg'/>"/>';
+			html +=			'<img src="<c:url value='/file/download.do'/>?path=' + members[i].profile + `" onError="this.src='<c:url value='/resources/img/profile.png' />';"` +'"/>';
 			html +=			"<div class='meta'>";
-			html +=				"<p class='name'>" + members[i] + "</p>";
+			html +=				"<p class='name'>" + members[i].nickName + "</p>";
 			html +=			"</div>";
 			html += 	"</div>";
 			html += "</li>";
@@ -81,7 +88,7 @@
 		$(".online_user p").text("접속중인 회원 : " + count + "명");
     });
 	
-	socket.on("out", function (member) {
+	chat.on("out", function (member) {
 		let html = "";
 		
 		html += "<li class='out'>";
@@ -92,22 +99,25 @@
 		$(".messages").animate({ scrollTop: $(".messages")[0].scrollHeight }, "fast");
     });
 	
-	socket.on("chat", function (data) {
+	chat.on("chat", function (data) {
 		let html = "";
 		
 		html += "<li class='received'>";
 		html +=		"<span style='color:" + data.color + ";'><i class='fas fa-circle'></i>" + data.sender + "<time>" + data.date + "</time></span>";
 		html +=		"<div>";
-		html +=			'<img src="<c:url value='/resources/img/boyoung.jpg'/>"/>';
+		html +=	'<img src="<c:url value='/file/download.do'/>?path=' + data.image + `" onError="this.src='<c:url value='/resources/img/profile.png' />';"` +'"/>';
 		html +=			"<p>" + data.content + "</p>";
 		html +=		"</div>";
 		html += "</li>";
 		
         $(".messages > ul").append(html);
         $(".messages").animate({ scrollTop: $(".messages")[0].scrollHeight }, "fast");
+        $("img").error(function () {
+            $("img").attr("src", "<c:url value='/resources/img/profile.png'/>");
+        });
     });
 	
-	socket.on("whisper", function (data) {
+    chat.on("whisper", function (data) {
 		let html = "";
 		
 		html += "<li class='whisper'>";
@@ -120,9 +130,16 @@
 		
         $(".messages > ul").append(html);
         $(".messages").animate({ scrollTop: $(".messages")[0].scrollHeight }, "fast");
+        if ( $(".fa-comment-dots").attr("class") == "fas fa-comment-dots fa-lg" ) {
+        	$(".fa-comment-dots").css({"animation": "whisper 1.5s linear infinite"});
+        }        
     });
+    
+   	$(".fa-comment-dots").click(function () {
+   		$(".fa-comment-dots").css({"animation": "none"});
+   	});
 	
-   	socket.on("in", function (member) {
+    chat.on("in", function (member) {
    		let html = "";
    		
    		html += "<li class='in'>";
@@ -169,9 +186,9 @@
 		html += "<li class='sent'>";
 		html +=		"<span><i class='fas fa-circle'></i>" + "${sessionScope.user.nickName}" + "<time>" + hour + " : " + minutes + "</time></span>";
 		html +=		"<div>";
-		html +=			'<img src="<c:url value='/resources/img/boyoung.jpg'/>"/>';
+		html +=			'<img src="<c:url value='/file/download.do'/>?path=${sessionScope.user.profileImgPath}${sessionScope.user.profileImg}"' + ` onError="this.src='<c:url value='/resources/img/profile.png' />';"` +'"/>';
 		if ($(".message-input input").val().startsWith("@")) {
-			html +=	"<p>" + "<b>" + "@" + receiver + " </b>" + content + "</p>";
+			html +=	"<p>" + "<b>" + "@" + receiver + " </b>" + "<c>" + content + " </c>" + "</p>";
 		} else {
 			html +=	"<p>" + content + "</p>";
 		}
@@ -180,7 +197,7 @@
 		
         $(".messages > ul").append(html);
         
-        socket.emit(
+        chat.emit(
    	        "chat", 
    	        {
    	        	/*

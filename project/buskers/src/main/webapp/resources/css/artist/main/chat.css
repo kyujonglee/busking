@@ -465,6 +465,7 @@
 
 #frame #sidepanel #contacts ul li.contact .wrap img {
 	width: 30px;
+	height: 30px;
 	border-radius: 50%;
 	float: left;
 	margin-right: 10px;
@@ -703,6 +704,7 @@
 
 #frame .content .messages ul li img {
 	width: 38.4px;
+    height: 38.4px;
 	border-radius: 50%;
 	float: left;
 }
@@ -804,9 +806,7 @@
 }
 
 .busker .busker-chat {
-	background-color: var(- -chat-color-white);
-	border: var(- -chat-border);
-	display: flex;
+	display: none; 
 	flex-direction: column;
 	border-collapse: collapse;
 	position: absolute;
@@ -969,8 +969,17 @@
 	font-weight: bold;
 }
 
+.sent c {
+	color: blueviolet;
+	font-weight: bold;
+}
+
 .whisper b {
 	color: black;
+	font-weight: bold;
+}
+
+.whisper p {
 	font-weight: bold;
 }
 
@@ -1001,4 +1010,10 @@
   border-radius: 50%;
   cursor: pointer;
   outline: none;
+}
+
+@-webkit-keyframes whisper { 
+	0% {color: white;}
+	50% {color: #3B1E1E;}
+	100% {color: white;}
 }

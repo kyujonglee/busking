@@ -19,7 +19,21 @@ public class ArtistShow {
 	private double temperature;
 	private String activityName;
 	private Genre genre;
+	private String profileImg;
+	private String profileImgPath;
 	
+	public String getProfileImg() {
+		return profileImg;
+	}
+	public void setProfileImg(String profileImg) {
+		this.profileImg = profileImg;
+	}
+	public String getProfileImgPath() {
+		return profileImgPath;
+	}
+	public void setProfileImgPath(String profileImgPath) {
+		this.profileImgPath = profileImgPath;
+	}
 	public Genre getGenre() {
 		return genre;
 	}
