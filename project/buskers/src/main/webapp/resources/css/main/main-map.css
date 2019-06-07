@@ -31,7 +31,8 @@
 	justify-content: center;
 	font-family: 'Italianno', cursive;
 	color: #c1a35f;
-	font-size: 50px;
+	font-size: 60px;
+    text-shadow: 2px 4px 3px rgba(0,0,0,0.3);
 }
 
 .buskers_map_title>div:last-child {

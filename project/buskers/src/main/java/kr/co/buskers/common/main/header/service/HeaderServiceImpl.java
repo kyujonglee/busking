@@ -65,6 +65,11 @@ public class HeaderServiceImpl implements HeaderService {
 		
 		return map;
 	}
+
+	@Override
+	public int selectMemberNickName(String nickName) {
+		return mapper.selectMemberNickName(nickName);
+	}
 }
 
 

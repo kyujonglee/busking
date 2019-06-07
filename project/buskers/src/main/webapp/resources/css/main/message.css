@@ -175,3 +175,24 @@
 	font-size: 25px;
 }
 
+.input-nickName:focus{
+	border-color:red;
+}
+
+.confirm-nickname-icon-x{
+    color: red;
+    font-size: 20px;
+    position: absolute;
+    top: 85px;
+    left: 510px;
+    display:none;
+}
+
+.confirm-nickname-icon-o{
+    color: #66afe9;
+    font-size: 20px;
+    position: absolute;
+    top: 85px;
+    left: 507px;
+    display:none;
+}

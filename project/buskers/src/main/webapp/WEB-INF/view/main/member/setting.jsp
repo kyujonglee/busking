@@ -31,8 +31,8 @@
 					${sessionScope.user.email}
 				</div>
 				<hr class="profile_hr">
-				<div>
-					${sessionScope.user.sum}
+				<div class="profile_info_sum">
+					캐시 : ${sessionScope.user.sum} 섬
 				</div>
 				<hr class="profile_hr">
 				<div class="profile_countbox">
@@ -45,6 +45,7 @@
 						<p>댓글</p>
 					</div>
 				</div>
+				<hr class="profile_hr">
 				<div class="profile_introduce1">
 					<div class="profile_introduce2">
 						안녕하세요 박보영 입니다!
