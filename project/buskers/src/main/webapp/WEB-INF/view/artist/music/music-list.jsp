@@ -103,8 +103,6 @@ uri="http://java.sun.com/jsp/jstl/fmt"%>
                 id="attach"
                 placeholder="파일을 선택해주세요."
                 accept="audio/*"
-                onchange="return false;"
-                input="return false;"
               />
                <!-- onchange='chk_file_type(this)' -->
             </div>

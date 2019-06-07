@@ -83,7 +83,7 @@
   grid-gap: 10px;
   grid-template-rows: 80px;
   grid-auto-rows: 80px;
-  overflow: scroll;
+  overflow: auto;
   height: 410px;
 }
 
