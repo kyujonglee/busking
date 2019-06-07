@@ -102,7 +102,11 @@ uri="http://java.sun.com/jsp/jstl/fmt"%>
                 name="attach"
                 id="attach"
                 placeholder="파일을 선택해주세요."
+                accept="audio/*"
+                onchange="return false;"
+                input="return false;"
               />
+               <!-- onchange='chk_file_type(this)' -->
             </div>
           </div>
 <!--           <input type="hidden" name="buskerName" value="" /> -->
@@ -115,6 +119,11 @@ uri="http://java.sun.com/jsp/jstl/fmt"%>
     </div>
   </section>
 </section>
+<script>
+$(document).ready(() => {
+    $(".busker-side__info-btn i").trigger("click");
+});
+</script>
 <script>
   // list -> ajax 로 바꿀 것!
   function musicList(buskerNo) {
@@ -145,16 +154,16 @@ uri="http://java.sun.com/jsp/jstl/fmt"%>
 	               </div>
 	               <div class="busker-music__content">
 	                 <div class="busker-music__content-title">` +
-          song.title +
-          `</div>
+			          song.title +
+			          `</div>
 	                 <div class="busker-music__content-writer">` +
-          song.writer +
-          `</div>
+			          song.writer +
+			          `</div>
 	                 <div class="busker-music__content-time">
 	                   <i class="far fa-clock"></i>
 	                   <span class="busker-music__content-time-song">` +
-          song.time +
-          `</span>
+			          song.time +
+			          `</span>
 	                 </div>
 	               </div>
 	               <div class="busker-music__submenu">
@@ -181,24 +190,62 @@ uri="http://java.sun.com/jsp/jstl/fmt"%>
           data : "fileNo="+fileNo 
         })
         .done(()=>{
-        	console.log("delete")
+        	console.log("delete");
+        	$.ajax({
+				url : "<c:url value='/artist/main/main-ajax.do'/>",
+				dateType : "json",
+				data : "buskerNo="+ 1
+			}).done((map) => {
+				const musicCount = map.musicCount;
+				$("#musicCount").text(musicCount);
+			});
 	        musicList(buskerNo);
         });
       });
     });
   }
 
+  
+  
 function insert(buskerNo){
   const formData = new FormData(document.getElementById("musicForm"));
-  console.log(formData);
+  const title = $("#title").val();
+  const writer = $("#writer").val();
+  const time = $("#time").val();
+  const attach = $("#attach").val();
+  
+  console.log(title, writer, time, attach);
+  
+  if (isEmpty(title, "노래제목을 입력해주세요"))return;
+  if (isEmpty(writer, "아티스트를 입력해주세요"))return;
+  if (isEmpty(time, "연주시간을 입력해주세요"))return;
+  if (isEmpty(attach, "파일을 선택해주세요"))return;
+  
+  alert("유효성 검사 통과함");
+ 
+  
   $.ajax({
     url : "<c:url value="/file/music-upload.do" />",
     type : "post",
     data : formData,
     contentType : false,
     processData : false
-  }).done(()=>{
-  musicList(buskerNo);
+  }).done( () => {
+  	musicList(buskerNo);
+  	$("#title").val("");
+  	$("#writer").val("");
+  	$("#time").val("");
+    $("#attach").val("");
+ 	console.log($("#attach").val());
+  	
+  	$.ajax({
+		url : "<c:url value='/artist/main/main-ajax.do'/>",
+		dateType : "json",
+		data : "buskerNo="+ 1
+	}).done((map) => {
+		const musicCount = map.musicCount;
+		$("#musicCount").text(musicCount);
+	});
   });
 }
 
@@ -206,4 +253,60 @@ function init() {
   musicList(1);
 }
   init();
+  
+  function isEmpty(ele, msg) {
+		if (ele === "") {
+			alertInfo(msg);
+			ele.focus();
+			return true;
+		}
+		return false;
+  }
+  
+  function alertInfo(msg,text){
+		// sweetalert 쓰기 
+		// isEmpty function 도 고치기
+		Swal.fire({
+		  title:msg,
+		  text:text,
+		  type:'info',
+		  timer:2000
+		});
+	}
+  
+  function chk_file_type(obj) {
+	  const file_kind = obj.value.lastIndexOf('.');
+	  const file_name = obj.value.substring(file_kind+1,obj.length);
+	  const file_type = file_name.toLowerCase();
+
+	  let check_file_type = ['mp3','wax','wma','m4a'];
+
+	  if(check_file_type.indexOf(file_type) == -1){
+	  	   alert('오디오 파일만 선택할 수 있습니다.');
+		   const parent_Obj=obj.parentNode
+		   const node=parent_Obj.replaceChild(obj.cloneNode(true),obj);
+		   alert("return false");
+		   return false;
+	  }
+	  alert("return shit");
+  }
+  
+  $(document).ready(function(){
+	  $("#attach").on("change",handleImgFileSelect)
+  })
+  
+  function handleImgFileSelect(e) {
+	e.preventDefault();
+	
+	let prvFiles = e.target.files;
+	let filesArr = Array.prototype.slice.call(prvFiles);
+	
+	filesArr.forEach(function (f) {
+		if(!f.type.match("audio.*")) {
+			alert("확장자는 오디오 확장자만 가능합니다.");
+			$("#attach").val("");
+			return;
+		}
+	});
+  }
 </script>
