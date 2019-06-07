@@ -304,9 +304,14 @@ public class MemberController {
 	// 회원 결제 충전
 	@RequestMapping("charge-money.do")
 	@ResponseBody
-	public void chargeMoney(Member member) {
+	public void chargeMoney(Member member,  HttpSession session) {
 //		System.out.println(member.getSum()+"컨트롤러들어옴");
 		service.chargeMoney(member);
+		
+		session.removeAttribute("user");
+		Member user = service.selectMember(member.getMemberNo());
+		session.setAttribute("user", user);
+		session.setMaxInactiveInterval(60 * 60);
 	}
 	
 	// 회원 정보 업데이트

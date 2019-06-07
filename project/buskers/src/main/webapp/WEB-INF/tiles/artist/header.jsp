@@ -45,7 +45,7 @@
 						<div class="header-h h-toggle" aria-label="계정 정보"
 							aria-hidden="false" img-loaded="1">
 							<div class="header-i">
-								<a class="header-i2" aria-label="프로필 사진 변경" href="setting.do">
+								<a class="header-i2" aria-label="프로필 사진 변경" href="<c:url value='/main/member/setting.do'/>">
 									<div class="header-i3" style="position: relative">
 										<div class="header-i4" title="프로필">
 											<img class="miniprofile_img" src="<c:url value='/file/download.do'/>?path=${sessionScope.user.profileImgPath}${sessionScope.user.profileImg}"
@@ -64,7 +64,7 @@
 										<span>${sessionScope.user.nickName} 님</span><br>
 										<span> 안녕하세요!</span>
 									</div>
-									<a class="header-i10" href="<c:url value='/main/member/setting.do'/>">프로필 설정</a>
+									<a class="header-i10" href="<c:url value='/main/member/setting.do'/>">개인 설정</a>
 								</div>
 							</div>
 							<div class="header-j">
