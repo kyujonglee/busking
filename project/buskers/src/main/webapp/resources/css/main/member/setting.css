@@ -427,6 +427,13 @@ ul {
 	display: block;
 }
 
+/* 버스커 관리 */
+
+.busker_signup {
+	color: puple;
+}
+
+
 .change_info_title{
 	font-size:18px;
 	font-weight:bold;

@@ -27,6 +27,22 @@
 		 where id = #{id}
 	</update>
 	
+	<!-- 버스커 등록 -->
+	<insert id="signupBusker" parameterType="busker">
+		insert into tb_busker (
+			member_no, name, activity_name, phone
+		) values (
+			#{memberNo}, #{name}, #{activityName}, #{phone}
+		)
+	</insert>
+	
+	<!-- 맴버 타입변경(버스커) -->
+	<update id="changeBuskerType" parameterType="member">
+		update tb_member
+		   set is_busker = #{isBusker}
+		 where member_no = #{memberNo}
+	</update>
+	
 	<!-- 로그인 -->
 	<select id="loginAction" resultType="member">
 		select *

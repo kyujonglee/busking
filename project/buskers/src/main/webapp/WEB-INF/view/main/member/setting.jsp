@@ -23,15 +23,16 @@
 							<img class="profile_info_img4" src="<c:url value='/file/download.do'/>?path=${sessionScope.user.profileImgPath}${sessionScope.user.profileImg}" title="프로필" onError="this.src='<c:url value='/resources/img/profile.png' />';" />
 						</div>
 					</div>
-					<div class="profile_info_img5">
-						<div class="profile_info_img6" title="즐겨찾기"></div>
-					</div>
 				</div>
 				<div class="profile_info_nickName">
 					${sessionScope.user.nickName}
 				</div>
 				<div class="profile_info_email">
 					${sessionScope.user.email}
+				</div>
+				<hr class="profile_hr">
+				<div>
+					${sessionScope.user.sum}
 				</div>
 				<hr class="profile_hr">
 				<div class="profile_countbox">
@@ -60,10 +61,10 @@
 							<a class="pro_tab_link"  onclick="tab_menu(1);" >친구 관리</a>
 						</li>
 						<li class="pro_tab">
-							<a class="pro_tab_link" onclick="tab_menu(2);" >알림</a>
+							<a class="pro_tab_link" onclick="tab_menu(2);" >개인정보 관리</a>
 						</li>
 						<li class="pro_tab">
-							<a class="pro_tab_link"  onclick="tab_menu(3);" >개인정보 관리</a>
+							<a class="pro_tab_link"  onclick="tab_menu(3);" >버스커 관리</a>
 						</li>
 						<li class="pro_tab">
 							<a class="pro_tab_link"  onclick="tab_menu(4);" >결제</a>
@@ -103,14 +104,14 @@
 			        		</div>
 			        	</div>
 			        </div>
-				    <div class="tab-pane1" id="friend" style="display: none;" >...22
-				    
+				    <div class="tab-pane1" id="friend" style="display: none;" >
+						...2
 				    </div>
-				    <div class="tab-pane2" id="notice" style="display: none;" >...33
-				    
-				    </div>
-				    <div class="tab-pane3" id="privacy" style="display: none;" >
+				    <div class="tab-pane2" id="privacy" style="display: none;" >
 				    	<%@ include file= "change-info.jsp" %>
+				    </div>
+				    <div class="tab-pane3" id="privacy__busker" style="display: none;" >
+				    	<%@ include file= "change-info-busker.jsp" %>
 				    </div>
 				    <div class="tab-pane4" id="pay" style="display: none;" >
 				    	<%@ include file= "pay.jsp" %>
@@ -198,6 +199,7 @@ function handleImgFileSelect(e) {
 	filesArr.forEach(function (f) {
 		if(!f.type.match("image.*")) {
 			alert("확장자는 이미지 확장자만 가능합니다.");
+			$("#profile__img").val("");
 			return;
 		}
 		
@@ -234,7 +236,7 @@ function handleImgFileSelect(e) {
 // 프로필 이미지 업로드
 
 
-$(".saveBtn").click(function () {
+$(".saveBtn").click(function (f) {
 	if(($("#profile__img").val() == "" || $("#profile__img").val() == null)) {
 		alert("이미지 파일을 등록해주세요!");
 	} else {
@@ -346,6 +348,42 @@ $(".saveBtn").click(function () {
           	return false;
         }
         
+        
+        Swal.fire({
+			  title: '개인정보를 변경하시겠습니까?',
+			  type: 'info',
+			  showCancelButton: true,
+			  confirmButtonColor: '#3085d6',
+			  cancelButtonColor: '#d33',
+			  confirmButtonText: '예',
+			  cancelButtonText: '아니오',
+			}).then((result) => {
+			  if (result.value) {
+				 	if (emailck == 0) {
+				 		Swal.fire({
+							  title:'이메일 중복체크를해 주세요',
+							  type:'warning',
+							  timer:2000	
+						});
+			       		return false;
+			       	}  else if (nickNameck == 0) {
+			       		Swal.fire({
+							  title:'닉네임 중복체크를해 주세요',
+							  type:'warning',
+							  timer:2000	
+						});
+			       		return false;
+			       	}  else {
+			       		Swal.fire({
+							  title:'정보가 변경되었습니다.',
+							  type:'success',
+							  timer:2000	
+						});
+			       		$("#user_info").submit();
+			        	return true;
+			       	}
+			  }
+		})
 	})
 	
 	
