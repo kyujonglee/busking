@@ -46,6 +46,13 @@ public class MainController {
 		return service.markerDetail(showNo);
 	}
 	
+	@RequestMapping("marker-hover-ajax.do")
+	@ResponseBody
+	public ArtistShow markerImage(int showNo) {
+		
+		return service.markerImage(showNo);
+	}
+	
 	@RequestMapping("/search/search.do")
 	public void mainSearch(SearchPage searchPage,Model model) {
 		model.addAttribute("list",service.mainSearch(searchPage));

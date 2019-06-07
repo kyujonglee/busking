@@ -15,16 +15,18 @@
 
 	<select id="selectArtistShowDetail" parameterType="artistShow" resultType="artistShow">
 		select * 
-		  from tb_busker_show s, tb_busker b
+		  from tb_busker_show s, tb_busker b, tb_member m
 		 where s.busker_no = b.busker_no
+           and m.member_no = b.member_no
 		   and gu = #{gu}
 		   and date(enroll_date) = #{enrollDate}
 	</select>
 	
 	<select id="selectArtistShowDetailByDate" parameterType="artistShow" resultType="artistShow">
 		select * 
-		  from tb_busker_show s, tb_busker b
+		  from tb_busker_show s, tb_busker b, tb_member m
 		 where s.busker_no = b.busker_no
+           and m.member_no = b.member_no
 		   and date(enroll_date) = #{enrollDate}
 	</select>
 	
@@ -63,8 +65,9 @@
 	
 	<select id="selectMarker" parameterType="int" resultType="artistShow">
 		select * 
-		  from tb_busker_show s, tb_busker b
+		  from tb_busker_show s, tb_busker b, tb_member m
 		 where s.busker_no = b.busker_no
+           and m.member_no = b.member_no
 		   and show_no = #{showNo}
 	</select>
 

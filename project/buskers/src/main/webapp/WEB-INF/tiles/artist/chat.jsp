@@ -177,7 +177,7 @@
 		html += "<li class='sent'>";
 		html +=		"<span><i class='fas fa-circle'></i>" + "${sessionScope.user.nickName}" + "<time>" + hour + " : " + minutes + "</time></span>";
 		html +=		"<div>";
-		html +=			'<img src="<c:url value='/resources/img/boyoung.jpg'/>"/>';
+		html +=			'<img src="<c:url value='/file/download.do'/>?path=${sessionScope.user.profileImgPath}${sessionScope.user.profileImg}"/>';
 		if ($(".message-input input").val().startsWith("@")) {
 			html +=	"<p>" + "<b>" + "@" + receiver + " </b>" + "<c>" + content + " </c>" + "</p>";
 		} else {

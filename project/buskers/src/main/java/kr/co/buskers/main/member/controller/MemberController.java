@@ -70,6 +70,12 @@ public class MemberController {
 				session.setMaxInactiveInterval(60 * 60);
 				return "redirect:/index.jsp";
 			} 
+			// DB 가데이터 로그인 체크용
+			else if(user.getIsBusker() == 'y' && user.getPass().equals(member.getPass())) {
+				session.setAttribute("user", user);
+				session.setMaxInactiveInterval(60 * 60);
+				return "redirect:/index.jsp";
+			} 
 			// passMatch 통과 실패 false 값일때
 			else {
 				rttr.addFlashAttribute("msg", "msgPass");

@@ -703,6 +703,7 @@
 
 #frame .content .messages ul li img {
 	width: 38.4px;
+    height: 38.4px;
 	border-radius: 50%;
 	float: left;
 }
@@ -804,9 +805,7 @@
 }
 
 .busker .busker-chat {
-	background-color: var(- -chat-color-white);
-	border: var(- -chat-border);
-	display: flex;
+	display: none; 
 	flex-direction: column;
 	border-collapse: collapse;
 	position: absolute;
