@@ -299,7 +299,7 @@
 				}
 				html += '<section>';
     			html += 	'<div class="img-btn">';
-  				html += 		'<img src="<c:url value='/resources/img/twilight.jpg'/>"/>';
+  				html += 		'<img src="<c:url value='/file/download.do'/>?path=' + list.profileImgPath + list.profileImg + '"/>';
   				html += 		'<div class="artist_name">' + list.activityName + '</div>';
    				html +=    '</div>';
 				html +=     '<div class="details-btn">';
@@ -456,15 +456,30 @@
 		            .attr("x", function(d) { return projection([d.lon, d.lat])[0]; })
 		            .attr("y", function(d) { return projection([d.lon, d.lat])[1] + 8; })
 		            .text(function(d) { return d.name });
+		        /** 마커에 마우스 오버시 아티스트 프로필 사진 출력 */
 		        $(".marker").hover(function () {
+		        	let showNo = $(this).attr("id");
+		        	let profileImg = "";
+		        	let profileImgPath = "";
 		        	let x = $(this).attr("x");
 		        	let y = $(this).attr("y");
+		        	$.ajax({
+		    			type:"POST",
+		    			data: {showNo: showNo},
+		    			url:"marker-hover-ajax.do",
+		    			async: false
+		    		}).done(function (result) {
+		    			profileImg = result.profileImg;
+	    				profileImgPath = result.profileImgPath;
+		    		}).fail(function (xhr) { 
+		    			console.dir(xhr);
+		    		})
 		        	$(this).css({"width": "30", "height": "30", "transition": "0.3s"});
 		        	places.selectAll("circle")
 		        	.data(data)
 		         	.enter().append("image")
 		            .attr("class","thumbnail").attr("width","40").attr("height","40")
-		    		.attr("xlink:href","<c:url value='/resources/img/boyoung.jpg'/>")
+		    		.attr("xlink:href","<c:url value='/file/download.do'/>?path=" + profileImgPath + profileImg)
 		            .attr("x", function(d) { return parseFloat(x) - 5; })
 		            .attr("y", function(d) { return parseFloat(y) - 50; })
 		            .attr("r", 10);
@@ -507,7 +522,7 @@
 	    				}
 	    				html += '<section>';
 	        			html += 	'<div class="img-btn">';
-	      				html += 		'<img src="<c:url value='/resources/img/twilight.jpg'/>"/>';
+	      				html += 		'<img src="<c:url value='/file/download.do'/>?path=' + list.profileImgPath + list.profileImg + '"/>';
 	      				html += 		'<div class="artist_name">' + list.activityName + '</div>';
 	       				html +=    '</div>';
 	    				html +=     '<div class="details-btn">';
@@ -602,7 +617,7 @@
     				}
     				html += '<section>';
         			html += 	'<div class="img-btn">';
-      				html += 		'<img src="<c:url value='/resources/img/twilight.jpg'/>"/>';
+      				html += 		'<img src="<c:url value='/file/download.do'/>?path=' + list.profileImgPath + list.profileImg + '"/>';
       				html += 		'<div class="artist_name">' + list.activityName + '</div>';
        				html +=    '</div>';
     				html +=     '<div class="details-btn">';

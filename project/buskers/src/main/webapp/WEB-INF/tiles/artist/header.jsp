@@ -30,7 +30,7 @@
 				<div class="header-a">
 				<i class="far fa-bell fa-lg"></i>
 				<i class="far fa-envelope fa-lg"><span class="message_count"></span></i>
-				<i class="far fa-comment-dots fa-lg" id="chat-icon"></i>
+				<i class="fas fa-comment-dots fa-lg" id="chat-icon"></i>
 					<div class="header-b2">${sessionScope.user.nickName}  님</div>
 					<div class="header-b3">
 						<div class="header-c">

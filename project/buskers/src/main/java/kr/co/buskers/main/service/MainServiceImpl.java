@@ -88,6 +88,11 @@ public class MainServiceImpl implements MainService {
 		ArtistShow artistShow = mapper.selectMarker(showNo);
 		return artistShow;
 	}
+	
+	public ArtistShow markerImage(int showNo) {
+		ArtistShow artistShow = mapper.selectMarker(showNo);
+		return artistShow;
+	}
 
 	@Override
 	public List<SearchBoard> mainSearch(SearchPage searchPage) {
