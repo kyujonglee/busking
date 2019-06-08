@@ -127,14 +127,12 @@ function pad(time) {
 }
 
 $("#play").click(function() {
-  console.log("click");
   if (audio.paused) {
     whenPaused();
     const play = audio.play();
     if (play !== undefined) {
       play
         .then(() => {
-          console.log("shit");
           whenPaused();
         })
         .catch(error => {});
@@ -242,9 +240,7 @@ $(".busker-audio__column:eq(1) svg:first-child").click(() => {
   for (let idx = 0; idx < list.length; idx++) {
     if (list[idx].classList.contains("audio-menu__selected")) {
       const previousElement = list[idx].previousElementSibling;
-      console.log(previousElement);
       if (previousElement) {
-        console.log("정상실행");
         previousElement.getElementsByClassName("audio-menu__music")[0].click();
       } else {
         list[list.length - 1]
@@ -260,7 +256,6 @@ $(".busker-audio__column:eq(1) svg:last-child").click(() => {
   for (let idx = 0; idx < list.length; idx++) {
     if (list[idx].classList.contains("audio-menu__selected")) {
       const nextElement = list[idx].nextElementSibling;
-      console.log(nextElement);
       if (nextElement) {
         nextElement.getElementsByClassName("audio-menu__music")[0].click();
       } else {
@@ -273,7 +268,6 @@ $(".busker-audio__column:eq(1) svg:last-child").click(() => {
 });
 
 $(".audio-menu__content-column .audio-menu__submenu i").click(function() {
-  console.log("i 눌림");
   $(this)
     .parent()
     .parent()

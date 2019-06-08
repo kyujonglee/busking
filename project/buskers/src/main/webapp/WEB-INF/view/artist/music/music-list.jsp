@@ -6,6 +6,8 @@ uri="http://java.sun.com/jsp/jstl/fmt"%>
   rel="stylesheet"
   href="<c:url value='/resources/css/artist/music/music.css' />"
 />
+<link rel="stylesheet" href="<c:url value='/resources/css/common/sweetalert2.min.css'/>" />
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
 <section class="busker-music">
   <div class="busker-music__wrapper"></div>
   <header class="busker-show__header">
@@ -108,7 +110,7 @@ uri="http://java.sun.com/jsp/jstl/fmt"%>
             </div>
           </div>
 <!--           <input type="hidden" name="buskerName" value="" /> -->
-<!--           <input type="hidden" name="buskerNo" value="" /> -->
+          <input type="hidden" name="buskerNo" value="1" />
           <div class="busker-music__form-row">
             <button type="button" class="busker-music__btn" onclick="insert(1);">등록</button>
           </div>
@@ -180,6 +182,8 @@ $(document).ready(() => {
           .find(".busker-music__list-item-hidden")
           .fadeToggle();
       });
+      
+      // 노래 리스트에서 삭제 눌렀을 때에 이벤트 설정
       $(".busker-music__hidden-item a:last-child").click(function(){
         const fileNo = $(this).parent().attr('value');
         console.log("fileNo ",fileNo);
@@ -189,6 +193,8 @@ $(document).ready(() => {
         })
         .done(()=>{
         	console.log("delete");
+        	
+        	// sidebar count 값 수정!
         	$.ajax({
 				url : "<c:url value='/artist/main/main-ajax.do'/>",
 				dateType : "json",
@@ -200,19 +206,79 @@ $(document).ready(() => {
 	        musicList(buskerNo);
         });
       });
+      
+      // 노래 리스트에서 수정 눌렀을 때의 이벤트 설정
+      $(".busker-music__hidden-item a:first-child").click(function(){
+    	  const fileNo = $(this).parent().attr('value');
+    	  // 등록버튼을 없애고 수정 버튼이 생기게함!
+    	  $(".busker-music__form-row:last-child").html(`
+    			<input type="hidden" name="fileNo" value=""/>
+  	            <button type="button" class="busker-music__btn" onclick="update(1);">수정</button>
+    	  `);
+    	  $(".busker-music__form-row:last-child input[name='fileNo']").val(fileNo);
+    	  // 기존의 값들을 가져와야함!
+    	  $.ajax({
+    		  url : "<c:url value='/artist/music/music-item-ajax.do'/>",
+    		  dataType : "json",
+    		  data : "fileNo="+fileNo
+    	  })
+    	  .done((musicFile)=>{
+    		  $("#title").val(musicFile.title);
+    		  $("#writer").val(musicFile.writer);
+    		  $("#time").val(musicFile.time);
+    	  })
+    	  
+       });
+      
+      
     });
   }
 
   
+const update = buskerNo => {
+	const formData = new FormData(document.getElementById("musicForm"));
+    console.log(formData);
+    
+    const title = $("#title").val();
+    const writer = $("#writer").val();
+    const time = $("#time").val();
+    const attach = $("#attach").val();
+    
+    // 유효성 검사!
+    if (isEmpty(title, "노래제목을 입력해주세요"))return;
+    if (isEmpty(writer, "아티스트를 입력해주세요"))return;
+    if (isEmpty(time, "연주시간을 입력해주세요"))return;
+    if (isEmpty(attach, "파일을 선택해주세요"))return;
+    
+    $.ajax({
+      url : "<c:url value='/file/music-update-ajax.do'/>",
+      type : "post",
+      data : formData,
+      contentType : false,
+      processData : false
+    })
+    .done(()=>{
+    	console.log("update");
+    	
+    	$(".busker-music__form-row:last-child").html(`
+	        <button type="button" class="busker-music__btn" onclick="insert(1);">등록</button>
+    	`);
+    	$("#title").val("");
+      	$("#writer").val("");
+      	$("#time").val("");
+        $("#attach").val("");
+        musicList(buskerNo);
+    });
+    
+};
   
-function insert(buskerNo){
+  
+const insert = buskerNo => {
   const formData = new FormData(document.getElementById("musicForm"));
   const title = $("#title").val();
   const writer = $("#writer").val();
   const time = $("#time").val();
   const attach = $("#attach").val();
-  
-  console.log(title, writer, time, attach);
   
   if (isEmpty(title, "노래제목을 입력해주세요"))return;
   if (isEmpty(writer, "아티스트를 입력해주세요"))return;
@@ -220,7 +286,7 @@ function insert(buskerNo){
   if (isEmpty(attach, "파일을 선택해주세요"))return;
   
   $.ajax({
-    url : "<c:url value="/file/music-upload.do" />",
+    url : "<c:url value="/file/music-insert.do" />",
     type : "post",
     data : formData,
     contentType : false,
@@ -277,13 +343,11 @@ function init() {
 	  let check_file_type = ['mp3','wax','wma','m4a'];
 
 	  if(check_file_type.indexOf(file_type) == -1){
-	  	   alert('오디오 파일만 선택할 수 있습니다.');
+	  	   alertInfo('오디오 파일만 선택할 수 있습니다.');	
 		   const parent_Obj=obj.parentNode
 		   const node=parent_Obj.replaceChild(obj.cloneNode(true),obj);
-		   alert("return false");
 		   return false;
 	  }
-	  alert("return shit");
   }
   
   $(document).ready(function(){

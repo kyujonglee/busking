@@ -104,6 +104,7 @@
 
 <script src="<c:url value='/resources/js/artist/board/forecast.js' />"></script>
 <script src="<c:url value='/resources/js/artist/board/map.js' />"></script>
+<script src="<c:url value='/resources/js/artist/board/enroll.js' />"></script>
 <script>
  	  $(document).ready(function(){
         $(".busker-side__info-btn i").trigger("click");
