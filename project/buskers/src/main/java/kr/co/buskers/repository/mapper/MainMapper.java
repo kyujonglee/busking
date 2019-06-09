@@ -3,6 +3,7 @@ package kr.co.buskers.repository.mapper;
 import java.util.List;
 
 import kr.co.buskers.repository.domain.ArtistShow;
+import kr.co.buskers.repository.domain.Busker;
 import kr.co.buskers.repository.domain.SearchBoard;
 import kr.co.buskers.repository.domain.SearchPage;
 
@@ -13,6 +14,12 @@ public interface MainMapper {
 	List<ArtistShow> selectArtistShowDetail(ArtistShow artistShow);
 	List<ArtistShow> selectArtistShowDetailByDate(ArtistShow artistShow);
 	ArtistShow selectMarker(int showNo);
+	List<Busker> selectArtistByGenre1();
+	List<Busker> selectArtistByGenre2();
+	List<Busker> selectArtistByGenre3();
+	List<Busker> selectArtistByGenre4();
+	List<Busker> selectArtistByGenre5();
+	List<Busker> selectArtistByGenre6();
 	
 	List<SearchBoard> selectSearchBoard(SearchPage searchPage);
 	int selectCountSearchBoard(SearchPage searchPage);

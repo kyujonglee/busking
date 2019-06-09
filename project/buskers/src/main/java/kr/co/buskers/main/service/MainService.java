@@ -2,6 +2,7 @@ package kr.co.buskers.main.service;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import kr.co.buskers.repository.domain.ArtistShow;
 import kr.co.buskers.repository.domain.SearchBoard;
@@ -15,4 +16,5 @@ public interface MainService {
 	public ArtistShow markerImage(int showNo);
 	public List<SearchBoard> mainSearch(SearchPage searchPage);
 	HashMap<String, Object> BoardListSearch(SearchPage searchPage);
+	public Map<String, Object> selectArtistByGenre();
 }

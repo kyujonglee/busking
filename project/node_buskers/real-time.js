@@ -11,9 +11,14 @@ let profile = [];
 io.on("connection", function (socket) {
     console.log("메인에 사용자 접속..");
 
-    socket.on("login", function (nickname) {
-        all_members[nickname] = socket.id;
+    socket.on("login", function (nickName) {
+        all_members[nickName] = socket.id;
         chat.emit("login", Object.keys(all_members));
+    });
+
+    socket.on("currentUsers", function () {
+        io.emit("currentUsers", Object.keys(all_members).length);
+        console.log(Object.keys(all_members));
     });
 
     socket.on("msg", function (data) {
@@ -24,6 +29,15 @@ io.on("connection", function (socket) {
                 title: data.title
             }
         );
+    });
+
+    socket.on("disconnect", function () {
+		for (let i = 0; i < Object.keys(all_members).length; i++) {
+            if (all_members[Object.keys(all_members)[i]] == socket.id) {
+                delete all_members[Object.keys(all_members)[i]];
+                io.emit("currentUsers", Object.keys(all_members).length);
+            }
+        }
     });
 });
 
@@ -45,7 +59,7 @@ chat.on("connection", function (socket) {
         
         let profileFlag = true;
         for (let i = 0; i < profile.length; i++) {
-            if (profile[i].nickName === data.nickName) profileFlag = false;
+            if (profile[i].nickName == data.nickName) profileFlag = false;
         }
         if (profileFlag) profile.push(data);
         chat.emit("join", profile);
