@@ -33,6 +33,12 @@ public class ArtistMusicController {
 		return service.selectMusic(buskerNo);
 	}
 	
+	@RequestMapping("music-item-ajax.do")
+	@ResponseBody
+	public MusicFile musicItem(int fileNo) {
+		return service.selectMusicByFileNo(fileNo);
+	}
+	
 	@RequestMapping("music-delete-ajax.do")
 	@ResponseBody
 	public void deleteAjax(int fileNo) {

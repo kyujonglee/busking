@@ -49,16 +49,32 @@
 		 where busker_no = #{buskerNo}
 	</select>
 	
+	<select id="selectMusicByFileNo" parameterType="int" resultType="musicFile">
+		select *
+		  from tb_music_file
+		 where file_no = #{fileNo}
+	</select>
+	
 	<insert id="insertMusic" parameterType="musicFile">
 		insert into tb_music_file(name, title, writer, time, sysname, path, busker_no)
-		values(#{name}, #{title}, #{writer}, #{time}, #{sysname}, #{path}, 1 )
+		values(#{name}, #{title}, #{writer}, #{time}, #{sysname}, #{path}, #{buskerNo} )
 	</insert>
+	
+	<update id="updateMusic" parameterType="musicFile">
+		update tb_music_file
+		   set title = #{title},
+		       writer = #{writer},
+		       time = #{time},
+		       path = #{path},
+		       sysname = #{sysname},
+		       name = #{name}
+		 where file_no = #{fileNo}
+	</update>
 	
 	<delete id="deleteMusicByFileNo" parameterType="int">
 		delete
 		  from tb_music_file
 		 where file_no = #{fileNo}
 	</delete>
-	
 	
 </mapper>

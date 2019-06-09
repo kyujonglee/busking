@@ -79,7 +79,7 @@
 						</div>
 					</div>
 					<div class="busker-show-detail__item">
-						<a href="updateForm.do?showNo=${show.showNo}">
+						<a onclick="update(${show.showNo},'<fmt:formatDate value="${show.enrollDate}" pattern="yyyy-MM-dd HH:mm" type="both" />' );" >
 							<button type="button" class="busker-show-update__btn">수정</button>
 						</a>
 						<a href="delete.do?showNo=${show.showNo}">
@@ -105,5 +105,13 @@ function init() {
   const lon = '<c:out value="${show.lon}"/>';
   mapInit(lat, lon);
 }
+
+const update = (showNo, enrollDate) => {
+	  if(new Date() > new Date(enrollDate)){
+		  alert("현재 날짜 이전의 공연날짜는 수정할 수 없습니다.");
+	  }else {
+		  location.href = `updateForm.do?showNo=` + showNo;
+	  }
+};
 init();
 </script>

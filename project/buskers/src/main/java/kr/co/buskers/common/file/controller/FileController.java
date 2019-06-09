@@ -112,10 +112,15 @@ public class FileController {
 		out.close();
 	}
 	
-	@RequestMapping("music-upload.do")
+	@RequestMapping("music-insert.do")
 	@ResponseBody
 	public void uploadMusic(MusicFile file) throws Exception{
 		service.insertMusic(file);
-//		return "redirect:/artist/music/music-list.do?buskerNo=1";
+	}
+	
+	@RequestMapping("music-update-ajax.do")
+	@ResponseBody
+	public void updateAjax(MusicFile musicFile) throws Exception {
+		service.updateMusicByFileNo(musicFile);
 	}
 }
