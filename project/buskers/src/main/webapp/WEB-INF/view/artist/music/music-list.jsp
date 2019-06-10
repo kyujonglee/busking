@@ -110,9 +110,9 @@ uri="http://java.sun.com/jsp/jstl/fmt"%>
             </div>
           </div>
 <!--           <input type="hidden" name="buskerName" value="" /> -->
-          <input type="hidden" name="buskerNo" value="1" />
+          <input type="hidden" name="buskerNo" value="${buskerNo}" />
           <div class="busker-music__form-row">
-            <button type="button" class="busker-music__btn" onclick="insert(1);">등록</button>
+            <button type="button" class="busker-music__btn" onclick="insert(${buskerNo});">등록</button>
           </div>
         </form>
       </div>
@@ -198,7 +198,7 @@ $(document).ready(() => {
         	$.ajax({
 				url : "<c:url value='/artist/main/main-ajax.do'/>",
 				dateType : "json",
-				data : "buskerNo="+ 1
+				data : "buskerNo="+ ${buskerNo}
 			}).done((map) => {
 				const musicCount = map.musicCount;
 				$("#musicCount").text(musicCount);
@@ -213,7 +213,7 @@ $(document).ready(() => {
     	  // 등록버튼을 없애고 수정 버튼이 생기게함!
     	  $(".busker-music__form-row:last-child").html(`
     			<input type="hidden" name="fileNo" value=""/>
-  	            <button type="button" class="busker-music__btn" onclick="update(1);">수정</button>
+  	            <button type="button" class="busker-music__btn" onclick="update(${buskerNo});">수정</button>
     	  `);
     	  $(".busker-music__form-row:last-child input[name='fileNo']").val(fileNo);
     	  // 기존의 값들을 가져와야함!
@@ -261,7 +261,7 @@ const update = buskerNo => {
     	console.log("update");
     	
     	$(".busker-music__form-row:last-child").html(`
-	        <button type="button" class="busker-music__btn" onclick="insert(1);">등록</button>
+	        <button type="button" class="busker-music__btn" onclick="insert(${buskerNo});">등록</button>
     	`);
     	$("#title").val("");
       	$("#writer").val("");
@@ -302,7 +302,7 @@ const insert = buskerNo => {
   	$.ajax({
 		url : "<c:url value='/artist/main/main-ajax.do'/>",
 		dateType : "json",
-		data : "buskerNo="+ 1
+		data : "buskerNo="+ ${buskerNo}
 	}).done((map) => {
 		const musicCount = map.musicCount;
 		$("#musicCount").text(musicCount);
@@ -311,7 +311,7 @@ const insert = buskerNo => {
 }
 
 function init() {
-  musicList(1);
+  musicList(${buskerNo});
 }
   init();
   
