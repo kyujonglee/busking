@@ -50,8 +50,8 @@
 	</div>
 </aside>
 <script src="http://${serverip}:10001/socket.io/socket.io.js"></script>
-<script src="<c:url value='/resources/js/jquery-3.4.1.min.js'/>"></script> 
-<script src="http://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<%-- <script src="<c:url value='/resources/js/jquery-3.4.1.min.js'/>"></script>  --%>
+<!-- <script src="http://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> -->
 
 <script>
 	

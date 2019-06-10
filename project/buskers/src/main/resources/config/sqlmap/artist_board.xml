@@ -30,9 +30,10 @@
 	</select>
 	
 	
-	<select id="selectArtistShow" resultMap="artistShowMap">
+	<select id="selectArtistShow" parameterType="int" resultMap="artistShowMap">
 		select *
 		  from tb_busker_show
+		 where busker_no = #{buskerNo}
 		 order by enroll_date desc
 	</select>
 	
@@ -42,10 +43,11 @@
 		 where show_no = #{showNo}
 	</select>
 	
-	<select id="countArtistCurrentShow" resultType="int">
+	<select id="countArtistCurrentShow" parameterType="int" resultType="int">
 		select count(*)
 		  from tb_busker_show
 		 where enroll_date > now()
+		   and busker_no = #{buskerNo}
 	</select>
 	
 	<select id="selectMainArtistShow" parameterType="artistShow" resultMap="artistShowMap">
@@ -93,6 +95,35 @@
 		  from tb_busker_show
 		 where show_no = #{showNo}
 	</delete>
+	
+	
+	<!-- 소셜 url 링크저장 -->
+	<insert id="insertSocialUrl" parameterType="socialUrl">
+	    insert into tb_social_url
+	    (busker_no,facebook_url,instargram_url,youtube_url)
+	    values (2,#{faceBookUrl},#{instargramUrl},#{youTubeUrl})
+	</insert>
+	
+	<!-- 소셜 인서트 테이블 확인 -->
+	<select id="countSocialUrl" parameterType="socialUrl" resultType="int">
+		select count(*)
+		  from tb_social_url
+		 where busker_no = #{buskerNo}
+	</select>
+	
+	<update id="updateSocialUrl" parameterType="socialUrl">
+		update tb_social_url
+           set facebook_url=#{faceBookUrl},
+               instargram_url=#{instargramUrl},
+               youtube_url=#{youTubeUrl}
+         where busker_no=#{buskerNo}
+	</update>
+	
+	<select id="selectSocialUrl" parameterType="int" resultType="socialUrl" >
+		select *
+  	      from tb_social_url
+         where busker_no = #{buskerNo}
+	</select>
 </mapper>
 
 

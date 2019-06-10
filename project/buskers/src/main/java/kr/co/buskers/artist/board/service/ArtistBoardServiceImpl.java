@@ -30,8 +30,8 @@ public class ArtistBoardServiceImpl implements ArtistBoardService {
 	}
 	
 	@Override
-	public List<ArtistShow> selectArtistShow(){
-		return mapper.selectArtistShow();
+	public List<ArtistShow> selectArtistShow(int buskerNo){
+		return mapper.selectArtistShow(buskerNo);
 	}
 	
 	@Override

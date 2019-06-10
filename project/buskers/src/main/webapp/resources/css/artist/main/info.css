@@ -23,3 +23,17 @@
     padding : 10px 0px;
     line-height: 20px;
 }
+.input_form{
+	width:100%;
+    background-color : #1D1D1D;
+    border-style:none;
+}
+.input_form_go{
+    background-color : white;
+    border-style:black;
+	
+}
+#input_form_intro{
+	resize:none;
+	height:150px;
+}

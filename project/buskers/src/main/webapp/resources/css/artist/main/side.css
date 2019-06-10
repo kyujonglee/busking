@@ -203,3 +203,19 @@
 .busker-side__logout span:hover {
     text-decoration: underline;
 }
+
+.busker__profile-header-edit-button{
+    text-decoration: underline;
+    font-size:15px;
+    border-style:none;
+    background-color:transparent;
+}
+.modal_title{
+	font-size:20px;
+	font-weight:bold;
+}
+.control-label{
+	margin-bottom:10px;
+	text-align:left;
+	font-weight:bold;
+}

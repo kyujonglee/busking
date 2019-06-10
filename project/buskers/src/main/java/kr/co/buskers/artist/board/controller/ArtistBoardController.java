@@ -19,20 +19,23 @@ public class ArtistBoardController {
 	private ArtistBoardService service;
 	
 	@RequestMapping("enrollForm.do")
-	public void enrollForm(Model model) {
+	public void enrollForm(Model model, int buskerNo) {
 		model.addAttribute("genres",service.selectGenre());
+		model.addAttribute("buskerNo",buskerNo);
 	}
 	
 	@RequestMapping("enroll.do")
-	public String insert(ArtistShow artistShow) {
+	public String insert(ArtistShow artistShow, int buskerNo, Model model) {
 		service.insertArtistShow(artistShow);
+		model.addAttribute("buskerNo",buskerNo);
 		return "redirect:/artist/board/list.do";
 	}
 	
 	@RequestMapping("list-ajax.do")
 	@ResponseBody
-	public List<ArtistShow> listAjax(){
-		return service.selectArtistShow();
+	public List<ArtistShow> listAjax(int buskerNo){
+		System.out.println("buskerNo : "+buskerNo);
+		return service.selectArtistShow(buskerNo);
 	}
 	
 	@RequestMapping("update-ajax.do")
@@ -42,27 +45,36 @@ public class ArtistBoardController {
 	}
 	
 	@RequestMapping("list.do")
-	public void list(){}
+	public void list(int buskerNo, Model model){
+		model.addAttribute("buskerNo",buskerNo);
+	}
 	
 	@RequestMapping("detail.do")
-	public void detail(int showNo,Model model) {
+	public void detail(int showNo,Model model, int buskerNo) {
 		model.addAttribute("show",service.selectArtistShowByNo(showNo));
+		model.addAttribute("buskerNo",buskerNo);
 	}
 	
 	@RequestMapping("updateForm.do")
-	public void updateForm(int showNo, Model model) {
+	public void updateForm(int showNo, Model model,int buskerNo) {
 		model.addAttribute("show",service.selectArtistShowByNo(showNo));
+		model.addAttribute("buskerNo",buskerNo);
 	}
 	
 	@RequestMapping("update.do")
-	public String update(ArtistShow artistShow) {
+	public String update(ArtistShow artistShow, int buskerNo) {
 		service.updateArtistShowByNo(artistShow);
-		return "redirect:/artist/board/detail.do?showNo="+artistShow.getShowNo();
+		return "redirect:/artist/board/detail.do?showNo="+artistShow.getShowNo()+"&buskerNo="+buskerNo;
 	}
 	
 	@RequestMapping("delete.do")
-	public String delete(int showNo) {
+	public String delete(int showNo,int buskerNo) {
 		service.deleteArtistShowByNo(showNo);
-		return "redirect:/artist/board/list.do";
+		return "redirect:/artist/board/list.do?buskerNo="+buskerNo;
+	}
+	
+	@RequestMapping("photo.do")
+	public void photo() {
+		
 	}
 }

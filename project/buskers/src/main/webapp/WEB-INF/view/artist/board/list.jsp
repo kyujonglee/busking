@@ -17,5 +17,9 @@
 	<section class="busker-show-list__main">
 	</section>
 </section>
+<script>
+	const buskerNo = ${buskerNo};
+	console.log(buskerNo);
+</script>
 <script src="<c:url value='/resources/js/artist/board/forecast.js' />"></script>
 <script src="<c:url value='/resources/js/artist/board/list.js' />"></script>
