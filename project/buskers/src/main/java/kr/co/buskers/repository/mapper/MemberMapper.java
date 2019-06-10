@@ -1,6 +1,7 @@
 package kr.co.buskers.repository.mapper;
 
 import kr.co.buskers.repository.domain.Busker;
+import kr.co.buskers.repository.domain.BuskerGenre;
 import kr.co.buskers.repository.domain.Follow;
 import kr.co.buskers.repository.domain.Member;
 
@@ -53,6 +54,8 @@ public interface MemberMapper {
 	// isBusker 변경
 	public void changeBuskerType(Member member);
 	
+	// 버스커 장르 등록
+	public void insertBuskerGenre(BuskerGenre buskerGenre);
 	
 	//팔로우 테이블 있는지
 	public int confirmFollow(Follow follow);
@@ -71,5 +74,7 @@ public interface MemberMapper {
 	
 	//버스커 인트로
 	public void updateIntro(Busker busker);
+
+	
 	
 }

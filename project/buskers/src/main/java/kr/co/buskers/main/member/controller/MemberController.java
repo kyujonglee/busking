@@ -21,6 +21,7 @@ import kr.co.buskers.main.member.util.Email;
 import kr.co.buskers.main.member.util.EmailSender;
 import kr.co.buskers.main.socialmember.controller.KakaoApi;
 import kr.co.buskers.repository.domain.Busker;
+import kr.co.buskers.repository.domain.BuskerGenre;
 import kr.co.buskers.repository.domain.Member;
 
 @Controller
@@ -293,6 +294,11 @@ public class MemberController {
 		service.signupBusker(busker);
 		member.setIsBusker("y");
 		service.changeBuskerType(member);
+		
+		BuskerGenre buskerGenre = new BuskerGenre();
+		buskerGenre.setBuskerNo(busker.getBuskerNo());
+		buskerGenre.setBuskerCheckbox(busker.getBuskerCheckbox());
+		service.insertBuskerGenre(buskerGenre);
 		
 		session.removeAttribute("user");
 		Member user = service.selectMember(member.getMemberNo());

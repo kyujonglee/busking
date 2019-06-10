@@ -1,12 +1,30 @@
 package kr.co.buskers.repository.domain;
 
+import java.util.List;
+
 public class Busker {
 
 	private int buskerNo;
 	private int memberNo;
 	private String phone;
 	private String activityName;
-	private String name;
+	private List<BuskerGenre> buskerGenreList;
+	private List<String> buskerCheckbox;
+	
+	
+	
+	public List<BuskerGenre> getBuskerGenreList() {
+		return buskerGenreList;
+	}
+	public void setBuskerGenreList(List<BuskerGenre> buskerGenreList) {
+		this.buskerGenreList = buskerGenreList;
+	}
+	public List<String> getBuskerCheckbox() {
+		return buskerCheckbox;
+	}
+	public void setBuskerCheckbox(List<String> buskerCheckbox) {
+		this.buskerCheckbox = buskerCheckbox;
+	}
 	public String getIntro() {
 		return intro;
 	}
@@ -29,12 +47,6 @@ public class Busker {
 	private String time;
 	private String location;
 	
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
 	public String getPhone() {
 		return phone;
 	}
