@@ -65,7 +65,8 @@ public class MainController {
 	
 	@RequestMapping("/search/search.do")
 	public void mainSearch(SearchPage searchPage,Model model) {
-		model.addAttribute("list",service.mainSearch(searchPage));
+		model.addAttribute("list",service.mainBoardSearch(searchPage));
+		model.addAttribute("busker",service.mainBuskerSearch(searchPage));
 		model.addAttribute("input",searchPage.getInput());
 	}
 	

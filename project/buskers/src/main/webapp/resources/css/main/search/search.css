@@ -8,11 +8,12 @@
     width:1000px;
 }
 .search__artist__wrapper{
-	border-top: 1.5px solid var(--color-orange);
+	
 }
 .search__result{
     padding : 30px;
     font-size : 1.3em;
+    border-bottom: 1.5px solid var(--color-orange);
 }
 .artist__search__title{
     font-weight : bold;
@@ -32,7 +33,7 @@
     height : 100%;
 }
 .artist__search__explain{
-    padding : 20px 35px;
+    padding : 10px 35px;
 }
 .artist__search__explain div{
     margin-bottom : 20px;
@@ -153,4 +154,14 @@ b{
 
 .board__date{
 	float:right;
+}
+.busker_info{
+	font-weight:bold;
+	font-size:1.1em;
+}
+.busker_name{
+	font-size:1.3em;
+}
+.busker_info_db{
+	font-weight:normal;
 }
