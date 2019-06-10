@@ -1,0 +1,23 @@
+.header_background {
+  display: none;
+}
+.info {
+  font-family: "Nanum Gothic", sans-serif;
+  height: 100vh;
+  background-color: var(--color-info-background);
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 3fr 4fr;
+  grid-template-areas: "busker busker" "song video";
+  padding: 0px 80px;
+}
+.info .info-busker {
+  padding-top: 80px;
+  grid-area: busker;
+}
+.info .info-song {
+  grid-area: song;
+}
+.info .info-video {
+  grid-area: video;
+}

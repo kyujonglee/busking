@@ -25,9 +25,11 @@ public class ArtistMainController {
 	@Autowired
 	private ArtistMainService mainService;
 	
+
 	@RequestMapping("main.do")
 	public void main(Model model,HttpSession session,int buskerNo) {
-		model.addAttribute("audioList",mainService.selectMusicByBuskerNo(1));
+		System.out.println("buskerNo : "+buskerNo);
+		model.addAttribute("audioList",mainService.selectMusicByBuskerNo(buskerNo));
 //		model.addAttribute("audioList",mainService.selectMusicByBuskerNo(buskerNo));
 		
 		

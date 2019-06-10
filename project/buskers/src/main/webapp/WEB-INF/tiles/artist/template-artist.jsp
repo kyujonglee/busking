@@ -23,6 +23,8 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="<c:url value='/resources/css/artist/main/artist.css' />" />
 	
+    <link rel="stylesheet" href="<c:url value='/resources/css/artist/main/artist.css' />" />
+	
 	<!-- slide -->
 	<link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/artist/slide/custom.css'/>" />
 	<link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/artist/slide/slicebox.css'/>" />
@@ -46,5 +48,6 @@
       </section>
     </div>
     <script src="<c:url value='/resources/js/artist/main/artist.js' />"></script>
+    
   </body>
 </html>

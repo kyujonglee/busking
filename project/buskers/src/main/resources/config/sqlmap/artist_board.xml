@@ -30,9 +30,10 @@
 	</select>
 	
 	
-	<select id="selectArtistShow" resultMap="artistShowMap">
+	<select id="selectArtistShow" parameterType="int" resultMap="artistShowMap">
 		select *
 		  from tb_busker_show
+		 where busker_no = #{buskerNo}
 		 order by enroll_date desc
 	</select>
 	
@@ -42,10 +43,11 @@
 		 where show_no = #{showNo}
 	</select>
 	
-	<select id="countArtistCurrentShow" resultType="int">
+	<select id="countArtistCurrentShow" parameterType="int" resultType="int">
 		select count(*)
 		  from tb_busker_show
 		 where enroll_date > now()
+		   and busker_no = #{buskerNo}
 	</select>
 	
 	<select id="selectMainArtistShow" parameterType="artistShow" resultMap="artistShowMap">

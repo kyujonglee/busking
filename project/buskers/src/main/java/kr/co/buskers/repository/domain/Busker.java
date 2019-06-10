@@ -1,15 +1,21 @@
 package kr.co.buskers.repository.domain;
 
+import java.util.List;
+
 public class Busker {
 
 	private int buskerNo;
 	private int memberNo;
 	private String phone;
 	private String activityName;
-	private String name;
+	private List<BuskerGenre> buskerGenreList;
+	private List<String> buskerCheckbox;
 	private String profileImg;
 	private String profileImgPath;
 	private String id;
+	private String intro;
+	private String time;
+	private String location;
 	public String getId() {
 		return id;
 	}
@@ -40,11 +46,17 @@ public class Busker {
 	public void setActivityName(String activityName) {
 		this.activityName = activityName;
 	}
-	public String getName() {
-		return name;
+	public List<BuskerGenre> getBuskerGenreList() {
+		return buskerGenreList;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setBuskerGenreList(List<BuskerGenre> buskerGenreList) {
+		this.buskerGenreList = buskerGenreList;
+	}
+	public List<String> getBuskerCheckbox() {
+		return buskerCheckbox;
+	}
+	public void setBuskerCheckbox(List<String> buskerCheckbox) {
+		this.buskerCheckbox = buskerCheckbox;
 	}
 	public String getProfileImg() {
 		return profileImg;
@@ -76,9 +88,6 @@ public class Busker {
 	public void setLocation(String location) {
 		this.location = location;
 	}
-	private String intro;
-	private String time;
-	private String location;
-
+	
 	
 }

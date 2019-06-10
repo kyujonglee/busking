@@ -7,6 +7,7 @@ $(document).ready(() => {
 	  type : "POST",
 	  url : "/buskers/artist/board/list-ajax.do",
 	  dateType : "json",
+	  data : "buskerNo="+buskerNo,
 	  async: true
   })
   .done((list)=>{
@@ -27,7 +28,7 @@ $(document).ready(() => {
 		  $(".busker-show-list__main").append(`
     			  <div class="busker-show-list__item" id="busker-show${show.showNo}">
     				<div class="busker-show-list__item-title">
-					  <a href="detail.do?showNo=${show.showNo}" class="busker-show-list__detail-link">
+					  <a href="detail.do?showNo=${show.showNo}&buskerNo=`+buskerNo+ `" class="busker-show-list__detail-link">
 	    					<span>${show.title}</span>
 						  ${end}
 					  </a>
@@ -128,7 +129,7 @@ $(document).ready(() => {
 	  if(new Date() > enrollDate){
 		  alert("현재 날짜 이전의 공연날짜는 수정할 수 없습니다.");
 	  }else {
-		  location.href = `updateForm.do?showNo=${showNo}`;
+		  location.href = `updateForm.do?showNo=${showNo}&buskerNo=`+buskerNo;
 	  }
   };
   

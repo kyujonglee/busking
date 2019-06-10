@@ -7,7 +7,7 @@ import kr.co.buskers.repository.domain.Genre;
 
 public interface ArtistBoardService {
 	
-	List<ArtistShow> selectArtistShow();
+	List<ArtistShow> selectArtistShow(int buskerNo);
 	ArtistShow selectArtistShowByNo(int showNo);
 	List<Genre> selectGenre();
 	
