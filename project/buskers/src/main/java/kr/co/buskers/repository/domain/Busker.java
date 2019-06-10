@@ -7,6 +7,50 @@ public class Busker {
 	private String phone;
 	private String activityName;
 	private String name;
+	private String profileImg;
+	private String profileImgPath;
+	public int getBuskerNo() {
+		return buskerNo;
+	}
+	public void setBuskerNo(int buskerNo) {
+		this.buskerNo = buskerNo;
+	}
+	public int getMemberNo() {
+		return memberNo;
+	}
+	public void setMemberNo(int memberNo) {
+		this.memberNo = memberNo;
+	}
+	public String getPhone() {
+		return phone;
+	}
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+	public String getActivityName() {
+		return activityName;
+	}
+	public void setActivityName(String activityName) {
+		this.activityName = activityName;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getProfileImg() {
+		return profileImg;
+	}
+	public void setProfileImg(String profileImg) {
+		this.profileImg = profileImg;
+	}
+	public String getProfileImgPath() {
+		return profileImgPath;
+	}
+	public void setProfileImgPath(String profileImgPath) {
+		this.profileImgPath = profileImgPath;
+	}
 	public String getIntro() {
 		return intro;
 	}
@@ -28,37 +72,6 @@ public class Busker {
 	private String intro;
 	private String time;
 	private String location;
-	
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
-	public String getPhone() {
-		return phone;
-	}
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
-	public int getBuskerNo() {
-		return buskerNo;
-	}
-	public void setBuskerNo(int buskerNo) {
-		this.buskerNo = buskerNo;
-	}
-	public int getMemberNo() {
-		return memberNo;
-	}
-	public void setMemberNo(int memberNo) {
-		this.memberNo = memberNo;
-	}
-	public String getActivityName() {
-		return activityName;
-	}
-	public void setActivityName(String activityName) {
-		this.activityName = activityName;
-	}
-	
+
 	
 }

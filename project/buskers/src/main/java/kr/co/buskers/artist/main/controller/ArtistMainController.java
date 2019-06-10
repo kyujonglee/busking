@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Repository;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.co.buskers.artist.main.service.ArtistMainService;
@@ -24,11 +25,13 @@ public class ArtistMainController {
 	@Autowired
 	private ArtistMainService mainService;
 	
+
 	@RequestMapping("main.do")
 	public void main(Model model,HttpSession session,int buskerNo) {
 		System.out.println("buskerNo : "+buskerNo);
 		model.addAttribute("audioList",mainService.selectMusicByBuskerNo(buskerNo));
-		model.addAttribute("buskerNo",buskerNo);
+//		model.addAttribute("audioList",mainService.selectMusicByBuskerNo(buskerNo));
+		
 		
 		//버스커 no 값을 파라미터로 가져와야함... 1또는 0을 반환함 셋팅해준뒤 화면처리 필요!
 		//세션에서 유저를가져옴
@@ -41,8 +44,10 @@ public class ArtistMainController {
 		
 		//버스커no 파라미터를 받아 url 올려주기
 //		model.addAttribute("socialUrl",mainService.selectSocialUrl(buskerNo));
-		
 	}
+	
+	
+	
 	
 	@RequestMapping("main-ajax.do")
 	@ResponseBody
