@@ -31,6 +31,14 @@
 		 where group_no = #{groupNo}
 	</select>
 	
+	<!-- Music -->
+	
+	<select id="selectMusicLimit" resultType="musicFile">
+		select *
+		  from tb_music_file
+		 limit 10
+	</select>
+	
 	<select id="selectMusic" parameterType="int" resultType="musicFile">
 		select *
 		  from tb_music_file

@@ -19,6 +19,8 @@
   overflow: auto;
   color: var(--color-white);
   grid-gap: 35px;
+  padding-top : 10px;
+  box-sizing: border-box;
 }
 
 .info-busker__profile-wrapper {

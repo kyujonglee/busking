@@ -15,6 +15,7 @@ public class Busker {
 	private String intro;
 	private String time;
 	private String location;
+	private Follow follow;
 	
 	public int getBuskerNo() {
 		return buskerNo;
