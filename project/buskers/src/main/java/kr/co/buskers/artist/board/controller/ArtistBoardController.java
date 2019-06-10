@@ -66,4 +66,9 @@ public class ArtistBoardController {
 		service.deleteArtistShowByNo(showNo);
 		return "redirect:/artist/board/list.do";
 	}
+	
+	@RequestMapping("photo.do")
+	public void photo() {
+		
+	}
 }

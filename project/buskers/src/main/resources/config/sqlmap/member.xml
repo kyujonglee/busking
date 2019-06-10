@@ -126,4 +126,48 @@
 		 where member_no = #{memberNo}
 	</select>
 	
+	<insert id="insertFollow" parameterType="follow">
+		insert into tb_follow(
+			busker_no,member_no
+		)values(
+		 #{buskerNo},#{memberNo}
+		 );
+	</insert>
+	
+	<select id="confirmFollow" parameterType="follow" resultType="int">
+		select count(*)
+		  from tb_follow
+		 where busker_no = #{buskerNo}
+		   and member_no = #{memberNo}
+	</select>
+	
+	<select id="followStatus" parameterType="follow" resultType="String">
+		select follow_status
+		  from tb_follow
+		 where busker_no = #{buskerNo}
+		   and member_no = #{memberNo}
+	</select>
+	
+	<update id="followCancle" parameterType="follow">
+		update tb_follow
+		   set follow_status='n'
+		 where busker_no = #{buskerNo}
+		   and member_no = #{memberNo}
+	</update>
+	
+	<update id="follow" parameterType="follow">
+		update tb_follow
+		   set follow_status='y'
+		 where busker_no = #{buskerNo}
+		   and member_no = #{memberNo}
+	</update>
+	
+	<update id="updateIntro" parameterType="busker">
+		update tb_busker
+	  	   set intro=#{intro},
+	           location=#{location},
+	           time=#{time}
+    	 where busker_no = #{buskerNo}
+	</update>
+	
 </mapper>

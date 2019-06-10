@@ -17,6 +17,19 @@
       integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay"
       crossorigin="anonymous"
     />
+    <!-- 부트스트랩,스위트얼럿 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>	
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+	
+	<!-- slide -->
+	<link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/artist/slide/custom.css'/>" />
+	<link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/artist/slide/slicebox.css'/>" />
+	<link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/artist/slide/demo.css'/>" />
+	<link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/artist/slide/photo.css'/>" />
+	<script type="text/javascript" src="<c:url value='/resources/js/artist/slide/modernizr.custom.46884.js'/>"></script>
+	
     <title>Buskers</title>
   </head>
   <body class="busker-body">

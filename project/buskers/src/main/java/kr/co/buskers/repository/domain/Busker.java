@@ -7,6 +7,27 @@ public class Busker {
 	private String phone;
 	private String activityName;
 	private String name;
+	public String getIntro() {
+		return intro;
+	}
+	public void setIntro(String intro) {
+		this.intro = intro;
+	}
+	public String getTime() {
+		return time;
+	}
+	public void setTime(String time) {
+		this.time = time;
+	}
+	public String getLocation() {
+		return location;
+	}
+	public void setLocation(String location) {
+		this.location = location;
+	}
+	private String intro;
+	private String time;
+	private String location;
 	
 	public String getName() {
 		return name;

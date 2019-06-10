@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>	
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+
 <aside class="busker-side">
 	<section class="busker-side__profile">
 		<header class="busker-side__header">
@@ -14,8 +15,12 @@
 		</header>
 		<article class="busker-side__profile-info">
 			<header class="busker-side__profile-header">
-				<span class="busker__profile-header-edit">Edit</span>
-				<button type="button" class="busker__profile-header-follow">
+				<span class="busker__profile-header-edit">
+					<button class="busker__profile-header-edit-button" data-toggle="modal" data-target="#myModal">
+						Edit
+					</button>
+				</span>
+				<button type="button" class="busker__profile-header-follow" >
 					팔로우 +</button>
 			</header>
 			<div class="busker-side__profile-photo">
@@ -24,10 +29,10 @@
 				<span class="busker-side__profile-name">피아노 치는 이정환</span> <span
 					class="busker-side__profile-id">piano_good</span>
 				<div class="busker-side__profile-social">
-					<i class="fab fa-facebook-square fa-lg facebook"></i> <img
-						src="https://image.freepik.com/free-vector/instagram-icon_1057-2227.jpg"
-						class="instagram" /> <i
-						class="fab fa-youtube fa-lg youtube"></i>
+					<i class="fab fa-facebook-square fa-lg facebook"></i></a> 
+					<img src="https://image.freepik.com/free-vector/instagram-icon_1057-2227.jpg"
+						 class="instagram" /> 
+					<i class="fab fa-youtube fa-lg youtube"></i>
 				</div>
 			</div>
 		</article>
@@ -46,7 +51,7 @@
 				<i class="far fa-images fa-lg"></i>
 			</div>
 			<div class="busker-side__menu-title">
-				사진<span class="busker-side__menu-count">99</span>
+				<a href="<c:url value='/artist/board/photo.do'/>">사진</a><span class="busker-side__menu-count">99</span>
 			</div>
 		</li>
 		<li class="busker-side__menu-item">
@@ -109,6 +114,46 @@
 		<span>logout</span>
 	</section>
 </aside>
+
+<!-- 모달창 -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" 
+   aria-labelledby="myModalLabel" aria-hidden="true">
+   <div class="modal-dialog">
+      <div class="modal-content">
+      
+         <div class="modal-header">
+         	<div class="modal_title">페이스북,인스타,유튜브의 주소를 입력해주세요.</div>
+         </div>
+         
+         <div class="modal-body">
+	       	 <form action="" id="social-Url-Form">
+		         <div class="form-group">
+		         	 <div class="control-label">FaceBook : </div>
+			         <input type="text" class="form-control" id="faceBookUrl" name="faceBookUrl" value="미리들어있는값">
+		         </div>
+		         <div class="form-group">
+		         	 <div class="control-label">Instargram : </div>
+			         <input type="text" class="form-control" id="instargramUrl"  name="instargramUrl">
+		         </div>
+		         <div class="form-group">
+		         	 <div class="control-label">YouTube : </div>
+			         <input type="text" class="form-control" id="youTubeUrl"  name="youTubeUrl">
+		         </div>
+	     	 </form>
+         </div>
+         
+         <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">
+               	닫기
+            </button>
+            <button type="button" class="btn btn-primary" id="myButtons1">
+              	 저장
+            </button>
+         </div>
+      </div> 
+   </div> 
+</div>
+
 <script>
 	$.ajax({
 		url : "<c:url value='/artist/main/main-ajax.do'/>",
@@ -120,4 +165,61 @@
 		$("#showCount").text(showCount);
 		$("#musicCount").text(musicCount);
 	});
+	
+	
+// 	팔로우 기능
+	$(".busker__profile-header-follow").click(function(){
+		if("${sessionScope.user}" == ""){
+			Swal.fire({
+				  title:'로그인이 필요한 기능입니다.',
+				  type:'warning',
+				  timer:2000	
+			});
+		}
+		
+		
+		$.ajax({
+			url : "follow-ajax.do",
+			data : {buskerNo: 1,memberNo:"${sessionScope.user.memberNo}"},
+		}).done(function(result){
+			if(result == 1){
+				Swal.fire({
+					  title:'팔로우 성공',
+					  type:'success',
+					  timer:2000	
+				});
+			}else {
+				Swal.fire({
+					  title:'팔로우 취소',
+					  type:'success',
+					  timer:2000	
+				});
+			}
+		});
+	})
+	
+// Edit
+
+	$("#myButtons1").click(function(){
+	let faceBookUrl = $("#faceBookUrl").val();
+	let youTubeUrl = $("#youTubeUrl").val();
+	let instargramUrl = $("#instargramUrl").val();
+		$.ajax({
+			url : "social-url.do",
+			data : {faceBookUrl:faceBookUrl , youTubeUrl:youTubeUrl, instargramUrl:instargramUrl ,buskerNo:2},
+		}).done(function(result){
+			
+		});
+    	$('#myModal').modal('hide');
+    });
+    
+    $(".facebook").click(function(){
+    	window.location.href = 'http://www.facebook.com';
+    })
+    $(".youtube").click(function(){
+    	window.location.href = 'http://www.youtube.com';
+    })
+    $(".instargram").click(function(){
+    	window.location.href = 'http://www.facebook.com';
+    })
 </script>
