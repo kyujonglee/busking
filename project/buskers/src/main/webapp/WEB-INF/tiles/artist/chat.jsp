@@ -112,9 +112,6 @@
 		
         $(".messages > ul").append(html);
         $(".messages").animate({ scrollTop: $(".messages")[0].scrollHeight }, "fast");
-        $("img").error(function () {
-            $("img").attr("src", "<c:url value='/resources/img/profile.png'/>");
-        });
     });
 	
     chat.on("whisper", function (data) {
@@ -123,7 +120,7 @@
 		html += "<li class='whisper'>";
 		html +=		"<span style='color:" + data.color + ";'><i class='fas fa-circle'></i>" + data.sender + "<b>" + " 님의 귓속말" + "</b>" + "<time>" + data.date + "</time></span>";
 		html +=		"<div>";
-		html +=			'<img src="<c:url value='/resources/img/boyoung.jpg'/>"/>';
+		html +=			'<img src="<c:url value='/file/download.do'/>?path=' + data.image + `" onError="this.src='<c:url value='/resources/img/profile.png' />';"` +'"/>';
 		html +=			"<p>" + data.content + "</p>";
 		html +=		"</div>";
 		html += "</li>";

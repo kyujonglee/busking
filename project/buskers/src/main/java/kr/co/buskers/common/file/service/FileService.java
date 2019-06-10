@@ -14,4 +14,6 @@ public interface FileService {
 	public Map<String, Object> selectFile(int groupNo) throws Exception;
 		
 	void insertMusic(MusicFile musicFile) throws Exception;
+	
+	void updateMusicByFileNo(MusicFile musicFile) throws Exception;
 }

@@ -6,6 +6,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletContext;
 
@@ -107,5 +108,17 @@ public class MainServiceImpl implements MainService {
 		map.put("list",mapper.selectSearchBoard(searchPage));
 		return map;
 	}
+	
+	public Map<String, Object> selectArtistByGenre() {
+		Map<String, Object> map = new HashMap<>();
 
+		map.put("Genre1", mapper.selectArtistByGenre1());
+		map.put("Genre2", mapper.selectArtistByGenre2());
+		map.put("Genre3", mapper.selectArtistByGenre3());
+		map.put("Genre4", mapper.selectArtistByGenre4());
+		map.put("Genre5", mapper.selectArtistByGenre5());
+		map.put("Genre6", mapper.selectArtistByGenre6());
+		
+		return map;
+	}
 }

@@ -23,6 +23,7 @@ $(document).ready(() => {
 		  if(show.genre === null) {
 			  show.genre.name = "";
 		  }
+//		  <a href="updateForm.do?showNo=${show.showNo}">
 		  $(".busker-show-list__main").append(`
     			  <div class="busker-show-list__item" id="busker-show${show.showNo}">
     				<div class="busker-show-list__item-title">
@@ -30,7 +31,7 @@ $(document).ready(() => {
 	    					<span>${show.title}</span>
 						  ${end}
 					  </a>
-					  <a href="updateForm.do?showNo=${show.showNo}">
+				  	  <a onclick="update(${show.showNo},${show.enrollDate});">
 				  		<i class="fas fa-pen"></i>
 				  	  </a>
     				</div>
@@ -122,6 +123,15 @@ $(document).ready(() => {
 	}
   })
   .fail();
+  
+  const update = (showNo, enrollDate) => {
+	  if(new Date() > enrollDate){
+		  alert("현재 날짜 이전의 공연날짜는 수정할 수 없습니다.");
+	  }else {
+		  location.href = `updateForm.do?showNo=${showNo}`;
+	  }
+  };
+  
   
   Date.prototype.format = function(f) {
 	    if (!this.valueOf()) return " ";

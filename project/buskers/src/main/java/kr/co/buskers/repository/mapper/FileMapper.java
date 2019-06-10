@@ -16,8 +16,12 @@ public interface FileMapper {
 	List<MusicFile> selectMusic(int buskerNo);
 	List<MusicFile> selectMusicByBuskerNo(int buskerNo);
 	int countMusic(int buskerNo);
+	MusicFile selectMusicByFileNo(int fileNo);
+	
 	
 	void insertMusic(MusicFile musicFile);
 	
 	void deleteMusicByFileNo(int fileNo);
+	
+	void updateMusic(MusicFile musicFile);
 }

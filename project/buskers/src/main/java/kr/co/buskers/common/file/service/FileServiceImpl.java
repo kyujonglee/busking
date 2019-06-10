@@ -1,7 +1,6 @@
 package kr.co.buskers.common.file.service;
 
 import java.io.File;
-import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -13,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import kr.co.buskers.repository.domain.MusicFile;
+import kr.co.buskers.repository.mapper.BuskerMapper;
 import kr.co.buskers.repository.mapper.FileMapper;
 
 @Service
@@ -20,6 +20,9 @@ public class FileServiceImpl implements FileService {
 	
 	@Autowired
 	private FileMapper mapper;
+	
+	@Autowired
+	private BuskerMapper bMapper;
 	
 	public void deleteFile(int groupNo) throws Exception {
 		
@@ -84,12 +87,18 @@ public class FileServiceImpl implements FileService {
 	
 	@Override
 	public void insertMusic(MusicFile musicFile) throws Exception {
+		musicFile.setPath(musicUpload(musicFile));
+		mapper.insertMusic(musicFile);
+	}
+	
+	@Override
+	public void updateMusicByFileNo(MusicFile musicFile) throws Exception {
+		musicFile.setPath(musicUpload(musicFile));
+		mapper.updateMusic(musicFile);
+	}
+	
+	public String musicUpload(MusicFile musicFile) throws Exception {
 		MultipartFile attach = musicFile.getAttach();
-		
-		// 나중에 지울 것! 자바스크립트로 처리하면 됨!
-		if(attach.isEmpty()) {
-			System.out.println("file이 선택되지 않았습니다.");
-		}
 		
 		System.out.println("사용자가 선택한 파일명 : "+attach.getOriginalFilename());
 		
@@ -97,22 +106,22 @@ public class FileServiceImpl implements FileService {
 		
 		musicFile.setSysname(uuid.toString());
 		musicFile.setName(attach.getOriginalFilename());
-		String path = "C:/bit2019/upload/"+"busker1";
-//		String path = "/Users/kyujong/Documents/bit2019/upload/"+"busker1";
+		
+	    String buskerName = bMapper.selectBuskerByNo(musicFile.getBuskerNo()).getActivityName();
+		
+//		String path = "C:/bit2019/upload/"+"busker1";
+		String path = "/Users/kyujong/Documents/bit2019/upload/"+buskerName;
 //		String path = "/Users/kyujong/Documents/bit2019/upload/"+musicFile.getBuskerName();
 		File file = new File(path);
 		if(!file.exists()) file.mkdirs();
 		
-		path = "C:/bit2019/upload/"+"busker1/"+musicFile.getSysname()+".mp3";
+		path = "/Users/kyujong/Documents/bit2019/upload/"+ buskerName +"/"+musicFile.getSysname()+".mp3";
+//		path = "C:/bit2019/upload/"+"busker1/"+musicFile.getSysname()+".mp3";
 		attach.transferTo(new File(path));
 		
-		path = "/upload/" + "busker1";
+		path = "/upload/" + buskerName;
 //		path = "/upload/" + musicFile.getBuskerName();
 		path = path + "/" +musicFile.getSysname()+".mp3";
-		musicFile.setPath(path);
-		musicFile.setBuskerNo(1); // 로그인한 버스커에 대한 정보를 세션을 통해 받을 것!
-//		musicFile.setBuskerNo(musicFile.getBuskerNo());
-		
-		mapper.insertMusic(musicFile);
+		return path;
 	}
 }

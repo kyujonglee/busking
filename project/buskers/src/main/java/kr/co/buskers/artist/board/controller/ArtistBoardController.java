@@ -25,7 +25,6 @@ public class ArtistBoardController {
 	
 	@RequestMapping("enroll.do")
 	public String insert(ArtistShow artistShow) {
-		System.out.println(artistShow.getGenreNo());
 		service.insertArtistShow(artistShow);
 		return "redirect:/artist/board/list.do";
 	}

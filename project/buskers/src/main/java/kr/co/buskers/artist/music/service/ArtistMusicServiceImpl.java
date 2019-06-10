@@ -19,6 +19,11 @@ public class ArtistMusicServiceImpl implements ArtistMusicService{
 		return mapper.selectMusic(1);
 	}
 	
+	@Override 
+	public MusicFile selectMusicByFileNo(int fileNo) {
+		return mapper.selectMusicByFileNo(fileNo);
+	}
+	
 	@Override
 	public void deleteMusicByFileNo(int fileNo) {
 		mapper.deleteMusicByFileNo(fileNo);

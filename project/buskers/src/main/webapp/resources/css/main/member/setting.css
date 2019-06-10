@@ -38,7 +38,7 @@
 .profile_info {
     width: 20%;
     display: inline-block;
-    height: 400px;
+    height: 100%;
     margin-right: 15px;
     background-color: white;
 }
@@ -98,13 +98,16 @@
 
 .profile_countbox {
 	width: 100%;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
 }
 
 .profile_posts, .profile_comment {
 	text-align: center;
-	width: 48.7%;
-	display: inline-block;
-	background-color: tomato;
+}
+
+.profile_info_sum {
+	text-align: center;
 }
 
 

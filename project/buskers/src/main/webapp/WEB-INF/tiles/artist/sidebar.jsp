@@ -56,7 +56,7 @@
 		</li>
 		<li class="busker-side__menu-item">
 			<div class="busker-side__menu-icon">
-				<i class="far fa-clipboard fa-lg"></i>
+				<i class="fas fa-clipboard fa-lg"></i>
 			</div>
 			<div class="busker-side__menu-title">팬 게시판</div>
 		</li>

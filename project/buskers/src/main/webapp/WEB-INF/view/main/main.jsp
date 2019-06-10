@@ -6,6 +6,7 @@
 <link rel="stylesheet" href="<c:url value='/resources/css/main/main-map.css'/>" />
 <link rel="stylesheet" href="<c:url value='/resources/css/main/main.css'/>" />
 <link rel="stylesheet" href="<c:url value='/resources/css/common/waitMe.css'/>" />
+<link rel="stylesheet" href="<c:url value='/resources/css/main/sidebar.css'/>" />
 <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic|Nanum+Pen+Script&display=swap" rel="stylesheet">
 <link href='https://fonts.googleapis.com/css?family=Tangerine' rel='stylesheet' type='text/css'>        
 <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
@@ -14,11 +15,227 @@
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 <link rel="stylesheet" type="text/css" href="https://npmcdn.com/flatpickr/dist/themes/dark.css">
-<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic|Nanum+Pen+Script&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Lobster&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" />
 <script src="http://d3js.org/d3.v3.min.js"></script>
 <script src="http://d3js.org/topojson.v1.min.js"></script>
     <title>Buskers</title>
+	    <div class="page-wrapper chiller-theme">
+	        <a id="show-sidebar" class="btn btn-sm btn-dark">
+	            <i class="fas fa-bars"></i>
+	        </a>
+	        <nav id="sidebar" class="sidebar-wrapper">
+	            <div class="sidebar-content">
+	                <div class="sidebar-brand">
+	                    <a href="<c:url value='/main/main.do'/>">Buskers</a>
+	                    <div id="close-sidebar">
+	                        <i class="fas fa-times"></i>
+	                    </div>
+	                </div>
+	                <div class="sidebar-header">
+	                    <div class="user-pic">
+	                        <img class="profile_img" src="<c:url value='/file/download.do'/>?path=${sessionScope.user.profileImgPath}${sessionScope.user.profileImg}" onError="this.src='<c:url value='/resources/img/profile.png' />';" />
+	                    </div>
+	                    <div class="user-info">
+	                        <span class="user-name">
+	                            <strong>${sessionScope.user.id}</strong>
+	                        </span>
+	                        <span class="user-role">
+	                        <c:if test="${sessionScope.user eq null}">
+	                        	로그인이 필요합니다.
+	                        </c:if>
+	                        <c:if test="${sessionScope.user ne null}">
+		                        <c:choose>
+									<c:when test = "${sessionScope.user.isAdmin eq 'y'}">
+										Administrator
+									</c:when>
+									<c:when test = "${sessionScope.user.isBusker eq 'y'}">
+										Artist
+									</c:when>
+									<c:when test = "${sessionScope.user.isAgency eq 'y'}">
+										Agency
+									</c:when>
+									<c:otherwise>
+										Member
+									</c:otherwise>
+						        </c:choose>
+					        </c:if>
+							</span>
+	                        <span class="user-status">
+	                            <i class="fa fa-circle"></i>
+	                            <span>Online</span>
+	                        </span>
+	                    </div>
+	                </div>
+	                <!-- sidebar-header  -->
+	                
+	                <div class="sidebar-search">
+	                    <div>
+	                        <div class="input-group">
+		                        <form id="integrated_search" action="<c:url value='/main/search/search.do'/>" />
+		                            <input type="text" name="input" class="form-control search-menu" placeholder="Search...">
+		                            <div class="input-group-append">
+		                                <span class="input-group-text">
+		                                    <i class="fa fa-search" aria-hidden="true"></i>
+		                                </span>
+		                            </div>
+	                            </form>
+	                        </div>
+	                    </div>
+	                </div>
+	                <!-- sidebar-search  -->
+	                <div class="sidebar-menu">
+	                    <ul>
+	                        <li class="header-menu">
+	                            <span>Artist Genre</span>
+	                        </li>
+	                        <li class="sidebar-dropdown">
+	                            <a>
+	                                <i class="fas fa-street-view"></i>
+	                                <span>Street Dance</span>
+	                            </a>
+	                            <div class="sidebar-submenu">
+	                                <ul>
+		                                <c:forEach var="genre" items="${Genre1}">
+		                                <li>
+		                                	<img src="<c:url value='/file/download.do'/>?path=${genre.profileImgPath}${genre.profileImg}" onError="this.src='<c:url value='/resources/img/profile.png' />';" />
+	                                        <a href="<c:url value='/artist/main/main.do?buskerNo=${genre.buskerNo}'/>">${genre.activityName}</a>
+	                                    </li>
+		                                </c:forEach>
+	                                </ul>
+	                            </div>
+	                        </li>
+	                        <li class="sidebar-dropdown">
+	                            <a>
+	                                <i class="fas fa-microphone"></i>
+	                                <span>Vocal</span>
+	                            </a>
+	                            <div class="sidebar-submenu">
+	                                <ul>
+	                                    <c:forEach var="genre" items="${Genre2}">
+		                                <li>
+		                                	<img src="<c:url value='/file/download.do'/>?path=${genre.profileImgPath}${genre.profileImg}" onError="this.src='<c:url value='/resources/img/profile.png' />';" />
+	                                        <a href="<c:url value='/artist/main/main.do?buskerNo=${genre.buskerNo}'/>">${genre.activityName}</a>
+	                                    </li>
+		                                </c:forEach>
+	                                </ul>
+	                            </div>
+	                        </li>
+	                        <li class="sidebar-dropdown">
+	                            <a href="#">
+	                                <i class="fas fa-theater-masks"></i>
+	                                <span>Comedy</span>
+	                            </a>
+	                            <div class="sidebar-submenu">
+	                                <ul>
+	                                    <c:forEach var="genre" items="${Genre3}">
+		                                <li>
+		                                	<img src="<c:url value='/file/download.do'/>?path=${genre.profileImgPath}${genre.profileImg}" onError="this.src='<c:url value='/resources/img/profile.png' />';" />
+	                                        <a href="<c:url value='/artist/main/main.do?buskerNo=${genre.buskerNo}'/>">${genre.activityName}</a>
+	                                    </li>
+		                                </c:forEach>
+	                                </ul>
+	                            </div>
+	                        </li>
+	                        <li class="sidebar-dropdown">
+	                            <a href="#">
+	                                <i class="fas fa-guitar"></i>
+	                                <span>Playing Instruments</span>
+	                            </a>
+	                            <div class="sidebar-submenu">
+	                                <ul>
+	                                    <c:forEach var="genre" items="${Genre4}">
+		                                <li>
+		                                	<img src="<c:url value='/file/download.do'/>?path=${genre.profileImgPath}${genre.profileImg}" onError="this.src='<c:url value='/resources/img/profile.png' />';" />
+	                                        <a href="<c:url value='/artist/main/main.do?buskerNo=${genre.buskerNo}'/>">${genre.activityName}</a>
+	                                    </li>
+		                                </c:forEach>
+	                                </ul>
+	                            </div>
+	                        </li>
+	                        <li class="sidebar-dropdown">
+	                            <a href="#">
+	                                <i class="fas fa-headphones"></i>
+	                                <span>Hip hop</span>
+	                            </a>
+	                            <div class="sidebar-submenu">
+	                                <ul>
+	                                    <c:forEach var="genre" items="${Genre5}">
+		                                <li>
+		                                	<img src="<c:url value='/file/download.do'/>?path=${genre.profileImgPath}${genre.profileImg}" onError="this.src='<c:url value='/resources/img/profile.png' />';" />
+	                                        <a href="<c:url value='/artist/main/main.do?buskerNo=${genre.buskerNo}'/>">${genre.activityName}</a>
+	                                    </li>
+		                                </c:forEach>
+	                                </ul>
+	                            </div>
+	                        </li>
+	                        <li class="sidebar-dropdown">
+	                            <a href="#">
+	                                <i class="fas fa-hat-wizard"></i>
+	                                <span>Magic Show</span>
+	                            </a>
+	                            <div class="sidebar-submenu">
+	                                <ul>
+	                                    <c:forEach var="genre" items="${Genre6}">
+		                                <li>
+	                                  		<img src="<c:url value='/file/download.do'/>?path=${genre.profileImgPath}${genre.profileImg}" onError="this.src='<c:url value='/resources/img/profile.png' />';" />
+	                                        <a href="<c:url value='/artist/main/main.do?buskerNo=${genre.buskerNo}'/>">${genre.activityName}</a>
+	                                    </li>
+		                                </c:forEach>
+	                                </ul>
+	                            </div>
+	                        </li>
+	                        <li class="sidebar-dropdown">
+	                            <a href="#">
+	                                <i class="fas fa-ellipsis-h"></i>
+	                                <span>etc</span>
+	                            </a>
+	                            <div class="sidebar-submenu">
+	                                <ul>
+	                                    <li>
+	                                        <a href="#">Google maps</a>
+	                                    </li>
+	                                    <li>
+	                                        <a href="#">Open street map</a>
+	                                    </li>
+	                                </ul>
+	                            </div>
+	                        </li>
+	                        <li class="header-menu">
+	                            <span>Statics</span>
+	                        </li>
+	                        <li>
+	                            <a>
+	                                <img src="<c:url value='/resources/img/online2.png'/>" alt="img">
+	                                <span class="current_users">현재 접속한 회원 수</span>
+	                                <span class="current_users_number"></span>
+	                            </a>
+	                        </li>
+	                        <li>
+                            	<a class="fas fa-users">
+                               		<span>오늘 접속한 회원 수</span>
+                               	</a>
+	                        </li>
+	                    </ul>
+	                </div>
+	                <!-- sidebar-menu  -->
+	            </div>
+	            <!-- sidebar-content  -->
+	            <div class="sidebar-footer">
+	                <a href="#">
+	                    <i class="fa fa-bell"></i>
+	                    <span class="badge badge-pill badge-warning notification alart__count">3</span>
+	                </a>
+	                <a href="#">
+	                    <i class="fa fa-envelope"></i>
+	                    <span class="badge badge-pill badge-success notification message__count"></span>
+	                </a>
+	                <a href="#">
+	                    <i class="fa fa-cog"></i>
+	                </a>
+	            </div>
+	        </nav>
+	    </div>
 		<section id="mu-slider">
 			<div class="mu-slider-area">
 				<div class="mu-top-slider">
@@ -122,11 +339,6 @@
 			</div>
 		</div>
 
-		<!-- 검색부분 임시  -->
-		<form action="<c:url value='/main/search/search.do'/>" />
-			<input type="text" name="input"/>
-			<button id="search">검색</button>
- 		</form>
  		<!-- 스크롤 버튼 -->
  		<button type="button" class="view-main-top-btn">
 	    	<i class="fas fa-angle-up fa-2x"></i>
@@ -140,11 +352,11 @@
 		      <div class="col-md-12">
 		      <div class="mu-footer-area">
 		         <div class="mu-footer-social">
-		          <a href="#"><span class="fa fa-facebook"></span></a>
-		          <a href="#"><span class="fa fa-twitter"></span></a>
-		          <a href="#"><span class="fa fa-google-plus"></span></a>
-		          <a href="#"><span class="fa fa-linkedin"></span></a>
-		          <a href="#"><span class="fa fa-youtube"></span></a>
+		          <a href="#"><span class="fab fa-twitter"></span></a>
+		          <a href="#"><span class="fab fa-facebook-f"></span></a>
+		          <a href="#"><span class="fab fa-google-plus-g"></span></a>
+		          <a href="#"><span class="fab fa-instagram"></span></a>
+		          <a href="#"><span class="fab fa-youtube"></span></a>
 		        </div>
 		        <div class="mu-footer-copyright">
 		          <p>Bukers</p><a>Copyright 2019. koo. hoo. kyu. hyun.</a>
@@ -758,5 +970,50 @@
 	String.prototype.string = function(len){var s = '', i = 0; while (i++ < len) { s += this; } return s;};
 	String.prototype.zf = function(len){return "0".string(len - this.length) + this;};
 	Number.prototype.zf = function(len){return this.toString().zf(len);};
+	
+	$(".sidebar-dropdown > a").click(function() {
+        $(".sidebar-submenu").slideUp(200);
+        if ( $(this).parent().hasClass("active") ) {
+            $(".sidebar-dropdown").removeClass("active");
+            $(this).parent().removeClass("active");
+        } else {
+            $(".sidebar-dropdown").removeClass("active");
+            $(this).next(".sidebar-submenu").slideDown(200);
+            $(this).parent().addClass("active");
+        }
+    });
 
+    $("#close-sidebar").click(function() {
+        $(".page-wrapper").removeClass("toggled");
+    });
+
+    $("#show-sidebar").click(function() {
+        $(".page-wrapper").addClass("toggled");
+    });
+    
+    $(document).ready(function () {
+		$.ajax({
+			type: "POST",
+			url: "/buskers/main/header/message/message-count-ajax.do",
+			success: function (count) {
+				if (count != 0) {
+					$(".message__count").text(count);
+				}
+			}
+		});
+	});
+    
+    $(".search-menu").keydown(function () {
+    	if (key.keyCode == 13) {
+            $(".integrated_search").submit();
+        }
+    });
+    
+    
+    socket.emit("currentUsers", "${sessionScope.user.nickName}");
+    
+    socket.on("currentUsers", function (users) {
+    	$(".current_users_number").text(users + "명");
+    });
+    
 </script>

@@ -2,6 +2,7 @@ package kr.co.buskers.main.controller;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,8 +23,17 @@ public class MainController {
 	private MainService service;
 	
 	@RequestMapping("main.do")
-	public void main() {
+	public Map<String, Object> main(Model model) {
+		Map<String, Object> result = service.selectArtistByGenre();
+		model.addAttribute("Genre1", result.get("Genre1"));
+		model.addAttribute("Genre2", result.get("Genre2"));
+		model.addAttribute("Genre3", result.get("Genre3"));
+		model.addAttribute("Genre4", result.get("Genre4"));
+		model.addAttribute("Genre5", result.get("Genre5"));
+		model.addAttribute("Genre6", result.get("Genre6"));
 		service.exportCSV();
+		
+		return result;
 	}
 	
 	@RequestMapping("map-ajax.do")
