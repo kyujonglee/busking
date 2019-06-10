@@ -94,6 +94,7 @@
 					</div>
 					<div class="busker-show-enroll__form-column">
 						<button class="busker-show-enroll__btn">확인</button>
+						<input type="hidden" name="buskerNo" value="${buskerNo}" />
 					</div>
 				</div>
 			</form>
@@ -106,23 +107,21 @@
 <script src="<c:url value='/resources/js/artist/board/map.js' />"></script>
 <script src="<c:url value='/resources/js/artist/board/enroll.js' />"></script>
 <script>
- 	  $(document).ready(function(){
-        $(".busker-side__info-btn i").trigger("click");
-      });
- 	 	function init() {
- 		  console.log("update 초기실행");
- 		  const lat = '<c:out value="${show.lat}"/>';
- 		  const lon = '<c:out value="${show.lon}"/>';
- 		  mapInit(lat, lon);
- 	 	}
- 	 	init();
- 	  function check(){
- 		  $("#enrollDate").val( new Date($(".busker-enroll__date").val()) );
-		  if($("#temperature").val() === ""){
-			  $("#temperature").val(0);
-		  }
- 		  return true;
- 	  }
- 	  
- 	  
+  $(document).ready(function(){
+      $(".busker-side__info-btn i").trigger("click");
+    });
+ 	function init() {
+	  console.log("update 초기실행");
+	  const lat = '<c:out value="${show.lat}"/>';
+	  const lon = '<c:out value="${show.lon}"/>';
+	  mapInit(lat, lon);
+ 	}
+ 	init();
+  function check(){
+	  $("#enrollDate").val( new Date($(".busker-enroll__date").val()) );
+  if($("#temperature").val() === ""){
+	  $("#temperature").val(0);
+  }
+	  return true;
+  }
 </script>

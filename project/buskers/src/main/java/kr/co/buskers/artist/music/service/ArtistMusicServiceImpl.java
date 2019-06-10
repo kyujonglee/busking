@@ -16,7 +16,7 @@ public class ArtistMusicServiceImpl implements ArtistMusicService{
 	
 	@Override
 	public List<MusicFile> selectMusic(int buskerNo){
-		return mapper.selectMusic(1);
+		return mapper.selectMusic(buskerNo);
 	}
 	
 	@Override 
