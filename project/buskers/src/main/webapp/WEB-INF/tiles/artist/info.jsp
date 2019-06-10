@@ -37,7 +37,6 @@
 			data:{location:location,intro:intro,time:time,buskerNo:2},
 			url : "intro-update.do" ,
 		}).done(function(){
-			alert("에이작스");
 		});
 	});
 </script>
