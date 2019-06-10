@@ -48,5 +48,6 @@
       </section>
     </div>
     <script src="<c:url value='/resources/js/artist/main/artist.js' />"></script>
+    
   </body>
 </html>

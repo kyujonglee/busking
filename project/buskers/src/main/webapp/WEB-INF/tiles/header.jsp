@@ -37,7 +37,7 @@
             <li class="dropdown">
               <a>ARTIST <span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">                
-                <li><a href="#">ARTIST INFO</a></li>
+                <li><a href="<c:url value='/main/info/info.do'/>">ARTIST INFO</a></li>
                 <%-- <li><a href="<c:url value='/artist/main/main.do'/>">ARTIST CHANNEL</a></li> --%>
               </ul>                    
             <li><a href="#">ABOUT</a></li>

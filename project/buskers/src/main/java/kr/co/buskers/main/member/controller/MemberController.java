@@ -55,7 +55,14 @@ public class MemberController {
 	// 로그인 처리
 	@RequestMapping("login.do")
 	public String login(HttpSession session, Member member, RedirectAttributes rttr) {
+		
+		
+		
 		Member user = service.login(member);
+	
+		
+		
+		
 		// DB 값 체크
 		if(user != null) {
 			boolean passMatch = passEncoder.matches(member.getPass(), user.getPass());

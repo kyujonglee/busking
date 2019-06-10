@@ -101,7 +101,7 @@
 	<insert id="insertSocialUrl" parameterType="socialUrl">
 	    insert into tb_social_url
 	    (busker_no,facebook_url,instargram_url,youtube_url)
-	    values (2,#{faceBookUrl},#{instargramUrl},#{youTubeUrl})
+	    values ( #{buskerNo} , #{faceBookUrl} , #{instargramUrl} , #{youTubeUrl})
 	</insert>
 	
 	<!-- 소셜 인서트 테이블 확인 -->

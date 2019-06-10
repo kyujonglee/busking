@@ -12,10 +12,16 @@ public class Busker {
 	private List<String> buskerCheckbox;
 	private String profileImg;
 	private String profileImgPath;
+	private String id;
 	private String intro;
 	private String time;
 	private String location;
-	
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
 	public int getBuskerNo() {
 		return buskerNo;
 	}
