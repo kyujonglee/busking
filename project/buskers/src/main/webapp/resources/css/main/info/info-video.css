@@ -1,0 +1,12 @@
+.info-video {
+  width: 100%;
+}
+
+.swiper-container {
+  width: 720px;
+  height: 360px;
+}
+
+.shit {
+    transform: scale(1.1);
+}
