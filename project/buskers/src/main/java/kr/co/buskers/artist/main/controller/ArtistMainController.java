@@ -25,11 +25,10 @@ public class ArtistMainController {
 	private ArtistMainService mainService;
 	
 	@RequestMapping("main.do")
-	public void main(Model model,HttpSession session) {
-//	public void main(Model model,int buskerNo) {
-		model.addAttribute("audioList",mainService.selectMusicByBuskerNo(1));
-//		model.addAttribute("audioList",mainService.selectMusicByBuskerNo(buskerNo));
-		
+	public void main(Model model,HttpSession session,int buskerNo) {
+		System.out.println("buskerNo : "+buskerNo);
+		model.addAttribute("audioList",mainService.selectMusicByBuskerNo(buskerNo));
+		model.addAttribute("buskerNo",buskerNo);
 		
 		//버스커 no 값을 파라미터로 가져와야함... 1또는 0을 반환함 셋팅해준뒤 화면처리 필요!
 		//세션에서 유저를가져옴

@@ -5,7 +5,7 @@
 <aside class="busker-side">
 	<section class="busker-side__profile">
 		<header class="busker-side__header">
-			<a href="<c:url value='/artist/main/main.do'/>"
+			<a href="<c:url value='/artist/main/main.do'/>?buskerNo=${buskerNo}"
 				class="busker-side__header-title"> <i class="fas fa-street-view"></i>
 				Buskers
 			</a>
