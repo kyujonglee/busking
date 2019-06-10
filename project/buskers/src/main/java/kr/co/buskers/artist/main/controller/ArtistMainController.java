@@ -9,12 +9,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Repository;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.co.buskers.artist.main.service.ArtistMainService;
 import kr.co.buskers.repository.domain.Busker;
 import kr.co.buskers.repository.domain.Follow;
+import kr.co.buskers.repository.domain.Member;
 import kr.co.buskers.repository.domain.SocialUrl;
 
 @Controller("kr.co.buskers.artist.main.controller.ArtistMainController")
@@ -35,15 +35,18 @@ public class ArtistMainController {
 		
 		//버스커 no 값을 파라미터로 가져와야함... 1또는 0을 반환함 셋팅해준뒤 화면처리 필요!
 		//세션에서 유저를가져옴
-//		Member member = (Member)session.getAttribute("user");
-//		Follow follow = new Follow();
-//		follow.setMemberNo(member.getMemberNo());
-//		follow.setBuskerNo(buskerNo);
-		//팔로우상태 y 또는 n을 올려줌
-//		model.addAttribute("followStatus",mainService.followBuskerStatus(follow));
+		if(session.getAttribute("user") != null) {
+			Member member = (Member)session.getAttribute("user");
+			Follow follow = new Follow();
+			follow.setMemberNo(member.getMemberNo());
+			follow.setBuskerNo(buskerNo);
+			model.addAttribute("followStatus",mainService.followBuskerStatus(follow));
+		}
+		//버스커 소개 가져오기
+		model.addAttribute("busker",mainService.selectBusker(buskerNo));
+		//url 링크 가져오기
+		model.addAttribute("socialUrl",mainService.selectSocialUrl(buskerNo));
 		
-		//버스커no 파라미터를 받아 url 올려주기
-//		model.addAttribute("socialUrl",mainService.selectSocialUrl(buskerNo));
 	}
 	
 	@RequestMapping("main-ajax.do")

@@ -153,7 +153,6 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public void insertBuskerGenre(BuskerGenre buskerGenre) {
 		mapper.insertBuskerGenre(buskerGenre);
-		
 	}
 	
 }

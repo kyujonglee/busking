@@ -55,7 +55,14 @@ public class MemberController {
 	// 로그인 처리
 	@RequestMapping("login.do")
 	public String login(HttpSession session, Member member, RedirectAttributes rttr) {
+		
+		
+		
 		Member user = service.login(member);
+	
+		
+		
+		
 		// DB 값 체크
 		if(user != null) {
 			boolean passMatch = passEncoder.matches(member.getPass(), user.getPass());
@@ -286,7 +293,13 @@ public class MemberController {
 	
 	// 버스커 등록 화면으로 이동
 	@RequestMapping("signupform-busker.do")
-	public void signupformBusker() {}
+	public String signupformBusker(Member member) {
+		System.out.println(member.getIsBusker());
+//		if(session.get != null) {
+//			return "redirect:/index.jsp";
+//		}
+		return "main/member/signupform-busker";
+	}
 	
 	// 버스커 등록 처리
 	@RequestMapping("signup-busker.do")
