@@ -109,14 +109,14 @@ public class FileServiceImpl implements FileService {
 		
 	    String buskerName = bMapper.selectBuskerByNo(musicFile.getBuskerNo()).getActivityName();
 		
-//		String path = "C:/bit2019/upload/"+"busker1";
-		String path = "/Users/kyujong/Documents/bit2019/upload/"+buskerName;
+		String path = "C:/bit2019/upload/"+"busker1";
+//		String path = "/Users/kyujong/Documents/bit2019/upload/"+buskerName;
 //		String path = "/Users/kyujong/Documents/bit2019/upload/"+musicFile.getBuskerName();
 		File file = new File(path);
 		if(!file.exists()) file.mkdirs();
 		
-		path = "/Users/kyujong/Documents/bit2019/upload/"+ buskerName +"/"+musicFile.getSysname()+".mp3";
-//		path = "C:/bit2019/upload/"+"busker1/"+musicFile.getSysname()+".mp3";
+//		path = "/Users/kyujong/Documents/bit2019/upload/"+ buskerName +"/"+musicFile.getSysname()+".mp3";
+		path = "C:/bit2019/upload/"+ buskerName +"/"+musicFile.getSysname()+".mp3";
 		attach.transferTo(new File(path));
 		
 		path = "/upload/" + buskerName;

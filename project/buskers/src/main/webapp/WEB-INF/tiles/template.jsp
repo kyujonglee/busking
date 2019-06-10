@@ -15,6 +15,7 @@
 <script src="<c:url value='/resources/js/jquery-3.4.1.min.js'/>"></script>
 <!-- Favicon -->
 <link rel="shortcut icon" href="<c:url value='/resources/img/guitar_icon.png'/>" type="image/x-icon">
+<title>Buskers</title>
 </head>
 <body>
 	<tiles:insertAttribute name="header"/>
@@ -23,9 +24,57 @@
 	</div>
 	<div class="main-body">
 		<tiles:insertAttribute name="body" />
+		<tiles:insertAttribute name="sidebar" />
+		<tiles:insertAttribute name="footer" />
 	</div>
 <script src="<c:url value='/resources/js/main/header/bootstrap.js'/>"></script>  
 <script src="<c:url value='/resources/js/main/header/custom.js'/>"></script>
 <script src="<c:url value='/resources/js/main/header/slick.js'/>"></script>
+<script>
+$(".sidebar-dropdown > a").click(function() {
+    $(".sidebar-submenu").slideUp(200);
+    if ( $(this).parent().hasClass("active") ) {
+        $(".sidebar-dropdown").removeClass("active");
+        $(this).parent().removeClass("active");
+    } else {
+        $(".sidebar-dropdown").removeClass("active");
+        $(this).next(".sidebar-submenu").slideDown(200);
+        $(this).parent().addClass("active");
+    }
+});
+
+$("#close-sidebar").click(function() {
+    $(".page-wrapper").removeClass("toggled");
+});
+
+$("#show-sidebar").click(function() {
+    $(".page-wrapper").addClass("toggled");
+});
+
+$(document).ready(function () {
+	$.ajax({
+		type: "POST",
+		url: "/buskers/main/header/message/message-count-ajax.do",
+		success: function (count) {
+			if (count != 0) {
+				$(".message__count").text(count);
+			}
+		}
+	});
+});
+
+$(".search-menu").keydown(function () {
+	if (key.keyCode == 13) {
+        $(".integrated_search").submit();
+    }
+});
+
+
+socket.emit("currentUsers", "${sessionScope.user.nickName}");
+
+socket.on("currentUsers", function (users) {
+	$(".current_users_number").text(users + "명");
+});
+</script>
 </body>
 </html>

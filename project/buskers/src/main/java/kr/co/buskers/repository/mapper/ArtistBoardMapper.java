@@ -7,9 +7,9 @@ import kr.co.buskers.repository.domain.SocialUrl;
 
 public interface ArtistBoardMapper {
 	
-	List<ArtistShow> selectArtistShow();
+	List<ArtistShow> selectArtistShow(int buskerNo);
 	ArtistShow selectArtistShowByNo(int showNo);
-	int countArtistCurrentShow();
+	int countArtistCurrentShow(int buskerNo);
 	List<ArtistShow> selectMainArtistShow(ArtistShow artistShow);
 	
 	void insertArtistShow(ArtistShow artistShow);

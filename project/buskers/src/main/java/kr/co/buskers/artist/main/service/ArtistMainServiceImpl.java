@@ -33,8 +33,8 @@ public class ArtistMainServiceImpl implements ArtistMainService {
 	@Override
 	public Map<String,Object> artistMain(int buskerNo) {
 		Map<String,Object> boardMap = new HashMap<>();
-		boardMap.put("showCount", boardMapper.countArtistCurrentShow() );
-		boardMap.put("musicCount", fMapper.countMusic(1) );
+		boardMap.put("showCount", boardMapper.countArtistCurrentShow(buskerNo) );
+		boardMap.put("musicCount", fMapper.countMusic(buskerNo) );
 		return boardMap;
 	}
 	

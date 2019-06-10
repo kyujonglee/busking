@@ -66,9 +66,11 @@
 	
 	<!-- 아이디 중복체크 -->
 	<select id="checkId" parameterType="member" resultType="int">
-		select count(*)
-		  from tb_member
-		 where id = #{id}
+		select a.*,b.busker_no
+  		  from tb_member as a
+         inner join tb_busker as b
+            on a.member_no=b.member_no
+         where id = '116943055686761304857'
 	</select>
 	
 	<!-- 이메일 중복체크 -->

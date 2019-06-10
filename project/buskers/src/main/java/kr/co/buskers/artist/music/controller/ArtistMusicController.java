@@ -18,12 +18,10 @@ public class ArtistMusicController {
 	@Autowired
 	private ArtistMusicService service;
 	
-	@RequestMapping("music-insertForm.do")
-	public void insertForm() {}
-	
-	
 	@RequestMapping("music-list.do")
-	public void list() {}
+	public void list(int buskerNo, Model model) {
+		model.addAttribute("buskerNo",buskerNo);
+	}
 	
 	
 	

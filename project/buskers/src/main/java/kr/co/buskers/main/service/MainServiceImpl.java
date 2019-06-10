@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import kr.co.buskers.common.page.FreePageResult;
 import kr.co.buskers.repository.domain.ArtistShow;
+import kr.co.buskers.repository.domain.Busker;
 import kr.co.buskers.repository.domain.SearchBoard;
 import kr.co.buskers.repository.domain.SearchPage;
 import kr.co.buskers.repository.mapper.MainMapper;
@@ -96,7 +97,7 @@ public class MainServiceImpl implements MainService {
 	}
 
 	@Override
-	public List<SearchBoard> mainSearch(SearchPage searchPage) {
+	public List<SearchBoard> mainBoardSearch(SearchPage searchPage) {
 		return mapper.selectSearchBoard(searchPage);
 	}
 	
@@ -120,5 +121,10 @@ public class MainServiceImpl implements MainService {
 		map.put("Genre6", mapper.selectArtistByGenre6());
 		
 		return map;
+	}
+
+	@Override
+	public Busker mainBuskerSearch(SearchPage searchPage) {
+		return mapper.searchBusker(searchPage);
 	}
 }

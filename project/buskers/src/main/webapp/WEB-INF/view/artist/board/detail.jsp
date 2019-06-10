@@ -82,10 +82,10 @@
 						<a onclick="update(${show.showNo},'<fmt:formatDate value="${show.enrollDate}" pattern="yyyy-MM-dd HH:mm" type="both" />' );" >
 							<button type="button" class="busker-show-update__btn">수정</button>
 						</a>
-						<a href="delete.do?showNo=${show.showNo}">
+						<a href="delete.do?showNo=${show.showNo}&buskerNo=${buskerNo}">
 							<button type="button" class="busker-show-delete__btn">삭제</button>
 						</a>
-						<a href="list.do">
+						<a href="list.do?buskerNo=${buskerNo}">
 							<button type="button" class="busker-show-list__btn">목록</button>
 						</a>
 					</div>
@@ -110,7 +110,7 @@ const update = (showNo, enrollDate) => {
 	  if(new Date() > new Date(enrollDate)){
 		  alert("현재 날짜 이전의 공연날짜는 수정할 수 없습니다.");
 	  }else {
-		  location.href = `updateForm.do?showNo=` + showNo;
+		  location.href = `updateForm.do?showNo=` + showNo+ `&buskerNo=`+${buskerNo};
 	  }
 };
 init();
