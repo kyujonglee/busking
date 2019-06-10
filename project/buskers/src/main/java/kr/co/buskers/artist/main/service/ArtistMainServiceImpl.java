@@ -33,8 +33,8 @@ public class ArtistMainServiceImpl implements ArtistMainService {
 	@Override
 	public Map<String,Object> artistMain(int buskerNo) {
 		Map<String,Object> boardMap = new HashMap<>();
-		boardMap.put("showCount", boardMapper.countArtistCurrentShow() );
-		boardMap.put("musicCount", fMapper.countMusic(1) );
+//		boardMap.put("showCount", boardMapper.countArtistCurrentShow(buskerNo) );
+		boardMap.put("musicCount", fMapper.countMusic(buskerNo) );
 		return boardMap;
 	}
 	
@@ -68,8 +68,8 @@ public class ArtistMainServiceImpl implements ArtistMainService {
 	}
 
 	@Override
-	public int followBuskerStatus(Follow follow) {
-		return memberMapper.confirmFollow(follow);
+	public String followBuskerStatus(Follow follow) {
+		return memberMapper.followStatus(follow);
 	}
 
 	@Override
@@ -90,6 +90,11 @@ public class ArtistMainServiceImpl implements ArtistMainService {
 	@Override
 	public void updateIntro(Busker busker) {
 		memberMapper.updateIntro(busker);		
+	}
+
+	@Override
+	public Busker selectBusker(int buskerNo) {
+		return memberMapper.selectBusker(buskerNo);
 	}
 	
 }

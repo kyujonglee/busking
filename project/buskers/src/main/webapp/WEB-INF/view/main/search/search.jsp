@@ -34,15 +34,16 @@
 		                    </div>
 		                    <div class="artist__search__explain">
 		                        <div class="busker_info busker_name"><a href="<c:url value='/artist/main/main.do?buskerNo=${busker.buskerNo}'/>">${busker.activityName }</a></div>
-		                        <div class="busker_info">장르명 - <span class="busker_info_db">보컬</span></div>
-		                        <div class="busker_info">주요 공연 장소 - <span class="busker_info_db">${busker.location }</span></div>
-		                        <div class="busker_info">아티스트 소개 - <span class="busker_info_db">${busker.intro }</span></div>
+		                        <div class="busker_info">아티스트 소개  <span class="busker_info_db">${busker.intro }</span></div>
+		                        <div class="busker_info">장르  <span class="busker_info_db">보컬</span></div>
+		                        <div class="busker_info">주요 공연 장소  <span class="busker_info_db">${busker.location }</span></div>
+		                        <div class="busker_info">주요 공연 시간  <span class="busker_info_db">${busker.time }</span></div>
 		                    </div>
 		                </div>
 		                <div class="artist__search__video">
 		                    <!--동영상 목록자리-->
 		                </div>
-		                <div class="artist__search__list" >
+		                <%-- <div class="artist__search__list" >
 		                    <div class="search__title">아티스트 리스트</div>
 		                    <div class="artist__search__list_detail">
 		                        <div class="artist__search__list__info">
@@ -51,7 +52,7 @@
 		                            <div>이정환</div>
 		                        </div>
 		                    </div>
-		                </div>
+		                </div> --%>
 		            </div>
 	            </c:when>
 	            <c:otherwise>

@@ -9,6 +9,9 @@ public interface MemberMapper {
 	// 로그인 체크
 	public Member loginAction(Member member);
 
+	// 로그인 체크
+	public Member buskerLoginAction(Member member);
+
 	// 일반 회원 가입
 	public void signupMember(Member member);
 	
@@ -71,5 +74,10 @@ public interface MemberMapper {
 	
 	//버스커 인트로
 	public void updateIntro(Busker busker);
+	
+	public Busker selectBusker(int buskerNo);
+	
+	
+	
 	
 }

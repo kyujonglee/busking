@@ -9,6 +9,13 @@ public class Busker {
 	private String name;
 	private String profileImg;
 	private String profileImgPath;
+	private String id;
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
 	public int getBuskerNo() {
 		return buskerNo;
 	}

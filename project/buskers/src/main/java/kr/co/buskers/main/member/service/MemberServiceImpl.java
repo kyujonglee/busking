@@ -147,5 +147,6 @@ public class MemberServiceImpl implements MemberService {
 	public void changeBuskerType(Member member) {
 		mapper.changeBuskerType(member);
 	}
+
 	
 }

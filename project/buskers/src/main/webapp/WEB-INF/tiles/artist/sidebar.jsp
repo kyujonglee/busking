@@ -16,22 +16,26 @@
 		<article class="busker-side__profile-info">
 			<header class="busker-side__profile-header">
 				<span class="busker__profile-header-edit">
-					<button class="busker__profile-header-edit-button" data-toggle="modal" data-target="#myModal">
-						Edit
-					</button>
+					<c:if test="${sessionScope.user.buskerNo eq param.buskerNo}">
+						<button class="busker__profile-header-edit-button" data-toggle="modal" data-target="#myModal">
+							Edit
+						</button>
+					</c:if>
 				</span>
-				<button type="button" class="busker__profile-header-follow" >
-					팔로우 +</button>
+				<c:if test="${sessionScope.user.buskerNo ne param.buskerNo}">	
+					<button type="button" class="busker__profile-header-follow" >
+						팔로우 +
+					</button>
+				</c:if>
 			</header>
 			<div class="busker-side__profile-photo">
 				<img
 					src="https://i.pinimg.com/564x/fb/e9/ca/fbe9cac78b4fc2ce0a43d9ac42e6de4c.jpg" />
-				<span class="busker-side__profile-name">피아노 치는 이정환</span> <span
-					class="busker-side__profile-id">piano_good</span>
+				<span class="busker-side__profile-name">${busker.activityName}</span>
 				<div class="busker-side__profile-social">
 					<i class="fab fa-facebook-square fa-lg facebook"></i></a> 
 					<img src="https://image.freepik.com/free-vector/instagram-icon_1057-2227.jpg"
-						 class="instagram" /> 
+						 class="instargram" /> 
 					<i class="fab fa-youtube fa-lg youtube"></i>
 				</div>
 			</div>
@@ -129,15 +133,15 @@
 	       	 <form action="" id="social-Url-Form">
 		         <div class="form-group">
 		         	 <div class="control-label">FaceBook : </div>
-			         <input type="text" class="form-control" id="faceBookUrl" name="faceBookUrl" value="미리들어있는값">
+			         <input type="text" class="form-control" id="faceBookUrl" name="faceBookUrl" value="${socialUrl.faceBookUrl}">
 		         </div>
 		         <div class="form-group">
 		         	 <div class="control-label">Instargram : </div>
-			         <input type="text" class="form-control" id="instargramUrl"  name="instargramUrl">
+			         <input type="text" class="form-control" id="instargramUrl" value="${socialUrl.instargramUrl}">
 		         </div>
 		         <div class="form-group">
 		         	 <div class="control-label">YouTube : </div>
-			         <input type="text" class="form-control" id="youTubeUrl"  name="youTubeUrl">
+			         <input type="text" class="form-control" id="youTubeUrl"  value="${socialUrl.youTubeUrl}">
 		         </div>
 	     	 </form>
          </div>
@@ -155,10 +159,12 @@
 </div>
 
 <script>
+	let buskerNo = ${param.buskerNo};
+	
 	$.ajax({
 		url : "<c:url value='/artist/main/main-ajax.do'/>",
 		dateType : "json",
-		data : "buskerNo="+ 1
+		data : "buskerNo="+buskerNo
 	}).done((map) => {
 		const showCount = map.showCount;
 		const musicCount = map.musicCount;
@@ -180,7 +186,7 @@
 		
 		$.ajax({
 			url : "follow-ajax.do",
-			data : {buskerNo: 1,memberNo:"${sessionScope.user.memberNo}"},
+			data : {buskerNo: buskerNo,memberNo:"${sessionScope.user.memberNo}"},
 		}).done(function(result){
 			if(result == 1){
 				Swal.fire({
@@ -188,38 +194,48 @@
 					  type:'success',
 					  timer:2000	
 				});
+				$(".busker__profile-header-follow").css("background-color","red").html("팔로우");	
 			}else {
 				Swal.fire({
 					  title:'팔로우 취소',
 					  type:'success',
 					  timer:2000	
 				});
+				$(".busker__profile-header-follow").css("background-color","rgb(243,116,32)").html("팔로우+");		
 			}
 		});
 	})
 	
+	if("${followStatus}" == 'y'){
+		$(".busker__profile-header-follow").css("background-color","red").html("팔로우");		
+	}else{
+		$(".busker__profile-header-follow").css("background-color","rgb(243,116,32)").html("팔로우+");		
+	}
+	
+	
 // Edit
-
 	$("#myButtons1").click(function(){
 	let faceBookUrl = $("#faceBookUrl").val();
 	let youTubeUrl = $("#youTubeUrl").val();
 	let instargramUrl = $("#instargramUrl").val();
 		$.ajax({
 			url : "social-url.do",
-			data : {faceBookUrl:faceBookUrl , youTubeUrl:youTubeUrl, instargramUrl:instargramUrl ,buskerNo:2},
+			data : {faceBookUrl:faceBookUrl , youTubeUrl:youTubeUrl, instargramUrl:instargramUrl ,buskerNo:buskerNo},
 		}).done(function(result){
-			
+			$("#facebookUrl").val(result.faceBookUrl);
+		    $("#youtubeUrl").val(result.youTubeUrl);
+		    $("#instargramUrl").val(result.instargramUrl);
 		});
     	$('#myModal').modal('hide');
     });
     
     $(".facebook").click(function(){
-    	window.location.href = 'http://www.facebook.com';
+    	window.location.href = 	$("#faceBookUrl").val();
     })
     $(".youtube").click(function(){
-    	window.location.href = 'http://www.youtube.com';
+    	window.location.href = '${socialUrl.youTubeUrl}';
     })
     $(".instargram").click(function(){
-    	window.location.href = 'http://www.facebook.com';
+    	window.location.href = '${socialUrl.instargramUrl}';
     })
 </script>
