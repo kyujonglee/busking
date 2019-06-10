@@ -1009,7 +1009,6 @@
         }
     });
     
-    
     socket.emit("currentUsers", "${sessionScope.user.nickName}");
     
     socket.on("currentUsers", function (users) {

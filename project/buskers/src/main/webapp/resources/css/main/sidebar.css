@@ -300,7 +300,6 @@ opacity
 }
 
 .sidebar-wrapper .sidebar-menu .sidebar-dropdown .sidebar-submenu ul {
-	padding: 5px 0;
 }
 
 .sidebar-wrapper .sidebar-menu .sidebar-dropdown .sidebar-submenu li {
@@ -308,6 +307,7 @@ opacity
 	align-items: center;
 	padding-left: 25px;
 	font-size: 13px;
+	height: 43.78px;
 }
 
 .sidebar-wrapper .sidebar-menu .sidebar-dropdown .sidebar-submenu li img {
@@ -566,6 +566,10 @@ opacity
 
 .sidebar-submenu ul li a:hover {
 	color: white !important;
+}
+
+.sidebar-submenu ul li:hover {
+	background: grey;
 }
 
 .sidebar-wrapper ul li img {
