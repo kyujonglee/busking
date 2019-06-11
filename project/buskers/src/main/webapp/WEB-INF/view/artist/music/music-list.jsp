@@ -105,8 +105,23 @@ uri="http://java.sun.com/jsp/jstl/fmt"%>
                 id="attach"
                 placeholder="파일을 선택해주세요."
                 accept="audio/*"
+                onchange='chk_file_type(this)'
               />
-               <!-- onchange='chk_file_type(this)' -->
+            </div>
+          </div>
+          <div class="busker-music__form-row">
+            <div class="busker-music__form-row-title">
+              이미지 첨부
+            </div>
+            <div class="busker-music__form-row-content">
+              <input
+                type="file"
+                name="attach2"
+                id="attach2"
+                placeholder="파일을 선택해주세요."
+                accept="image/*"
+                onchange='chk_file_type2(this)'
+              />
             </div>
           </div>
 <!--           <input type="hidden" name="buskerName" value="" /> -->
@@ -147,7 +162,7 @@ $(document).ready(() => {
             <div class="busker-music__list-columns">
 	               <div class="busker-music__album-img">
 	                 <img
-	                   src=""
+	                   src="<c:url value='/file/download.do?path='/>`+song.imgPath+`"
 	                   alt="profile"
 	                   onError="this.src='<c:url value='/resources/img/music-profile.png' />';"
 	                 />
@@ -230,7 +245,6 @@ $(document).ready(() => {
     	  
        });
       
-      
     });
   }
 
@@ -243,12 +257,14 @@ const update = buskerNo => {
     const writer = $("#writer").val();
     const time = $("#time").val();
     const attach = $("#attach").val();
+    const attach2 = $("#attach2").val();
     
     // 유효성 검사!
     if (isEmpty(title, "노래제목을 입력해주세요"))return;
     if (isEmpty(writer, "아티스트를 입력해주세요"))return;
     if (isEmpty(time, "연주시간을 입력해주세요"))return;
     if (isEmpty(attach, "파일을 선택해주세요"))return;
+    if (isEmpty(attach2, "파일을 선택해주세요"))return;
     
     $.ajax({
       url : "<c:url value='/file/music-update-ajax.do'/>",
@@ -267,6 +283,7 @@ const update = buskerNo => {
       	$("#writer").val("");
       	$("#time").val("");
         $("#attach").val("");
+        $("#attach2").val("");
         musicList(buskerNo);
     });
     
@@ -279,11 +296,13 @@ const insert = buskerNo => {
   const writer = $("#writer").val();
   const time = $("#time").val();
   const attach = $("#attach").val();
+  const attach2 = $("#attach2").val();
   
   if (isEmpty(title, "노래제목을 입력해주세요"))return;
   if (isEmpty(writer, "아티스트를 입력해주세요"))return;
   if (isEmpty(time, "연주시간을 입력해주세요"))return;
   if (isEmpty(attach, "파일을 선택해주세요"))return;
+  if (isEmpty(attach2, "파일을 선택해주세요"))return;
   
   $.ajax({
     url : "<c:url value="/file/music-insert.do" />",
@@ -297,6 +316,7 @@ const insert = buskerNo => {
   	$("#writer").val("");
   	$("#time").val("");
     $("#attach").val("");
+    $("#attach2").val("");
  	console.log($("#attach").val());
   	
   	$.ajax({
@@ -344,6 +364,21 @@ function init() {
 
 	  if(check_file_type.indexOf(file_type) == -1){
 	  	   alertInfo('오디오 파일만 선택할 수 있습니다.');	
+		   const parent_Obj=obj.parentNode
+		   const node=parent_Obj.replaceChild(obj.cloneNode(true),obj);
+		   return false;
+	  }
+  }
+  
+  function chk_file_type2(obj) {
+	  const file_kind = obj.value.lastIndexOf('.');
+	  const file_name = obj.value.substring(file_kind+1,obj.length);
+	  const file_type = file_name.toLowerCase();
+
+	  let check_file_type = ['jpg','jpeg','png','bmp'];
+
+	  if(check_file_type.indexOf(file_type) == -1){
+	  	   alertInfo('이미지 파일만 선택할 수 있습니다.');	
 		   const parent_Obj=obj.parentNode
 		   const node=parent_Obj.replaceChild(obj.cloneNode(true),obj);
 		   return false;

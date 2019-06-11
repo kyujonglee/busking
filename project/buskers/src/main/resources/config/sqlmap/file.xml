@@ -36,6 +36,7 @@
 	<select id="selectMusicLimit" resultType="musicFile">
 		select *
 		  from tb_music_file
+		 order by file_no desc
 		 limit 10
 	</select>
 	
@@ -64,8 +65,8 @@
 	</select>
 	
 	<insert id="insertMusic" parameterType="musicFile">
-		insert into tb_music_file(name, title, writer, time, sysname, path, busker_no)
-		values(#{name}, #{title}, #{writer}, #{time}, #{sysname}, #{path}, #{buskerNo} )
+		insert into tb_music_file(name, title, writer, time, sysname, path, busker_no, img_path)
+		values(#{name}, #{title}, #{writer}, #{time}, #{sysname}, #{path}, #{buskerNo}, #{imgPath} )
 	</insert>
 	
 	<update id="updateMusic" parameterType="musicFile">

@@ -84,13 +84,15 @@
 			</div> <a href="<c:url value='/artist/board/list.do'/>?buskerNo=${buskerNo}"
 			class="busker-side__menu-title"> 공연일정<span class="busker-side__menu-count" id="showCount"></span> </a>
 		</li>
+		<c:if test="${sessionScope.user.buskerNo eq buskerNo}">
 		<li class="busker-side__menu-item">
 			<div class="busker-side__menu-icon">
 				<i class="fas fa-music fa-lg"></i>
 			</div>
-			<a href="<c:url value='/artist/music/music-list.do?buskerNo=1'/>"
+			<a href="<c:url value='/artist/music/music-list.do?buskerNo=${buskerNo}'/>"
 			class="busker-side__menu-title"> 버스커 음악<span class="busker-side__menu-count" id="musicCount"></span></a>
 		</li>
+        </c:if>
 		<li class="busker-side__menu-item settings">
 			<div class="busker-side__menu-icon">
 				<i class="fas fa-cog"></i>

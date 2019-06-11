@@ -4,16 +4,30 @@ import org.springframework.web.multipart.MultipartFile;
 
 public class MusicFile {
 	private MultipartFile attach;
+	private MultipartFile attach2;
 	private int fileNo;
 	private String name;
 	private String title;
 	private String writer;
 	private String sysname;
 	private String path;
+	private String imgPath;
 	private String time;
 	private String buskerName;
 	private int buskerNo;
 	
+	public MultipartFile getAttach2() {
+		return attach2;
+	}
+	public void setAttach2(MultipartFile attach2) {
+		this.attach2 = attach2;
+	}
+	public String getImgPath() {
+		return imgPath;
+	}
+	public void setImgPath(String imgPath) {
+		this.imgPath = imgPath;
+	}
 	public String getBuskerName() {
 		return buskerName;
 	}

@@ -86,7 +86,8 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public void uploadProfile(MultipartFile multipartFile, String uriPath, Member member) throws Exception {
 		UUID uuid = UUID.randomUUID();
-		String uploadRoot = "C:/bit2019/upload";
+		String uploadRoot = "/Users/kyujong/Documents/bit2019/upload";
+//		String uploadRoot = "C:/bit2019/upload";
 		String path = uriPath + member.getId() + "/";
 		String orgFileName = multipartFile.getOriginalFilename();
 		String sysFileName = uuid.toString() + orgFileName;
