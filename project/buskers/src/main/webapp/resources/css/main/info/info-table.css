@@ -53,3 +53,11 @@
   height: 30px;
   border-radius: 3px;
 }
+
+.info-song__item-content-title {
+  transition: all 0.5s ease-in-out;
+}
+
+.info-song__item-content-title:hover {
+  transform: translateY(-5px);
+}

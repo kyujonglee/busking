@@ -3,15 +3,34 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.co.buskers.repository.mapper.BuskerMapper">
 	
-<!-- 	<resultMap type="" id=""> -->
-<!-- 		<result column="" property="" /> -->
-<!-- 		<result column="" property="" /> -->
-<!-- 		<result column="" property="" /> -->
-<!-- 		<result column="" property="" /> -->
-<!-- 		<result column="" property="" /> -->
-<!-- 		<result column="" property="" /> -->
-		
-<!-- 	</resultMap> -->
+	<resultMap id="buskerMap" type="busker">
+		<result column="busker_no" property="buskerNo" />
+		<result column="member_no" property="memberNo" />
+		<result column="phone" property="phone" />
+		<result column="activity_name" property="activityName" />
+		<result column="intro" property="intro" />
+		<result column="location" property="location" />
+		<result column="time" property="time" />
+		<result column="genre" property="genre" />
+		<collection property="followCnt"
+					column="busker_no"
+					select="selectFollowByNo"/>
+		<collection property="member"
+					column="member_no"
+					select="selectMemberByNo"/>			
+	</resultMap>
+	
+	<select id="selectMemberByNo" parameterType="int" resultType="member">
+		select *
+		  from tb_member 
+		 where member_no = #{memberNo}
+	</select>
+	
+	<select id="selectFollowByNo" parameterType="int" resultType="int">
+		select count(*) 
+		  from tb_follow 
+		 where busker_no = #{buskerNo}
+	</select>
 	
 	<select id="selectBuskerByNo" parameterType="int" resultType="busker">
 		select *
@@ -19,7 +38,7 @@
 		 where busker_no = #{buskerNo}
 	</select>
 	
-	<select id="selectBusker" resultType="busker">
+	<select id="selectBusker" resultMap="buskerMap">
 		select *
 		  from tb_busker
 		 limit 15

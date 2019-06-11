@@ -21,17 +21,19 @@ uri="http://java.sun.com/jsp/jstl/fmt"%>
 	        <div class="info-busker__profile-wrapper">
 	          <img
 	            class="info-busker__profile-img"
-	            src="https://i.pinimg.com/564x/66/74/55/667455ca43e3a636faf03f308cf02545.jpg"
+	            src="<c:url value='/file/download.do?path=${busker.member.profileImgPath}${busker.member.profileImg}'/>"
 	          />
 	          <div class="info-busker__profile-content">
 	            <div class="info-busker__profile-content-column">
+	            <a href="<c:url value='/artist/main/main.do?buskerNo='/>${busker.buskerNo}">
 	              <span class="info-busker__profile-title">
 	                ${busker.activityName}
 	              </span>
+	            </a>
 	            </div>
 	            <div class="info-busker__profile-content-column">
 	              <i class="fas fa-user-alt"></i>
-	              <span class="info-busker__follow"> 18 </span>
+	              <span class="info-busker__follow"> ${busker.followCnt} </span>
 	            </div>
 	          </div>
 	        </div>
@@ -55,18 +57,24 @@ uri="http://java.sun.com/jsp/jstl/fmt"%>
 	      <div class="info-song__item">
 	        <div class="info-song__item-content">
 	          <img
-	            src="https://i.pinimg.com/564x/52/b1/32/52b1320190b10856633500c4d4d72c76.jpg"
+	            src="<c:url value='/file/download.do?path='/>${song.imgPath}"
 	            class="info-song__item-content-img"
+	            onError="this.src='<c:url value='/resources/img/music-profile.png' />';"
 	          />
 	        </div>
 	        <div class="info-song__item-content">
 	          <span class="info-song__item-content-num">${status.count}</span>
 	        </div>
 	        <div class="info-song__item-content">
-	          <span class="info-song__item-content-title">${song.title}</span>
+	        <!-- 뮤직플레이어에 추가하는 기능! -->
+	          <a href="<c:url value='/artist/main/main.do?buskerNo=${song.buskerNo}'/>">
+		          <span class="info-song__item-content-title">${song.title}</span>
+	          </a>
 	        </div>
 	        <div class="info-song__item-content">
-	          <span class="info-song__item-content-artist">${song.writer}</span>
+	          <a href="<c:url value='/artist/main/main.do?buskerNo=${song.buskerNo}'/>">
+	          	<span class="info-song__item-content-artist">${song.writer}</span>
+	          </a>
 	        </div>
 	        <div class="info-song__item-content">
 	          <span class="info-song__item-content-time">${song.time}</span>
@@ -133,7 +141,7 @@ uri="http://java.sun.com/jsp/jstl/fmt"%>
           <div class="swiper-slide">Slide 10</div>
         </div>
         <!-- Add Pagination -->
-        <!-- <div class="swiper-pagination"></div> -->
+        <div class="swiper-pagination"></div>
         <!-- Add Arrows -->
         <div class="swiper-button-next swiper-button-white"></div>
         <div class="swiper-button-prev swiper-button-white"></div>

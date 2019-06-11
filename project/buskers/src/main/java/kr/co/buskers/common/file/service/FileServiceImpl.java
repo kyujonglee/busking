@@ -24,8 +24,10 @@ public class FileServiceImpl implements FileService {
 	@Autowired
 	private BuskerMapper bMapper;
 	
+	private final String FILE_PATH = "/Users/kyujong/Documents/bit2019/upload";
+//	private final String FILE_PATH = "C:/bit2019/upload";
+	
 	public void deleteFile(int groupNo) throws Exception {
-		
 		mapper.deleteFileAll(groupNo);
 	}
 	
@@ -63,7 +65,7 @@ public class FileServiceImpl implements FileService {
 	public kr.co.buskers.repository.domain.File uploadImage(MultipartFile multipartFile, String uriPath) throws Exception {
 		UUID uuid = UUID.randomUUID();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
-		String uploadRoot = "C:/bit2019/upload";
+		String uploadRoot = FILE_PATH;
 		String path = uriPath + sdf.format(new Date()) + "/";
 		String orgFileName = multipartFile.getOriginalFilename();
 		String sysFileName = uuid.toString() + orgFileName;
@@ -88,12 +90,14 @@ public class FileServiceImpl implements FileService {
 	@Override
 	public void insertMusic(MusicFile musicFile) throws Exception {
 		musicFile.setPath(musicUpload(musicFile));
+		musicFile.setImgPath(imgUpload(musicFile));
 		mapper.insertMusic(musicFile);
 	}
 	
 	@Override
 	public void updateMusicByFileNo(MusicFile musicFile) throws Exception {
 		musicFile.setPath(musicUpload(musicFile));
+		musicFile.setImgPath(imgUpload(musicFile));
 		mapper.updateMusic(musicFile);
 	}
 	
@@ -109,19 +113,35 @@ public class FileServiceImpl implements FileService {
 		
 	    String buskerName = bMapper.selectBuskerByNo(musicFile.getBuskerNo()).getActivityName();
 		
-		String path = "C:/bit2019/upload/"+"busker1";
-//		String path = "/Users/kyujong/Documents/bit2019/upload/"+buskerName;
-//		String path = "/Users/kyujong/Documents/bit2019/upload/"+musicFile.getBuskerName();
+		String path = FILE_PATH+ "/"+buskerName;
 		File file = new File(path);
 		if(!file.exists()) file.mkdirs();
 		
-//		path = "/Users/kyujong/Documents/bit2019/upload/"+ buskerName +"/"+musicFile.getSysname()+".mp3";
-		path = "C:/bit2019/upload/"+ buskerName +"/"+musicFile.getSysname()+".mp3";
+		path = FILE_PATH+ "/"+ buskerName +"/"+musicFile.getSysname()+".mp3";
 		attach.transferTo(new File(path));
 		
 		path = "/upload/" + buskerName;
-//		path = "/upload/" + musicFile.getBuskerName();
 		path = path + "/" +musicFile.getSysname()+".mp3";
+		return path;
+	}
+	
+	public String imgUpload(MusicFile musicFile) throws Exception {
+		MultipartFile attach2 = musicFile.getAttach2();
+		
+		System.out.println("사용자가 선택한 파일명 : "+attach2.getOriginalFilename());
+		
+		UUID uuid = UUID.randomUUID();
+		
+		musicFile.setSysname(uuid.toString());
+		musicFile.setName(attach2.getOriginalFilename());
+		
+		String buskerName = bMapper.selectBuskerByNo(musicFile.getBuskerNo()).getActivityName();
+		String path = FILE_PATH + "/" +buskerName;
+		File file = new File(path);
+		if(!file.exists()) file.mkdirs();
+		
+		path = FILE_PATH + "/"+ buskerName +"/"+musicFile.getSysname()+musicFile.getName();
+		attach2.transferTo(new File(path));
 		return path;
 	}
 }

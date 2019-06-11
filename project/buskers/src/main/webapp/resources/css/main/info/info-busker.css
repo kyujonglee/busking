@@ -19,7 +19,7 @@
   overflow: auto;
   color: var(--color-white);
   grid-gap: 35px;
-  padding-top : 10px;
+  padding-top: 10px;
   box-sizing: border-box;
 }
 
@@ -59,8 +59,12 @@
   margin-top: 8px;
   margin-bottom: 3px;
   font-size: 18px;
+  transition: all 0.5s ease-in-out;
 }
 
+.info-busker__profile .info-busker__profile-title:hover {
+  transform: translateY(-3px);
+}
 .info-busker__profile .info-busker__profile-content-column:last-child {
   color: var(--color-info-gray);
   font-size: 16px;

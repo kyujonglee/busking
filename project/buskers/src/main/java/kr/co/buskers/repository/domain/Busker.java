@@ -16,13 +16,27 @@ public class Busker {
 	private String intro;
 	private String time;
 	private String location;
-	private Follow follow;
+	private int followCnt;
+	private String genre;
+	private Member member;
 	
-	public Follow getFollow() {
-		return follow;
+	public Member getMember() {
+		return member;
 	}
-	public void setFollow(Follow follow) {
-		this.follow = follow;
+	public void setMember(Member member) {
+		this.member = member;
+	}
+	public String getGenre() {
+		return genre;
+	}
+	public void setGenre(String genre) {
+		this.genre = genre;
+	}
+	public int getFollowCnt() {
+		return followCnt;
+	}
+	public void setFollowCnt(int followCnt) {
+		this.followCnt = followCnt;
 	}
 	public String getId() {
 		return id;
