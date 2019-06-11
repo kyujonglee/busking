@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.buskers.repository.mapper.SidebarMapper">
+		
+	<select id="selectArtistByGenre1" resultType="busker">
+		select * 
+		  from tb_busker_genre g, tb_busker b, tb_member m
+		 where g.busker_no = b.busker_no
+		   and b.member_no = m.member_no
+		   and genre_no = 1
+	</select>
+ 
+	<select id="selectArtistByGenre2" resultType="busker">
+		select * 
+		  from tb_busker_genre g, tb_busker b, tb_member m
+		 where g.busker_no = b.busker_no
+		   and b.member_no = m.member_no
+		   and genre_no = 2
+	</select>
+ 
+	<select id="selectArtistByGenre3" resultType="busker">
+		select * 
+		  from tb_busker_genre g, tb_busker b, tb_member m
+		 where g.busker_no = b.busker_no
+		   and b.member_no = m.member_no
+		   and genre_no = 3
+	</select>
+ 
+	<select id="selectArtistByGenre4" resultType="busker">
+		select * 
+		  from tb_busker_genre g, tb_busker b, tb_member m
+		 where g.busker_no = b.busker_no
+		   and b.member_no = m.member_no
+		   and genre_no = 4
+	</select>
+ 
+	<select id="selectArtistByGenre5" resultType="busker">
+		select * 
+		  from tb_busker_genre g, tb_busker b
+		 where g.busker_no = b.busker_no
+		   and genre_no = 5
+	</select>
+ 
+	<select id="selectArtistByGenre6" resultType="busker">
+		select * 
+		  from tb_busker_genre g, tb_busker b, tb_member m
+		 where g.busker_no = b.busker_no
+		   and b.member_no = m.member_no		   
+		   and genre_no = 6
+	</select>
+ 	
+</mapper>
+	

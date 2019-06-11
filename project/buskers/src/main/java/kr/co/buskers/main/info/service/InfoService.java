@@ -1,5 +1,8 @@
 package kr.co.buskers.main.info.service;
 
-public interface InfoService {
+import java.util.Map;
 
+public interface InfoService {
+	
+	Map<String,Object> list();
 }

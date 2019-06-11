@@ -11,9 +11,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import kr.co.buskers.repository.domain.Member;
 import kr.co.buskers.repository.domain.MusicFile;
 import kr.co.buskers.repository.mapper.BuskerMapper;
 import kr.co.buskers.repository.mapper.FileMapper;
+import kr.co.buskers.repository.mapper.MemberMapper;
 
 @Service
 public class FileServiceImpl implements FileService {
@@ -24,8 +26,12 @@ public class FileServiceImpl implements FileService {
 	@Autowired
 	private BuskerMapper bMapper;
 	
+	@Autowired
+	private MemberMapper mMapper;
+//	private final String FILE_PATH = "/Users/kyujong/Documents/bit2019/upload";
+	private final String FILE_PATH = "C:/bit2019/upload";
+	
 	public void deleteFile(int groupNo) throws Exception {
-		
 		mapper.deleteFileAll(groupNo);
 	}
 	
@@ -63,7 +69,7 @@ public class FileServiceImpl implements FileService {
 	public kr.co.buskers.repository.domain.File uploadImage(MultipartFile multipartFile, String uriPath) throws Exception {
 		UUID uuid = UUID.randomUUID();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
-		String uploadRoot = "C:/bit2019/upload";
+		String uploadRoot = FILE_PATH;
 		String path = uriPath + sdf.format(new Date()) + "/";
 		String orgFileName = multipartFile.getOriginalFilename();
 		String sysFileName = uuid.toString() + orgFileName;
@@ -88,12 +94,14 @@ public class FileServiceImpl implements FileService {
 	@Override
 	public void insertMusic(MusicFile musicFile) throws Exception {
 		musicFile.setPath(musicUpload(musicFile));
+		musicFile.setImgPath(imgUpload(musicFile));
 		mapper.insertMusic(musicFile);
 	}
 	
 	@Override
 	public void updateMusicByFileNo(MusicFile musicFile) throws Exception {
 		musicFile.setPath(musicUpload(musicFile));
+		musicFile.setImgPath(imgUpload(musicFile));
 		mapper.updateMusic(musicFile);
 	}
 	
@@ -109,19 +117,63 @@ public class FileServiceImpl implements FileService {
 		
 	    String buskerName = bMapper.selectBuskerByNo(musicFile.getBuskerNo()).getActivityName();
 		
-		String path = "C:/bit2019/upload/"+"busker1";
-//		String path = "/Users/kyujong/Documents/bit2019/upload/"+buskerName;
-//		String path = "/Users/kyujong/Documents/bit2019/upload/"+musicFile.getBuskerName();
+		String path = FILE_PATH+ "/"+buskerName;
 		File file = new File(path);
 		if(!file.exists()) file.mkdirs();
 		
-//		path = "/Users/kyujong/Documents/bit2019/upload/"+ buskerName +"/"+musicFile.getSysname()+".mp3";
-		path = "C:/bit2019/upload/"+ buskerName +"/"+musicFile.getSysname()+".mp3";
+		path = FILE_PATH+ "/"+ buskerName +"/"+musicFile.getSysname()+".mp3";
 		attach.transferTo(new File(path));
 		
 		path = "/upload/" + buskerName;
-//		path = "/upload/" + musicFile.getBuskerName();
 		path = path + "/" +musicFile.getSysname()+".mp3";
 		return path;
+	}
+	
+	public String imgUpload(MusicFile musicFile) throws Exception {
+		MultipartFile attach2 = musicFile.getAttach2();
+		
+		System.out.println("사용자가 선택한 파일명 : "+attach2.getOriginalFilename());
+		
+		UUID uuid = UUID.randomUUID();
+		
+		musicFile.setSysname(uuid.toString());
+		musicFile.setName(attach2.getOriginalFilename());
+		
+		String buskerName = bMapper.selectBuskerByNo(musicFile.getBuskerNo()).getActivityName();
+		String path = FILE_PATH + "/" +buskerName;
+		File file = new File(path);
+		if(!file.exists()) file.mkdirs();
+		
+		path = FILE_PATH + "/"+ buskerName +"/"+musicFile.getSysname()+musicFile.getName();
+		attach2.transferTo(new File(path));
+		return path;
+	}
+	
+	@Override
+	public void uploadProfile(MultipartFile multipartFile, String uriPath, Member member) throws Exception {
+		UUID uuid = UUID.randomUUID();
+		String uploadRoot = FILE_PATH;
+		String path = uriPath + member.getId() + "/";
+		String orgFileName = multipartFile.getOriginalFilename();
+		String sysFileName = uuid.toString() + orgFileName;
+		String filePath = uploadRoot + path;
+		
+		member.setProfileImg(sysFileName);
+		member.setProfileImgPath(filePath);
+		
+		File f = new File(filePath + sysFileName);
+		
+		System.out.println(filePath + sysFileName);
+		System.out.println(member.getProfileImg());
+		System.out.println(member.getProfileImgPath());
+		
+		
+	    if(f.exists() == false) {
+	    	f.mkdirs();
+	    }
+	    
+	    multipartFile.transferTo(f);
+		
+		mMapper.uploadProfile(member);
 	}
 }

@@ -83,33 +83,7 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 
-	@Override
-	public void uploadProfile(MultipartFile multipartFile, String uriPath, Member member) throws Exception {
-		UUID uuid = UUID.randomUUID();
-		String uploadRoot = "C:/bit2019/upload";
-		String path = uriPath + member.getId() + "/";
-		String orgFileName = multipartFile.getOriginalFilename();
-		String sysFileName = uuid.toString() + orgFileName;
-		String filePath = uploadRoot + path;
-		
-		member.setProfileImg(sysFileName);
-		member.setProfileImgPath(filePath);
-		
-		File f = new File(filePath + sysFileName);
-		
-		System.out.println(filePath + sysFileName);
-		System.out.println(member.getProfileImg());
-		System.out.println(member.getProfileImgPath());
-		
-		
-	    if(f.exists() == false) {
-	    	f.mkdirs();
-	    }
-	    
-	    multipartFile.transferTo(f);
-		
-		mapper.uploadProfile(member);
-	}
+	
 	
 	
 	// 돈 충전

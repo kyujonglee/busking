@@ -92,6 +92,7 @@
 						</div>
 					</div>
 					<div class="busker-show-enroll__form-column">
+						<input type="hidden" name="buskerNo" value="${buskerNo}" />
 						<button class="busker-show-enroll__btn">등록</button>
 					</div>
 				</div>

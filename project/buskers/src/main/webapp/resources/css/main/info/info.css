@@ -9,3 +9,7 @@
     --color-info-white : #ccc9ce;
     --color-info-gray : rgb(117, 117, 121);
 }
+
+a:hover {
+	color:inherit;
+}

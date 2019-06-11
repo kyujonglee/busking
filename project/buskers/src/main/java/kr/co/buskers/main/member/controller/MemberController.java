@@ -16,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.UrlBasedViewResolver;
 
+import kr.co.buskers.common.file.service.FileService;
 import kr.co.buskers.main.member.service.MemberService;
 import kr.co.buskers.main.member.util.Email;
 import kr.co.buskers.main.member.util.EmailSender;
@@ -30,6 +31,9 @@ public class MemberController {
 	
 	@Autowired
 	private MemberService service;
+	
+	@Autowired
+	private FileService fService;
 	
 	@Autowired
 	private EmailSender emailSender;
@@ -275,7 +279,8 @@ public class MemberController {
 //		
 //	}
 		// 프로필 이미지가 없다면 바로 업로드
-		service.uploadProfile(file, uriPath, member);
+//		service.uploadProfile(file, uriPath, member);
+		fService.uploadProfile(file, uriPath, member);
 		
 		session.removeAttribute("user");
 		Member user = service.selectMember(member.getMemberNo());
