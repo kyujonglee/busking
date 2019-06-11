@@ -58,7 +58,7 @@
 	</update>
 	
 	<!-- 로그인 -->
-	<select id="loginAction" resultType="member">
+	<select id="loginAction"  resultType="member">
 			select a.*,b.busker_no
   		  from tb_member as a
      left outer join tb_busker as b
@@ -136,7 +136,7 @@
 	</update>
 	
 	<!-- 유저 뽑기 -->
-	<select id="selectUser" resultType="member">
+	<select id="selectUser" parameterType="int" resultType="member">
 		select *
 		  from tb_member
 		 where member_no = #{memberNo}
@@ -187,7 +187,7 @@
 	</update>
 	
 	<select id="selectBusker" parameterType="int" resultType="busker">
-		select a.*,b.id
+		select a.*,b.*
       	  from tb_busker as a
 	      inner join tb_member as b
 	         on a.member_no = b.member_no
