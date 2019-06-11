@@ -1,6 +1,6 @@
 package kr.co.buskers.artist.board.controller;
 
-import java.util.List;
+import java.util.List; 
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.co.buskers.artist.board.service.ArtistBoardService;
 import kr.co.buskers.repository.domain.ArtistShow;
+import kr.co.buskers.repository.domain.Video;
 
 @Controller("kr.co.buskers.artist.board.controller.ArtistBoardController")
 @RequestMapping("/artist/board")
@@ -80,5 +81,11 @@ public class ArtistBoardController {
 	@RequestMapping("video.do")
 	public void video() {
 		
+	}
+	
+	@RequestMapping("video-regist-ajax.do")
+	@ResponseBody
+	public void videoRegist(Video video) {
+		service.insertVideo(video);
 	}
 }

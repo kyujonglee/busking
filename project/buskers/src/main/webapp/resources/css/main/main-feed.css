@@ -16,8 +16,8 @@
 
 .feed-card {
 	position: relative;
-	width: 330px !important;
-	height: 400px !important;
+	width: 260px !important;
+	height: 360px !important;
 	margin: auto;
 	background: #ffffff;
 	box-shadow: 0px 4px 8px 0px rgba(23, 23, 23, 0.2);
@@ -68,11 +68,19 @@
 	text-align: right;
 }
 
+.feed-card-content .title {
+	padding-bottom: 10px;
+}
+
 .feed-card-content .title a {
 	text-decoration: none;
 	color: #232323;
 	font-weight: bold;
     margin-right: 10px;
+}
+
+.feed-card-content .title i {
+	font-size: 12px;
 }
 
 .feed-card-content .title a:hover {
@@ -131,6 +139,7 @@
 .title_header {
 	display: flex;
 	justify-content: space-between;
+	padding-bottom: 10px;
 }
 
 

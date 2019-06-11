@@ -16,11 +16,17 @@
 			        		<div class="video_body">
 				        		<div class="video">
 			        				<iframe width="100%" height="250px" src="https://www.youtube.com/embed/_sGNYiaGies" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-				        			<div class="video_title">동영상 제목을 써주세요</div>
-				        			<div class="cideo_date">2019-06-11</div>
+				        			<div class="video_title">동영상 제목을 써주세요
+				        				<span class="videoMenu">
+				        					<span class="video_menu_modify">수정<br></span>
+				        					<i class="fas fa-ellipsis-h"></i>
+				        				</span>
+				        			</div>
+				        			<div class="cideo_date">2019-06-11
+				        			</div>
 				        		</div>
 				        		<div class="video">
-			        				<iframe width="100%" height="250px" src="https://www.youtube.com/embed/_sGNYiaGies" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+			        				<iframe class="youToube_video" width="100%" height="250px" src="https://www.youtube.com/embed/_sGNYiaGies" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 				        			<div class="video_title">동영상 제목을 써주세요</div>
 				        		</div>
 				        		<div class="video">
@@ -78,20 +84,37 @@
         <div class="modal-body">
 	    	<div class="form-group">
 	        	<div class="control-label">글제목 : </div>
-		        <input type="text" class="form-control" id="title">
+		        <input type="text" class="form-control" id="title"/>
 	        </div>
 	    	<div class="form-group">
 	        	<div class="control-label">YouTube : </div>
-		        <input type="text" class="form-control" id="youTubeUrl"  value="${socialUrl.youTubeUrl}">
+		        <input type="text" class="form-control" id="videoUrl"/>
 	        </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
-          <button type="button" class="btn btn-primary">글등록</button>
+          <button type="button" class="btn btn-primary" id="regBtn">글등록</button>
         </div>
       </div>
     </div>
 </div>
 <script>
+	
+	
+	$("#regBtn").click(function(){
+		let title = $("#title").val();
+		let videoUrl = $("#videoUrl").val();
+		let buskerNo = "${sessionScope.user.buskerNo}";
+		$.ajax({
+			type: 'post',
+			data : {title:title,url:videoUrl, buskerNo:buskerNo},
+			url:"video-regist-ajax.do",
+		}).done(function(){
+			
+			alert("에이작스성공")
+		})
+	})
+
+
 
 </script>

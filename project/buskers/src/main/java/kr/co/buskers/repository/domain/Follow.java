@@ -1,10 +1,20 @@
 package kr.co.buskers.repository.domain;
 
+import java.util.List;
+
 public class Follow {
 	private int no;
 	private int memberNo;
 	private int buskerNo;
 	String followStatus;
+	List<ArtistShow> followArtistShowList;
+	
+	public List<ArtistShow> getFollowArtistShowList() {
+		return followArtistShowList;
+	}
+	public void setFollowArtistShowList(List<ArtistShow> followArtistShowList) {
+		this.followArtistShowList = followArtistShowList;
+	}
 	public int getNo() {
 		return no;
 	}

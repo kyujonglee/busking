@@ -138,7 +138,6 @@
 		      		<img class="preview-profile" id="profile__preview" src="" />
 		      		<span class="btn-file-word">사진 업로드</span>
 		      		<input type="hidden" name="memberNo" value="${sessionScope.user.memberNo }"/>
-		      		<input type="hidden" name="id" value="${sessionScope.user.id }"/>
 		      		<input type="hidden" name="profileImg" value="${sessionScope.user.profileImg }"/>
 				</button>
 		    </div>
