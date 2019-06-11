@@ -13,6 +13,7 @@ public interface MainService {
 	public void exportCSV();
 	public void mapView(String enrollDate);
 	public List<ArtistShow> mapDetail(ArtistShow artistShow);
+	public Map<String, Object> selectArtistShowToday();
 	public ArtistShow markerDetail(int showNo);
 	public ArtistShow markerImage(int showNo);
 	public List<SearchBoard> mainBoardSearch(SearchPage searchPage);

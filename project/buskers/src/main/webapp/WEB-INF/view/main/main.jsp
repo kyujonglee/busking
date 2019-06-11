@@ -2,11 +2,13 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %> 
 <link rel="stylesheet" href="<c:url value='/resources/css/main/header/header.css'/>" />
 <link rel="stylesheet" href="<c:url value='/resources/css/main/main-map.css'/>" />
+<link rel="stylesheet" href="<c:url value='/resources/css/main/main-feed.css'/>" />
 <link rel="stylesheet" href="<c:url value='/resources/css/main/main.css'/>" />
 <link rel="stylesheet" href="<c:url value='/resources/css/common/waitMe.css'/>" />
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/css/swiper.css" />
 <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic|Nanum+Pen+Script&display=swap" rel="stylesheet">
 <link href='https://fonts.googleapis.com/css?family=Tangerine' rel='stylesheet' type='text/css'>        
 <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
@@ -20,120 +22,297 @@
 <script src="http://d3js.org/d3.v3.min.js"></script>
 <script src="http://d3js.org/topojson.v1.min.js"></script>
 	    
-		<section id="mu-slider">
-			<div class="mu-slider-area">
-				<div class="mu-top-slider">
-		
-					<div class="mu-top-slider-single">
-						<img src="<c:url value='/resources/img/busker2.jpg'/>" alt="img">
-						<div class="mu-top-slider-content">
-							<h2 class="mu-slider-title">오늘 하루, 200건의 버스킹 공연이 있습니다.</h2>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-								Itaque voluptatem accusamus non quidem, deleniti optio.</p>
-							<a href="#" class="mu-readmore-btn">더 알아보기</a>
-						</div>
+	<section id="mu-slider">
+		<div class="mu-slider-area">
+			<div class="mu-top-slider">
+	
+				<div class="mu-top-slider-single">
+					<img src="<c:url value='/resources/img/busker2.jpg'/>" alt="img">
+					<div class="mu-top-slider-content">
+						<h2 class="mu-slider-title">오늘 하루, ${fn:length(artistShow)}건의 버스킹 공연이 있습니다.</h2>
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+							Itaque voluptatem accusamus non quidem, deleniti optio.</p>
+						<a href="#" class="mu-readmore-btn">더 알아보기</a>
 					</div>
-		
-					<div class="mu-top-slider-single">
-						<img src="<c:url value='/resources/img/busker4.jpg'/>" alt="img">
-						<div class="mu-top-slider-content">
-							<h2 class="mu-slider-title">오늘 하루, 200건의 버스킹 공연이 있습니다.</h2>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-								Itaque voluptatem accusamus non quidem, deleniti optio.</p>
-							<a href="#" class="mu-readmore-btn">더 알아보기</a>
-						</div>
+				</div>
+	
+				<div class="mu-top-slider-single">
+					<img src="<c:url value='/resources/img/busker4.jpg'/>" alt="img">
+					<div class="mu-top-slider-content">
+						<h2 class="mu-slider-title">팔로우한 아티스트의 소식을 확인해보세요.</h2>
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+							Itaque voluptatem accusamus non quidem, deleniti optio.</p>
+						<a href="#" class="mu-readmore-btn">더 알아보기</a>
 					</div>
-		
-					<div class="mu-top-slider-single">
-						<img src="<c:url value='/resources/img/busker5.jpg'/>" alt="img">
-						<div class="mu-top-slider-content">
-							<h2 class="mu-slider-title">오늘 하루, 200건의 버스킹 공연이 있습니다.</h2>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-								Itaque voluptatem accusamus non quidem, deleniti optio.</p>
-							<a href="#" class="mu-readmore-btn">더 알아보기</a>
-						</div>
+				</div>
+	
+				<div class="mu-top-slider-single">
+					<img src="<c:url value='/resources/img/busker5.jpg'/>" alt="img">
+					<div class="mu-top-slider-content">
+						<h2 class="mu-slider-title">가장 인기있는 버스킹 공연 장소는?</h2>
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+							Itaque voluptatem accusamus non quidem, deleniti optio.</p>
+						<a href="#" class="mu-readmore-btn">더 알아보기</a>
 					</div>
-		
+				</div>
+	
+			</div>
+		</div>
+	</section>
+
+	<div class="main_body_container">
+		<div class="buskers_map">
+			<div class="buskers_map_title">
+				<div>Buskers</div>
+				<div class="neon">
+					<b>Per<span>for</span>man<span>ce st</span>age</b>
 				</div>
 			</div>
-		</section>
-
-		<div class="main_body_container">
-			<div class="buskers_map">
-				<div class="buskers_map_title">
-					<div>Buskers</div>
-					<div class="neon">
-						<b>per<span>for</span>man<span>ce st</span>age</b>
-					</div>
+			
+			<div class="buskers_map_detail">
+				<!--     추가부분      -->
+				<div class="mapwrapper">
+					<div id="container"></div>
+					<div id="chart"></div>
 				</div>
 				
-				<div class="buskers_map_detail">
-					<!--     추가부분      -->
-					<div class="mapwrapper">
-						<div id="container"></div>
-						<div id="chart"></div>
-					</div>
-					
-					<div class="performance__info_wrapper">
-						<div class="performance__info">
-							<div class="performance__info_calendar">
-								<div class="date_calendar_button">
-									<i class="fas fa-caret-left"></i>
-								</div>
-								<p class="calendar"><em></em></p></div>
-								<div class="date_calendar_button">
-									<i class="fas fa-caret-right"></i>
-								</div>
-								<input class="date_picker" />
-							
-							<div class="performance_info_date_wrapper">
-								<div class="date_up_button">
-									<i class="fas fa-caret-up day-up"></i>
-								</div>
-								<div class="performance__info_date"></div>
-								<div class="date_down_button">
-									<i class="fas fa-caret-down day-down"></i>
-								</div>
-								
+				<div class="performance__info_wrapper">
+					<div class="performance__info">
+						<div class="performance__info_calendar">
+							<div class="date_calendar_button">
+								<i class="fas fa-caret-left"></i>
+							</div>
+							<p class="calendar"><em></em></p></div>
+							<div class="date_calendar_button">
+								<i class="fas fa-caret-right"></i>
+							</div>
+							<input class="date_picker" />
+						
+						<div class="performance_info_date_wrapper">
+							<div class="date_up_button">
+								<i class="fas fa-caret-up day-up"></i>
+							</div>
+							<div class="performance__info_date"></div>
+							<div class="date_down_button">
+								<i class="fas fa-caret-down day-down"></i>
 							</div>
 							
 						</div>
-						<br>
-						<div class="performance_info_list">
+						
+					</div>
+					<br>
+					<div class="performance_info_list">
+						<c:forEach var="list" items="${artistShow}">
 							<section>
-							    <div class="img-btn">
-							    	<img src="<c:url value='/resources/img/twilight.jpg'/>"/>
-							    	<div class="artist_name">새벽공방</div>
-							    </div>
-							      
-							    <div class="details-btn">
-							    	<h1>새벽공방의 거리공연</h1>
-							    	<h3><i class="fa fa-map-marker"> 홍대 걷고싶은거리</i> &nbsp;&nbsp;<i class="fa fa-globe globe"> 2019.06.01</i></h3>
-							   		<p>많이 보러 오세요많이 보러 오세요많이 보러 오세요많이 보러 오세요</p>
-							    </div>
-							      
-							    <div class="SM-btn">
-							    	<div class="third" style="background-color: #BAE1FF; "><img src="<c:url value='/resources/img/4.png'/>"></div>
-							    </div>
-							    <div class="layer"></div>
-						    </section>
-						</div>
-			        </div>
+				    			<div class="img-btn">
+				  					<img src="<c:url value='/file/download.do'/>?path=${list.profileImgPath}${list.profileImg}"/>
+				  				<div class="artist_name">${list.activityName}</div>
+				   				</div>
+								<div class="details-btn">
+				  					<h1>${list.title}</h1>
+				   					<h3><i class="fas fa-map-marker-alt">&nbsp;${list.place}</i> &nbsp;&nbsp;
+				   					<i class="fas fa-calendar-day">&nbsp;<fmt:formatDate value="${list.enrollDate}" pattern="yyyy.MM.dd HH:mm" /></i></h3>
+				   					<p>${list.content}</p>
+				   				</div>
+				   				<div class="SM-btn">
+				   				
+				  				</div>
+				  				<div class="layer"></div>
+			   				</section>
+						</c:forEach>
+					</div>
+		        </div>
+			</div>
+		</div>
+		
+		<div class="buskers_feed_wrapper">
+			<div class="buskers_feed_title">
+				<div class="neon"> 
+					<b>Fol<span>low</span>ers n<span>ews</span> feed</b>
+				</div>
+			</div>
+			
+			<div class="buskers_feed_list">
+				<div class="swiper-container">
+					<div class="swiper-wrapper">
+						<div class="feed-card swiper-slide">
+					        <div class="feed-card-header">
+					            <img src="<c:url value='/resources/img/twilight.jpg'/>" >
+					        </div>
+					        <div class="feed-card-content">
+					            <div class="title">
+					            	<div class="title_header">
+						                <a>버스킹 공연</a>
+						                <a>새벽공방</a>
+					            	</div>
+					            	<br>
+					                <i class="fas fa-map-marker-alt">&nbsp;신촌역</i> &nbsp;&nbsp;<i class="fas fa-calendar-day">&nbsp;2019.06.10</i>
+					                <br><br>
+					            </div>
+					            <div class="summary">
+					                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+					            </div>
+					            <div class="continue">
+					                <a href="#">자세히 알아보기...</a>
+					            </div>
+					        </div>
+					        <div class="feed-card-footer">
+					            <div class="time">
+					                <a>25분 전</a>
+					            </div>
+					        </div>
+					    </div>
+						<div class="feed-card swiper-slide">
+					        <div class="feed-card-header">
+					            <img src="<c:url value='/resources/img/twilight.jpg'/>" >
+					        </div>
+					        <div class="feed-card-content">
+					            <div class="title">
+					            	<div class="title_header">
+						                <a>버스킹 공연</a>
+						                <a>새벽공방</a>
+					            	</div>
+					            	<br>
+					                <i class="fas fa-map-marker-alt">&nbsp;신촌역</i> &nbsp;&nbsp;<i class="fas fa-calendar-day">&nbsp;2019.06.10</i>
+					                <br><br>
+					            </div>
+					            <div class="summary">
+					                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+					            </div>
+					            <div class="continue">
+					                <a href="#">자세히 알아보기...</a>
+					            </div>
+					        </div>
+					        <div class="feed-card-footer">
+					            <div class="time">
+					                <a>25분 전</a>
+					            </div>
+					        </div>
+					    </div>
+						<div class="feed-card swiper-slide">
+					        <div class="feed-card-header">
+					            <img src="<c:url value='/resources/img/twilight.jpg'/>" >
+					        </div>
+					        <div class="feed-card-content">
+					            <div class="title">
+					            	<div class="title_header">
+						                <a>버스킹 공연</a>
+						                <a>새벽공방</a>
+					            	</div>
+					            	<br>
+					                <i class="fas fa-map-marker-alt">&nbsp;신촌역</i> &nbsp;&nbsp;<i class="fas fa-calendar-day">&nbsp;2019.06.10</i>
+					                <br><br>
+					            </div>
+					            <div class="summary">
+					                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+					            </div>
+					            <div class="continue">
+					                <a href="#">자세히 알아보기...</a>
+					            </div>
+					        </div>
+					        <div class="feed-card-footer">
+					            <div class="time">
+					                <a>25분 전</a>
+					            </div>
+					        </div>
+					    </div>
+						<div class="feed-card swiper-slide">
+					        <div class="feed-card-header">
+					            <img src="<c:url value='/resources/img/twilight.jpg'/>" >
+					        </div>
+					        <div class="feed-card-content">
+					            <div class="title">
+					            	<div class="title_header">
+						                <a>버스킹 공연</a>
+						                <a>새벽공방</a>
+					            	</div>
+					            	<br>
+					                <i class="fas fa-map-marker-alt">&nbsp;신촌역</i> &nbsp;&nbsp;<i class="fas fa-calendar-day">&nbsp;2019.06.10</i>
+					                <br><br>
+					            </div>
+					            <div class="summary">
+					                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+					            </div>
+					            <div class="continue">
+					                <a href="#">자세히 알아보기...</a>
+					            </div>
+					        </div>
+					        <div class="feed-card-footer">
+					            <div class="time">
+					                <a>25분 전</a>
+					            </div>
+					        </div>
+					    </div>
+						<div class="feed-card swiper-slide">
+					        <div class="feed-card-header">
+					            <img src="<c:url value='/resources/img/twilight.jpg'/>" >
+					        </div>
+					        <div class="feed-card-content">
+					            <div class="title">
+					            	<div class="title_header">
+						                <a>버스킹 공연</a>
+						                <a>새벽공방</a>
+					            	</div>
+					            	<br>
+					                <i class="fas fa-map-marker-alt">&nbsp;신촌역</i> &nbsp;&nbsp;<i class="fas fa-calendar-day">&nbsp;2019.06.10</i>
+					                <br><br>
+					            </div>
+					            <div class="summary">
+					                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+					            </div>
+					            <div class="continue">
+					                <a href="#">자세히 알아보기...</a>
+					            </div>
+					        </div>
+					        <div class="feed-card-footer">
+					            <div class="time">
+					                <a>25분 전</a>
+					            </div>
+					        </div>
+					    </div>
+						<div class="feed-card swiper-slide">
+					        <div class="feed-card-header">
+					            <img src="<c:url value='/resources/img/twilight.jpg'/>" >
+					        </div>
+					        <div class="feed-card-content">
+					            <div class="title">
+					            	<div class="title_header">
+						                <a>버스킹 공연</a>
+						                <a>새벽공방</a>
+					            	</div>
+					            	<br>
+					                <i class="fas fa-map-marker-alt">&nbsp;신촌역</i> &nbsp;&nbsp;<i class="fas fa-calendar-day">&nbsp;2019.06.10</i>
+					                <br><br>
+					            </div>
+					            <div class="summary">
+					                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+					            </div>
+					            <div class="continue">
+					                <a href="#">자세히 알아보기...</a>
+					            </div>
+					        </div>
+					        <div class="feed-card-footer">
+					            <div class="time">
+					                <a>25분 전</a>
+					            </div>
+					        </div>
+					    </div>
+					</div>
 				</div>
 			</div>
 		</div>
+	</div>
 
- 		<!-- 스크롤 버튼 -->
- 		<button type="button" class="view-main-top-btn">
-	    	<i class="fas fa-angle-up fa-2x"></i>
-	    </button>
-	    
-	    
+		<!-- 스크롤 버튼 -->
+	<button type="button" class="view-main-top-btn">
+    	<i class="fas fa-angle-up fa-2x"></i>
+    </button>
 		
 <script src="http://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="<c:url value='/resources/js/waitMe.js'/>"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.0/moment.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/js/swiper.js"></script>
 <script>
 
 	let date = new Date();
@@ -280,7 +459,7 @@
    				html +=    '</div>';
 				html +=     '<div class="details-btn">';
   				html +=    		'<h1>' + list.title + '</h1>';
-   				html +=    	'<h3><i class="fa fa-map-marker">&nbsp;' + list.place + '</i> &nbsp;&nbsp;<i class="fa fa-globe globe">&nbsp;' + new Date(list.enrollDate).format('yyyy.MM.dd') + '</i></h3>';
+   				html +=    	'<h3><i class="fas fa-map-marker-alt">&nbsp;' + list.place + '</i> &nbsp;&nbsp;<i class="fas fa-calendar-day">&nbsp;' + new Date(list.enrollDate).format('yyyy.MM.dd') + '</i></h3>';
    				html +=   		'<p>' + list.content +'</p>';
    				html +=     '</div>';
    				html +=     '<div class="SM-btn">';
@@ -503,7 +682,7 @@
 	       				html +=    '</div>';
 	    				html +=     '<div class="details-btn">';
 	      				html +=    		'<h1>' + list.title + '</h1>';
-	       				html +=    	'<h3><i class="fa fa-map-marker">&nbsp;' + list.place + '</i> &nbsp;&nbsp;<i class="fa fa-globe globe">&nbsp;' + new Date(list.enrollDate).format('yyyy.MM.dd') + '</i></h3>';
+	       				html +=    	'<h3><i class="fas fa-map-marker-alt">&nbsp;' + list.place + '</i> &nbsp;&nbsp;<i class="fas fa-calendar-day">&nbsp;' + new Date(list.enrollDate).format('yyyy.MM.dd') + '</i></h3>';
 	       				html +=   		'<p>' + list.content +'</p>';
 	       				html +=     '</div>';
 	       				html +=     '<div class="SM-btn">';
@@ -598,7 +777,7 @@
        				html +=    '</div>';
     				html +=     '<div class="details-btn">';
       				html +=    		'<h1>' + list.title + '</h1>';
-       				html +=    	'<h3><i class="fa fa-map-marker">&nbsp;' + list.place + '</i> &nbsp;&nbsp;<i class="fa fa-globe globe">&nbsp;' + new Date(list.enrollDate).format('yyyy.MM.dd') + '</i></h3>';
+       				html +=    	'<h3><i class="fas fa-map-marker-alt">&nbsp;' + list.place + '</i> &nbsp;&nbsp;<i class="fas fa-calendar-day">&nbsp;' + new Date(list.enrollDate).format('yyyy.MM.dd') + '</i></h3>';
        				html +=   		'<p>' + list.content +'</p>';
        				html +=     '</div>';
        				html +=     '<div class="SM-btn">';
@@ -735,4 +914,12 @@
 	String.prototype.zf = function(len){return "0".string(len - this.length) + this;};
 	Number.prototype.zf = function(len){return this.toString().zf(len);};
     
+	var swiper = new Swiper('.swiper-container', {
+	    slidesPerView: 4,
+	    spaceBetween: 30,
+    	grabCursor: true,
+	    pagination: {
+		    clickable: true,
+	    },
+    });
 </script>

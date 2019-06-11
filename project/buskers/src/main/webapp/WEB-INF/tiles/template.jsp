@@ -61,6 +61,67 @@ $(document).ready(function () {
 			}
 		}
 	});
+	
+	$.ajax({
+		type: "POST",
+		url: "/buskers/main/sidebar/artist-genre.do",
+		success: function (result) {
+			let genre = result.genre1;
+			let html = "";
+			for (let i = 0; i < genre.length; i++) {
+	        	html += '<li>';
+				html += 	'<img src="<c:url value='/file/download.do'/>?path=' + genre[i].profileImgPath + genre[i].profileImg + `" onError="this.src='<c:url value='/resources/img/profile.png' />';"` +'"/>';
+	        	html += 	'<a href="<c:url value='/artist/main/main.do'/>?buskerNo=' + genre[i].buskerNo + '">' + genre[i].activityName + '</a>';
+	        	html += '</li>';
+			}
+			$(".sidebar-submenu:eq(0) ul").html(html);
+			genre = result.genre2;
+			html = "";
+			for (let i = 0; i < genre.length; i++) {
+	        	html += '<li>';
+				html += 	'<img src="<c:url value='/file/download.do'/>?path=' + genre[i].profileImgPath + genre[i].profileImg + `" onError="this.src='<c:url value='/resources/img/profile.png' />';"` +'"/>';
+	        	html += 	'<a href="<c:url value='/artist/main/main.do'/>?buskerNo=' + genre[i].buskerNo + '">' + genre[i].activityName + '</a>';
+	        	html += '</li>';
+			}
+			$(".sidebar-submenu:eq(1) ul").html(html);
+			genre = result.genre3;
+			html = "";
+			for (let i = 0; i < genre.length; i++) {
+	        	html += '<li>';
+				html += 	'<img src="<c:url value='/file/download.do'/>?path=' + genre[i].profileImgPath + genre[i].profileImg + `" onError="this.src='<c:url value='/resources/img/profile.png' />';"` +'"/>';
+	        	html += 	'<a href="<c:url value='/artist/main/main.do'/>?buskerNo=' + genre[i].buskerNo + '">' + genre[i].activityName + '</a>';
+	        	html += '</li>';
+			}
+			$(".sidebar-submenu:eq(2) ul").html(html);
+			genre = result.genre4;
+			html = "";
+			for (let i = 0; i < genre.length; i++) {
+	        	html += '<li>';
+				html += 	'<img src="<c:url value='/file/download.do'/>?path=' + genre[i].profileImgPath + genre[i].profileImg + `" onError="this.src='<c:url value='/resources/img/profile.png' />';"` +'"/>';
+	        	html += 	'<a href="<c:url value='/artist/main/main.do'/>?buskerNo=' + genre[i].buskerNo + '">' + genre[i].activityName + '</a>';
+	        	html += '</li>';
+			}
+			$(".sidebar-submenu:eq(3) ul").html(html);
+			genre = result.genre5;
+			html = "";
+			for (let i = 0; i < genre.length; i++) {
+	        	html += '<li>';
+				html += 	'<img src="<c:url value='/file/download.do'/>?path=' + genre[i].profileImgPath + genre[i].profileImg + `" onError="this.src='<c:url value='/resources/img/profile.png' />';"` +'"/>';
+	        	html += 	'<a href="<c:url value='/artist/main/main.do'/>?buskerNo=' + genre[i].buskerNo + '">' + genre[i].activityName + '</a>';
+	        	html += '</li>';
+			}
+			$(".sidebar-submenu:eq(4) ul").html(html);
+			genre = result.genre6;
+			html = "";
+			for (let i = 0; i < genre.length; i++) {
+	        	html += '<li>';
+				html += 	'<img src="<c:url value='/file/download.do'/>?path=' + genre[i].profileImgPath + genre[i].profileImg + `" onError="this.src='<c:url value='/resources/img/profile.png' />';"` +'"/>';
+	        	html += 	'<a href="<c:url value='/artist/main/main.do'/>?buskerNo=' + genre[i].buskerNo + '">' + genre[i].activityName + '</a>';
+	        	html += '</li>';
+			}
+			$(".sidebar-submenu:eq(5) ul").html(html);
+		}
+	});
 });
 
 $(".search-menu").keydown(function () {
