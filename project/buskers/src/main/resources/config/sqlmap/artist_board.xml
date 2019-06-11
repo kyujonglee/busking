@@ -63,7 +63,7 @@
 		gu, doo, genre_no, weather, weather_icon,temperature, busker_no)
 		values
 		(#{enrollDate}, #{title}, #{content}, #{place}, #{lat}, #{lon},
-		#{gu}, #{doo}, #{genreNo}, #{weather},#{weatherIcon}, #{temperature}, 1)
+		#{gu}, #{doo}, #{genreNo}, #{weather},#{weatherIcon}, #{temperature}, #{buskerNo})
 	</insert>
 	
 	<update id="updateArtistShowByNo" parameterType="artistShow">

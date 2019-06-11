@@ -22,15 +22,9 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="<c:url value='/resources/css/artist/main/artist.css' />" />
+
 	
-    <link rel="stylesheet" href="<c:url value='/resources/css/artist/main/artist.css' />" />
 	
-	<!-- slide -->
-	<link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/artist/slide/custom.css'/>" />
-	<link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/artist/slide/slicebox.css'/>" />
-	<link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/artist/slide/demo.css'/>" />
-	<link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/artist/slide/photo.css'/>" />
-	<script type="text/javascript" src="<c:url value='/resources/js/artist/slide/modernizr.custom.46884.js'/>"></script>
 	
     <title>Buskers</title>
   </head>
