@@ -118,7 +118,7 @@
 		</article>
 	</section>
 	<section class="busker-side__logout">
-		<span>logout</span>
+		<span onclick="logout();">logout</span>
 	</section>
 </aside>
 

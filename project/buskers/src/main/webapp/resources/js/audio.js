@@ -8,7 +8,7 @@ $(".busker-audio-wrapper svg:last").click(function() {
       .css({ display: "grid" });
     $(this)
       .parent()
-      .children(".music")
+      .children(".music-box")
       .css({ display: "flex" });
     $(this).css({ "margin-right": "20px" });
     $(this)
@@ -22,7 +22,7 @@ $(".busker-audio-wrapper svg:last").click(function() {
       .css({ display: "none" });
     $(this)
       .parent()
-      .children(".music")
+      .children(".music-box")
       .css({ display: "none" });
     $(".audio-menu").css({ right: "-320px" });
     menuFlag = true;
@@ -167,25 +167,6 @@ $("#menu-btn").click(function() {
   }
 });
 
-// 오디오 메뉴에 추가하기!!
-//const audioItemList = [
-//  { title: "심쿵해", writer: "aoa", data: "../../resources/sound/MyType.mp3", duration: "03:36" },
-//  {
-//    title: "트와이스",
-//    writer: "FANCY",
-//    data: "../../resources/sound/트와이스 - FANCY.mp3",
-//    duration: "03:22"
-//  },
-//  {
-//    title: "다비치",
-//    writer: "너에게 못했던 내 마지막 말은",
-//    data:
-//      "../../resources/sound/다비치 (DAVICHI) - 너에게 못했던 내 마지막 말은.mp3",
-//    duration: "03:11"
-//  },
-//  { title: "위아래", writer: "aoa", data: "../../resources/sound/MyType.mp3", duration: "03:36" }
-//];
-
 $(".audio-menu__header .audio-menu__header-cnt").text(
   `${audioItemList.length} 곡`
 );
@@ -228,6 +209,8 @@ $(".audio-menu > ul > li .audio-menu__music").click(function(e) {
   audio.src = audioItem.path;
   $(".music .music-title").text(audioItem.title);
   $(".music .music-writer").text(audioItem.writer);
+  console.log(audioItem);
+  $(".music-box .music-box__img").attr({src:"/buskers/file/download.do?path="+audioItem.imgPath});
   $("#play").trigger("click");
 });
 
@@ -278,7 +261,7 @@ $(".audio-menu__content-column .audio-menu__submenu i").click(function() {
 document
   .querySelectorAll(".audio-menu__content-colum-sbox .audio-menu__sbox")
   .forEach(ele => {
-    ele.addEventListener("click", e => {
+    ele.addEventListener("click", function(e) {
       const li = e.target.parentNode.parentNode;
       audioList.removeChild(li);
       list = audioList.querySelectorAll("li");

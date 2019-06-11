@@ -23,9 +23,8 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="<c:url value='/resources/css/artist/main/artist.css' />" />
 
-	
-	
-	
+	<!-- Favicon -->
+<link rel="shortcut icon" href="<c:url value='/resources/img/guitar_icon.png'/>" type="image/x-icon">
     <title>Buskers</title>
   </head>
   <body class="busker-body">

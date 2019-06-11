@@ -25,9 +25,6 @@ public class ArtistMainServiceImpl implements ArtistMainService {
 	private MemberMapper memberMapper;
 	
 	@Autowired
-	private FileMapper mMapper;
-	
-	@Autowired
 	private FileMapper fMapper;
 	
 	@Override

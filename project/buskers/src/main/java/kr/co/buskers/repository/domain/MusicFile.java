@@ -15,7 +15,14 @@ public class MusicFile {
 	private String time;
 	private String buskerName;
 	private int buskerNo;
+	private Busker busker;
 	
+	public Busker getBusker() {
+		return busker;
+	}
+	public void setBusker(Busker busker) {
+		this.busker = busker;
+	}
 	public MultipartFile getAttach2() {
 		return attach2;
 	}

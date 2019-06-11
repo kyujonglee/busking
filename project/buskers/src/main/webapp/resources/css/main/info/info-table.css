@@ -12,7 +12,7 @@
 
 .info-song__list .info-song__item {
   display: grid;
-  grid-template-columns: 1fr 1fr 4fr 2fr 1fr;
+  grid-template-columns: 1fr 0.5fr 4fr 2fr 1fr 2fr;
   padding: 5px;
   box-sizing: border-box;
   background-color: #25272c;
@@ -54,10 +54,13 @@
   border-radius: 3px;
 }
 
-.info-song__item-content-title {
-  transition: all 0.5s ease-in-out;
+.info-song__item-content-title,
+.info-song__item-content-busker {
+  transition: all 0.3s ease-in-out;
+  cursor : pointer;
 }
 
-.info-song__item-content-title:hover {
-  transform: translateY(-5px);
+.info-song__item-content-title:hover,
+.info-song__item-content-busker:hover {
+  transform: translateY(-3px);
 }

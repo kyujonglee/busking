@@ -174,7 +174,7 @@
         </div>
         <div class="busker-audio__column">
           <div>
-            <canvas id="myCanvas" height="10px" width="150px"></canvas>
+            <canvas id="myCanvas" height="6px" width="150px"></canvas>
           </div>
           <div id="cTime">
             <span id="currentTime"> 00:00 </span> /

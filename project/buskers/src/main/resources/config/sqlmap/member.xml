@@ -59,7 +59,7 @@
 	
 	<!-- 로그인 -->
 	<select id="loginAction" resultType="member">
-			select a.*,b.busker_no
+			select a.*, b.busker_no
   		  from tb_member as a
      left outer join tb_busker as b
             on a.member_no=b.member_no

@@ -53,10 +53,7 @@
   box-sizing: border-box;
   cursor: pointer;
   position: relative;
-<<<<<<< HEAD
   box-sizing: border-box;
-=======
->>>>>>> master
 }
 
 .audio-menu .audio-menu__content-column:hover {

@@ -6,9 +6,9 @@
   color: var(--color-white);
 }
 
-.info-busker__profiles::-webkit-scrollbar {
+/* .info-busker__profiles::-webkit-scrollbar {
   display: none;
-}
+} */
 
 .info-busker__profiles {
   display: grid;
