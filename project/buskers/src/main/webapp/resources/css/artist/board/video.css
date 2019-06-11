@@ -19,6 +19,15 @@
 .modal-open{
 	padding-right: 0px;
 }
+.videoMenu{
+	float:right;
+}
+.video_menu_modify{
+	position:absolute;
+	z-index:1px;
+	background-color:orange;
+	display:none;
+}
 
 
 

@@ -24,8 +24,8 @@ public class FileServiceImpl implements FileService {
 	@Autowired
 	private BuskerMapper bMapper;
 	
-	private final String FILE_PATH = "/Users/kyujong/Documents/bit2019/upload";
-//	private final String FILE_PATH = "C:/bit2019/upload";
+//	private final String FILE_PATH = "/Users/kyujong/Documents/bit2019/upload";
+	private final String FILE_PATH = "C:/bit2019/upload";
 	
 	public void deleteFile(int groupNo) throws Exception {
 		mapper.deleteFileAll(groupNo);

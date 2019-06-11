@@ -17,7 +17,12 @@
 				        		<div class="video">
 			        				<iframe width="100%" height="250px" src="https://www.youtube.com/embed/_sGNYiaGies" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 				        			<div class="video_title">동영상 제목을 써주세요</div>
-				        			<div class="cideo_date">2019-06-11</div>
+				        			<div class="cideo_date">2019-06-11
+				        				<span class="videoMenu">
+				        					<span class="video_menu_modify">수정<br></span>
+				        					<i class="fas fa-ellipsis-h"></i>
+				        				</span>
+				        			</div>
 				        		</div>
 				        		<div class="video">
 			        				<iframe width="100%" height="250px" src="https://www.youtube.com/embed/_sGNYiaGies" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
