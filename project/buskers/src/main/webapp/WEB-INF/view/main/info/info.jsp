@@ -16,196 +16,29 @@ uri="http://java.sun.com/jsp/jstl/fmt"%>
       Buskers
     </header>
     <section class="info-busker__profiles">
-      <article class="info-busker__profile">
-        <div class="info-busker__profile-wrapper">
-          <img
-            class="info-busker__profile-img"
-            src="https://i.pinimg.com/564x/66/74/55/667455ca43e3a636faf03f308cf02545.jpg"
-          />
-          <div class="info-busker__profile-content">
-            <div class="info-busker__profile-content-column">
-              <span class="info-busker__profile-title">
-                디에디드
-              </span>
-            </div>
-            <div class="info-busker__profile-content-column">
-              <i class="fas fa-user-alt"></i>
-              <span class="info-busker__follow"> 18 </span>
-            </div>
-          </div>
-        </div>
-      </article>
-      <article class="info-busker__profile">
-        <div class="info-busker__profile-wrapper">
-          <img
-            class="info-busker__profile-img"
-            src="https://i.pinimg.com/564x/66/74/55/667455ca43e3a636faf03f308cf02545.jpg"
-          />
-          <div class="info-busker__profile-content">
-            <div class="info-busker__profile-content-column">
-              <span class="info-busker__profile-title">
-                디에디드
-              </span>
-            </div>
-            <div class="info-busker__profile-content-column">
-              <i class="fas fa-user-alt"></i>
-              <span class="info-busker__follow"> 18 </span>
-            </div>
-          </div>
-        </div>
-      </article>
-      <article class="info-busker__profile">
-        <div class="info-busker__profile-wrapper">
-          <img
-            class="info-busker__profile-img"
-            src="https://i.pinimg.com/564x/66/74/55/667455ca43e3a636faf03f308cf02545.jpg"
-          />
-          <div class="info-busker__profile-content">
-            <div class="info-busker__profile-content-column">
-              <span class="info-busker__profile-title">
-                디에디드
-              </span>
-            </div>
-            <div class="info-busker__profile-content-column">
-              <i class="fas fa-user-alt"></i>
-              <span class="info-busker__follow"> 18 </span>
-            </div>
-          </div>
-        </div>
-      </article>
-      <article class="info-busker__profile">
-        <div class="info-busker__profile-wrapper">
-          <img
-            class="info-busker__profile-img"
-            src="https://i.pinimg.com/564x/66/74/55/667455ca43e3a636faf03f308cf02545.jpg"
-          />
-          <div class="info-busker__profile-content">
-            <div class="info-busker__profile-content-column">
-              <span class="info-busker__profile-title">
-                디에디드
-              </span>
-            </div>
-            <div class="info-busker__profile-content-column">
-              <i class="fas fa-user-alt"></i>
-              <span class="info-busker__follow"> 18 </span>
-            </div>
-          </div>
-        </div>
-      </article>
-      <article class="info-busker__profile">
-        <div class="info-busker__profile-wrapper">
-          <img
-            class="info-busker__profile-img"
-            src="https://i.pinimg.com/564x/66/74/55/667455ca43e3a636faf03f308cf02545.jpg"
-          />
-          <div class="info-busker__profile-content">
-            <div class="info-busker__profile-content-column">
-              <span class="info-busker__profile-title">
-                디에디드
-              </span>
-            </div>
-            <div class="info-busker__profile-content-column">
-              <i class="fas fa-user-alt"></i>
-              <span class="info-busker__follow"> 18 </span>
-            </div>
-          </div>
-        </div>
-      </article>
-      <article class="info-busker__profile">
-        <div class="info-busker__profile-wrapper">
-          <img
-            class="info-busker__profile-img"
-            src="https://i.pinimg.com/564x/66/74/55/667455ca43e3a636faf03f308cf02545.jpg"
-          />
-          <div class="info-busker__profile-content">
-            <div class="info-busker__profile-content-column">
-              <span class="info-busker__profile-title">
-                디에디드
-              </span>
-            </div>
-            <div class="info-busker__profile-content-column">
-              <i class="fas fa-user-alt"></i>
-              <span class="info-busker__follow"> 18 </span>
-            </div>
-          </div>
-        </div>
-      </article>
-      <article class="info-busker__profile">
-        <div class="info-busker__profile-wrapper">
-          <img
-            class="info-busker__profile-img"
-            src="https://i.pinimg.com/564x/66/74/55/667455ca43e3a636faf03f308cf02545.jpg"
-          />
-          <div class="info-busker__profile-content">
-            <div class="info-busker__profile-content-column">
-              <span class="info-busker__profile-title">
-                디에디드
-              </span>
-            </div>
-            <div class="info-busker__profile-content-column">
-              <i class="fas fa-user-alt"></i>
-              <span class="info-busker__follow"> 18 </span>
-            </div>
-          </div>
-        </div>
-      </article>
-      <article class="info-busker__profile">
-        <div class="info-busker__profile-wrapper">
-          <img
-            class="info-busker__profile-img"
-            src="https://i.pinimg.com/564x/66/74/55/667455ca43e3a636faf03f308cf02545.jpg"
-          />
-          <div class="info-busker__profile-content">
-            <div class="info-busker__profile-content-column">
-              <span class="info-busker__profile-title">
-                디에디드
-              </span>
-            </div>
-            <div class="info-busker__profile-content-column">
-              <i class="fas fa-user-alt"></i>
-              <span class="info-busker__follow"> 18 </span>
-            </div>
-          </div>
-        </div>
-      </article>
-      <article class="info-busker__profile">
-        <div class="info-busker__profile-wrapper">
-          <img
-            class="info-busker__profile-img"
-            src="https://i.pinimg.com/564x/66/74/55/667455ca43e3a636faf03f308cf02545.jpg"
-          />
-          <div class="info-busker__profile-content">
-            <div class="info-busker__profile-content-column">
-              <span class="info-busker__profile-title">
-                디에디드
-              </span>
-            </div>
-            <div class="info-busker__profile-content-column">
-              <i class="fas fa-user-alt"></i>
-              <span class="info-busker__follow"> 18 </span>
-            </div>
-          </div>
-        </div>
-      </article>
-      <article class="info-busker__profile">
-        <div class="info-busker__profile-wrapper">
-          <img
-            class="info-busker__profile-img"
-            src="https://i.pinimg.com/564x/66/74/55/667455ca43e3a636faf03f308cf02545.jpg"
-          />
-          <div class="info-busker__profile-content">
-            <div class="info-busker__profile-content-column">
-              <span class="info-busker__profile-title">
-                디에디드
-              </span>
-            </div>
-            <div class="info-busker__profile-content-column">
-              <i class="fas fa-user-alt"></i>
-              <span class="info-busker__follow"> 18 </span>
-            </div>
-          </div>
-        </div>
-      </article>
+      <c:forEach var="busker" items="${map.buskerList}">
+	      <article class="info-busker__profile">
+	        <div class="info-busker__profile-wrapper">
+	          <img
+	            class="info-busker__profile-img"
+	            src="<c:url value='/file/download.do?path=${busker.member.profileImgPath}${busker.member.profileImg}'/>"
+	          />
+	          <div class="info-busker__profile-content">
+	            <div class="info-busker__profile-content-column">
+	            <a href="<c:url value='/artist/main/main.do?buskerNo='/>${busker.buskerNo}">
+	              <span class="info-busker__profile-title">
+	                ${busker.activityName}
+	              </span>
+	            </a>
+	            </div>
+	            <div class="info-busker__profile-content-column">
+	              <i class="fas fa-user-alt"></i>
+	              <span class="info-busker__follow"> ${busker.followCnt} </span>
+	            </div>
+	          </div>
+	        </div>
+	      </article>
+      </c:forEach>
     </section>
   </article>
   <article class="info-song">
@@ -220,186 +53,34 @@ uri="http://java.sun.com/jsp/jstl/fmt"%>
         <div class="info-song__item-title">Artist</div>
         <div class="info-song__item-title">Time</div>
       </div>
-      <div class="info-song__item">
-        <div class="info-song__item-content">
-          <img
-            src="https://i.pinimg.com/564x/52/b1/32/52b1320190b10856633500c4d4d72c76.jpg"
-            class="info-song__item-content-img"
-          />
-        </div>
-        <div class="info-song__item-content">
-          <span class="info-song__item-content-num">1</span>
-        </div>
-        <div class="info-song__item-content">
-          <span class="info-song__item-content-title">Fancy</span>
-        </div>
-        <div class="info-song__item-content">
-          <span class="info-song__item-content-artist">트와이스</span>
-        </div>
-        <div class="info-song__item-content">
-          <span class="info-song__item-content-time">03:43</span>
-        </div>
-      </div>
-      <div class="info-song__item">
-        <div class="info-song__item-content">
-          <img
-            src="https://i.pinimg.com/564x/52/b1/32/52b1320190b10856633500c4d4d72c76.jpg"
-            class="info-song__item-content-img"
-          />
-        </div>
-        <div class="info-song__item-content">
-          <span class="info-song__item-content-num">1</span>
-        </div>
-        <div class="info-song__item-content">
-          <span class="info-song__item-content-title">Fancy</span>
-        </div>
-        <div class="info-song__item-content">
-          <span class="info-song__item-content-artist">트와이스</span>
-        </div>
-        <div class="info-song__item-content">
-          <span class="info-song__item-content-time">03:43</span>
-        </div>
-      </div>
-      <div class="info-song__item">
-        <div class="info-song__item-content">
-          <img
-            src="https://i.pinimg.com/564x/52/b1/32/52b1320190b10856633500c4d4d72c76.jpg"
-            class="info-song__item-content-img"
-          />
-        </div>
-        <div class="info-song__item-content">
-          <span class="info-song__item-content-num">1</span>
-        </div>
-        <div class="info-song__item-content">
-          <span class="info-song__item-content-title">Fancy</span>
-        </div>
-        <div class="info-song__item-content">
-          <span class="info-song__item-content-artist">트와이스</span>
-        </div>
-        <div class="info-song__item-content">
-          <span class="info-song__item-content-time">03:43</span>
-        </div>
-      </div>
-      <div class="info-song__item">
-        <div class="info-song__item-content">
-          <img
-            src="https://i.pinimg.com/564x/52/b1/32/52b1320190b10856633500c4d4d72c76.jpg"
-            class="info-song__item-content-img"
-          />
-        </div>
-        <div class="info-song__item-content">
-          <span class="info-song__item-content-num">1</span>
-        </div>
-        <div class="info-song__item-content">
-          <span class="info-song__item-content-title">Fancy</span>
-        </div>
-        <div class="info-song__item-content">
-          <span class="info-song__item-content-artist">트와이스</span>
-        </div>
-        <div class="info-song__item-content">
-          <span class="info-song__item-content-time">03:43</span>
-        </div>
-      </div>
-      <div class="info-song__item">
-        <div class="info-song__item-content">
-          <img
-            src="https://i.pinimg.com/564x/52/b1/32/52b1320190b10856633500c4d4d72c76.jpg"
-            class="info-song__item-content-img"
-          />
-        </div>
-        <div class="info-song__item-content">
-          <span class="info-song__item-content-num">1</span>
-        </div>
-        <div class="info-song__item-content">
-          <span class="info-song__item-content-title">Fancy</span>
-        </div>
-        <div class="info-song__item-content">
-          <span class="info-song__item-content-artist">트와이스</span>
-        </div>
-        <div class="info-song__item-content">
-          <span class="info-song__item-content-time">03:43</span>
-        </div>
-      </div>
-      <div class="info-song__item">
-        <div class="info-song__item-content">
-          <img
-            src="https://i.pinimg.com/564x/52/b1/32/52b1320190b10856633500c4d4d72c76.jpg"
-            class="info-song__item-content-img"
-          />
-        </div>
-        <div class="info-song__item-content">
-          <span class="info-song__item-content-num">1</span>
-        </div>
-        <div class="info-song__item-content">
-          <span class="info-song__item-content-title">Fancy</span>
-        </div>
-        <div class="info-song__item-content">
-          <span class="info-song__item-content-artist">트와이스</span>
-        </div>
-        <div class="info-song__item-content">
-          <span class="info-song__item-content-time">03:43</span>
-        </div>
-      </div>
-      <div class="info-song__item">
-        <div class="info-song__item-content">
-          <img
-            src="https://i.pinimg.com/564x/52/b1/32/52b1320190b10856633500c4d4d72c76.jpg"
-            class="info-song__item-content-img"
-          />
-        </div>
-        <div class="info-song__item-content">
-          <span class="info-song__item-content-num">1</span>
-        </div>
-        <div class="info-song__item-content">
-          <span class="info-song__item-content-title">Fancy</span>
-        </div>
-        <div class="info-song__item-content">
-          <span class="info-song__item-content-artist">트와이스</span>
-        </div>
-        <div class="info-song__item-content">
-          <span class="info-song__item-content-time">03:43</span>
-        </div>
-      </div>
-      <div class="info-song__item">
-        <div class="info-song__item-content">
-          <img
-            src="https://i.pinimg.com/564x/52/b1/32/52b1320190b10856633500c4d4d72c76.jpg"
-            class="info-song__item-content-img"
-          />
-        </div>
-        <div class="info-song__item-content">
-          <span class="info-song__item-content-num">1</span>
-        </div>
-        <div class="info-song__item-content">
-          <span class="info-song__item-content-title">Fancy</span>
-        </div>
-        <div class="info-song__item-content">
-          <span class="info-song__item-content-artist">트와이스</span>
-        </div>
-        <div class="info-song__item-content">
-          <span class="info-song__item-content-time">03:43</span>
-        </div>
-      </div>
-      <div class="info-song__item">
-        <div class="info-song__item-content">
-          <img
-            src="https://i.pinimg.com/564x/52/b1/32/52b1320190b10856633500c4d4d72c76.jpg"
-            class="info-song__item-content-img"
-          />
-        </div>
-        <div class="info-song__item-content">
-          <span class="info-song__item-content-num">1</span>
-        </div>
-        <div class="info-song__item-content">
-          <span class="info-song__item-content-title">Fancy</span>
-        </div>
-        <div class="info-song__item-content">
-          <span class="info-song__item-content-artist">트와이스</span>
-        </div>
-        <div class="info-song__item-content">
-          <span class="info-song__item-content-time">03:43</span>
-        </div>
-      </div>
+      <c:forEach var="song" items="${map.musicList}" varStatus="status">
+	      <div class="info-song__item">
+	        <div class="info-song__item-content">
+	          <img
+	            src="<c:url value='/file/download.do?path='/>${song.imgPath}"
+	            class="info-song__item-content-img"
+	            onError="this.src='<c:url value='/resources/img/music-profile.png' />';"
+	          />
+	        </div>
+	        <div class="info-song__item-content">
+	          <span class="info-song__item-content-num">${status.count}</span>
+	        </div>
+	        <div class="info-song__item-content">
+	        <!-- 뮤직플레이어에 추가하는 기능! -->
+	          <a href="<c:url value='/artist/main/main.do?buskerNo=${song.buskerNo}'/>">
+		          <span class="info-song__item-content-title">${song.title}</span>
+	          </a>
+	        </div>
+	        <div class="info-song__item-content">
+	          <a href="<c:url value='/artist/main/main.do?buskerNo=${song.buskerNo}'/>">
+	          	<span class="info-song__item-content-artist">${song.writer}</span>
+	          </a>
+	        </div>
+	        <div class="info-song__item-content">
+	          <span class="info-song__item-content-time">${song.time}</span>
+	        </div>
+	      </div>
+      </c:forEach>
     </section>
   </article>
   <article class="info-video">
@@ -460,7 +141,7 @@ uri="http://java.sun.com/jsp/jstl/fmt"%>
           <div class="swiper-slide">Slide 10</div>
         </div>
         <!-- Add Pagination -->
-        <!-- <div class="swiper-pagination"></div> -->
+        <div class="swiper-pagination"></div>
         <!-- Add Arrows -->
         <div class="swiper-button-next swiper-button-white"></div>
         <div class="swiper-button-prev swiper-button-white"></div>

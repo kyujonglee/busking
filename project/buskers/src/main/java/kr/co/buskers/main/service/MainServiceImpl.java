@@ -110,15 +110,10 @@ public class MainServiceImpl implements MainService {
 		return map;
 	}
 	
-	public Map<String, Object> selectArtistByGenre() {
+	public Map<String, Object> selectArtistShowToday() {
 		Map<String, Object> map = new HashMap<>();
 
-		map.put("Genre1", mapper.selectArtistByGenre1());
-		map.put("Genre2", mapper.selectArtistByGenre2());
-		map.put("Genre3", mapper.selectArtistByGenre3());
-		map.put("Genre4", mapper.selectArtistByGenre4());
-		map.put("Genre5", mapper.selectArtistByGenre5());
-		map.put("Genre6", mapper.selectArtistByGenre6());
+		map.put("artistShow", mapper.selectArtistShowToday());
 		
 		return map;
 	}

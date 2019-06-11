@@ -30,7 +30,7 @@ public class ArtistMainController {
 	public void main(Model model,HttpSession session,int buskerNo) {
 		System.out.println("buskerNo : "+buskerNo);
 		model.addAttribute("audioList",mainService.selectMusicByBuskerNo(buskerNo));
-//		model.addAttribute("audioList",mainService.selectMusicByBuskerNo(buskerNo));
+		model.addAttribute("buskerNo",buskerNo);
 		
 		
 		//버스커 no 값을 파라미터로 가져와야함... 1또는 0을 반환함 셋팅해준뒤 화면처리 필요!
@@ -48,9 +48,6 @@ public class ArtistMainController {
 		model.addAttribute("socialUrl",mainService.selectSocialUrl(buskerNo));
 		
 	}
-	
-	
-	
 	
 	@RequestMapping("main-ajax.do")
 	@ResponseBody

@@ -80,54 +80,15 @@
 		   and show_no = #{showNo}
 	</select>
 	
-	<select id="selectArtistByGenre1" resultType="artistShow">
+	<select id="selectArtistShowToday" resultType="artistShow">
 		select * 
-		  from tb_busker_genre g, tb_busker b, tb_member m
-		 where g.busker_no = b.busker_no
-		   and b.member_no = m.member_no
-		   and genre_no = 1
-	</select>
- 
-	<select id="selectArtistByGenre2" resultType="artistShow">
-		select * 
-		  from tb_busker_genre g, tb_busker b, tb_member m
-		 where g.busker_no = b.busker_no
-		   and b.member_no = m.member_no
-		   and genre_no = 2
-	</select>
- 
-	<select id="selectArtistByGenre3" resultType="artistShow">
-		select * 
-		  from tb_busker_genre g, tb_busker b, tb_member m
-		 where g.busker_no = b.busker_no
-		   and b.member_no = m.member_no
-		   and genre_no = 3
-	</select>
- 
-	<select id="selectArtistByGenre4" resultType="artistShow">
-		select * 
-		  from tb_busker_genre g, tb_busker b, tb_member m
-		 where g.busker_no = b.busker_no
-		   and b.member_no = m.member_no
-		   and genre_no = 4
-	</select>
- 
-	<select id="selectArtistByGenre5" resultType="artistShow">
-		select * 
-		  from tb_busker_genre g, tb_busker b, tb_member m
-		 where g.busker_no = b.busker_no
-		   and b.member_no = m.member_no
-		   and genre_no = 5
-	</select>
- 
-	<select id="selectArtistByGenre6" resultType="artistShow">
-		select * 
-		  from tb_busker_genre g, tb_busker b, tb_member m
-		 where g.busker_no = b.busker_no
-		   and b.member_no = m.member_no
-		   and genre_no = 6
+		  from tb_busker_show s, tb_busker b, tb_member m
+		 where s.busker_no = b.busker_no
+           and m.member_no = b.member_no
+		   and date(enroll_date) = current_date();
 	</select>
 	
  
+ 	
 </mapper>
 	

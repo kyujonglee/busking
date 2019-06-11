@@ -44,7 +44,6 @@
 	font-weight: bold;
 	margin-top: -20px;
 	width: 410px;
-	border-bottom: 2px solid orange;
 }
 
 .buskers_map_detail {
@@ -344,6 +343,7 @@ h1 {
 	font-size: 15px;
 	font-family: 'Nanum Gothic', sans-serif;
 	padding-bottom: 7px;
+	color: #232323;
 }
 
 h3 {
@@ -472,8 +472,8 @@ rect {
 
 .neon b {
   font-size: 45px;
-  color: #fee;
-  text-shadow: 0 -40px 100px, 0 0 2px, 0 0 1em #ff4444, 0 0 0.5em #ff4444, 0 0 0.1em #ff4444, 0 10px 3px #000;
+  color: powderblue;
+  text-shadow: 0 -40px 100px, 0 0 2px, 0 0 1em #0C7BF0, 0 0 0.5em #0C7BF0, 0 0 0.1em #0C7BF0, 0 10px 3px #000;
 }
 .neon b span {
   animation: neon linear infinite 2s;
