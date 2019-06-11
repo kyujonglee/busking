@@ -16,11 +16,16 @@
 	font-weight:bold;
 	font-size:18px;
 }
-.modal-open{
-	padding-right: 0px;
+.busker-body{
+	padding-right: 0px !important;
 }
 .videoMenu{
 	float:right;
+	cursor:pointer;
+}
+#videoModal{
+	
+	padding-right: 0px;
 }
 .video_menu_modify{
 	position:absolute;
@@ -47,6 +52,7 @@
 }
   
 .pagination a {
+	font-size:17px;
 	color: black;
 	float: left;
 	padding: 8px 11px;

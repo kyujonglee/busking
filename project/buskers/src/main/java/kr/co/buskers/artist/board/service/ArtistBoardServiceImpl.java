@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import kr.co.buskers.repository.domain.ArtistShow;
 import kr.co.buskers.repository.domain.Genre;
+import kr.co.buskers.repository.domain.Video;
 import kr.co.buskers.repository.mapper.AgencyMapper;
 import kr.co.buskers.repository.mapper.ArtistBoardMapper;
 
@@ -52,5 +53,10 @@ public class ArtistBoardServiceImpl implements ArtistBoardService {
 	@Override
 	public void deleteArtistShowByNo(int showNo) {
 		mapper.deleteArtistShowByNo(showNo);
+	}
+
+	@Override
+	public void insertVideo(Video video) {
+		mapper.insertVideo(video);
 	}
 }

@@ -4,6 +4,7 @@ import java.util.List;
 
 import kr.co.buskers.repository.domain.ArtistShow;
 import kr.co.buskers.repository.domain.SocialUrl;
+import kr.co.buskers.repository.domain.Video;
 
 public interface ArtistBoardMapper {
 	
@@ -26,4 +27,6 @@ public interface ArtistBoardMapper {
 	void updateSocialUrl(SocialUrl socialUrl);
 	
 	SocialUrl selectSocialUrl(int buskerNo);
+	
+	void insertVideo(Video video);
 }
