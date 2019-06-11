@@ -1,5 +1,7 @@
 package kr.co.buskers.repository.domain;
 
+import java.util.List;
+
 public class Busker {
 
 	private int buskerNo;
@@ -9,7 +11,44 @@ public class Busker {
 	private String name;
 	private String profileImg;
 	private String profileImgPath;
+	private List<BuskerGenre> buskerGenreList;
+	private List<String> buskerCheckbox;
+	private String id;
+	private String intro;
+	private String time;
+	private String location;
+	private Follow follow;
 	
+	public int getBuskerNo() {
+		return buskerNo;
+	}
+	public void setBuskerNo(int buskerNo) {
+		this.buskerNo = buskerNo;
+	}
+	public int getMemberNo() {
+		return memberNo;
+	}
+	public void setMemberNo(int memberNo) {
+		this.memberNo = memberNo;
+	}
+	public String getPhone() {
+		return phone;
+	}
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+	public String getActivityName() {
+		return activityName;
+	}
+	public void setActivityName(String activityName) {
+		this.activityName = activityName;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
 	public String getProfileImg() {
 		return profileImg;
 	}
@@ -21,6 +60,24 @@ public class Busker {
 	}
 	public void setProfileImgPath(String profileImgPath) {
 		this.profileImgPath = profileImgPath;
+	}
+	public List<BuskerGenre> getBuskerGenreList() {
+		return buskerGenreList;
+	}
+	public void setBuskerGenreList(List<BuskerGenre> buskerGenreList) {
+		this.buskerGenreList = buskerGenreList;
+	}
+	public List<String> getBuskerCheckbox() {
+		return buskerCheckbox;
+	}
+	public void setBuskerCheckbox(List<String> buskerCheckbox) {
+		this.buskerCheckbox = buskerCheckbox;
+	}
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
 	}
 	public String getIntro() {
 		return intro;
@@ -40,40 +97,10 @@ public class Busker {
 	public void setLocation(String location) {
 		this.location = location;
 	}
-	private String intro;
-	private String time;
-	private String location;
-	
-	public String getName() {
-		return name;
+	public Follow getFollow() {
+		return follow;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setFollow(Follow follow) {
+		this.follow = follow;
 	}
-	public String getPhone() {
-		return phone;
-	}
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
-	public int getBuskerNo() {
-		return buskerNo;
-	}
-	public void setBuskerNo(int buskerNo) {
-		this.buskerNo = buskerNo;
-	}
-	public int getMemberNo() {
-		return memberNo;
-	}
-	public void setMemberNo(int memberNo) {
-		this.memberNo = memberNo;
-	}
-	public String getActivityName() {
-		return activityName;
-	}
-	public void setActivityName(String activityName) {
-		this.activityName = activityName;
-	}
-	
-	
 }

@@ -15,11 +15,13 @@ public interface ArtistMainService {
 
 	int followBusker(Follow follow);
 	
-	int followBuskerStatus(Follow follow);
+	String followBuskerStatus(Follow follow);
 	
 	void sociaUrlInsert(SocialUrl socialUrl);
 	
 	SocialUrl selectSocialUrl(int buskerNo);
 	
 	void updateIntro(Busker busker);
+	
+	public Busker selectBusker(int buskerNo);
 }

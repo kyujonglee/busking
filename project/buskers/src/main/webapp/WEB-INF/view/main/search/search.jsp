@@ -18,35 +18,51 @@
 </head>
 <body class="search__body">
     <div class="container">
+    
+   
         <div class="search__wrapper">
             <div class="search__result"><b>'${input}'</b>에 대한 검색결과 입니다.</div>
-<!--        <hr> -->
-            <div class="search__artist__wrapper">
-                <div class="artist__search__title">아티스트 정보</div>
-                <div class="artist__search__info">
-                    <div class="artist__search__image">
-                        <img src="<c:url value='/resources/img/common.jpg'/>">
-                    </div>
-                    <div class="artist__search__explain">
-                        <div><a href="#">피아노치는 이정환</a></div>
-                        <div>아티스트의 정보를 입력,   </div>
-                    </div>
-                </div>
-                <div class="artist__search__video">
-                    <!--동영상 목록자리-->
-                </div>
-                <div class="artist__search__list" >
-                    <div class="search__title">아티스트 리스트</div>
-                    <div class="artist__search__list_detail">
-                        <div class="artist__search__list__info">
-                            <img src="<c:url value='/resources/img/common.jpg'/>">
-                            <div><a href="#">피아노치는 이정환</a></div>
-                            <div>이정환</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <c:choose>
+			 	<c:when test="${busker ne null}">
+		            <div class="search__artist__wrapper">
+		            	<div class="search__title">
+               				아티스트 검색 결과
+            			</div>			
+		                <div class="artist__search__info">
+		                    <div class="artist__search__image">
+		                        <img src="<c:url value='/file/download.do'/>?path=${busker.profileImgPath}${busker.profileImg}">
+		                    </div>
+		                    <div class="artist__search__explain">
+		                        <div class="busker_info busker_name"><a href="<c:url value='/artist/main/main.do?buskerNo=${busker.buskerNo}'/>">${busker.activityName }</a></div>
+		                        <div class="busker_info">아티스트 소개  <span class="busker_info_db">${busker.intro }</span></div>
+		                        <div class="busker_info">장르  <span class="busker_info_db">보컬</span></div>
+		                        <div class="busker_info">주요 공연 장소  <span class="busker_info_db">${busker.location }</span></div>
+		                        <div class="busker_info">주요 공연 시간  <span class="busker_info_db">${busker.time }</span></div>
+		                    </div>
+		                </div>
+		                <div class="artist__search__video">
+		                    <!--동영상 목록자리-->
+		                </div>
+		                <%-- <div class="artist__search__list" >
+		                    <div class="search__title">아티스트 리스트</div>
+		                    <div class="artist__search__list_detail">
+		                        <div class="artist__search__list__info">
+		                            <img src="<c:url value='/resources/img/common.jpg'/>">
+		                            <div><a href="#">피아노치는 이정환</a></div>
+		                            <div>이정환</div>
+		                        </div>
+		                    </div>
+		                </div> --%>
+		            </div>
+	            </c:when>
+	            <c:otherwise>
+	            	<div class="no__result">
+              	  		'<b>${input }</b>'에 대한 아티스트 정보가 없습니다.
+              		</div>
+	            </c:otherwise>
+            </c:choose>
         </div>
+        
         <div class="search__board__wrapper">
 <!--         <hr> -->
             <div class="search__title">

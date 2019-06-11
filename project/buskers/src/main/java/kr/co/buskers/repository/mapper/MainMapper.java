@@ -24,4 +24,5 @@ public interface MainMapper {
 	
 	List<SearchBoard> selectSearchBoard(SearchPage searchPage);
 	int selectCountSearchBoard(SearchPage searchPage);
+	Busker searchBusker(SearchPage searchPage);
 }

@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <link rel="stylesheet" href="<c:url value='/resources/css/main/member/register-busker.css'/>" />
+<script src="<c:url value='/resources/js/jquery-3.4.1.min.js'/>"></script>
 <title>버스커가입</title>
 <main class="main-board">  
     <!-- CONTAINER -->
@@ -10,33 +11,50 @@
                 <div class="lb-header">
                     <span class="active" id="login-box-link">버스커 회원가입</span>
                 </div>
-                <form class="email-login"  action="signup-busker.do" method="post" >
+                <form name="insertBusker" id="insertBusker" class="email-login"  action="signup-busker.do" method="post" onsubmit="return buskerCheck();">
                 	<input type="hidden" name="memberNo" value="${sessionScope.user.memberNo }"/>
                     <div class="u-form-group">
-                        <div>이름&nbsp;</div><input type="text" id="name" name="name" placeholder="Name"/>&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;
-                    </div>
-                    <div class="u-form-group">
-                        <div>활동명&nbsp;</div><input type="text" id="activityName" name="activityName" placeholder="ActivityName"/>
+                        <div class="div_group_name">활동명&nbsp;</div><input type="text" id="activityName" name="activityName" placeholder="ActivityName"/>
                         <button type="button" id="checkActiveName" class="check">중복확인</button>
                     </div>
                     <div class="u-form-group">
-                        <div>연락처&nbsp;</div><input type="text" id="phone" name="phone" placeholder="Phone"/>
-                        <button type="button" id="phone" class="check">본인인증</button>
+                        <div class="div_group_name">연락처&nbsp;</div><input type="text" id="phone" name="phone" placeholder="Phone"/>
+                        <button type="button" id="checkPhone" class="check">본인인증</button>
                     </div>
                     <div class="u-form-group">
-                        <div class="genre">주요장르&nbsp;</div>
+                        <div class="div_group_name">주요장르&nbsp;</div>
                         <div class="checkBox">
-                            <input type="checkbox" id="skill1" name="skill" value="1">
-                            <label for="skill1">스트릿댄스</label>
-                            <input type="checkbox" id="skill2" name="skill" value="2">
-                            <label for="skill2">발라드</label>
-                            <input type="checkbox" id="skill3" name="skill" value="3">
-                            <label for="skill3">스탠드업 코미디</label>
+                        	<div class="buskerCheckbox-item">
+                            <label for="buskerCheckbox1" style="cursor:pointer">
+	                            <input type="checkbox" id="buskerCheckbox1" name="buskerCheckbox" value="1">
+	                            <span>스트릿댄스</span>
+                            </label>
+                        	</div>
+                        	<div class="buskerCheckbox-item">
+                            <label for="buskerCheckbox2" style="cursor:pointer">
+	                            <input type="checkbox" id="buskerCheckbox2" name="buskerCheckbox" value="2">
+	                            <span>보컬</span>
+                            </label>
+                        	</div>
+                        	<div class="buskerCheckbox-item">
+                            <label for="buskerCheckbox3" style="cursor:pointer">
+	                            <input type="checkbox" id="buskerCheckbox3" name="buskerCheckbox" value="3">
+	                            <span>스탠드업 코미디</span>
+                            </label>
+                        	</div>
                             <br>
-                            <input type="checkbox" id="skill4" name="skill" value="4">
-                            <label for="skill4">악기연주</label>
-                            <input type="checkbox" id="skill5" name="skill" value="5">
-                            <label for="skill5">마술</label>
+                        	<div class="buskerCheckbox-item">
+                            <label for="buskerCheckbox4" style="cursor:pointer">
+	                            <input type="checkbox" id="buskerCheckbox4" name="buskerCheckbox" value="4">
+	                            <span>악기연주</span>
+                            </label>
+                        	</div>
+                        	<div class="buskerCheckbox-item">
+                            <label for="buskerCheckbox5" style="cursor:pointer">
+	                            <input type="checkbox" id="buskerCheckbox5" name="buskerCheckbox" value="5">
+	                            <span>마술</span>
+                            </label>
+                        	</div>
                         </div>
                     </div>
                     <br>
@@ -52,3 +70,4 @@
 
     </div>
 </main>
+<script src="<c:url value='/resources/js/main/member/insertBusker.js'/>"></script>

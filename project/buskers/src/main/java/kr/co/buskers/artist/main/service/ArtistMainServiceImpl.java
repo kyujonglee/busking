@@ -68,8 +68,8 @@ public class ArtistMainServiceImpl implements ArtistMainService {
 	}
 
 	@Override
-	public int followBuskerStatus(Follow follow) {
-		return memberMapper.confirmFollow(follow);
+	public String followBuskerStatus(Follow follow) {
+		return memberMapper.followStatus(follow);
 	}
 
 	@Override
@@ -90,6 +90,11 @@ public class ArtistMainServiceImpl implements ArtistMainService {
 	@Override
 	public void updateIntro(Busker busker) {
 		memberMapper.updateIntro(busker);		
+	}
+
+	@Override
+	public Busker selectBusker(int buskerNo) {
+		return memberMapper.selectBusker(buskerNo);
 	}
 	
 }

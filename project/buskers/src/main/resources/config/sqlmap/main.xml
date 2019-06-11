@@ -63,6 +63,15 @@
          order by reg_date desc
 	</select>
 	
+	<!-- 버스커 검색 -->
+	<select id="searchBusker" parameterType="searchPage" resultType="busker" >
+		select m.profile_img,m.profile_img_path , b.*
+		  from tb_busker as b
+		 inner join tb_member as m
+		    on b.member_no = m.member_no
+		 where b.activity_name = #{input}
+	</select>
+	
 	<select id="selectMarker" parameterType="int" resultType="artistShow">
 		select * 
 		  from tb_busker_show s, tb_busker b, tb_member m
@@ -78,6 +87,7 @@
            and m.member_no = b.member_no
 		   and date(enroll_date) = current_date();
 	</select>
+	
  
  	
 </mapper>

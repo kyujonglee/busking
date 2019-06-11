@@ -1,0 +1,11 @@
+@import "../../common/common.css";
+@import 'info-list.css';
+@import 'info-busker.css';
+@import 'info-table.css';
+@import 'info-video.css';
+
+:root {
+    --color-info-background : #1A1C21;
+    --color-info-white : #ccc9ce;
+    --color-info-gray : rgb(117, 117, 121);
+}

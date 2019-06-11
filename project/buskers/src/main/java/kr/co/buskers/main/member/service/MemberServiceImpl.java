@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import kr.co.buskers.repository.domain.Busker;
+import kr.co.buskers.repository.domain.BuskerGenre;
 import kr.co.buskers.repository.domain.Member;
 import kr.co.buskers.repository.mapper.MemberMapper;
 
@@ -146,6 +147,12 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public void changeBuskerType(Member member) {
 		mapper.changeBuskerType(member);
+	}
+
+	// 버스커 장르 등록
+	@Override
+	public void insertBuskerGenre(BuskerGenre buskerGenre) {
+		mapper.insertBuskerGenre(buskerGenre);
 	}
 	
 }
