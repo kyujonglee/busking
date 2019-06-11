@@ -47,7 +47,8 @@
 				<i class="fas fa-video fa-lg"></i>
 			</div>
 			<div class="busker-side__menu-title">
-				영상 <span class="busker-side__menu-count">30</span>
+			<a href="<c:url value='/artist/board/video.do'/>">영상</a>
+				<span class="busker-side__menu-count">30</span>
 			</div>
 		</li>
 		<li class="busker-side__menu-item">

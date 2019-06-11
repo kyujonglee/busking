@@ -77,4 +77,8 @@ public class ArtistBoardController {
 	public void photo() {
 		
 	}
+	@RequestMapping("video.do")
+	public void video() {
+		
+	}
 }

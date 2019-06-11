@@ -16,6 +16,13 @@ public class Busker {
 	private String intro;
 	private String time;
 	private String location;
+	private String genre;
+	public String getGenre() {
+		return genre;
+	}
+	public void setGenre(String genre) {
+		this.genre = genre;
+	}
 	public String getId() {
 		return id;
 	}
