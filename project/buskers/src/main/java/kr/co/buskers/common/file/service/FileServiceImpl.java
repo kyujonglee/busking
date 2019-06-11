@@ -11,9 +11,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import kr.co.buskers.repository.domain.Member;
 import kr.co.buskers.repository.domain.MusicFile;
 import kr.co.buskers.repository.mapper.BuskerMapper;
 import kr.co.buskers.repository.mapper.FileMapper;
+import kr.co.buskers.repository.mapper.MemberMapper;
 
 @Service
 public class FileServiceImpl implements FileService {
@@ -24,6 +26,8 @@ public class FileServiceImpl implements FileService {
 	@Autowired
 	private BuskerMapper bMapper;
 	
+	@Autowired
+	private MemberMapper mMapper;
 //	private final String FILE_PATH = "/Users/kyujong/Documents/bit2019/upload";
 	private final String FILE_PATH = "C:/bit2019/upload";
 	
@@ -143,5 +147,33 @@ public class FileServiceImpl implements FileService {
 		path = FILE_PATH + "/"+ buskerName +"/"+musicFile.getSysname()+musicFile.getName();
 		attach2.transferTo(new File(path));
 		return path;
+	}
+	
+	@Override
+	public void uploadProfile(MultipartFile multipartFile, String uriPath, Member member) throws Exception {
+		UUID uuid = UUID.randomUUID();
+		String uploadRoot = FILE_PATH;
+		String path = uriPath + member.getId() + "/";
+		String orgFileName = multipartFile.getOriginalFilename();
+		String sysFileName = uuid.toString() + orgFileName;
+		String filePath = uploadRoot + path;
+		
+		member.setProfileImg(sysFileName);
+		member.setProfileImgPath(filePath);
+		
+		File f = new File(filePath + sysFileName);
+		
+		System.out.println(filePath + sysFileName);
+		System.out.println(member.getProfileImg());
+		System.out.println(member.getProfileImgPath());
+		
+		
+	    if(f.exists() == false) {
+	    	f.mkdirs();
+	    }
+	    
+	    multipartFile.transferTo(f);
+		
+		mMapper.uploadProfile(member);
 	}
 }
