@@ -116,9 +116,8 @@ public class MainServiceImpl implements MainService {
 		Map<String, Object> map = new HashMap<>();
 		if (session.getAttribute("user") != null) {
 			Member member = (Member)session.getAttribute("user");
-			mapper.selectFollowArtist(member.getMemberNo());
 			
-			map.put("followArtistShow", mapper.selectFollowArtist(member.getMemberNo()));
+			map.put("followArtistShow", mapper.selectFollowArtistShow(member.getMemberNo()));
 		}
 		map.put("artistShow", mapper.selectArtistShowToday());
 		return map;

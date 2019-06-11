@@ -21,7 +21,14 @@ public class ArtistShow {
 	private Genre genre;
 	private String profileImg;
 	private String profileImgPath;
+	private Date regDate;
 	
+	public Date getRegDate() {
+		return regDate;
+	}
+	public void setRegDate(Date regDate) {
+		this.regDate = regDate;
+	}
 	public String getProfileImg() {
 		return profileImg;
 	}

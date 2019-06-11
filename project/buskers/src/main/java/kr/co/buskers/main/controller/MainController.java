@@ -28,7 +28,6 @@ public class MainController {
 		
 		Map<String, Object> result = service.selectArtistShowToday(session);
 		if (session.getAttribute("user") != null) {
-			System.out.println("followArtistShow");
 			model.addAttribute("followArtistShow", result.get("followArtistShow"));
 		}
 		model.addAttribute("artistShow", result.get("artistShow"));
