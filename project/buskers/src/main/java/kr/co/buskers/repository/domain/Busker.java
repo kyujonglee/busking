@@ -17,8 +17,8 @@ public class Busker {
 	private String intro;
 	private String time;
 	private String location;
-	private int followCnt;
 	private String genre;
+	private int followCnt;
 	private Member member;
 	public int getBuskerNo() {
 		return buskerNo;
@@ -98,17 +98,17 @@ public class Busker {
 	public void setLocation(String location) {
 		this.location = location;
 	}
-	public int getFollowCnt() {
-		return followCnt;
-	}
-	public void setFollowCnt(int followCnt) {
-		this.followCnt = followCnt;
-	}
 	public String getGenre() {
 		return genre;
 	}
 	public void setGenre(String genre) {
 		this.genre = genre;
+	}
+	public int getFollowCnt() {
+		return followCnt;
+	}
+	public void setFollowCnt(int followCnt) {
+		this.followCnt = followCnt;
 	}
 	public Member getMember() {
 		return member;
@@ -116,6 +116,4 @@ public class Busker {
 	public void setMember(Member member) {
 		this.member = member;
 	}
-	
-	
 }

@@ -182,7 +182,8 @@
 		update tb_busker
 	  	   set intro=#{intro},
 	           location=#{location},
-	           time=#{time}
+	           time=#{time},
+	           genre=#{genre}
     	 where busker_no = #{buskerNo}
 	</update>
 	
