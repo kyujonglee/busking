@@ -7,6 +7,21 @@ public class Busker {
 	private String phone;
 	private String activityName;
 	private String name;
+	private String profileImg;
+	private String profileImgPath;
+	
+	public String getProfileImg() {
+		return profileImg;
+	}
+	public void setProfileImg(String profileImg) {
+		this.profileImg = profileImg;
+	}
+	public String getProfileImgPath() {
+		return profileImgPath;
+	}
+	public void setProfileImgPath(String profileImgPath) {
+		this.profileImgPath = profileImgPath;
+	}
 	public String getIntro() {
 		return intro;
 	}

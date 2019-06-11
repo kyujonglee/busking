@@ -1,0 +1,138 @@
+.buskers_feed_wrapper {
+	position: relative;
+	margin: 0 auto;
+	width: 100%;
+	height: 1000px;
+	background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+		url(../../img/door2.jpeg);
+	background-size: 100%;
+}
+
+.buskers_feed_wrapper .neon b {
+	color: #fee;
+	text-shadow: 0 -40px 100px, 0 0 2px, 0 0 1em #ff4444, 0 0 0.5em #ff4444,
+		0 0 0.1em #ff4444, 0 10px 3px #000;
+}
+
+.feed-card {
+	position: relative;
+	width: 330px !important;
+	height: 400px !important;
+	margin: auto;
+	background: #ffffff;
+	box-shadow: 0px 4px 8px 0px rgba(23, 23, 23, 0.2);
+	border-radius: 8px;
+}
+
+.feed-card-header {
+	width: 100%;
+	height: 40%;
+	background-color: royalblue;
+	border-top-left-radius: 8px;
+	border-top-right-radius: 8px;
+	overflow: hidden;
+}
+
+.feed-card-header img {
+	max-width: 100%;
+	transition: 0.3s;
+}
+
+.feed-card-header:hover img {
+	transform: scale(1.2);
+	opacity: 0.8;
+	cursor: pointer;
+}
+
+.feed-card-header:after {
+	content: "";
+	position: absolute;
+	left: 10%;
+	top: 35%;
+	border-top: 15px solid transparent;
+	border-bottom: 15px solid transparent;
+	border-left: 15px solid #fff;
+	transform: rotate(-90deg);
+}
+
+.feed-card-content {
+	font-family: 'Nanum Gothic', sans-serif;
+	color: #828282;
+	position: relative;
+	max-width: 100%;
+	height: 50%;
+	padding: 20px;
+}
+
+.feed-card-artist {
+	text-align: right;
+}
+
+.feed-card-content .title a {
+	text-decoration: none;
+	color: #232323;
+	font-weight: bold;
+    margin-right: 10px;
+}
+
+.feed-card-content .title a:hover {
+	color: dodgerblue;
+}
+
+.feed-card-content .summary p {
+	color: #555;
+	font-size: 14px;
+	overflow-wrap: break-word;
+	text-align: left;
+	max-width: 100ch;
+}
+
+.feed-card-content .continue a {
+	text-decoration: none;
+	color: dodgerblue;
+	font-size: 14px;
+}
+
+.feed-card-content .continue a:hover {
+	text-decoration: underline;
+}
+
+.feed-card-footer {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 30px;
+	background-color: #f9f9f9;
+	border-bottom-left-radius: 8px;
+	border-bottom-right-radius: 8px;
+}
+
+.feed-card-footer .time {
+	padding-left: 20px;
+}
+
+.feed-card-footer .time a {
+	text-decoration: none;
+	color: #777;
+	font-size: 14px;
+}
+
+.feed-card-footer .time a:hover {
+	color: dodgerblue;
+}
+
+.buskers_feed_list {
+	margin-top: 200px;
+	padding-left: 50px;
+	padding-right: 50px;
+}
+
+.title_header {
+	display: flex;
+	justify-content: space-between;
+}
+
+
+
+

@@ -13,6 +13,7 @@ public interface MainMapper {
 	List<ArtistShow> selectArtistShowByDate(String enrollDate);
 	List<ArtistShow> selectArtistShowDetail(ArtistShow artistShow);
 	List<ArtistShow> selectArtistShowDetailByDate(ArtistShow artistShow);
+	List<ArtistShow> selectArtistShowToday();
 	ArtistShow selectMarker(int showNo);
 	List<Busker> selectArtistByGenre1();
 	List<Busker> selectArtistByGenre2();

@@ -24,13 +24,8 @@ public class MainController {
 	
 	@RequestMapping("main.do")
 	public Map<String, Object> main(Model model) {
-		Map<String, Object> result = service.selectArtistByGenre();
-		model.addAttribute("Genre1", result.get("Genre1"));
-		model.addAttribute("Genre2", result.get("Genre2"));
-		model.addAttribute("Genre3", result.get("Genre3"));
-		model.addAttribute("Genre4", result.get("Genre4"));
-		model.addAttribute("Genre5", result.get("Genre5"));
-		model.addAttribute("Genre6", result.get("Genre6"));
+		Map<String, Object> result = service.selectArtistShowToday();
+		model.addAttribute("artistShow", result.get("artistShow"));
 		service.exportCSV();
 		
 		return result;

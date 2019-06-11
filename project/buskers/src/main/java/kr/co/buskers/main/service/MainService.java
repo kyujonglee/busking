@@ -12,9 +12,9 @@ public interface MainService {
 	public void exportCSV();
 	public void mapView(String enrollDate);
 	public List<ArtistShow> mapDetail(ArtistShow artistShow);
+	public Map<String, Object> selectArtistShowToday();
 	public ArtistShow markerDetail(int showNo);
 	public ArtistShow markerImage(int showNo);
 	public List<SearchBoard> mainSearch(SearchPage searchPage);
 	HashMap<String, Object> BoardListSearch(SearchPage searchPage);
-	public Map<String, Object> selectArtistByGenre();
 }
