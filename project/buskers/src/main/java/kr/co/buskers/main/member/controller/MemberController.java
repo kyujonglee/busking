@@ -16,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.UrlBasedViewResolver;
 
+import kr.co.buskers.common.file.service.FileService;
 import kr.co.buskers.main.member.service.MemberService;
 import kr.co.buskers.main.member.util.Email;
 import kr.co.buskers.main.member.util.EmailSender;
@@ -30,6 +31,9 @@ public class MemberController {
 	
 	@Autowired
 	private MemberService service;
+	
+	@Autowired
+	private FileService fService;
 	
 	@Autowired
 	private EmailSender emailSender;
@@ -55,14 +59,7 @@ public class MemberController {
 	// 로그인 처리
 	@RequestMapping("login.do")
 	public String login(HttpSession session, Member member, RedirectAttributes rttr) {
-		
-		
-		
 		Member user = service.login(member);
-	
-		
-		
-		
 		// DB 값 체크
 		if(user != null) {
 			boolean passMatch = passEncoder.matches(member.getPass(), user.getPass());
@@ -272,7 +269,6 @@ public class MemberController {
 	@RequestMapping("profileUpload.do")
 	@ResponseBody
 	public void profileUpload(MultipartFile file, String uriPath, Member member, HttpSession session) throws Exception {
-		System.out.println(member.getId());
 		System.out.println(member.getMemberNo());
 		System.out.println(member.getProfileImg());
 		// 프로필 이미지가 이미 존재한다면
@@ -283,7 +279,8 @@ public class MemberController {
 //		
 //	}
 		// 프로필 이미지가 없다면 바로 업로드
-		service.uploadProfile(file, uriPath, member);
+//		service.uploadProfile(file, uriPath, member);
+		fService.uploadProfile(file, uriPath, member);
 		
 		session.removeAttribute("user");
 		Member user = service.selectMember(member.getMemberNo());
@@ -294,6 +291,9 @@ public class MemberController {
 	// 버스커 등록 화면으로 이동
 	@RequestMapping("signupform-busker.do")
 	public String signupformBusker(Member member) {
+		System.out.println("들어옴");
+		
+		System.out.println(member.getId());
 		System.out.println(member.getIsBusker());
 //		if(session.get != null) {
 //			return "redirect:/index.jsp";

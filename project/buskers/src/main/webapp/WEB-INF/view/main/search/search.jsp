@@ -35,7 +35,7 @@
 		                    <div class="artist__search__explain">
 		                        <div class="busker_info busker_name"><a href="<c:url value='/artist/main/main.do?buskerNo=${busker.buskerNo}'/>">${busker.activityName }</a></div>
 		                        <div class="busker_info">아티스트 소개  <span class="busker_info_db">${busker.intro }</span></div>
-		                        <div class="busker_info">장르  <span class="busker_info_db">보컬</span></div>
+		                        <div class="busker_info">장르  <span class="busker_info_db">${busker.genre }</span></div>
 		                        <div class="busker_info">주요 공연 장소  <span class="busker_info_db">${busker.location }</span></div>
 		                        <div class="busker_info">주요 공연 시간  <span class="busker_info_db">${busker.time }</span></div>
 		                    </div>

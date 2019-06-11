@@ -124,6 +124,10 @@
   	      from tb_social_url
          where busker_no = #{buskerNo}
 	</select>
+	
+	<insert id="insertVideo" parameterType="video">
+	
+	</insert>
 </mapper>
 
 

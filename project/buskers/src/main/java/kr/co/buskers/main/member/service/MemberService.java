@@ -41,9 +41,6 @@ public interface MemberService {
 	
 	// 비밀번호 변경
 	public void newPass(Member member);
-
-	// 프로필 이미지 업로드
-	public void uploadProfile(MultipartFile multipartFile, String uriPath, Member member) throws Exception;
 	
 	// 돈 충전
 	public void chargeMoney(Member member);
