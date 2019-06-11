@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,6 +17,7 @@ import org.springframework.stereotype.Service;
 import kr.co.buskers.common.page.FreePageResult;
 import kr.co.buskers.repository.domain.ArtistShow;
 import kr.co.buskers.repository.domain.Busker;
+import kr.co.buskers.repository.domain.Member;
 import kr.co.buskers.repository.domain.SearchBoard;
 import kr.co.buskers.repository.domain.SearchPage;
 import kr.co.buskers.repository.mapper.MainMapper;
@@ -110,11 +112,15 @@ public class MainServiceImpl implements MainService {
 		return map;
 	}
 	
-	public Map<String, Object> selectArtistShowToday() {
+	public Map<String, Object> selectArtistShowToday(HttpSession session) {
 		Map<String, Object> map = new HashMap<>();
-
+		if (session.getAttribute("user") != null) {
+			Member member = (Member)session.getAttribute("user");
+			mapper.selectFollowArtist(member.getMemberNo());
+			
+			map.put("followArtistShow", mapper.selectFollowArtist(member.getMemberNo()));
+		}
 		map.put("artistShow", mapper.selectArtistShowToday());
-		
 		return map;
 	}
 
