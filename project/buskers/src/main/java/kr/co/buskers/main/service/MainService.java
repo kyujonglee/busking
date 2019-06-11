@@ -18,7 +18,6 @@ public interface MainService {
 	public ArtistShow markerImage(int showNo);
 	public List<SearchBoard> mainBoardSearch(SearchPage searchPage);
 	HashMap<String, Object> BoardListSearch(SearchPage searchPage);
-	public Map<String, Object> selectArtistByGenre();
 	public Busker mainBuskerSearch(SearchPage searchPage);
 	
 }
