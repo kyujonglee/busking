@@ -16,13 +16,14 @@
 		<article class="busker-side__profile-info">
 			<header class="busker-side__profile-header">
 				<span class="busker__profile-header-edit">
-					<c:if test="${sessionScope.user.buskerNo eq param.buskerNo}">
+					<c:if test="${sessionScope.user.busker.buskerNo eq param.buskerNo}">
 						<button class="busker__profile-header-edit-button" data-toggle="modal" data-target="#myModal">
 							Edit
 						</button>
 					</c:if>
 				</span>
-				<c:if test="${sessionScope.user.buskerNo ne param.buskerNo}">	
+				<c:if test="${sessionScope.user.busker.buskerNo ne param.buskerNo}">	
+				
 					<button type="button" class="busker__profile-header-follow" >
 						팔로우 +
 					</button>
@@ -215,7 +216,7 @@
 	    
 	    $("#myButtons1").click(function(){
 	    		$.ajax({
-	    			url : "social-url.do",n
+	    			url : "social-url.do",
 	    			data : {faceBookUrl:$("#faceBookUrl").val() 
 	    				   ,youTubeUrl:$("#youTubeUrl").val()
 	    				   ,instargramUrl:$("#instargramUrl").val() 
@@ -251,7 +252,7 @@
 		
 		$.ajax({
 			url : "follow-ajax.do",
-			data : {buskerNo: buskerNo,memberNo:"${sessionScope.user.memberNo}"},
+			data : {buskerNo: buskerNo,memberNo:"${sessionScope.memberNo}"},
 		}).done(function(result){
 			if(result == 1){
 				Swal.fire({
