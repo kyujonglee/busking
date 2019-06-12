@@ -69,7 +69,7 @@
 							</div>
 							<div class="header-j">
 								<div>
-									<a class="header-j2" href="#">나의 페이지</a>
+									<a class="header-j2" href="<c:url value='/artist/main/main.do?buskerNo=' />${sessionScope.user.buskerNo}" onclick="return buskerPage();">나의 페이지</a>
 								</div>
 								<div>
 									<a class="header-j3" id="logout" target="_top">로그아웃</a>
@@ -89,6 +89,8 @@
 <script src="<c:url value='/resources/js/toastr.min.js'/>"></script>
 <script src="http://${serverip}:10001/socket.io/socket.io.js"></script>
 <script>
+
+	/* let buskerNo = ${(sessionScope.user eq null) ? 0 : sessionScope.user.buskerNo}; */
 
 	toastr.options.positionClass = 'toast-bottom-right';
 	toastr.options.closeButton = true;
@@ -143,7 +145,7 @@
 	    $(".h-toggle").toggle();
 	});
 	 
-	$("#logout").click(function() {
+	const logout = function() {
 		var result = confirm("로그아웃 하시겠습니까?");
 		if(result) {
 
@@ -182,7 +184,9 @@
 			location.href="<c:url value='/main/member/logout.do'/>";
 			alert("로그아웃 되셨습니다!");
 		}
-	});
+	};
+	
+	$("#logout").click(logout);
 	
 	let popupX = (window.screen.width / 2) - (500 / 2);
 	let popupY = (window.screen.height / 2) - (500 / 2);
@@ -190,4 +194,12 @@
 	$(".fa-envelope").click(function () {
 		window.open('<c:url value="/main/header/message/list.do"/>', '', 'top=' + popupY + ', left=' + popupX + ', scrollbars=no, resizable=no, width=500, height=500');
 	});
+	
+	const buskerPage = function(){
+		if(buskerNo !== 0){
+			return true;
+		}
+		alert("현재 회원은 버스커가 아닙니다.")
+		return false;
+	}
 </script>

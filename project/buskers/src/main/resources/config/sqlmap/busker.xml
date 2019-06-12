@@ -41,6 +41,7 @@
 	<select id="selectBusker" resultMap="buskerMap">
 		select *
 		  from tb_busker
+		 order by rand()
 		 limit 15
 	</select>
 	
