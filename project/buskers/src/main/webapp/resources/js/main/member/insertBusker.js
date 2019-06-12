@@ -2,6 +2,33 @@ const insertBusker = document.insertBusker;
 const activityName = insertBusker.activityName;
 const phone = insertBusker.phone;
 const buskerCheckbox = insertBusker.buskerCheckbox;
+let activityNameck = 0;
+	
+	//활동명 중복 체크
+	$(function() {
+		$("#checkActivityName").click(function() {
+			let activityName = $("#activityName").val();
+			
+			if(activityName.length < 1) {
+				alert("활동명을 입력해주시기 바랍니다.");
+			} else {
+				$.ajax({
+					data: "activityName="+activityName,
+					url: "checkActivityName.do",
+					success: function(result) {
+						if (result == 0) {
+							alert("사용가능한 활동명입니다.");
+							activityNameck = 1;
+						} else if (result == 1) {
+							alert("같은 활동명이 존재합니다. \n다른 활동명을 입력해주세요.");
+						} else {
+							alert("에러 발생");
+						}
+					}
+				});
+			}
+		});
+	});
 
 	function buskerCheck() {
 		if (isEmpty(activityName, "활동명을 입력해주세요!")) return false;
@@ -21,7 +48,14 @@ const buskerCheckbox = insertBusker.buskerCheckbox;
 			return false;
 		}
 		
-		return signupBusker();
+		if(confirm("버스커등록을 하시겠습니까?")) {
+        	if (activityNameck == 0) {
+        		alert("활동명 중복체크를 해주세요!");
+        		return false;
+        	} else {
+        		return signupBusker();
+        	}
+		}
 	}
 	
 	// 체크박스 체크

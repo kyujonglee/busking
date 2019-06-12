@@ -4,8 +4,8 @@
 <hr>
 		
 	<c:if test="${sessionScope.user.isBusker eq 'n' }">
-		<div class="info_detail_wrapper">
-			<div class="menu_title">버스커 등록을 먼저 해주세요!</div>
+		<div class="info_detail_wrapper_none">
+			<div class="menu_title_none">버스커 등록을 먼저 해주세요!</div>
 			<br>
 			<a href="signupform-busker.do" class="busker_signup">
 				<button type="button">
@@ -17,11 +17,11 @@
 	</c:if>
 	
 	<c:if test="${sessionScope.user.isBusker eq 'y' }">
-		<form name="user_info"  id="user_info" action="userInfoUpdate.do"  method="post">
+		<form name="busker_info"  id="busker_info" action="buskerInfoUpdate.do"  method="post">
 			<div class="info_detail_wrapper">
 				<div class="menu_title">활동명</div>
 				<div>
-					<input type="text" class="busker__activityName" name="activityName" value="세션 활동명">
+					<input type="text" class="busker__activityName" id="activityName" name="activityName" value="${sessionScope.user.busker.activityName }">
 					<button id="checkActivityName" type="button" class="info_change_button">중복확인</button>
 				</div>
 			</div>
@@ -29,14 +29,14 @@
 			<div class="info_detail_wrapper">
 				<div class="menu_title">연락처</div>
 				<div>
-					<input type="text" class="busker__phone" name="phone" value="세션 연락처">
-					<button id="checkPhone" type="button" class="info_change_button">중복확인</button>
+					<input type="text" class="busker__phone" id="phone" name="phone" value="${sessionScope.user.busker.phone }">
+					<button id="checkPhone" type="button" class="info_change_button">인증하기</button>
 				</div>	
 			</div>
 			<hr>
 			<input type="hidden" name="memberNo" value="${sessionScope.user.memberNo }"/>
 			<div class="modifyWrapper">
-				<button id="modify" type="button" class="info_change_button">변경</button>
+				<button id="modify_busker" type="button" class="info_change_button">변경</button>
 			</div>
 		</form>
 
