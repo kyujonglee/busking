@@ -44,6 +44,15 @@
 		 order by rand()
 		 limit 15
 	</select>
+	
+	<!-- 닉네임 중복체크 -->
+	<select id="checkActivityName" parameterType="busker" resultType="int">
+		select count(*)
+		  from tb_busker
+		 where activity_name = #{activityName}
+	</select>
+	
+	
 </mapper>
 
 
