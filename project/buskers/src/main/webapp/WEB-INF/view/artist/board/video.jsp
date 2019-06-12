@@ -150,16 +150,19 @@
 	})
 	
 	function showList(num){
+		buskerNo = ${param.buskerNo};
 		$.ajax({
-			data : {buskerNo:3,pageNo:num},
+			data : {buskerNo:buskerNo,pageNo:num},
 			url : "video-select-ajax.do",
 		}).done(function(result){
 			console.log(result);
-			
+			if(result.list.length == 0){
+				$(".panel-body").prepend("<div class='no_video'>버스커가 공유한 동영상이 없습니다.</div>");
+			}
 			for(let i = 0; i < result.list.length ; i++){
 				let htrr = "";
 				htrr += '<div class="video">';
-				htrr += '<iframe width="100%" height="250px" src='+result.list[i].url+' frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+				htrr += '<iframe width="100%" height="220px" src='+result.list[i].url+' frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
 				htrr += '		<div class="video_title">'+result.list[i].title+"";
 				if("${sessionScope.user.buskerNo}" == "${param.buskerNo}"){
 					htrr += '<span class="videoMenu">';
@@ -198,8 +201,9 @@
 	
 	
 	function pageList(num){
+		buskerNo = ${param.buskerNo};
 		$.ajax({
-			data : {buskerNo:3,pageNo:num},
+			data : {buskerNo:buskerNo,pageNo:num},
 			url : "video-select-ajax.do",
 		}).done(function(result){
 			let htr = "";

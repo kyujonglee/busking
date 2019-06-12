@@ -8,7 +8,7 @@
     grid-gap: 20px
 }
 .video_body .video{
-	height:320px;
+	height:280px;
 }
 .video_title{
 	margin-top:10px;
@@ -72,3 +72,9 @@
 }
 
 .pagination a:hover:not(.active) {background-color: #ddd;}
+
+.no_video{
+	margin-top:60px;
+	font-size:30px;
+	text-align:center;
+}
