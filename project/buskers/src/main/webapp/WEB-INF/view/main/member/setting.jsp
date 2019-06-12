@@ -62,13 +62,16 @@
 							<a class="pro_tab_link"  onclick="tab_menu(1);" >친구 관리</a>
 						</li>
 						<li class="pro_tab">
-							<a class="pro_tab_link" onclick="tab_menu(2);" >개인정보 관리</a>
+							<a class="pro_tab_link"  onclick="tab_menu(2);" >개인정보 관리</a>
 						</li>
 						<li class="pro_tab">
 							<a class="pro_tab_link"  onclick="tab_menu(3);" >버스커 관리</a>
 						</li>
 						<li class="pro_tab">
 							<a class="pro_tab_link"  onclick="tab_menu(4);" >결제</a>
+						</li>
+						<li class="pro_tab">
+							<a class="pro_tab_link"  onclick="tab_menu(5);" >회원탈퇴</a>
 						</li>
 					</ul>
 				</div>
@@ -138,7 +141,6 @@
 		      		<img class="preview-profile" id="profile__preview" src="" />
 		      		<span class="btn-file-word">사진 업로드</span>
 		      		<input type="hidden" name="memberNo" value="${sessionScope.user.memberNo }"/>
-		      		<input type="hidden" name="id" value="${sessionScope.user.id }"/>
 		      		<input type="hidden" name="profileImg" value="${sessionScope.user.profileImg }"/>
 				</button>
 		    </div>
@@ -244,14 +246,12 @@ $(".saveBtn").click(function (f) {
 		let file = $("#profile__img")[0].files[0];
 		let uriPath = "/buskers/main/board/member/";
 		let memberNo = "${sessionScope.user.memberNo}";
-		let id = "${sessionScope.user.id}";
 		let profileImg = "${sessionScope.user.profileImg}";
 		
 		let formData = new FormData();
 		formData.append("file", file);
 		formData.append("uriPath", uriPath);
 		formData.append("memberNo", memberNo);
-		formData.append("id", id);
 		formData.append("profileImg", profileImg);
 		$.ajax({
 			type: 'POST',
@@ -262,7 +262,7 @@ $(".saveBtn").click(function (f) {
 			cache : false,
 			success: function(result) {
 				alert("프로필 이미지를 업로드 했습니다.");
-				modal.style.display = "none";
+				location.reload();
 			},
 			error: function(error) {
 				alert("프로필 이미지 업로드에 실패하였습니다.");
@@ -275,8 +275,7 @@ $(".saveBtn").click(function (f) {
 });
 
 
-
-/*  후승   */
+/*  후승 개인정보 변경  */
   	let userEmail = "${sessionScope.user.email}";
   	let userNickName = "${sessionScope.user.nickName}";
 	let emailck = 0;
@@ -495,6 +494,108 @@ $(".saveBtn").click(function (f) {
 			}
 		});
 	});
+	
+/*  버스커정보 변경  */
+  	let buskeractivityName = "${sessionScope.user.busker.activityName}";
+	let activityNameck = 0;
+	
+	$("#modify_busker").click(
+	function DosignUpBusker() {
+        
+        // 활동명 공백 확인
+        if($("#activityName").val() == ""){
+          	alert("활동명을 입력해주세요!");
+          	$("#activityName").focus();
+          	return false;
+        }
+        
+        Swal.fire({
+			  title: '버스커정보를 변경하시겠습니까?',
+			  type: 'info',
+			  showCancelButton: true,
+			  confirmButtonColor: '#3085d6',
+			  cancelButtonColor: '#d33',
+			  confirmButtonText: '예',
+			  cancelButtonText: '아니오',
+			}).then((result) => {
+			  if (result.value) {
+				 	if (activityNameck == 0) {
+				 		Swal.fire({
+							  title:'활동명 중복체크를해 주세요',
+							  type:'warning',
+							  timer:2000	
+						});
+			       		return false;
+			       	}  else {
+			       		Swal.fire({
+							  title:'정보가 변경되었습니다.',
+							  type:'success',
+							  timer:2000	
+						});
+			       		$("#busker_info").submit();
+			        	return true;
+			       	}
+			  }
+		})
+	})
+
+	
+	
+	// 활동명 중복 체크
+	$(function() {
+		$("#checkActivityName").click(function() {
+			let activityName = $(".busker__activityName").val();
+			
+			/* 현재활동명과 같은경우 */ 
+			if(activityName == buskeractivityName){
+				Swal.fire({
+					  title:'사용가능한 활동명 입니다',
+					  type:'info',
+					  timer:2000	
+				});
+				activityNameck = 1;
+				return;
+			
+			}
+			
+			// 활동명 공백일때
+			if(activityName.length < 1) {
+				Swal.fire({
+					  title:'활동명을 입력해 주세요',
+					  type:'warning',
+					  timer:2000	
+				});
+			} else {
+				$.ajax({
+					data: "activityName="+activityName,
+					url: "checkActivityName.do",
+					success: function(result) {
+						if (result == 0) {
+							Swal.fire({
+								  title:'사용가능한 활동명 입니다',
+								  type:'info',
+								  timer:2000	
+							});
+							activityNameck = 1;
+						} else if (result == 1) {
+							Swal.fire({
+								  title:'존재하는 활동명입니다.',
+								  type:'warning',
+								  timer:2000	
+							});
+						} else {
+							Swal.fire({
+								  title:'에러발생',
+								  type:'warning',
+								  timer:2000	
+							});
+						}
+					}
+				});
+			}
+		});
+	})
+	
 	
  
 </script>

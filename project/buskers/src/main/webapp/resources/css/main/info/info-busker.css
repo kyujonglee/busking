@@ -1,14 +1,14 @@
 .info__header {
   font-size: 32px;
   padding-top: 10px;
-  padding-bottom: 20px;
+  padding-bottom: 10px;
   font-weight: 600;
-  color: var(--color-white);
+  color: var(--color-info-header);
 }
 
-.info-busker__profiles::-webkit-scrollbar {
+/* .info-busker__profiles::-webkit-scrollbar {
   display: none;
-}
+} */
 
 .info-busker__profiles {
   display: grid;
@@ -17,9 +17,8 @@
   grid-template-rows: 220px;
   grid-auto-flow: column;
   overflow: auto;
-  color: var(--color-white);
+  color: var(--color-info-header);
   grid-gap: 35px;
-  padding-top: 10px;
   box-sizing: border-box;
 }
 
@@ -29,6 +28,7 @@
 }
 
 .info-busker__profile .info-busker__profile-img {
+  padding-top : 5px;
   display: block;
   width: 150px;
   height: 160px;
@@ -36,14 +36,16 @@
   /* box-shadow: 0 2px 2px rgba(233, 233, 233, 0.863),
     0 2px 2px rgba(226, 226, 226, 0.705); */
   transition: all 0.5s ease-in-out;
+  cursor : pointer;
 }
 
 .info-busker__profile .info-busker__profile-img:hover {
-  transform: scale(1.05);
+  transform: scale(1.03);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
 }
 
 .info-busker__profile {
-  color: var(--color-info-white);
+  color: var(--color-info-header);
   display: flex;
   justify-content: center;
 }

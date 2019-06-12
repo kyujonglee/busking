@@ -1,7 +1,5 @@
 package kr.co.buskers.main.member.service;
 
-import org.springframework.web.multipart.MultipartFile;
-
 import kr.co.buskers.repository.domain.Busker;
 import kr.co.buskers.repository.domain.BuskerGenre;
 import kr.co.buskers.repository.domain.Member;
@@ -11,6 +9,9 @@ public interface MemberService {
 	// 로그인 체크
 	public Member login(Member member);
 	
+	// 정보변경시 세션 재접속을 위한 기능
+	public Member selectMember(int memberNo);
+
 	// 일반 회원 가입
 	public void signupMember(Member member);
 	public void signupSocialMember(Member member);
@@ -48,7 +49,11 @@ public interface MemberService {
 	// 개인정보 업데이트
 	public void updateMember(Member member);
 	
-	public Member selectMember(int memberNo);
+	// 활동명 중복 체크
+	public int checkActivityName(Busker busker);
+
+	// 버스커 정보 업데이트
+	public void updateBusker(Busker busker);
 
 	
 

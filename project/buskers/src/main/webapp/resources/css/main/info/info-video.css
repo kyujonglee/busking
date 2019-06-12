@@ -7,6 +7,20 @@
   height: 360px;
 }
 
+.swiper-button-next,
+.swiper-container-rtl .swiper-button-prev,
+.swiper-button-prev, 
+.swiper-container-rtl .swiper-button-next{
+    background-image: none;
+}
+
+.swiper-button-next,
+.swiper-button-prev, 
+.swiper-container-rtl .swiper-button-prev,
+.swiper-container-rtl .swiper-button-next{
+    fill: var(--color-orange);
+}
+
 .shit {
     transform: scale(1.1);
 }

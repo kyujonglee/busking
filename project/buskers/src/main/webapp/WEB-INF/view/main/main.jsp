@@ -133,172 +133,107 @@
 			</div>
 			
 			<div class="buskers_feed_list">
-				<div class="swiper-container">
-					<div class="swiper-wrapper">
-						<div class="feed-card swiper-slide">
-					        <div class="feed-card-header">
-					            <img src="<c:url value='/resources/img/twilight.jpg'/>" >
-					        </div>
-					        <div class="feed-card-content">
-					            <div class="title">
-					            	<div class="title_header">
-						                <a>버스킹 공연</a>
-						                <a>새벽공방</a>
-					            	</div>
-					            	<br>
-					                <i class="fas fa-map-marker-alt">&nbsp;신촌역</i> &nbsp;&nbsp;<i class="fas fa-calendar-day">&nbsp;2019.06.10</i>
-					                <br><br>
-					            </div>
-					            <div class="summary">
-					                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-					            </div>
-					            <div class="continue">
-					                <a href="#">자세히 알아보기...</a>
-					            </div>
-					        </div>
-					        <div class="feed-card-footer">
-					            <div class="time">
-					                <a>25분 전</a>
-					            </div>
-					        </div>
+				<c:if test="${sessionScope.user ne null}">
+					<div class="buskers_feed_show">
+						<div class="buskers_feed_follow">공연일정 <span>팔로우 채널</span></div>
+						<div class="swiper-container">
+							<div class="swiper-wrapper">
+								<c:forEach var="list" items="${followArtistShow}">
+								<div class="feed-card swiper-slide">
+							        <div class="feed-card-header">
+							            <img src="<c:url value='/file/download.do'/>?path=${list.profileImgPath}${list.profileImg}" onError="this.src='<c:url value='/resources/img/profile.png' />';" />
+							        </div>
+							        <div class="feed-card-content">
+							            <div class="title">
+							            	<div class="title_header">
+							            		<a href="<c:url value='/artist/board/detail.do?showNo=${list.showNo}&buskerNo=${list.buskerNo}'/> ">${list.title}</a>
+								                <a href="<c:url value='/artist/main/main.do?buskerNo=${list.buskerNo}'/> ">${list.activityName}</a>
+							            	</div>
+							                <i class="fas fa-map-marker-alt">&nbsp;${list.place}</i> &nbsp;&nbsp;
+							                <i class="fas fa-calendar-day">&nbsp;<fmt:formatDate value="${list.enrollDate}"	pattern="MM-dd HH:mm" /></i>
+							            </div>
+							            <div class="summary">
+							                <p>${list.content}</p>
+							            </div>
+							        </div>
+							        <div class="feed-card-footer">
+							            <div class="time">
+							                <a>
+							                	<jsp:useBean id="currDate" class="java.util.Date" />
+												
+												<fmt:formatDate var="currDay" value="${currDate}" pattern="yyyy-MM-dd" />
+							                	<fmt:formatDate var="regDay" value="${list.regDate}" pattern="yyyy-MM-dd" />
+							                	<fmt:parseNumber var="currDateTime" value="${currDate.time / (1000*60*60*24)}" integerOnly="true"></fmt:parseNumber>
+							                	<fmt:parseNumber var="regDateTime" value="${list.regDate.time / (1000*60*60*24)}" integerOnly="true"></fmt:parseNumber>
+							                	<fmt:formatDate var="currTime" value="${currDate}" pattern="HHmm" />
+							                	<fmt:formatDate var="regTime" value="${list.regDate}" pattern="HHmm" />
+							                	<fmt:parseNumber value="${(currTime - regTime)}" integerOnly="true" var="result"></fmt:parseNumber>
+							                	<fmt:parseNumber value="${(currTime - regTime) / 60}" integerOnly="true" var="hours"></fmt:parseNumber>
+							                	<fmt:parseNumber value="${(currTime - regTime) % 60}" integerOnly="true" var="minutes"></fmt:parseNumber>
+							                	<c:if test="${currDay eq regDay}">
+								                	<c:choose>
+									                	<c:when test="${result < 60}">
+										                	${result}분 전
+									                	</c:when>
+									                	<c:when test="${result >= 60}">
+										                	${hours}시간 ${minutes}분 전
+									                	</c:when>
+								                	</c:choose>
+							                	</c:if>
+							                	
+							                	<c:if test="${currDate ne regDate}">
+							                		${currDateTime - regDateTime}일 전
+							                	</c:if>
+											</a>
+							            </div>
+							        </div>
+							    </div>
+							    </c:forEach>
+						    </div>
 					    </div>
-						<div class="feed-card swiper-slide">
-					        <div class="feed-card-header">
-					            <img src="<c:url value='/resources/img/twilight.jpg'/>" >
-					        </div>
-					        <div class="feed-card-content">
-					            <div class="title">
-					            	<div class="title_header">
-						                <a>버스킹 공연</a>
-						                <a>새벽공방</a>
-					            	</div>
-					            	<br>
-					                <i class="fas fa-map-marker-alt">&nbsp;신촌역</i> &nbsp;&nbsp;<i class="fas fa-calendar-day">&nbsp;2019.06.10</i>
-					                <br><br>
-					            </div>
-					            <div class="summary">
-					                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-					            </div>
-					            <div class="continue">
-					                <a href="#">자세히 알아보기...</a>
-					            </div>
-					        </div>
-					        <div class="feed-card-footer">
-					            <div class="time">
-					                <a>25분 전</a>
-					            </div>
-					        </div>
-					    </div>
-						<div class="feed-card swiper-slide">
-					        <div class="feed-card-header">
-					            <img src="<c:url value='/resources/img/twilight.jpg'/>" >
-					        </div>
-					        <div class="feed-card-content">
-					            <div class="title">
-					            	<div class="title_header">
-						                <a>버스킹 공연</a>
-						                <a>새벽공방</a>
-					            	</div>
-					            	<br>
-					                <i class="fas fa-map-marker-alt">&nbsp;신촌역</i> &nbsp;&nbsp;<i class="fas fa-calendar-day">&nbsp;2019.06.10</i>
-					                <br><br>
-					            </div>
-					            <div class="summary">
-					                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-					            </div>
-					            <div class="continue">
-					                <a href="#">자세히 알아보기...</a>
-					            </div>
-					        </div>
-					        <div class="feed-card-footer">
-					            <div class="time">
-					                <a>25분 전</a>
-					            </div>
-					        </div>
-					    </div>
-						<div class="feed-card swiper-slide">
-					        <div class="feed-card-header">
-					            <img src="<c:url value='/resources/img/twilight.jpg'/>" >
-					        </div>
-					        <div class="feed-card-content">
-					            <div class="title">
-					            	<div class="title_header">
-						                <a>버스킹 공연</a>
-						                <a>새벽공방</a>
-					            	</div>
-					            	<br>
-					                <i class="fas fa-map-marker-alt">&nbsp;신촌역</i> &nbsp;&nbsp;<i class="fas fa-calendar-day">&nbsp;2019.06.10</i>
-					                <br><br>
-					            </div>
-					            <div class="summary">
-					                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-					            </div>
-					            <div class="continue">
-					                <a href="#">자세히 알아보기...</a>
-					            </div>
-					        </div>
-					        <div class="feed-card-footer">
-					            <div class="time">
-					                <a>25분 전</a>
-					            </div>
-					        </div>
-					    </div>
-						<div class="feed-card swiper-slide">
-					        <div class="feed-card-header">
-					            <img src="<c:url value='/resources/img/twilight.jpg'/>" >
-					        </div>
-					        <div class="feed-card-content">
-					            <div class="title">
-					            	<div class="title_header">
-						                <a>버스킹 공연</a>
-						                <a>새벽공방</a>
-					            	</div>
-					            	<br>
-					                <i class="fas fa-map-marker-alt">&nbsp;신촌역</i> &nbsp;&nbsp;<i class="fas fa-calendar-day">&nbsp;2019.06.10</i>
-					                <br><br>
-					            </div>
-					            <div class="summary">
-					                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-					            </div>
-					            <div class="continue">
-					                <a href="#">자세히 알아보기...</a>
-					            </div>
-					        </div>
-					        <div class="feed-card-footer">
-					            <div class="time">
-					                <a>25분 전</a>
-					            </div>
-					        </div>
-					    </div>
-						<div class="feed-card swiper-slide">
-					        <div class="feed-card-header">
-					            <img src="<c:url value='/resources/img/twilight.jpg'/>" >
-					        </div>
-					        <div class="feed-card-content">
-					            <div class="title">
-					            	<div class="title_header">
-						                <a>버스킹 공연</a>
-						                <a>새벽공방</a>
-					            	</div>
-					            	<br>
-					                <i class="fas fa-map-marker-alt">&nbsp;신촌역</i> &nbsp;&nbsp;<i class="fas fa-calendar-day">&nbsp;2019.06.10</i>
-					                <br><br>
-					            </div>
-					            <div class="summary">
-					                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-					            </div>
-					            <div class="continue">
-					                <a href="#">자세히 알아보기...</a>
-					            </div>
-					        </div>
-					        <div class="feed-card-footer">
-					            <div class="time">
-					                <a>25분 전</a>
-					            </div>
-					        </div>
-					    </div>
-					</div>
-				</div>
+				    </div>
+				    
+				    <div class="buskers_feed_video">
+				    	<div class="buskers_feed_follow">아티스트 영상 <span>팔로우 채널</span></div>
+					    <div class="swiper-container swiper-container-video">
+							<div class="swiper-wrapper">
+								<div class="swiper-slide feed_video">
+							    	<iframe src="https://www.youtube.com/embed/y_oPqEzX_X4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+						    	</div>
+						    	
+						    	<div class="swiper-slide feed_video">
+							    	<iframe src="https://www.youtube.com/embed/y_oPqEzX_X4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+							    </div>
+							    
+								<div class="swiper-slide feed_video">
+							    	<iframe src="https://www.youtube.com/embed/y_oPqEzX_X4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+						    	</div>
+						    	
+						    	<div class="swiper-slide feed_video">
+							    	<iframe src="https://www.youtube.com/embed/y_oPqEzX_X4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+							    </div>
+							    
+								<div class="swiper-slide feed_video">
+							    	<iframe src="https://www.youtube.com/embed/y_oPqEzX_X4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+						    	</div>
+						    	
+						    	<div class="swiper-slide feed_video">
+							    	<iframe src="https://www.youtube.com/embed/y_oPqEzX_X4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+							    </div>
+							    
+						    </div>
+						    
+						    <div class="swiper-pagination"></div>
+						    
+						    <div class="swiper-button-next"></div>
+						    <div class="swiper-button-prev"></div>	
+				    	</div>
+				    </div>
+				    
+				    <div class="buskers_feed_photo">
+				    	<div class="buskers_feed_follow">아티스트 사진 <span>팔로우 채널</span></div>
+				    </div>
+				</c:if>
 			</div>
 		</div>
 	</div>
@@ -314,6 +249,7 @@
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/js/swiper.js"></script>
 <script>
+
 
 	let date = new Date();
 	let year = date.getFullYear(); 
@@ -914,12 +850,26 @@
 	String.prototype.zf = function(len){return "0".string(len - this.length) + this;};
 	Number.prototype.zf = function(len){return this.toString().zf(len);};
     
-	var swiper = new Swiper('.swiper-container', {
-	    slidesPerView: 4,
+	new Swiper('.swiper-container', {
+	    slidesPerView: 5,
 	    spaceBetween: 30,
     	grabCursor: true,
 	    pagination: {
 		    clickable: true,
 	    },
+    });
+	
+	new Swiper('.swiper-container-video', {
+	    slidesPerView: 4,
+	    spaceBetween: 70,
+	    pagination: {
+	    	el: '.swiper-pagination',
+	        type: 'progressbar',
+		    clickable: true,
+	    },
+	    navigation: {
+	        nextEl: '.swiper-button-next',
+	        prevEl: '.swiper-button-prev',
+        }
     });
 </script>

@@ -1,19 +1,12 @@
 package kr.co.buskers.main.member.service;
 
-import java.io.File;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.UUID;
-
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
 import kr.co.buskers.repository.domain.Busker;
 import kr.co.buskers.repository.domain.BuskerGenre;
 import kr.co.buskers.repository.domain.Member;
+import kr.co.buskers.repository.mapper.BuskerMapper;
 import kr.co.buskers.repository.mapper.MemberMapper;
 
 @Service
@@ -21,6 +14,9 @@ public class MemberServiceImpl implements MemberService {
 
 	@Autowired
 	private MemberMapper mapper;
+	
+	@Autowired
+	private BuskerMapper bmapper;
 	
 	// 로그인 체크
 	@Override
@@ -127,6 +123,18 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public void insertBuskerGenre(BuskerGenre buskerGenre) {
 		mapper.insertBuskerGenre(buskerGenre);
+	}
+
+	// 활동명 중복체크
+	@Override
+	public int checkActivityName(Busker busker) {
+		return bmapper.checkActivityName(busker);
+	}
+
+	// 버스커 업데이트
+	@Override
+	public void updateBusker(Busker busker) {
+		mapper.buskerUpdate(busker);
 	}
 	
 }

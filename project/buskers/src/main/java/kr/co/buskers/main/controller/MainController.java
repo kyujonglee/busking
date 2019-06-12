@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,14 +20,18 @@ import kr.co.buskers.repository.domain.SearchPage;
 @RequestMapping("/main")
 public class MainController {
 	
-	
 	@Autowired
 	private MainService service;
 	
 	@RequestMapping("main.do")
-	public Map<String, Object> main(Model model) {
-		Map<String, Object> result = service.selectArtistShowToday();
+	public Map<String, Object> main(Model model, HttpSession session) {
+		
+		Map<String, Object> result = service.selectArtistShowToday(session);
+		if (session.getAttribute("user") != null) {
+			model.addAttribute("followArtistShow", result.get("followArtistShow"));
+		}
 		model.addAttribute("artistShow", result.get("artistShow"));
+		
 		service.exportCSV();
 		
 		return result;

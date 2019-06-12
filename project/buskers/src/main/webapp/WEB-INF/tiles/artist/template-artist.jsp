@@ -10,12 +10,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <script src="<c:url value='/resources/js/jquery-3.4.1.min.js'/>"></script>
-    <link
-      rel="stylesheet"
-      href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
-      integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay"
-      crossorigin="anonymous"
-    />
+    <link rel="stylesheet" href="<c:url value='/resources/css/fontawesome/css/all.min.css' />" />
+    
     <!-- 부트스트랩,스위트얼럿 -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>	
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
@@ -23,9 +19,8 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="<c:url value='/resources/css/artist/main/artist.css' />" />
 
-	
-	
-	
+	<!-- Favicon -->
+	<link rel="shortcut icon" href="<c:url value='/resources/img/guitar_icon.png'/>" type="image/x-icon">
     <title>Buskers</title>
   </head>
   <body class="busker-body">

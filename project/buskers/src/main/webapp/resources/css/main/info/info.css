@@ -5,9 +5,10 @@
 @import 'info-video.css';
 
 :root {
-    --color-info-background : #1A1C21;
-    --color-info-white : #ccc9ce;
-    --color-info-gray : rgb(117, 117, 121);
+    --color-info-background : #FDFDFD;
+    --color-info-white : #929292;
+    --color-info-gray : #A7A7A7;
+    --color-info-header : #363636;
 }
 
 a:hover {

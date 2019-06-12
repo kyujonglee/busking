@@ -5,6 +5,7 @@ public class Follow {
 	private int memberNo;
 	private int buskerNo;
 	String followStatus;
+	
 	public int getNo() {
 		return no;
 	}

@@ -1,18 +1,21 @@
 .header_background {
-  display: none;
+	background-image : url('https://cdn.pixabay.com/photo/2014/07/09/12/17/disney-388160_1280.jpg') !important;
+	background-size : cover;
+	background-position : top center;
+	  
 }
 .info {
   font-family: "Nanum Gothic", sans-serif;
-  height: 100vh;
+  height: calc(100vh - 100px);
   background-color: var(--color-info-background);
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: 3fr 4fr;
+  grid-template-rows: 3fr 5fr;
   grid-template-areas: "busker busker" "song video";
   padding: 0px 80px;
 }
 .info .info-busker {
-  padding-top: 80px;
+  /* padding-top: 80px; */
   grid-area: busker;
 }
 .info .info-song {

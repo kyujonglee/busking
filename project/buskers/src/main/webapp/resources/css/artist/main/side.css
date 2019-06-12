@@ -6,7 +6,7 @@
 }
 
 .busker-side .busker-side__profile {
-  height: 33vh;
+  height: 28vh;
 }
 
 .busker-side__header {
@@ -50,6 +50,9 @@
 
 .busker-side__menu {
   height: 28vh;
+  display : flex;
+  flex-direction : column;
+  justify-content : center;
 }
 
 .busker-side__buskers {
@@ -199,6 +202,7 @@
 
 .busker-side__logout span {
     padding : 5px;
+    cursor : pointer;
 }
 .busker-side__logout span:hover {
     text-decoration: underline;
@@ -218,4 +222,11 @@
 	margin-bottom:10px;
 	text-align:left;
 	font-weight:bold;
+}
+
+.busker-side__settings {
+	color : rgba(0,0,0,0.5);
+	padding-left : 20px;
+	display : flex;
+	margin-bottom : 10px;
 }

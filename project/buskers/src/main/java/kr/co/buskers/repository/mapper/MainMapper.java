@@ -21,6 +21,7 @@ public interface MainMapper {
 	List<Busker> selectArtistByGenre4();
 	List<Busker> selectArtistByGenre5();
 	List<Busker> selectArtistByGenre6();
+	List<ArtistShow> selectFollowArtistShow(int memberNo);
 	
 	List<SearchBoard> selectSearchBoard(SearchPage searchPage);
 	int selectCountSearchBoard(SearchPage searchPage);

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.co.buskers.repository.mapper.MainMapper">
-
+	
 	<select id="selectArtistShow" resultType="artistShow">
 		select *
 		  from tb_busker_show
@@ -88,7 +88,17 @@
 		   and date(enroll_date) = current_date();
 	</select>
 	
- 
+	<select id="selectFollowArtistShow" parameterType="int" resultType="artistShow">
+		select f.*, s.*, b.activity_name, m.profile_img_path, m.profile_img
+		  from tb_follow f, tb_busker_show s, tb_busker b, tb_member m
+		 where f.member_no = #{memberNo}
+		   and f.busker_no = s.busker_no
+		   and s.busker_no=b.busker_no
+		   and b.member_no = m.member_no
+		   and f.follow_status = 'y'
+		 order by s.reg_date desc;
+	</select>
+	
  	
 </mapper>
 	

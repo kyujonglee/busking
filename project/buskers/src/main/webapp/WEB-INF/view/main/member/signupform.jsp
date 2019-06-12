@@ -227,7 +227,7 @@
                         <button type="button" id="checkEmail" class="check">중복확인</button>
                     </div>
                     <div class="u-form-group">
-                        <div>닉네임&nbsp;</div><input type="text" id="nickName" name="nickName" placeholder="nickName"/>
+                        <div>닉네임&nbsp;</div><input type="text" id="nickName" name="nickName" maxlength="12" placeholder="nickName(12글자 제한)"/>
                         <button type="button" id="checkNickName" class="check">중복확인</button>
                     </div>
                     <div class="u-form-group">

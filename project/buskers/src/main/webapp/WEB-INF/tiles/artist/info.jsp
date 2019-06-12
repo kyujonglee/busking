@@ -6,8 +6,7 @@
 		src="https://i.pinimg.com/564x/d4/12/4a/d4124a5565145151eeb2b40a8835155f.jpg" />
 	<div class="busker-info__main">
 		<div class="busker-info__nickname">${busker.activityName }</div>
-		<div class="busker-info__content busker_profile"><textarea class='input_form' id="input_form_intro" readonly>${busker.intro }
-		</textarea></div>
+		<div class="busker-info__content busker_profile"><textarea class='input_form' id="input_form_intro" readonly>${busker.intro }</textarea></div>
 		<div class="busker-info__title">장르</div>
 		<div class="busker-info__content"><input class='input_form' id="input_form_genre" value="${busker.genre }" readonly></div>
 		<div class="busker-info__title">주요 공연장소</div>

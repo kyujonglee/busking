@@ -52,6 +52,12 @@ a {
 	outline: 0;
 }
 
+a:hover {
+	text-decoration: none;
+	color: inherit;
+	outline: 0;
+}
+
 .header_background {
 	overflow: hidden;
 	width: 100%;

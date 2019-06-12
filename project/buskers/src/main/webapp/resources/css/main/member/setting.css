@@ -155,7 +155,6 @@ ul {
 .pro_tab_link:hover {
 	color: tomato;
 	transition: all 0.5s;
-	background-color: paleturquoise;
 }
 
 .pro_tab {
@@ -201,12 +200,14 @@ ul {
 	height: 100%;
 }
 
-.profile__img, .profile__img__title {
+.profile__img__title {
 	margin-bottom: 20px;
+	font-size: 18px;
 }
 
 .profile__introduce__title {
 	margin-bottom: 10px;
+	font-size: 18px;
 }
 
 .profile_content h3 {
@@ -452,14 +453,21 @@ ul {
 .info_detail_wrapper{
 	display:grid;
 	grid-template-columns: 1fr 4fr;
+	line-height: 30px;
 }
+
+.info_detail_wrapper_none {
+	padding-left: 30px;
+}
+
 .menu_title{
-	padding-left:20px;
+	padding-left:30px;
 }
 
 .modifyWrapper{
 	padding-left:30px;
 	padding-bottom:20px;
+	text-align: center;
 }
 
 .info_change_button{
