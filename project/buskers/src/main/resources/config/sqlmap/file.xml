@@ -2,6 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.co.buskers.repository.mapper.FileMapper">
+
 	<insert id="insertFile" parameterType="file">
 		insert into tb_file(
 			group_no, name, path, system_name
@@ -33,7 +34,28 @@
 	
 	<!-- Music -->
 	
-	<select id="selectMusicLimit" resultType="musicFile">
+	<resultMap type="musicFile" id="musicFileMap">
+		<result column="file_no" property="fileNo" />
+		<result column="name" property="name" />
+		<result column="title" property="title" />
+		<result column="writer" property="writer" />
+		<result column="sysname" property="sysname" />
+		<result column="busker_no" property="buskerNo" />
+		<result column="busker_name" property="buskerName" />
+		<result column="time" property="time" />
+		<result column="img_path" property="imgPath" />
+		<collection property="busker"
+					column="busker_no"
+					select="selectBuskerByNo"/>
+	</resultMap>
+	
+	<select id="selectBuskerByNo" parameterType="int" resultType="busker">
+		select *
+		  from tb_busker
+		 where busker_no = #{buskerNo}
+	</select>
+	
+	<select id="selectMusicLimit" resultMap="musicFileMap">
 		select *
 		  from tb_music_file
 		 order by file_no desc
