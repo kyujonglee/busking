@@ -12,6 +12,7 @@ import kr.co.buskers.repository.domain.Follow;
 import kr.co.buskers.repository.domain.MusicFile;
 import kr.co.buskers.repository.domain.SocialUrl;
 import kr.co.buskers.repository.mapper.ArtistBoardMapper;
+import kr.co.buskers.repository.mapper.BuskerMapper;
 import kr.co.buskers.repository.mapper.FileMapper;
 import kr.co.buskers.repository.mapper.MemberMapper;
 
@@ -27,6 +28,9 @@ public class ArtistMainServiceImpl implements ArtistMainService {
 	@Autowired
 	private FileMapper fMapper;
 	
+	@Autowired
+	private BuskerMapper bMapper;
+	
 	@Override
 	public Map<String,Object> artistMain(int buskerNo) {
 		Map<String,Object> boardMap = new HashMap<>();
@@ -36,6 +40,11 @@ public class ArtistMainServiceImpl implements ArtistMainService {
 		boardMap.put("busker",memberMapper.selectBusker(buskerNo));
 		boardMap.put("socialUrl",boardMapper.selectSocialUrl(buskerNo));
 		return boardMap;
+	}
+	
+	@Override
+	public List<Busker> selectRecommendArtist(int buskerNo) {
+		return bMapper.selectRecommendArtist(buskerNo);
 	}
 	
 	@Override

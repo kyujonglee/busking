@@ -45,13 +45,23 @@
 		 limit 15
 	</select>
 	
+	<select id="selectRecommendArtist" parameterType="int" resultType="busker" >
+		select b.*
+		  from tb_busker b, tb_follow f
+		 where b.busker_no = f.busker_no
+		   and f.follow_status = 'y'
+		   and f.member_no = (select m.member_no 
+		   						from tb_member m, tb_busker b 
+		   					   where m.member_no = b.member_no 
+		   					     and b.busker_no = #{buskerNo})
+   	</select>
+   	
 	<!-- 닉네임 중복체크 -->
 	<select id="checkActivityName" parameterType="busker" resultType="int">
 		select count(*)
 		  from tb_busker
 		 where activity_name = #{activityName}
 	</select>
-	
 	
 </mapper>
 

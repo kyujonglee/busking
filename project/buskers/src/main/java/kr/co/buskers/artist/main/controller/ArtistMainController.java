@@ -1,5 +1,6 @@
 package kr.co.buskers.artist.main.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -54,6 +55,12 @@ public class ArtistMainController {
 	public Map<String,Object> mainAjax(int buskerNo,HttpSession session){
 		Map<String,Object> boardMap = mainService.artistMain(buskerNo);
 		return boardMap;
+	}
+	
+	@RequestMapping("main-recommend-ajax.do")
+	@ResponseBody
+	public List<Busker> selectRecommendArtist(int buskerNo){
+		return mainService.selectRecommendArtist(buskerNo);
 	}
 	
 	@RequestMapping("follow-ajax.do")

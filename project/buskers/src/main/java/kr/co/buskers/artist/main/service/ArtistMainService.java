@@ -24,4 +24,6 @@ public interface ArtistMainService {
 	void updateIntro(Busker busker);
 	
 	public Busker selectBusker(int buskerNo);
+	
+	List<Busker> selectRecommendArtist(int buskerNo);
 }

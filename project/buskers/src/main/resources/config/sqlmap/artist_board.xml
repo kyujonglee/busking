@@ -150,7 +150,6 @@
 		 where video_no=#{videoNo}
 	</delete>
 	
-	
 </mapper>
 
 

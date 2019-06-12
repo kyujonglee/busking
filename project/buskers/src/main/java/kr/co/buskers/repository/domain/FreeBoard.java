@@ -15,7 +15,35 @@ public class FreeBoard {
 	private String nickName;
 	private int commentCount;
 	private int groupNoCount;
+	private String isAdmin;
+	private String isBusker;
+	private String isAgency;
+	private int buskerNo;
 	
+	public int getBuskerNo() {
+		return buskerNo;
+	}
+	public void setBuskerNo(int buskerNo) {
+		this.buskerNo = buskerNo;
+	}
+	public String getIsAdmin() {
+		return isAdmin;
+	}
+	public void setIsAdmin(String isAdmin) {
+		this.isAdmin = isAdmin;
+	}
+	public String getIsBusker() {
+		return isBusker;
+	}
+	public void setIsBusker(String isBusker) {
+		this.isBusker = isBusker;
+	}
+	public String getIsAgency() {
+		return isAgency;
+	}
+	public void setIsAgency(String isAgency) {
+		this.isAgency = isAgency;
+	}
 	public int getGroupNoCount() {
 		return groupNoCount;
 	}
