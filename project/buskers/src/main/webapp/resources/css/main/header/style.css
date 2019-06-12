@@ -294,7 +294,7 @@ img {
   transition: all 0.5s;
 }
 
-.main_logo > span {
+.main_logo > a {
   font-family: 'Italianno', cursive;
   margin-top: 12px;
   color: white;

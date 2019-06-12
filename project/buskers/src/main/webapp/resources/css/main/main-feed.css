@@ -142,6 +142,10 @@
 	padding-bottom: 10px;
 }
 
+.title_header a:nth-child(1):hover {
+	color: tomato;
+}
+
 .swiper-container {
 	margin-bottom: 100px !important;	
 }
@@ -158,4 +162,13 @@
     font-family: 'Nanum Gothic', sans-serif;
     font-size: 15px;
     vertical-align: middle;
+}
+
+.swiper-container-horizontal > .swiper-pagination-progressbar {
+	background: grey;
+	width: 100%;
+    height: 4px;
+    left: 0;
+    top: auto;
+    bottom: 0 !important;
 }
