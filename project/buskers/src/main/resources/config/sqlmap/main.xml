@@ -1,14 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.co.buskers.repository.mapper.MainMapper">
-	<resultMap id="followMap" type="follow">
-		<result column="follow_no" property="no" />
-		<result column="member_no" property="memberNo" />
-		<result column="follow_status" property="followStatus" />
-		<result column="activity_name" property="activityName" />
-		<result column="busker_no" property="buskerNo" />
-		<collection property="followArtistShowList" column="busker_no" select="selectFollowArtistShow"/>
-	</resultMap>
 	
 	<select id="selectArtistShow" resultType="artistShow">
 		select *
@@ -97,19 +89,16 @@
 	</select>
 	
 	<select id="selectFollowArtistShow" parameterType="int" resultType="artistShow">
-		select * 
-		  from tb_busker_show s, tb_busker b, tb_member m
-		 where s.busker_no = b.busker_no
-           and m.member_no = b.member_no
-           and b.busker_no = #{buskerNo}
+		select f.*, s.*, b.activity_name, m.profile_img_path, m.profile_img
+		  from tb_follow f, tb_busker_show s, tb_busker b, tb_member m
+		 where f.member_no = #{memberNo}
+		   and f.busker_no = s.busker_no
+		   and s.busker_no=b.busker_no
+		   and b.member_no = m.member_no
+		   and f.follow_status = 'y'
+		 order by s.reg_date desc;
 	</select>
 	
-	<select id="selectFollowArtist" parameterType="int" resultMap="followMap">
-		select *
-		  from tb_follow
-		 where member_no = #{memberNo}
-		   and follow_status = 'y'
-	</select>
  	
 </mapper>
 	

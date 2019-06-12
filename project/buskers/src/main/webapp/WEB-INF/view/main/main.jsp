@@ -133,38 +133,90 @@
 			</div>
 			
 			<div class="buskers_feed_list">
-				<div class="swiper-container">
-					<div class="swiper-wrapper">
-						<c:if test="${sessionScope.user ne null}">
-							<c:forEach var="showList" items="${followArtistShow}">
-								<c:forEach var="list" items="${showList.followArtistShowList}">
+				<c:if test="${sessionScope.user ne null}">
+					<div class="buskers_feed_show">
+						<div class="buskers_feed_follow">공연일정 <span>팔로우 채널</span></div>
+						<div class="swiper-container">
+							<div class="swiper-wrapper">
+								<c:forEach var="list" items="${followArtistShow}">
 								<div class="feed-card swiper-slide">
 							        <div class="feed-card-header">
-							            <img src="<c:url value='/resources/img/twilight.jpg'/>" >
+							            <img src="<c:url value='/file/download.do'/>?path=${list.profileImgPath}${list.profileImg}" onError="this.src='<c:url value='/resources/img/profile.png' />';" />
 							        </div>
 							        <div class="feed-card-content">
 							            <div class="title">
 							            	<div class="title_header">
 							            		<a>${list.title}</a>
-								                <a>새벽공방</a>
+								                <a>${list.activityName}</a>
 							            	</div>
-							                <i class="fas fa-map-marker-alt">&nbsp;신촌역</i> &nbsp;&nbsp;<i class="fas fa-calendar-day">&nbsp;2019.06.10</i>
+							                <i class="fas fa-map-marker-alt">&nbsp;${list.place}</i> &nbsp;&nbsp;
+							                <i class="fas fa-calendar-day">&nbsp;<fmt:formatDate value="${list.enrollDate}"	pattern="MM-dd HH:mm" /></i>
 							            </div>
 							            <div class="summary">
-							                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+							                <p>${list.content}</p>
 							            </div>
 							        </div>
 							        <div class="feed-card-footer">
 							            <div class="time">
-							                <a>25분 전</a>
+							                <a>
+							                	<jsp:useBean id="currDate" class="java.util.Date" />
+							                	<fmt:formatDate var="currTime" value="${currDate}" pattern="HHmm" />
+							                	<fmt:formatDate var="regTime" value="${list.regDate}" pattern="HHmm" />
+							                	<fmt:parseNumber value="${(currTime - regTime)}" integerOnly="true" var="result"></fmt:parseNumber>
+							                	<fmt:parseNumber value="${(currTime - regTime) / 60}" integerOnly="true" var="hours"></fmt:parseNumber>
+							                	<fmt:parseNumber value="${(currTime - regTime) % 60}" integerOnly="true" var="minutes"></fmt:parseNumber>
+							                	<c:choose>
+								                	<c:when test="${result < 60}">
+									                	${result}분 전
+								                	</c:when>
+								                	<c:when test="${result >= 60}">
+									                	${hours}시간 ${minutes}분 전
+								                	</c:when>
+								                	<c:when test="${result > 3600}">
+									                	하루 전
+								                	</c:when>
+								                	<c:when test="${result > 7200}">
+									                	2일 전
+								                	</c:when>
+								                	<c:when test="${result > 10800}">
+									                	3일 전
+								                	</c:when>
+								                	<c:when test="${result > 14400}">
+									                	4일 전
+								                	</c:when>
+								                	<c:when test="${result > 18000}">
+									                	5일 전
+								                	</c:when>
+								                	<c:when test="${result > 21600}">
+									                	6일 전
+								                	</c:when>
+								                	<c:when test="${result > 26200}">
+									                	일주일 전
+								                	</c:when>
+								                	<c:when test="${result > 108000}">
+									                	한 달 전
+								                	</c:when>
+								                	<c:when test="${result > 216000}">
+									                	오래 전
+								                	</c:when>
+							                	</c:choose>
+											</a>
 							            </div>
 							        </div>
 							    </div>
 							    </c:forEach>
-							</c:forEach>
-						</c:if>
+						    </div>
+					    </div>
 				    </div>
-			    </div>
+				    
+				    <div class="buskers_feed_video">
+				    	<div class="buskers_feed_follow">아티스트 영상 <span>팔로우 채널</span></div>
+				    </div>
+				    
+				    <div class="buskers_feed_photo">
+				    	<div class="buskers_feed_follow">아티스트 사진 <span>팔로우 채널</span></div>
+				    </div>
+				</c:if>
 			</div>
 		</div>
 	</div>
