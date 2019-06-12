@@ -85,7 +85,7 @@
 			</div> <a href="<c:url value='/artist/board/list.do'/>?buskerNo=${buskerNo}"
 			class="busker-side__menu-title"> 공연일정<span class="busker-side__menu-count" id="showCount"></span> </a>
 		</li>
-		<c:if test="${sessionScope.user.buskerNo eq buskerNo}">
+		<c:if test="${sessionScope.user.busker.buskerNo eq buskerNo}">
 		<li class="busker-side__menu-item">
 			<div class="busker-side__menu-icon">
 				<i class="fas fa-music fa-lg"></i>
@@ -174,7 +174,7 @@
 		url : "<c:url value='/artist/main/main-ajax.do'/>",
 		dateType : "json",
 		data : "buskerNo="+buskerNo
-	}).done((map) => {
+	}).done(map => {
 		const showCount = map.showCount;
 		const musicCount = map.musicCount;
 		$("#showCount").text(showCount);

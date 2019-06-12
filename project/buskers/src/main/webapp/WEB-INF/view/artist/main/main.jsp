@@ -7,7 +7,7 @@
 		<!-- 			src="https://www.youtube.com/embed/saH2Odc3ba8" frameborder="0" -->
 		<!-- 			allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" -->
 		<!-- 			allowfullscreen></iframe> -->
-		<iframe width="560" height="315" src="https://www.youtube.com/embed/y_oPqEzX_X4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+		<iframe width="100%" height="100%" src="https://www.youtube.com/embed/y_oPqEzX_X4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 	</div>
 	<div class="busker-content__item">
 		<div class="busker-board">
@@ -114,6 +114,24 @@
 					<div class="busker-content__support-date">04-13</div>
 				</div>
 			</div>
+		</div>
+	</div>
+	<div class="busker-content__item">
+		<div class="busker-content__show">
+			<header class="busker-content__show-header">
+				공연일정
+			</header>
+			<section class="busker-content__show-list">
+				<div class="busker-content__show-row">
+					<div class="busker-content__show-column">
+
+					</div>
+					<div class="busker-content__show-column">
+						<i class="far fa-clock"></i>
+						<span class="busker-content__show-title"></span>
+					</div>
+				</div>
+			</section>
 		</div>
 	</div>
 	<div class="busker-audio-wrapper">

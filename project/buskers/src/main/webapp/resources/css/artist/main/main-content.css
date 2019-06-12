@@ -1,7 +1,7 @@
 .busker-content {
   display: grid;
   grid-template-columns: repeat(3, minmax(250px, 1fr));
-  grid-template-rows: repeat(3, 31vh);
+  grid-template-rows: repeat(4, calc(91vh/4));
   grid-auto-rows: 31vh;
   grid-auto-flow: dense;
   grid-gap: 5px;
@@ -51,9 +51,9 @@
   opacity: 0.5;
 }
 
-/* .busker-content .busker-content__item:nth-child(2) {
-  grid-area: span 2 / span 2;
-} */
+.busker-content .busker-content__item:nth-child(4) {
+  grid-area: span 2 / span 1;
+}
 
 .busker-content__item .busker-board {
   height: 100%;
@@ -128,7 +128,7 @@
 
 .busker-content__support {
     width: 100%;
-    height: 60%;
+    height: 90%;
     background-color : var(--color-background);;
     border-radius: 10px;
     overflow: scroll;
@@ -195,3 +195,45 @@
     justify-content: flex-start;
     align-items: center;
 }
+
+:root {
+	--color-main-gray : #515658;
+	--color-row : #E1E3E8;
+}
+
+.busker-content__show{
+  width : 100%;
+  height: 100%;
+  background-color : var(--color-background);
+  border-radius: 10px;
+}
+
+.busker-content__show-header {
+  color : var(--color-blue);
+  padding : 20px;
+  padding-left : 20px;
+  font-size : 18px;
+  font-weight: 600;
+}
+
+.busker-content__show .busker-content__show-list {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: auto;
+}
+
+.busker-content__show .busker-content__show-row {
+  background-color : var(--color-row);
+  color : var(--color-main-gray);
+  height: 30px;
+  border-radius: 5px;
+  display: grid;
+  grid-template-columns: 7fr 3fr;
+}
+
+
+
+
+
+
