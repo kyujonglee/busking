@@ -164,7 +164,7 @@
 				htrr += '<div class="video">';
 				htrr += '<iframe width="100%" height="220px" src='+result.list[i].url+' frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
 				htrr += '		<div class="video_title">'+result.list[i].title+"";
-				if("${sessionScope.user.buskerNo}" == "${param.buskerNo}"){
+				if("${sessionScope.user.busker.buskerNo}" == "${param.buskerNo}"){
 					htrr += '<span class="videoMenu">';
 					htrr += '<span class="video_menu_modify" data-vno='+result.list[i].video_no+'>삭제<br></span>';
 					htrr += '<i class="fas fa-ellipsis-h"></i>';

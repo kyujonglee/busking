@@ -17,7 +17,7 @@
 </section>
 <script>
 	
-	if("${sessionScope.user.buskerNo}"=="${param.buskerNo}"){
+	if("${sessionScope.user.busker.buskerNo}"=="${param.buskerNo}"){
 		$(".input_form").click(function(){
 			$(this).removeAttr('readonly');
 			$(this).addClass('input_form_go');

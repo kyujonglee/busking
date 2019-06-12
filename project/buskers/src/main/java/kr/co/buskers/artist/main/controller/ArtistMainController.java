@@ -41,10 +41,6 @@ public class ArtistMainController {
 			follow.setBuskerNo(buskerNo);
 			model.addAttribute("followStatus",mainService.followBuskerStatus(follow));
 		}
-		//버스커 소개 가져오기
-//		model.addAttribute("busker",mainService.selectBusker(buskerNo));
-		//url 링크 가져오기
-		model.addAttribute("socialUrl",mainService.selectSocialUrl(buskerNo));
 		
 	}
 	
