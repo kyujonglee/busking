@@ -125,15 +125,6 @@ $(document).ready(() => {
   })
   .fail();
   
-  const update = (showNo, enrollDate) => {
-	  if(new Date() > enrollDate){
-		  alert("현재 날짜 이전의 공연날짜는 수정할 수 없습니다.");
-	  }else {
-		  location.href = `updateForm.do?showNo=${showNo}&buskerNo=`+buskerNo;
-	  }
-  };
-  
-  
   Date.prototype.format = function(f) {
 	    if (!this.valueOf()) return " ";
 	 

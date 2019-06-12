@@ -59,29 +59,38 @@ function whenPlayed() {
 }
 
 $(document).ready(() => {
-	audio.addEventListener("canplay", function(){
+  console.log("ready");
+  if (audioItemList.length !== 0) {
+	  audio.oncanplaythrough = function(){
+		  console.log("canplay");
 		  this.play();
 		  whenPaused();
-	});
+	  };
+  }
+  //	audio.addEventListener("canplay", function(){
+  //		  console.log("canplay");
+  //		  this.play();
+  //		  whenPaused();
+  //	});
 });
 
 canvas.onclick = function(e) {
-//  console.log(e.offsetX / canvas.clientWidth);
-//  console.log(audio.duration);
-//  console.log((e.offsetX / canvas.clientWidth) * audio.duration);
-//  console.log("audio.currentTime ",audio.currentTime);
-  audio.addEventListener("canplay", function(){
-		  audio.currentTime = (e.offsetX / canvas.clientWidth) * audio.duration;
-//		  console.log("audio.currentTime ",audio.currentTime);
-          this.removeEventListener("canplay",arguments.callee);
+  //  console.log(e.offsetX / canvas.clientWidth);
+  //  console.log(audio.duration);
+  //  console.log((e.offsetX / canvas.clientWidth) * audio.duration);
+  //  console.log("audio.currentTime ",audio.currentTime);
+  audio.addEventListener("canplay", function() {
+    audio.currentTime = (e.offsetX / canvas.clientWidth) * audio.duration;
+    //		  console.log("audio.currentTime ",audio.currentTime);
+    this.removeEventListener("canplay", arguments.callee);
   });
   audio.currentTime = (e.offsetX / canvas.clientWidth) * audio.duration;
-//  console.log("audio.currentTime ",audio.currentTime);
+  //  console.log("audio.currentTime ",audio.currentTime);
 };
 
 let colorFlag = true;
 audio.addEventListener("timeupdate", function() {
-//  console.log("timeupdate ",audio.currentTime);
+  //  console.log("timeupdate ",audio.currentTime);
   const currentTime = parseInt(audio.currentTime);
   const duration = parseInt(audio.duration);
 
@@ -210,7 +219,9 @@ $(".audio-menu > ul > li .audio-menu__music").click(function(e) {
   $(".music .music-title").text(audioItem.title);
   $(".music .music-writer").text(audioItem.writer);
   console.log(audioItem);
-  $(".music-box .music-box__img").attr({src:"/buskers/file/download.do?path="+audioItem.imgPath});
+  $(".music-box .music-box__img").attr({
+    src: "/buskers/file/download.do?path=" + audioItem.imgPath
+  });
   $("#play").trigger("click");
 });
 

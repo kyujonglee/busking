@@ -15,8 +15,6 @@
 
 .busker-main .busker-content img {
   display: block;
-  width: 100%;
-  height: 100%;
 }
 
 .busker-content .busker-content__item {
@@ -53,9 +51,9 @@
   opacity: 0.5;
 }
 
-.busker-content .busker-content__item:nth-child(2) {
+/* .busker-content .busker-content__item:nth-child(2) {
   grid-area: span 2 / span 2;
-}
+} */
 
 .busker-content__item .busker-board {
   height: 100%;
@@ -109,9 +107,6 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   /* width: 100px; */
-}
-
-.busker-board__row .board-row__posts {
 }
 
 .busker-board__row .board-row__num {

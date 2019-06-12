@@ -90,7 +90,7 @@
 <script src="http://${serverip}:10001/socket.io/socket.io.js"></script>
 <script>
 
-	const buskerNo = ${sessionScope.user.buskerNo};
+	/* let buskerNo = ${(sessionScope.user eq null) ? 0 : sessionScope.user.buskerNo}; */
 
 	toastr.options.positionClass = 'toast-bottom-right';
 	toastr.options.closeButton = true;

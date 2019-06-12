@@ -10,13 +10,18 @@
   grid-gap: 10px;
 }
 
+.info-song__list .info-song__item:hover {
+	box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
 .info-song__list .info-song__item {
   display: grid;
   grid-template-columns: 1fr 0.5fr 4fr 2fr 1fr 2fr;
   padding: 5px;
   box-sizing: border-box;
-  background-color: #25272c;
+  /* background-color: #25272c; */
   border-radius: 5px;
+  transition : all 0.3s ease-in-out;
 }
 
 .info-song__list .info-song__item:first-child {
@@ -38,11 +43,11 @@
 .info-song__list .info-song__item-title {
   font-weight: 600;
   font-size: 18px;
-  color: whitesmoke;
+  color: var(--color-info-white);
 }
 
 .info-song__list .info-song__item {
-  color: var(--color-info-white);
+  color: var(--color-info-header);
 }
 
 .info-song__item .info-song__item-content-time {
@@ -60,7 +65,7 @@
   cursor : pointer;
 }
 
-.info-song__item-content-title:hover,
-.info-song__item-content-busker:hover {
-  transform: translateY(-3px);
-}
+/* .info-song__item-content-title:hover, */
+/* .info-song__item-content-busker:hover { */
+/*   transform: translateY(-3px); */
+/* } */

@@ -4,11 +4,11 @@ uri="http://java.sun.com/jsp/jstl/core"%> <%@ taglib prefix="fmt"
 uri="http://java.sun.com/jsp/jstl/fmt"%>
 <link
   rel="stylesheet"
-  href="<c:url value='/resources/css/main/info/info.css'/>"
+  href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/css/swiper.min.css"
 />
 <link
   rel="stylesheet"
-  href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/css/swiper.min.css"
+  href="<c:url value='/resources/css/main/info/info.css'/>"
 />
 <section class="info">
   <article class="info-busker">
@@ -144,17 +144,16 @@ uri="http://java.sun.com/jsp/jstl/fmt"%>
           <div class="swiper-slide">Slide 3</div>
           <div class="swiper-slide">Slide 4</div>
           <div class="swiper-slide">Slide 5</div>
-          <div class="swiper-slide">Slide 6</div>
-          <div class="swiper-slide">Slide 7</div>
-          <div class="swiper-slide">Slide 8</div>
-          <div class="swiper-slide">Slide 9</div>
-          <div class="swiper-slide">Slide 10</div>
         </div>
         <!-- Add Pagination -->
         <!-- <div class="swiper-pagination"></div> -->
         <!-- Add Arrows -->
-        <div class="swiper-button-next swiper-button-white"></div>
-        <div class="swiper-button-prev swiper-button-white"></div>
+        <div class="swiper-button-prev">
+  		  <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24"><path d="M0 12c0 6.627 5.373 12 12 12s12-5.373 12-12-5.373-12-12-12-12 5.373-12 12zm7.58 0l5.988-5.995 1.414 1.416-4.574 4.579 4.574 4.59-1.414 1.416-5.988-6.006z"/></svg>
+		</div>
+        <div class="swiper-button-next">
+    		<svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24"><path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-1.568 18.005l-1.414-1.415 4.574-4.59-4.574-4.579 1.414-1.416 5.988 5.995-5.988 6.005z"/></svg>
+		</div>
       </div>
     </section>
   </article>
@@ -173,9 +172,11 @@ uri="http://java.sun.com/jsp/jstl/fmt"%>
   <div class="music-box">
     <div class="music-box__imgbox">
       <img 
-      	src="<c:url value='/file/download.do?path='/>${map.musicList[0].imgPath}"
+          src="
+                <c:url value='/file/download.do?path='/>${map.musicList[0].imgPath ? map.musicList[0].imgPath:'' }
+          "
       	class="music-box__img"
-      	<%-- onError="this.src='<c:url value='/resources/img/music-profile.png' />';" --%> 
+      	onError="this.src='<c:url value='/resources/img/music-profile.png' />';" 
       />
     </div>
     <div class="music">
@@ -184,7 +185,7 @@ uri="http://java.sun.com/jsp/jstl/fmt"%>
     </div>
   </div>
   <div class="busker-audio">
-    <!--         <audio id="myAudio" loop="loop" autoplay="autoplay"> -->
+<!--             <audio id="myAudio" loop="loop" autoplay="autoplay"> -->
     <audio id="myAudio" loop="loop">
       <!--           <source -->
       <%-- src="<c:url value="/file/download.do?path=${audioList[0].path}" />"
@@ -340,6 +341,7 @@ uri="http://java.sun.com/jsp/jstl/fmt"%>
         audio.src = audioItem.path;
         $(".music .music-title").text(audioItem.title);
         $(".music .music-writer").text(audioItem.writer);
+        $(".music-box .music-box__img").attr({src:"/buskers/file/download.do?path="+audioItem.imgPath});
         $("#play").trigger("click");
       });
       $(".audio-menu__header .audio-menu__header-cnt").text(list.length + "곡");

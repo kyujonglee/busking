@@ -118,7 +118,7 @@
 <script src="<c:url value='/resources/js/toastr.min.js'/>"></script>
 <script src="http://${serverip}:10001/socket.io/socket.io.js"></script>
 <script>
-	const buskerNo = ${sessionScope.user.buskerNo};
+	const buskerNo = ${(sessionScope.user eq null)? 0 : sessionScope.user.buskerNo};
 	
 	toastr.options.positionClass = 'toast-bottom-right';
 	toastr.options.closeButton = true;
