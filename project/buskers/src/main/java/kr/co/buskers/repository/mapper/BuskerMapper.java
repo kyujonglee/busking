@@ -7,5 +7,6 @@ import kr.co.buskers.repository.domain.Busker;
 public interface BuskerMapper {
 	Busker selectBuskerByNo(int buskerNo);
 	List<Busker> selectBusker();
+	List<Busker> selectRecommendArtist(int buskerNo);
 	int checkActivityName(Busker busker);
 }

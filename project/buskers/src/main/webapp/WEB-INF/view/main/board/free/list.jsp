@@ -45,7 +45,27 @@
 							<i class="far fa-image"></i>
 						</c:if>
 					</td>
-					<td>${notify.nickName}</td>
+					<td class="nickName_info">
+						<c:if test="${notify.isAdmin eq 'y'}">
+						<i class="fas fa-award"></i>
+						</c:if>
+						<c:if test="${notify.isBusker eq 'y'}">
+						<i class="fas fa-star"></i>
+						</c:if>
+						${notify.nickName}
+						<c:if test="${notify.isBusker eq 'y'}">
+							<div class="nickName_info_box">
+								<a href="<c:url value='/artist/main/main.do?buskerNo=${notify.buskerNo}'/>">아티스트 채널</a>
+								<a name="${notify.nickName}" class="nickName_info_box_send_message">쪽지 보내기</a>
+							</div>
+						</c:if>
+						<c:if test="${notify.isBusker eq 'n'}">
+							<div class="nickName_info_box">
+								<a>회원 정보</a>
+								<a name="${notify.nickName}" class="nickName_info_box_send_message">쪽지 보내기</a>
+							</div>
+						</c:if>
+					</td>
 					<td><fmt:formatDate value="${notify.regDate}"
 							pattern="MM-dd HH:mm" /></td>
 					<td>${notify.viewCnt}</td>
@@ -77,7 +97,27 @@
 					</c:if>
 				</c:if>
 				</td>
-				<td>${board.nickName}</td>
+				<td class="nickName_info">
+					<c:if test="${board.isAdmin eq 'y'}">
+					<i class="fas fa-award"></i>
+					</c:if>
+					<c:if test="${board.isBusker eq 'y'}">
+					<i class="fas fa-star"></i>
+					</c:if>
+					${board.nickName}
+					<c:if test="${board.isBusker eq 'y'}">
+						<div class="nickName_info_box">
+							<a href="<c:url value='/artist/main/main.do?buskerNo=${board.buskerNo}'/>">아티스트 채널</a>
+							<a name="${board.nickName}" class="nickName_info_box_send_message">쪽지 보내기</a>
+						</div>
+					</c:if>
+					<c:if test="${board.isBusker eq 'n'}">
+						<div class="nickName_info_box">
+							<a>회원 정보</a>
+							<a name="${board.nickName}" class="nickName_info_box_send_message">쪽지 보내기</a>
+						</div>
+					</c:if>
+				</td>
 				<td><fmt:formatDate value="${board.regDate}"
 						pattern="MM-dd HH:mm" /></td>
 				<td>${board.viewCnt}</td>
@@ -328,4 +368,20 @@
    				}
    			});
         });
+        
+        $(".nickName_info").click(function (event) {
+        	$('.nickName_info_box').hide();
+        	event.stopPropagation();	
+        	$(this).children(".nickName_info_box").toggle();
+        });
+        
+       	$(document).click(function() {
+       	    $('.nickName_info_box').hide();
+       	});
+       	
+    	$(".nickName_info_box_send_message").click(function () {
+    		let name = $(this).attr("name");
+    		window.open('<c:url value="/main/header/message/write-form.do?nickName=' + name + '"/>', '', 'top=' + popupY + ', left=' + popupX + ', scrollbars=no, resizable=no, width=500, height=500');
+    	});
+       	
 </script>

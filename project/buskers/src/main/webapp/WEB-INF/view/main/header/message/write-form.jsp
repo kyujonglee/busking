@@ -42,9 +42,11 @@
 <script src="http://${serverip}:10001/socket.io/socket.io.js"></script>
 
 <script>
+	
+	$("#nickName").val("${param.nickName}");
+
 	let confirm = 0;
 	$("#nickName").keyup(function(){
-		
 		
 		let nickName = $(".input-nickName").val();
 		console.log(nickName);
