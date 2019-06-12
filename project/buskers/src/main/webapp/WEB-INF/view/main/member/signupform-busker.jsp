@@ -14,8 +14,8 @@
                 <form name="insertBusker" id="insertBusker" class="email-login"  action="signup-busker.do" method="post" onsubmit="return buskerCheck();">
                 	<input type="hidden" name="memberNo" value="${sessionScope.user.memberNo }"/>
                     <div class="u-form-group">
-                        <div class="div_group_name">활동명&nbsp;</div><input type="text" id="activityName" name="activityName" placeholder="ActivityName"/>
-                        <button type="button" id="checkActiveName" class="check">중복확인</button>
+                        <div class="div_group_name">활동명&nbsp;</div><input type="text" id="activityName" name="activityName" maxlength="14" placeholder="ActivityName(14글자 제한)"/>
+                        <button type="button" id="checkActivityName" class="check">중복확인</button>
                     </div>
                     <div class="u-form-group">
                         <div class="div_group_name">연락처&nbsp;</div><input type="text" id="phone" name="phone" placeholder="Phone"/>

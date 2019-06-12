@@ -60,6 +60,7 @@ public class MemberController {
 	@RequestMapping("login.do")
 	public String login(HttpSession session, Member member, RedirectAttributes rttr) {
 		Member user = service.login(member);
+				
 		// DB 값 체크
 		if(user != null) {
 			boolean passMatch = passEncoder.matches(member.getPass(), user.getPass());
@@ -174,6 +175,21 @@ public class MemberController {
         }
 		return result;
 	}
+	
+	// 활동명 중복 체크
+	@RequestMapping("checkActivityName.do")
+	@ResponseBody
+	public int checkActivityName(String activityName) {
+		int result = 0;
+		Busker busker = new Busker();
+		busker.setActivityName(activityName);
+		int user = service.checkActivityName(busker);
+		if(user != 0) {
+			result = 1;
+		}
+		return result;
+	}
+	
 	
 	// 아이디 찾기 폼 이동
 	@RequestMapping("findIdform.do")
@@ -290,14 +306,13 @@ public class MemberController {
 	
 	// 버스커 등록 화면으로 이동
 	@RequestMapping("signupform-busker.do")
-	public String signupformBusker(Member member) {
-		System.out.println("들어옴");
-		
-		System.out.println(member.getId());
-		System.out.println(member.getIsBusker());
-//		if(session.get != null) {
-//			return "redirect:/index.jsp";
-//		}
+	public String signupformBusker(HttpSession session) {
+		Member mem = (Member)session.getAttribute("user");
+		if(mem == null) {
+			return "redirect:/index.jsp";
+		} else if(mem.getBusker() != null) {
+			return "redirect:/index.jsp";
+		}
 		return "main/member/signupform-busker";
 	}
 	
@@ -346,4 +361,20 @@ public class MemberController {
 		session.setMaxInactiveInterval(60 * 60);
 		return "main/member/setting";
 	}
+	
+	// 버스커 정보 업데이트
+	@RequestMapping("buskerInfoUpdate.do")
+	public String buskerUpdate(Member member, Busker busker,HttpSession session) {
+		service.updateBusker(busker);
+		
+		session.removeAttribute("user");
+		Member user = service.selectMember(member.getMemberNo());
+		session.setAttribute("user", user);
+		session.setMaxInactiveInterval(60 * 60);
+		return "main/member/setting";
+	}
+	
+	
+	
+	
 }
