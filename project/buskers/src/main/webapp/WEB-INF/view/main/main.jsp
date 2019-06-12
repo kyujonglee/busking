@@ -861,7 +861,7 @@
 	
 	new Swiper('.swiper-container-video', {
 	    slidesPerView: 4,
-	    spaceBetween: 60,
+	    spaceBetween: 70,
 	    pagination: {
 	    	el: '.swiper-pagination',
 	        type: 'progressbar',

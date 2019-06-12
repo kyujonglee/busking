@@ -79,12 +79,6 @@
 	                            </a>
 	                            <div class="sidebar-submenu">
 	                                <ul>
-		                                <c:forEach var="genre" items="${Genre1}">
-		                                <li>
-		                                	<img src="<c:url value='/file/download.do'/>?path=${genre.profileImgPath}${genre.profileImg}" onError="this.src='<c:url value='/resources/img/profile.png' />';" />
-	                                        <a href="<c:url value='/artist/main/main.do?buskerNo=${genre.buskerNo}'/>">${genre.activityName}</a>
-	                                    </li>
-		                                </c:forEach>
 	                                </ul>
 	                            </div>
 	                        </li>
@@ -95,12 +89,6 @@
 	                            </a>
 	                            <div class="sidebar-submenu">
 	                                <ul>
-	                                    <c:forEach var="genre" items="${Genre2}">
-		                                <li>
-		                                	<img src="<c:url value='/file/download.do'/>?path=${genre.profileImgPath}${genre.profileImg}" onError="this.src='<c:url value='/resources/img/profile.png' />';" />
-	                                        <a href="<c:url value='/artist/main/main.do?buskerNo=${genre.buskerNo}'/>">${genre.activityName}</a>
-	                                    </li>
-		                                </c:forEach>
 	                                </ul>
 	                            </div>
 	                        </li>
@@ -111,12 +99,6 @@
 	                            </a>
 	                            <div class="sidebar-submenu">
 	                                <ul>
-	                                    <c:forEach var="genre" items="${Genre3}">
-		                                <li>
-		                                	<img src="<c:url value='/file/download.do'/>?path=${genre.profileImgPath}${genre.profileImg}" onError="this.src='<c:url value='/resources/img/profile.png' />';" />
-	                                        <a href="<c:url value='/artist/main/main.do?buskerNo=${genre.buskerNo}'/>">${genre.activityName}</a>
-	                                    </li>
-		                                </c:forEach>
 	                                </ul>
 	                            </div>
 	                        </li>
@@ -127,44 +109,26 @@
 	                            </a>
 	                            <div class="sidebar-submenu">
 	                                <ul>
-	                                    <c:forEach var="genre" items="${Genre4}">
-		                                <li>
-		                                	<img src="<c:url value='/file/download.do'/>?path=${genre.profileImgPath}${genre.profileImg}" onError="this.src='<c:url value='/resources/img/profile.png' />';" />
-	                                        <a href="<c:url value='/artist/main/main.do?buskerNo=${genre.buskerNo}'/>">${genre.activityName}</a>
-	                                    </li>
-		                                </c:forEach>
 	                                </ul>
 	                            </div>
 	                        </li>
 	                        <li class="sidebar-dropdown">
 	                            <a href="#">
 	                                <i class="fas fa-headphones"></i>
-	                                <span>Hip hop</span>
+	                                <span>Magic Show</span>
 	                            </a>
 	                            <div class="sidebar-submenu">
 	                                <ul>
-	                                    <c:forEach var="genre" items="${Genre5}">
-		                                <li>
-		                                	<img src="<c:url value='/file/download.do'/>?path=${genre.profileImgPath}${genre.profileImg}" onError="this.src='<c:url value='/resources/img/profile.png' />';" />
-	                                        <a href="<c:url value='/artist/main/main.do?buskerNo=${genre.buskerNo}'/>">${genre.activityName}</a>
-	                                    </li>
-		                                </c:forEach>
 	                                </ul>
 	                            </div>
 	                        </li>
 	                        <li class="sidebar-dropdown">
 	                            <a href="#">
 	                                <i class="fas fa-hat-wizard"></i>
-	                                <span>Magic Show</span>
+	                                <span>Hip hop</span>
 	                            </a>
 	                            <div class="sidebar-submenu">
 	                                <ul>
-	                                    <c:forEach var="genre" items="${Genre6}">
-		                                <li>
-	                                  		<img src="<c:url value='/file/download.do'/>?path=${genre.profileImgPath}${genre.profileImg}" onError="this.src='<c:url value='/resources/img/profile.png' />';" />
-	                                        <a href="<c:url value='/artist/main/main.do?buskerNo=${genre.buskerNo}'/>">${genre.activityName}</a>
-	                                    </li>
-		                                </c:forEach>
 	                                </ul>
 	                            </div>
 	                        </li>
