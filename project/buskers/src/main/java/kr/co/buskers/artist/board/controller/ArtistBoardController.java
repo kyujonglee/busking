@@ -1,6 +1,7 @@
 package kr.co.buskers.artist.board.controller;
 
-import java.util.List; 
+import java.util.HashMap;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import kr.co.buskers.artist.board.service.ArtistBoardService;
 import kr.co.buskers.repository.domain.ArtistShow;
 import kr.co.buskers.repository.domain.Video;
+import kr.co.buskers.repository.domain.VideoPage;
 
 @Controller("kr.co.buskers.artist.board.controller.ArtistBoardController")
 @RequestMapping("/artist/board")
@@ -87,5 +89,17 @@ public class ArtistBoardController {
 	@ResponseBody
 	public void videoRegist(Video video) {
 		service.insertVideo(video);
+	}
+	@RequestMapping("video-select-ajax.do")
+	@ResponseBody
+	public HashMap<String,Object> videoSelect(int buskerNo,VideoPage videoPage){
+		return service.selectVideo(buskerNo, videoPage);
+	}
+	
+	@RequestMapping("video-delete-ajax.do")
+	@ResponseBody
+	public void videoDelete(String videoNo) {
+		int video = Integer.parseInt(videoNo);
+		service.deleteVideo(video);
 	}
 }

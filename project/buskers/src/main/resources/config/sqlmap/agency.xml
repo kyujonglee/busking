@@ -50,6 +50,7 @@
 		  from tb_agency_info
 		 where agency_info_no = #{agencyInfoNo}
 	</select>
+	
 	<select id="selectAgencyGenreByNo" parameterType="int" resultMap="agencyGenreMap">
 		select *
 		  from tb_agency_genre

@@ -1,13 +1,16 @@
 package kr.co.buskers.artist.board.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import kr.co.buskers.common.page.VideoPageResult;
 import kr.co.buskers.repository.domain.ArtistShow;
 import kr.co.buskers.repository.domain.Genre;
 import kr.co.buskers.repository.domain.Video;
+import kr.co.buskers.repository.domain.VideoPage;
 import kr.co.buskers.repository.mapper.AgencyMapper;
 import kr.co.buskers.repository.mapper.ArtistBoardMapper;
 
@@ -58,5 +61,28 @@ public class ArtistBoardServiceImpl implements ArtistBoardService {
 	@Override
 	public void insertVideo(Video video) {
 		mapper.insertVideo(video);
+	}
+
+	@Override
+	public HashMap<String,Object> selectVideo(int buskerNo,VideoPage videoPage) {
+		
+		HashMap<String,Object> map = new HashMap<>();
+		map.put("buskerNo", buskerNo);
+		map.put("pageNo", videoPage.getPageNo());
+		map.put("begin",videoPage.getBegin());
+		
+		HashMap<String,Object> rMap = new HashMap<>();
+		
+		rMap.put("pageResult",(VideoPageResult)new VideoPageResult(videoPage.getPageNo(),mapper.countVideo(buskerNo)));
+		rMap.put("list", (List<Video>)mapper.selectVideo(map));
+		
+		
+		return rMap;
+	}
+
+	@Override
+	public void deleteVideo(int videoNo) {
+		mapper.deleteVideo(videoNo);
+		
 	}
 }
