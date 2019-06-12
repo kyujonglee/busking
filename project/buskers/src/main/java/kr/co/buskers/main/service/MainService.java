@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import kr.co.buskers.repository.domain.ArtistShow;
 import kr.co.buskers.repository.domain.Busker;
 import kr.co.buskers.repository.domain.SearchBoard;
@@ -13,7 +15,7 @@ public interface MainService {
 	public void exportCSV();
 	public void mapView(String enrollDate);
 	public List<ArtistShow> mapDetail(ArtistShow artistShow);
-	public Map<String, Object> selectArtistShowToday();
+	public Map<String, Object> selectArtistShowToday(HttpSession session);
 	public ArtistShow markerDetail(int showNo);
 	public ArtistShow markerImage(int showNo);
 	public List<SearchBoard> mainBoardSearch(SearchPage searchPage);

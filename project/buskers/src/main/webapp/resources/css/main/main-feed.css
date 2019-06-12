@@ -2,10 +2,10 @@
 	position: relative;
 	margin: 0 auto;
 	width: 100%;
-	height: 1000px;
 	background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
 		url(../../img/door2.jpeg);
 	background-size: 100%;
+	padding-bottom: 50px;
 }
 
 .buskers_feed_wrapper .neon b {
@@ -16,8 +16,8 @@
 
 .feed-card {
 	position: relative;
-	width: 330px !important;
-	height: 400px !important;
+	width: 260px !important;
+	height: 360px !important;
 	margin: auto;
 	background: #ffffff;
 	box-shadow: 0px 4px 8px 0px rgba(23, 23, 23, 0.2);
@@ -68,11 +68,19 @@
 	text-align: right;
 }
 
+.feed-card-content .title {
+	padding-bottom: 10px;
+}
+
 .feed-card-content .title a {
 	text-decoration: none;
 	color: #232323;
 	font-weight: bold;
     margin-right: 10px;
+}
+
+.feed-card-content .title i {
+	font-size: 12px;
 }
 
 .feed-card-content .title a:hover {
@@ -123,7 +131,7 @@
 }
 
 .buskers_feed_list {
-	margin-top: 200px;
+	margin-top: 180px;
 	padding-left: 50px;
 	padding-right: 50px;
 }
@@ -131,8 +139,36 @@
 .title_header {
 	display: flex;
 	justify-content: space-between;
+	padding-bottom: 10px;
 }
 
+.title_header a:nth-child(1):hover {
+	color: tomato;
+}
 
+.swiper-container {
+	margin-bottom: 100px !important;	
+}
 
+.buskers_feed_follow {
+    font-family: 'Nanum Pen Script', cursive;
+    color: white;
+    font-size: 40px;
+    padding-left: 10px;
+    padding-bottom: 20px;
+}
 
+.buskers_feed_follow span {
+    font-family: 'Nanum Gothic', sans-serif;
+    font-size: 15px;
+    vertical-align: middle;
+}
+
+.swiper-container-horizontal > .swiper-pagination-progressbar {
+	background: grey;
+	width: 100%;
+    height: 4px;
+    left: 0;
+    top: auto !important;
+    bottom: 0 !important;
+}

@@ -20,7 +20,7 @@
 <script>
 	// 위에서 지정됨.
 	/* const buskerNo = ${buskerNo}; */
-	const no = ${sessionScope.user.buskerNo};
+	const no = ${(sessionScope.user eq null) ? 0 : sessionScope.user.buskerNo};
 	function enrollForm(){
 		if(no === buskerNo){
 			return true;
@@ -29,6 +29,18 @@
 			return false;
 		}
 	}
+	
+	const update = (showNo, enrollDate) => {
+	  if(no === buskerNo) {
+		  if(new Date() > enrollDate){
+			  alert("현재 날짜 이전의 공연날짜는 수정할 수 없습니다.");
+		  }else {
+			  location.href = `updateForm.do?showNo=${showNo}&buskerNo=`+buskerNo;
+		  }
+	  }else {
+		  alert("해당 버스커만 공연일정을 수정할 수 있습니다.");
+	  }
+	};
 </script>
 <script src="<c:url value='/resources/js/artist/board/forecast.js' />"></script>
 <script src="<c:url value='/resources/js/artist/board/list.js' />"></script>

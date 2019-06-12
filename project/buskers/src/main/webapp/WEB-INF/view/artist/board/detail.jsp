@@ -79,12 +79,14 @@
 						</div>
 					</div>
 					<div class="busker-show-detail__item">
-						<a onclick="update(${show.showNo},'<fmt:formatDate value="${show.enrollDate}" pattern="yyyy-MM-dd HH:mm" type="both" />' );" >
-							<button type="button" class="busker-show-update__btn">수정</button>
-						</a>
-						<a href="delete.do?showNo=${show.showNo}&buskerNo=${buskerNo}">
-							<button type="button" class="busker-show-delete__btn">삭제</button>
-						</a>
+						<c:if test="${sessionScope.user ne null && sessionScope.user.buskerNo eq buskerNo}">
+							<a onclick="update(${show.showNo},'<fmt:formatDate value="${show.enrollDate}" pattern="yyyy-MM-dd HH:mm" type="both" />' );" >
+								<button type="button" class="busker-show-update__btn">수정</button>
+							</a>
+							<a href="delete.do?showNo=${show.showNo}&buskerNo=${buskerNo}">
+								<button type="button" class="busker-show-delete__btn">삭제</button>
+							</a>
+						</c:if>
 						<a href="list.do?buskerNo=${buskerNo}">
 							<button type="button" class="busker-show-list__btn">목록</button>
 						</a>
@@ -105,13 +107,13 @@ function init() {
   const lon = '<c:out value="${show.lon}"/>';
   mapInit(lat, lon);
 }
-
+const no = ${sessionScope.user eq null? 0 : sessionScope.user.buskerNo};
 const update = (showNo, enrollDate) => {
-	  if(new Date() > new Date(enrollDate)){
-		  alert("현재 날짜 이전의 공연날짜는 수정할 수 없습니다.");
-	  }else {
-		  location.href = `updateForm.do?showNo=` + showNo+ `&buskerNo=`+${buskerNo};
-	  }
+  if(new Date() > new Date(enrollDate)){
+	  alert("현재 날짜 이전의 공연날짜는 수정할 수 없습니다.");
+  }else {
+	  location.href = `updateForm.do?showNo=` + showNo+ `&buskerNo=`+${buskerNo};
+  }
 };
 init();
 </script>

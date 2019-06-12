@@ -6,6 +6,7 @@
 }
 
 .busker-audio-wrapper {
+  z-index : 10;
   /* width: 50%; */
   width: 50px;
   border-radius: 25px;
@@ -219,17 +220,36 @@
   opacity: 0.7;
 }
 
+.music-box {
+	display : flex;
+	justify-content : flex-start;
+	width : 200px;
+	display: none;
+}
+
+.music-box .music-box__imgbox {
+	display : flex;
+	justify-content : center;
+	align-items : center;
+  	padding-left: 25px;
+}
+
+.music-box .music-box__img {
+	width : 35px;
+	height : 35px;
+    border-radius : 2px;
+}
+
 .music {
   color: var(--color-white);
   width: 200px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding-left: 25px;
   height : 100%;
   overflow : hidden;
+  margin-left : 5px;
   box-sizing : content-box;
-  display: none;
 }
 .music .music-writer {
   margin-top: 2px;
@@ -248,10 +268,10 @@
 
 @keyframes slideshow{
 	from {
-		left : 200px;
+		left : 180px;
 	}
 	to {
-		left : -210px;
+		left : -190px;
 	}
 }
 

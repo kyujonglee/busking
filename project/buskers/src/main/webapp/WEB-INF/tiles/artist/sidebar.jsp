@@ -94,12 +94,12 @@
 			class="busker-side__menu-title"> 버스커 음악<span class="busker-side__menu-count" id="musicCount"></span></a>
 		</li>
         </c:if>
-		<li class="busker-side__menu-item settings">
-			<div class="busker-side__menu-icon">
-				<i class="fas fa-cog"></i>
-			</div>
-			<div class="busker-side__menu-title">설정</div>
-		</li>
+<!-- 		<li class="busker-side__menu-item settings"> -->
+<!-- 			<div class="busker-side__menu-icon"> -->
+<!-- 				<i class="fas fa-cog"></i> -->
+<!-- 			</div> -->
+<!-- 			<div class="busker-side__menu-title">설정</div> -->
+<!-- 		</li> -->
 	</ul>
 	<section class="busker-side__buskers">
 		<header class="buskers-header">
@@ -117,9 +117,15 @@
 			</div>
 		</article>
 	</section>
-	<section class="busker-side__logout">
-		<span>logout</span>
-	</section>
+	<article class="busker-side__settings">
+		<i class="fas fa-cog"></i>
+		<span class="busker-side__menu-title">설정</span>
+	</article>
+	<c:if test="${sessionScope.user ne null}">
+		<article class="busker-side__logout">
+			<span onclick="logout();">logout</span>
+		</article>
+	</c:if>
 </aside>
 
 <!-- 모달창 -->
