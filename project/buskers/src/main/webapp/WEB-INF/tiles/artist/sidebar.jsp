@@ -47,7 +47,7 @@
 				<i class="fas fa-video fa-lg"></i>
 			</div>
 			<div class="busker-side__menu-title">
-			<a href="<c:url value='/artist/board/video.do'/>">영상</a>
+			<a href="<c:url value='/artist/board/video.do'/>?buskerNo=${param.buskerNo}">영상</a>
 				<span class="busker-side__menu-count">30</span>
 			</div>
 		</li>
@@ -56,7 +56,7 @@
 				<i class="far fa-images fa-lg"></i>
 			</div>
 			<div class="busker-side__menu-title">
-				<a href="<c:url value='/artist/board/photo.do'/>">사진</a><span class="busker-side__menu-count">99</span>
+				<a href="<c:url value='/artist/board/photo.do'/>?buskerNo=${param.buskerNo}">사진</a><span class="busker-side__menu-count">99</span>
 			</div>
 		</li>
 		<li class="busker-side__menu-item">
