@@ -1,5 +1,6 @@
 package kr.co.buskers.repository.mapper;
 
+import java.util.HashMap;
 import java.util.List;
 
 import kr.co.buskers.repository.domain.ArtistShow;
@@ -24,9 +25,15 @@ public interface ArtistBoardMapper {
 	
 	int countSocialUrl(SocialUrl socialUrl);
 	
+	
 	void updateSocialUrl(SocialUrl socialUrl);
 	
 	SocialUrl selectSocialUrl(int buskerNo);
 	
 	void insertVideo(Video video);
+
+	List<Video> selectVideo(HashMap<String,Object> map);
+	
+	int countVideo(int buskerNo);
+	void deleteVideo(int videoNo);
 }
