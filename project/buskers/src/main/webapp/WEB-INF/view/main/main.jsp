@@ -146,8 +146,8 @@
 							        <div class="feed-card-content">
 							            <div class="title">
 							            	<div class="title_header">
-							            		<a>${list.title}</a>
-								                <a>${list.activityName}</a>
+							            		<a href="<c:url value='/artist/board/detail.do?showNo=${list.showNo}&buskerNo=${list.buskerNo}'/> ">${list.title}</a>
+								                <a href="<c:url value='/artist/main/main.do?buskerNo=${list.buskerNo}'/> ">${list.activityName}</a>
 							            	</div>
 							                <i class="fas fa-map-marker-alt">&nbsp;${list.place}</i> &nbsp;&nbsp;
 							                <i class="fas fa-calendar-day">&nbsp;<fmt:formatDate value="${list.enrollDate}"	pattern="MM-dd HH:mm" /></i>
@@ -160,46 +160,30 @@
 							            <div class="time">
 							                <a>
 							                	<jsp:useBean id="currDate" class="java.util.Date" />
+												
+												<fmt:formatDate var="currDay" value="${currDate}" pattern="yyyy-MM-dd" />
+							                	<fmt:formatDate var="regDay" value="${list.regDate}" pattern="yyyy-MM-dd" />
+							                	<fmt:parseNumber var="currDateTime" value="${currDate.time / (1000*60*60*24)}" integerOnly="true"></fmt:parseNumber>
+							                	<fmt:parseNumber var="regDateTime" value="${list.regDate.time / (1000*60*60*24)}" integerOnly="true"></fmt:parseNumber>
 							                	<fmt:formatDate var="currTime" value="${currDate}" pattern="HHmm" />
 							                	<fmt:formatDate var="regTime" value="${list.regDate}" pattern="HHmm" />
 							                	<fmt:parseNumber value="${(currTime - regTime)}" integerOnly="true" var="result"></fmt:parseNumber>
 							                	<fmt:parseNumber value="${(currTime - regTime) / 60}" integerOnly="true" var="hours"></fmt:parseNumber>
 							                	<fmt:parseNumber value="${(currTime - regTime) % 60}" integerOnly="true" var="minutes"></fmt:parseNumber>
-							                	<c:choose>
-								                	<c:when test="${result < 60}">
-									                	${result}분 전
-								                	</c:when>
-								                	<c:when test="${result >= 60}">
-									                	${hours}시간 ${minutes}분 전
-								                	</c:when>
-								                	<c:when test="${result > 3600}">
-									                	하루 전
-								                	</c:when>
-								                	<c:when test="${result > 7200}">
-									                	2일 전
-								                	</c:when>
-								                	<c:when test="${result > 10800}">
-									                	3일 전
-								                	</c:when>
-								                	<c:when test="${result > 14400}">
-									                	4일 전
-								                	</c:when>
-								                	<c:when test="${result > 18000}">
-									                	5일 전
-								                	</c:when>
-								                	<c:when test="${result > 21600}">
-									                	6일 전
-								                	</c:when>
-								                	<c:when test="${result > 26200}">
-									                	일주일 전
-								                	</c:when>
-								                	<c:when test="${result > 108000}">
-									                	한 달 전
-								                	</c:when>
-								                	<c:when test="${result > 216000}">
-									                	오래 전
-								                	</c:when>
-							                	</c:choose>
+							                	<c:if test="${currDay eq regDay}">
+								                	<c:choose>
+									                	<c:when test="${result < 60}">
+										                	${result}분 전
+									                	</c:when>
+									                	<c:when test="${result >= 60}">
+										                	${hours}시간 ${minutes}분 전
+									                	</c:when>
+								                	</c:choose>
+							                	</c:if>
+							                	
+							                	<c:if test="${currDate ne regDate}">
+							                		${currDateTime - regDateTime}일 전
+							                	</c:if>
 											</a>
 							            </div>
 							        </div>
@@ -211,6 +195,39 @@
 				    
 				    <div class="buskers_feed_video">
 				    	<div class="buskers_feed_follow">아티스트 영상 <span>팔로우 채널</span></div>
+					    <div class="swiper-container swiper-container-video">
+							<div class="swiper-wrapper">
+								<div class="swiper-slide feed_video">
+							    	<iframe src="https://www.youtube.com/embed/y_oPqEzX_X4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+						    	</div>
+						    	
+						    	<div class="swiper-slide feed_video">
+							    	<iframe src="https://www.youtube.com/embed/y_oPqEzX_X4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+							    </div>
+							    
+								<div class="swiper-slide feed_video">
+							    	<iframe src="https://www.youtube.com/embed/y_oPqEzX_X4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+						    	</div>
+						    	
+						    	<div class="swiper-slide feed_video">
+							    	<iframe src="https://www.youtube.com/embed/y_oPqEzX_X4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+							    </div>
+							    
+								<div class="swiper-slide feed_video">
+							    	<iframe src="https://www.youtube.com/embed/y_oPqEzX_X4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+						    	</div>
+						    	
+						    	<div class="swiper-slide feed_video">
+							    	<iframe src="https://www.youtube.com/embed/y_oPqEzX_X4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+							    </div>
+							    
+						    </div>
+						    
+						    <div class="swiper-pagination"></div>
+						    
+						    <div class="swiper-button-next"></div>
+						    <div class="swiper-button-prev"></div>	
+				    	</div>
 				    </div>
 				    
 				    <div class="buskers_feed_photo">
@@ -833,12 +850,26 @@
 	String.prototype.zf = function(len){return "0".string(len - this.length) + this;};
 	Number.prototype.zf = function(len){return this.toString().zf(len);};
     
-	var swiper = new Swiper('.swiper-container', {
+	new Swiper('.swiper-container', {
 	    slidesPerView: 5,
 	    spaceBetween: 30,
     	grabCursor: true,
 	    pagination: {
 		    clickable: true,
 	    },
+    });
+	
+	new Swiper('.swiper-container-video', {
+	    slidesPerView: 4,
+	    spaceBetween: 60,
+	    pagination: {
+	    	el: '.swiper-pagination',
+	        type: 'progressbar',
+		    clickable: true,
+	    },
+	    navigation: {
+	        nextEl: '.swiper-button-next',
+	        prevEl: '.swiper-button-prev',
+        }
     });
 </script>

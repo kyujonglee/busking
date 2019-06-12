@@ -19,7 +19,7 @@
         <div class="main-header">
 
           <!-- 로고 -->      
-          <a class="main_logo" href="<c:url value='/main/main.do'/>"><img src="<c:url value='/resources/img/logo.png'/>"><span>Buskers</span></a> 
+          <span class="main_logo"><img src="<c:url value='/resources/img/logo.png'/>"><a href="<c:url value='/main/main.do'/>">Buskers</a></span> 
         </div>
 
         <div class="main_menu_list">
