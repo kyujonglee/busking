@@ -9,6 +9,9 @@ public interface MemberMapper {
 	
 	// 로그인 체크
 	public Member loginAction(Member member);
+	
+	public Member selectUser(int memberNo);
+	
 
 	// 로그인 체크
 	public Member buskerLoginAction(Member member);
@@ -45,9 +48,7 @@ public interface MemberMapper {
 	
 	// 멤버 업데이트
 	public void memberUpdate(Member member);
-	
-	public Member selectUser(int memberNo);
-	
+
 	// 프로필 이미지 업데이트
 	public void uploadProfile(Member member);
 
@@ -81,6 +82,9 @@ public interface MemberMapper {
 	
 	
 	public Busker selectBusker(int buskerNo);
+
+	// 버스커 업데이트
+	public void buskerUpdate(Busker busker);
 	
 	
 	

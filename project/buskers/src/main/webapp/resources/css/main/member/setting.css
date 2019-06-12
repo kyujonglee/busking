@@ -455,6 +455,11 @@ ul {
 	grid-template-columns: 1fr 4fr;
 	line-height: 30px;
 }
+
+.info_detail_wrapper_none {
+	padding-left: 30px;
+}
+
 .menu_title{
 	padding-left:30px;
 }
@@ -462,6 +467,7 @@ ul {
 .modifyWrapper{
 	padding-left:30px;
 	padding-bottom:20px;
+	text-align: center;
 }
 
 .info_change_button{

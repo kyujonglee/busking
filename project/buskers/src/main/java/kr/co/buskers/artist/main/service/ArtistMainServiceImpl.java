@@ -36,6 +36,9 @@ public class ArtistMainServiceImpl implements ArtistMainService {
 		Map<String,Object> boardMap = new HashMap<>();
 		boardMap.put("showCount", boardMapper.countArtistCurrentShow(buskerNo) );
 		boardMap.put("musicCount", fMapper.countMusic(buskerNo) );
+		boardMap.put("videoCount", boardMapper.countVideo(buskerNo));
+		boardMap.put("busker",memberMapper.selectBusker(buskerNo));
+		boardMap.put("socialUrl",boardMapper.selectSocialUrl(buskerNo));
 		return boardMap;
 	}
 	

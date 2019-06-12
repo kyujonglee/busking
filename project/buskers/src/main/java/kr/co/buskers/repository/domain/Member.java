@@ -1,7 +1,6 @@
 package kr.co.buskers.repository.domain;
 
 import java.util.Date;
-import java.util.List;
 
 public class Member {
 
@@ -21,9 +20,17 @@ public class Member {
 	private String accessToken;
 	private String refreshToken;
 	private int sum;
+	private Busker busker;
 	private int buskerNo;
 	
-		public int getBuskerNo() {
+	
+	public Busker getBusker() {
+		return busker;
+	}
+	public void setBusker(Busker busker) {
+		this.busker = busker;
+	}
+	public int getBuskerNo() {
 		return buskerNo;
 	}
 	public void setBuskerNo(int buskerNo) {

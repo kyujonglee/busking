@@ -126,8 +126,29 @@
 	</select>
 	
 	<insert id="insertVideo" parameterType="video">
-	
+		insert into tb_video(url,busker_no,title)
+		values(#{url},#{buskerNo},#{title});
 	</insert>
+	
+	<select id="selectVideo" parameterType="int" resultType="HashMap">
+		select *
+		  from tb_video
+		 where busker_no=#{buskerNo}
+         order by reg_date desc
+         limit #{pageNo},6
+	</select>
+	
+	<select id="countVideo" parameterType="int" resultType="int">
+		select count(*)
+		  from tb_video
+		 where busker_no=#{buskerNo}
+	</select>
+	
+	<delete id="deleteVideo" parameterType="int">
+		delete
+		  from tb_video
+		 where video_no=#{videoNo}
+	</delete>
 	
 </mapper>
 

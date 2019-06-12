@@ -8,7 +8,7 @@
     grid-gap: 20px
 }
 .video_body .video{
-	height:320px;
+	height:280px;
 }
 .video_title{
 	margin-top:10px;
@@ -29,13 +29,15 @@
 }
 .video_menu_modify{
 	position:absolute;
-	z-index:1px;
-	background-color:orange;
+	
+	z-index:1;
 	display:none;
+	text-align:center;
+	line-height:30px;
+	width:60px;
+	height:30px;
+	background-color:rgb(238,238,238);
 }
-
-
-
 
 
 
@@ -70,3 +72,9 @@
 }
 
 .pagination a:hover:not(.active) {background-color: #ddd;}
+
+.no_video{
+	margin-top:60px;
+	font-size:30px;
+	text-align:center;
+}

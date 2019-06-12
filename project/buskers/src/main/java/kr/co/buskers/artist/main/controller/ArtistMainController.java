@@ -29,7 +29,6 @@ public class ArtistMainController {
 
 	@RequestMapping("main.do")
 	public void main(Model model,HttpSession session,int buskerNo) {
-		System.out.println("buskerNo : "+buskerNo);
 		model.addAttribute("audioList",mainService.selectMusicByBuskerNo(buskerNo));
 		model.addAttribute("buskerNo",buskerNo);
 		
@@ -43,10 +42,6 @@ public class ArtistMainController {
 			follow.setBuskerNo(buskerNo);
 			model.addAttribute("followStatus",mainService.followBuskerStatus(follow));
 		}
-		//버스커 소개 가져오기
-		model.addAttribute("busker",mainService.selectBusker(buskerNo));
-		//url 링크 가져오기
-		model.addAttribute("socialUrl",mainService.selectSocialUrl(buskerNo));
 		
 	}
 	

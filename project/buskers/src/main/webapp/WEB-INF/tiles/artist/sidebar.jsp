@@ -5,7 +5,7 @@
 <aside class="busker-side">
 	<section class="busker-side__profile">
 		<header class="busker-side__header">
-			<a href="<c:url value='/artist/main/main.do'/>?buskerNo=${buskerNo}"
+			<a href="<c:url value='/artist/main/main.do'/>?buskerNo=${param.buskerNo}"
 				class="busker-side__header-title"> <i class="fas fa-street-view"></i>
 				Buskers
 			</a>
@@ -16,13 +16,14 @@
 		<article class="busker-side__profile-info">
 			<header class="busker-side__profile-header">
 				<span class="busker__profile-header-edit">
-					<c:if test="${sessionScope.user.buskerNo eq param.buskerNo}">
+					<c:if test="${sessionScope.user.busker.buskerNo eq param.buskerNo}">
 						<button class="busker__profile-header-edit-button" data-toggle="modal" data-target="#myModal">
 							Edit
 						</button>
 					</c:if>
 				</span>
-				<c:if test="${sessionScope.user.buskerNo ne param.buskerNo}">	
+				<c:if test="${sessionScope.user.busker.buskerNo ne param.buskerNo}">	
+				
 					<button type="button" class="busker__profile-header-follow" >
 						팔로우 +
 					</button>
@@ -31,7 +32,7 @@
 			<div class="busker-side__profile-photo">
 				<img
 					src="https://i.pinimg.com/564x/fb/e9/ca/fbe9cac78b4fc2ce0a43d9ac42e6de4c.jpg" />
-				<span class="busker-side__profile-name">${busker.activityName}</span>
+				<span class="busker-side__profile-name" id="activityName"><%-- ${busker.activityName} --%></span>
 				<div class="busker-side__profile-social">
 					<i class="fab fa-facebook-square fa-lg facebook"></i></a> 
 					<img src="https://image.freepik.com/free-vector/instagram-icon_1057-2227.jpg"
@@ -47,8 +48,8 @@
 				<i class="fas fa-video fa-lg"></i>
 			</div>
 			<div class="busker-side__menu-title">
-			<a href="<c:url value='/artist/board/video.do'/>">영상</a>
-				<span class="busker-side__menu-count">30</span>
+			<a href="<c:url value='/artist/board/video.do'/>?buskerNo=${param.buskerNo}">영상</a>
+				<span class="busker-side__menu-count" id="videoCount"></span>
 			</div>
 		</li>
 		<li class="busker-side__menu-item">
@@ -56,7 +57,7 @@
 				<i class="far fa-images fa-lg"></i>
 			</div>
 			<div class="busker-side__menu-title">
-				<a href="<c:url value='/artist/board/photo.do'/>">사진</a><span class="busker-side__menu-count">99</span>
+				<a href="<c:url value='/artist/board/photo.do'/>?buskerNo=${param.buskerNo}">사진</a><span class="busker-side__menu-count">99</span>
 			</div>
 		</li>
 		<li class="busker-side__menu-item">
@@ -133,15 +134,15 @@
 	       	 <form action="" id="social-Url-Form">
 		         <div class="form-group">
 		         	 <div class="control-label">FaceBook : </div>
-			         <input type="text" class="form-control" id="faceBookUrl" name="faceBookUrl" value="${socialUrl.faceBookUrl}">
+			         <input type="text" class="form-control" id="faceBookUrl" name="faceBookUrl" />
 		         </div>
 		         <div class="form-group">
 		         	 <div class="control-label">Instargram : </div>
-			         <input type="text" class="form-control" id="instargramUrl" value="${socialUrl.instargramUrl}">
+			         <input type="text" class="form-control" id="instargramUrl" />
 		         </div>
 		         <div class="form-group">
 		         	 <div class="control-label">YouTube : </div>
-			         <input type="text" class="form-control" id="youTubeUrl"  value="${socialUrl.youTubeUrl}">
+			         <input type="text" class="form-control" id="youTubeUrl" />
 		         </div>
 	     	 </form>
          </div>
@@ -166,15 +167,71 @@
 		dateType : "json",
 		data : "buskerNo="+buskerNo
 	}).done((map) => {
+		console.log(map);
 		const showCount = map.showCount;
 		const musicCount = map.musicCount;
+		const videoCount = map.videoCount;
+		const activityName = map.busker.activityName;
+		const intro = map.busker.intro;
+		const location = map.busker.location;
+		const time = map.busker.time;
+		const genre = map.busker.genre;
+		const faceBookUrl = map.socialUrl.faceBookUrl;
+		const youTubeUrl = map.socialUrl.youTubeUrl;
+		const instargramUrl = map.socialUrl.instargramUrl;
 		$("#showCount").text(showCount);
 		$("#musicCount").text(musicCount);
+		$("#videoCount").text(videoCount);
+		$("#activityName").text(activityName);
+		$("#faceBookUrl").text();
+		$("#input_form_intro").text(intro);
+		$("#input_form_location").val(location);
+		$("#input_form_time").val(time);
+		$("#input_form_genre").val(genre);
+		
+		
+		//아이콘에 이동 이벤트 걸어줌
+		$(".facebook").click(function(){
+	    	window.location.href = 	faceBookUrl;
+	    })
+	    $(".youtube").click(function(){
+	    	window.location.href = youTubeUrl;
+	    })
+	    $(".instargram").click(function(){
+	    	window.location.href = instargramUrl;
+	    })
+	    //인풋에 값을 갖고있어야 edit 클릭시 값 호출
+	   	$("#faceBookUrl").val(faceBookUrl);
+	   	$("#youTubeUrl").val(youTubeUrl);
+	  	$("#instargramUrl").val(instargramUrl);
+	    
+	    $("#myButtons1").click(function(){
+	    		$.ajax({
+	    			url : "social-url.do",
+	    			data : {faceBookUrl:$("#faceBookUrl").val() 
+	    				   ,youTubeUrl:$("#youTubeUrl").val()
+	    				   ,instargramUrl:$("#instargramUrl").val() 
+	    				   ,buskerNo:buskerNo},
+	    		}).done(function(result){
+	    			console.log(reusult);
+	    			$("#facebookUrl").val(result.faceBookUrl);
+	    		    $("#youtubeUrl").val(result.youTubeUrl);
+	    		    $("#instargramUrl").val(result.instargramUrl);
+	    		});
+	        	$('#myModal').modal('hide');
+        });
+	    
+	    
 	});
+
+	
+	
+	
 	
 	
 // 	팔로우 기능
 	$(".busker__profile-header-follow").click(function(){
+
 		if("${sessionScope.user}" == ""){
 			Swal.fire({
 				  title:'로그인이 필요한 기능입니다.',
@@ -186,7 +243,7 @@
 		
 		$.ajax({
 			url : "follow-ajax.do",
-			data : {buskerNo: buskerNo,memberNo:"${sessionScope.user.memberNo}"},
+			data : {buskerNo: buskerNo,memberNo:"${sessionScope.memberNo}"},
 		}).done(function(result){
 			if(result == 1){
 				Swal.fire({
@@ -214,6 +271,7 @@
 	
 	
 // Edit
+<<<<<<< HEAD
 	$("#myButtons1").click(function(){
 	let faceBookUrl = $("#faceBookUrl").val();
 	let youTubeUrl = $("#youTubeUrl").val();
@@ -252,4 +310,9 @@
 		}
 		$(".buskers__recommend").html(html);
 	});
+=======
+	
+	
+	
+>>>>>>> master
 </script>

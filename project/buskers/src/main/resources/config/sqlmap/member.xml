@@ -3,6 +3,35 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.co.buskers.repository.mapper.MemberMapper">
 	
+	<resultMap type="member" id="memberMap">
+		<result column="member_no" property="memberNo"/>
+		<result column="id" property="id"/>
+		<result column="pass" property="pass"/>
+		<result column="email" property="email"/>
+		<result column="join_date" property="joinDate"/>
+		<result column="sex" property="sex"/>
+		<result column="profile_img" property="profileImg"/>
+		<result column="profile_img_path" property="profileImgPath"/>
+		<result column="is_admin" property="isAdmin"/>
+		<result column="is_busker" property="isBusker"/>
+		<result column="is_agency" property="isAgency"/>
+		<result column="nick_name" property="nickName"/>
+		<result column="member_type" property="memberType"/>
+		<result column="access_token" property="accessToken"/>
+		<result column="refresh_token" property="refreshToken"/>
+		<result column="sum" property="sum"/>
+		<collection property="busker"
+					column="member_no"
+					select="selectbuskerByNo"/>
+	</resultMap>
+
+	<!-- collection 버스커 참조 -->
+	<select id="selectbuskerByNo" parameterType="int" resultType="busker">
+		select *
+		  from tb_busker
+	     where member_no = #{memberNo}
+	</select>
+	
 	<!-- 일반 회원 가입 -->
 	<insert id="signupMember" parameterType="member">
 		insert into tb_member (
@@ -58,12 +87,17 @@
 	</update>
 	
 	<!-- 로그인 -->
-	<select id="loginAction" resultType="member">
-		select a.*, b.busker_no
-  		  from tb_member as a
-     left outer join tb_busker as b
-            on a.member_no=b.member_no
+	<select id="loginAction"  resultMap="memberMap">
+		select *
+  		  from tb_member
          where id = #{id}
+	</select>
+	
+	<!-- 유저 뽑기 -->
+	<select id="selectUser" parameterType="int" resultMap="memberMap">
+		select *
+  		  from tb_member
+		 where member_no = #{memberNo}
 	</select>
 	
 	<!-- 아이디 중복체크 -->
@@ -135,12 +169,14 @@
          where member_no = #{memberNo}
 	</update>
 	
-	<!-- 유저 뽑기 -->
-	<select id="selectUser" parameterType="int" resultType="member">
-		select *
-		  from tb_member
-		 where member_no = #{memberNo}
-	</select>
+	<!-- 버스커정보 변경 -->
+	<update id="buskerUpdate" parameterType="busker" useGeneratedKeys="true" keyProperty="memberNo">
+		update tb_busker
+  		   set activity_name = #{activityName},
+               phone = #{phone}
+         where member_no = #{memberNo}
+	</update>
+	
 	
 	<insert id="insertFollow" parameterType="follow">
 		insert into tb_follow(
@@ -194,5 +230,7 @@
 	         on a.member_no = b.member_no
           where busker_no=#{buskerNo}
 	</select>
+	
+	
 	
 </mapper>
