@@ -106,15 +106,6 @@
 			<div class="buskers-header__title">관련 버스커</div>
 		</header>
 		<article class="buskers__recommend">
-			<div class="buskers__recommend-item">
-				<i class="fas fa-user-friends"></i> 창현
-			</div>
-			<div class="buskers__recommend-item">
-				<i class="fas fa-user-friends"></i> 디에이드
-			</div>
-			<div class="buskers__recommend-item">
-				<i class="fas fa-user-friends"></i>권민제
-			</div>
 		</article>
 	</section>
 	<article class="busker-side__settings">
@@ -247,4 +238,18 @@
     $(".instargram").click(function(){
     	window.location.href = '${socialUrl.instargramUrl}';
     })
+    
+    /** 관련 버스커 */
+    $.ajax({
+		url : "<c:url value='/artist/main/main-recommend-ajax.do'/>",
+		data : "buskerNo=" + buskerNo
+	}).done((result) => {
+		let html = "";
+		for (let i = 0; i < result.length; i++) {
+			html += '<div class="buskers__recommend-item">';
+			html += '<i class="fas fa-user-friends"></i>' + '<a href="<c:url value='/artist/main/main.do'/>' + '?buskerNo=' + result[i].buskerNo + '">' + result[i].activityName + '</a>';
+			html += '</div>';
+		}
+		$(".buskers__recommend").html(html);
+	});
 </script>

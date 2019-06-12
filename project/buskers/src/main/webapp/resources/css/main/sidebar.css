@@ -133,6 +133,9 @@ opacity
 /*----------------toggeled sidebar----------------*/
 .page-wrapper.toggled .sidebar-wrapper {
 	left: 0px;
+	line-height: normal;
+	font-family: "Lucida Sans Unicode";
+	font-size: 15px;
 }
 
 /*----------------show sidebar button----------------*/
@@ -621,3 +624,6 @@ opacity
 	font-weight: bold;
 }
 
+.user-name strong {
+	font-weight: bold;
+}
