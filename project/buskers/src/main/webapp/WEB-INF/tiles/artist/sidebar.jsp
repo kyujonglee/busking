@@ -183,7 +183,7 @@
 		const location = map.busker.location;
 		const time = map.busker.time;
 		const genre = map.busker.genre;
-		const faceBookUrl = map.socialUrl.faceBookUrl;
+		/* const faceBookUrl = map.socialUrl.faceBookUrl; */
 		const youTubeUrl = map.socialUrl.youTubeUrl;
 		const instargramUrl = map.socialUrl.instargramUrl;
 		$("#showCount").text(showCount);
@@ -198,9 +198,9 @@
 		
 		
 		//아이콘에 이동 이벤트 걸어줌
-		$(".facebook").click(function(){
+		/* $(".facebook").click(function(){
 	    	window.location.href = 	faceBookUrl;
-	    })
+	    }) */
 	    $(".youtube").click(function(){
 	    	window.location.href = youTubeUrl;
 	    })
@@ -208,13 +208,13 @@
 	    	window.location.href = instargramUrl;
 	    })
 	    //인풋에 값을 갖고있어야 edit 클릭시 값 호출
-	   	$("#faceBookUrl").val(faceBookUrl);
+// 	   	$("#faceBookUrl").val(faceBookUrl);
 	   	$("#youTubeUrl").val(youTubeUrl);
 	  	$("#instargramUrl").val(instargramUrl);
 	    
 	    $("#myButtons1").click(function(){
 	    		$.ajax({
-	    			url : "social-url.do",n
+	    			url : "social-url.do",
 	    			data : {faceBookUrl:$("#faceBookUrl").val() 
 	    				   ,youTubeUrl:$("#youTubeUrl").val()
 	    				   ,instargramUrl:$("#instargramUrl").val() 
@@ -231,9 +231,6 @@
 	    
 	});
 
-	
-	
-	
 	
 	
 // 	팔로우 기능

@@ -195,7 +195,7 @@
 		window.open('<c:url value="/main/header/message/list.do"/>', '', 'top=' + popupY + ', left=' + popupX + ', scrollbars=no, resizable=no, width=500, height=500');
 	});
 	const buskerPage = function(){
-		if( ${sessionScope.user.busker.buskerNo} !== 0){
+		if( ${(sessionScope.user.busker eq null) ? 0 : sessionScope.user.busker.buskerNo} !== 0){
 			return true;
 		}
 		alert("현재 회원은 버스커가 아닙니다.")
