@@ -449,6 +449,24 @@
     padding: 6px;
     font-size: 12px;
     cursor: pointer;
+    text-align: center;
+}
+
+.nickName_info_box .info_box_detail {
+	display: block;
+	background: #000;
+    color: #fff;
+    z-index: 9999;
+    padding: 6px;
+    font-size: 12px;
+    cursor: pointer;
+    text-align: center;
+    height : 24px;
+}
+
+.board_article_info_left .nickName_info_box {
+	margin-left: 90px;
+    margin-top: -15px;
 }
 
 .nickName_info_box a:hover {

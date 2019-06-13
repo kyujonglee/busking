@@ -243,7 +243,7 @@
 		
 		$.ajax({
 			url : "follow-ajax.do",
-			data : {buskerNo: buskerNo,memberNo:"${sessionScope.memberNo}"},
+			data : {buskerNo: buskerNo,memberNo:"${sessionScope.user.memberNo}"},
 		}).done(function(result){
 			if(result == 1){
 				Swal.fire({
@@ -271,7 +271,6 @@
 	
 	
 // Edit
-<<<<<<< HEAD
 	$("#myButtons1").click(function(){
 	let faceBookUrl = $("#faceBookUrl").val();
 	let youTubeUrl = $("#youTubeUrl").val();
@@ -310,9 +309,6 @@
 		}
 		$(".buskers__recommend").html(html);
 	});
-=======
 	
 	
-	
->>>>>>> master
 </script>

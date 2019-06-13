@@ -73,9 +73,10 @@
 	
 	<select id="selectBoardByNo" parameterType="int" resultType="freeBoard">
 		select * 
-		  from tb_freeboard f, tb_member m
+		  from tb_freeboard f, tb_member m, tb_busker b
 		 where f.member_no = m.member_no
-		   and board_no = #{boardNo}
+		   and m.member_no = b.member_no
+		   and f.board_no = #{boardNo}
 	</select>
 
 	<select id="selectBoardCount" parameterType="freePage" resultType="int">
