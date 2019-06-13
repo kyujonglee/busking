@@ -141,6 +141,22 @@
 		 order by rand()
 	</select>
 	
+	<select id="selectVideoOneByNo" resultType="video">
+		select *
+		  from tb_video
+		 where busker_no = #{buskerNo}
+		 order by reg_date desc 
+		 limit 1
+	</select>
+	
+	<select id="selectVideoLimitByNo" resultType="video">
+		select *
+		  from tb_video
+		 where busker_no = #{buskerNo}
+		 order by reg_date desc 
+		 limit 15
+	</select>
+	
 	<select id="selectVideo" resultType="video">
 		select *
 		  from tb_video

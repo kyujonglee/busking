@@ -9,5 +9,9 @@ public interface InfoService {
 	
 	Map<String,Object> list();
 	List<Video> videoList();
+	List<Video> videoItem(int buskerNo);
+	
+	Video videoONE(int buskerNo);
+	
 	
 }

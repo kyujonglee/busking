@@ -17,7 +17,7 @@ uri="http://java.sun.com/jsp/jstl/fmt"%>
     </header>
     <section class="info-busker__profiles">
       <c:forEach var="busker" items="${map.buskerList}">
-        <article class="info-busker__profile">
+        <article class="info-busker__profile" value="${busker.buskerNo}">
           <div class="info-busker__profile-wrapper">
             <img
               class="info-busker__profile-img"
@@ -100,20 +100,6 @@ uri="http://java.sun.com/jsp/jstl/fmt"%>
     <section class="info-video__slider">
       <div class="swiper-container">
         <div class="swiper-wrapper">
-          <div class="swiper-slide">
-            <iframe
-              width="100%"
-              height="100%"
-              src="https://www.youtube.com/embed/XZwfiF04Orc"
-              frameborder="0"
-              allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen
-            ></iframe>
-          </div>
-          <div class="swiper-slide">Slide 2</div>
-          <div class="swiper-slide">Slide 3</div>
-          <div class="swiper-slide">Slide 4</div>
-          <div class="swiper-slide">Slide 5</div>
         </div>
         <!-- Add Pagination -->
         <!-- <div class="swiper-pagination"></div> -->
@@ -231,19 +217,6 @@ uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/js/swiper.min.js"></script>
 <script>
-    const swiper = new Swiper(".swiper-container", {
-      slidesPerView: 1.3,
-      spaceBetween: 50,
-      centeredSlides: true,
-      pagination: {
-        el: ".swiper-pagination",
-        clickable: true
-      },
-      navigation: {
-        nextEl: ".swiper-button-next",
-        prevEl: ".swiper-button-prev"
-      }
-    });
   const audioItemList = [];
   <c:forEach var="item" items="${map.musicList}">
   	audioItemList.push({
@@ -340,14 +313,78 @@ uri="http://java.sun.com/jsp/jstl/fmt"%>
       });
     });
   }
-  
+  let swiper;
   <%-- video를 가져오는 ajax --%>
-  $.ajax({
-	  url : "<c:url value='/main/info/video-list-ajax.do'/>",
-	  dataType : "json"
-  }).done((videoList)=>{
-	  
+  $(document).ready(()=>{
+	  swiper = new Swiper(".swiper-container", {
+	      slidesPerView: 1.3,
+	      spaceBetween: 50,
+	      centeredSlides: true,
+	      pagination: {
+	        el: ".swiper-pagination",
+	        clickable: true
+	      },
+	      navigation: {
+	        nextEl: ".swiper-button-next",
+	        prevEl: ".swiper-button-prev"
+	      }
+	  });
+	  $.ajax({
+		  url : "<c:url value='/main/info/video-list-ajax.do'/>",
+		  dataType : "json"
+	  }).done((videoList)=>{
+		  let html = "";
+		  for(let i = 0; i<videoList.length ; i++){
+			 	html +=		
+		            `
+		          <div class="swiper-slide">
+		            <iframe
+		              width="540px"
+		              height="360px"
+		              src="`+videoList[i].url+`"
+		              frameborder="0"
+		              allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+		              allowfullscreen
+		            ></iframe>
+		          </div>
+				 `;			  
+		  }
+		  $(".swiper-wrapper").html(html);
+		  swiper.update();
+		  /* swiper.updateSlides(); */
+	  });
   })
+  
+  $(".info-busker__profile-img").click(function(){
+	  const no = $(this).parent().parent().attr("value");
+	  $.ajax({
+		  url : "<c:url value='/main/info/video-item-ajax.do'/>",
+		  dataType : "json",
+		  data : "buskerNo="+no
+	  }).done((videoList)=>{
+		  
+		  let html = "";
+		  for(let i = 0; i<videoList.length ; i++){
+			 	html +=		
+		            `
+		          <div class="swiper-slide">
+		            <iframe
+		              width="540px"
+		              height="360px"
+		              src="`+videoList[i].url+`"
+		              frameborder="0"
+		              allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+		              allowfullscreen
+		            ></iframe>
+		          </div>
+				 `;			  
+		  }
+		  $(".swiper-wrapper").html(html);
+		  swiper.update();
+		  swiper.slideTo(0);
+	  })
+  });
+  
   
   
   

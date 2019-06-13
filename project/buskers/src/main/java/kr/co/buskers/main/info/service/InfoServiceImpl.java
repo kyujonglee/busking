@@ -36,4 +36,14 @@ public class InfoServiceImpl implements InfoService{
 	public List<Video> videoList(){
 		return abMapper.selectVideoLimit();
 	}
+	
+	@Override
+	public List<Video> videoItem(int buskerNo){
+		return abMapper.selectVideoLimitByNo(buskerNo);
+	}
+	
+	@Override
+	public Video videoONE(int buskerNo){
+		return abMapper.selectVideoOneByNo(buskerNo);
+	}
 }

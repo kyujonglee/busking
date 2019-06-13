@@ -41,6 +41,9 @@ public interface ArtistBoardMapper {
 //	Video select
 	List<Video> selectVideo(HashMap<String,Object> map);
 	List<Video> selectVideoLimit();
+	List<Video> selectVideoLimitByNo(int buskerNo);
+	Video selectVideoOneByNo(int buskerNo);
+	
 	
 	void insertVideo(Video video);
 	

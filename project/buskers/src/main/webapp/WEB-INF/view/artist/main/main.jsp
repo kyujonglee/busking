@@ -4,18 +4,14 @@ uri="http://java.sun.com/jsp/jstl/core"%> <%@ taglib prefix="fmt"
 uri="http://java.sun.com/jsp/jstl/fmt" %>
 <section class="busker-content">
   <div class="busker-content__item">
-    <!-- 		<iframe width="100%" height="100%" -->
-    <!-- 			src="https://www.youtube.com/embed/saH2Odc3ba8" frameborder="0" -->
-    <!-- 			allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" -->
-    <!-- 			allowfullscreen></iframe> -->
-    <iframe
-      width="100%"
-      height="100%"
-      src="https://www.youtube.com/embed/y_oPqEzX_X4"
-      frameborder="0"
-      allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-      allowfullscreen
-    ></iframe>
+<!--     <iframe -->
+<!--       width="100%" -->
+<!--       height="100%" -->
+<!--       src="https://www.youtube.com/embed/y_oPqEzX_X4" -->
+<!--       frameborder="0" -->
+<!--       allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" -->
+<!--       allowfullscreen -->
+<!--     ></iframe> -->
   </div>
   <div class="busker-content__item">
     <div class="busker-board">
@@ -306,5 +302,38 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
   	$(this).parent().parent().next().slideToggle(100);
   	$(this).toggleClass("fas fa-angle-down").toggleClass("fas fa-angle-up");
   });
+  
+  $(document).ready(()=>{
+	  
+		infoFlag = true;
+		$(".busker-side__info-btn i").attr({class:"fas fa-angle-left fa-2x"});
+		$(".busker-info").css({display:"block"});
+	  
+	  <%-- 메인 영상 스크립트 --%>
+	  
+	  $.ajax({
+		  url : "<c:url value='/main/info/video-one-ajax.do'/>",
+		  data : "buskerNo="+${buskerNo}
+	  }).done((video)=>{
+		  console.log(video.length)
+		  if(video.length === 0){
+			  $(".busker-content__item:first-child").html(`
+				  <div class="busker-content__empty">버스커가 올린 영상이 존재하지 않습니다.</div>  
+		      `); 
+		  }else {
+			  $(".busker-content__item:first-child").html(`
+				  <iframe
+				      width="100%"
+				      height="100%"
+				      src="`+video.url+`"
+				      frameborder="0"
+				      allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+				      allowfullscreen
+				    ></iframe>	  
+			  `);
+		  }
+	  });
+  });
+  
 </script>
 <script src="<c:url value='/resources/js/audio.js'/>"></script>

@@ -29,4 +29,16 @@ public class InfoController {
 	public List<Video> videoList(){
 		return service.videoList();
 	}
+	
+	@RequestMapping("video-item-ajax.do")
+	@ResponseBody
+	public List<Video> videoItem(int buskerNo){
+		return service.videoItem(buskerNo);
+	}
+	
+	@RequestMapping("video-one-ajax.do")
+	@ResponseBody
+	public Video videoONE(int buskerNo){
+		return service.videoONE(buskerNo);
+	}
 }
