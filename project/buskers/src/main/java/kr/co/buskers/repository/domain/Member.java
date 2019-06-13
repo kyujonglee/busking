@@ -20,10 +20,17 @@ public class Member {
 	private String accessToken;
 	private String refreshToken;
 	private int sum;
+	private String profileIntroduce;
 	private Busker busker;
 	private int buskerNo;
 	
 	
+	public String getProfileIntroduce() {
+		return profileIntroduce;
+	}
+	public void setProfileIntroduce(String profileIntroduce) {
+		this.profileIntroduce = profileIntroduce;
+	}
 	public Busker getBusker() {
 		return busker;
 	}

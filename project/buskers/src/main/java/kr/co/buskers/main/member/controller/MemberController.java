@@ -304,6 +304,19 @@ public class MemberController {
 		session.setMaxInactiveInterval(60 * 60);
 	}
 	
+	// 프로필 소개글 업데이트
+	@RequestMapping("memberProfileIntroduce.do")
+	public String memberProfileIntroduce(Member member, HttpSession session) throws Exception {
+		service.updateMemberProfileIntroduce(member);
+		
+		session.removeAttribute("user");
+		Member user = service.selectMember(member.getMemberNo());
+		session.setAttribute("user", user);
+		session.setMaxInactiveInterval(60 * 60);
+		return "main/member/setting";
+	}
+	
+	
 	// 버스커 등록 화면으로 이동
 	@RequestMapping("signupform-busker.do")
 	public String signupformBusker(HttpSession session) {

@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.co.buskers.artist.board.service.ArtistBoardService;
+import kr.co.buskers.artist.main.service.ArtistMainService;
 import kr.co.buskers.repository.domain.ArtistShow;
+import kr.co.buskers.repository.domain.Busker;
 import kr.co.buskers.repository.domain.Video;
 import kr.co.buskers.repository.domain.VideoPage;
 
@@ -20,6 +22,10 @@ public class ArtistBoardController {
 	
 	@Autowired
 	private ArtistBoardService service;
+	
+	@Autowired
+	private ArtistMainService mainService;
+	
 	
 	@RequestMapping("enrollForm.do")
 	public void enrollForm(Model model, int buskerNo) {
@@ -102,4 +108,11 @@ public class ArtistBoardController {
 		int video = Integer.parseInt(videoNo);
 		service.deleteVideo(video);
 	}
+
+	@RequestMapping("intro-update.do")
+	@ResponseBody
+	public void updateIntro (Busker busker) {
+		mainService.updateIntro(busker);
+	}
+	
 }

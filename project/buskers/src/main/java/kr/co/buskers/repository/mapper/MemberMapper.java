@@ -85,6 +85,9 @@ public interface MemberMapper {
 
 	// 버스커 업데이트
 	public void buskerUpdate(Busker busker);
+
+	// 프로필 소개글 업데이트
+	public void updateMemberProfileIntroduce(Member member);
 	
 	
 	

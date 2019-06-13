@@ -37,9 +37,8 @@
 					 ,time:time
 					 ,buskerNo:buskerNo
 					 ,genre:genre},
-				url : "intro-update.do" ,
+				url : "<c:url value='/artist/main/intro-update.do'/>",
 			}).done(function(){
-			
 			});
 		});
 		

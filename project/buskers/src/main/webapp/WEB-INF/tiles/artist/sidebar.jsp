@@ -30,8 +30,7 @@
 				</c:if>
 			</header>
 			<div class="busker-side__profile-photo">
-				<img
-					src="https://i.pinimg.com/564x/fb/e9/ca/fbe9cac78b4fc2ce0a43d9ac42e6de4c.jpg" />
+<%-- 				<img src="<c:url value='/file/download.do'/>?path=${sessionScope.user.profileImgPath}${sessionScope.user.profileImg}" /> --%>
 				<span class="busker-side__profile-name" id="activityName"><%-- ${busker.activityName} --%></span>
 				<div class="busker-side__profile-social">
 					<i class="fab fa-facebook-square fa-lg facebook"></i></a> 
@@ -175,52 +174,110 @@
 		const location = map.busker.location;
 		const time = map.busker.time;
 		const genre = map.busker.genre;
-		const faceBookUrl = map.socialUrl.faceBookUrl;
-		const youTubeUrl = map.socialUrl.youTubeUrl;
-		const instargramUrl = map.socialUrl.instargramUrl;
+		const profileImg = map.busker.profileImg;
+		const profileImgPath = map.busker.profileImgPath;
+
 		$("#showCount").text(showCount);
 		$("#musicCount").text(musicCount);
 		$("#videoCount").text(videoCount);
 		$("#activityName").text(activityName);
-		$("#faceBookUrl").text();
 		$("#input_form_intro").text(intro);
 		$("#input_form_location").val(location);
 		$("#input_form_time").val(time);
 		$("#input_form_genre").val(genre);
+		$(".busker-side__profile-photo").prepend(
+		`<img src='<c:url value='/resources/img/profile.png' />'>`		
+		)
+		if(profileImg != null){
+			$(".busker-side__profile-photo").prepend(
+			`<img src='<c:url value='/file/download.do'/>?path=`+profileImgPath+profileImg+`' />`		
+			)
+		}
 		
 		
-		//아이콘에 이동 이벤트 걸어줌
+		
+		
+		
+		
+		
+		
+		
+		//팔로우버튼
+    	if(map.followStatus == 'y'){
+			$(".busker__profile-header-follow").css("background-color","red").html("팔로우");		
+		}else{
+			$(".busker__profile-header-follow").css("background-color","rgb(243,116,32)").html("팔로우+");		
+		}
+		
+		//url
+		const youTubeUrl = map.socialUrl.youTubeUrl;
+		const instargramUrl = map.socialUrl.instargramUrl;
+		const faceBookUrl = map.socialUrl.faceBookUrl;
+		$("#faceBookUrl").val(faceBookUrl);
+	    $("#youTubeUrl").val(youTubeUrl);
+	    $("#instargramUrl").val(instargramUrl);
+		
+
 		$(".facebook").click(function(){
-	    	window.location.href = 	faceBookUrl;
+			if($("#faceBookUrl").val() == ""){
+				alert("등록된 url이 없습니다.");
+				return
+			}
+	    	window.location.href = 	$("#faceBookUrl").val();
 	    })
-	    $(".youtube").click(function(){
-	    	window.location.href = youTubeUrl;
+	     $(".youtube").click(function(){
+			if($("#youTubeUrl").val() == ""){
+				alert("등록된 url이 없습니다.");
+				return
+			}
+	    	window.location.href = $("#youTubeUrl").val();
 	    })
 	    $(".instargram").click(function(){
-	    	window.location.href = instargramUrl;
+			if($("#instargramUrl").val() == ""){
+				alert("등록된 url이 없습니다.");
+				return
+			}
+	    	window.location.href = $("#instargramUrl").val();
 	    })
-	    //인풋에 값을 갖고있어야 edit 클릭시 값 호출
-	   	$("#faceBookUrl").val(faceBookUrl);
-	   	$("#youTubeUrl").val(youTubeUrl);
-	  	$("#instargramUrl").val(instargramUrl);
+		    
 	    
+
 	    $("#myButtons1").click(function(){
-	    		$.ajax({
-	    			url : "social-url.do",
-	    			data : {faceBookUrl:$("#faceBookUrl").val() 
-	    				   ,youTubeUrl:$("#youTubeUrl").val()
-	    				   ,instargramUrl:$("#instargramUrl").val() 
-	    				   ,buskerNo:buskerNo},
-	    		}).done(function(result){
-	    			console.log(reusult);
-	    			$("#facebookUrl").val(result.faceBookUrl);
-	    		    $("#youtubeUrl").val(result.youTubeUrl);
-	    		    $("#instargramUrl").val(result.instargramUrl);
-	    		});
-	        	$('#myModal').modal('hide');
+	    	let face = $("#faceBookUrl").val(); 
+	    	let ytube = $("#youTubeUrl").val();
+	    	let insta = $("#instargramUrl").val();
+	    	if(face != ""){
+		    	if( face.includes("www.facebook.com") == false){
+		    		alert("페이스북 url을 확인해주세요.");
+		    		return;
+		    	};
+	    	}
+	    	if(ytube != ""){
+		    	if( ytube.includes("www.youtube.com") == false){
+		    		alert("유튜브 url을 확인해주세요.");
+		    		return;
+		    	};	
+	    	}
+	    	if(insta != ""){
+		    	if( insta.includes("www.instagram.com") == false){
+		    		alert("인스타그램 url을 확인해주세요.");
+		    		return;
+		    	};
+	    	}
+
+	    	$.ajax({
+    			url : "<c:url value='/artist/main/social-url.do'/>",
+    			data : {faceBookUrl:$("#faceBookUrl").val() 
+    				   ,youTubeUrl:$("#youTubeUrl").val()
+    				   ,instargramUrl:$("#instargramUrl").val() 
+    				   ,buskerNo:buskerNo},
+    		}).done(function(result){
+    			$("#faceBookUrl").val(result.faceBookUrl);
+    		    $("#youTubeUrl").val(result.youTubeUrl);
+    		    $("#instargramUrl").val(result.instargramUrl);
+    		});
+        	$('#myModal').modal('hide');
         });
-	    
-	    
 	});
 
 	
@@ -228,7 +285,7 @@
 // 	팔로우 기능
 	$(".busker__profile-header-follow").click(function(){
 
-		if("${sessionScope.user}" == ""){
+		if("${sessionScope.user.busker}" == ""){
 			Swal.fire({
 				  title:'로그인이 필요한 기능입니다.',
 				  type:'warning',
@@ -239,7 +296,7 @@
 		
 		$.ajax({
 			url : "follow-ajax.do",
-			data : {buskerNo: buskerNo,memberNo:"${sessionScope.memberNo}"},
+			data : {buskerNo: buskerNo,memberNo:"${sessionScope.user.memberNo}"},
 		}).done(function(result){
 			if(result == 1){
 				Swal.fire({
@@ -259,11 +316,7 @@
 		});
 	})
 	
-	if("${followStatus}" == 'y'){
-		$(".busker__profile-header-follow").css("background-color","red").html("팔로우");		
-	}else{
-		$(".busker__profile-header-follow").css("background-color","rgb(243,116,32)").html("팔로우+");		
-	}
+
 	
 	
 // Edit

@@ -40,6 +40,7 @@
 		</div>	
 	</div>
 	<hr>
+	<br>
 	<input type="hidden" name="memberNo" value="${sessionScope.user.memberNo }"/>
 	<div class="modifyWrapper">
 		<button id="modify" type="button" class="info_change_button">변경</button>
