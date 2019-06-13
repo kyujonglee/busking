@@ -92,10 +92,6 @@ public class MemberServiceImpl implements MemberService {
 	// 개인정보 업데이트
 	@Override
 	public void updateMember(Member member) {
-//		System.out.println(member.getMemberNo());
-//		System.out.println(member.getEmail());
-//		System.out.println(member.getNickName());
-//		System.out.println(member.getPass());
 		mapper.memberUpdate(member);
 	}
 
@@ -135,6 +131,12 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public void updateBusker(Busker busker) {
 		mapper.buskerUpdate(busker);
+	}
+
+	// 프로필 소개글 업데이트
+	@Override
+	public void updateMemberProfileIntroduce(Member member) {
+		mapper.updateMemberProfileIntroduce(member);
 	}
 	
 }

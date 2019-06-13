@@ -6,10 +6,11 @@
 	<select id="selectBoard" parameterType="freePage" resultType="freeBoard">
 		select *
   		  from (select @rownum:=@rownum+1 rnum, a.*
-		          from ( select f.*, count(c.board_no) as comment_count, nick_name, count(fi.group_no) as group_no_count
+		          from ( select f.*, count(c.board_no) as comment_count, nick_name, b.busker_no, is_admin, is_busker, is_agency, count(fi.group_no) as group_no_count
 		                   from tb_freeboard f
                            left join tb_freeboard_comment c on f.board_no = c.board_no
 		                  inner join tb_member m on m.member_no = f.member_no
+		                   left join tb_busker b on b.member_no = m.member_no 
 		                   left join tb_file fi on f.group_no = fi.group_no
 						  where (@rownum:=0)=0
 						    and is_deleted = 'N'
@@ -60,10 +61,11 @@
 	</select>
 	
 	<select id="selectNoticeBoard" resultType="freeBoard">
-		select f.*, count(c.board_no) as comment_count, nick_name
+		select f.*, count(c.board_no) as comment_count, nick_name, is_admin, is_busker, is_agency
 		  from tb_freeboard f
 		  left join tb_freeboard_comment c on f.board_no = c.board_no
 		 inner join tb_member m on m.member_no = f.member_no
+		  left join tb_busker b on b.member_no = m.member_no 
 		 where is_notify = 'Y'
 		   and is_deleted = 'N'
          group by board_no

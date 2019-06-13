@@ -34,8 +34,44 @@
 				</div>	
 			</div>
 			<hr>
+			<div class="info_detail_wrapper">
+	            <div class="menu_title">주요장르&nbsp;</div>
+		            <div class="checkBox">
+		            	<div class="buskerCheckbox-item">
+		                <label for="buskerCheckbox1" style="cursor:pointer">
+			                <input type="checkbox" id="buskerCheckbox1" name="buskerCheckbox" value="1">
+			                <span>스트릿댄스</span>
+		                </label>
+		            	</div>
+		            	<div class="buskerCheckbox-item">
+		                <label for="buskerCheckbox2" style="cursor:pointer">
+			                <input type="checkbox" id="buskerCheckbox2" name="buskerCheckbox" value="2">
+			                <span>보컬</span>
+		                </label>
+		            	</div>
+		            	<div class="buskerCheckbox-item">
+		                <label for="buskerCheckbox3" style="cursor:pointer">
+			                <input type="checkbox" id="buskerCheckbox3" name="buskerCheckbox" value="3">
+			                <span>스탠드업 코미디</span>
+		                </label>
+		            	</div>
+		            	<div class="buskerCheckbox-item">
+		                <label for="buskerCheckbox4" style="cursor:pointer">
+			                <input type="checkbox" id="buskerCheckbox4" name="buskerCheckbox" value="4">
+			                <span>악기연주</span>
+		                </label>
+		            	</div>
+		            	<div class="buskerCheckbox-item">
+		                <label for="buskerCheckbox5" style="cursor:pointer">
+			                <input type="checkbox" id="buskerCheckbox5" name="buskerCheckbox" value="5">
+			                <span>마술</span>
+		                </label>
+	            	</div>
+	            </div>
+       		</div>
+       		<hr>
 			<input type="hidden" name="memberNo" value="${sessionScope.user.memberNo }"/>
-			<div class="modifyWrapper">
+			<div class="modifyWrapper2">
 				<button id="modify_busker" type="button" class="info_change_button">변경</button>
 			</div>
 		</form>

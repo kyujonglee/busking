@@ -428,3 +428,37 @@
   font-family: "Open Sans", sans-serif;
   color: white;
 }
+
+.nickName_info {
+	cursor: pointer;
+}
+
+.nickName_info_box {
+	position: absolute;
+	display: none;
+	margin-left: 50px;
+    margin-top: 5px;
+	cursor: pointer;
+}
+
+.nickName_info_box a {
+	display: block;
+	background: #000;
+    color: #fff;
+    z-index: 9999;
+    padding: 6px;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.nickName_info_box a:hover {
+	color: tomato;
+}
+
+.fa-award {
+	color: tomato !important;
+}
+
+.fa-star {
+	color: gold !important;
+}
