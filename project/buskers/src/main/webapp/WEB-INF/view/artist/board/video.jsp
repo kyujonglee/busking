@@ -11,7 +11,7 @@
 			    	<div class="panel panel-default">
 			        	<div class="panel-heading">
 			            	<i class="fas fa-video"></i> YouTube
-		            		<c:if test="${param.buskerNo eq sessionScope.user.buskerNo }">
+		            		<c:if test="${param.buskerNo eq sessionScope.user.busker.buskerNo }">
 		        				<button id='addVideoBtn' class='btn btn-primary btn-xs pull-right' data-toggle="modal" data-target="#videoModal">New Video</button>
 		      				</c:if>
 			      		</div>      
@@ -88,20 +88,35 @@
 	  
 	
 	//삭제버튼클릭
-	$(document).on("click",".videoMenu",function(event){
-		event.stopPropagation();
-		$(this).find(".video_menu_modify").show();
-	})
-	
-	
-	$(document).on("click",".panel-body",function(){
-		if($(".video_menu_modify").attr("style") == "display: inline;"){
-			$(".video_menu_modify").hide();
-		}
-			return;
-		console.log($(".video_menu_modify").attr("style"));
-		console.log("ss");
-	})
+// 	$(document).on("click",".videoMenu",function(event){
+// 		event.stopPropagation();
+// 		$(this).find(".video_menu_modify").show();
+// 	})
+// 	$(document).on("click",".panel-body",function(){
+// 		if($(".video_menu_modify").attr("style") == "display: inline;"){
+// 			$(".video_menu_modify").hide();
+// 		}
+// 			return;
+// 		console.log($(".video_menu_modify").attr("style"));
+// 		console.log("ss");
+// 	})
+		$(document).on("click",".videoMenu",function(event){
+           $('.video_menu_modify').hide();
+           event.stopPropagation();   
+           $(this).children(".video_menu_modify").toggle();
+        });
+        
+    $(".panel-body").click(function() {
+        $('.video_menu_modify').hide();
+    });
+
+
+
+
+
+
+
+
 	
 	
 	$(document).on("click",".video_menu_modify",function(){
@@ -129,20 +144,21 @@
 	$("#regBtn").click(function(){
 		let title = $("#title").val();
 		let videoUrl = $("#videoUrl").val();
-		let buskerNo = "${sessionScope.user.buskerNo}";
-		console.log(title);
-		console.log(videoUrl);
-		console.log(buskerNo);
+		let buskerNo = "${sessionScope.user.busker.buskerNo}";
+		
+		let url = "https://www.youtube.com/embed/";
+		let code = videoUrl.split('=');
+		let yUrl = url+code[1];
+
+		
 		$.ajax({
 			type: 'post',
-			data : {title:title,url:videoUrl, buskerNo:buskerNo},
+			data : {title:title,url:yUrl, buskerNo:buskerNo},
 			url:"video-regist-ajax.do",
 		}).done(function(){
 		    title = $("#title").val("");
 		    videoUrl = $("#videoUrl").val("");
-			alert("에이작스성공");
 			$("#videoModal").hide();
-			
 			$(".panel-body").html("<div class='video_body'></div>");		
 			showList(0);
 			pageList(1);
@@ -215,9 +231,6 @@
 			}
 			htr+="</div>"
 			$(".panel-body").append(htr);
-			
-			
-			
 		})
 	}
 	
