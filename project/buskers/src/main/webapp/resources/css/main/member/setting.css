@@ -19,6 +19,7 @@
     margin-bottom: 15px;
 }
 
+
 .profile_title_underline {
     width: 76px;
     height: 70px;
@@ -28,17 +29,17 @@
 }
 
 
-
 .profile_row {
 	display: flex;
 	flex-wrap: wrap;
+	height: 550px;
 }
 
 /* 왼쪽파트 */
 .profile_info {
     width: 20%;
     display: inline-block;
-    height: 100%;
+    height: 80%;
     margin-right: 15px;
     background-color: white;
 }
@@ -113,7 +114,7 @@
 
 /* 오른쪽파트 */
 .profile_body {
-	height: 400px;
+	height: 90%;
     width: 78.5%;
     display: inline-block;
 }
@@ -134,7 +135,7 @@ a:link {
 	text-decoration: none;
 }
 
-ul { 
+.profile_menu > ul { 
 	font-size: 0;
 }
 
@@ -183,6 +184,7 @@ ul {
 
 .profile_content {
     width: 100%;
+    height: 100%;
     display: inline-block;
     background-color: white;
 }
@@ -196,9 +198,6 @@ ul {
 	border-radius: 5px;
 }
 
-.profile_content > div {
-	height: 100%;
-}
 
 .profile__img__title {
 	margin-bottom: 20px;
@@ -425,6 +424,7 @@ ul {
 
 .preview-profile {
 	width: 60%;
+	height: 100%;
 }
 
 .btn-file-word {
@@ -465,8 +465,12 @@ ul {
 }
 
 .modifyWrapper{
-	padding-left:30px;
-	padding-bottom:20px;
+	padding-top: 20px;
+	text-align: center;
+}
+
+.modifyWrapper2{
+	padding-top: 15px;
 	text-align: center;
 }
 

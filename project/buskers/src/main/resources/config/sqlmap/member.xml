@@ -20,6 +20,7 @@
 		<result column="access_token" property="accessToken"/>
 		<result column="refresh_token" property="refreshToken"/>
 		<result column="sum" property="sum"/>
+		<result column="profile_introduce" property="profileIntroduce"/>
 		<collection property="busker"
 					column="member_no"
 					select="selectbuskerByNo"/>
@@ -150,6 +151,13 @@
 		update tb_member
   		   set profile_img = #{profileImg},
                profile_img_path = #{profileImgPath}
+         where member_no = #{memberNo}
+	</update>
+	
+	<!-- 프로필 소개글 업데이트 -->
+	<update id="updateMemberProfileIntroduce" parameterType="member" useGeneratedKeys="true" keyProperty="memberNo">
+		update tb_member
+  		   set profile_introduce = #{profileIntroduce}
          where member_no = #{memberNo}
 	</update>
 	

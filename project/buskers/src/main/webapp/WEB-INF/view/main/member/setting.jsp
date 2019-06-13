@@ -42,13 +42,13 @@
 					</div>
 					<div class="profile_comment">
 						<p>15</p>
-						<p>댓글</p>
+						<p>팔로우</p>
 					</div>
 				</div>
 				<hr class="profile_hr">
 				<div class="profile_introduce1">
 					<div class="profile_introduce2">
-						안녕하세요 박보영 입니다!
+						${sessionScope.user.profileIntroduce}
 					</div>
 				</div>
 			</div>
@@ -59,7 +59,7 @@
 							<a class="pro_tab_link"  onclick="tab_menu(0);" >프로필</a>
 						</li>
 						<li class="pro_tab">
-							<a class="pro_tab_link"  onclick="tab_menu(1);" >친구 관리</a>
+							<a class="pro_tab_link"  onclick="tab_menu(1);" >팔로우/팔로워 관리</a>
 						</li>
 						<li class="pro_tab">
 							<a class="pro_tab_link"  onclick="tab_menu(2);" >개인정보 관리</a>
@@ -103,9 +103,15 @@
 			        		<div class="profile__introduce__title">
 			        			<h3>프로필 소개</h3>
 			        		</div>
-			        		<div class="profile__introduce__box">
-			        			<textarea class="introduce__textarea" placeholder="소개글을 써주세요!"></textarea>
-			        		</div>
+			        		<form name="member__profile__introduce"  id="member__introduce" action="memberProfileIntroduce.do"  method="post">
+				        		<div class="profile__introduce__box">
+				        			<textarea class="introduce__textarea" name="profileIntroduce" id="introduce__textarea" placeholder="소개글을 써주세요!(50자 이내)" maxlength="50"></textarea>
+				        		</div>
+								<input type="hidden" name="memberNo" value="${sessionScope.user.memberNo }"/>
+								<div class="modifyWrapper">
+									<button id="modify_intorduce" type="button" class="info_change_button">변경</button>
+								</div>
+			        		</form>
 			        	</div>
 			        </div>
 				    <div class="tab-pane1" id="friend" style="display: none;" >
@@ -221,23 +227,14 @@ function handleImgFileSelect(e) {
 	});
 }
 
-// let parent = document.getElementById("btn___file");
-// let child = document.getElementById("profile__preview");
-
-// $(".closeBtn").on("click", function() {
-// 	parent.removeChild(document.getElementById("profile__preview"));
-// 	$("#profile__preview").remove();
-// 	$(".preview-profile").css('display','none');
-// 	$(".btn-file-word").css('display','block');
-// });
-
-// $(".btn-file").on("click", function() {
-// 	$(this).prepend("<img class='preview-profile' id='profile__preview' />");
-// });
-
 
 // 프로필 이미지 업로드
 
+$(".closeBtn").click(function () {
+	$("#profile__img").val("");
+	// src 값 공백으로 만들기
+	$("#btn___file").val("");	
+});
 
 $(".saveBtn").click(function (f) {
 	if(($("#profile__img").val() == "" || $("#profile__img").val() == null)) {
@@ -274,6 +271,33 @@ $(".saveBtn").click(function (f) {
 	}
 });
 
+/* 프로필 소개글 */
+	$("#modify_intorduce").click(function DoupdateIntroduce() {
+		
+		// 프로필 소개글 공백 확인
+        if($("#introduce__textarea").val() == ""){
+          	alert("소개글을 입력해주세요!");
+          	$("#introduce__textarea").focus();
+          	return false;
+        }
+        
+        Swal.fire({
+			  title: '소개글을 변경하시겠습니까?',
+			  type: 'info',
+			  showCancelButton: true,
+			  confirmButtonColor: '#3085d6',
+			  cancelButtonColor: '#d33',
+			  confirmButtonText: '예',
+			  cancelButtonText: '아니오',
+			}).then((result) => {
+			  if (result.value) {
+		       		$("#member__introduce").submit();
+		        	return true;
+			  }
+		})
+	})
+
+
 
 /*  후승 개인정보 변경  */
   	let userEmail = "${sessionScope.user.email}";
@@ -281,8 +305,7 @@ $(".saveBtn").click(function (f) {
 	let emailck = 0;
 	let nickNameck = 0;
 	
-	$("#modify").click(
-	function DosignUp() {
+	$("#modify").click(function DosignUp() {
 		let getMail = RegExp(/^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/);
      	let getCheck = RegExp(/^[a-zA-Z0-9]{4,16}$/);
      	let getCheckPwd = RegExp(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/);
@@ -499,8 +522,7 @@ $(".saveBtn").click(function (f) {
   	let buskeractivityName = "${sessionScope.user.busker.activityName}";
 	let activityNameck = 0;
 	
-	$("#modify_busker").click(
-	function DosignUpBusker() {
+	$("#modify_busker").click(function DosignUpBusker() {
         
         // 활동명 공백 확인
         if($("#activityName").val() == ""){
