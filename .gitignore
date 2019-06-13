@@ -118,3 +118,6 @@ package-lock.json
 
 .mp3
 
+config.jsp
+
+db.properties
