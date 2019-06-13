@@ -267,7 +267,6 @@
 	
 	
 // Edit
-<<<<<<< HEAD
 	$("#myButtons1").click(function(){
 	let faceBookUrl = $("#faceBookUrl").val();
 	let youTubeUrl = $("#youTubeUrl").val();
@@ -306,9 +305,4 @@
 		}
 		$(".buskers__recommend").html(html);
 	});
-=======
-	
-	
-	
->>>>>>> master
 </script>

@@ -125,18 +125,22 @@
          where busker_no = #{buskerNo}
 	</select>
 	
+	
+	<!-- Video -->
 	<insert id="insertVideo" parameterType="video">
 		insert into tb_video(url,busker_no,title)
 		values(#{url},#{buskerNo},#{title});
 	</insert>
 	
-	<select id="selectVideo" parameterType="int" resultType="HashMap">
+	<select id="selectVideo" resultType="video">
 		select *
 		  from tb_video
-		 where busker_no=#{buskerNo}
+		 where busker_no = #{buskerNo}
          order by reg_date desc
          limit #{pageNo},6
 	</select>
+	
+	<select id="selectVideoLimit" resultType=""
 	
 	<select id="countVideo" parameterType="int" resultType="int">
 		select count(*)

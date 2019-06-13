@@ -300,11 +300,10 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
   		imgPath : "${item.imgPath}"
   	});
   </c:forEach>
-  console.log(audioItemList);
+  
   <%-- 메인 공연일정 스크립트 --%>
   $(".busker-content__show-row .busker-content__show-column:last-child i").click(function(){
-  	console.log($(this).parent().parent().next());
-  	$(this).parent().parent().next().slideToggle("slow");
+  	$(this).parent().parent().next().slideToggle(100);
   	$(this).toggleClass("fas fa-angle-down").toggleClass("fas fa-angle-up");
   });
 </script>

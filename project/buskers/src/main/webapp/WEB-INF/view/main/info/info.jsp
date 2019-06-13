@@ -110,36 +110,6 @@ uri="http://java.sun.com/jsp/jstl/fmt"%>
               allowfullscreen
             ></iframe>
           </div>
-          <div class="swiper-slide">
-            <iframe
-              width="100%"
-              height="100%"
-              src="https://www.youtube.com/embed/XZwfiF04Orc"
-              frameborder="0"
-              allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen
-            ></iframe>
-          </div>
-          <div class="swiper-slide">
-            <iframe
-              width="100%"
-              height="100%"
-              src="https://www.youtube.com/embed/XZwfiF04Orc"
-              frameborder="0"
-              allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen
-            ></iframe>
-          </div>
-          <div class="swiper-slide shit">
-            <iframe
-              width="100%"
-              height="100%"
-              src="https://www.youtube.com/embed/XZwfiF04Orc"
-              frameborder="0"
-              allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen
-            ></iframe>
-          </div>
           <div class="swiper-slide">Slide 2</div>
           <div class="swiper-slide">Slide 3</div>
           <div class="swiper-slide">Slide 4</div>
@@ -288,6 +258,8 @@ uri="http://java.sun.com/jsp/jstl/fmt"%>
 </script>
 <script src="<c:url value='/resources/js/audio.js'/>"></script>
 <script>
+	
+  <%-- 곡 추가에 대한 function --%>
   function add(obj) {
     const fileNo = obj.parentNode.parentNode.getAttribute("value");
     $.ajax({
@@ -368,4 +340,15 @@ uri="http://java.sun.com/jsp/jstl/fmt"%>
       });
     });
   }
+  
+  <%-- video를 가져오는 ajax --%>
+  $.ajax({
+	  url : "<c:url value='/main/info/video-list-ajax.do'/>",
+	  dataType : "json"
+  }).done((videoList)=>{
+	  
+  })
+  
+  
+  
 </script>
