@@ -132,6 +132,15 @@
 		values(#{url},#{buskerNo},#{title});
 	</insert>
 	
+	<select id="selectVideoLimit" resultType="video">
+		select *
+		  from (select *
+		          from tb_video
+		         order by reg_date desc
+		         limit 15) b
+		 order by rand()
+	</select>
+	
 	<select id="selectVideo" resultType="video">
 		select *
 		  from tb_video
@@ -139,8 +148,6 @@
          order by reg_date desc
          limit #{pageNo},6
 	</select>
-	
-	<select id="selectVideoLimit" resultType=""
 	
 	<select id="countVideo" parameterType="int" resultType="int">
 		select count(*)
