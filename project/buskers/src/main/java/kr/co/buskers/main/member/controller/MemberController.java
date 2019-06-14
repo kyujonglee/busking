@@ -4,6 +4,7 @@ import java.util.Random;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,9 +48,16 @@ public class MemberController {
 	@Autowired
 	BCryptPasswordEncoder passEncoder;
 	
+	private String prevUrl;
+	
 	// 로그인 화면
 	@RequestMapping("loginform.do")
-	public String loginform(HttpSession session) {
+	public String loginform(HttpSession session, HttpServletRequest request) {
+		String referer = (String)request.getHeader("REFERER");
+		prevUrl = referer.substring(referer.indexOf("/",referer.indexOf("buskers")));
+//		prevUrl = refererUrl.substring(1, refererUrl.indexOf(".do"));
+		
+		System.out.println(prevUrl);
 		if(session.getAttribute("user") != null) {
 			return "redirect:/index.jsp";
 		}
@@ -68,19 +76,19 @@ public class MemberController {
 			if(passMatch) {
 				session.setAttribute("user", user);
 				session.setMaxInactiveInterval(60 * 60);
-				return "redirect:/index.jsp";
+				return "redirect:" + prevUrl;
 			} 
 			// DB 가데이터(관리자) 로그인 체크용
 			else if(user.getIsAdmin().equals("y") && user.getPass().equals(member.getPass())) {
 				session.setAttribute("user", user);
 				session.setMaxInactiveInterval(60 * 60);
-				return "redirect:/index.jsp";
+				return "redirect:" + prevUrl;
 			} 
 			// DB 가데이터(버스커) 로그인 체크용
 			else if(user.getIsBusker().equals("y") && user.getPass().equals(member.getPass())) {
 				session.setAttribute("user", user);
 				session.setMaxInactiveInterval(60 * 60);
-				return "redirect:/index.jsp";
+				return "redirect:" + prevUrl;
 			} 
 			// passMatch 통과 실패 false 값일때
 			else {
@@ -114,7 +122,7 @@ public class MemberController {
 		session.removeAttribute("user");
 		session.invalidate();
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("redirect:/index.jsp");
+		mav.setViewName("redirect:" + prevUrl);
 		return mav;
 	}
 	

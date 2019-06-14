@@ -1,5 +1,6 @@
 .busker .busker-info {
     background-color : #1D1D1D;
+    display : none;
 }
 
 .busker-info img {

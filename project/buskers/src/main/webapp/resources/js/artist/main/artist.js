@@ -1,5 +1,5 @@
 // busker_info 를 접는 버튼 동작
-let infoFlag = true;
+let infoFlag = false;
 $(".busker-side__info-btn i").click(function() {
     if(infoFlag) {
         $(".busker-info").fadeOut(50);
@@ -28,4 +28,5 @@ $("#chat-icon").click(function(){
     }
     // $(".busker-chat").fadeToggle(50);
 })
+
 
