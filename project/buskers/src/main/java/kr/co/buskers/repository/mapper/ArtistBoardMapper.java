@@ -10,30 +10,43 @@ import kr.co.buskers.repository.domain.Video;
 
 public interface ArtistBoardMapper {
 	
+//	ArtistShow select
 	List<ArtistShow> selectArtistShow(int buskerNo);
 	ArtistShow selectArtistShowByNo(int showNo);
 	int countArtistCurrentShow(int buskerNo);
 	List<ArtistShow> selectMainArtistShow(ArtistShow artistShow);
 	
+//	ArtistShow insert
 	void insertArtistShow(ArtistShow artistShow);
 	
+//	ArtistShow update
 	void updateArtistShowByNo(ArtistShow artistShow);
 	void updateArtistShowWeather(ArtistShow artistShow);
 	
+//	ArtistShow delete
 	void deleteArtistShowByNo(int showNo);
+	
+//	socialUrl
 	
 	void insertSocialUrl(SocialUrl socialUrl);
 	
 	int countSocialUrl(SocialUrl socialUrl);
 	
-	
 	void updateSocialUrl(SocialUrl socialUrl);
 	
 	SocialUrl selectSocialUrl(int buskerNo);
 	
-	void insertVideo(Video video);
-
+	
+//	Video
+	
+//	Video select
 	List<Video> selectVideo(HashMap<String,Object> map);
+	List<Video> selectVideoLimit();
+	List<Video> selectVideoLimitByNo(int buskerNo);
+	Video selectVideoOneByNo(int buskerNo);
+	
+	
+	void insertVideo(Video video);
 	
 	int countVideo(int buskerNo);
 	

@@ -4,8 +4,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.web.servlet.FlashMap;
+import org.springframework.web.servlet.FlashMapManager;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
+import org.springframework.web.servlet.support.RequestContextUtils;
 
 public class LoginInterceptor extends HandlerInterceptorAdapter{
 	
@@ -15,7 +18,10 @@ public class LoginInterceptor extends HandlerInterceptorAdapter{
 		Object obj = session.getAttribute("user");
 		
 		if(obj == null) {
-			
+			FlashMap flashMap = new FlashMap();
+			flashMap.put("msg", "msgOk2");
+			FlashMapManager flashMapManager = RequestContextUtils.getFlashMapManager(request);
+			flashMapManager.saveOutputFlashMap(flashMap, request, response);
 			response.sendRedirect("/buskers/main/member/loginform.do");
 			return false;
 		}
@@ -32,7 +38,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter{
 	@Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex)
             throws Exception {
-		request.setAttribute("msg", "msgOk2");
+		
         super.afterCompletion(request, response, handler, ex);
     }
 

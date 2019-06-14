@@ -88,8 +88,8 @@ public class FileServiceImpl implements FileService {
 		
 		File f = new File(filePath + sysFileName);
 		
-	    if(f.exists() == false) {
-    	  f.mkdirs();
+	    if (f.exists() == false) {
+	    	f.mkdirs();
 	    }
 	    
 	    multipartFile.transferTo(f);

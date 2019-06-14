@@ -32,9 +32,32 @@
             <div class="board_article">
                 <div class="board_article_info">
                     <div class="board_article_info_left">
-                        <i class="fas fa-user"></i><span id="board_article_info_id"><c:out value="${board.nickName}" /></span>
-                        <i class="far fa-eye"></i><span><c:out value="${board.viewCnt}" /></span>
-                        <i class="fas fa-heart"></i><span><c:out value="${board.likeCnt}" /></span>
+                        <i class="fas fa-user"></i>
+                        <span id="board_article_info_id" class="nickName_info">
+	                        <c:if test="${board.isAdmin eq 'y'}">
+								<i class="fas fa-award"></i>
+							</c:if>
+							<c:if test="${board.isBusker eq 'y'}">
+								<i class="fas fa-star"></i>
+							</c:if>
+	                        <c:out value="${board.nickName}" />
+                        </span>
+                        <i class="far fa-eye"></i>
+                        <span><c:out value="${board.viewCnt}" /></span>
+                        <i class="fas fa-heart"></i>
+                        <span><c:out value="${board.likeCnt}" /></span>
+						<c:if test="${board.isBusker eq 'y'}">
+							<div class="nickName_info_box">
+								<a class="info_box_detail" href="<c:url value='/artist/main/main.do?buskerNo=${board.buskerNo}'/>">아티스트 채널</a>
+								<a name="${board.nickName}" class="info_box_detail nickName_info_box_send_message">쪽지 보내기</a>
+							</div>
+						</c:if>
+						<c:if test="${board.isBusker eq 'n'}">
+							<div class="nickName_info_box">
+								<a>회원 정보</a>
+								<a name="${board.nickName}" class="nickName_info_box_send_message">쪽지 보내기</a>
+							</div>
+						</c:if>
                     </div>
 
                     <div class="board_article_info_right">
@@ -954,6 +977,20 @@
 			});
 		}
 		commentDislike();
+		
+		$(".nickName_info").click(function (event) {
+        	event.stopPropagation();	
+        	$(this).siblings(".nickName_info_box").toggle();
+        });
+        
+       	$(document).click(function() {
+       	    $('.nickName_info_box').hide();
+       	});
+       	
+    	$(".nickName_info_box_send_message").click(function () {
+    		let name = $(this).attr("name");
+    		window.open('<c:url value="/main/header/message/write-form.do?nickName=' + name + '"/>', '', 'top=' + popupY + ', left=' + popupX + ', scrollbars=no, resizable=no, width=500, height=500');
+    	});
 		
     </script>
 

@@ -324,9 +324,22 @@
 		url: "/buskers/main/header/alarm/alarm-ajax.do",
 		success: function (result) {
 			console.log(result);
+			
 			let alarm = result.alarm;
 			let html = "";
 			for (let i = 0; i < alarm.length; i++) {
+				let nowDate = new Date();
+				let time = nowDate - new Date(alarm[i].regDate);
+				let gapTime = "";
+				if ( (time / (1000*60)) >= 3600 ) {
+					gapTime = parseInt(time / (1000*60*60*24)) + "일 전";
+				} else {
+					if ( (time / (1000*60*60)) > 1 ) {
+						gapTime = parseInt(time / (1000*60*60)) + "시간 " + parseInt((time/1000*60*60) % 60) + "분 전";
+					} else {
+						gapTime = parseInt((time/1000*60*60) % 60) + "분 전";
+					}
+				}
 				let type = "";
 				if (alarm[i].dataType == "1") {
 					type = "채널에 새로운 공연일정이 등록되었습니다.";
@@ -334,17 +347,26 @@
 					type = "채널에 새로운 공지사항이 등록되었습니다.";
 				}
 				html += '<div class="busker_alarm_card">';
-				html += '<div class="busker_alarm_image_wrapper">';
-				html += '<div class="busker_alarm_image">';
-				html += '<img src="<c:url value='/resources/img/twilight.jpg'/>"/>';
-				html += '</div>';
-				html += '</div>';
-				html += '<div class="busker_alarm_body">';
-				html += '<div class="busker_alarm_body_header"><a></a><span>&nbsp채널에 새로운 공연일정이 등록되었습니다.</span></div>';
-				html += '<div class="busker_alarm_body_title">마포구 공연</div>';
-				html += '<div class="busker_alarm_body_date">2019.06.03</div>';
+				html += 	'<div class="busker_alarm_image_wrapper">';
+				html += 		'<div class="busker_alarm_image">';
+				html += 		'<img src="<c:url value='/file/download.do'/>?path=' + alarm[i].profileImgPath + alarm[i].profileImg + '"/>';
+				html += 		'</div>';
+				html += 	'</div>';
+				html += 	'<div class="busker_alarm_body">';
+				html += 		'<div class="busker_alarm_body_header">' + alarm[i].activityName + '<a></a><span>&nbsp' + type + '</span></div>';
+				html += 		'<div class="busker_alarm_body_title">' + alarm[i].title + '</div>';
+				html += 		'<div class="busker_alarm_body_date">' + gapTime + '</div>';
+				html += 	'</div>';
 				html += '</div>';
 			}
+			$(".busker_alarm_list").append(html);
 		}
+	});
+	
+	$(".busker_alarm_list").scroll(function () {
+		console.log( "전체 길이 : " + $(".busker_alarm_wrapper").height() );
+		console.log( "스크롤의 위치 : " + $(".busker_alarm_list").scrollTop() );
+		console.log( "스크롤 있는 곳의 길이 : " + $(".busker_alarm_list").height() );
+		
 	});
 </script>

@@ -2,7 +2,7 @@
 .busker-body{
 	padding-right:0px;
 }
-.photo a{
+.artist__photo__img a{
 	width:100%;
 	height:100%;
 }
@@ -13,8 +13,10 @@
 	display : flex;
 	flex-wrap : wrap;
 	position : relative;
+	height:90vh;
+	overflow:scroll;
 }
-.photo_body .photo{
+.photo_body .artist__photo__img{
 	width : 25%;
 /* 	height:100%;  */
 /* 	width : 25%; */
@@ -23,19 +25,19 @@ padding : 15px;
 box-sizing : border-box;
 }
 
-.photo_body .photo:nth-child(4n+1){
+.photo_body .artist__photo__img:nth-child(4n+1){
 	left : 0%;
 }
-.photo_body .photo:nth-child(4n+2){
+.photo_body .artist__photo__img:nth-child(4n+2){
 	left : 25%;
 }
-.photo_body .photo:nth-child(4n){
+.photo_body .artist__photo__img:nth-child(4n){
 	left : 75%;
 }
-.photo_body .photo:nth-child(4n+3){
+.photo_body .artist__photo__img:nth-child(4n+3){
 	left : 50%;
 }
-.photo img{
+.artist__photo__img img{
 	cursor:pointer;
 /* 	display : block; */
 	width:100%;
