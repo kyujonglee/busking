@@ -61,61 +61,53 @@
 
 
 <script>
-$(document).on("click","#regBtn",function(){
-	let title = $("#title").val();
-  	let file = $("#photo")[0].files[0];g
-  	let buskerNo = "${param.buskerNo}";
-  	console.log(title);
-  	console.log(file);
-  	console.log(buskerNo);
-	let formData = new FormData();
-	formData.append("file", file);
-	formData.append("buskerNo",);
-	formData.append("title", title);
-	
-  	$.ajax({
-  		type : "post",
-		data: formData,
-		processData: false,
-		contentType: false,
-		cache : false,
-		url : '/buskers/file/artist-photo-insert.do',
-	}).done(function(retsult){
-		alert("에이작스성공");		
+	$(document).on("click","#regBtn",function(){
+		let title = $("#title").val();
+	  	let file = $("#photo")[0].files[0];g
+	  	let buskerNo = "${param.buskerNo}";
+	  	console.log(title);
+	  	console.log(file);
+	  	console.log(buskerNo);
+		let formData = new FormData();
+		formData.append("file", file);
+		formData.append("buskerNo",buskerNo);
+		formData.append("title", title);
+		
+	  	$.ajax({
+	  		type : "post",
+			data: formData,
+			processData: false,
+			contentType: false,
+			cache : false,
+			url : '/buskers/file/artist-photo-insert.do',
+		}).done(function(retsult){
+			alert("에이작스성공");		
+		})
 	})
-})
 
-$(".photo_body").append(
-		`<div class="photo" ><img src="<c:url value='/resources/img/musician.jpg'/>"/></div>
-		 <div class="photo" ><img src="<c:url value='/resources/img/marker.jpg'/>"/></div>
+	$(".photo_body").append(
+		`<div class="artist__photo__img" ><img src="<c:url value='/resources/img/musician.jpg'/>"/></div>
+		 <div class="artist__photo__img" ><img src="<c:url value='/resources/img/marker.jpg'/>"/></div>
+		 <div class="artist__photo__img" ><img src="<c:url value='/resources/img/musician.jpg'/>"/></div>
+		 <div class="artist__photo__img" ><img src="<c:url value='/resources/img/marker.jpg'/>"/></div>
 		 `
-		)
+	)
 		
-		/* <div class="photo" ><img src="<c:url value='/resources/img/musician.jpg'/>"/></div>
-		 <div class="photo" ><img src="<c:url value='/resources/img/twilight.jpg'/>"/></div>
-		 <div class="photo" ><img src="<c:url value='/resources/img/marker.jpg'/>"/></div>
-		 <div class="photo" ><img src="<c:url value='/resources/img/musician.jpg'/>"/></div>
-		 <div class="photo" ><img src="<c:url value='/resources/img/musician.jpg'/>"/></div>
-		 <div class="photo" ><img src="<c:url value='/resources/img/twilight.jpg'/>"/></div> */
+		function getList(num){
+			setTimeout(function(){
+				heightFirst = $(".artist__photo__img:eq("+(num-4)+")").outerHeight();
+	 			heightSecond = $(".artist__photo__img:eq("+(num-3)+")").outerHeight();
+	 			heightThird = $(".artist__photo__img:eq("+(num-2)+")").outerHeight();
+	 			heightFourth = $(".artist__photo__img:eq("+(num-1)+")").outerHeight();
+	 			$(".photo_body").append(`
+ 					 <div class="artist__photo__img" style="top:`+heightFirst+`px;"  ><img src="<c:url value='/resources/img/marker.jpg'/>"/></div>
+ 					 <div class="artist__photo__img" style="top:`+heightSecond+`px;" ><img src="<c:url value='/resources/img/musician.jpg'/>"/></div>
+ 					 <div class="artist__photo__img" style="top:`+heightThird+`px;" ><img src="<c:url value='/resources/img/twilight.jpg/>"/></div>
+ 					 <div class="artist__photo__img" style="top:`+heightFourth+`px;" ><img src="<c:url value='/resources/img/musician.jpg'/>"/></div>
+	 			`)
+			},100);
+		}
+		getList(4);
 
-	
- alert($(".photo:eq(0)").position().top);
- alert($(".photo:eq(0) img").height());
- 
- console.log($(".photo:eq(0)"));
- console.log($(".photo:eq(1)"));
-		
- alert($(".photo:eq(1)").position().top);
- alert($(".photo:eq(1)").height());
-
-
-// let height0 = $(".photo:eq(0)").height();
-// let height1 = $(".photo:eq(1)").height();
-// let height2 = $(".photo:eq(2)").height();
-// let height3 = $(".photo:eq(3)").height();
-// let height4 = $(".photo:eq(4)").height()+15;
-// let height5 = $(".photo:eq(5)").height()+15;
-// let height6 = $(".photo:eq(6)").height()+15;
-// let height7 = $(".photo:eq(7)").height()+15;
 
 </script>

@@ -123,7 +123,6 @@
 		if(confirm("정말로 삭제하시겠습니까?") == true){
 			let videoNo  = $(this).data("vno");
 			$.ajax({
-				type:'post',
 				data : {videoNo : videoNo},
 				url : "video-delete-ajax.do",
 			}).done(function(){
@@ -147,8 +146,12 @@
 		let buskerNo = "${sessionScope.user.busker.buskerNo}";
 		
 		let url = "https://www.youtube.com/embed/";
-		let code = videoUrl.split('=');
-		let yUrl = url+code[1];
+		
+		let code = videoUrl.split('?');
+		code = code[1].split('=');
+		code = code[1].split('&');
+		console.log(code);
+		let yUrl = url+code[0];
 
 		
 		$.ajax({
@@ -182,12 +185,12 @@
 				htrr += '		<div class="video_title">'+result.list[i].title+"";
 				if("${sessionScope.user.busker.buskerNo}" == "${param.buskerNo}"){
 					htrr += '<span class="videoMenu">';
-					htrr += '<span class="video_menu_modify" data-vno='+result.list[i].video_no+'>삭제<br></span>';
+					htrr += '<span class="video_menu_modify" data-vno='+result.list[i].videoNo+'>삭제<br></span>';
 					htrr += '<i class="fas fa-ellipsis-h"></i>';
 					htrr += '</span>';	
 				}
 				htrr += '</div>';
-				htrr += '		<div class="video_date">	'+ new Date(result.list[i].reg_date).format('yyyy-MM-dd')+'';
+				htrr += '		<div class="video_date">	'+ new Date(result.list[i].regDate).format('yyyy-MM-dd')+'';
 				htrr += '</div>';
 				htrr += '</div>';
 				
