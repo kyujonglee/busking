@@ -122,7 +122,7 @@ public class MemberController {
 		session.removeAttribute("user");
 		session.invalidate();
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("redirect:" + prevUrl);
+		mav.setViewName("redirect:/index.jsp");
 		return mav;
 	}
 	
