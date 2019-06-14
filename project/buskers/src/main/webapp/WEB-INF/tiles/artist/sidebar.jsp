@@ -189,8 +189,8 @@
 		`<img src='<c:url value='/resources/img/profile.png' />'>`		
 		)
 		if(profileImg != null){
-			$(".busker-side__profile-photo").prepend(
-			`<img src='<c:url value='/file/download.do'/>?path=`+profileImgPath+profileImg+`' />`		
+			$(".busker-side__profile-photo img:eq(0)").attr("src",
+			"<c:url value='/file/download.do'/>?path="+profileImgPath+profileImg+""		
 			)
 		}
 		
@@ -358,5 +358,4 @@
 		}
 		$(".buskers__recommend").html(html);
 	});
-	
 </script>

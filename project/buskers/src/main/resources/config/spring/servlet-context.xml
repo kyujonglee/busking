@@ -39,11 +39,16 @@
 		</mvc:message-converters>
 	</mvc:annotation-driven>
 	
-	<mvc:default-servlet-handler />
+	<mvc:resources mapping="/bower_components/**" location="/resources/bower_components/" />
+	<mvc:resources mapping="/dist/**" location="/resources/dist/" />
+	<mvc:resources mapping="/plugins/**" location="/resources/plugins/" />
+	
+	<mvc:default-servlet-handler/>
 	
 	<mvc:view-resolvers>
 		<mvc:jsp prefix="/WEB-INF/view/" suffix=".jsp" />
 	</mvc:view-resolvers>
+	
 	
 	<context:property-placeholder location="classpath:config/mybatis/db.properties"/>
 	
