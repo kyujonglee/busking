@@ -3,6 +3,7 @@ package kr.co.buskers.repository.mapper;
 import java.util.HashMap;
 import java.util.List;
 
+import kr.co.buskers.repository.domain.ArtistPhoto;
 import kr.co.buskers.repository.domain.ArtistShow;
 import kr.co.buskers.repository.domain.SocialUrl;
 import kr.co.buskers.repository.domain.Video;
@@ -35,5 +36,8 @@ public interface ArtistBoardMapper {
 	List<Video> selectVideo(HashMap<String,Object> map);
 	
 	int countVideo(int buskerNo);
+	
 	void deleteVideo(int videoNo);
+	
+	void insertArtistPhoto(ArtistPhoto artistPhoto);
 }

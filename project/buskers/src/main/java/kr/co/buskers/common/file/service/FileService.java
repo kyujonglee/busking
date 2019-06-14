@@ -4,6 +4,7 @@ import java.util.Map;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import kr.co.buskers.repository.domain.ArtistPhoto;
 import kr.co.buskers.repository.domain.File;
 import kr.co.buskers.repository.domain.Member;
 import kr.co.buskers.repository.domain.MusicFile;
@@ -20,4 +21,6 @@ public interface FileService {
 	
 	// 프로필 이미지 업로드
 	public void uploadProfile(MultipartFile multipartFile, String uriPath, Member member) throws Exception;
+	
+	public String insertArtistPhoto(ArtistPhoto artistPhoto) throws Exception;
 }

@@ -150,6 +150,12 @@
 		 where video_no=#{videoNo}
 	</delete>
 	
+	<insert id="insertArtistPhoto" >
+		insert into tb_artist_photo(
+			name,title,sysname,path,busker_no)
+		values(#{name},#{title},#{sysname},#{path},#{buskerNo})
+	</insert>
+	
 </mapper>
 
 
