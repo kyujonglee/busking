@@ -84,7 +84,15 @@
 			alert("비밀번호가 틀렸습니다!");    		
     	} else if (msg === 'msgId') {
     		alert("아이디가 틀렸습니다!");
+    	} else if (msg === 'msgOk2') {
+    		Swal.fire({
+    			  title:'로그인후에 이용가능합니다',
+    			  type:'info',
+    			  timer: 2000
+    		});
     	}
+    	
+    	
     	$("#login").click(function() {
     		let id = $("#id").val();
     		let pass = $("#pass").val();
