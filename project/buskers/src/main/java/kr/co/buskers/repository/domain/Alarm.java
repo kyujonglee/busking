@@ -11,7 +11,21 @@ public class Alarm {
 	private String dataType; 
 	private String profileImg;
 	private String profileImgPath;
+	private String activityName;
+	private int index;
 	
+	public String getActivityName() {
+		return activityName;
+	}
+	public void setActivityName(String activityName) {
+		this.activityName = activityName;
+	}
+	public int getIndex() {
+		return index;
+	}
+	public void setIndex(int index) {
+		this.index = index;
+	}
 	public String getProfileImg() {
 		return profileImg;
 	}
