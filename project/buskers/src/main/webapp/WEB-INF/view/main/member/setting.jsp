@@ -219,7 +219,6 @@ function handleImgFileSelect(e) {
 			$(".preview-profile").css('display','inline-block');
 			$(".btn-file-word").css('display','none');
 			console.log(e.target.result);
-// 			$(".btn-file").prepend('<img class="preview-profile" id="profile__preview" src="'+e.target.result+'"/>');
 			$("#profile__preview").attr("src", e.target.result);
 			
 		}
@@ -232,8 +231,7 @@ function handleImgFileSelect(e) {
 
 $(".closeBtn").click(function () {
 	$("#profile__img").val("");
-	// src 값 공백으로 만들기
-	$("#btn___file").val("");	
+	$("#profile__preview").removeAttr("src");	
 });
 
 $(".saveBtn").click(function (f) {

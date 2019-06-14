@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import kr.co.buskers.artist.board.service.ArtistBoardService;
 import kr.co.buskers.artist.main.service.ArtistMainService;
 import kr.co.buskers.repository.domain.Busker;
 import kr.co.buskers.repository.domain.Follow;
@@ -26,11 +27,15 @@ public class ArtistMainController {
 	@Autowired
 	private ArtistMainService mainService;
 	
+	@Autowired
+	private ArtistBoardService boardService;
+	
 
 	@RequestMapping("main.do")
 	public void main(Model model,HttpSession session,int buskerNo) {
 		model.addAttribute("audioList",mainService.selectMusicByBuskerNo(buskerNo));
 		model.addAttribute("buskerNo",buskerNo);
+		model.addAttribute("showList", boardService.selectArtistShow(buskerNo));
 	}
 	
 	@RequestMapping("main-ajax.do")

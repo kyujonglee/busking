@@ -1,6 +1,9 @@
 const API_KEY = "d3bf0d7d2d5b1152cc9ad6fde52607b6";
 $(document).ready(() => {
-  $(".busker-side__info-btn i").trigger("click");
+//  $(".busker-side__info-btn i").trigger("click");
+//	infoFlag = false;
+//	$(".busker-side__info-btn i").attr({class:"fas fa-angle-left fa-2x"});
+//	$(".busker-info").css({display:"block"});
 });
 
   $.ajax({

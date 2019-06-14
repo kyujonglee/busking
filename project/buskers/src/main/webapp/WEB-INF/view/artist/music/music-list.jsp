@@ -135,11 +135,6 @@ uri="http://java.sun.com/jsp/jstl/fmt"%>
   </section>
 </section>
 <script>
-$(document).ready(() => {
-    $(".busker-side__info-btn i").trigger("click");
-});
-</script>
-<script>
   // list -> ajax 로 바꿀 것!
   function musicList(buskerNo) {
     $.ajax({
@@ -296,13 +291,11 @@ const insert = buskerNo => {
   const writer = $("#writer").val();
   const time = $("#time").val();
   const attach = $("#attach").val();
-  const attach2 = $("#attach2").val();
   
   if (isEmpty(title, "노래제목을 입력해주세요"))return;
   if (isEmpty(writer, "아티스트를 입력해주세요"))return;
   if (isEmpty(time, "연주시간을 입력해주세요"))return;
   if (isEmpty(attach, "파일을 선택해주세요"))return;
-  if (isEmpty(attach2, "파일을 선택해주세요"))return;
   
   $.ajax({
     url : "<c:url value="/file/music-insert.do" />",

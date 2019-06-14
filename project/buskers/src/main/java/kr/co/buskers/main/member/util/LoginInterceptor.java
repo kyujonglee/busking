@@ -15,7 +15,8 @@ public class LoginInterceptor extends HandlerInterceptorAdapter{
 		Object obj = session.getAttribute("user");
 		
 		if(obj == null) {
-			response.sendRedirect("/buskers/main/member/needlogin.do");
+			
+			response.sendRedirect("/buskers/main/member/loginform.do");
 			return false;
 		}
 		
@@ -24,6 +25,16 @@ public class LoginInterceptor extends HandlerInterceptorAdapter{
 	@Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
             ModelAndView modelAndView) throws Exception {
-        super.postHandle(request, response, handler, modelAndView);
+		
+		super.postHandle(request, response, handler, modelAndView);
     }     
+	
+	@Override
+    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex)
+            throws Exception {
+		request.setAttribute("msg", "msgOk2");
+        super.afterCompletion(request, response, handler, ex);
+    }
+
+
 }

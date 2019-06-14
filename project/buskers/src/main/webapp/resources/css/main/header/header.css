@@ -2,6 +2,7 @@
 @import 'slick.css';
 @import 'style.css';
 @import 'font-awesome.css';
+@import 'alarm.css';
 
 .message_count {
     position: absolute;

@@ -1,5 +1,5 @@
 // busker_info 를 접는 버튼 동작
-let infoFlag = true;
+let infoFlag = false;
 $(".busker-side__info-btn i").click(function() {
     if(infoFlag) {
         $(".busker-info").fadeOut(50);
@@ -18,14 +18,15 @@ let chatFlag = false;
 //chatFlag = false;
 $("#chat-icon").click(function(){
     if (chatFlag) {
-        $(".busker-chat").hide("slide", {direction: "right"});
+    	$(".busker-chat").toggle('slow');
         $(this).attr("class","fas fa-comment-dots fa-lg");
         chatFlag = false;
     } else {
-        $(".busker-chat").show("slide", {direction: "right"});
+    	$(".busker-chat").toggle('slow');
         $(this).attr("class","far fa-comment-dots fa-lg");
         chatFlag = true;
     }
     // $(".busker-chat").fadeToggle(50);
 })
+
 

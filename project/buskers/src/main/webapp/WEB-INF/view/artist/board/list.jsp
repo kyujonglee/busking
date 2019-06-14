@@ -20,7 +20,7 @@
 <script>
 	// 위에서 지정됨.
 	/* const buskerNo = ${buskerNo}; */
-	const no = ${(sessionScope.user eq null) ? 0 : sessionScope.user.buskerNo};
+	const no = ${(sessionScope.user eq null) ? 0 : sessionScope.user.busker.buskerNo};
 	function enrollForm(){
 		if(no === buskerNo){
 			return true;

@@ -62,8 +62,7 @@
 							   <span class="header-e" aria-hidden="true">
 							   		<img class="profile_img" 
 							   			 src="<c:url value='/file/download.do'/>?path=${sessionScope.user.profileImgPath}${sessionScope.user.profileImg}"
-							   		 	 onError="this.src='<c:url value='/resources/img/profile.png' />';"	 
-							   		/>
+							   		 	 onError="this.src='<c:url value='/resources/img/profile.png' />';"/>
 							   </span>
 							</a>
 							<div class="header-f h-toggle"></div>
@@ -96,7 +95,7 @@
 							</div>
 							<div class="header-j">
 								<div>
-									<a class="header-j2" href="<c:url value='/artist/main/main.do?buskerNo=' />${sessionScope.user.buskerNo}" onclick="return buskerPage();">나의 페이지</a>
+									<a class="header-j2" href="<c:url value='/artist/main/main.do?buskerNo=' />${sessionScope.user.busker.buskerNo}" onclick="return buskerPage();">나의 페이지</a>
 								</div>
 								<div>
 									<a class="header-j3" id="logout" target="_top">로그아웃</a>
@@ -106,6 +105,83 @@
 					</div>
 				</div>
 			</span>
+			<div class="busker_alarm_wrapper">
+		        <div class="busker_alarm_title">새로운 소식</div>
+		        <div class="busker_alarm_list">
+		            <div class="busker_alarm_card">
+		                <div class="busker_alarm_image_wrapper">
+		                    <div class="busker_alarm_image">
+		                        <img src="<c:url value='/resources/img/twilight.jpg'/>"/>
+		                    </div>
+		                </div>
+		                <div class="busker_alarm_body">
+		                    <div class="busker_alarm_body_header"><a>새벽공방</a><span>&nbsp채널에 새로운 공연일정이 등록되었습니다.</span></div>
+		                    <div class="busker_alarm_body_title">마포구 공연</div>
+		                    <div class="busker_alarm_body_date">2019.06.03</div>
+		                </div>
+		            </div>
+		            <div class="busker_alarm_card">
+		                <div class="busker_alarm_image_wrapper">
+		                    <div class="busker_alarm_image">
+		                        <img src="<c:url value='/resources/img/twilight.jpg'/>"/>
+		                    </div>
+		                </div>
+		                <div class="busker_alarm_body">
+		                    <div class="busker_alarm_body_header"><a>새벽공방</a><span>&nbsp채널에 새로운 공연일정이 등록되었습니다.</span></div>
+		                    <div class="busker_alarm_body_title">마포구 공연</div>
+		                    <div class="busker_alarm_body_date">2019.06.03</div>
+		                </div>
+		            </div>
+		            <div class="busker_alarm_card">
+		                <div class="busker_alarm_image_wrapper">
+		                    <div class="busker_alarm_image">
+		                        <img src="<c:url value='/resources/img/twilight.jpg'/>"/>
+		                    </div>
+		                </div>
+		                <div class="busker_alarm_body">
+		                    <div class="busker_alarm_body_header"><a>새벽공방</a><span>&nbsp채널에 새로운 공연일정이 등록되었습니다.</span></div>
+		                    <div class="busker_alarm_body_title">마포구 공연</div>
+		                    <div class="busker_alarm_body_date">2019.06.03</div>
+		                </div>
+		            </div>
+		            <div class="busker_alarm_card">
+		                <div class="busker_alarm_image_wrapper">
+		                    <div class="busker_alarm_image">
+		                        <img src="<c:url value='/resources/img/twilight.jpg'/>"/>
+		                    </div>
+		                </div>
+		                <div class="busker_alarm_body">
+		                    <div class="busker_alarm_body_header"><a>새벽공방</a><span>&nbsp채널에 새로운 공연일정이 등록되었습니다.</span></div>
+		                    <div class="busker_alarm_body_title">마포구 공연</div>
+		                    <div class="busker_alarm_body_date">2019.06.03</div>
+		                </div>
+		            </div>
+		            <div class="busker_alarm_card">
+		                <div class="busker_alarm_image_wrapper">
+		                    <div class="busker_alarm_image">
+		                        <img src="<c:url value='/resources/img/twilight.jpg'/>"/>
+		                    </div>
+		                </div>
+		                <div class="busker_alarm_body">
+		                    <div class="busker_alarm_body_header"><a>새벽공방</a><span>&nbsp채널에 새로운 공연일정이 등록되었습니다.</span></div>
+		                    <div class="busker_alarm_body_title">마포구 공연</div>
+		                    <div class="busker_alarm_body_date">2019.06.03</div>
+		                </div>
+		            </div>
+		            <div class="busker_alarm_card">
+		                <div class="busker_alarm_image_wrapper">
+		                    <div class="busker_alarm_image">
+		                        <img src="<c:url value='/resources/img/twilight.jpg'/>"/>
+		                    </div>
+		                </div>
+		                <div class="busker_alarm_body">
+		                    <div class="busker_alarm_body_header"><a>새벽공방</a><span>&nbsp채널에 새로운 공연일정이 등록되었습니다.</span></div>
+		                    <div class="busker_alarm_body_title">마포구 공연</div>
+		                    <div class="busker_alarm_body_date">2019.06.03</div>
+		                </div>
+		            </div>
+		        </div>
+		    </div>
 		</c:if>
         </div>
       </div> 
@@ -223,11 +299,52 @@
 	});
 	
 	const buskerPage = function(){
-		if(buskerNo !== 0){
+		if( ${(sessionScope.user.busker eq null) ? 0 : sessionScope.user.busker.buskerNo} !== 0){
 			return true;
 		}
 		alert("현재 회원은 버스커가 아닙니다.")
 		return false;
 	}
 	
+	let flag = false;
+	$(".header__user .fa-bell").click(function () {
+		if (flag) {
+	        $(".busker_alarm_wrapper").fadeOut();
+	        $(this).css({"color": "white"});
+	        flag = false;
+	    } else {
+			$(".busker_alarm_wrapper").fadeIn();
+			$(this).css({"color": "tomato"});
+	        flag = true;
+	    }
+	});
+	
+	$.ajax({
+		type: "POST",
+		url: "/buskers/main/header/alarm/alarm-ajax.do",
+		success: function (result) {
+			console.log(result);
+			let alarm = result.alarm;
+			let html = "";
+			for (let i = 0; i < alarm.length; i++) {
+				let type = "";
+				if (alarm[i].dataType == "1") {
+					type = "채널에 새로운 공연일정이 등록되었습니다.";
+				} else {
+					type = "채널에 새로운 공지사항이 등록되었습니다.";
+				}
+				html += '<div class="busker_alarm_card">';
+				html += '<div class="busker_alarm_image_wrapper">';
+				html += '<div class="busker_alarm_image">';
+				html += '<img src="<c:url value='/resources/img/twilight.jpg'/>"/>';
+				html += '</div>';
+				html += '</div>';
+				html += '<div class="busker_alarm_body">';
+				html += '<div class="busker_alarm_body_header"><a></a><span>&nbsp채널에 새로운 공연일정이 등록되었습니다.</span></div>';
+				html += '<div class="busker_alarm_body_title">마포구 공연</div>';
+				html += '<div class="busker_alarm_body_date">2019.06.03</div>';
+				html += '</div>';
+			}
+		}
+	});
 </script>
