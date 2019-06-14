@@ -4,7 +4,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.http.client.RedirectException;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
@@ -18,7 +17,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter{
 		if(obj == null) {
 			
 			response.sendRedirect("/buskers/main/member/loginform.do");
-			throw new RedirectException("로그인이 필요합니다.");
+			return false;
 		}
 		
 		return true;
