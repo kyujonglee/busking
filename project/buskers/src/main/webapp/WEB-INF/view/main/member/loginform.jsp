@@ -88,8 +88,9 @@
     		Swal.fire({
     			  title:'로그인후에 이용가능합니다',
     			  type:'info',
-    			  timer: 2000
+    			  backdrop:'rgba(240,240,240,1)'
     		});
+    		
     	}
     	
     	
