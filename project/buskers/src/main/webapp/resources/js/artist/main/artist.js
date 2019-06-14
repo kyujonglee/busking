@@ -18,11 +18,11 @@ let chatFlag = false;
 //chatFlag = false;
 $("#chat-icon").click(function(){
     if (chatFlag) {
-        $(".busker-chat").hide("slide", {direction: "right"});
+    	$(".busker-chat").toggle('slow');
         $(this).attr("class","fas fa-comment-dots fa-lg");
         chatFlag = false;
     } else {
-        $(".busker-chat").show("slide", {direction: "right"});
+    	$(".busker-chat").toggle('slow');
         $(this).attr("class","far fa-comment-dots fa-lg");
         chatFlag = true;
     }
