@@ -31,6 +31,15 @@ public class HeaderServiceImpl implements HeaderService {
 		return map;
 	}	
 	
+	public Map<String, Object> selectAlarmList(HttpSession session) {
+		Map<String, Object> map = new HashMap<>();
+		if (session.getAttribute("user") != null) {
+			Member member = (Member)session.getAttribute("user");
+			map.put("alarm", mapper.selectAlarmList(member.getMemberNo()));
+		}
+		return map;
+	}
+	
 	public void write(Message message) {
 		message.setReceiverMemberNo(mapper.selectMemberNoByNickName(message.getNickName()));
 		mapper.insertMessage(message);

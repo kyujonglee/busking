@@ -120,6 +120,35 @@
 		  from tb_member
 		 where nick_name=#{nickName}
 	</select>
+	
+	<select id="selectAlarmList" parameterType="int" resultType="alarm">
+		SELECT busker_no, content, title, reg_date, is_read, '1' as data_type, profile_img, profile_img_path
+		  FROM (select content, title, reg_date, show_no, s.busker_no, b.member_no
+				  from tb_busker_show s, tb_follow f, tb_member m, tb_busker b
+				 where s.busker_no = f.busker_no
+                   and s.busker_no = b.busker_no
+                   and b.member_no = m.member_no
+		           and f.follow_status = 'y'
+		           and f.member_no = #{memberNo}
+			   ) s
+		  left join tb_member m on m.member_no = s.member_no
+		  left join tb_alarm a on a.data_no = s.show_no
+		   and a.data_type = 1
+		 UNION
+		SELECT busker_no, content, title, reg_date, is_read, '2' as data_type , profile_img, profile_img_path
+		  FROM (select content, title, reg_date, board_no, n.busker_no, b.member_no
+				  from tb_busker_notify_board n, tb_follow f, tb_member m, tb_busker b
+				 where n.busker_no = f.busker_no
+                   and n.busker_no = b.busker_no
+                   and b.member_no = m.member_no
+		           and f.follow_status = 'y'
+		           and f.member_no = #{memberNo}
+			   ) n
+		  left join tb_member m on m.member_no = n.member_no
+		  left join tb_alarm a on a.data_no = n.board_no 
+		   and a.data_type = 2
+		 order by reg_date
+	</select>
 </mapper>
 
 

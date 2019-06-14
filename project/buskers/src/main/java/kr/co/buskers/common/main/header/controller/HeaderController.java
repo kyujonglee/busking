@@ -18,13 +18,13 @@ import kr.co.buskers.repository.domain.Message;
 
 
 @Controller
-@RequestMapping("main/header/message")
+@RequestMapping("main/header")
 public class HeaderController {
 	
 	@Autowired
 	private HeaderService service;
 	
-	@RequestMapping("list.do")
+	@RequestMapping("message/list.do")
 	public void list(FreePage freePage, Model model, HttpSession session) {
 		Map<String, Object> result = service.list(freePage, session);
 		
@@ -32,37 +32,47 @@ public class HeaderController {
 		model.addAttribute("sentMessage", result.get("sentMessage"));
 	}
 	
-	@RequestMapping("write-form.do")
+	@RequestMapping("message/write-form.do")
 	public void writeForm() {}
 	
-	@RequestMapping("write.do")
+	@RequestMapping("message/write.do")
 	public String write(Message message) {
 		service.write(message);
 		return UrlBasedViewResolver.REDIRECT_URL_PREFIX + "list.do";
 	}
 	
-	@RequestMapping("delete-received.do")
+	@RequestMapping("message/delete-received.do")
 	public String deleteMessage(int[] msgNo) {
 		
 		service.deleteMessage(msgNo);
 		return UrlBasedViewResolver.REDIRECT_URL_PREFIX + "list.do";
 	}
 	
-	@RequestMapping("delete-sent.do")
+	@RequestMapping("alarm/alarm-ajax.do")
+	@ResponseBody
+	public Map<String, Object> alarm(HttpSession session, Model model) {
+		service.selectAlarmList(session);
+		Map<String, Object> result = service.selectAlarmList(session);
+		model.addAttribute("alarm", result.get("alarm"));
+		
+		return result;
+	}
+
+	@RequestMapping("message/delete-sent.do")
 	public String deleteSentMessage(int[] msgNo) {
 		
 		service.deleteSentMessage(msgNo);
 		return UrlBasedViewResolver.REDIRECT_URL_PREFIX + "list.do?active=sent_box";
 	}
 	
-	@RequestMapping("message-count-ajax.do")
+	@RequestMapping("message/message-count-ajax.do")
 	@ResponseBody
 	public int selectMessageCount(HttpSession session) {
 		
 		return service.selectMessageCount(session);
 	}
 	
-	@RequestMapping("detail.do")
+	@RequestMapping("message/detail.do")
 	public void detail(int msgNo, Model model) {
 		
 		Map<String, Object> result = service.detail(msgNo);
@@ -70,7 +80,7 @@ public class HeaderController {
 		model.addAttribute("message", result.get("message"));
 		
 	}
-	@RequestMapping("receive-member-ajax.do")
+	@RequestMapping("message/receive-member-ajax.do")
 	@ResponseBody
 	public int selectMemberNickName(String nickName) {
 		System.out.println(nickName);

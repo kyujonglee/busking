@@ -99,6 +99,5 @@
 		 order by s.reg_date desc;
 	</select>
 	
- 	
 </mapper>
 	
