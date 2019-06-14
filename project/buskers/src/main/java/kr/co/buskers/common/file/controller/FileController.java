@@ -6,9 +6,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.OutputStream;
-import java.net.URLEncoder;
 import java.util.Map;
-import java.util.UUID;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -20,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import kr.co.buskers.common.file.service.FileService;
+import kr.co.buskers.repository.domain.ArtistPhoto;
 import kr.co.buskers.repository.domain.MusicFile;
 
 @RequestMapping("/file")
@@ -123,4 +122,12 @@ public class FileController {
 	public void updateAjax(MusicFile musicFile) throws Exception {
 		service.updateMusicByFileNo(musicFile);
 	}
+	@RequestMapping("artist-photo-insert.do")
+	@ResponseBody
+	public String insertArtistPhoto(ArtistPhoto artistPhoto) throws Exception {
+		
+		return service.insertArtistPhoto(artistPhoto);
+	}
+	
+	
 }

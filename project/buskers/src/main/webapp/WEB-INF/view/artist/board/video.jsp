@@ -42,8 +42,8 @@
 								<a href="board-search-list.do?pageNo=${pageResult.endPage + 1}&input=${param.input}">
 									<i class="fas fa-angle-right"></i>
 								</a>
-							</c:if>
-			     	    	</div> --%>
+							</c:if>--%>
+		     	    	</div> 
 					</div>
 				</div>
 			</div>
