@@ -49,7 +49,7 @@ chat.on("connection", function (socket) {
             if (members[Object.keys(members)[i]] == socket.id) {
                 chat.emit("out", Object.keys(members)[i]);
                 delete members[Object.keys(members)[i]];
-                chat.emit("join", Object.keys(members));
+                chat.emit("join", profile);
             }
         }
 	});

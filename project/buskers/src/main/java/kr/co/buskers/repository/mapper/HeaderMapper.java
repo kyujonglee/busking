@@ -2,8 +2,8 @@ package kr.co.buskers.repository.mapper;
 
 import java.util.List;
 
+import kr.co.buskers.repository.domain.Alarm;
 import kr.co.buskers.repository.domain.FreePage;
-import kr.co.buskers.repository.domain.Member;
 import kr.co.buskers.repository.domain.Message;
 
 public interface HeaderMapper {
@@ -17,4 +17,5 @@ public interface HeaderMapper {
 	void updateMessageReadStatus(int msgNo);
 	int selectMessageCount(int memberNo);
 	int selectMemberNickName(String nickName);
+	List<Alarm> selectAlarmList(int memberNo);
 }

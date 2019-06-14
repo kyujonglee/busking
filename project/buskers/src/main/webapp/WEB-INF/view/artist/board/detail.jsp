@@ -79,7 +79,7 @@
 						</div>
 					</div>
 					<div class="busker-show-detail__item">
-						<c:if test="${sessionScope.user ne null && sessionScope.user.buskerNo eq buskerNo}">
+						<c:if test="${sessionScope.user ne null && sessionScope.user.busker.buskerNo eq buskerNo}">
 							<a onclick="update(${show.showNo},'<fmt:formatDate value="${show.enrollDate}" pattern="yyyy-MM-dd HH:mm" type="both" />' );" >
 								<button type="button" class="busker-show-update__btn">수정</button>
 							</a>
