@@ -671,6 +671,10 @@
 	font-size: 0.9em;
 }
 
+#frame .content .messages ul li span {
+	margin-bottom: 5px;
+}
+
 #frame .content .messages ul li:nth-last-child(1) {
 	margin-bottom: 20px;
 }
@@ -942,7 +946,7 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	height: 34px;
+	height: 30px;
 }
 
 .online_user img {

@@ -88,17 +88,17 @@
 	max-height: 500px;
 }
 
-.is_not_read {
-	animation: alarm 2s ease-in-out infinite;
+.header-a > .fa-bell {
+	animation: bell 2s infinite linear;
 }
 
-@keyframes alarm { 
+@keyframes alarms { 
 	0% {background: inherit;}
 	50% {background: rgba(100, 39, 28, 0.9);}
 	100% {background: inherit;}
 }
 
-@keyframes bell{
+@keyframes bell {
   0%, 50%{
     transform: rotate(0deg);
 	}
@@ -110,12 +110,13 @@
   }
 }
 
+.is_not_read {
+	animation: alarms 2s ease-in-out infinite;
+}
+
 .busker_alarm_card a {
 	display: flex;
 	width: 100%;
 	height: 100%;
 }
 
-.header-a > .fa-bell {
-	animation: bell 2s infinite linear;
-}

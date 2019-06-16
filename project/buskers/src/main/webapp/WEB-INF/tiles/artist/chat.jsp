@@ -87,6 +87,11 @@
 		}
 		$("#contacts > ul").html(html);
 		$(".online_user p").text("접속중인 회원 : " + count + "명");
+		
+		$(".contact").click(function () {
+			$(".message-input .wrap input").val( "@" + ($(this).children(".wrap").children(".meta").children(".name").text()) + " " );
+			$(".message-input .wrap input").focus();
+		});
     });
 	
 	chat.on("out", function (member) {
@@ -260,4 +265,5 @@
 			$(".chatting_room_busker_profile_img").html('<img src="<c:url value='/file/download.do'/>?path=' + result.profileImgPath + result.profileImg + '"/>');
 		}
 	});
+	
 </script>
