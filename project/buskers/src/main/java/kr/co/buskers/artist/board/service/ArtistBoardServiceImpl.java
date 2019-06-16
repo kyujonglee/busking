@@ -2,13 +2,18 @@ package kr.co.buskers.artist.board.service;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.co.buskers.common.page.VideoPageResult;
+import kr.co.buskers.repository.domain.Alarm;
 import kr.co.buskers.repository.domain.ArtistShow;
 import kr.co.buskers.repository.domain.Genre;
+import kr.co.buskers.repository.domain.Member;
 import kr.co.buskers.repository.domain.Video;
 import kr.co.buskers.repository.domain.VideoPage;
 import kr.co.buskers.repository.mapper.AgencyMapper;
@@ -36,6 +41,20 @@ public class ArtistBoardServiceImpl implements ArtistBoardService {
 	@Override
 	public List<ArtistShow> selectArtistShow(int buskerNo){
 		return mapper.selectArtistShow(buskerNo);
+	}
+	
+	@Override
+	public void insertShowAlarmIsReadStatus(Alarm alarm, HttpSession session){
+		Map<String,Object> map = new HashMap<>();
+		Member member = (Member)session.getAttribute("user");
+		
+		if (alarm.getAlarmNo() == 0) {
+			map.put("dataType", alarm.getDataType());
+			map.put("dataNo", alarm.getDataNo());
+			map.put("memberNo", member.getMemberNo());
+			
+			mapper.insertShowAlarmIsReadStatus(map);
+		}
 	}
 	
 	@Override

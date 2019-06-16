@@ -8,12 +8,26 @@ public class Alarm {
 	private String title;
 	private Date regDate; 
 	private String isRead;
-	private String dataType; 
+	private int dataType; 
 	private String profileImg;
 	private String profileImgPath;
 	private String activityName;
 	private int index;
+	private int alarmNo;
+	private int dataNo;
 	
+	public int getDataNo() {
+		return dataNo;
+	}
+	public void setDataNo(int dataNo) {
+		this.dataNo = dataNo;
+	}
+	public int getAlarmNo() {
+		return alarmNo;
+	}
+	public void setAlarmNo(int alarmNo) {
+		this.alarmNo = alarmNo;
+	}
 	public String getActivityName() {
 		return activityName;
 	}
@@ -38,10 +52,10 @@ public class Alarm {
 	public void setProfileImgPath(String profileImgPath) {
 		this.profileImgPath = profileImgPath;
 	}
-	public String getDataType() {
+	public int getDataType() {
 		return dataType;
 	}
-	public void setDataType(String dataType) {
+	public void setDataType(int dataType) {
 		this.dataType = dataType;
 	}
 	public int getBuskerNo() {

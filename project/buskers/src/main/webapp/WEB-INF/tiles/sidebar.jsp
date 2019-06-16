@@ -171,7 +171,7 @@
 	            <div class="sidebar-footer">
 	                <a href="#">
 	                    <i class="fa fa-bell"></i>
-	                    <span class="badge badge-pill badge-warning notification alart__count">3</span>
+	                    <span class="badge badge-pill badge-warning notification alarm__count">3</span>
 	                </a>
 	                <a href="#">
 	                    <i class="fa fa-envelope"></i>

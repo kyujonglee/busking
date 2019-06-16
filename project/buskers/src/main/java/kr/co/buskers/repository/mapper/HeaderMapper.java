@@ -1,6 +1,7 @@
 package kr.co.buskers.repository.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import kr.co.buskers.repository.domain.Alarm;
 import kr.co.buskers.repository.domain.FreePage;
@@ -16,6 +17,7 @@ public interface HeaderMapper {
 	Message selectMessageByNo(int msgNo);
 	void updateMessageReadStatus(int msgNo);
 	int selectMessageCount(int memberNo);
+	int selectAlarmCount(int memberNo);
 	int selectMemberNickName(String nickName);
-	List<Alarm> selectAlarmList(int memberNo);
+	List<Alarm> selectAlarmList(Map<String,Object> map);
 }

@@ -2,6 +2,7 @@ package kr.co.buskers.repository.mapper;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import kr.co.buskers.repository.domain.ArtistPhoto;
 import kr.co.buskers.repository.domain.ArtistShow;
@@ -18,6 +19,7 @@ public interface ArtistBoardMapper {
 	
 //	ArtistShow insert
 	void insertArtistShow(ArtistShow artistShow);
+	void insertShowAlarmIsReadStatus(Map<String,Object> map);
 	
 //	ArtistShow update
 	void updateArtistShowByNo(ArtistShow artistShow);

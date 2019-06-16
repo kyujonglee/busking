@@ -183,6 +183,14 @@
 		values(#{name},#{title},#{sysname},#{path},#{buskerNo})
 	</insert>
 	
+	<insert id="insertShowAlarmIsReadStatus">
+		insert into tb_alarm(
+			member_no, data_type, data_no
+		)values(
+			#{memberNo}, #{dataType}, #{dataNo}
+		)
+	</insert>
+	
 </mapper>
 
 
