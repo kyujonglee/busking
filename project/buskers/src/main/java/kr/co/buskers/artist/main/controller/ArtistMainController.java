@@ -77,4 +77,9 @@ public class ArtistMainController {
 		mainService.updateIntro(busker);
 	}
 	
+	@RequestMapping("chat-ajax.do")
+	@ResponseBody
+	public Busker selectBuskerActivityName(int buskerNo) {
+		return mainService.selectBuskerActivityName(buskerNo);
+	}
 }

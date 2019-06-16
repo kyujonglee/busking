@@ -3,6 +3,8 @@ package kr.co.buskers.artist.board.controller;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.co.buskers.artist.board.service.ArtistBoardService;
 import kr.co.buskers.artist.main.service.ArtistMainService;
+import kr.co.buskers.repository.domain.Alarm;
 import kr.co.buskers.repository.domain.ArtistShow;
 import kr.co.buskers.repository.domain.Busker;
 import kr.co.buskers.repository.domain.Video;
@@ -59,7 +62,8 @@ public class ArtistBoardController {
 	}
 	
 	@RequestMapping("detail.do")
-	public void detail(int showNo,Model model, int buskerNo) {
+	public void detail(int showNo, Model model, int buskerNo, Alarm alarm, HttpSession session) {
+		service.insertShowAlarmIsReadStatus(alarm, session);
 		model.addAttribute("show",service.selectArtistShowByNo(showNo));
 		model.addAttribute("buskerNo",buskerNo);
 	}
@@ -114,5 +118,4 @@ public class ArtistBoardController {
 	public void updateIntro (Busker busker) {
 		mainService.updateIntro(busker);
 	}
-	
 }

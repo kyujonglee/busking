@@ -93,7 +93,7 @@
 		  from tb_follow f, tb_busker_show s, tb_busker b, tb_member m
 		 where f.member_no = #{memberNo}
 		   and f.busker_no = s.busker_no
-		   and s.busker_no=b.busker_no
+		   and s.busker_no = b.busker_no
 		   and b.member_no = m.member_no
 		   and f.follow_status = 'y'
 		 order by s.reg_date desc;
