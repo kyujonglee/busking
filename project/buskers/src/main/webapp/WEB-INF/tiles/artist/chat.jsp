@@ -30,8 +30,10 @@
 		<div class="content">
 			<div class="chatting_room_info">
 				<i class="fas fa-bars"></i>
-				<img src="<c:url value='/resources/img/twilight.jpg'/>"/>
-				<p>새벽공방 채널 채팅방</p>
+				<span class="chatting_room_busker_profile_img"></span>
+				<p>
+					<span class="chatting_room_busker_activity_name"></span> 채널 채팅방
+				</p>
 				<div class="opacity_slider"></div>
 			</div> 
 			
@@ -172,7 +174,16 @@
 		}
 		
 		let date = new Date();
-		let hour = date.getHours();
+		let hour = "";
+		if (date.getHours() >= 12) {
+			if (date.getHours() >= 13) {
+				hour = "오후 " + (date.getHours() - 12);
+			} else {
+				hour = "오후 " + (date.getHours());
+			}
+		} else {
+			hour = "오전" + date.getHours();
+		}
 		let minutes = date.getMinutes();
 		if (parseInt(minutes) < 10) {
 			minutes = "0" + minutes;
@@ -180,7 +191,7 @@
 		let html = "";
 		
 		html += "<li class='sent'>";
-		html +=		"<span><i class='fas fa-circle'></i>" + "${sessionScope.user.nickName}" + "<time>" + hour + " : " + minutes + "</time></span>";
+		html +=		"<span><i class='fas fa-circle'></i>" + "${sessionScope.user.nickName}" + "<time>" + hour + ":" + minutes + "</time></span>";
 		html +=		"<div>";
 		html +=			'<img src="<c:url value='/file/download.do'/>?path=${sessionScope.user.profileImgPath}${sessionScope.user.profileImg}"' + ` onError="this.src='<c:url value='/resources/img/profile.png' />';"` +'"/>';
 		if ($(".message-input input").val().startsWith("@")) {
@@ -221,19 +232,32 @@
     });
 	
 	$(".fa-bars").click(function () {
-		$("#sidepanel").toggle();
+		$("#sidepanel").fadeToggle();
 	});
 	
 	$('.opacity_slider').slider ({
 		min : 0.2,
 		max : 1,
 		value : 1,
-		step : 0.05,
+		step : 0.025,
 		orientation: "horizontal",
 		range: "min",
 		animate: true,
 		slide : function ( event, ui ) {
 			$('#frame').css( 'opacity', ui.value );
+		}
+	});
+	
+	let chatBuskerNo = "${param.buskerNo}";
+	
+	$.ajax({
+		type: "POST",
+		url: "/buskers/artist/main/chat-ajax.do",
+		data: {buskerNo : chatBuskerNo},
+		success: function (result) {
+			console.log(result);
+			$(".chatting_room_busker_activity_name").text(result.activityName);
+			$(".chatting_room_busker_profile_img").html('<img src="<c:url value='/file/download.do'/>?path=' + result.profileImgPath + result.profileImg + '"/>');
 		}
 	});
 </script>

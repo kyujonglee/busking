@@ -6,6 +6,7 @@ import java.util.Map;
 
 import kr.co.buskers.repository.domain.ArtistPhoto;
 import kr.co.buskers.repository.domain.ArtistShow;
+import kr.co.buskers.repository.domain.Busker;
 import kr.co.buskers.repository.domain.SocialUrl;
 import kr.co.buskers.repository.domain.Video;
 
@@ -55,4 +56,7 @@ public interface ArtistBoardMapper {
 	void deleteVideo(int videoNo);
 	
 	void insertArtistPhoto(ArtistPhoto artistPhoto);
+	
+// 채팅
+	Busker selectBuskerActivityName(int buskerNo);
 }

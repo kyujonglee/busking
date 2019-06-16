@@ -26,4 +26,6 @@ public interface ArtistMainService {
 	public Busker selectBusker(int buskerNo);
 	
 	List<Busker> selectRecommendArtist(int buskerNo);
+	
+	Busker selectBuskerActivityName(int buskerNo);
 }

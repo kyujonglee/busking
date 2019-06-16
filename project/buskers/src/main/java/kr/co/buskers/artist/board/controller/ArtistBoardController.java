@@ -118,5 +118,4 @@ public class ArtistBoardController {
 	public void updateIntro (Busker busker) {
 		mainService.updateIntro(busker);
 	}
-	
 }

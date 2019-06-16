@@ -191,6 +191,13 @@
 		)
 	</insert>
 	
+	<select id="selectBuskerActivityName" parameterType="int" resultType="busker">
+		select * 
+		  from tb_busker b, tb_member m
+		 where b.member_no = m.member_no
+		   and b.busker_no = #{buskerNo}
+	</select>
+	
 </mapper>
 
 
