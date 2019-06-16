@@ -30,7 +30,7 @@
 }
 
 .main-agency .agency-table tr {
-  height: 40px;
+  height: 30px;
 }
 
 .main-agency .agency-table tr:first-child {
@@ -41,7 +41,8 @@
 .main-agency .agency-table th {
   text-align: center;
   vertical-align: middle;
-  padding: 12px 10px;
+  padding: 10px 10px;
+  box-sizing : border-box;
 }
 .main-agency .agency-table td a {
 	display : block;
@@ -57,9 +58,6 @@
   border-bottom: 2px solid rgba(0, 0, 0, 0.001);
 }
 
-/* .agency .agency-table tr:last-child td{
-    border-bottom: 2px solid rgba(0,0,0,0.01);
-} */
 
 .main-agency .agency-table i {
   color: rgb(240, 205, 49);
@@ -98,3 +96,30 @@
 .paging-selected{
     color:var(--color-darkgray);
 }
+
+.agency-table__admin {
+	all : unset;
+	width: 70px;
+	height : 30px;
+	line-height : 30px;
+	color : white;
+	font-size : 16px;
+	border-radius : 5px;
+	opacity : 0.9;
+	transition : all 0.3s ease-in-out;
+	cursor : pointer;
+	box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
+.ing {
+	background-color : var(--color-blue);
+}
+
+.end {
+	background-color : var(--color-green);
+}
+
+
+
+
+
