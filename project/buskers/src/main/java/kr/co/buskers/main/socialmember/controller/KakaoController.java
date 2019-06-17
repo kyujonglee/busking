@@ -17,6 +17,8 @@ import kr.co.buskers.repository.domain.Member;
 public class KakaoController {
 	@Autowired
 	private MemberService service;
+
+	private String prevUrl;
 	
 	// 카카오 로그인 디비에 없을시에 회원가입 처리후 메인으로 이동
 	@RequestMapping("social-signup.do")
@@ -39,7 +41,7 @@ public class KakaoController {
 		
 		//세션에다시올려줌
 		session.setAttribute("user", user);
-		session.setMaxInactiveInterval(60 * 60);   //물어보기
+		session.setMaxInactiveInterval(60 * 60);   
 		return "redirect:/index.jsp";
 	}
 	
@@ -59,10 +61,11 @@ public class KakaoController {
 	// 로그인 처리
 	@RequestMapping("social-login.do")
 	public String login(HttpSession session, Member member,RedirectAttributes rttr) {
+		
 		Member user = service.login(member);
 		user.setAccessToken(member.getAccessToken());
 		session.setAttribute("user", user);
-		session.setMaxInactiveInterval(60 * 60);   //물어보기
+		session.setMaxInactiveInterval(60 * 60);  
 		return "redirect:/index.jsp";
 	}
 	
@@ -72,12 +75,7 @@ public class KakaoController {
 		try {
 			model.addAttribute("id",member.getId());
 			model.addAttribute("memberType",member.getMemberType());
-			
-			
-//			Member user = service.login(member);
-//			session.setAttribute("user", user);
 		}catch(Exception e) {
 		}
 	}
-	
 }

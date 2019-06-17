@@ -16,6 +16,9 @@
 	height:90vh;
 	overflow:scroll;
 }
+.photo_body_wrapper{
+	height:100%;
+}
 .photo_body .artist__photo__img{
 	width : 25%;
 /* 	height:100%;  */
@@ -96,4 +99,12 @@
 .modal-footer{
 	padding:7px;
 }
-
+.select_title_text{
+	border-style:none;
+	text-align:center;
+	width:100%;
+}
+.title_text_click{
+	background:var(--color-orange);
+	width:100%;
+}
