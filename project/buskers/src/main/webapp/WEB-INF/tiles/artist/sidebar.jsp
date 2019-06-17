@@ -294,29 +294,28 @@
 				  type:'warning',
 				  timer:2000	
 			});
+		}else{
+			$.ajax({
+				url : "follow-ajax.do",
+				data : {buskerNo: buskerNo,memberNo:"${sessionScope.user.memberNo}"},
+			}).done(function(result){
+				if(result == 1){
+					Swal.fire({
+						  title:'팔로우 성공',
+						  type:'success',
+						  timer:2000	
+					});
+					$(".busker__profile-header-follow").css("background-color","red").html("팔로우");	
+				}else {
+					Swal.fire({
+						  title:'팔로우 취소',
+						  type:'success',
+						  timer:2000	
+					});
+					$(".busker__profile-header-follow").css("background-color","rgb(243,116,32)").html("팔로우+");		
+				}
+			});
 		}
-		
-		
-		$.ajax({
-			url : "follow-ajax.do",
-			data : {buskerNo: buskerNo,memberNo:"${sessionScope.user.memberNo}"},
-		}).done(function(result){
-			if(result == 1){
-				Swal.fire({
-					  title:'팔로우 성공',
-					  type:'success',
-					  timer:2000	
-				});
-				$(".busker__profile-header-follow").css("background-color","red").html("팔로우");	
-			}else {
-				Swal.fire({
-					  title:'팔로우 취소',
-					  type:'success',
-					  timer:2000	
-				});
-				$(".busker__profile-header-follow").css("background-color","rgb(243,116,32)").html("팔로우+");		
-			}
-		});
 	})
 	
 
