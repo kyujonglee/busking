@@ -8,25 +8,25 @@
                 from ( select *
                          from tb_message m, tb_member mem
                         where m.sender_member_no = mem.member_no
-                      and (@rownum:=0)=0
-                      and receiver_member_no = #{receiverMemberNo}
-                      and receiver_is_deleted = 'N'
+                          and (@rownum:=0)=0
+                          and receiver_member_no = #{receiverMemberNo}
+                          and receiver_is_deleted = 'N'
                   <choose>
-                     <when test="searchType == 'title'">
-                        and title like concat('%', #{input}, '%')
-                     </when>
-                     <when test="searchType == 'content'">
-                        and f.content like concat('%', #{input}, '%')
-                     </when>
-                     <when test="searchType == 'nickName'">
-                        and nick_name like concat('%', #{input}, '%')
-                     </when>
-                     <otherwise>
-                     </otherwise>
+           	  		<when test="searchType == 'title'">
+                  		and title like concat('%', #{input}, '%')
+                  	</when>
+                  	<when test="searchType == 'content'">
+                  		and f.content like concat('%', #{input}, '%')
+               	  	</when>
+                  	<when test="searchType == 'nickName'">
+                  		and nick_name like concat('%', #{input}, '%')
+                  	</when>
+                  	<otherwise>
+                  	</otherwise>
                   </choose>
-                    order by msg_no desc
+                  order by msg_no desc
                   
-                      ) a
+                  ) a
              ) b
        where rnum between #{begin} and #{end}
    </select>
@@ -55,7 +55,7 @@
                   </choose>
                     order by msg_no desc
                   
-                      ) a
+                    ) a
              ) b
        where rnum between #{begin} and #{end}
    </select>
@@ -163,7 +163,7 @@
                and f.member_no = 1
             )
             +
-              (
+            (
               select count(*)
               from tb_busker_notify_board n, tb_follow f, tb_member m, tb_busker b
              where n.busker_no = f.busker_no
@@ -172,9 +172,9 @@
                and f.follow_status = 'y'
                and f.member_no = 1
             )
-              -
-              (
-              select count(*)
+            -
+            (
+            select count(*)
               from tb_alarm
              where member_no = 1
               ) as is_not_read_cnt

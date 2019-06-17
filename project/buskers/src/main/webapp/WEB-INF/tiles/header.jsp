@@ -261,7 +261,6 @@
 	    }
 	});
 	
-<<<<<<< HEAD
 	$.ajax({
 		type: "POST",
 		url: "/buskers/main/header/alarm/alarm-ajax.do",
@@ -312,7 +311,6 @@
 		console.log( "스크롤 있는 곳의 길이 : " + $(".busker_alarm_list").height() );
 		
 	});
-=======
 	let index = 0;
 	
 	function alarm() {
@@ -387,6 +385,4 @@
 		$(this).css({"animation": "none"});
 	});
 	
-	
->>>>>>> master
 </script>
