@@ -21,6 +21,7 @@ import kr.co.buskers.repository.domain.Busker;
 import kr.co.buskers.repository.domain.Member;
 import kr.co.buskers.repository.domain.SearchBoard;
 import kr.co.buskers.repository.domain.SearchPage;
+import kr.co.buskers.repository.domain.Video;
 import kr.co.buskers.repository.mapper.MainMapper;
 
 @Service
@@ -127,6 +128,11 @@ public class MainServiceImpl implements MainService {
 	public List<ArtistPhoto> selectFollowArtistPhotoList(HttpSession session) {
 		Member member = (Member)session.getAttribute("user");
 		return mapper.selectFollowArtistPhotoList(member.getMemberNo());
+	}
+	
+	public List<Video> selectFollowArtistVideoList(HttpSession session) {
+		Member member = (Member)session.getAttribute("user");
+		return mapper.selectFollowArtistVideoList(member.getMemberNo());
 	}
 
 	@Override

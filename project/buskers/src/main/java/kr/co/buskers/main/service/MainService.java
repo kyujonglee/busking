@@ -11,6 +11,7 @@ import kr.co.buskers.repository.domain.ArtistShow;
 import kr.co.buskers.repository.domain.Busker;
 import kr.co.buskers.repository.domain.SearchBoard;
 import kr.co.buskers.repository.domain.SearchPage;
+import kr.co.buskers.repository.domain.Video;
 
 public interface MainService {
 	public void exportCSV();
@@ -18,6 +19,7 @@ public interface MainService {
 	public List<ArtistShow> mapDetail(ArtistShow artistShow);
 	public Map<String, Object> selectArtistShowToday(HttpSession session);
 	public List<ArtistPhoto> selectFollowArtistPhotoList(HttpSession session);
+	public List<Video> selectFollowArtistVideoList(HttpSession session);
 	public ArtistShow markerDetail(int showNo);
 	public ArtistShow markerImage(int showNo);
 	public List<SearchBoard> mainBoardSearch(SearchPage searchPage);

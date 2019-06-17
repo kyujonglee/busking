@@ -161,15 +161,6 @@
     vertical-align: middle;
 }
 
-.swiper-container-horizontal > .swiper-pagination-progressbar {
-	background: grey;
-	width: 100%;
-    height: 4px;
-    left: 0;
-    top: auto !important;
-    bottom: 0 !important;
-}
-
 .title_header_activity_name {
 	display: block;
 	font-size: 12px;
@@ -196,7 +187,6 @@
 }
 
 .photo_card_image {
-	width: 300px; 
 	height: 300px;
 	display: flex;
     align-items: center;
@@ -246,9 +236,24 @@
 }
 
 .buskers_feed_photo .swiper-pagination {
-	margin-bottom: 100px;
+	margin-bottom: 80px;
 }
 
 .buskers_feed_photo_container .swiper-wrapper {
 	margin-bottom: 20px;
 }
+
+.feed_video {
+	display: flex;
+	justify-content: center;
+}
+
+.feed_video iframe {
+	width: 800px;
+	height: 450px;
+	margin-bottom: 50px;
+}
+
+.photo_card_activity_name:hover {
+	color: tomato;
+} 

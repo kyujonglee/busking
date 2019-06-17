@@ -16,6 +16,7 @@ import kr.co.buskers.main.service.MainService;
 import kr.co.buskers.repository.domain.ArtistPhoto;
 import kr.co.buskers.repository.domain.ArtistShow;
 import kr.co.buskers.repository.domain.SearchPage;
+import kr.co.buskers.repository.domain.Video;
 
 @Controller("kr.co.buskers.main.controller.MainController")
 @RequestMapping("/main")
@@ -86,5 +87,11 @@ public class MainController {
 	@ResponseBody
 	public List<ArtistPhoto> selectFollowArtistPhotoList(HttpSession session) {
 		return service.selectFollowArtistPhotoList(session);
+	}
+	
+	@RequestMapping("feed-video-ajax.do")
+	@ResponseBody
+	public List<Video> selectFollowArtistVideoList(HttpSession session) {
+		return service.selectFollowArtistVideoList(session);
 	}
 }

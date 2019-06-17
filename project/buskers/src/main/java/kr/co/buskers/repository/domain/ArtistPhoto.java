@@ -13,7 +13,14 @@ public class ArtistPhoto {
 	private String sysname;
 	private String path;
 	private Date regDate;
+	private String activityName;
 	
+	public String getActivityName() {
+		return activityName;
+	}
+	public void setActivityName(String activityName) {
+		this.activityName = activityName;
+	}
 	public int getBuskerNo() {
 		return buskerNo;
 	}

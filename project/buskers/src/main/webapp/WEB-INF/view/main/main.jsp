@@ -208,174 +208,20 @@
 				    <div class="buskers_feed_video">
 				    	<div class="buskers_feed_follow">아티스트 영상 <span>팔로우 채널</span></div>
 					    <div class="swiper-container swiper-container-video">
-							<div class="swiper-wrapper">
-								<div class="swiper-slide feed_video">
-							    	<iframe src="https://www.youtube.com/embed/y_oPqEzX_X4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-						    	</div>
-						    	
-						    	<div class="swiper-slide feed_video">
-							    	<iframe src="https://www.youtube.com/embed/y_oPqEzX_X4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-							    </div>
-							    
-								<div class="swiper-slide feed_video">
-							    	<iframe src="https://www.youtube.com/embed/y_oPqEzX_X4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-						    	</div>
-						    	
-						    	<div class="swiper-slide feed_video">
-							    	<iframe src="https://www.youtube.com/embed/y_oPqEzX_X4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-							    </div>
-							    
-								<div class="swiper-slide feed_video">
-							    	<iframe src="https://www.youtube.com/embed/y_oPqEzX_X4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-						    	</div>
-						    	
-						    	<div class="swiper-slide feed_video">
-							    	<iframe src="https://www.youtube.com/embed/y_oPqEzX_X4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-							    </div>
-							    
+							<div class="swiper-wrapper swiper-wrapper-video">
 						    </div>
 						    
 						    <div class="swiper-pagination"></div>
 						    
-						    <div class="swiper-button-next"></div>
-						    <div class="swiper-button-prev"></div>	
+						    <div class="swiper-button-next swiper-button-white"></div>
+						    <div class="swiper-button-prev swiper-button-white"></div>
 				    	</div>
 				    </div>
 				    
 				    <div class="buskers_feed_photo">
 				    	<div class="buskers_feed_follow">아티스트 사진 <span>팔로우 채널</span></div>
 						<div class="buskers_feed_photo_container">
-							<div class="swiper-wrapper">
-								<div class="photo_card_wrapper swiper-slide">
-									<div class="photo_card">
-										<div class="photo_card_image">
-											<img src="<c:url value='/resources/img/twilight.jpg'/>" alt="img">
-										</div>
-										<div class="photo_card_body">
-											<div class="photo_card_body_header">
-												<p class="photo_card_title">Card title</p>
-											</div>
-											<div class="photo_card_body_footer">
-												<p class="photo_card_activity_name">By&nbsp새벽공방</p>
-												<p class="photo_card_reg_date">2019.06.06</p>
-											</div>
-										</div>
-									</div>
-								</div>
-								
-								<div class="photo_card_wrapper swiper-slide">
-									<div class="photo_card">
-										<div class="photo_card_image">
-											<img src="<c:url value='/resources/img/door1.jpg'/>" alt="img">
-										</div>
-										<div class="photo_card_body">
-											<div class="photo_card_body_header">
-												<p class="photo_card_title">Card title</p>
-											</div>
-											<div class="photo_card_body_footer">
-												<p class="photo_card_activity_name">By&nbsp새벽공방</p>
-												<p class="photo_card_reg_date">2019.06.06</p>
-											</div>
-										</div>
-									</div>
-								</div>
-								
-								<div class="photo_card_wrapper swiper-slide">
-									<div class="photo_card">
-										<div class="photo_card_image">
-											<img src="<c:url value='/resources/img/tower.jpg'/>" alt="img">
-										</div>
-										<div class="photo_card_body">
-											<div class="photo_card_body_header">
-												<p class="photo_card_title">Card title</p>
-											</div>
-											<div class="photo_card_body_footer">
-												<p class="photo_card_activity_name">By&nbsp새벽공방</p>
-												<p class="photo_card_reg_date">2019.06.06</p>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="photo_card_wrapper swiper-slide">
-									<div class="photo_card">
-										<div class="photo_card_image">
-											<img src="<c:url value='/resources/img/tower.jpg'/>" alt="img">
-										</div>
-										<div class="photo_card_body">
-											<div class="photo_card_body_header">
-												<p class="photo_card_title">Card title</p>
-											</div>
-											<div class="photo_card_body_footer">
-												<p class="photo_card_activity_name">By&nbsp새벽공방</p>
-												<p class="photo_card_reg_date">2019.06.06</p>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="photo_card_wrapper swiper-slide">
-									<div class="photo_card">
-										<div class="photo_card_image">
-											<img src="<c:url value='/resources/img/tower.jpg'/>" alt="img">
-										</div>
-										<div class="photo_card_body">
-											<div class="photo_card_body_header">
-												<p class="photo_card_title">Card title</p>
-											</div>
-											<div class="photo_card_body_footer">
-												<p class="photo_card_activity_name">By&nbsp새벽공방</p>
-												<p class="photo_card_reg_date">2019.06.06</p>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="photo_card_wrapper swiper-slide">
-									<div class="photo_card">
-										<div class="photo_card_image">
-											<img src="<c:url value='/resources/img/tower.jpg'/>" alt="img">
-										</div>
-										<div class="photo_card_body">
-											<div class="photo_card_body_header">
-												<p class="photo_card_title">Card title</p>
-											</div>
-											<div class="photo_card_body_footer">
-												<p class="photo_card_activity_name">By&nbsp새벽공방</p>
-												<p class="photo_card_reg_date">2019.06.06</p>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="photo_card_wrapper swiper-slide">
-									<div class="photo_card">
-										<div class="photo_card_image">
-											<img src="<c:url value='/resources/img/tower.jpg'/>" alt="img">
-										</div>
-										<div class="photo_card_body">
-											<div class="photo_card_body_header">
-												<p class="photo_card_title">Card title</p>
-											</div>
-											<div class="photo_card_body_footer">
-												<p class="photo_card_activity_name">By&nbsp새벽공방</p>
-												<p class="photo_card_reg_date">2019.06.06</p>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="photo_card_wrapper swiper-slide">
-									<div class="photo_card">
-										<div class="photo_card_image">
-											<img src="<c:url value='/resources/img/tower.jpg'/>" alt="img">
-										</div>
-										<div class="photo_card_body">
-											<div class="photo_card_body_header">
-												<p class="photo_card_title">Card title</p>
-											</div>
-											<div class="photo_card_body_footer">
-												<p class="photo_card_activity_name">By&nbsp새벽공방</p>
-												<p class="photo_card_reg_date">2019.06.06</p>
-											</div>
-										</div>
-									</div>
-								</div>
+							<div class="swiper-wrapper swiper-wrapper-photo">
 							</div>
 								
 							<div class="swiper-pagination"></div>
@@ -1015,42 +861,12 @@
     	}
     });
 	
-	new Swiper('.swiper-container-video', {
-	    slidesPerView: 4,
-	    spaceBetween: 70,
-	    pagination: {
-	    	el: '.swiper-pagination',
-	        type: 'progressbar',
-		    clickable: true,
-	    },
-	    navigation: {
-	        nextEl: '.swiper-button-next',
-	        prevEl: '.swiper-button-prev',
-        }
-    });
-	
-	new Swiper('.buskers_feed_photo_container', {
-	    slidesPerView: 4,
-	    spaceBetween: 70,
-	    loop: true,
-	    centeredSlides: true,
-	    pagination: {
-	      el: '.swiper-pagination',
-	      clickable: true,
-	    },
-	    autoplay: {
-	        delay: 2500,
-	        disableOnInteraction: false,
-    	}
-    });
-	
 	$.ajax({
 		type: "POST",
 		url: "/buskers/main/feed-photo-ajax.do",
 		success: function (result) {
 			console.log(result);
 			let html = "";
-			/*
 			for (let i = 0; i < result.length; i++) {
 				
 				html += '<div class="photo_card_wrapper swiper-slide">';
@@ -1063,16 +879,15 @@
 				html +=					'<p class="photo_card_title">' + result[i].title + '</p>';
 				html +=				'</div>';
 				html +=				'<div class="photo_card_body_footer">';
-				html +=					'<p class="photo_card_activity_name">By&nbsp' + result[i].activityName + '</p>';
-				html +=					'<p class="photo_card_reg_date">2019.06.06</p>';
+				html +=					'<a href="/buskers/artist/main/main.do?buskerNo=' + result[i].buskerNo + '" class="photo_card_activity_name">By&nbsp' + result[i].activityName + '</a>';
+				html +=					'<p class="photo_card_reg_date">' + new Date(result[i].regDate).format('yyyy.MM.dd') + '</p>';
 				html +=				'</div>';
 				html +=			'</div>';
 				html +=		'</div>';
 				html +=	'</div>';
 			}
 			
-			html += '<div class="swiper-pagination"></div>';
-			$(".buskers_feed_photo_container").html(html);
+			$(".swiper-wrapper-photo").html(html);
 			
 			new Swiper('.buskers_feed_photo_container', {
 			    slidesPerView: 4,
@@ -1088,7 +903,35 @@
 			        disableOnInteraction: false,
 		    	}
 		    });
-			*/
+		}
+	});
+	
+	$.ajax({
+		type: "POST",
+		url: "/buskers/main/feed-video-ajax.do",
+		success: function (result) {
+			console.log(result);
+			let html = "";
+			for (let i = 0; i < result.length; i++) {
+				
+				html += '<div class="swiper-slide feed_video">';
+			    html +=		'<iframe src="' + result[i].url + '" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+		    	html += '</div>';
+			}
+			
+			$(".swiper-wrapper-video").html(html);
+			
+			new Swiper('.swiper-container-video', {
+				loop: true,
+				pagination: {
+		 			el: '.swiper-pagination',
+			  		clickable: true,
+				},
+				navigation: {
+			  		nextEl: '.swiper-button-next',
+			  		prevEl: '.swiper-button-prev',
+				}
+		    });
 		}
 	});
 		
