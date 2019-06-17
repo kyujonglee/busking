@@ -111,6 +111,12 @@
 		       purpose = #{purpose}
 		 where agency_info_no = #{agencyInfoNo}
 	</update>
+	
+	<update id="updateAgencyPermission">
+		update tb_agency_info
+		   set permission = #{permission}
+		 where agency_info_no = #{agencyInfoNo}
+	</update>
 </mapper>
 
 
