@@ -125,9 +125,16 @@ public class ArtistBoardController {
 	public List<ArtistPhoto> selectPhoto(int buskerNo){
 		return mainService.selectPhoto(buskerNo);
 	}
+	
 	@RequestMapping("select-photo-no-ajax.do")
 	@ResponseBody
 	public ArtistPhoto selectPhotoByNo(int fileNo){
 		return mainService.selectPhotoByNo(fileNo);
+	}
+	
+	@RequestMapping("delete-photo.do")
+	@ResponseBody
+	public void deletePhoto(int fileNo) {
+		mainService.deletePhoto(fileNo);
 	}
 }

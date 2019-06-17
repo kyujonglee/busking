@@ -61,4 +61,6 @@ public interface ArtistBoardMapper {
 	
 // 채팅
 	Busker selectBuskerActivityName(int buskerNo);
+	
+	void deletePhoto(int fileNo);
 }

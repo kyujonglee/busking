@@ -186,13 +186,12 @@ public class FileServiceImpl implements FileService {
 	@Override
 	public String insertArtistPhoto(ArtistPhoto artistPhoto) throws Exception{
 		MultipartFile attach = artistPhoto.getFile();
-		
 		System.out.println("사용자가 선택한 파일명 : "+attach.getOriginalFilename());
 		
 		UUID uuid = UUID.randomUUID();
 		
-		artistPhoto.setSysname(uuid.toString());
 		artistPhoto.setName(attach.getOriginalFilename());
+		artistPhoto.setSysname(uuid.toString()+attach.getOriginalFilename());
 		String path = FILE_PATH + "/artistPhoto/"+ artistPhoto.getBuskerNo()+"/"+artistPhoto.getSysname();
 		File file = new File(path);
 		if(!file.exists()) file.mkdirs();
