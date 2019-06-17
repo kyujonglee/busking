@@ -194,6 +194,21 @@
 		  from tb_artist_photo
 		 where file_no = #{fileNo}
 	</select>
+
+	<insert id="insertShowAlarmIsReadStatus">
+		insert into tb_alarm(
+			member_no, data_type, data_no
+		)values(
+			#{memberNo}, #{dataType}, #{dataNo}
+		)
+	</insert>
+	
+	<select id="selectBuskerActivityName" parameterType="int" resultType="busker">
+		select * 
+		  from tb_busker b, tb_member m
+		 where b.member_no = m.member_no
+		   and b.busker_no = #{buskerNo}
+	</select>
 	
 </mapper>
 

@@ -2,9 +2,11 @@ package kr.co.buskers.repository.mapper;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import kr.co.buskers.repository.domain.ArtistPhoto;
 import kr.co.buskers.repository.domain.ArtistShow;
+import kr.co.buskers.repository.domain.Busker;
 import kr.co.buskers.repository.domain.SocialUrl;
 import kr.co.buskers.repository.domain.Video;
 
@@ -18,6 +20,7 @@ public interface ArtistBoardMapper {
 	
 //	ArtistShow insert
 	void insertArtistShow(ArtistShow artistShow);
+	void insertShowAlarmIsReadStatus(Map<String,Object> map);
 	
 //	ArtistShow update
 	void updateArtistShowByNo(ArtistShow artistShow);
@@ -55,4 +58,7 @@ public interface ArtistBoardMapper {
 	void insertArtistPhoto(ArtistPhoto artistPhoto);
 	List<ArtistPhoto> selectPhoto(int buskerNo);
 	ArtistPhoto selectPhotoByNo(int fileNo);
+	
+// 채팅
+	Busker selectBuskerActivityName(int buskerNo);
 }

@@ -50,9 +50,9 @@ public class HeaderController {
 	
 	@RequestMapping("alarm/alarm-ajax.do")
 	@ResponseBody
-	public Map<String, Object> alarm(HttpSession session, Model model) {
-		service.selectAlarmList(session);
-		Map<String, Object> result = service.selectAlarmList(session);
+	public Map<String, Object> alarm(HttpSession session, Model model, int index) {
+		Map<String, Object> result = service.selectAlarmList(session, index);
+		System.out.println(index);
 		model.addAttribute("alarm", result.get("alarm"));
 		
 		return result;
@@ -63,6 +63,13 @@ public class HeaderController {
 		
 		service.deleteSentMessage(msgNo);
 		return UrlBasedViewResolver.REDIRECT_URL_PREFIX + "list.do?active=sent_box";
+	}
+	
+	@RequestMapping("alarm/alarm-count-ajax.do")
+	@ResponseBody
+	public int selectAlarmCount(HttpSession session) {
+		
+		return service.selectAlarmCount(session);
 	}
 	
 	@RequestMapping("message/message-count-ajax.do")

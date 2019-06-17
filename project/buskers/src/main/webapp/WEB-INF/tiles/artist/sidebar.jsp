@@ -321,6 +321,31 @@
 
 	
 	
+// Edit
+	$("#myButtons1").click(function(){
+	let faceBookUrl = $("#faceBookUrl").val();
+	let youTubeUrl = $("#youTubeUrl").val();
+	let instargramUrl = $("#instargramUrl").val();
+		$.ajax({
+			url : "social-url.do",
+			data : {faceBookUrl:faceBookUrl , youTubeUrl:youTubeUrl, instargramUrl:instargramUrl ,buskerNo:buskerNo},
+		}).done(function(result){
+			$("#facebookUrl").val(result.faceBookUrl);
+		    $("#youtubeUrl").val(result.youTubeUrl);
+		    $("#instargramUrl").val(result.instargramUrl);
+		});
+    	$('#myModal').modal('hide');
+    });
+    
+    $(".facebook").click(function(){
+    	window.location.href = 	$("#faceBookUrl").val();
+    })
+    $(".youtube").click(function(){
+    	window.location.href = '${socialUrl.youTubeUrl}';
+    })
+    $(".instargram").click(function(){
+    	window.location.href = '${socialUrl.instargramUrl}';
+    })
     
     /** 관련 버스커 */
     $.ajax({

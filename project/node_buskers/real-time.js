@@ -45,10 +45,17 @@ chat.on("connection", function (socket) {
     console.log("채팅방에 사용자 접속..");
 
 	socket.on("disconnect", function () {
+        console.log("로그아웃함");
 		for (let i = 0; i < Object.keys(members).length; i++) {
             if (members[Object.keys(members)[i]] == socket.id) {
                 chat.emit("out", Object.keys(members)[i]);
-                delete members[Object.keys(members)[i]];
+                for (let j = 0; j < profile.length; j++) {
+                    if (profile[j].nickName == Object.keys(members)[i]) {
+                        profile.splice(j, 1);
+                        delete members[Object.keys(members)[i]];
+                    }
+                }
+
                 chat.emit("join", profile);
             }
         }
@@ -59,29 +66,19 @@ chat.on("connection", function (socket) {
         
         let profileFlag = true;
         for (let i = 0; i < profile.length; i++) {
-            if (profile[i].nickName == data.nickName) profileFlag = false;
+            if (profile[i].nickName == data.nickName) {
+                profileFlag = false;
+                profile[i].profile = data.profile;
+            }
         }
         if (profileFlag) profile.push(data);
         chat.emit("join", profile);
         chat.emit("in", data.nickName);
     });
 
-    /*
-    socket.on("msg", function (data) {
-        io.to(members[data.receiver]).emit(
-            "msg",
-            {
-                sender: data.sender,
-                title: data.title
-            }
-        );
-    });
-    */
-
     socket.on("chat", function (data) {
         let image = "";
         for (let i = 0; i < profile.length; i++) {
-            console.log(profile[i].nickName);
             if (profile[i].nickName == data.sender) {
                 image = profile[i].profile;
             }

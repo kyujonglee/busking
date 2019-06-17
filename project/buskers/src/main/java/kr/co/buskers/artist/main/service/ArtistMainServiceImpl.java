@@ -126,4 +126,9 @@ public class ArtistMainServiceImpl implements ArtistMainService {
 		return boardMapper.selectPhotoByNo(fileNo);
 	}
 	
+	@Override
+	public Busker selectBuskerActivityName(int buskerNo) {
+		return boardMapper.selectBuskerActivityName(buskerNo);
+	}
+	
 }

@@ -31,4 +31,6 @@ public interface ArtistMainService {
 	List<ArtistPhoto> selectPhoto(int buskerNo);
 
 	ArtistPhoto selectPhotoByNo(int fileNo);
+	
+	Busker selectBuskerActivityName(int buskerNo);
 }

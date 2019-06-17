@@ -11,7 +11,7 @@
 				<div class="col-lg-12">
 					<div class="panel panel-default">
 						<div class="panel-heading">
-							<i class="fa fa-picture-o" aria-hidden="true"></i> Photo	
+							<i class="fas fa-video"></i> 
 							<button id='addVideoBtn'
 								class='btn btn-primary btn-xs pull-right' data-toggle="modal"
 								data-target="#photoModal">New Photo</button>

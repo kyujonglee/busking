@@ -1,9 +1,15 @@
 .header_background {
-	background-image : url('https://cdn.pixabay.com/photo/2014/07/09/12/17/disney-388160_1280.jpg') !important;
-	background-size : cover;
-	background-position : top center;
-	  
+	background-image: url(../../../img/book2.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+/*     height: 150px; */
+    width: 100%;
 }
+
+.header_background img {
+	display: none;
+}
+
 .info {
   font-family: "Nanum Gothic", sans-serif;
   height: calc(100vh - 100px);

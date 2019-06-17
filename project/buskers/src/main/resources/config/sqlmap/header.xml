@@ -1,156 +1,187 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.co.buskers.repository.mapper.HeaderMapper">
-	<select id="selectMessage" parameterType="freePage" resultType="message">
-		select *
-  		  from (select @rownum:=@rownum+1 rnum, a.*
-		          from ( select *
-		                   from tb_message m, tb_member mem
-		                  where m.sender_member_no = mem.member_no
-						    and (@rownum:=0)=0
-						    and receiver_member_no = #{receiverMemberNo}
-						    and receiver_is_deleted = 'N'
-						<choose>
-							<when test="searchType == 'title'">
-								and title like concat('%', #{input}, '%')
-							</when>
-							<when test="searchType == 'content'">
-								and f.content like concat('%', #{input}, '%')
-							</when>
-							<when test="searchType == 'nickName'">
-								and nick_name like concat('%', #{input}, '%')
-							</when>
-							<otherwise>
-							</otherwise>
-						</choose>
-						  order by msg_no desc
-						
-	                   ) a
-		       ) b
-		 where rnum between #{begin} and #{end}
-	</select>
-	
-	<select id="selectSentMessage" parameterType="freePage" resultType="message">
-		select *
-  		  from (select @rownum:=@rownum+1 rnum, a.*
-		          from ( select *
-		                   from tb_message m, tb_member mem
-		                  where m.receiver_member_no = mem.member_no
-						    and (@rownum:=0)=0
-						    and sender_member_no = #{senderMemberNo}
-						    and sender_is_deleted = 'N'
-						<choose>
-							<when test="searchType == 'title'">
-								and title like concat('%', #{input}, '%')
-							</when>
-							<when test="searchType == 'content'">
-								and f.content like concat('%', #{input}, '%')
-							</when>
-							<when test="searchType == 'nickName'">
-								and nick_name like concat('%', #{input}, '%')
-							</when>
-							<otherwise>
-							</otherwise>
-						</choose>
-						  order by msg_no desc
-						
-	                   ) a
-		       ) b
-		 where rnum between #{begin} and #{end}
-	</select>
-	
-	<select id="selectMemberNoByNickName" parameterType="String" resultType="int">
-		select member_no
-		  from tb_member
-		 where nick_name = #{nickName};
-	</select>
-	
-	<insert id="insertMessage" parameterType="message">
-		insert into tb_message(
-			sender_member_no, receiver_member_no, title, content
-		)values(
-			#{senderMemberNo}, #{receiverMemberNo}, #{title}, #{content}
-		)
-	</insert>
-	
-	<update id="deleteMessageList" parameterType="message">
-		update tb_message
-		   set receiver_is_deleted = 'Y'
-		 where msg_no in
-		<foreach item="msgNo" collection="msgNos" open="(" separator="," close=")">
-			#{msgNo,jdbcType=VARCHAR}
-		</foreach>
+   <select id="selectMessage" parameterType="freePage" resultType="message">
+      select *
+          from (select @rownum:=@rownum+1 rnum, a.*
+                from ( select *
+                         from tb_message m, tb_member mem
+                        where m.sender_member_no = mem.member_no
+                      and (@rownum:=0)=0
+                      and receiver_member_no = #{receiverMemberNo}
+                      and receiver_is_deleted = 'N'
+                  <choose>
+                     <when test="searchType == 'title'">
+                        and title like concat('%', #{input}, '%')
+                     </when>
+                     <when test="searchType == 'content'">
+                        and f.content like concat('%', #{input}, '%')
+                     </when>
+                     <when test="searchType == 'nickName'">
+                        and nick_name like concat('%', #{input}, '%')
+                     </when>
+                     <otherwise>
+                     </otherwise>
+                  </choose>
+                    order by msg_no desc
+                  
+                      ) a
+             ) b
+       where rnum between #{begin} and #{end}
+   </select>
+   
+   <select id="selectSentMessage" parameterType="freePage" resultType="message">
+      select *
+          from (select @rownum:=@rownum+1 rnum, a.*
+                from ( select *
+                         from tb_message m, tb_member mem
+                        where m.receiver_member_no = mem.member_no
+                      and (@rownum:=0)=0
+                      and sender_member_no = #{senderMemberNo}
+                      and sender_is_deleted = 'N'
+                  <choose>
+                     <when test="searchType == 'title'">
+                        and title like concat('%', #{input}, '%')
+                     </when>
+                     <when test="searchType == 'content'">
+                        and f.content like concat('%', #{input}, '%')
+                     </when>
+                     <when test="searchType == 'nickName'">
+                        and nick_name like concat('%', #{input}, '%')
+                     </when>
+                     <otherwise>
+                     </otherwise>
+                  </choose>
+                    order by msg_no desc
+                  
+                      ) a
+             ) b
+       where rnum between #{begin} and #{end}
+   </select>
+   
+   <select id="selectMemberNoByNickName" parameterType="String" resultType="int">
+      select member_no
+        from tb_member
+       where nick_name = #{nickName};
+   </select>
+   
+   <insert id="insertMessage" parameterType="message">
+      insert into tb_message(
+         sender_member_no, receiver_member_no, title, content
+      )values(
+         #{senderMemberNo}, #{receiverMemberNo}, #{title}, #{content}
+      )
+   </insert>
+   
+   <update id="deleteMessageList" parameterType="message">
+      update tb_message
+         set receiver_is_deleted = 'Y'
+       where msg_no in
+      <foreach item="msgNo" collection="msgNos" open="(" separator="," close=")">
+         #{msgNo,jdbcType=VARCHAR}
+      </foreach>
 
-	</update>
-	
-	<update id="deleteSentMessageList" parameterType="message">
-		update tb_message
-		   set sender_is_deleted = 'Y'
-		 where msg_no in
-		<foreach item="msgNo" collection="msgNos" open="(" separator="," close=")">
-			#{msgNo,jdbcType=VARCHAR}
-		</foreach>
+   </update>
+   
+   <update id="deleteSentMessageList" parameterType="message">
+      update tb_message
+         set sender_is_deleted = 'Y'
+       where msg_no in
+      <foreach item="msgNo" collection="msgNos" open="(" separator="," close=")">
+         #{msgNo,jdbcType=VARCHAR}
+      </foreach>
 
-	</update>
-	
-	<select id="selectMessageByNo" parameterType="int" resultType="message">
-		select * 
-		  from tb_message m, tb_member mem
-		 where m.sender_member_no = mem.member_no
-		   and msg_no = #{msgNo}
-	</select>	
-	
-	<update id="updateMessageReadStatus" parameterType="int">
-		update tb_message
-		   set read_status = 'Y'
-		 where msg_no = #{msgNo}
+   </update>
+   
+   <select id="selectMessageByNo" parameterType="int" resultType="message">
+      select * 
+        from tb_message m, tb_member mem
+       where m.sender_member_no = mem.member_no
+         and msg_no = #{msgNo}
+   </select>   
+   
+   <update id="updateMessageReadStatus" parameterType="int">
+      update tb_message
+         set read_status = 'Y'
+       where msg_no = #{msgNo}
 
-	</update>
-	
-	<select id="selectMessageCount" parameterType="int" resultType="int">
-		select count(*)
-		  from tb_message
-		 where read_status = 'N'
-		   and receiver_member_no = #{memberNo}
-	</select>
-	
-	<select id="selectMemberNickName" parameterType="String" resultType="int">
-		select count(*)
-		  from tb_member
-		 where nick_name=#{nickName}
-	</select>
-	
-	<select id="selectAlarmList" parameterType="int" resultType="alarm">
-		SELECT busker_no, content, title, reg_date, is_read, '1' as data_type, profile_img, profile_img_path, activity_name
-		  FROM (select content, title, reg_date, show_no, s.busker_no, b.member_no, b.activity_name
-				  from tb_busker_show s, tb_follow f, tb_member m, tb_busker b
-				 where s.busker_no = f.busker_no
+   </update>
+   
+   <select id="selectMessageCount" parameterType="int" resultType="int">
+      select count(*)
+        from tb_message
+       where read_status = 'N'
+         and receiver_member_no = #{memberNo}
+   </select>
+   
+   <select id="selectMemberNickName" parameterType="String" resultType="int">
+      select count(*)
+        from tb_member
+       where nick_name=#{nickName}
+   </select>
+   
+   <select id="selectAlarmList" resultType="alarm">
+      SELECT busker_no, content, title, reg_date, is_read, '1' as data_type, profile_img, profile_img_path, activity_name, show_no as data_no, alarm_no
+        FROM (select content, title, reg_date, show_no, s.busker_no, b.member_no, b.activity_name
+              from tb_busker_show s, tb_follow f, tb_member m, tb_busker b
+             where s.busker_no = f.busker_no
                    and s.busker_no = b.busker_no
                    and b.member_no = m.member_no
-		           and f.follow_status = 'y'
-		           and f.member_no = #{memberNo}
-			   ) s
-		  left join tb_member m on m.member_no = s.member_no
-		  left join tb_alarm a on a.data_no = s.show_no
-		   and a.data_type = 1
-		 UNION
-		SELECT busker_no, content, title, reg_date, is_read, '2' as data_type , profile_img, profile_img_path, activity_name
-		  FROM (select content, title, reg_date, board_no, n.busker_no, b.member_no, b.activity_name
-				  from tb_busker_notify_board n, tb_follow f, tb_member m, tb_busker b
-				 where n.busker_no = f.busker_no
+                 and f.follow_status = 'y'
+                 and f.member_no = #{memberNo}
+            ) s
+        left join tb_member m on m.member_no = s.member_no
+        left join tb_alarm a on a.data_no = s.show_no
+         and a.data_type = 1
+       UNION
+      SELECT busker_no, content, title, reg_date, is_read, '2' as data_type , profile_img, profile_img_path, activity_name, board_no as data_no, alarm_no
+        FROM (select content, title, reg_date, board_no, n.busker_no, b.member_no, b.activity_name
+              from tb_busker_notify_board n, tb_follow f, tb_member m, tb_busker b
+             where n.busker_no = f.busker_no
                    and n.busker_no = b.busker_no
                    and b.member_no = m.member_no
-		           and f.follow_status = 'y'
-		           and f.member_no = #{memberNo}
-			   ) n
-		  left join tb_member m on m.member_no = n.member_no
-		  left join tb_alarm a on a.data_no = n.board_no 
-		   and a.data_type = 2
-		 order by reg_date
-<!-- 		 limit #{index}, 5; -->
-	</select>
+                 and f.follow_status = 'y'
+                 and f.member_no = #{memberNo}
+            ) n
+        left join tb_member m on m.member_no = n.member_no
+        left join tb_alarm a on a.data_no = n.board_no 
+         and a.data_type = 2
+       order by reg_date desc
+       limit #{index}, 10;
+   </select>
+   
+   <select id="selectAlarmCount" parameterType="int" resultType="int">
+       
+       SELECT (
+            select count(*)
+              from tb_busker_show s, tb_follow f, tb_member m, tb_busker b
+             where s.busker_no = f.busker_no
+               and s.busker_no = b.busker_no
+               and b.member_no = m.member_no
+               and f.follow_status = 'y'
+               and f.member_no = 1
+            )
+            +
+              (
+              select count(*)
+              from tb_busker_notify_board n, tb_follow f, tb_member m, tb_busker b
+             where n.busker_no = f.busker_no
+               and n.busker_no = b.busker_no
+               and b.member_no = m.member_no
+               and f.follow_status = 'y'
+               and f.member_no = 1
+            )
+              -
+              (
+              select count(*)
+              from tb_alarm
+             where member_no = 1
+              ) as is_not_read_cnt
+        FROM DUAL;
+  
+   </select>
+   
 </mapper>
-
 
 
