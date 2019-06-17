@@ -6,6 +6,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
+import kr.co.buskers.repository.domain.ArtistPhoto;
 import kr.co.buskers.repository.domain.ArtistShow;
 import kr.co.buskers.repository.domain.Busker;
 import kr.co.buskers.repository.domain.SearchBoard;
@@ -16,6 +17,7 @@ public interface MainService {
 	public void mapView(String enrollDate);
 	public List<ArtistShow> mapDetail(ArtistShow artistShow);
 	public Map<String, Object> selectArtistShowToday(HttpSession session);
+	public List<ArtistPhoto> selectFollowArtistPhotoList(HttpSession session);
 	public ArtistShow markerDetail(int showNo);
 	public ArtistShow markerImage(int showNo);
 	public List<SearchBoard> mainBoardSearch(SearchPage searchPage);

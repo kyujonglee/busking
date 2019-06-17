@@ -135,7 +135,7 @@
 				<c:if test="${sessionScope.user ne null}">
 					<div class="buskers_feed_show">
 						<div class="buskers_feed_follow">공연일정 <span>팔로우 채널</span></div>
-						<div class="swiper-container">
+						<div class="swiper-container swiper-container-show">
 							<div class="swiper-wrapper">
 								<c:forEach var="list" items="${followArtistShow}">
 								<div class="feed-card swiper-slide">
@@ -145,10 +145,20 @@
 							        <div class="feed-card-content">
 							            <div class="title">
 							            	<div class="title_header">
-							            		<a href="<c:url value='/artist/board/detail.do?showNo=${list.showNo}&buskerNo=${list.buskerNo}'/> ">${list.title}</a>
-								                <a href="<c:url value='/artist/main/main.do?buskerNo=${list.buskerNo}'/> ">${list.activityName}</a>
+							            		<c:if test="${fn:length(list.title) gt 19}">
+							            			<a href="<c:url value='/artist/board/detail.do?showNo=${list.showNo}&buskerNo=${list.buskerNo}'/> ">${fn:substring(list.title, 0, 19)}..</a>
+							            		</c:if>
+							            		<c:if test="${fn:length(list.title) le 19}">
+							            			<a href="<c:url value='/artist/board/detail.do?showNo=${list.showNo}&buskerNo=${list.buskerNo}'/> ">${list.title}</a>
+							            		</c:if>
 							            	</div>
-							                <i class="fas fa-map-marker-alt">&nbsp;${list.place}</i> &nbsp;&nbsp;
+						                	<a class="title_header_activity_name" href="<c:url value='/artist/main/main.do?buskerNo=${list.buskerNo}'/> ">${list.activityName}</a>
+							                <c:if test="${fn:length(list.place) gt 9}">
+							                	<i class="fas fa-map-marker-alt">&nbsp;${fn:substring(list.place, 0, 9)}..</i> &nbsp;&nbsp;
+						                	</c:if>
+							                <c:if test="${fn:length(list.place) le 9}">
+							                	<i class="fas fa-map-marker-alt">&nbsp;${list.place}</i> &nbsp;&nbsp;
+						                	</c:if>
 							                <i class="fas fa-calendar-day">&nbsp;<fmt:formatDate value="${list.enrollDate}"	pattern="MM-dd HH:mm" /></i>
 							            </div>
 							            <div class="summary">
@@ -189,6 +199,9 @@
 							    </div>
 							    </c:forEach>
 						    </div>
+						    
+						    <div class="swiper-pagination swiper-pagination-artist-show"></div>
+						    
 					    </div>
 				    </div>
 				    
@@ -231,6 +244,143 @@
 				    
 				    <div class="buskers_feed_photo">
 				    	<div class="buskers_feed_follow">아티스트 사진 <span>팔로우 채널</span></div>
+						<div class="buskers_feed_photo_container">
+							<div class="swiper-wrapper">
+								<div class="photo_card_wrapper swiper-slide">
+									<div class="photo_card">
+										<div class="photo_card_image">
+											<img src="<c:url value='/resources/img/twilight.jpg'/>" alt="img">
+										</div>
+										<div class="photo_card_body">
+											<div class="photo_card_body_header">
+												<p class="photo_card_title">Card title</p>
+											</div>
+											<div class="photo_card_body_footer">
+												<p class="photo_card_activity_name">By&nbsp새벽공방</p>
+												<p class="photo_card_reg_date">2019.06.06</p>
+											</div>
+										</div>
+									</div>
+								</div>
+								
+								<div class="photo_card_wrapper swiper-slide">
+									<div class="photo_card">
+										<div class="photo_card_image">
+											<img src="<c:url value='/resources/img/door1.jpg'/>" alt="img">
+										</div>
+										<div class="photo_card_body">
+											<div class="photo_card_body_header">
+												<p class="photo_card_title">Card title</p>
+											</div>
+											<div class="photo_card_body_footer">
+												<p class="photo_card_activity_name">By&nbsp새벽공방</p>
+												<p class="photo_card_reg_date">2019.06.06</p>
+											</div>
+										</div>
+									</div>
+								</div>
+								
+								<div class="photo_card_wrapper swiper-slide">
+									<div class="photo_card">
+										<div class="photo_card_image">
+											<img src="<c:url value='/resources/img/tower.jpg'/>" alt="img">
+										</div>
+										<div class="photo_card_body">
+											<div class="photo_card_body_header">
+												<p class="photo_card_title">Card title</p>
+											</div>
+											<div class="photo_card_body_footer">
+												<p class="photo_card_activity_name">By&nbsp새벽공방</p>
+												<p class="photo_card_reg_date">2019.06.06</p>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="photo_card_wrapper swiper-slide">
+									<div class="photo_card">
+										<div class="photo_card_image">
+											<img src="<c:url value='/resources/img/tower.jpg'/>" alt="img">
+										</div>
+										<div class="photo_card_body">
+											<div class="photo_card_body_header">
+												<p class="photo_card_title">Card title</p>
+											</div>
+											<div class="photo_card_body_footer">
+												<p class="photo_card_activity_name">By&nbsp새벽공방</p>
+												<p class="photo_card_reg_date">2019.06.06</p>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="photo_card_wrapper swiper-slide">
+									<div class="photo_card">
+										<div class="photo_card_image">
+											<img src="<c:url value='/resources/img/tower.jpg'/>" alt="img">
+										</div>
+										<div class="photo_card_body">
+											<div class="photo_card_body_header">
+												<p class="photo_card_title">Card title</p>
+											</div>
+											<div class="photo_card_body_footer">
+												<p class="photo_card_activity_name">By&nbsp새벽공방</p>
+												<p class="photo_card_reg_date">2019.06.06</p>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="photo_card_wrapper swiper-slide">
+									<div class="photo_card">
+										<div class="photo_card_image">
+											<img src="<c:url value='/resources/img/tower.jpg'/>" alt="img">
+										</div>
+										<div class="photo_card_body">
+											<div class="photo_card_body_header">
+												<p class="photo_card_title">Card title</p>
+											</div>
+											<div class="photo_card_body_footer">
+												<p class="photo_card_activity_name">By&nbsp새벽공방</p>
+												<p class="photo_card_reg_date">2019.06.06</p>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="photo_card_wrapper swiper-slide">
+									<div class="photo_card">
+										<div class="photo_card_image">
+											<img src="<c:url value='/resources/img/tower.jpg'/>" alt="img">
+										</div>
+										<div class="photo_card_body">
+											<div class="photo_card_body_header">
+												<p class="photo_card_title">Card title</p>
+											</div>
+											<div class="photo_card_body_footer">
+												<p class="photo_card_activity_name">By&nbsp새벽공방</p>
+												<p class="photo_card_reg_date">2019.06.06</p>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="photo_card_wrapper swiper-slide">
+									<div class="photo_card">
+										<div class="photo_card_image">
+											<img src="<c:url value='/resources/img/tower.jpg'/>" alt="img">
+										</div>
+										<div class="photo_card_body">
+											<div class="photo_card_body_header">
+												<p class="photo_card_title">Card title</p>
+											</div>
+											<div class="photo_card_body_footer">
+												<p class="photo_card_activity_name">By&nbsp새벽공방</p>
+												<p class="photo_card_reg_date">2019.06.06</p>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+								
+							<div class="swiper-pagination"></div>
+							
+						</div>
 				    </div>
 				</c:if>
 			</div>
@@ -849,13 +999,20 @@
 	String.prototype.zf = function(len){return "0".string(len - this.length) + this;};
 	Number.prototype.zf = function(len){return this.toString().zf(len);};
     
-	new Swiper('.swiper-container', {
+	new Swiper('.swiper-container-show', {
 	    slidesPerView: 5,
 	    spaceBetween: 30,
-    	grabCursor: true,
-	    pagination: {
-		    clickable: true,
-	    },
+	    slidesPerGroup: 5,
+	    loop: true,
+      	loopFillGroupWithBlank: true,
+    	pagination: {
+  	      el: '.swiper-pagination',
+  	      clickable: true,
+  	    },
+  	  	autoplay: {
+	        delay: 10000,
+	        disableOnInteraction: false,
+    	}
     });
 	
 	new Swiper('.swiper-container-video', {
@@ -871,4 +1028,68 @@
 	        prevEl: '.swiper-button-prev',
         }
     });
+	
+	new Swiper('.buskers_feed_photo_container', {
+	    slidesPerView: 4,
+	    spaceBetween: 70,
+	    loop: true,
+	    centeredSlides: true,
+	    pagination: {
+	      el: '.swiper-pagination',
+	      clickable: true,
+	    },
+	    autoplay: {
+	        delay: 2500,
+	        disableOnInteraction: false,
+    	}
+    });
+	
+	$.ajax({
+		type: "POST",
+		url: "/buskers/main/feed-photo-ajax.do",
+		success: function (result) {
+			console.log(result);
+			let html = "";
+			/*
+			for (let i = 0; i < result.length; i++) {
+				
+				html += '<div class="photo_card_wrapper swiper-slide">';
+				html += 	'<div class="photo_card">';
+				html +=			'<div class="photo_card_image">';
+				html +=				'<img src="<c:url value='/file/download.do'/>?path=' + result[i].path + result[i].sysname + '"/>';
+				html +=			'</div>';
+				html +=			'<div class="photo_card_body">';
+				html +=				'<div class="photo_card_body_header">';
+				html +=					'<p class="photo_card_title">' + result[i].title + '</p>';
+				html +=				'</div>';
+				html +=				'<div class="photo_card_body_footer">';
+				html +=					'<p class="photo_card_activity_name">By&nbsp' + result[i].activityName + '</p>';
+				html +=					'<p class="photo_card_reg_date">2019.06.06</p>';
+				html +=				'</div>';
+				html +=			'</div>';
+				html +=		'</div>';
+				html +=	'</div>';
+			}
+			
+			html += '<div class="swiper-pagination"></div>';
+			$(".buskers_feed_photo_container").html(html);
+			
+			new Swiper('.buskers_feed_photo_container', {
+			    slidesPerView: 4,
+			    spaceBetween: 70,
+			    loop: true,
+			    centeredSlides: true,
+			    pagination: {
+			      el: '.swiper-pagination',
+			      clickable: true,
+			    },
+			    autoplay: {
+			        delay: 2500,
+			        disableOnInteraction: false,
+		    	}
+		    });
+			*/
+		}
+	});
+		
 </script>

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.co.buskers.main.service.MainService;
+import kr.co.buskers.repository.domain.ArtistPhoto;
 import kr.co.buskers.repository.domain.ArtistShow;
 import kr.co.buskers.repository.domain.SearchPage;
 
@@ -65,19 +66,25 @@ public class MainController {
 	}
 	
 	@RequestMapping("/search/search.do")
-	public void mainSearch(SearchPage searchPage,Model model) {
+	public void mainSearch(SearchPage searchPage, Model model) {
 		model.addAttribute("list",service.mainBoardSearch(searchPage));
 		model.addAttribute("busker",service.mainBuskerSearch(searchPage));
 		model.addAttribute("input",searchPage.getInput());
 	}
 	
 	@RequestMapping("/search/board-search-list.do")
-	public void boardSearchList(SearchPage searchPage,Model model) {
+	public void boardSearchList(SearchPage searchPage, Model model) {
 		HashMap<String,Object> map = service.BoardListSearch(searchPage);
 //		SearchBoard b = (SearchBoard)map.get("list");
 //		System.out.println(b.getTitle());
 		model.addAttribute("list",map.get("list"));
 		model.addAttribute("pageResult",map.get("pageResult"));
 		model.addAttribute("input",searchPage.getInput());
+	}
+	
+	@RequestMapping("feed-photo-ajax.do")
+	@ResponseBody
+	public List<ArtistPhoto> selectFollowArtistPhotoList(HttpSession session) {
+		return service.selectFollowArtistPhotoList(session);
 	}
 }
