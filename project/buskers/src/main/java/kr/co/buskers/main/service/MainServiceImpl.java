@@ -15,11 +15,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.co.buskers.common.page.FreePageResult;
+import kr.co.buskers.repository.domain.ArtistPhoto;
 import kr.co.buskers.repository.domain.ArtistShow;
 import kr.co.buskers.repository.domain.Busker;
 import kr.co.buskers.repository.domain.Member;
 import kr.co.buskers.repository.domain.SearchBoard;
 import kr.co.buskers.repository.domain.SearchPage;
+import kr.co.buskers.repository.domain.Video;
 import kr.co.buskers.repository.mapper.MainMapper;
 
 @Service
@@ -121,6 +123,16 @@ public class MainServiceImpl implements MainService {
 		}
 		map.put("artistShow", mapper.selectArtistShowToday());
 		return map;
+	}
+	
+	public List<ArtistPhoto> selectFollowArtistPhotoList(HttpSession session) {
+		Member member = (Member)session.getAttribute("user");
+		return mapper.selectFollowArtistPhotoList(member.getMemberNo());
+	}
+	
+	public List<Video> selectFollowArtistVideoList(HttpSession session) {
+		Member member = (Member)session.getAttribute("user");
+		return mapper.selectFollowArtistVideoList(member.getMemberNo());
 	}
 
 	@Override

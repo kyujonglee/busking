@@ -2,10 +2,12 @@ package kr.co.buskers.repository.mapper;
 
 import java.util.List;
 
+import kr.co.buskers.repository.domain.ArtistPhoto;
 import kr.co.buskers.repository.domain.ArtistShow;
 import kr.co.buskers.repository.domain.Busker;
 import kr.co.buskers.repository.domain.SearchBoard;
 import kr.co.buskers.repository.domain.SearchPage;
+import kr.co.buskers.repository.domain.Video;
 
 public interface MainMapper {
 	List<ArtistShow> selectArtistShow();
@@ -22,6 +24,8 @@ public interface MainMapper {
 	List<Busker> selectArtistByGenre5();
 	List<Busker> selectArtistByGenre6();
 	List<ArtistShow> selectFollowArtistShow(int memberNo);
+	List<ArtistPhoto> selectFollowArtistPhotoList(int memberNo);
+	List<Video> selectFollowArtistVideoList(int memberNo);
 	
 	List<SearchBoard> selectSearchBoard(SearchPage searchPage);
 	int selectCountSearchBoard(SearchPage searchPage);
