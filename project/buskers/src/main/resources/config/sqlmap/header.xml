@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.co.buskers.repository.mapper.HeaderMapper">
-	<select id="selectMessage" parameterType="freePage" resultType="message">
+	<select id="selectMessage" resultType="message">
 		select *
   		  from (select @rownum:=@rownum+1 rnum, a.*
 		          from ( select *
@@ -28,10 +28,9 @@
 						
 	                   ) a
 		       ) b
-		 where rnum between #{begin} and #{end}
 	</select>
 	
-	<select id="selectSentMessage" parameterType="freePage" resultType="message">
+	<select id="selectSentMessage" resultType="message">
 		select *
   		  from (select @rownum:=@rownum+1 rnum, a.*
 		          from ( select *
@@ -57,7 +56,6 @@
 						
 	                   ) a
 		       ) b
-		 where rnum between #{begin} and #{end}
 	</select>
 	
 	<select id="selectMemberNoByNickName" parameterType="String" resultType="int">
@@ -147,7 +145,7 @@
 		  left join tb_member m on m.member_no = n.member_no
 		  left join tb_alarm a on a.data_no = n.board_no 
 		   and a.data_type = 2
-		 order by reg_date
+		 order by reg_date desc
 		 limit #{index}, 10;
 	</select>
 	
