@@ -78,7 +78,7 @@
 	        <header class="notice-board__view-content-header">
 	          <div class="view-content__header-title">
 				<!-- 첫글의 제목 --> 
-				${list[0].title}
+				<span>${list[0].title}</span>
 	          </div>
 	          <div class="view-content__header-content">
 	            <div class="header-content__column">
@@ -114,12 +114,14 @@
 	
 	
 	function titleBold(){
+// 		alert("타이블볼드실행됨");
+// 		alert($(".view-content__header-title").html());
 		$(".view-content__header-title").html( $(".view-content__header-title").html().replace(input, "<b class='search_keyword'>" + input + "</b>") );
 	}
 	function contentBold(){
 		$(".notice-board__view-content").html( $(".notice-board__view-content").html().replace(input, "<b class='search_keyword'>" + input + "</b>") );
 	}
-	//검색어 유지
+	//검색어 유지 
     if (input != "" && searchType == "title" ) {
     	for (i = 0; i < itemLength; i++) {
 			$(".view-item__title:eq(" + i + ")").html( $(".view-item__title:eq(" + i + ")").html().replace(input, "<b class='search_keyword'>" + input + "</b>") );
@@ -163,7 +165,7 @@
 	 		//우측 내용변경
 			let date = moment(result.board.regDat).format("YYYY-MM-DD HH:mm");
 			$(".view-content__header-title").text("");
-			$(".view-content__header-title").append(result.board.title);
+			$(".view-content__header-title").append("<span>"+result.board.title+"</span>");
 	
 			$("#detail_date").text("");
 			$("#detail_date").append(date);

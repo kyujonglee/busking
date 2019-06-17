@@ -53,4 +53,6 @@ public interface ArtistBoardMapper {
 	void deleteVideo(int videoNo);
 	
 	void insertArtistPhoto(ArtistPhoto artistPhoto);
+	List<ArtistPhoto> selectPhoto(int buskerNo);
+	ArtistPhoto selectPhotoByNo(int fileNo);
 }

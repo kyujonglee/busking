@@ -39,3 +39,10 @@
 	resize:none;
 	height:150px;
 }
+
+.side_photo_button[type='file']{
+	display:none;
+}
+.side_photo_img{
+	cursor:pointer;
+}

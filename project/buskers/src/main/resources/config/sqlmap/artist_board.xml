@@ -183,6 +183,18 @@
 		values(#{name},#{title},#{sysname},#{path},#{buskerNo})
 	</insert>
 	
+	<select id="selectPhoto" resultType="artistPhoto">
+		select *
+		  from tb_artist_photo
+		 where busker_no = #{buskerNo}
+	</select>
+
+	<select id="selectPhotoByNo" resultType="artistPhoto">
+		select *
+		  from tb_artist_photo
+		 where file_no = #{fileNo}
+	</select>
+	
 </mapper>
 
 

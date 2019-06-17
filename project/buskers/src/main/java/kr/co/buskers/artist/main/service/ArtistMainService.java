@@ -3,6 +3,7 @@ package kr.co.buskers.artist.main.service;
 import java.util.List;
 import java.util.Map;
 
+import kr.co.buskers.repository.domain.ArtistPhoto;
 import kr.co.buskers.repository.domain.Busker;
 import kr.co.buskers.repository.domain.Follow;
 import kr.co.buskers.repository.domain.MusicFile;
@@ -26,4 +27,8 @@ public interface ArtistMainService {
 	public Busker selectBusker(int buskerNo);
 	
 	List<Busker> selectRecommendArtist(int buskerNo);
+
+	List<ArtistPhoto> selectPhoto(int buskerNo);
+
+	ArtistPhoto selectPhotoByNo(int fileNo);
 }
