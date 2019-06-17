@@ -296,7 +296,7 @@
 						link = '<a href="<c:url value='/artist/board/detail.do?' />' + 'showNo=' + alarm[i].dataNo + '&buskerNo=' + alarm[i].buskerNo + '&alarmNo=' + alarm[i].alarmNo + '&dataType=1' + '&dataNo=' + alarm[i].dataNo + '">';
 					} else {
 						type = "채널에 새로운 공지사항이 등록되었습니다.";
-						link = '<a href="<c:url value='/artist/board/detail.do?' />' + 'showNo=' + alarm[i].dataNo + '&buskerNo=' + alarm[i].buskerNo + '&alarmNo=' + alarm[i].alarmNo + '&dataType=2' + '&dataNo=' + alarm[i].dataNo + '">';
+						link = '<a href="#">';
 					}
 					
 					if (alarm[i].isRead == 'y') {

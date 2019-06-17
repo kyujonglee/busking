@@ -10,7 +10,7 @@
 <div class="board">
 	<div class="board_title">
 		<div class="board_title_underline">
-			<a href="<c:url value='/main/board/qna/list.do'/>">업체게시판</a>
+			<a href="<c:url value='/main/board/agency/list.do'/>">업체게시판</a>
 		</div>
 	</div>
 	<!--  
