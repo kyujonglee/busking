@@ -33,4 +33,6 @@ public interface ArtistMainService {
 	ArtistPhoto selectPhotoByNo(int fileNo);
 	
 	Busker selectBuskerActivityName(int buskerNo);
+
+	void deletePhoto(int fileNo);
 }

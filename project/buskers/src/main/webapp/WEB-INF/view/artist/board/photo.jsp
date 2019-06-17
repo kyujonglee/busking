@@ -11,13 +11,14 @@
 				<div class="col-lg-12">
 					<div class="panel panel-default">
 						<div class="panel-heading">
-							<i class="fas fa-video"></i> 
+							<i class="far fa-image"></i> Photo
 							<button id='addVideoBtn'
 								class='btn btn-primary btn-xs pull-right' data-toggle="modal"
 								data-target="#photoModal">New Photo</button>
 						</div>
 						<div class="panel-body">
 							<div class="photo_body">
+								<div class="photo_body_wrapper">
 								<!-- 				        		<div class="artist__photo__img"> -->
 								<%-- 				        			<img src="<c:url value='/resources/img/boyoung.jpg'/>"/> --%>
 								<!-- 				        			<div class="hover"> -->
@@ -75,14 +76,16 @@
 					aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
-				<div class="modal_title">title보여주기!</div>
+				<div class="modal_title" >title보여주기!</div>
 			</div>
 			<div class="modal-body-photo">
 				<%-- 			<img src="<c:url value='/resources/img/busker1.jpg'/>"/> --%>
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
-				<button type="button" class="btn btn-primary" id="delBtn">삭제</button>
+				<button type="button" class="btn btn-primary" id="delBtn">삭제
+					<input type="hidden" id="delNum"/>
+				</button>
 			</div>
 		</div>
 	</div>
@@ -90,18 +93,18 @@
 
 
 <script>
+
+
+
+	//사진등록
 	$(document).on("click","#regBtn",function(){
 		let title = $("#title").val();
 		let file = $("#photo")[0].files[0];
 		let buskerNo = "${param.buskerNo}";
-		console.log(title);
-		console.log(file);
-		console.log(buskerNo);
 		let formData = new FormData();
 		formData.append("file", file);
 		formData.append("buskerNo",buskerNo);
 		formData.append("title", title);
-	
 		$.ajax({
 			type : "post",
 			data: formData,
@@ -110,79 +113,90 @@
 			cache : false,
 			url : '/buskers/file/artist-photo-insert.do',
 		}).done(function(retsult){
-			alert("에이작스성공");		
+			$(".photo_body_wrapper").html("");
+			showList();
+			$("#photoModal").hide();
 		})
-		
-		
 	})
 	
-	
-	$.ajax({
-		data : {buskerNo: buskerNo},
-		url:'select-photo-ajax.do',
-	}).done(function(result){
-		for(let i = 0; i < 4;  i ++){
-			$(".photo_body").append(`
-				<div class="artist__photo__img" >
-					<img data-pno="`+result[i].fileNo+`" src="<c:url value='/file/download.do'/>?path=`+result[0].path+result[i].sysname+`" />
-				</div>
-			`)
-		}		
-		getList(4);
-		
-		for(let i=4;i<result.length;i++){
-			// 이전사진의 크기
-			setTimeout(function(){
-				heightFirst =  $(".artist__photo__img:eq("+(i-4)+")").outerHeight()+$(".artist__photo__img:eq("+(i-4)+")").position().top;
-				$(".photo_body").append(`
-						 <div class="artist__photo__img" style="top:`+heightFirst+`px;"  ><img src="<c:url value='/resources/img/marker.jpg'/>"/></div>
-	 			`);
-			},100);
+	//사진삭제
+	$(document).on("click","#delBtn",function(){
+		if(confirm("정말로 삭제하시겠습니까?") == true){
+			let fileNo = $(this).find("#delNum").val();
+			$.ajax({
+				data:{fileNo:fileNo},
+				url : "delete-photo.do",
+			}).done(function(){
+				$(".photo_body_wrapper").html("");
+				$("#photoModalDetail").hide();
+				showList();
+			})
 		}
 	})
-	/* 
-	function getList(num){
+	
+	
+	
+	//목록보여주기 전체
+	function showList(){
+		$.ajax({
+			data : {buskerNo: buskerNo},
+			url:'select-photo-ajax.do',
+		}).done(function(result){
+			for(let i = 0; i < 4;  i ++){
+				$(".photo_body_wrapper").append(`
+					<div class="artist__photo__img" >
+						<img data-pno="`+result[i].fileNo+`" src="<c:url value='/file/download.do'/>?path=`+result[i].path+result[i].sysname+`" />
+					</div>
+				`)
+			}
+			list(result.length,4,result);
+		})
+	}
+ 	//목록보여주기 추가되는부분
+	function list(length,i,result){
 		setTimeout(function(){
-			heightFirst =  $(".artist__photo__img:eq("+(num-4)+")").outerHeight()+$(".artist__photo__img:eq("+(num-4)+")").position().top;
- 			heightSecond = $(".artist__photo__img:eq("+(num-3)+")").outerHeight()+$(".artist__photo__img:eq("+(num-3)+")").position().top;
- 			heightThird =  $(".artist__photo__img:eq("+(num-2)+")").outerHeight()+$(".artist__photo__img:eq("+(num-2)+")").position().top;
- 			heightFourth = $(".artist__photo__img:eq("+(num-1)+")").outerHeight()+$(".artist__photo__img:eq("+(num-1)+")").position().top;
-
- 			$(".photo_body").append(`
-					 <div class="artist__photo__img" style="top:`+heightFirst+`px;"  ><img src="<c:url value='/resources/img/marker.jpg'/>"/></div>
-					 <div class="artist__photo__img" style="top:`+heightSecond+`px;" ><img src="<c:url value='/resources/img/musician.jpg'/>"/></div>
-					 <div class="artist__photo__img" style="top:`+heightThird+`px;" > <img src="<c:url value='/resources/img/twilight.jpg'/>"/></div>
-					 <div class="artist__photo__img" style="top:`+heightFourth+`px;" ><img src="<c:url value='/resources/img/musician.jpg'/>"/></div>
-	 			`)
-	 			setTimeout(function(){
-					heightFirst =  $(".artist__photo__img:eq("+(num)+")").outerHeight()+$(".artist__photo__img:eq("+(num)+")").position().top;
-		 			heightSecond = $(".artist__photo__img:eq("+(num+1)+")").outerHeight()+$(".artist__photo__img:eq("+(num+1)+")").position().top;
-		 			heightThird =  $(".artist__photo__img:eq("+(num+2)+")").outerHeight()+$(".artist__photo__img:eq("+(num+2)+")").position().top;
-		 			heightFourth = $(".artist__photo__img:eq("+(num+3)+")").outerHeight()+$(".artist__photo__img:eq("+(num+3)+")").position().top;
-		 			$(".photo_body").append(`
-						 <div class="artist__photo__img" style="top:`+heightFirst+`px;"  ><img src="<c:url value='/resources/img/marker.jpg'/>"/></div>
-						 <div class="artist__photo__img" style="top:`+heightSecond+`px;" ><img src="<c:url value='/resources/img/musician.jpg'/>"/></div>
-						 <div class="artist__photo__img" style="top:`+heightThird+`px;" > <img src="<c:url value='/resources/img/twilight.jpg'/>"/></div>
-						 <div class="artist__photo__img" style="top:`+heightFourth+`px;" ><img src="<c:url value='/resources/img/musician.jpg'/>"/></div>
-		 			`)
-			},100)
-		},100);
-	} 
-	*/
+				height =  $(".artist__photo__img:eq("+(i-4)+")").outerHeight()+$(".artist__photo__img:eq("+(i-4)+")").position().top;
+				console.log($(".artist__photo__img:eq("+(i-4)+")").outerHeight());
+				console.log($(".artist__photo__img:eq("+(i-4)+")").position().top);
+			$(".photo_body_wrapper").append(`
+					 <div class="artist__photo__img" style="top:`+height+`px;"  >
+					 	<img data-pno="`+result[i].fileNo+`" src="<c:url value='/file/download.do'/>?path=`+result[i].path+result[i].sysname+`" />
+					 </div>
+				`);
+			i++;
+			list(length,i,result);
+		},20);
+	}
 	
 	
+	//사진 디테일
 	$(document).on("click",".artist__photo__img img",function(){
 		let fileNo = $(this).data("pno");
+		$("#delNum").val(fileNo);
 		$.ajax({
 			data:{fileNo:fileNo},
 			url : "select-photo-no-ajax.do",
 		}).done(function(result){
+			$(".modal_title").html("<input id='title_text' class='select_title_text title_text' value='"+result.title+"' readonly/>");
 			$(".modal-body-photo").html(`<img src="<c:url value='/file/download.do'/>?path=`+result.path+result.sysname+`" />`)
 		})
 		$("#photoModalDetail").modal();
 	})
 	
+	//제목 클릭시에 수정할수 있게
+	$(document).on("click",".modal_title",function(){
+		$(".select_title_text").removeAttr('readonly');
+		$(".select_title_text").removeClass("title_text");
+		$(".select_title_text").addClass("title_text_click");
+	})
+	$(document).on("blur",".select_title_text",function(){
+		$(".select_title_text").removeClass("title_text_click");
+		$(".select_title_text").attr('readonly',true);
+		let text=$(".select_title_text").val();
+		alert(text);
+	})
 	
+	showList();
 
 
 </script>

@@ -125,7 +125,8 @@ public class FileController {
 	@RequestMapping("artist-photo-insert.do")
 	@ResponseBody
 	public String insertArtistPhoto(ArtistPhoto artistPhoto) throws Exception {
-		
+		System.out.println(artistPhoto.getTitle());
+		System.out.println(artistPhoto.getBuskerNo());
 		return service.insertArtistPhoto(artistPhoto);
 	}
 	

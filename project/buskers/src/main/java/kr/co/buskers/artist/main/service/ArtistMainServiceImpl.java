@@ -130,5 +130,10 @@ public class ArtistMainServiceImpl implements ArtistMainService {
 	public Busker selectBuskerActivityName(int buskerNo) {
 		return boardMapper.selectBuskerActivityName(buskerNo);
 	}
+
+	@Override
+	public void deletePhoto(int fileNo) {
+		boardMapper.deletePhoto(fileNo);
+	}
 	
 }
