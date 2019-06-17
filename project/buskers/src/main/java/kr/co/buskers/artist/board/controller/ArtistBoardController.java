@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.co.buskers.artist.board.service.ArtistBoardService;
 import kr.co.buskers.artist.main.service.ArtistMainService;
+import kr.co.buskers.repository.domain.ArtistPhoto;
 import kr.co.buskers.repository.domain.Alarm;
 import kr.co.buskers.repository.domain.ArtistShow;
 import kr.co.buskers.repository.domain.Busker;
@@ -117,5 +118,16 @@ public class ArtistBoardController {
 	@ResponseBody
 	public void updateIntro (Busker busker) {
 		mainService.updateIntro(busker);
+	}
+	
+	@RequestMapping("select-photo-ajax.do")
+	@ResponseBody
+	public List<ArtistPhoto> selectPhoto(int buskerNo){
+		return mainService.selectPhoto(buskerNo);
+	}
+	@RequestMapping("select-photo-no-ajax.do")
+	@ResponseBody
+	public ArtistPhoto selectPhotoByNo(int fileNo){
+		return mainService.selectPhotoByNo(fileNo);
 	}
 }

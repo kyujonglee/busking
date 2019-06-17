@@ -127,7 +127,6 @@
 				url : "video-delete-ajax.do",
 			}).done(function(){
 				$(".panel-body").html("<div class='video_body'></div>");
-// 				alert("삭제시에 가져온 페이지값"+realPage);
 				page = realPage;
 				spage = (page -1) * 6;
 				$(".panel-body").html("<div class='video_body'></div>");

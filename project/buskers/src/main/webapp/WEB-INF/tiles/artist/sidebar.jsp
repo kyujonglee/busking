@@ -176,15 +176,17 @@
 		const genre = map.busker.genre;
 		const profileImg = map.busker.profileImg;
 		const profileImgPath = map.busker.profileImgPath;
-
 		$("#showCount").text(showCount);
 		$("#musicCount").text(musicCount);
 		$("#videoCount").text(videoCount);
 		$("#activityName").text(activityName);
+		$(".busker-info__nickname").text(activityName);
 		$("#input_form_intro").text(intro);
 		$("#input_form_location").val(location);
 		$("#input_form_time").val(time);
 		$("#input_form_genre").val(genre);
+		
+		
 		$(".busker-side__profile-photo").prepend(
 		`<img src='<c:url value='/resources/img/profile.png' />'>`		
 		)
@@ -221,23 +223,24 @@
 		$(".facebook").click(function(){
 			if($("#faceBookUrl").val() == ""){
 				alert("등록된 url이 없습니다.");
-				return
+			}else{
+		    	window.location.href = 	$("#faceBookUrl").val();
 			}
-	    	window.location.href = 	$("#faceBookUrl").val();
 	    })
 	     $(".youtube").click(function(){
 			if($("#youTubeUrl").val() == ""){
 				alert("등록된 url이 없습니다.");
-				return
+			}else{
+		    	window.location.href = $("#youTubeUrl").val();
 			}
-	    	window.location.href = $("#youTubeUrl").val();
 	    })
 	    $(".instargram").click(function(){
 			if($("#instargramUrl").val() == ""){
 				alert("등록된 url이 없습니다.");
-				return
+			}else{
+				alert("else실행됨")
+		    	window.location.href = $("#instargramUrl").val();
 			}
-	    	window.location.href = $("#instargramUrl").val();
 	    })
 		    
 	    
@@ -291,29 +294,28 @@
 				  type:'warning',
 				  timer:2000	
 			});
+		}else{
+			$.ajax({
+				url : "follow-ajax.do",
+				data : {buskerNo: buskerNo,memberNo:"${sessionScope.user.memberNo}"},
+			}).done(function(result){
+				if(result == 1){
+					Swal.fire({
+						  title:'팔로우 성공',
+						  type:'success',
+						  timer:2000	
+					});
+					$(".busker__profile-header-follow").css("background-color","red").html("팔로우");	
+				}else {
+					Swal.fire({
+						  title:'팔로우 취소',
+						  type:'success',
+						  timer:2000	
+					});
+					$(".busker__profile-header-follow").css("background-color","rgb(243,116,32)").html("팔로우+");		
+				}
+			});
 		}
-		
-		
-		$.ajax({
-			url : "follow-ajax.do",
-			data : {buskerNo: buskerNo,memberNo:"${sessionScope.user.memberNo}"},
-		}).done(function(result){
-			if(result == 1){
-				Swal.fire({
-					  title:'팔로우 성공',
-					  type:'success',
-					  timer:2000	
-				});
-				$(".busker__profile-header-follow").css("background-color","red").html("팔로우");	
-			}else {
-				Swal.fire({
-					  title:'팔로우 취소',
-					  type:'success',
-					  timer:2000	
-				});
-				$(".busker__profile-header-follow").css("background-color","rgb(243,116,32)").html("팔로우+");		
-			}
-		});
 	})
 	
 
