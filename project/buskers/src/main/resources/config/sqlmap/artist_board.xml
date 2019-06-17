@@ -217,6 +217,12 @@
 		 where file_no = #{fileNo}
 	</delete>
 	
+	<select id="countPhoto" parameterType="int"  resultType="int">
+		select count(*)
+		  from tb_artist_photo
+		 where busker_no = #{buskerNo}
+	</select>
+	
 </mapper>
 
 

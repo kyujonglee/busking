@@ -85,12 +85,12 @@
 	let dayOfWeek = week[date.getDay()];
 	let selDate = year + "-" + month + "-" + day;
 	let realPage = 1;
-	  
-	
+
+	//수정버튼 클릭시에 다른 수정버튼을 숨김
 	$(document).on("click",".videoMenu",function(event){
-          $('.video_menu_modify').hide();
-          event.stopPropagation();   
-          $(this).children(".video_menu_modify").toggle();
+	    $('.video_menu_modify').hide();
+	    event.stopPropagation();   
+	    $(this).children(".video_menu_modify").toggle();
     });
         
     $(".panel-body").click(function() {
@@ -105,7 +105,7 @@
 
 
 	
-	
+	//비디오 삭제
 	$(document).on("click",".video_menu_modify",function(){
 		if(confirm("정말로 삭제하시겠습니까?") == true){
 			let videoNo  = $(this).data("vno");
@@ -117,11 +117,20 @@
 				page = realPage;
 				spage = (page -1) * 6;
 				$(".panel-body").html("<div class='video_body'></div>");
-				
 				showList(spage);
 				pageList(page);
+				
+				
+				//비디오 수 새로고침
+				$.ajax({
+					url : "<c:url value='/artist/main/main-ajax.do'/>",
+					dateType : "json",
+					data : "buskerNo="+buskerNo
+				}).done(map => {
+					const videoCount = map.videoCount;
+					$("#videoCount").text(videoCount);
+				});	
 			})
-			
 		}
 	});
 	
@@ -129,6 +138,12 @@
 	$("#regBtn").click(function(){
 		let title = $("#title").val();
 		let videoUrl = $("#videoUrl").val();
+		alert(버튼클릭)
+		if(videoUrl.include("www.youtube.com") == false){
+			alert("유튜브 url을 입력해주세요.");
+			return;
+		}
+		
 		let buskerNo = "${sessionScope.user.busker.buskerNo}";
 		
 		let url = "https://www.youtube.com/embed/";
@@ -136,7 +151,6 @@
 		let code = videoUrl.split('?');
 		code = code[1].split('=');
 		code = code[1].split('&');
-		console.log(code);
 		let yUrl = url+code[0];
 
 		
@@ -151,9 +165,22 @@
 			$(".panel-body").html("<div class='video_body'></div>");		
 			showList(0);
 			pageList(1);
+			
+			
+			//비디오 갯수 새로고침
+			$.ajax({
+				url : "<c:url value='/artist/main/main-ajax.do'/>",
+				dateType : "json",
+				data : "buskerNo="+buskerNo
+			}).done(map => {
+				const videoCount = map.videoCount;
+				$("#videoCount").text(videoCount);
+			});	
+			
 		})
 	})
 	
+	//비디오 리스트를 출력함.	
 	function showList(num){
 		buskerNo = ${param.buskerNo};
 		$.ajax({
@@ -180,13 +207,13 @@
 				htrr += '</div>';
 				htrr += '</div>';
 				
-				
 				$(".video_body").append(htrr);
+				
 			}
 		})
 	}
 	
-	
+	//페이지 리스트를 출력함.
 	function pageList(num){
 		buskerNo = ${param.buskerNo};
 		$.ajax({
@@ -205,24 +232,7 @@
 		})
 	}
 	
-	
-	$(document).on("click",".video-page",function(event){
-		event.preventDefault();
-		page = $(this).attr("href");
-		realPage = page;
-		spage = (page -1) * 6;
-		$(".panel-body").html("<div class='video_body'></div>");
-		showList(spage);
-		pageList(page);
-		
-	})
-	
-	showList(0);
-	pageList(1);
-	
 
-	
-	
 	Date.prototype.format = function(f) {
 	    if (!this.valueOf()) return " ";
 	 
@@ -252,6 +262,20 @@
 	Number.prototype.zf = function(len){return this.toString().zf(len);};
     
 	
+	//페이지 클릭시에 각각의 href값을 갖고 페이지를 출력함. spage는 비디오의 begin값, page는 page값.
+	$(document).on("click",".video-page",function(event){
+		event.preventDefault();
+		page = $(this).attr("href");
+		realPage = page;
+		spage = (page -1) * 6;
+		$(".panel-body").html("<div class='video_body'></div>");
+		showList(spage);
+		pageList(page);
+		
+	})
+	
+		showList(0);
+		pageList(1);
 	
 
 
