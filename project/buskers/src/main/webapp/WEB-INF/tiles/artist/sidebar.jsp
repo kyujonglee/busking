@@ -56,7 +56,7 @@
 				<i class="far fa-images fa-lg"></i>
 			</div>
 			<div class="busker-side__menu-title">
-				<a href="<c:url value='/artist/board/photo.do'/>?buskerNo=${param.buskerNo}">사진</a><span class="busker-side__menu-count">99</span>
+				<a href="<c:url value='/artist/board/photo.do'/>?buskerNo=${param.buskerNo}">사진</a><span class="busker-side__menu-count" id="photoCount"></span>
 			</div>
 		</li>
 		<li class="busker-side__menu-item">
@@ -169,6 +169,7 @@
 		const showCount = map.showCount;
 		const musicCount = map.musicCount;
 		const videoCount = map.videoCount;
+		const photoCount = map.photoCount;
 		const activityName = map.busker.activityName;
 		const intro = map.busker.intro;
 		const location = map.busker.location;
@@ -179,6 +180,7 @@
 		$("#showCount").text(showCount);
 		$("#musicCount").text(musicCount);
 		$("#videoCount").text(videoCount);
+		$("#photoCount").text(photoCount);
 		$("#activityName").text(activityName);
 		$(".busker-info__nickname").text(activityName);
 		$("#input_form_intro").text(intro);
