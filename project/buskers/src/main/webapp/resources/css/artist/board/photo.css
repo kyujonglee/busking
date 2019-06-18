@@ -16,13 +16,21 @@
 	height:90vh;
 	overflow:scroll;
 }
+.photo_body_wrapper{
+	height:100%;
+}
 .photo_body .artist__photo__img{
 	width : 25%;
 /* 	height:100%;  */
 /* 	width : 25%; */
-position : absolute;
-padding : 15px;
-box-sizing : border-box;
+	position : absolute;
+	padding : 15px;
+	box-sizing : border-box;
+	transition: all 0.3s ease-in-out;
+
+}
+.photo_body .artist__photo__img:hover{
+	transform:scale(1.1);
 }
 
 .photo_body .artist__photo__img:nth-child(4n+1){
@@ -76,5 +84,27 @@ box-sizing : border-box;
 	position:absolute;
 }
 .hover{
-	
+	width:100%;
+	position:absolute;
+	height:100%;
+	top : 0;
+	z-index:1;
+	opacity : 0.3;
+	background-color:var(--color-orange);
+}
+.modal-body-photo img{
+	width:100%;
+	height:auto;
+}
+.modal-footer{
+	padding:7px;
+}
+.select_title_text{
+	border-style:none;
+	text-align:center;
+	width:100%;
+}
+.title_text_click{
+	background:var(--color-orange);
+	width:100%;
 }

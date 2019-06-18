@@ -15,49 +15,6 @@ public class Alarm {
 	private int index;
 	private int alarmNo;
 	private int dataNo;
-	
-	public int getDataNo() {
-		return dataNo;
-	}
-	public void setDataNo(int dataNo) {
-		this.dataNo = dataNo;
-	}
-	public int getAlarmNo() {
-		return alarmNo;
-	}
-	public void setAlarmNo(int alarmNo) {
-		this.alarmNo = alarmNo;
-	}
-	public String getActivityName() {
-		return activityName;
-	}
-	public void setActivityName(String activityName) {
-		this.activityName = activityName;
-	}
-	public int getIndex() {
-		return index;
-	}
-	public void setIndex(int index) {
-		this.index = index;
-	}
-	public String getProfileImg() {
-		return profileImg;
-	}
-	public void setProfileImg(String profileImg) {
-		this.profileImg = profileImg;
-	}
-	public String getProfileImgPath() {
-		return profileImgPath;
-	}
-	public void setProfileImgPath(String profileImgPath) {
-		this.profileImgPath = profileImgPath;
-	}
-	public int getDataType() {
-		return dataType;
-	}
-	public void setDataType(int dataType) {
-		this.dataType = dataType;
-	}
 	public int getBuskerNo() {
 		return buskerNo;
 	}
@@ -87,5 +44,47 @@ public class Alarm {
 	}
 	public void setIsRead(String isRead) {
 		this.isRead = isRead;
+	}
+	public int getDataType() {
+		return dataType;
+	}
+	public void setDataType(int dataType) {
+		this.dataType = dataType;
+	}
+	public String getProfileImg() {
+		return profileImg;
+	}
+	public void setProfileImg(String profileImg) {
+		this.profileImg = profileImg;
+	}
+	public String getProfileImgPath() {
+		return profileImgPath;
+	}
+	public void setProfileImgPath(String profileImgPath) {
+		this.profileImgPath = profileImgPath;
+	}
+	public String getActivityName() {
+		return activityName;
+	}
+	public void setActivityName(String activityName) {
+		this.activityName = activityName;
+	}
+	public int getIndex() {
+		return index;
+	}
+	public void setIndex(int index) {
+		this.index = index;
+	}
+	public int getAlarmNo() {
+		return alarmNo;
+	}
+	public void setAlarmNo(int alarmNo) {
+		this.alarmNo = alarmNo;
+	}
+	public int getDataNo() {
+		return dataNo;
+	}
+	public void setDataNo(int dataNo) {
+		this.dataNo = dataNo;
 	}
 }

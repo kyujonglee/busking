@@ -1,9 +1,11 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <section class="busker-info">
-	<img
-		src="https://i.pinimg.com/564x/d4/12/4a/d4124a5565145151eeb2b40a8835155f.jpg" />
+	<img src="https://i.pinimg.com/564x/d4/12/4a/d4124a5565145151eeb2b40a8835155f.jpg" class="side_photo_img" />
+	<input type="file" name="side_photo_button" class="side_photo_button"/>
+
 	<div class="busker-info__main">
 		<div class="busker-info__nickname">${busker.activityName }</div>
 		<div class="busker-info__content busker_profile"><textarea class='input_form' id="input_form_intro" readonly></textarea></div>
@@ -43,4 +45,9 @@
 		});
 		
 	}
+	
+	$(".side_photo_img").click(function(e){
+		e.preventDefault();
+		$(".side_photo_button").click();
+	})
 </script>

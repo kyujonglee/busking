@@ -56,7 +56,7 @@
 				<i class="far fa-images fa-lg"></i>
 			</div>
 			<div class="busker-side__menu-title">
-				<a href="<c:url value='/artist/board/photo.do'/>?buskerNo=${param.buskerNo}">사진</a><span class="busker-side__menu-count">99</span>
+				<a href="<c:url value='/artist/board/photo.do'/>?buskerNo=${param.buskerNo}">사진</a><span class="busker-side__menu-count" id="photoCount"></span>
 			</div>
 		</li>
 		<li class="busker-side__menu-item">
@@ -169,6 +169,7 @@
 		const showCount = map.showCount;
 		const musicCount = map.musicCount;
 		const videoCount = map.videoCount;
+		const photoCount = map.photoCount;
 		const activityName = map.busker.activityName;
 		const intro = map.busker.intro;
 		const location = map.busker.location;
@@ -176,15 +177,18 @@
 		const genre = map.busker.genre;
 		const profileImg = map.busker.profileImg;
 		const profileImgPath = map.busker.profileImgPath;
-
 		$("#showCount").text(showCount);
 		$("#musicCount").text(musicCount);
 		$("#videoCount").text(videoCount);
+		$("#photoCount").text(photoCount);
 		$("#activityName").text(activityName);
+		$(".busker-info__nickname").text(activityName);
 		$("#input_form_intro").text(intro);
 		$("#input_form_location").val(location);
 		$("#input_form_time").val(time);
 		$("#input_form_genre").val(genre);
+		
+		
 		$(".busker-side__profile-photo").prepend(
 		`<img src='<c:url value='/resources/img/profile.png' />'>`		
 		)
@@ -221,23 +225,24 @@
 		$(".facebook").click(function(){
 			if($("#faceBookUrl").val() == ""){
 				alert("등록된 url이 없습니다.");
-				return
+			}else{
+		    	window.location.href = 	$("#faceBookUrl").val();
 			}
-	    	window.location.href = 	$("#faceBookUrl").val();
 	    })
 	     $(".youtube").click(function(){
 			if($("#youTubeUrl").val() == ""){
 				alert("등록된 url이 없습니다.");
-				return
+			}else{
+		    	window.location.href = $("#youTubeUrl").val();
 			}
-	    	window.location.href = $("#youTubeUrl").val();
 	    })
 	    $(".instargram").click(function(){
 			if($("#instargramUrl").val() == ""){
 				alert("등록된 url이 없습니다.");
-				return
+			}else{
+				alert("else실행됨")
+		    	window.location.href = $("#instargramUrl").val();
 			}
-	    	window.location.href = $("#instargramUrl").val();
 	    })
 		    
 	    
@@ -291,29 +296,28 @@
 				  type:'warning',
 				  timer:2000	
 			});
+		}else{
+			$.ajax({
+				url : "follow-ajax.do",
+				data : {buskerNo: buskerNo,memberNo:"${sessionScope.user.memberNo}"},
+			}).done(function(result){
+				if(result == 1){
+					Swal.fire({
+						  title:'팔로우 성공',
+						  type:'success',
+						  timer:2000	
+					});
+					$(".busker__profile-header-follow").css("background-color","red").html("팔로우");	
+				}else {
+					Swal.fire({
+						  title:'팔로우 취소',
+						  type:'success',
+						  timer:2000	
+					});
+					$(".busker__profile-header-follow").css("background-color","rgb(243,116,32)").html("팔로우+");		
+				}
+			});
 		}
-		
-		
-		$.ajax({
-			url : "follow-ajax.do",
-			data : {buskerNo: buskerNo,memberNo:"${sessionScope.user.memberNo}"},
-		}).done(function(result){
-			if(result == 1){
-				Swal.fire({
-					  title:'팔로우 성공',
-					  type:'success',
-					  timer:2000	
-				});
-				$(".busker__profile-header-follow").css("background-color","red").html("팔로우");	
-			}else {
-				Swal.fire({
-					  title:'팔로우 취소',
-					  type:'success',
-					  timer:2000	
-				});
-				$(".busker__profile-header-follow").css("background-color","rgb(243,116,32)").html("팔로우+");		
-			}
-		});
 	})
 	
 
