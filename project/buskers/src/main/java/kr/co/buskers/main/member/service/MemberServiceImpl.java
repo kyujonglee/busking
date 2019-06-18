@@ -1,5 +1,8 @@
 package kr.co.buskers.main.member.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -129,14 +132,20 @@ public class MemberServiceImpl implements MemberService {
 
 	// 버스커 업데이트
 	@Override
-	public void updateBusker(Busker busker) {
-		mapper.buskerUpdate(busker);
+	public void updateBusker(Busker busker, BuskerGenre buskerGenre) {
+		mapper.deleteBuskerGenreByNo(busker.getBuskerNo());
+		buskerGenre.setBuskerNo(busker.getBuskerNo());
+		mapper.insertBuskerGenre(buskerGenre);
+		mapper.updateBusker(busker);
 	}
-
+	
+	
 	// 프로필 소개글 업데이트
 	@Override
 	public void updateMemberProfileIntroduce(Member member) {
 		mapper.updateMemberProfileIntroduce(member);
 	}
+
+
 	
 }

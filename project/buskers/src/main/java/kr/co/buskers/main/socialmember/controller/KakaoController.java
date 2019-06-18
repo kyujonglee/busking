@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import kr.co.buskers.main.member.service.MemberService;
+import kr.co.buskers.main.member.util.PrevUrl;
 import kr.co.buskers.repository.domain.Member;
 
 @Controller("kr.co.buskers.main.socialmember.controller.KakaoController")
@@ -17,6 +18,9 @@ import kr.co.buskers.repository.domain.Member;
 public class KakaoController {
 	@Autowired
 	private MemberService service;
+	
+	@Autowired
+	private PrevUrl prevUrl;
 	
 	// 카카오 로그인 디비에 없을시에 회원가입 처리후 메인으로 이동
 	@RequestMapping("social-signup.do")
@@ -40,7 +44,7 @@ public class KakaoController {
 		//세션에다시올려줌
 		session.setAttribute("user", user);
 		session.setMaxInactiveInterval(60 * 60);   //물어보기
-		return "redirect:/index.jsp";
+		return "redirect:" + prevUrl.getPrevUrl();
 	}
 	
 	@RequestMapping("social-checkid.do")
@@ -63,7 +67,7 @@ public class KakaoController {
 		user.setAccessToken(member.getAccessToken());
 		session.setAttribute("user", user);
 		session.setMaxInactiveInterval(60 * 60);   //물어보기
-		return "redirect:/index.jsp";
+		return "redirect:" + prevUrl.getPrevUrl();
 	}
 	
 	// 소셜 로그인 폼

@@ -425,6 +425,7 @@ a:link {
 .preview-profile {
 	width: 60%;
 	height: 100%;
+	display: none;
 }
 
 .btn-file-word {
@@ -489,4 +490,61 @@ a:link {
 	padding-left:30px;
 	padding-bottom:30px;
 }
+
+/* 팔로우 팔로워 */
+
+.category-wapper {
+	box-sizing: border-box;
+    display: block;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.category__ul {
+	display: flex;
+}
+
+.category__tab {
+	display: block;
+    flex-grow: 1;
+    text-align: center;
+    line-height: 42px;
+    height: 42px;
+    cursor: pointer;
+    color: #999;
+    background-color: #f6f9fc;
+}
+
+.category__tab > a {
+	display: inline-block;
+    height: 100%;
+    width: 100%;
+}
+
+.category__tab > a:hover {
+	text-decoration: none;
+}
+
+.current {
+	border-bottom: 2px solid tomato;
+    background-color: #fff;
+    color: #333;
+}
+
+.current:hover {
+	text-decoration: none;
+	color: #333;
+}
+
+
+
+
+
+
+
+
+
+
+
+
 

@@ -61,6 +61,9 @@ public interface MemberMapper {
 	// 버스커 장르 등록
 	public void insertBuskerGenre(BuskerGenre buskerGenre);
 	
+	// 버스커 장르 삭제
+	public void deleteBuskerGenreByNo(int buskerNo);
+	
 	//팔로우 테이블 있는지
 	public int confirmFollow(Follow follow);
 	
@@ -84,7 +87,7 @@ public interface MemberMapper {
 	public Busker selectBusker(int buskerNo);
 
 	// 버스커 업데이트
-	public void buskerUpdate(Busker busker);
+	public void updateBusker(Busker busker);
 
 	// 프로필 소개글 업데이트
 	public void updateMemberProfileIntroduce(Member member);

@@ -78,6 +78,13 @@
             (#{genre}, #{buskerNo})
         </foreach>
 	</insert>
+	
+	<!-- 버스커 장르 삭제 -->
+	<delete id="deleteBuskerGenreByNo" parameterType="int">
+		delete
+		  from tb_busker_genre
+		 where busker_no = #{buskerNo}
+	</delete>
 
 	
 	<!-- 맴버 타입변경(버스커) -->
@@ -178,14 +185,14 @@
 	</update>
 	
 	<!-- 버스커정보 변경 -->
-	<update id="buskerUpdate" parameterType="busker" useGeneratedKeys="true" keyProperty="memberNo">
+	<update id="updateBusker" parameterType="busker" useGeneratedKeys="true" keyProperty="memberNo">
 		update tb_busker
   		   set activity_name = #{activityName},
                phone = #{phone}
          where member_no = #{memberNo}
 	</update>
 	
-	
+	<!-- 팔로우 관련 -->
 	<insert id="insertFollow" parameterType="follow">
 		insert into tb_follow(
 			busker_no,member_no
@@ -238,6 +245,36 @@
 	         on a.member_no = b.member_no
           where busker_no=#{buskerNo}
 	</select>
+	
+	
+	<!-- 팔로우 / 팔로워 관리 -->
+	<select id="countFollow" parameterType="follow" resultType="int">
+		select count(*)
+		  from tb_follow
+		 where follow_status = 'y'
+		   and member_no = #{memberNo}
+	</select>
+	
+	<select id="selectFollowMember" parameterType="int" resultType="followList">
+		select f.*, b.activity_name, m.profile_img_path, m.profile_img, m.nick_name
+		  from tb_follow f, tb_busker b, tb_member m
+		 where f.member_no = #{memberNo}
+<!-- 		   and f.busker_no = b.busker_no -->
+<!-- 		   and b.member_no = m.member_no -->
+		   and f.follow_status = 'y'
+	</select>
+	
+	<select id="countFollower" parameterType="follow" resultType="int">
+		select count(*)
+		  from tb_follow
+		 where follow_status = 'y'
+		   and busker_no = #{buskerNo}
+	</select>
+	
+	
+	
+	
+	
 	
 	
 	
