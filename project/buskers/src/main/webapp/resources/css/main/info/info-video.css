@@ -21,6 +21,10 @@
     fill: var(--color-orange);
 }
 
-.shit {
-    transform: scale(1.1);
+.info-video__empty {
+	width : 100%;
+	height : 100%;
+	display : flex;
+	justify-content : center;
+	align-items : center;
 }

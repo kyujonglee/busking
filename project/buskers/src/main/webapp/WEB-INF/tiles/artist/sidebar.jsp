@@ -13,7 +13,7 @@
 				<i class="fas fa-angle-right fa-2x"></i>
 			</div>
 		</header>
-		<article class="busker-side__profile-info">
+		<article class="busker-side__profile-info" id="busker-profile">
 			<header class="busker-side__profile-header">
 				<span class="busker__profile-header-edit">
 					<c:if test="${sessionScope.user.busker.buskerNo eq param.buskerNo}">
@@ -41,7 +41,7 @@
 			</div>
 		</article>
 	</section>
-	<ul class="busker-side__menu">
+	<ul class="busker-side__menu" id="side-menu">
 		<li class="busker-side__menu-item">
 			<div class="busker-side__menu-icon">
 				<i class="fas fa-video fa-lg"></i>
@@ -101,7 +101,7 @@
 <!-- 			<div class="busker-side__menu-title">설정</div> -->
 <!-- 		</li> -->
 	</ul>
-	<section class="busker-side__buskers">
+	<section class="busker-side__buskers" id="busker-recommend">
 		<header class="buskers-header">
 			<div class="buskers-header__title">관련 버스커</div>
 		</header>

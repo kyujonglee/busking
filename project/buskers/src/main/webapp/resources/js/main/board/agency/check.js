@@ -28,12 +28,8 @@ $("#agencyCode").keyup(function(){
 	}).done( result => {
 		console.log("success");
 		if(result === 0){
-//			$(".agency-check__message").text("해당 업체번호가 존재하지 않습니다.");
-//			$(".agency-check__message").css({color : "red"});
 			$(this).css({"border-color" : "red"});
 		}else {
-//			$(".agency-check__message").text("해당 업체번호가 존재합니다.");
-//			$(".agency-check__message").css({color : "skyblue"});
 			$(this).css({"border-color" : "skyblue"});
 		}
 	});

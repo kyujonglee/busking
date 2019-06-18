@@ -2,7 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<section class="busker-info">
+<section class="busker-info" id="busker-info">
 	<img src="https://i.pinimg.com/564x/d4/12/4a/d4124a5565145151eeb2b40a8835155f.jpg" class="side_photo_img" />
 	<input type="file" name="side_photo_button" class="side_photo_button"/>
 

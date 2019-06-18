@@ -3,6 +3,7 @@
   font-family: "Nanum Gothic", sans-serif;
   border-right: 1px solid rgba(0, 0, 0, 0.3);
   background-color: #f8f8f8;
+  display : grid;
 }
 
 .busker-side .busker-side__profile {

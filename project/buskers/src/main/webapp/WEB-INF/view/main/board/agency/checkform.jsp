@@ -14,7 +14,6 @@
 	              업체등록번호
 	            </span>
 	            <input class="agency-check__answer-input" type="text" id="agencyCode"/>
-	            <span class="agency-check__message"></span>
           </div>
           <button type="button" class="agency-check__ok-button" onclick="checkAgencyCode();">확인</button>
         </section>
