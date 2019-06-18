@@ -11,8 +11,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import kr.co.buskers.repository.domain.ArtistPhoto;
 import kr.co.buskers.repository.domain.Member;
 import kr.co.buskers.repository.domain.MusicFile;
+import kr.co.buskers.repository.mapper.ArtistBoardMapper;
 import kr.co.buskers.repository.mapper.BuskerMapper;
 import kr.co.buskers.repository.mapper.FileMapper;
 import kr.co.buskers.repository.mapper.MemberMapper;
@@ -28,6 +30,9 @@ public class FileServiceImpl implements FileService {
 	
 	@Autowired
 	private MemberMapper mMapper;
+	
+	@Autowired
+	private ArtistBoardMapper aMapper;
 	
 //	private final String FILE_PATH = "/Users/kyujong/Documents/bit2019/upload";
 	private final String FILE_PATH = "C:/bit2019/upload";
@@ -176,5 +181,25 @@ public class FileServiceImpl implements FileService {
 	    multipartFile.transferTo(f);
 		
 		mMapper.uploadProfile(member);
+	}
+
+	@Override
+	public String insertArtistPhoto(ArtistPhoto artistPhoto) throws Exception{
+		MultipartFile attach = artistPhoto.getFile();
+		System.out.println("사용자가 선택한 파일명 : "+attach.getOriginalFilename());
+		
+		UUID uuid = UUID.randomUUID();
+		
+		artistPhoto.setName(attach.getOriginalFilename());
+		artistPhoto.setSysname(uuid.toString()+attach.getOriginalFilename());
+		String path = FILE_PATH + "/artistPhoto/"+ artistPhoto.getBuskerNo()+"/"+artistPhoto.getSysname();
+		File file = new File(path);
+		if(!file.exists()) file.mkdirs();
+		attach.transferTo(file);
+		
+		path = FILE_PATH + "/artistPhoto/"+ artistPhoto.getBuskerNo()+"/";
+		artistPhoto.setPath(path);
+		aMapper.insertArtistPhoto(artistPhoto);
+		return path+artistPhoto.getSysname();
 	}
 }

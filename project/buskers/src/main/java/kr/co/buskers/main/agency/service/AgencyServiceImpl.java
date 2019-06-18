@@ -58,4 +58,8 @@ public class AgencyServiceImpl implements AgencyService {
 		mapper.insertAgencyGenre(agencyGenre);
 		mapper.updateAgencyInfo(agencyInfo);
 	}
+	@Override
+	public void updateAgencyPermission(AgencyInfo agencyInfo) {
+		mapper.updateAgencyPermission(agencyInfo);
+	}
 }

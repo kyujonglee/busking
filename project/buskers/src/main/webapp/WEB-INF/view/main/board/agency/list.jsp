@@ -10,7 +10,7 @@
 <div class="board">
 	<div class="board_title">
 		<div class="board_title_underline">
-			<a href="<c:url value='/main/board/qna/list.do'/>">업체게시판</a>
+			<a href="<c:url value='/main/board/agency/list.do'/>">업체게시판</a>
 		</div>
 	</div>
 	<!--  
@@ -30,15 +30,17 @@
 		</tr>
 		<c:forEach var="agency" items="${list}">
 			<c:if test="${sessionScope.user.memberNo eq agency.memberNo}">
-			<tr>
+			<tr no="${agency.agencyInfoNo}" per="${agency.permission}">
 				<td>${agency.agencyInfoNo}</td>
 				<td>
 					<%-- 									<a href="<c:url value='/main/board/agency/detail.do?agencyInfoNo=${agency.agencyInfoNo}&pageNo=${pageNo}'/>">${agency.agencyName}</a> --%>
 					<a href="#"
 					onclick="agencyDetail(`<c:url value='/main/board/agency/detail.do?agencyInfoNo=${agency.agencyInfoNo}&pageNo=${pageNo}'/>`,
 																`${agency.memberNo}`,${sessionScope.user.memberNo});">${agency.agencyName}
-					<c:if test="${sessionScope.user.memberNo ne agency.memberNo}">
-						<i class="fas fa-lock fa-lg"></i>
+					<c:if test="${sessionScope.user.isAdmin ne 'y'}" >
+						<c:if test="${sessionScope.user.memberNo ne agency.memberNo}">
+							<i class="fas fa-lock fa-lg"></i>
+						</c:if>
 					</c:if>
 					</a>
 				</td>
@@ -57,28 +59,42 @@
 		</c:forEach>
 		<c:forEach var="agency" items="${list}">
 			<c:if test="${sessionScope.user.memberNo ne agency.memberNo}">
-			<tr>
+			<tr no="${agency.agencyInfoNo}" per="${agency.permission}">
 				<td>${agency.agencyInfoNo}</td>
 				<td>
 					<%-- 									<a href="<c:url value='/main/board/agency/detail.do?agencyInfoNo=${agency.agencyInfoNo}&pageNo=${pageNo}'/>">${agency.agencyName}</a> --%>
 					<a href="#"
 					onclick="agencyDetail(`<c:url value='/main/board/agency/detail.do?agencyInfoNo=${agency.agencyInfoNo}&pageNo=${pageNo}'/>`,
 																`${agency.memberNo}`,${sessionScope.user.memberNo});">${agency.agencyName}
-					<c:if test="${sessionScope.user.memberNo ne agency.memberNo}">
-						<i class="fas fa-lock fa-lg"></i>
+					<c:if test="${sessionScope.user.isAdmin ne 'y'}" >
+						<c:if test="${sessionScope.user.memberNo ne agency.memberNo}">
+							<i class="fas fa-lock fa-lg"></i>
+						</c:if>
 					</c:if>
 					</a>
 				</td>
 				<td><fmt:formatDate value="${agency.regDate}"
 						pattern="yyyy-MM-dd HH:mm" type="both" /></td>
-				<c:choose>
-					<c:when test="${agency.permission eq 'n'}">
-						<td>신청중</td>
-					</c:when>
-					<c:otherwise>
-						<td>등록완료</td>
-					</c:otherwise>
-				</c:choose>
+				<c:if test="${sessionScope.user eq null || sessionScope.user.isAdmin eq 'n' }">
+					<c:choose>
+						<c:when test="${agency.permission eq 'n'}">
+							<td>신청중</td>
+						</c:when>
+						<c:otherwise>
+							<td>등록완료</td>
+						</c:otherwise>
+					</c:choose>
+				</c:if>
+				<c:if test="${sessionScope.user.isAdmin eq 'y' }">
+					<c:choose>
+						<c:when test="${agency.permission eq 'n'}">
+							<td><button class="agency-table__admin ing">신청중</button></td>
+						</c:when>
+						<c:otherwise>
+							<td><button class="agency-table__admin end">등록완료</button></td>
+						</c:otherwise>
+					</c:choose>
+				</c:if>
 			</tr>
 			</c:if>
 		</c:forEach>
@@ -109,15 +125,7 @@
 </div>
 </main>
 <script>
-	function agencyDetail(url,agencyMemberNo,memberNo){
-		if(memberNo === parseInt(agencyMemberNo)){
-			location.href = url;
-			return;
-		};
-		Swal.fire({
-		  title:'다른 회원의 게시물을 볼 수 없습니다.',
-		  type:'info',
-		  timer:2000
-		});
-	}
+	const isAdmin = ${(sessionScope.user eq null) ? false : sessionScope.user.isAdmin eq 'y'};
+	const updateUrl = "<c:url value='/main/board/agency/update-agency-permission-ajax.do'/>";
 </script>
+<script src="<c:url value='/resources/js/main/board/agency/list.js'/> " /></script>

@@ -22,4 +22,5 @@ public interface AgencyMapper {
 	void deleteAgencyByNo(int agencyInfoNo);
 	
 	void updateAgencyInfo(AgencyInfo agencyInfo);
+	void updateAgencyPermission(AgencyInfo AgencyInfo);
 }

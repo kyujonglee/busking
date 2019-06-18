@@ -93,10 +93,32 @@
 		  from tb_follow f, tb_busker_show s, tb_busker b, tb_member m
 		 where f.member_no = #{memberNo}
 		   and f.busker_no = s.busker_no
-		   and s.busker_no=b.busker_no
+		   and s.busker_no = b.busker_no
 		   and b.member_no = m.member_no
 		   and f.follow_status = 'y'
 		 order by s.reg_date desc;
+	</select>
+	
+	<select id="selectFollowArtistPhotoList" parameterType="int" resultType="artistPhoto">
+		select *
+		  from tb_follow f, tb_artist_photo p, tb_busker b, tb_member m
+		 where f.member_no = #{memberNo}
+		   and f.busker_no = p.busker_no
+		   and p.busker_no = b.busker_no
+		   and b.member_no = m.member_no
+		   and f.follow_status = 'y'
+		 order by p.reg_date desc;
+	</select>
+	
+	<select id="selectFollowArtistVideoList" parameterType="int" resultType="video">
+		select *
+		  from tb_follow f, tb_video v, tb_busker b, tb_member m
+		 where f.member_no = #{memberNo}
+		   and f.busker_no = v.busker_no
+		   and v.busker_no = b.busker_no
+		   and b.member_no = m.member_no
+		   and f.follow_status = 'y'
+		 order by v.reg_date desc;
 	</select>
 	
 </mapper>

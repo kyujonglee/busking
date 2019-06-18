@@ -6,19 +6,18 @@
 
 .message_count {
     position: absolute;
-    width: 20px;
-    height: 20px;
-    line-height: 20px;
-    font-size: 13px;
-    margin-top: -13px;
-    margin-left: -9px;
-    color: #fff;
-    font-weight: bold;
-    text-align: center;
-    border-radius: 50%;
-    background-color: #f00;
-    z-index: 999;
-    display: none;
+    background: #28a745;
+    color: white;
+    margin-top: -15px;
+    margin-left: -5px;
+}
+
+.alarm_count {
+    position: absolute;
+    background: #ffc107;
+	color: black;
+    margin-top: -15px;
+    margin-left: -10px;
 }
 
 #toast-container > div {
@@ -28,9 +27,12 @@
     padding: 15px 15px 15px 50px;
 } 
 
-@-webkit-keyframes alarm { 
+@keyframes alarm { 
 	0% {color: white;}
 	50% {color: tomato;}
 	100% {color: white;}
 }
 
+.main_logo a:hover {
+	color: white;
+}

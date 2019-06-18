@@ -7,6 +7,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import kr.co.buskers.repository.domain.ArtistPhoto;
 import kr.co.buskers.repository.domain.Busker;
 import kr.co.buskers.repository.domain.Follow;
 import kr.co.buskers.repository.domain.MusicFile;
@@ -113,6 +114,26 @@ public class ArtistMainServiceImpl implements ArtistMainService {
 	@Override
 	public Busker selectBusker(int buskerNo) {
 		return memberMapper.selectBusker(buskerNo);
+	}
+
+	@Override
+	public List<ArtistPhoto> selectPhoto(int buskerNo) {
+		return boardMapper.selectPhoto(buskerNo);
+	}
+
+	@Override
+	public ArtistPhoto selectPhotoByNo(int fileNo) {
+		return boardMapper.selectPhotoByNo(fileNo);
+	}
+	
+	@Override
+	public Busker selectBuskerActivityName(int buskerNo) {
+		return boardMapper.selectBuskerActivityName(buskerNo);
+	}
+
+	@Override
+	public void deletePhoto(int fileNo) {
+		boardMapper.deletePhoto(fileNo);
 	}
 	
 }

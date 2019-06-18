@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.co.buskers.common.page.AgencyPageResult;
@@ -90,4 +91,10 @@ public class AgencyController {
 		model.addAttribute("genre",service.selectGenre());
 		model.addAttribute("pageNo",pageNo);
 	}
+	@RequestMapping("update-agency-permission-ajax.do")
+	@ResponseBody
+	public void updateAgencyPermission(AgencyInfo agencyInfo) {
+		service.updateAgencyPermission(agencyInfo);
+	}
+	
 }

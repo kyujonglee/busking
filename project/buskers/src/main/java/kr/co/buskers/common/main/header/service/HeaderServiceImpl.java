@@ -31,11 +31,14 @@ public class HeaderServiceImpl implements HeaderService {
 		return map;
 	}	
 	
-	public Map<String, Object> selectAlarmList(HttpSession session) {
+	public Map<String, Object> selectAlarmList(HttpSession session, int index) {
 		Map<String, Object> map = new HashMap<>();
 		if (session.getAttribute("user") != null) {
+			Map<String, Object> m = new HashMap<>();
 			Member member = (Member)session.getAttribute("user");
-			map.put("alarm", mapper.selectAlarmList(member.getMemberNo()));
+			m.put("memberNo", member.getMemberNo());
+			m.put("index",index);
+			map.put("alarm", mapper.selectAlarmList(m));
 		}
 		return map;
 	}
@@ -63,6 +66,12 @@ public class HeaderServiceImpl implements HeaderService {
 		Member member = (Member)session.getAttribute("user");
 		
 		return mapper.selectMessageCount(member.getMemberNo());
+	}
+	
+	public int selectAlarmCount(HttpSession session) {
+		Member member = (Member)session.getAttribute("user");
+		
+		return mapper.selectAlarmCount(member.getMemberNo());
 	}
 	
 	public Map<String, Object> detail(int msgNo) {

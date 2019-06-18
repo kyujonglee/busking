@@ -18,7 +18,7 @@ import kr.co.buskers.repository.domain.Member;
 public class KakaoController {
 	@Autowired
 	private MemberService service;
-	
+
 	@Autowired
 	private PrevUrl prevUrl;
 	
@@ -63,6 +63,7 @@ public class KakaoController {
 	// 로그인 처리
 	@RequestMapping("social-login.do")
 	public String login(HttpSession session, Member member,RedirectAttributes rttr) {
+		
 		Member user = service.login(member);
 		user.setAccessToken(member.getAccessToken());
 		session.setAttribute("user", user);
@@ -76,12 +77,7 @@ public class KakaoController {
 		try {
 			model.addAttribute("id",member.getId());
 			model.addAttribute("memberType",member.getMemberType());
-			
-			
-//			Member user = service.login(member);
-//			session.setAttribute("user", user);
 		}catch(Exception e) {
 		}
 	}
-	
 }

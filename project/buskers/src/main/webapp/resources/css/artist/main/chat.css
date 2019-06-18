@@ -321,7 +321,7 @@
     font-weight: 300;
     display: flex;
     justify-content: center;
-    height: 50px;
+    height: 53px;
     align-items: center;
 }
 
@@ -346,6 +346,7 @@
     border-radius: 20px;
     height: 10px;
     font-size: 12px;
+    box-sizing: content-box;
 }
 
 #frame #sidepanel #search input:focus {
@@ -517,6 +518,7 @@
 	position: absolute;
 	width: 100%;
 	bottom: 0;
+	height: 41.8px;
 }
 
 #frame #sidepanel #bottom-bar button {
@@ -669,6 +671,10 @@
 	font-size: 0.9em;
 }
 
+#frame .content .messages ul li span {
+	margin-bottom: 5px;
+}
+
 #frame .content .messages ul li:nth-last-child(1) {
 	margin-bottom: 20px;
 }
@@ -741,7 +747,7 @@
 	font-family: "proxima-nova", "Source Sans Pro", sans-serif;
 	float: left;
 	border: none;
-	width: calc(100% - 90px);
+	width: 100%;
 	padding: 11px 32px 10px 8px;
 	font-size: 0.8em;
 	color: #32465a;
@@ -940,7 +946,7 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	height: 34px;
+	height: 30px;
 }
 
 .online_user img {
@@ -984,11 +990,11 @@
 }
 
 .opacity_slider {
-  width: 80px;
+  width: 50px;
   height: 3px;
   background: rgba(11,72,107,0.4);
   position: absolute;
-  right: 40px;
+  right: 23px;
   border-radius: 10px;
   cursor: pointer;
 }
@@ -1016,4 +1022,12 @@
 	0% {color: white;}
 	50% {color: #3B1E1E;}
 	100% {color: white;}
+}
+
+.chatting_room_busker_profile_img {
+	line-height: 100%; 
+}
+
+#bottom-bar button {
+	height: 100%;
 }

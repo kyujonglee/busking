@@ -31,111 +31,128 @@
 <script src="<c:url value='/resources/js/main/header/custom.js'/>"></script>
 <script src="<c:url value='/resources/js/main/header/slick.js'/>"></script>
 <script>
-$(".sidebar-dropdown > a").click(function() {
-    $(".sidebar-submenu").slideUp(200);
-    if ( $(this).parent().hasClass("active") ) {
-        $(".sidebar-dropdown").removeClass("active");
-        $(this).parent().removeClass("active");
-    } else {
-        $(".sidebar-dropdown").removeClass("active");
-        $(this).next(".sidebar-submenu").slideDown(200);
-        $(this).parent().addClass("active");
-    }
-});
-
-$("#close-sidebar").click(function() {
-    $(".page-wrapper").removeClass("toggled");
-});
-
-$("#show-sidebar").click(function() {
-    $(".page-wrapper").addClass("toggled");
-});
-
-$(document).ready(function () {
-	$.ajax({
-		type: "POST",
-		url: "/buskers/main/header/message/message-count-ajax.do",
-		success: function (count) {
-			if (count != 0) {
-				$(".message__count").text(count);
-			}
-		}
+	$(".sidebar-dropdown > a").click(function() {
+	    $(".sidebar-submenu").slideUp(200);
+	    if ( $(this).parent().hasClass("active") ) {
+	        $(".sidebar-dropdown").removeClass("active");
+	        $(this).parent().removeClass("active");
+	    } else {
+	        $(".sidebar-dropdown").removeClass("active");
+	        $(this).next(".sidebar-submenu").slideDown(200);
+	        $(this).parent().addClass("active");
+	    }
 	});
 	
-	$.ajax({
-		type: "POST",
-		url: "/buskers/main/sidebar/artist-genre.do",
-		success: function (result) {
-			let genre = result.genre1;
-			let html = "";
-			for (let i = 0; i < genre.length; i++) {
-	        	html += '<li>';
-				html += 	'<img src="<c:url value='/file/download.do'/>?path=' + genre[i].profileImgPath + genre[i].profileImg + `" onError="this.src='<c:url value='/resources/img/profile.png' />';"` +'"/>';
-	        	html += 	'<a href="<c:url value='/artist/main/main.do'/>?buskerNo=' + genre[i].buskerNo + '">' + genre[i].activityName + '</a>';
-	        	html += '</li>';
-			}
-			$(".sidebar-submenu:eq(0) ul").html(html);
-			genre = result.genre2;
-			html = "";
-			for (let i = 0; i < genre.length; i++) {
-	        	html += '<li>';
-				html += 	'<img src="<c:url value='/file/download.do'/>?path=' + genre[i].profileImgPath + genre[i].profileImg + `" onError="this.src='<c:url value='/resources/img/profile.png' />';"` +'"/>';
-	        	html += 	'<a href="<c:url value='/artist/main/main.do'/>?buskerNo=' + genre[i].buskerNo + '">' + genre[i].activityName + '</a>';
-	        	html += '</li>';
-			}
-			$(".sidebar-submenu:eq(1) ul").html(html);
-			genre = result.genre3;
-			html = "";
-			for (let i = 0; i < genre.length; i++) {
-	        	html += '<li>';
-				html += 	'<img src="<c:url value='/file/download.do'/>?path=' + genre[i].profileImgPath + genre[i].profileImg + `" onError="this.src='<c:url value='/resources/img/profile.png' />';"` +'"/>';
-	        	html += 	'<a href="<c:url value='/artist/main/main.do'/>?buskerNo=' + genre[i].buskerNo + '">' + genre[i].activityName + '</a>';
-	        	html += '</li>';
-			}
-			$(".sidebar-submenu:eq(2) ul").html(html);
-			genre = result.genre4;
-			html = "";
-			for (let i = 0; i < genre.length; i++) {
-	        	html += '<li>';
-				html += 	'<img src="<c:url value='/file/download.do'/>?path=' + genre[i].profileImgPath + genre[i].profileImg + `" onError="this.src='<c:url value='/resources/img/profile.png' />';"` +'"/>';
-	        	html += 	'<a href="<c:url value='/artist/main/main.do'/>?buskerNo=' + genre[i].buskerNo + '">' + genre[i].activityName + '</a>';
-	        	html += '</li>';
-			}
-			$(".sidebar-submenu:eq(3) ul").html(html);
-			genre = result.genre5;
-			html = "";
-			for (let i = 0; i < genre.length; i++) {
-	        	html += '<li>';
-				html += 	'<img src="<c:url value='/file/download.do'/>?path=' + genre[i].profileImgPath + genre[i].profileImg + `" onError="this.src='<c:url value='/resources/img/profile.png' />';"` +'"/>';
-	        	html += 	'<a href="<c:url value='/artist/main/main.do'/>?buskerNo=' + genre[i].buskerNo + '">' + genre[i].activityName + '</a>';
-	        	html += '</li>';
-			}
-			$(".sidebar-submenu:eq(4) ul").html(html);
-			genre = result.genre6;
-			html = "";
-			for (let i = 0; i < genre.length; i++) {
-	        	html += '<li>';
-				html += 	'<img src="<c:url value='/file/download.do'/>?path=' + genre[i].profileImgPath + genre[i].profileImg + `" onError="this.src='<c:url value='/resources/img/profile.png' />';"` +'"/>';
-	        	html += 	'<a href="<c:url value='/artist/main/main.do'/>?buskerNo=' + genre[i].buskerNo + '">' + genre[i].activityName + '</a>';
-	        	html += '</li>';
-			}
-			$(".sidebar-submenu:eq(5) ul").html(html);
-		}
+	$("#close-sidebar").click(function() {
+	    $(".page-wrapper").removeClass("toggled");
 	});
-});
+	
+	$("#show-sidebar").click(function() {
+	    $(".page-wrapper").addClass("toggled");
+	});
+	
+	$(document).ready(function () {
+		$.ajax({
+			type: "POST",
+			url: "/buskers/main/header/message/message-count-ajax.do",
+			success: function (count) {
+				if (count != 0) {
+					$(".message__count").text(count);
+				}
+			}
+		});
+		
+		$.ajax({
+			type: "POST",
+			url: "/buskers/main/header/alarm/alarm-count-ajax.do",
+			success: function (count) {
+				if (count != 0) {
+					$(".alarm__count").text(count);
+				}
+			}
+		});
+		
+		$.ajax({
+			type: "POST",
+			url: "/buskers/main/sidebar/artist-genre.do",
+			success: function (result) {
+				let genre = result.genre1;
+				let html = "";
+				for (let i = 0; i < genre.length; i++) {
+		        	html += '<li>';
+					html += 	'<img src="<c:url value='/file/download.do'/>?path=' + genre[i].profileImgPath + genre[i].profileImg + `" onError="this.src='<c:url value='/resources/img/profile.png' />';"` +'"/>';
+		        	html += 	'<a href="<c:url value='/artist/main/main.do'/>?buskerNo=' + genre[i].buskerNo + '">' + genre[i].activityName + '</a>';
+		        	html += '</li>';
+				}
+				$(".sidebar-submenu:eq(0) ul").html(html);
+				genre = result.genre2;
+				html = "";
+				for (let i = 0; i < genre.length; i++) {
+		        	html += '<li>';
+					html += 	'<img src="<c:url value='/file/download.do'/>?path=' + genre[i].profileImgPath + genre[i].profileImg + `" onError="this.src='<c:url value='/resources/img/profile.png' />';"` +'"/>';
+		        	html += 	'<a href="<c:url value='/artist/main/main.do'/>?buskerNo=' + genre[i].buskerNo + '">' + genre[i].activityName + '</a>';
+		        	html += '</li>';
+				}
+				$(".sidebar-submenu:eq(1) ul").html(html);
+				genre = result.genre3;
+				html = "";
+				for (let i = 0; i < genre.length; i++) {
+		        	html += '<li>';
+					html += 	'<img src="<c:url value='/file/download.do'/>?path=' + genre[i].profileImgPath + genre[i].profileImg + `" onError="this.src='<c:url value='/resources/img/profile.png' />';"` +'"/>';
+		        	html += 	'<a href="<c:url value='/artist/main/main.do'/>?buskerNo=' + genre[i].buskerNo + '">' + genre[i].activityName + '</a>';
+		        	html += '</li>';
+				}
+				$(".sidebar-submenu:eq(2) ul").html(html);
+				genre = result.genre4;
+				html = "";
+				for (let i = 0; i < genre.length; i++) {
+		        	html += '<li>';
+					html += 	'<img src="<c:url value='/file/download.do'/>?path=' + genre[i].profileImgPath + genre[i].profileImg + `" onError="this.src='<c:url value='/resources/img/profile.png' />';"` +'"/>';
+		        	html += 	'<a href="<c:url value='/artist/main/main.do'/>?buskerNo=' + genre[i].buskerNo + '">' + genre[i].activityName + '</a>';
+		        	html += '</li>';
+				}
+				$(".sidebar-submenu:eq(3) ul").html(html);
+				genre = result.genre5;
+				html = "";
+				for (let i = 0; i < genre.length; i++) {
+		        	html += '<li>';
+					html += 	'<img src="<c:url value='/file/download.do'/>?path=' + genre[i].profileImgPath + genre[i].profileImg + `" onError="this.src='<c:url value='/resources/img/profile.png' />';"` +'"/>';
+		        	html += 	'<a href="<c:url value='/artist/main/main.do'/>?buskerNo=' + genre[i].buskerNo + '">' + genre[i].activityName + '</a>';
+		        	html += '</li>';
+				}
+				$(".sidebar-submenu:eq(4) ul").html(html);
+				genre = result.genre6;
+				html = "";
+				for (let i = 0; i < genre.length; i++) {
+		        	html += '<li>';
+					html += 	'<img src="<c:url value='/file/download.do'/>?path=' + genre[i].profileImgPath + genre[i].profileImg + `" onError="this.src='<c:url value='/resources/img/profile.png' />';"` +'"/>';
+		        	html += 	'<a href="<c:url value='/artist/main/main.do'/>?buskerNo=' + genre[i].buskerNo + '">' + genre[i].activityName + '</a>';
+		        	html += '</li>';
+				}
+				$(".sidebar-submenu:eq(5) ul").html(html);
+			}
+		});
+	});
+	
+	$(".search-menu").keydown(function () {
+		if (key.keyCode == 13) {
+	        $(".integrated_search").submit();
+	    }
+	});
+	
+	$(".message__count").click(function () {
+		$(".message_count").click();
+	});
+	
+	$(".alarm__count").click(function () {
+		$(".alarm_count").click();
+	});
 
-$(".search-menu").keydown(function () {
-	if (key.keyCode == 13) {
-        $(".integrated_search").submit();
-    }
-});
-
-
-socket.emit("currentUsers", "${sessionScope.user.nickName}");
-
-socket.on("currentUsers", function (users) {
-	$(".current_users_number").text(users + "명");
-});
+	socket.emit("currentUsers", "${sessionScope.user.nickName}");
+	
+	socket.on("currentUsers", function (users) {
+		$(".current_users_number").text(users + "명");
+	});
 </script>
 </body>
 </html>

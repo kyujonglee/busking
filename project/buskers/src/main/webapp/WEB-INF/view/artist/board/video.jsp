@@ -42,8 +42,8 @@
 								<a href="board-search-list.do?pageNo=${pageResult.endPage + 1}&input=${param.input}">
 									<i class="fas fa-angle-right"></i>
 								</a>
-							</c:if>
-			     	    	</div> --%>
+							</c:if>--%>
+		     	    	</div> 
 					</div>
 				</div>
 			</div>
@@ -87,24 +87,11 @@
 	let realPage = 1;
 	  
 	
-	//삭제버튼클릭
-// 	$(document).on("click",".videoMenu",function(event){
-// 		event.stopPropagation();
-// 		$(this).find(".video_menu_modify").show();
-// 	})
-// 	$(document).on("click",".panel-body",function(){
-// 		if($(".video_menu_modify").attr("style") == "display: inline;"){
-// 			$(".video_menu_modify").hide();
-// 		}
-// 			return;
-// 		console.log($(".video_menu_modify").attr("style"));
-// 		console.log("ss");
-// 	})
-		$(document).on("click",".videoMenu",function(event){
-           $('.video_menu_modify').hide();
-           event.stopPropagation();   
-           $(this).children(".video_menu_modify").toggle();
-        });
+	$(document).on("click",".videoMenu",function(event){
+          $('.video_menu_modify').hide();
+          event.stopPropagation();   
+          $(this).children(".video_menu_modify").toggle();
+    });
         
     $(".panel-body").click(function() {
         $('.video_menu_modify').hide();
@@ -123,12 +110,10 @@
 		if(confirm("정말로 삭제하시겠습니까?") == true){
 			let videoNo  = $(this).data("vno");
 			$.ajax({
-				type:'post',
 				data : {videoNo : videoNo},
 				url : "video-delete-ajax.do",
 			}).done(function(){
 				$(".panel-body").html("<div class='video_body'></div>");
-// 				alert("삭제시에 가져온 페이지값"+realPage);
 				page = realPage;
 				spage = (page -1) * 6;
 				$(".panel-body").html("<div class='video_body'></div>");
@@ -147,8 +132,12 @@
 		let buskerNo = "${sessionScope.user.busker.buskerNo}";
 		
 		let url = "https://www.youtube.com/embed/";
-		let code = videoUrl.split('=');
-		let yUrl = url+code[1];
+		
+		let code = videoUrl.split('?');
+		code = code[1].split('=');
+		code = code[1].split('&');
+		console.log(code);
+		let yUrl = url+code[0];
 
 		
 		$.ajax({
@@ -182,36 +171,18 @@
 				htrr += '		<div class="video_title">'+result.list[i].title+"";
 				if("${sessionScope.user.busker.buskerNo}" == "${param.buskerNo}"){
 					htrr += '<span class="videoMenu">';
-					htrr += '<span class="video_menu_modify" data-vno='+result.list[i].video_no+'>삭제<br></span>';
+					htrr += '<span class="video_menu_modify" data-vno='+result.list[i].videoNo+'>삭제<br></span>';
 					htrr += '<i class="fas fa-ellipsis-h"></i>';
 					htrr += '</span>';	
 				}
 				htrr += '</div>';
-				htrr += '		<div class="video_date">	'+ new Date(result.list[i].reg_date).format('yyyy-MM-dd')+'';
+				htrr += '		<div class="video_date">	'+ new Date(result.list[i].regDate).format('yyyy-MM-dd')+'';
 				htrr += '</div>';
 				htrr += '</div>';
 				
 				
 				$(".video_body").append(htrr);
-				
-				
-// 				$(".video_body").append(`
-// 						<div class="video">
-// 	    				<iframe width="100%" height="250px" src=`+result.list[i].url+` frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-// 	        			<div class="video_title">`+result.list[i].title+`
-// 	        				<span class="videoMenu">
-// 	        					<span class="video_menu_modify" data-vno=`+result.list[i].video_no+`>삭제<br></span>
-// 	        					<i class="fas fa-ellipsis-h"></i>
-// 	        				</span>
-// 	        			</div>
-	        			
-// 	        			<div class="video_date">
-// 	        				`+ new Date(result.list[i].reg_date).format('yyyy-MM-dd')+`
-// 	        				</div>
-// 	        		</div>
-// 				`);
 			}
-			
 		})
 	}
 	
@@ -234,7 +205,24 @@
 		})
 	}
 	
+	
+	$(document).on("click",".video-page",function(event){
+		event.preventDefault();
+		page = $(this).attr("href");
+		realPage = page;
+		spage = (page -1) * 6;
+		$(".panel-body").html("<div class='video_body'></div>");
+		showList(spage);
+		pageList(page);
+		
+	})
+	
+	showList(0);
+	pageList(1);
+	
 
+	
+	
 	Date.prototype.format = function(f) {
 	    if (!this.valueOf()) return " ";
 	 
@@ -264,20 +252,6 @@
 	Number.prototype.zf = function(len){return this.toString().zf(len);};
     
 	
-	
-	$(document).on("click",".video-page",function(event){
-		event.preventDefault();
-		page = $(this).attr("href");
-		realPage = page;
-		spage = (page -1) * 6;
-		$(".panel-body").html("<div class='video_body'></div>");
-		showList(spage);
-		pageList(page);
-		
-	})
-	
-		showList(0);
-		pageList(1);
 	
 
 
