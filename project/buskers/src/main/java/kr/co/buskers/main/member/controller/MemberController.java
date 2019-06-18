@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
@@ -18,6 +19,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.UrlBasedViewResolver;
 
 import kr.co.buskers.common.file.service.FileService;
+import kr.co.buskers.main.agency.service.AgencyService;
 import kr.co.buskers.main.member.service.MemberService;
 import kr.co.buskers.main.member.util.Email;
 import kr.co.buskers.main.member.util.EmailSender;
@@ -35,6 +37,9 @@ public class MemberController {
 	
 	@Autowired
 	private FileService fService;
+	
+	@Autowired 
+	private AgencyService aService;
 	
 	@Autowired
 	private EmailSender emailSender;
@@ -285,8 +290,9 @@ public class MemberController {
 	
 	// 개인설정 페이지
 	@RequestMapping("setting.do")
-	public void setting() {
-		
+	public void setting(HttpSession session, Model model) {
+		Member member = (Member) session.getAttribute("user");
+		model.addAttribute("agencyInfo", aService.selectAgencyByNo(member.getMemberNo()));
 	}
 	
 	// 프로필 이미지 업로드

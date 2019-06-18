@@ -73,22 +73,42 @@
                         ${check.genre.name}
                       </span>
                     </div>
-			</c:forEach>
+				  </c:forEach>
                   </div>
                 </div>
                 <div class="agency-insert__item">
                   <div class="agency-insert__item-column">
                     <span class="agency-insert__item-name">등록 상태</span>
                   </div>
-                  <div class="agency-insert__item-column">
-                    	<c:choose>
-					<c:when test="${agencyInfo.permission eq 'n'}">
-						<td>신청중</td>
-					</c:when>
-					<c:otherwise>
-						<td>등록완료</td>
-					</c:otherwise>
-				</c:choose>
+                  <div class="agency-insert__item-column" per="${agencyInfo.permission}">
+                  <c:if test="${sessionScope.user.isAdmin eq 'n'}">
+						<c:choose>
+							<c:when test="${agencyInfo.permission eq 'n'}">
+								<td>신청중</td>
+							</c:when>
+							<c:otherwise>
+								<td>등록완료</td>
+							</c:otherwise>
+						</c:choose>
+					</c:if>
+					<c:if test="${sessionScope.user.isAdmin eq 'y'}">
+						<c:choose>
+							<c:when test="${agencyInfo.permission eq 'n'}">
+								<div><button type="button" class="agency-table__admin ing">신청중</button></div>
+							</c:when>
+							<c:otherwise>
+								<div><button type="button" class="agency-table__admin end">등록완료</button></div>
+							</c:otherwise>
+						</c:choose>
+					</c:if>
+<%--                     	<c:choose> --%>
+<%-- 							<c:when test="${agencyInfo.permission eq 'n'}"> --%>
+<!-- 								<td>신청중</td> -->
+<%-- 							</c:when> --%>
+<%-- 						<c:otherwise> --%>
+<!-- 							<td>등록완료</td> -->
+<%-- 						</c:otherwise> --%>
+<%-- 					</c:choose> --%>
                   </div>
                 </div>
                 <div class="agency-insert__btn-content">
@@ -112,4 +132,10 @@
           </div>
         </div>
       </main>
-  <script src="<c:url value='/resources/js/main/board/agency/detail.js'/>"></script>
+<script>
+	const isAdmin = ${(sessionScope.user eq null) ? false : sessionScope.user.isAdmin eq 'y'};
+	const agencyInfoNo = ${param.agencyInfoNo};
+	const updateUrl = "<c:url value='/main/board/agency/update-agency-permission-ajax.do'/>";
+	const memberNo = ${agencyInfo.memberNo};
+</script>
+<script src="<c:url value='/resources/js/main/board/agency/detail.js'/>"></script>

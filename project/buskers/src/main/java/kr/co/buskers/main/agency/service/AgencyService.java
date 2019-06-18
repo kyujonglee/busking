@@ -9,12 +9,19 @@ import kr.co.buskers.repository.domain.Genre;
 
 public interface AgencyService {
 	List<AgencyInfo> agencyInfoList(AgencyPage page);
+	AgencyInfo selectAgencyInfoByNo(int agencyInfoNo);
+	List<Genre> selectGenre();
 	int agencyInfoCount();
+	int checkAgencyCode(String agencyCode);
+	AgencyInfo selectAgencyByNo(int memberNo);
+	
+	
 	void insertAgencyInfo(AgencyInfo agencyInfo);
 	void insertAgencyGenre(AgencyGenre agencyGenre);
-	AgencyInfo selectAgencyInfoByNo(int agencyInfoNo);
+	void insertMemberAgency(AgencyInfo agencyInfo);
+	
 	void deleteAgencyInfoAll(int agencyInfoNo);
-	List<Genre> selectGenre();
+	
 	void updateAgencyInfo(AgencyInfo agencyInfo,AgencyGenre agencyGenre);
 	void updateAgencyPermission(AgencyInfo agencyInfo);
 }

@@ -10,12 +10,13 @@
       <main class="agency-check__main">
         <section class="agency-check__section">
           <div class="agency-check__answer">
-            <span class="agency-check__answer-title">
-              업체등록번호
-            </span>
-            <input class="agency-check__answer-input" type="text" />
+	            <span class="agency-check__answer-title">
+	              업체등록번호
+	            </span>
+	            <input class="agency-check__answer-input" type="text" id="agencyCode"/>
+	            <span class="agency-check__message"></span>
           </div>
-          <button class="agency-check__ok-button">확인</button>
+          <button type="button" class="agency-check__ok-button" onclick="checkAgencyCode();">확인</button>
         </section>
         <section class="agency-check__section">
         <span class="agency-check__section-question">업체등록번호를 모르시나요?</span>
@@ -28,3 +29,11 @@
       </main>
     </div>
   </main>
+<script>
+	const agencyUrl = "<c:url value='/main/board/agency/check-agencyCode-ajax.do'/>";
+	const agencyEnrollUrl = "<c:url value='/main/board/agency/insert-memberAgency-ajax.do'/>";
+	const agencyListUrl = "<c:url value='/main/board/agency/list.do'/>";
+	const memberNo = ${sessionScope.user.memberNo};
+</script>
+<script src="<c:url value='/resources/js/main/board/agency/check.js'/>"></script>
+  

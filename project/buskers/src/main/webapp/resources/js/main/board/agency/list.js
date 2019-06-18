@@ -1,5 +1,4 @@
 function agencyDetail(url,agencyMemberNo,memberNo){
-	console.log(isAdmin);
 	if(memberNo === parseInt(agencyMemberNo) || isAdmin){
 		location.href = url;
 		return;
@@ -24,11 +23,24 @@ $(document).ready(function(){
 			$(this).text("등록완료");
 			per = 'y';
 		}
-		const no = $(this).parent().parent().attr("no");
+		const agencyInfoNo = $(this).parent().parent().attr("no");
+		const memberNo = $(this).parent().parent().attr("memberNo");
 		$.ajax({
 			url : updateUrl,
-			data : {permission:per, agencyInfoNo:no}
+			data : {permission:per, agencyInfoNo:agencyInfoNo, memberNo : memberNo}
 		}).done(()=>{console.log("success")});
 	})
 });
+
+const moveCheckForm = () => {
+	if(isAgency){
+		Swal.fire({
+		  title:'이미 업체등록이 완료된 회원입니다.',
+		  type:'info',
+		  timer:2000
+		});
+	} else {
+		location.href = checkFormUrl;
+	}
+};
 

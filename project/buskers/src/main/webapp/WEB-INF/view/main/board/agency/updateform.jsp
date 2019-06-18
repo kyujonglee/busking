@@ -127,7 +127,6 @@
 						<span class="agency-insert__item-name">등록 상태</span>
 					</div>
 					<div class="agency-insert__item-column">
-					<c:if test="${sessionScope.user.isAdmin eq 'n'}">
 						<c:choose>
 							<c:when test="${agencyInfo.permission eq 'n'}">
 								<td>신청중</td>
@@ -136,17 +135,6 @@
 								<td>등록완료</td>
 							</c:otherwise>
 						</c:choose>
-					</c:if>
-					<c:if test="${sessionScope.user.isAdmin eq 'y'}">
-						<c:choose>
-						<c:when test="${agencyInfo.permission eq 'n'}">
-							<td><button class="agency-table__admin ing">신청중</button></td>
-						</c:when>
-						<c:otherwise>
-							<td><button class="agency-table__admin end">등록완료</button></td>
-						</c:otherwise>
-					</c:choose>
-					</c:if>
 					</div>
 				</div>
 				<div class="agency-insert__btn-content">

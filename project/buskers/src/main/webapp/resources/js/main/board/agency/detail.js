@@ -11,7 +11,7 @@ function deleteAgency(path,agencyInfoNo) {
         if (result.value) {
           Swal.fire({
             title : 'Deleted!',
-            text : '리얼루다가 삭제됨!',
+            text : '삭제되었습니다.',
             type : 'success',
             timer : 3000
           })
@@ -31,3 +31,23 @@ function deleteAgency(path,agencyInfoNo) {
       })
 //  });
 }
+
+$(document).ready(function(){
+	$(".agency-table__admin").click(function(){
+		let per = $(this).parent().parent().attr("per");
+		$(this).toggleClass("ing").toggleClass("end");
+		if(per === 'y'){
+			$(this).parent().parent().attr("per",'n');
+			$(this).text("신청중");
+			per = 'n';
+		}else {
+			$(this).parent().parent().attr("per",'y');
+			$(this).text("등록완료");
+			per = 'y';
+		}
+		$.ajax({
+			url : updateUrl,
+			data : {permission:per, agencyInfoNo:agencyInfoNo, memberNo : memberNo}
+		}).done(()=>{console.log("success")});
+	})
+});
