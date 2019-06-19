@@ -92,5 +92,12 @@
           <span>${agencyInfo.agencyCode}</span>
         </div>
       </div>
+      <div class="agency-insert__btn-content">
+       	<a href="<c:url value='/main/board/agency/delete-agency.do?agencyInfoNo=${agencyInfo.agencyInfoNo}&memberNo=${sessionScope.user.memberNo}'/>">
+       	 <button type="button" class="agency-insert__btn agency-delete__btn">
+        	업체 삭제 
+       	 </button>
+        </a>
+      </div>
     </section>
 </div>

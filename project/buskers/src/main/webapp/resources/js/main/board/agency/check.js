@@ -4,7 +4,6 @@ const checkAgencyCode = () => {
 		url : agencyUrl,
 		data : { agencyCode : agencyCode }
 	}).done( result => {
-		console.log("success");
 		if(result === 0){
 			alert("해당 업체번호가 존재하지 않습니다.");
 		}else {
@@ -12,10 +11,7 @@ const checkAgencyCode = () => {
 			$.ajax({
 				url : agencyEnrollUrl,
 				data : {agencyCode : agencyCode, memberNo : memberNo}
-			}).done(()=>{
-				alert("shit");
-				location.href = agencyListUrl;
-			})
+			}).done( ()=> location.href = agencyListUrl )
 		}
 	});
 }
@@ -26,7 +22,6 @@ $("#agencyCode").keyup(function(){
 		url : agencyUrl,
 		data : { agencyCode : agencyCode }
 	}).done( result => {
-		console.log("success");
 		if(result === 0){
 			$(this).css({"border-color" : "red"});
 		}else {

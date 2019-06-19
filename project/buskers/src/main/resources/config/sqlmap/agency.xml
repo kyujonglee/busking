@@ -107,6 +107,12 @@
 		 where agency_code = #{agencyCode}
 	</select>
 	
+	<select id="selectAgencyByAgencyInfoNo" resultType="int">
+		select member_no
+		  from tb_agency
+		 where agency_info_no = #{agencyInfoNo}
+	</select>
+	
 	<!-- insert -->
 	<insert id="insertAgencyInfo" parameterType="agencyInfo">
 		<selectKey keyProperty="agencyInfoNo" resultType="int" order="BEFORE">
@@ -154,6 +160,11 @@
 		 where agency_no = #{agencyNo}
 	</delete>
 	
+	<delete id="deleteAgencyByMemberNo">
+		delete
+		  from tb_agency
+		 where member_no = #{memberNo}
+	</delete>
 	
 	<!-- update -->
 	<update id="updateAgencyInfo" parameterType="agencyInfo">
@@ -183,6 +194,14 @@
 		update tb_member
 		   set is_agency = #{permission}
 		 where member_no = #{memberNo}
+	</update>
+	
+	<update id="updateAgencyMembers">
+		<foreach collection="memberNoList" item="memberNo" index="index" separator=";">
+       		 update tb_member
+       		    set is_agency = #{permission} 
+       		  where member_no = #{memberNo}
+    	</foreach>
 	</update>
 </mapper>
 

@@ -1,4 +1,4 @@
-function deleteAgency(path,agencyInfoNo) {
+function deleteAgency(path,agencyInfoNo,memberNo) {
 //	$("agency-insert__btn-content .agency-insert__btn:eq(1)").click(function(e) {
     Swal.fire({
         title: '정말로 삭제하시겠습니까? ',
@@ -17,7 +17,7 @@ function deleteAgency(path,agencyInfoNo) {
           })
           // 삭제 진행하는 코드
           setTimeout(function(){
-        	  location.href=path+agencyInfoNo;
+        	  location.href=path+agencyInfoNo+"&memberNo="+memberNo;
           },1000);
           console.log('delete');
         } else if (result.dismiss === Swal.DismissReason.cancel) {

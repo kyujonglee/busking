@@ -1,6 +1,8 @@
 package kr.co.buskers.main.agency.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,6 +49,16 @@ public class AgencyServiceImpl implements AgencyService {
 	@Override
 	public void deleteAgencyInfoAll(int agencyInfoNo) {
 		mapper.deleteAgencyGenreByNo(agencyInfoNo);
+		
+		Map<String,Object> map = new HashMap<>();
+		List<Integer> memberNoList = mapper.selectAgencyByAgencyInfoNo(agencyInfoNo);
+		for(int memberNo:memberNoList) {
+			System.out.println(memberNo);
+		}
+		map.put("memberNoList",memberNoList);
+		map.put("permission","n");
+		mapper.updateAgencyMembers(map);
+		
 		mapper.deleteAgencyByNo(agencyInfoNo);
 		mapper.deleteAgencyInfoByNo(agencyInfoNo);
 	}
@@ -120,7 +132,6 @@ public class AgencyServiceImpl implements AgencyService {
 	
 	@Override
 	public void insertMemberAgency(AgencyInfo agencyInfo) {
-		System.out.println("Impl "+agencyInfo.getAgencyCode());
 		Integer agencyInfoNo = mapper.selectAgencyInfoNoByAgencyCode(agencyInfo.getAgencyCode());
 		Agency agency = new Agency();
 		agency.setAgencyInfoNo(agencyInfoNo);
@@ -128,6 +139,13 @@ public class AgencyServiceImpl implements AgencyService {
 		mapper.insertAgency(agency);
 		
 		agencyInfo.setPermission("y");
+		mapper.updateMemberAgency(agencyInfo);
+	}
+	
+	@Override
+	public void deleteAgency(AgencyInfo agencyInfo) {
+		mapper.deleteAgencyByMemberNo(agencyInfo.getMemberNo());
+		agencyInfo.setPermission("n");
 		mapper.updateMemberAgency(agencyInfo);
 	}
 	

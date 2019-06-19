@@ -117,7 +117,7 @@
                   	수정 
                  	 </button>
                   </a>
-                	<a href="#" onclick="deleteAgency('/buskers/main/board/agency/delete.do?agencyInfoNo=',${agencyInfo.agencyInfoNo});">
+                	<a href="#" onclick="deleteAgency('/buskers/main/board/agency/delete.do?agencyInfoNo='${agencyInfo.agencyInfoNo},${memberNo});">
                  	 <button type="button" class="agency-insert__btn">
                   	삭제 
                  	 </button>

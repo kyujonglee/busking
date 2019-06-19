@@ -21,6 +21,7 @@ public interface AgencyService {
 	void insertMemberAgency(AgencyInfo agencyInfo);
 	
 	void deleteAgencyInfoAll(int agencyInfoNo);
+	void deleteAgency(AgencyInfo agencyInfo);
 	
 	void updateAgencyInfo(AgencyInfo agencyInfo,AgencyGenre agencyGenre);
 	void updateAgencyPermission(AgencyInfo agencyInfo);

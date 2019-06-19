@@ -66,8 +66,13 @@ public class AgencyController {
 	}
 	
 	@RequestMapping("delete.do")
-	public String delete(int agencyInfoNo) {
+	public String delete(int agencyInfoNo, HttpSession session, int memberNo) {
 		service.deleteAgencyInfoAll(agencyInfoNo);
+		
+		Member user = mService.selectMember(memberNo);
+		session.setAttribute("user", user);
+		session.setMaxInactiveInterval(60 * 60);
+		
 		return "redirect:list.do";
 	}
 	
@@ -116,6 +121,19 @@ public class AgencyController {
 		Member user = mService.selectMember(agencyInfo.getMemberNo());
 		session.setAttribute("user", user);
 		session.setMaxInactiveInterval(60 * 60);
+	}
+	
+	@RequestMapping("delete-agency.do")
+	public String deleteAgency(AgencyInfo agencyInfo, HttpSession session) {
+		System.out.println(agencyInfo.getAgencyInfoNo());
+		System.out.println(agencyInfo.getMemberNo());
+		service.deleteAgency(agencyInfo);
+		
+		Member user = mService.selectMember(agencyInfo.getMemberNo());
+		session.setAttribute("user", user);
+		session.setMaxInactiveInterval(60 * 60);
+			
+		return "redirect:/main/member/setting.do";
 	}
 	
 }
