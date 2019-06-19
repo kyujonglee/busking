@@ -1,3 +1,5 @@
+@import "../common/common.css";
+
 .post_box_wrapper {
 	padding: 20px;
 	font-size: 12px;
@@ -195,4 +197,16 @@
     top: 85px;
     left: 507px;
     display:none;
+}
+
+.message-agency__title {
+	color : var(--color-orange);
+}
+
+.message-agency {
+	font-weight : 800;
+}
+
+.message-agency__icon {
+	color : #FFC107;
 }

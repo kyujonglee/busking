@@ -54,17 +54,30 @@
 							<td><input type="checkbox" name="msgNo" value="${message.msgNo}" class="post_all"></td>
 							<td></td>	
 							<td>
-							<td>${message.isAgency}</td>
 							<c:if test="${message.readStatus eq 'N'}">
-							<i class="fas fa-envelope"></i>
-								<a href="detail.do?msgNo=${message.msgNo}">${message.title}</a>
+								<c:if test="${message.isAgency eq 'y'}">
+									<i class="fas fa-envelope"></i>
+									<a href="detail.do?msgNo=${message.msgNo}" class="message-agency">${message.title}</a>
+								</c:if>
+								<c:if test="${message.isAgency ne 'y'}">
+									<i class="fas fa-envelope"></i>
+									<a href="detail.do?msgNo=${message.msgNo}">${message.title}</a>
+								</c:if>
 							</c:if>
 							<c:if test="${message.readStatus eq 'Y'}">
 							<i class="fas fa-envelope-open"></i>
 								<a href="detail.do?msgNo=${message.msgNo}">${message.title}</a>
 							</c:if>
 							</td>
-							<td>${message.nickName}</td>
+							<c:if test="${message.isAgency ne 'y'}">
+								<td>${message.nickName}</td>
+							</c:if>
+							<c:if test="${message.isAgency eq 'y'}">
+								<td class="message-agency">
+									<i class="fas fa-award fa-lg message-agency__icon"></i>
+									${message.nickName}
+								</td>
+							</c:if>
 							<td><fmt:formatDate value="${message.sendDate}" pattern="yy/MM/dd HH:mm" /></td>
 						</tr>
 					</c:forEach>
@@ -142,6 +155,7 @@
 
 	<script src="<c:url value='/resources/js/jquery-3.4.1.min.js'/>"></script>
     <script src="<c:url value='/resources/js/main/header/bootstrap.js'/>"></script>
+    <script src="<c:url value='/resources/js/notify.js'/>"></script>
     <script>
 	    $('#post_box a').click(function (e) {
 	    	$(this).tab('show');
