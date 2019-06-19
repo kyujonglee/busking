@@ -13,10 +13,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.co.buskers.artist.board.service.ArtistBoardService;
 import kr.co.buskers.artist.main.service.ArtistMainService;
-import kr.co.buskers.repository.domain.ArtistPhoto;
 import kr.co.buskers.repository.domain.Alarm;
+import kr.co.buskers.repository.domain.ArtistPhoto;
 import kr.co.buskers.repository.domain.ArtistShow;
 import kr.co.buskers.repository.domain.Busker;
+import kr.co.buskers.repository.domain.Member;
 import kr.co.buskers.repository.domain.Video;
 import kr.co.buskers.repository.domain.VideoPage;
 
@@ -143,6 +144,14 @@ public class ArtistBoardController {
 	public void updateBukserPhoto(Busker busker) {
 		mainService.updateBukserPhoto(busker);
 	}
+	
+	/** 공연일정 실시간 알림 */ 
+	@RequestMapping("show-alarm-ajax.do")
+	@ResponseBody
+	public List<Member> selectFollowMembers(int buskerNo) {
+		return service.selectFollowMembers(buskerNo);
+	}
+	
 	/** 후원게시판 */
 	@RequestMapping("list-support.do")
 	public void listSupport(int buskerNo,Model model) {

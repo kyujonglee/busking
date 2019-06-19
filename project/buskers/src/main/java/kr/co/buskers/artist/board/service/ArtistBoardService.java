@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 import kr.co.buskers.repository.domain.Alarm;
 import kr.co.buskers.repository.domain.ArtistShow;
 import kr.co.buskers.repository.domain.Genre;
+import kr.co.buskers.repository.domain.Member;
 import kr.co.buskers.repository.domain.Video;
 import kr.co.buskers.repository.domain.VideoPage;
 
@@ -28,5 +29,7 @@ public interface ArtistBoardService {
 	void deleteArtistShowByNo(int showNo);
 	HashMap<String,Object> selectVideo(int buskerNo, VideoPage videoPage);
 	void deleteVideo(int videoNo);
+	
+	List<Member> selectFollowMembers(int buskerNo);
 	
 }

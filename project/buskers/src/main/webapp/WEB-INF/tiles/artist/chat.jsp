@@ -59,13 +59,17 @@
 	const chat = io("http://${serverip}:10001/chat");
 	
 	let color = "#" + Math.round(Math.random() * 0xffffff).toString(16);
+	let roomId = "${param.buskerNo}";
 	
 	if ("${sessionScope.user.nickName}" != "") {
+		chat.emit('joinRoom', roomId);
+		
 		chat.emit(
 			"join", 
 			{
 	            nickName: "${sessionScope.user.nickName}",
-	            profile: "${sessionScope.user.profileImgPath}" + "${sessionScope.user.profileImg}"
+	            profile: "${sessionScope.user.profileImgPath}" + "${sessionScope.user.profileImg}",
+	            roomId : roomId
         	}
 		);
 		chat.emit("in", "${sessionScope.user.nickName}");
@@ -76,14 +80,16 @@
 		console.log(members);
 		let html = "";
 		for(let i = 0; i < members.length; i++) {
-			html += "<li class='contact'>";
-			html += 	"<div class='wrap'>";
-			html +=			'<img src="<c:url value='/file/download.do'/>?path=' + members[i].profile + `" onError="this.src='<c:url value='/resources/img/profile.png' />';"` +'"/>';
-			html +=			"<div class='meta'>";
-			html +=				"<p class='name'>" + members[i].nickName + "</p>";
-			html +=			"</div>";
-			html += 	"</div>";
-			html += "</li>";
+			if (members[i].roomId == roomId) {
+				html += "<li class='contact'>";
+				html += 	"<div class='wrap'>";
+				html +=			'<img src="<c:url value='/file/download.do'/>?path=' + members[i].profile + `" onError="this.src='<c:url value='/resources/img/profile.png' />';"` +'"/>';
+				html +=			"<div class='meta'>";
+				html +=				"<p class='name'>" + members[i].nickName + "</p>";
+				html +=			"</div>";
+				html += 	"</div>";
+				html += "</li>";
+			}
 		}
 		$("#contacts > ul").html(html);
 		$(".online_user p").text("접속중인 회원 : " + count + "명");

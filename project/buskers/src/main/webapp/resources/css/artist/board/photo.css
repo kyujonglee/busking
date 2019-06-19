@@ -109,3 +109,9 @@
 	background:var(--color-orange);
 	width:100%;
 }
+.no__result{
+	margin-top:60px;
+	font-size:30px;
+	text-align:center;
+	width:100%;
+}

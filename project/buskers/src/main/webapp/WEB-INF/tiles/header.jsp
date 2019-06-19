@@ -125,6 +125,9 @@
 <script src="<c:url value='/resources/js/toastr.min.js'/>"></script>
 <script src="http://${serverip}:10001/socket.io/socket.io.js"></script>
 <script>
+
+	let index = 0;
+
 	const buskerNo = ${(sessionScope.user eq null)? 0 : sessionScope.user.buskerNo};
 	
 	toastr.options.positionClass = 'toast-bottom-right';
@@ -137,6 +140,74 @@
 		socket.emit("login", "${sessionScope.user.nickName}");
 	}
 	
+	socket.on("show-alarm", function (data) {
+		$.ajax({
+			type: "POST",
+			data: {index : index},
+			url: "/buskers/main/header/alarm/alarm-ajax.do",
+			success: function (result) {
+				console.log(result);
+				
+				let alarm = result.alarm;
+				let html = "";
+				for (let i = 0; i < alarm.length; i++) {
+					let nowDate = new Date();
+					let time = nowDate - new Date(alarm[i].regDate);
+					let gapTime = "";
+					if ( (time / (1000*60)) >= 3600 ) {
+						gapTime = parseInt(time / (1000*60*60*24)) + "일 전";
+					} else {
+						if ( (time / (1000*60*60)) > 1 ) {
+							gapTime = parseInt(time / (1000*60*60)) + "시간 " + parseInt((time/1000*60*60) % 60) + "분 전";
+						} else {
+							gapTime = parseInt((time/1000*60*60) % 60) + "분 전";
+						}
+					}
+					let type = "";
+					if (alarm[i].dataType == "1") {
+						type = "채널에 새로운 공연일정이 등록되었습니다.";
+					} else {
+						type = "채널에 새로운 공지사항이 등록되었습니다.";
+					}
+					html += '<div class="busker_alarm_card">';
+					html += 	'<div class="busker_alarm_image_wrapper">';
+					html += 		'<div class="busker_alarm_image">';
+					html += 		'<img src="<c:url value='/file/download.do'/>?path=' + alarm[i].profileImgPath + alarm[i].profileImg + '"/>';
+					html += 		'</div>';
+					html += 	'</div>';
+					html += 	'<div class="busker_alarm_body">';
+					html += 		'<div class="busker_alarm_body_header">' + alarm[i].activityName + '<span>' + type + '</span></div>';
+					html += 		'<div class="busker_alarm_body_title">' + alarm[i].title + '</div>';
+					html += 		'<div class="busker_alarm_body_date">' + gapTime + '</div>';
+					html += 	'</div>';
+					html += '</div>';
+				}
+				$(".busker_alarm_list").html(html);
+			
+				$(".busker_alarm_list_wrapper").scroll(function () {
+					if ( $(".busker_alarm_list").height() - $(".busker_alarm_list_wrapper").scrollTop() - $(".busker_alarm_list_wrapper").height() <= 0 ) {
+						index += 10;
+						alarm();
+					}
+				});
+				
+				$.ajax({
+					type: "POST",
+					url: "/buskers/main/header/message/message-count-ajax.do",
+					success: function (count) {
+						if (count != 0) {
+							$(".message_count").text(count);
+							$(".message_count").show();
+						}
+					}
+				});
+				
+				$(".fa-bell").css({"animation": "bell 2s infinite linear"});
+				$(".fa-bell").css({"color": "tomato"});
+		   		toastr.warning('새로운 공연일정 소식이 있습니다.', data + " 채널 알림");
+			}
+		});
+	});
 	
 	socket.on("msg", function (data) {
 		let sender = data.sender;
@@ -261,49 +332,7 @@
 	    }
 	});
 	
-	$.ajax({
-		type: "POST",
-		url: "/buskers/main/header/alarm/alarm-ajax.do",
-		success: function (result) {
-			console.log(result);
-			
-			let alarm = result.alarm;
-			let html = "";
-			for (let i = 0; i < alarm.length; i++) {
-				let nowDate = new Date();
-				let time = nowDate - new Date(alarm[i].regDate);
-				let gapTime = "";
-				if ( (time / (1000*60)) >= 3600 ) {
-					gapTime = parseInt(time / (1000*60*60*24)) + "일 전";
-				} else {
-					if ( (time / (1000*60*60)) > 1 ) {
-						gapTime = parseInt(time / (1000*60*60)) + "시간 " + parseInt((time/1000*60*60) % 60) + "분 전";
-					} else {
-						gapTime = parseInt((time/1000*60*60) % 60) + "분 전";
-					}
-				}
-				let type = "";
-				if (alarm[i].dataType == "1") {
-					type = "채널에 새로운 공연일정이 등록되었습니다.";
-				} else {
-					type = "채널에 새로운 공지사항이 등록되었습니다.";
-				}
-				html += '<div class="busker_alarm_card">';
-				html += 	'<div class="busker_alarm_image_wrapper">';
-				html += 		'<div class="busker_alarm_image">';
-				html += 		'<img src="<c:url value='/file/download.do'/>?path=' + alarm[i].profileImgPath + alarm[i].profileImg + '"/>';
-				html += 		'</div>';
-				html += 	'</div>';
-				html += 	'<div class="busker_alarm_body">';
-				html += 		'<div class="busker_alarm_body_header">' + alarm[i].activityName + '<a></a><span>&nbsp' + type + '</span></div>';
-				html += 		'<div class="busker_alarm_body_title">' + alarm[i].title + '</div>';
-				html += 		'<div class="busker_alarm_body_date">' + gapTime + '</div>';
-				html += 	'</div>';
-				html += '</div>';
-			}
-			$(".busker_alarm_list").append(html);
-		}
-	});
+	
 	
 	$(".busker_alarm_list").scroll(function () {
 		console.log( "전체 길이 : " + $(".busker_alarm_wrapper").height() );
@@ -311,10 +340,8 @@
 		console.log( "스크롤 있는 곳의 길이 : " + $(".busker_alarm_list").height() );
 		
 	});
-	let index = 0;
 	
 	function alarm() {
-		console.log("인덱스:"+index);
 		$.ajax({
 			type: "POST",
 			url: "/buskers/main/header/alarm/alarm-ajax.do",

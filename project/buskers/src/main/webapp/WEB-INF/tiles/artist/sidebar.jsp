@@ -88,20 +88,14 @@
 			class="busker-side__menu-title"> 공연일정<span class="busker-side__menu-count" id="showCount"></span> </a>
 		</li>
 		<c:if test="${sessionScope.user.busker.buskerNo eq param.buskerNo}">
-		<li class="busker-side__menu-item">
-			<div class="busker-side__menu-icon">
-				<i class="fas fa-music fa-lg"></i>
-			</div>
-			<a href="<c:url value='/artist/music/music-list.do?buskerNo=${param.buskerNo}'/>"
-			class="busker-side__menu-title"> 버스커 음악<span class="busker-side__menu-count" id="musicCount"></span></a>
-		</li>
+			<li class="busker-side__menu-item">
+				<div class="busker-side__menu-icon">
+					<i class="fas fa-music fa-lg"></i>
+				</div>
+				<a href="<c:url value='/artist/music/music-list.do?buskerNo=${param.buskerNo}'/>"
+				class="busker-side__menu-title"> 버스커 음악<span class="busker-side__menu-count" id="musicCount"></span></a>
+			</li>
         </c:if>
-<!-- 		<li class="busker-side__menu-item settings"> -->
-<!-- 			<div class="busker-side__menu-icon"> -->
-<!-- 				<i class="fas fa-cog"></i> -->
-<!-- 			</div> -->
-<!-- 			<div class="busker-side__menu-title">설정</div> -->
-<!-- 		</li> -->
 	</ul>
 	<section class="busker-side__buskers" id="busker-recommend">
 		<header class="buskers-header">

@@ -102,6 +102,9 @@ public class ArtistBoardServiceImpl implements ArtistBoardService {
 	@Override
 	public void deleteVideo(int videoNo) {
 		mapper.deleteVideo(videoNo);
-		
+	}
+	
+	public List<Member> selectFollowMembers(int buskerNo) {
+		return mapper.selectFollowMembers(buskerNo);
 	}
 }

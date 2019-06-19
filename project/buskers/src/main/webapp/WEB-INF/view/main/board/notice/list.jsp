@@ -7,6 +7,9 @@
 	href="<c:url value='/resources/css/main/board/notice/notice.css'/>" />
 <link href="https://fonts.googleapis.com/css?family=Playball&display=swap" rel="stylesheet">
 <title>공지사항</title>
+<script>
+
+</script>
 <main class="notice-board main-board">
 <div class="board">
 	<header class="notice-board__header">
@@ -23,9 +26,8 @@
 		        <div class="notice-board-main-header__tab">gallery</div>
 	      	</div>
 	    </header>
-	    <form>
+         <form action="<c:url value='list.do'/>" method="post" onSubmit="return confirmSearchType();"  id="searchForm">
 	       <section class="notice-board-main__search">
-	         <form action="<c:url value='list.do'/>" method="post" >
 	           <div class="notice-board-main__search-column">
 	             <select class="notice-board-main__search-item" name="searchType">
 	               <option value="title">제목</option>
@@ -33,12 +35,11 @@
 	             </select>
 	           </div>
 	           <div class="notice-board-main__search-column">
-	             <input class="notice-board-main__search-item" type="text" name="input" placeholder="검색어를 입력하세요." />
+	             <input class="notice-board-main__search-item" type="text" id="searchType" name="input" placeholder="검색어를 입력하세요." />
 	           </div>
 	           <div class="notice-board-main__search-column">
-	             <button class="notice-board-main__search-item">검색</button>
+	             <button class="notice-board-main__search-item" id="search_button">검색</button>
 	           </div>
-	         </form>
 	       </section>
 	    </form>
 	    <section class="notice-board-main__view">
@@ -110,8 +111,17 @@
 
 	let searchType = "${param.searchType}";
     let input = "${param.input}";
-	let itemLength = $(".notice-board-main__view-item").length;
-	
+	let itemLength = $(".notice-board-main__view-item").length;	
+	function confirmSearchType(){
+		alert("check 실행");
+// 			search = $("#searchInput").val();
+//			alert(search.length);
+//			if($("#searchInput").val().length > 30){
+//				alert("30자 미만으로 검색어를 입력해주세요.");
+//				return false;
+//			}
+//	 	return true;
+	}
 	
 	function titleBold(){
 // 		alert("타이블볼드실행됨");

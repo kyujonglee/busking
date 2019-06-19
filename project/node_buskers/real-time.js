@@ -7,6 +7,7 @@ const chat = io.of("/chat");
 let all_members = [];
 let members = [];
 let profile = [];
+let room_id = [];
 
 io.on("connection", function (socket) {
     console.log("메인에 사용자 접속..");
@@ -31,6 +32,13 @@ io.on("connection", function (socket) {
         );
     });
 
+    socket.on("show-alarm", function (data) {
+        for (let i = 0; i < data.nickName.length; i++) {
+            console.log(data.nickName[i].nickName);
+            io.to(all_members[data.nickName[i].nickName]).emit('show-alarm', data.activityName);
+        }
+    });
+
     socket.on("disconnect", function () {
 		for (let i = 0; i < Object.keys(all_members).length; i++) {
             if (all_members[Object.keys(all_members)[i]] == socket.id) {
@@ -42,21 +50,29 @@ io.on("connection", function (socket) {
 });
 
 chat.on("connection", function (socket) {
+    
     console.log("채팅방에 사용자 접속..");
+
+    socket.on("joinRoom", function (data) {
+        room_id[socket.id] = data;
+        socket.join(data);
+    });
 
 	socket.on("disconnect", function () {
         console.log("로그아웃함");
+        console.log(members);
 		for (let i = 0; i < Object.keys(members).length; i++) {
             if (members[Object.keys(members)[i]] == socket.id) {
-                chat.emit("out", Object.keys(members)[i]);
+                chat.in(room_id[socket.id]).emit("out", Object.keys(members)[i]);
                 for (let j = 0; j < profile.length; j++) {
                     if (profile[j].nickName == Object.keys(members)[i]) {
-                        profile.splice(j, 1);
+                        profile.splice(j, 1);   
                         delete members[Object.keys(members)[i]];
                     }
                 }
-
-                chat.emit("join", profile);
+                socket.leave(room_id[socket.id]);
+                chat.in(room_id[socket.id]).emit("join", profile);
+                console.log(profile);
             }
         }
 	});
@@ -69,14 +85,16 @@ chat.on("connection", function (socket) {
             if (profile[i].nickName == data.nickName) {
                 profileFlag = false;
                 profile[i].profile = data.profile;
+                profile[i].roomId = data.roomId;
             }
         }
         if (profileFlag) profile.push(data);
-        chat.emit("join", profile);
-        chat.emit("in", data.nickName);
+        chat.in(room_id[socket.id]).emit("join", profile);
+        chat.in(room_id[socket.id]).emit("in", data.nickName);
     });
 
     socket.on("chat", function (data) {
+        console.log(profile);
         let image = "";
         for (let i = 0; i < profile.length; i++) {
             if (profile[i].nickName == data.sender) {
@@ -84,7 +102,7 @@ chat.on("connection", function (socket) {
             }
         }
         if (data.receiver == "") {
-            socket.broadcast.emit(
+            socket.broadcast.in(room_id[socket.id]).emit(
                 "chat", 
                 {
                     sender: data.sender,
