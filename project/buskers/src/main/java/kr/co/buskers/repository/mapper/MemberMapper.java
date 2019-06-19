@@ -92,6 +92,8 @@ public interface MemberMapper {
 	// 프로필 소개글 업데이트
 	public void updateMemberProfileIntroduce(Member member);
 	
+	public void updateBukserPhoto(Busker busker);
+	
 	
 	
 	

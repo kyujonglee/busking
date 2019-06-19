@@ -19,8 +19,7 @@ public class KakaoController {
 	@Autowired
 	private MemberService service;
 
-	@Autowired
-	private PrevUrl prevUrl;
+	private String prevUrl;
 	
 	// 카카오 로그인 디비에 없을시에 회원가입 처리후 메인으로 이동
 	@RequestMapping("social-signup.do")
@@ -43,8 +42,13 @@ public class KakaoController {
 		
 		//세션에다시올려줌
 		session.setAttribute("user", user);
+<<<<<<< HEAD
 		session.setMaxInactiveInterval(60 * 60);   //물어보기
 		return "redirect:" + prevUrl.getPrevUrl();
+=======
+		session.setMaxInactiveInterval(60 * 60);   
+		return "redirect:/index.jsp";
+>>>>>>> hs
 	}
 	
 	@RequestMapping("social-checkid.do")
@@ -67,8 +71,13 @@ public class KakaoController {
 		Member user = service.login(member);
 		user.setAccessToken(member.getAccessToken());
 		session.setAttribute("user", user);
+<<<<<<< HEAD
 		session.setMaxInactiveInterval(60 * 60);   //물어보기
 		return "redirect:" + prevUrl.getPrevUrl();
+=======
+		session.setMaxInactiveInterval(60 * 60);  
+		return "redirect:/index.jsp";
+>>>>>>> hs
 	}
 	
 	// 소셜 로그인 폼

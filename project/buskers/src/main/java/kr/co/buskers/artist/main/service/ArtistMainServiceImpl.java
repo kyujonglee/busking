@@ -39,6 +39,8 @@ public class ArtistMainServiceImpl implements ArtistMainService {
 		boardMap.put("musicCount", fMapper.countMusic(buskerNo) );
 		boardMap.put("videoCount", boardMapper.countVideo(buskerNo));
 		boardMap.put("busker",memberMapper.selectBusker(buskerNo));
+		System.out.println(boardMapper.countPhoto(buskerNo));
+		boardMap.put("photoCount",boardMapper.countPhoto(buskerNo));
 		try {
 			System.out.println(boardMapper.selectSocialUrl(buskerNo).getFaceBookUrl());
 			boardMap.put("socialUrl",boardMapper.selectSocialUrl(buskerNo));
@@ -134,6 +136,12 @@ public class ArtistMainServiceImpl implements ArtistMainService {
 	@Override
 	public void deletePhoto(int fileNo) {
 		boardMapper.deletePhoto(fileNo);
+	}
+
+	@Override
+	public void updateBukserPhoto(Busker busker) {
+		memberMapper.updateBukserPhoto(busker);
+		
 	}
 	
 }

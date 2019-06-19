@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import kr.co.buskers.main.service.MainService;
 import kr.co.buskers.repository.domain.ArtistPhoto;
 import kr.co.buskers.repository.domain.ArtistShow;
+import kr.co.buskers.repository.domain.Busker;
 import kr.co.buskers.repository.domain.SearchPage;
 import kr.co.buskers.repository.domain.Video;
 
@@ -93,5 +94,11 @@ public class MainController {
 	@ResponseBody
 	public List<Video> selectFollowArtistVideoList(HttpSession session) {
 		return service.selectFollowArtistVideoList(session);
+	}
+	@RequestMapping("/search/search-ajax.do")
+	@ResponseBody
+	public List<Busker> selectSearchBuskerList(String input){
+		System.out.println("인풋은"+input);
+		return service.selectSearchBuskerList(input);
 	}
 }

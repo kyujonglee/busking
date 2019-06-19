@@ -139,4 +139,9 @@ public class MainServiceImpl implements MainService {
 	public Busker mainBuskerSearch(SearchPage searchPage) {
 		return mapper.searchBusker(searchPage);
 	}
+
+	@Override
+	public List<Busker> selectSearchBuskerList(String input) {
+		return mapper.selectSearchBuskerList(input);
+	}
 }
