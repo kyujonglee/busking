@@ -61,6 +61,7 @@
 	display: flex;
 	align-items: center;
 	padding: 2px;
+	white-space: pre;
 }
 
 .busker_alarm_body_header {

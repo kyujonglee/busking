@@ -574,8 +574,10 @@
 			        $(this).mouseleave(function () {
 			        	$(this).css({"width": "25", "height": "25"});
 			        	$(".thumbnail").fadeOut("200");
+			        	$(".thumbnail").remove();
 			        });
 		        });
+		        
 		        
 		        $(".marker").click(function () {
 		    		let showNo = $(this).attr("id");
@@ -676,7 +678,7 @@
     		$.ajax({
     			type:"POST",
     			data: {gu : gu},
-    			url:"show-ajax.do",
+    			url:"location-show-ajax.do",
     		
     		}).done(function (result) {
     			console.log("=====");

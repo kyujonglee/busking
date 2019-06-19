@@ -53,6 +53,13 @@ public class MainController {
 		return service.mapDetail(artistShow);
 	}
 	
+	@RequestMapping("location-show-ajax.do")
+	@ResponseBody
+	public List<ArtistShow> locationDetail(ArtistShow artistShow) {
+		
+		return service.locationDetail(artistShow);
+	}
+	
 	@RequestMapping("marker-ajax.do")
 	@ResponseBody
 	public ArtistShow markerDetail(int showNo) {

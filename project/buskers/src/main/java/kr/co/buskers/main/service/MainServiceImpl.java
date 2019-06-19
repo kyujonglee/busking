@@ -82,15 +82,13 @@ public class MainServiceImpl implements MainService {
 			e1.printStackTrace();
 		}
 		
-		if (artistShow.getGu() == null) {
-			List<ArtistShow> artistShowList = mapper.selectArtistShowDetailByDate(artistShow);
-			return artistShowList;
-		} else {
-			System.out.println("씨발");
-			System.out.println(artistShow.getGu());
-			List<ArtistShow> artistShowList = mapper.selectArtistShowDetail(artistShow);
-			return artistShowList;
-		}
+		List<ArtistShow> artistShowList = mapper.selectArtistShowDetailByDate(artistShow);
+		return artistShowList;
+	}
+	
+	public List<ArtistShow> locationDetail(ArtistShow artistShow) {
+		List<ArtistShow> artistShowList = mapper.selectArtistShowDetail(artistShow);
+		return artistShowList;
 	}
 	
 	public ArtistShow markerDetail(int showNo) {

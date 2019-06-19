@@ -4,32 +4,32 @@
 <mapper namespace="kr.co.buskers.repository.mapper.HeaderMapper">
    <select id="selectMessage" parameterType="freePage" resultType="message">
       select *
-          from (select @rownum:=@rownum+1 rnum, a.*
-                from ( select m.*, mem.is_agency, info.agency_name, info.basic_addr
-                         from tb_message m, tb_member mem, tb_agency agency, tb_agency_info info
-                        where m.sender_member_no = mem.member_no
-                          and mem.member_no = agency.member_no
-                          and agency.member_no = info.member_no
-                          and (@rownum:=0)=0
-                          and receiver_member_no = #{receiverMemberNo}
-                          and receiver_is_deleted = 'N'
-                  <choose>
-           	  		<when test="searchType == 'title'">
-                  		and title like concat('%', #{input}, '%')
-                  	</when>
-                  	<when test="searchType == 'content'">
-                  		and f.content like concat('%', #{input}, '%')
-               	  	</when>
-                  	<when test="searchType == 'nickName'">
-                  		and nick_name like concat('%', #{input}, '%')
-                  	</when>
-                  	<otherwise>
-                  	</otherwise>
-                  </choose>
-                  order by msg_no desc
-                  
-                  ) a
-             ) b
+        from (select @rownum:=@rownum+1 rnum, a.*
+              from ( select m.*, mem.is_agency, info.agency_name, info.basic_addr
+                       from tb_message m, tb_member mem, tb_agency agency, tb_agency_info info
+                      where m.sender_member_no = mem.member_no
+                        and mem.member_no = agency.member_no
+                        and agency.member_no = info.member_no
+                        and (@rownum:=0)=0
+                        and receiver_member_no = #{receiverMemberNo}
+                        and receiver_is_deleted = 'N'
+                <choose>
+         	  		<when test="searchType == 'title'">
+                		and title like concat('%', #{input}, '%')
+                	</when>
+                	<when test="searchType == 'content'">
+                		and f.content like concat('%', #{input}, '%')
+             	  	</when>
+                	<when test="searchType == 'nickName'">
+                		and nick_name like concat('%', #{input}, '%')
+                	</when>
+                	<otherwise>
+                	</otherwise>
+                </choose>
+                order by msg_no desc
+                
+                ) a
+           ) b
        where rnum between #{begin} and #{end}
    </select>
    
