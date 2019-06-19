@@ -188,6 +188,7 @@
 		  from tb_artist_photo
 		 where busker_no = #{buskerNo}
 		 order by reg_date desc
+		 limit #{beginPage},20
 	</select>
 
 	<select id="selectPhotoByNo" resultType="artistPhoto">
