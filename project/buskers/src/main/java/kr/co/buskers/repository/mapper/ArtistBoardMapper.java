@@ -64,4 +64,5 @@ public interface ArtistBoardMapper {
 	
 	void deletePhoto(int fileNo);
 	int countPhoto(int buskerNo);
+	List<ArtistPhoto> selectPhoto(int buskerNo, int beginPage);
 }

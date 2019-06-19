@@ -117,12 +117,12 @@
                   	수정 
                  	 </button>
                   </a>
-                	<a href="#" onclick="deleteAgency('/buskers/main/board/agency/delete.do?agencyInfoNo='${agencyInfo.agencyInfoNo},${memberNo});">
+                	<a href="#" onclick="deleteAgency('<c:url value='/main/board/agency/delete.do?agencyInfoNo=' />',${agencyInfo.agencyInfoNo},${agencyInfo.memberNo});">
                  	 <button type="button" class="agency-insert__btn">
                   	삭제 
                  	 </button>
                   </a>
-                	<a href="<c:url value='/main/board/agency/list.do?pageNo=${pageNo}'/>">
+                	<a href="<c:url value='/main/board/agency/list.do?pageNo=${pageNo}' />">
                  	 <button type="button" class="agency-insert__btn">
                   	목록 
                  	 </button>

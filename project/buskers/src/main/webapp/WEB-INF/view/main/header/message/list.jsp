@@ -54,6 +54,7 @@
 							<td><input type="checkbox" name="msgNo" value="${message.msgNo}" class="post_all"></td>
 							<td></td>	
 							<td>
+							<td>${message.isAgency}</td>
 							<c:if test="${message.readStatus eq 'N'}">
 							<i class="fas fa-envelope"></i>
 								<a href="detail.do?msgNo=${message.msgNo}">${message.title}</a>
@@ -141,7 +142,6 @@
 
 	<script src="<c:url value='/resources/js/jquery-3.4.1.min.js'/>"></script>
     <script src="<c:url value='/resources/js/main/header/bootstrap.js'/>"></script>
-    <script src="<c:url value='/resources/js/notify.js'/>"></script>
     <script>
 	    $('#post_box a').click(function (e) {
 	    	$(this).tab('show');

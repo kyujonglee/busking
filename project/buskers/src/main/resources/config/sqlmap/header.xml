@@ -3,19 +3,34 @@
    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.co.buskers.repository.mapper.HeaderMapper">
    <select id="selectMessage" parameterType="freePage" resultType="message">
-      select @rownum:=@rownum+1 rnum, a.* 
-	    from (
-				select msg_no, sender_member_no, receiver_member_no, send_date, title, content, read_status, save_status, sender_is_deleted, receiver_is_deleted, nick_name, is_admin, is_busker, is_agency, agency_no, agency.agency_info_no, agency_name, purpose, reg_date, phone, basic_addr, detail_addr, mem.email, permission, agency_code
-				  from tb_message m
-				 inner join tb_member mem on m.sender_member_no = mem.member_no
-				   and receiver_member_no = #{receiverMemberNo}
-				   and receiver_is_deleted = 'N'
-				  left join tb_agency agency on agency.member_no = mem.member_no
-				  left join tb_agency_info info on info.agency_info_no = agency.agency_info_no
-				 order by msg_no desc
-		         ) a
-	 	where (@rownum:=0)=0
-	   	  and @rownum between 0 and 10;
+      select *
+          from (select @rownum:=@rownum+1 rnum, a.*
+                from ( select m.*, mem.is_agency, info.agency_name, info.basic_addr
+                         from tb_message m, tb_member mem, tb_agency agency, tb_agency_info info
+                        where m.sender_member_no = mem.member_no
+                          and mem.member_no = agency.member_no
+                          and agency.member_no = info.member_no
+                          and (@rownum:=0)=0
+                          and receiver_member_no = #{receiverMemberNo}
+                          and receiver_is_deleted = 'N'
+                  <choose>
+           	  		<when test="searchType == 'title'">
+                  		and title like concat('%', #{input}, '%')
+                  	</when>
+                  	<when test="searchType == 'content'">
+                  		and f.content like concat('%', #{input}, '%')
+               	  	</when>
+                  	<when test="searchType == 'nickName'">
+                  		and nick_name like concat('%', #{input}, '%')
+                  	</when>
+                  	<otherwise>
+                  	</otherwise>
+                  </choose>
+                  order by msg_no desc
+                  
+                  ) a
+             ) b
+       where rnum between #{begin} and #{end}
    </select>
    
    <select id="selectSentMessage" parameterType="freePage" resultType="message">
