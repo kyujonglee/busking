@@ -66,6 +66,9 @@ public interface MemberService {
 	public Map<String, Object> followList(FollowList followList);
 	public Map<String, Object> followCount(Follow follow);
 
+	// 팔로우 취소
+	public int followCancel(Follow follow);
+
 
 
 	

@@ -168,9 +168,22 @@ public class MemberServiceImpl implements MemberService {
 		return map;
 	}
 
+	// 팔로우 취소
+	@Override
+	public int followCancel(Follow follow) {
+		int con = mapper.confirmFollow(follow);
+		if(con == 1) {
+			String followStatus = mapper.followStatus(follow);
+			//팔로우가 y일경우에 팔로우처리, 0리턴
+			if(followStatus.equals("y")) {
+				mapper.followCancle(follow);
+			}
+		}
+		return 0;
+	}
+
 
 	
-
 
 
 

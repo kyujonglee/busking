@@ -538,14 +538,59 @@ a:link {
 }
 
 
+.follow__list {
+	padding-left: 0;
+    margin-bottom: 20px;
+    font-size: 0;
+}
 
+.follow__list__items {
+	display: inline-block;
+    width: 23.5%;
+    margin-right: 2%;
+    margin-bottom: 10px;
+    padding: 8px;
+    border: none;
+    font-size: 16px;
+    text-align: center;
+}
 
+.follow__list__items:nth-child(4n) {
+    margin-right: 0;
+}
 
+.follow__cancel__div {
+	text-align: right;
+	height: 23px;
+}
 
+.follow__cancel {
+	font-weight: bold;
+	padding: 0;
+	background: transparent;
+    border: 0;
+    opacity: .4;
+    font-size: 20px;
+}
 
+.follow__cancel:hover {
+	opacity: 1;
+}
 
+.follow__list__img {
+    width: 75px;
+    height: 75px;
+    margin: 10px 0;
+	border-radius: 50%;
+	border: 0;
+    vertical-align: middle;
+}
 
+.follow__list__nickName {
+	text-align: center;
+}
 
-
-
+.follow_list_noneBuskerNo {
+	cursor: pointer;
+}
 
