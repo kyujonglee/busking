@@ -23,10 +23,10 @@
 		<input type="text" id="nickName" class="form-control" name="nickName" placeholder="닉네임을 입력하세요"></input>
 		<br>
 		<div>제목</div>
-		<input type="text" class="form-control" name="title" placeholder="제목을 입력하세요">
+		<input type="text" class="form-control" name="title" id="message_title" placeholder="제목을 입력하세요">
 		<br>
 		<div>내용</div>
-		<textarea class="form-control" rows="10" name="content" placeholder="내용을 입력하세요"></textarea>
+		<textarea class="form-control" rows="10" name="content" id="message_content" placeholder="내용을 입력하세요"></textarea>
 		
 		<div class="post_bottom_button">
 			<div>
@@ -43,14 +43,12 @@
 
 <script>
 	
-	$("#nickName").val("${param.nickName}");
+// 	$("#nickName").val("${param.nickName}");
 
 	let confirm = 0;
-	$("#nickName").keyup(function(){
-		
-		let nickName = $(".input-nickName").val();
-		console.log(nickName);
-		let input = $("#nickName");
+	$("#nickName").blur(function(){
+		let nickName = $("#nickName").val();
+		let input = $("#nickName");					//input 변수로설정
 		$.ajax({
 			type:"POST",
 			data: {nickName:nickName},
@@ -82,6 +80,22 @@
 			alert("받는 사람의 닉네임을 확인해주세요.");
 			return;
 		}
+		let title = $("#message_title").val();
+		let content = $("#message_content").val();
+		if(title == "" || content == ""){
+			alert("제목 또는 내용을 입력해주세요");
+			return;
+		}
+		if(title.length > 40){
+			alert("제목은 40자 미만으로 입력해주세요.");
+			return;
+		}
+		if(content.length> 1000){
+			alert("내용은 1000자 미만으로 입력해주세요.");
+			return;
+		}
+		
+		
 		$('textarea').val().replace(/\n/g, "<br>")
 
 		$(".write_form_submit_wrapper").submit();

@@ -1,248 +1,291 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %> 
-<link rel="stylesheet" href="<c:url value='/resources/css/main/header/header.css'/>" />
-<link rel="stylesheet" href="<c:url value='/resources/css/main/main-map.css'/>" />
-<link rel="stylesheet" href="<c:url value='/resources/css/main/main-feed.css'/>" />
-<link rel="stylesheet" href="<c:url value='/resources/css/main/main.css'/>" />
-<link rel="stylesheet" href="<c:url value='/resources/css/common/waitMe.css'/>" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/css/swiper.css" />
-<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic|Nanum+Pen+Script&display=swap" rel="stylesheet">
-<link href='https://fonts.googleapis.com/css?family=Tangerine' rel='stylesheet' type='text/css'>        
-<link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
-<link href='https://fonts.googleapis.com/css?family=Prata' rel='stylesheet' type='text/css'>
-<link href="https://fonts.googleapis.com/css?family=Italianno&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-<link rel="stylesheet" type="text/css" href="https://npmcdn.com/flatpickr/dist/themes/dark.css">
-<link href="https://fonts.googleapis.com/css?family=Lobster&display=swap" rel="stylesheet">
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<link rel="stylesheet"
+	href="<c:url value='/resources/css/main/header/header.css'/>" />
+<link rel="stylesheet"
+	href="<c:url value='/resources/css/main/main-map.css'/>" />
+<link rel="stylesheet"
+	href="<c:url value='/resources/css/main/main-feed.css'/>" />
+<link rel="stylesheet"
+	href="<c:url value='/resources/css/main/main.css'/>" />
+<link rel="stylesheet"
+	href="<c:url value='/resources/css/common/waitMe.css'/>" />
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/css/swiper.css" />
+<link
+	href="https://fonts.googleapis.com/css?family=Nanum+Gothic|Nanum+Pen+Script&display=swap"
+	rel="stylesheet">
+<link href='https://fonts.googleapis.com/css?family=Tangerine'
+	rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Open+Sans'
+	rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Prata'
+	rel='stylesheet' type='text/css'>
+<link
+	href="https://fonts.googleapis.com/css?family=Italianno&display=swap"
+	rel="stylesheet">
+<link rel="stylesheet"
+	href="https://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<link rel="stylesheet" type="text/css"
+	href="https://npmcdn.com/flatpickr/dist/themes/dark.css">
+<link
+	href="https://fonts.googleapis.com/css?family=Lobster&display=swap"
+	rel="stylesheet">
 <script src="http://d3js.org/d3.v3.min.js"></script>
 <script src="http://d3js.org/topojson.v1.min.js"></script>
-	    
-	<section id="mu-slider">
-		<div class="mu-slider-area">
-			<div class="mu-top-slider">
-	
-				<div class="mu-top-slider-single">
-					<img src="<c:url value='/resources/img/busker2.jpg'/>" alt="img">
-					<div class="mu-top-slider-content">
-						<h2 class="mu-slider-title">오늘 하루, ${fn:length(artistShow)}건의 버스킹 공연이 있습니다.</h2>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-							Itaque voluptatem accusamus non quidem, deleniti optio.</p>
-						<a href="#" class="mu-readmore-btn">더 알아보기</a>
-					</div>
-				</div>
-	
-				<div class="mu-top-slider-single">
-					<img src="<c:url value='/resources/img/busker4.jpg'/>" alt="img">
-					<div class="mu-top-slider-content">
-						<h2 class="mu-slider-title">팔로우한 아티스트의 소식을 확인해보세요.</h2>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-							Itaque voluptatem accusamus non quidem, deleniti optio.</p>
-						<a href="#" class="mu-readmore-btn">더 알아보기</a>
-					</div>
-				</div>
-	
-				<div class="mu-top-slider-single">
-					<img src="<c:url value='/resources/img/busker5.jpg'/>" alt="img">
-					<div class="mu-top-slider-content">
-						<h2 class="mu-slider-title">가장 인기있는 버스킹 공연 장소는?</h2>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-							Itaque voluptatem accusamus non quidem, deleniti optio.</p>
-						<a href="#" class="mu-readmore-btn">더 알아보기</a>
-					</div>
-				</div>
-	
-			</div>
-		</div>
-	</section>
 
-	<div class="main_body_container">
-		<div class="buskers_map">
-			<div class="buskers_map_title">
-				<div>Buskers</div>
-				<div class="neon">
-					<b>Per<span>for</span>man<span>ce st</span>age</b>
+<section id="mu-slider">
+	<div class="mu-slider-area">
+		<div class="mu-top-slider">
+
+			<div class="mu-top-slider-single">
+				<img src="<c:url value='/resources/img/busker2.jpg'/>" alt="img">
+				<div class="mu-top-slider-content">
+					<h2 class="mu-slider-title">오늘 하루, ${fn:length(artistShow)}건의
+						버스킹 공연이 있습니다.</h2>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+						Itaque voluptatem accusamus non quidem, deleniti optio.</p>
+					<a href="#" class="mu-readmore-btn">더 알아보기</a>
 				</div>
 			</div>
-			
-			<div class="buskers_map_detail">
-				<!--     추가부분      -->
-				<div class="mapwrapper">
-					<div id="container"></div>
-					<div id="chart"></div>
+
+			<div class="mu-top-slider-single">
+				<img src="<c:url value='/resources/img/busker4.jpg'/>" alt="img">
+				<div class="mu-top-slider-content">
+					<h2 class="mu-slider-title">팔로우한 아티스트의 소식을 확인해보세요.</h2>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+						Itaque voluptatem accusamus non quidem, deleniti optio.</p>
+					<a href="#" class="mu-readmore-btn">더 알아보기</a>
 				</div>
-				
-				<div class="performance__info_wrapper">
-					<div class="performance__info">
-						<div class="performance__info_calendar">
-							<div class="date_calendar_button">
-								<i class="fas fa-caret-left"></i>
-							</div>
-							<p class="calendar"><em></em></p></div>
-							<div class="date_calendar_button">
-								<i class="fas fa-caret-right"></i>
-							</div>
-							<input class="date_picker" />
-						
-						<div class="performance_info_date_wrapper">
-							<div class="date_up_button">
-								<i class="fas fa-caret-up day-up"></i>
-							</div>
-							<div class="performance__info_date"></div>
-							<div class="date_down_button">
-								<i class="fas fa-caret-down day-down"></i>
-							</div>
-							
-						</div>
-						
-					</div>
-					<br>
-					<div class="performance_info_list">
-						<c:forEach var="list" items="${artistShow}">
-							<section>
-				    			<div class="img-btn">
-				  					<img src="<c:url value='/file/download.do'/>?path=${list.profileImgPath}${list.profileImg}"/>
-				  				<div class="artist_name">${list.activityName}</div>
-				   				</div>
-								<div class="details-btn">
-				  					<h1>${list.title}</h1>
-				   					<h3><i class="fas fa-map-marker-alt">&nbsp;${list.place}</i> &nbsp;&nbsp;
-				   					<i class="fas fa-calendar-day">&nbsp;<fmt:formatDate value="${list.enrollDate}" pattern="yyyy.MM.dd HH:mm" /></i></h3>
-				   					<p>${list.content}</p>
-				   				</div>
-				   				<div class="SM-btn">
-				   				
-				  				</div>
-				  				<div class="layer"></div>
-			   				</section>
-						</c:forEach>
-					</div>
-		        </div>
+			</div>
+
+			<div class="mu-top-slider-single">
+				<img src="<c:url value='/resources/img/busker5.jpg'/>" alt="img">
+				<div class="mu-top-slider-content">
+					<h2 class="mu-slider-title">가장 인기있는 버스킹 공연 장소는?</h2>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+						Itaque voluptatem accusamus non quidem, deleniti optio.</p>
+					<a href="#" class="mu-readmore-btn">더 알아보기</a>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</section>
+
+<div class="main_body_container">
+	<div class="buskers_map">
+		<div class="buskers_map_title">
+			<div>Buskers</div>
+			<div class="neon">
+				<b>Per<span>for</span>man<span>ce st</span>age
+				</b>
 			</div>
 		</div>
-		
-		<div class="buskers_feed_wrapper">
-			<div class="buskers_feed_title">
-				<div class="neon"> 
-					<b>Fol<span>low</span>ers n<span>ews</span> feed</b>
-				</div>
+
+		<div class="buskers_map_detail">
+			<!--     추가부분      -->
+			<div class="mapwrapper">
+				<div id="container"></div>
+				<div id="chart"></div>
 			</div>
-			
-			<div class="buskers_feed_list">
-				<c:if test="${sessionScope.user ne null}">
-					<div class="buskers_feed_show">
-						<div class="buskers_feed_follow">공연일정 <span>팔로우 채널</span></div>
-						<div class="swiper-container swiper-container-show">
-							<div class="swiper-wrapper">
-								<c:forEach var="list" items="${followArtistShow}">
-								<div class="feed-card swiper-slide">
-							        <div class="feed-card-header">
-							            <img src="<c:url value='/file/download.do'/>?path=${list.profileImgPath}${list.profileImg}" onError="this.src='<c:url value='/resources/img/profile.png' />';" />
-							        </div>
-							        <div class="feed-card-content">
-							            <div class="title">
-							            	<div class="title_header">
-							            		<c:if test="${fn:length(list.title) gt 19}">
-							            			<a href="<c:url value='/artist/board/detail.do?showNo=${list.showNo}&buskerNo=${list.buskerNo}'/> ">${fn:substring(list.title, 0, 19)}..</a>
-							            		</c:if>
-							            		<c:if test="${fn:length(list.title) le 19}">
-							            			<a href="<c:url value='/artist/board/detail.do?showNo=${list.showNo}&buskerNo=${list.buskerNo}'/> ">${list.title}</a>
-							            		</c:if>
-							            	</div>
-						                	<a class="title_header_activity_name" href="<c:url value='/artist/main/main.do?buskerNo=${list.buskerNo}'/> ">${list.activityName}</a>
-							                <c:if test="${fn:length(list.place) gt 9}">
-							                	<i class="fas fa-map-marker-alt">&nbsp;${fn:substring(list.place, 0, 9)}..</i> &nbsp;&nbsp;
-						                	</c:if>
-							                <c:if test="${fn:length(list.place) le 9}">
-							                	<i class="fas fa-map-marker-alt">&nbsp;${list.place}</i> &nbsp;&nbsp;
-						                	</c:if>
-							                <i class="fas fa-calendar-day">&nbsp;<fmt:formatDate value="${list.enrollDate}"	pattern="MM-dd HH:mm" /></i>
-							            </div>
-							            <div class="summary">
-							                <p>${list.content}</p>
-							            </div>
-							        </div>
-							        <div class="feed-card-footer">
-							            <div class="time">
-							                <a>
-							                	<jsp:useBean id="currDate" class="java.util.Date" />
-												
-												<fmt:formatDate var="currDay" value="${currDate}" pattern="yyyy-MM-dd" />
-							                	<fmt:formatDate var="regDay" value="${list.regDate}" pattern="yyyy-MM-dd" />
-							                	<fmt:parseNumber var="currDateTime" value="${currDate.time / (1000*60*60*24)}" integerOnly="true"></fmt:parseNumber>
-							                	<fmt:parseNumber var="regDateTime" value="${list.regDate.time / (1000*60*60*24)}" integerOnly="true"></fmt:parseNumber>
-							                	<fmt:formatDate var="currTime" value="${currDate}" pattern="HHmm" />
-							                	<fmt:formatDate var="regTime" value="${list.regDate}" pattern="HHmm" />
-							                	<fmt:parseNumber value="${(currTime - regTime)}" integerOnly="true" var="result"></fmt:parseNumber>
-							                	<fmt:parseNumber value="${(currTime - regTime) / 60}" integerOnly="true" var="hours"></fmt:parseNumber>
-							                	<fmt:parseNumber value="${(currTime - regTime) % 60}" integerOnly="true" var="minutes"></fmt:parseNumber>
-							                	<c:if test="${currDay eq regDay}">
-								                	<c:choose>
-									                	<c:when test="${result < 60}">
-										                	${result}분 전
-									                	</c:when>
-									                	<c:when test="${result >= 60}">
-										                	${hours}시간 ${minutes}분 전
-									                	</c:when>
-								                	</c:choose>
-							                	</c:if>
-							                	
-							                	<c:if test="${currDate ne regDate}">
-							                		${currDateTime - regDateTime}일 전
-							                	</c:if>
-											</a>
-							            </div>
-							        </div>
-							    </div>
-							    </c:forEach>
-						    </div>
-						    
-						    <div class="swiper-pagination swiper-pagination-artist-show"></div>
-						    
-					    </div>
-				    </div>
-				    
-				    <div class="buskers_feed_video">
-				    	<div class="buskers_feed_follow">아티스트 영상 <span>팔로우 채널</span></div>
-					    <div class="swiper-container swiper-container-video">
-							<div class="swiper-wrapper swiper-wrapper-video">
-						    </div>
-						    
-						    <div class="swiper-pagination"></div>
-						    
-						    <div class="swiper-button-next swiper-button-white"></div>
-						    <div class="swiper-button-prev swiper-button-white"></div>
-				    	</div>
-				    </div>
-				    
-				    <div class="buskers_feed_photo">
-				    	<div class="buskers_feed_follow">아티스트 사진 <span>팔로우 채널</span></div>
-						<div class="buskers_feed_photo_container">
-							<div class="swiper-wrapper swiper-wrapper-photo">
-							</div>
-								
-							<div class="swiper-pagination"></div>
-							
+
+			<div class="performance__info_wrapper">
+				<div class="performance__info">
+					<div class="performance__info_calendar">
+						<div class="date_calendar_button">
+							<i class="fas fa-caret-left"></i>
 						</div>
-				    </div>
-				</c:if>
+						<p class="calendar">
+							<em></em>
+						</p>
+					</div>
+					<div class="date_calendar_button">
+						<i class="fas fa-caret-right"></i>
+					</div>
+					<input class="date_picker" />
+
+					<div class="performance_info_date_wrapper">
+						<div class="date_up_button">
+							<i class="fas fa-caret-up day-up"></i>
+						</div>
+						<div class="performance__info_date"></div>
+						<div class="date_down_button">
+							<i class="fas fa-caret-down day-down"></i>
+						</div>
+
+					</div>
+
+				</div>
+				<br>
+				<div class="performance_info_list">
+					<c:forEach var="list" items="${artistShow}">
+						<section>
+							<div class="img-btn">
+								<img
+									src="<c:url value='/file/download.do'/>?path=${list.profileImgPath}${list.profileImg}" />
+								<div class="artist_name">${list.activityName}</div>
+							</div>
+							<div class="details-btn">
+								<h1>${list.title}</h1>
+								<h3>
+									<i class="fas fa-map-marker-alt">&nbsp;${list.place}</i>
+									&nbsp;&nbsp; <i class="fas fa-calendar-day">&nbsp;<fmt:formatDate
+											value="${list.enrollDate}" pattern="yyyy.MM.dd HH:mm" /></i>
+								</h3>
+								<p>${list.content}</p>
+							</div>
+							<div class="SM-btn"></div>
+							<div class="layer"></div>
+						</section>
+					</c:forEach>
+				</div>
 			</div>
 		</div>
 	</div>
 
-		<!-- 스크롤 버튼 -->
-	<button type="button" class="view-main-top-btn">
-    	<i class="fas fa-angle-up fa-2x"></i>
-    </button>
-		
+	<div class="buskers_feed_wrapper">
+		<div class="buskers_feed_title">
+			<div class="neon">
+				<b>Fol<span>low</span>ers n<span>ews</span> feed
+				</b>
+			</div>
+		</div>
+
+		<div class="buskers_feed_list">
+			<c:if test="${sessionScope.user ne null}">
+				<div class="buskers_feed_show">
+					<div class="buskers_feed_follow">
+						공연일정 <span>팔로우 채널</span>
+					</div>
+					<div class="swiper-container swiper-container-show">
+						<div class="swiper-wrapper">
+							<c:forEach var="list" items="${followArtistShow}">
+								<div class="feed-card swiper-slide">
+									<div class="feed-card-header">
+										<img
+											src="<c:url value='/file/download.do'/>?path=${list.profileImgPath}${list.profileImg}"
+											onError="this.src='<c:url value='/resources/img/profile.png' />';" />
+									</div>
+									<div class="feed-card-content">
+										<div class="title">
+											<div class="title_header">
+												<c:if test="${fn:length(list.title) gt 19}">
+													<a
+														href="<c:url value='/artist/board/detail.do?showNo=${list.showNo}&buskerNo=${list.buskerNo}'/> ">${fn:substring(list.title, 0, 19)}..</a>
+												</c:if>
+												<c:if test="${fn:length(list.title) le 19}">
+													<a
+														href="<c:url value='/artist/board/detail.do?showNo=${list.showNo}&buskerNo=${list.buskerNo}'/> ">${list.title}</a>
+												</c:if>
+											</div>
+											<a class="title_header_activity_name"
+												href="<c:url value='/artist/main/main.do?buskerNo=${list.buskerNo}'/> ">${list.activityName}</a>
+											<c:if test="${fn:length(list.place) gt 9}">
+												<i class="fas fa-map-marker-alt">&nbsp;${fn:substring(list.place, 0, 9)}..</i> &nbsp;&nbsp;
+						                	</c:if>
+											<c:if test="${fn:length(list.place) le 9}">
+												<i class="fas fa-map-marker-alt">&nbsp;${list.place}</i> &nbsp;&nbsp;
+						                	</c:if>
+											<i class="fas fa-calendar-day">&nbsp;<fmt:formatDate
+													value="${list.enrollDate}" pattern="MM-dd HH:mm" /></i>
+										</div>
+										<div class="summary">
+											<p>${list.content}</p>
+										</div>
+									</div>
+									<div class="feed-card-footer">
+										<div class="time">
+											<a> <jsp:useBean id="currDate" class="java.util.Date" />
+
+												<fmt:formatDate var="currDay" value="${currDate}"
+													pattern="yyyy-MM-dd" /> <fmt:formatDate var="regDay"
+													value="${list.regDate}" pattern="yyyy-MM-dd" /> <fmt:parseNumber
+													var="currDateTime"
+													value="${currDate.time / (1000*60*60*24)}"
+													integerOnly="true"></fmt:parseNumber> <fmt:parseNumber
+													var="regDateTime"
+													value="${list.regDate.time / (1000*60*60*24)}"
+													integerOnly="true"></fmt:parseNumber> <fmt:formatDate
+													var="currTime" value="${currDate}" pattern="HHmm" /> <fmt:formatDate
+													var="regTime" value="${list.regDate}" pattern="HHmm" /> <fmt:parseNumber
+													value="${(currTime - regTime)}" integerOnly="true"
+													var="result"></fmt:parseNumber> <fmt:parseNumber
+													value="${(currTime - regTime) / 60}" integerOnly="true"
+													var="hours"></fmt:parseNumber> <fmt:parseNumber
+													value="${(currTime - regTime) % 60}" integerOnly="true"
+													var="minutes"></fmt:parseNumber> <c:if
+													test="${currDay eq regDay}">
+													<c:choose>
+														<c:when test="${result < 60}">
+										                	${result}분 전
+									                	</c:when>
+														<c:when test="${result >= 60}">
+										                	${hours}시간 ${minutes}분 전
+									                	</c:when>
+													</c:choose>
+												</c:if> <c:if test="${currDate ne regDate}">
+							                		${currDateTime - regDateTime}일 전
+							                	</c:if>
+											</a>
+										</div>
+									</div>
+								</div>
+							</c:forEach>
+						</div>
+
+						<div class="swiper-pagination swiper-pagination-artist-show"></div>
+
+					</div>
+				</div>
+
+				<div class="buskers_feed_video">
+					<div class="buskers_feed_follow">
+						아티스트 영상 <span>팔로우 채널</span>
+					</div>
+					<div class="swiper-container swiper-container-video">
+						<div class="swiper-wrapper swiper-wrapper-video"></div>
+
+						<div class="swiper-pagination"></div>
+
+						<div class="swiper-button-next swiper-button-white"></div>
+						<div class="swiper-button-prev swiper-button-white"></div>
+					</div>
+				</div>
+
+				<div class="buskers_feed_photo">
+					<div class="buskers_feed_follow">
+						아티스트 사진 <span>팔로우 채널</span>
+					</div>
+					<div class="buskers_feed_photo_container">
+						<div class="swiper-wrapper swiper-wrapper-photo"></div>
+
+						<div class="swiper-pagination"></div>
+
+					</div>
+				</div>
+			</c:if>
+		</div>
+	</div>
+</div>
+
+<!-- 스크롤 버튼 -->
+<button type="button" class="view-main-top-btn">
+	<i class="fas fa-angle-up fa-2x"></i>
+</button>
+
 <script src="http://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="<c:url value='/resources/js/waitMe.js'/>"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.0/moment.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.0/moment.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/js/swiper.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/js/swiper.js"></script>
 <script>
 
 
@@ -633,6 +676,7 @@
     	function seoulclicked(d) {
     		var x, y, k;
     		let gu = d.properties.name;
+    		console.log(gu);
     	
     		if (d && centered !== d) {
     		    var centroid = path.centroid(d);
@@ -672,14 +716,15 @@
     	    
     	    /* 클릭시 지역값 넘겨줌 */
     	    console.log(selDate);
-    	    let enrollDate = new Date(selDate);
     		$.ajax({
     			type:"POST",
-    			data: {gu : gu, enrollDate: enrollDate},
+    			data: {gu : gu},
     			url:"show-ajax.do",
     		
     		}).done(function (result) {
+    			console.log("=====");
     			console.log(result);
+    			console.log("=====");
     			let html = "";
     			for (let i = 0; i < result.length; i++) {
     				let list = result[i];
@@ -933,6 +978,10 @@
 				}
 		    });
 		}
+	});
+	
+	$(".municipality-label").click(function () {
+		alert("afdsfas");
 	});
 		
 </script>

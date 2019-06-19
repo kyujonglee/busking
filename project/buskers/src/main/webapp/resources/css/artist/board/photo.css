@@ -18,6 +18,7 @@
 }
 .photo_body_wrapper{
 	height:100%;
+	width:100%;
 }
 .photo_body .artist__photo__img{
 	width : 25%;
@@ -106,5 +107,11 @@
 }
 .title_text_click{
 	background:var(--color-orange);
+	width:100%;
+}
+.no__result{
+	margin-top:60px;
+	font-size:30px;
+	text-align:center;
 	width:100%;
 }

@@ -298,11 +298,10 @@ public class MemberController {
 	public void setting(Model model, HttpSession session, Follow follow, FollowList followList) {
 		Member member = (Member)session.getAttribute("user");
 		Member user = service.selectMember(member.getMemberNo());
-		System.out.println(user.getBuskerNo());
 		followList.setMemberNo(user.getMemberNo());
-		followList.setBuskerNo(user.getBuskerNo());
+		followList.setBuskerNo(user.getBusker().getBuskerNo());
 		follow.setMemberNo(user.getMemberNo());
-		follow.setBuskerNo(user.getBuskerNo());
+		follow.setBuskerNo(user.getBusker().getBuskerNo());
 		Map<String, Object> resultList = service.followList(followList);
 		Map<String, Object> resultCount = service.followCount(follow);
 		model.addAttribute("followMember", resultList.get("followMember"));
@@ -310,6 +309,13 @@ public class MemberController {
 		model.addAttribute("followCount", resultCount.get("followCount"));
 		model.addAttribute("followerCount", resultCount.get("followerCount"));
 		model.addAttribute("agencyInfo", aService.selectAgencyByNo(member.getMemberNo()));
+	}
+	
+	// 팔로우 취소
+	@RequestMapping("followCancel.do")
+	@ResponseBody
+	public int followCancel(Follow follow, Member member) {
+		return service.followCancel(follow);
 	}
 	
 	// 프로필 이미지 업로드

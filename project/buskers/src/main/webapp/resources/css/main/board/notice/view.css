@@ -181,3 +181,6 @@
 	color: var(--color-orange);
 	font-weight: bold;
 }
+#search_button{
+	cursor:pointer;
+}
