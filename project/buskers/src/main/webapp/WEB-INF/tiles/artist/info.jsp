@@ -3,7 +3,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <section class="busker-info">
-	<img src="https://i.pinimg.com/564x/d4/12/4a/d4124a5565145151eeb2b40a8835155f.jpg" class="side_photo_img" />
+	<img src="" class="side_photo_img" />
 	<input type="file" name="side_photo_button" class="side_photo_button"/>
 
 	<div class="busker-info__main">
@@ -18,13 +18,14 @@
 	</div>
 </section>
 <script>
-	
+
+	//로그인해서 일치하는 유저만 클릭해서 수정가능	
 	if("${sessionScope.user.busker.buskerNo}"=="${param.buskerNo}"){
 		$(".input_form").click(function(){
 			$(this).removeAttr('readonly');
 			$(this).addClass('input_form_go');
 		})
-		
+		//블러시에 업데이트
 		$(".input_form").blur(function(){
 			let intro = $("#input_form_intro").val();
 			let location = $("#input_form_location").val(); 
@@ -32,7 +33,7 @@
 			let genre = $("#input_form_genre").val();
 			$(this).attr('readonly',true);
 			$(this).removeClass('input_form_go');
-			
+			//업데이트
 			$.ajax({
 				data:{location:location
 					 ,intro:intro
@@ -46,8 +47,52 @@
 		
 	}
 	
-	$(".side_photo_img").click(function(e){
-		e.preventDefault();
-		$(".side_photo_button").click();
-	})
+	//클릭시에 파일;
+	if("${sessionScope.user.busker.buskerNo}"=="${param.buskerNo}"){
+		$(".side_photo_img").click(function(e){
+			e.preventDefault();
+			$(".side_photo_button").click();
+		})
+	}
+	
+	//파일이 들어왔을시에 변경함
+	$(document).ready(function () {
+		$(".side_photo_button").on("change", function(){
+			let formData = new FormData();
+			let file = $(".side_photo_button")[0].files[0]
+			//파일 유효성 검사
+			let fileName = $(".side_photo_button")[0].files[0].name;	
+			fileName = fileName.slice(fileName.indexOf(".") + 1).toLowerCase(); //파일 확장자를 잘라내고, 비교를 위해 소문자로 만듭니다.
+			if(fileName != "jpg" && fileName != "png" &&  fileName != "gif" &&  fileName != "bmp"){ //확장자를 확인합니다.
+				alert('썸네일은 이미지 파일(jpg, png, gif, bmp)만 등록 가능합니다.');
+				return;
+			}
+			
+			let buskerNo = "${param.buskerNo}";
+			formData.append("file", file);
+			formData.append("buskerNo",buskerNo);
+			
+			
+			//파일등록 에이작스
+			$.ajax({
+				type : "post",
+				data: formData,
+				processData: false,
+				contentType: false,
+				cache : false,
+				url : '/buskers/file/artist-photo-profile-update.do',
+			}).done(function(){
+				$.ajax({
+					url : "<c:url value='/artist/main/main-ajax.do'/>",
+					dateType : "json",
+					data : "buskerNo="+buskerNo
+				}).done(map => {
+					const photo = map.busker.photo;
+					$(".side_photo_img").attr("src",
+							"<c:url value='/file/download.do'/>?path="+photo);
+				})		
+			})
+		});
+	});
+
 </script>

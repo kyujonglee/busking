@@ -104,5 +104,9 @@ public interface MemberMapper {
 	public int selectFollowerCount(Follow follow);
 	
 	
+	public void updateBukserPhoto(Busker busker);
+	
+	
+	
 	
 }

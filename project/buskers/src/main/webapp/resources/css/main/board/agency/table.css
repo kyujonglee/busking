@@ -109,6 +109,7 @@
 	transition : all 0.3s ease-in-out;
 	cursor : pointer;
 	box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+	text-align : center;
 }
 
 .ing {

@@ -1,21 +1,23 @@
 .busker-header{
     background-color : var(--color-orange);
-    display:flex;
-    justify-content: space-between;
-    align-items: center;
+    display: grid;
+    grid-template-columns : 1fr 5fr 1fr;
     padding : 5px 10px;
+    box-sizing : border-box;
     color : var(--color-white);
 }
 
-.busker-header .busker-header__search{
-    width: 20%;
-    display:flex;
-    align-items: center;
-    position: relative;
+.busker-header > div {
+	display : flex;
+	align-items : center;
+}
+.busker-header .busker-header__title {
+    font-size : 28px;
+	justify-content : center;
 }
 
-.busker-header .busker-header__title {
-    font-size : 24px;
+.busker-header .busker-header__member {
+	justify-content : flex-end;
 }
 
 .busker-header__search svg{
@@ -87,4 +89,14 @@
 	100% {color: white;}
 }
 
+/* Header 도움말 css */
+.pagetour-btn {
+	all : unset;
+	font-size : 18px;
+	cursor : pointer;
+	background-color : var(--color-white);
+	color : var(--color-orange);
+	padding : 5px;
+	border-radius : 5px;
+}
 

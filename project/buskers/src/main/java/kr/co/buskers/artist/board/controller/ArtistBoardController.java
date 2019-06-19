@@ -137,4 +137,10 @@ public class ArtistBoardController {
 	public void deletePhoto(int fileNo) {
 		mainService.deletePhoto(fileNo);
 	}
+	
+	@RequestMapping("artist-photo-update.do")
+	@ResponseBody
+	public void updateBukserPhoto(Busker busker) {
+		mainService.updateBukserPhoto(busker);
+	}
 }

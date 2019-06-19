@@ -20,6 +20,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.UrlBasedViewResolver;
 
 import kr.co.buskers.common.file.service.FileService;
+import kr.co.buskers.main.agency.service.AgencyService;
 import kr.co.buskers.main.member.service.MemberService;
 import kr.co.buskers.main.member.util.Email;
 import kr.co.buskers.main.member.util.EmailSender;
@@ -40,6 +41,9 @@ public class MemberController {
 	
 	@Autowired
 	private FileService fService;
+	
+	@Autowired 
+	private AgencyService aService;
 	
 	@Autowired
 	private EmailSender emailSender;
@@ -305,6 +309,7 @@ public class MemberController {
 		model.addAttribute("followerMember", resultList.get("followerMember"));
 		model.addAttribute("followCount", resultCount.get("followCount"));
 		model.addAttribute("followerCount", resultCount.get("followerCount"));
+		model.addAttribute("agencyInfo", aService.selectAgencyByNo(member.getMemberNo()));
 	}
 	
 	// 프로필 이미지 업로드

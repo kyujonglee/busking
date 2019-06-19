@@ -2,7 +2,7 @@
 pageEncoding="UTF-8"%> <%@ taglib prefix="c"
 uri="http://java.sun.com/jsp/jstl/core"%> <%@ taglib prefix="fmt"
 uri="http://java.sun.com/jsp/jstl/fmt" %>
-<section class="busker-content">
+<section class="busker-content" id="busker-content">
   <div class="busker-content__item">
 <!--     <iframe -->
 <!--       width="100%" -->
@@ -182,7 +182,7 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
       </section>
     </div>
   </div>
-  <div class="busker-audio-wrapper">
+  <div class="busker-audio-wrapper" id="music-player">
     <div class="audio-menu">
       <!-- 뮤직플레이어에 제목과 가수가 표시 되지 않는다는 단점!!-->
       <!-- 어떻게 보완할 것인지... 퍼블리싱!-->

@@ -90,6 +90,7 @@
 
 .header-a > .fa-bell {
 	animation: bell 2s infinite linear;
+	margin-right: 20px;
 }
 
 @keyframes alarms { 

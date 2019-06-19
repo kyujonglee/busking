@@ -70,8 +70,13 @@
 						<li class="pro_tab">
 							<a class="pro_tab_link"  onclick="tab_menu(4);" >결제</a>
 						</li>
+						<c:if test="${sessionScope.user.isAgency eq 'y'}">
 						<li class="pro_tab">
-							<a class="pro_tab_link"  onclick="tab_menu(5);" >회원탈퇴</a>
+							<a class="pro_tab_link"  onclick="tab_menu(5);" >업체</a>
+						</li>
+						</c:if>
+						<li class="pro_tab">
+							<a class="pro_tab_link"  onclick="tab_menu(6);" >회원탈퇴</a>
 						</li>
 					</ul>
 				</div>
@@ -90,6 +95,9 @@
 				    </div>
 				    <div class="tab-pane4" id="pay" style="display: none;" >
 				    	<%@ include file= "pay.jsp" %>
+				    </div>
+				    <div class="tab-pane5" id="agency" style="display: none;" >
+				    	<%@ include file= "agency.jsp" %>
 				    </div>
 				</div>
 			</div>

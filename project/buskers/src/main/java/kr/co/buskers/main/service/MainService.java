@@ -25,5 +25,6 @@ public interface MainService {
 	public List<SearchBoard> mainBoardSearch(SearchPage searchPage);
 	HashMap<String, Object> BoardListSearch(SearchPage searchPage);
 	public Busker mainBuskerSearch(SearchPage searchPage);
+	public List<Busker> selectSearchBuskerList(String input);
 	
 }

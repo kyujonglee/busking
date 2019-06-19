@@ -13,7 +13,7 @@
 				<i class="fas fa-angle-right fa-2x"></i>
 			</div>
 		</header>
-		<article class="busker-side__profile-info">
+		<article class="busker-side__profile-info" id="busker-profile">
 			<header class="busker-side__profile-header">
 				<span class="busker__profile-header-edit">
 					<c:if test="${sessionScope.user.busker.buskerNo eq param.buskerNo}">
@@ -41,7 +41,7 @@
 			</div>
 		</article>
 	</section>
-	<ul class="busker-side__menu">
+	<ul class="busker-side__menu" id="side-menu">
 		<li class="busker-side__menu-item">
 			<div class="busker-side__menu-icon">
 				<i class="fas fa-video fa-lg"></i>
@@ -101,7 +101,7 @@
 <!-- 			<div class="busker-side__menu-title">설정</div> -->
 <!-- 		</li> -->
 	</ul>
-	<section class="busker-side__buskers">
+	<section class="busker-side__buskers" id="busker-recommend">
 		<header class="buskers-header">
 			<div class="buskers-header__title">관련 버스커</div>
 		</header>
@@ -177,6 +177,8 @@
 		const genre = map.busker.genre;
 		const profileImg = map.busker.profileImg;
 		const profileImgPath = map.busker.profileImgPath;
+		const photo = map.busker.photo;
+
 		$("#showCount").text(showCount);
 		$("#musicCount").text(musicCount);
 		$("#videoCount").text(videoCount);
@@ -188,6 +190,12 @@
 		$("#input_form_time").val(time);
 		$("#input_form_genre").val(genre);
 		
+		//사진
+		if(photo == ""){
+			$(".side_photo_img").attr("src" , "<c:url value='/resources/img/default.jpg' />");
+		}else{
+			$(".side_photo_img").attr("src" , "<c:url value='/file/download.do'/>?path="+photo);
+		}
 		
 		$(".busker-side__profile-photo").prepend(
 		`<img src='<c:url value='/resources/img/profile.png' />'>`		
@@ -290,7 +298,7 @@
 // 	팔로우 기능
 	$(".busker__profile-header-follow").click(function(){
 
-		if("${sessionScope.user.busker}" == ""){
+		if("${sessionScope.user}" == ""){
 			Swal.fire({
 				  title:'로그인이 필요한 기능입니다.',
 				  type:'warning',
@@ -338,16 +346,6 @@
 		});
     	$('#myModal').modal('hide');
     });
-    
-    $(".facebook").click(function(){
-    	window.location.href = 	$("#faceBookUrl").val();
-    })
-    $(".youtube").click(function(){
-    	window.location.href = '${socialUrl.youTubeUrl}';
-    })
-    $(".instargram").click(function(){
-    	window.location.href = '${socialUrl.instargramUrl}';
-    })
     
     /** 관련 버스커 */
     $.ajax({

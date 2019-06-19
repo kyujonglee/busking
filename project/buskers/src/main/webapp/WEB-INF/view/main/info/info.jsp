@@ -313,6 +313,7 @@ uri="http://java.sun.com/jsp/jstl/fmt"%>
       });
     });
   }
+  
   let swiper;
   <%-- video를 가져오는 ajax --%>
   $(document).ready(()=>{
@@ -364,20 +365,30 @@ uri="http://java.sun.com/jsp/jstl/fmt"%>
 	  }).done((videoList)=>{
 		  
 		  let html = "";
-		  for(let i = 0; i<videoList.length ; i++){
-			 	html +=		
-		            `
-		          <div class="swiper-slide">
-		            <iframe
-		              width="540px"
-		              height="360px"
-		              src="`+videoList[i].url+`"
-		              frameborder="0"
-		              allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-		              allowfullscreen
-		            ></iframe>
-		          </div>
-				 `;			  
+		  if(videoList.length !== 0){
+			  for(let i = 0; i<videoList.length ; i++){
+				 	html +=		
+			            `
+			          <div class="swiper-slide">
+			            <iframe
+			              width="540px"
+			              height="360px"
+			              src="`+videoList[i].url+`"
+			              frameborder="0"
+			              allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+			              allowfullscreen
+			            ></iframe>
+			          </div>
+					 `;			  
+			  }
+		  } else {
+			  console.log("shit");
+			  html +=
+				  `
+				  <div class="info-video__empty">
+			  	     버스커가 올린 영상이 존재하지 않습니다.
+			  	  </div>
+				  `;
 		  }
 		  $(".swiper-wrapper").html(html);
 		  swiper.update();

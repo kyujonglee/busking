@@ -1,6 +1,7 @@
 package kr.co.buskers.common.file.service;
 
 import java.io.File;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import kr.co.buskers.repository.domain.ArtistPhoto;
+import kr.co.buskers.repository.domain.Busker;
 import kr.co.buskers.repository.domain.Member;
 import kr.co.buskers.repository.domain.MusicFile;
 import kr.co.buskers.repository.mapper.ArtistBoardMapper;
@@ -201,5 +203,20 @@ public class FileServiceImpl implements FileService {
 		artistPhoto.setPath(path);
 		aMapper.insertArtistPhoto(artistPhoto);
 		return path+artistPhoto.getSysname();
+	}
+	
+
+	@Override
+	public String artistPhotoProfileUpdate(Busker busker, MultipartFile file) throws Exception{
+		System.out.println("사용자가 선택한 파일명 : "+file.getOriginalFilename());
+		
+		UUID uuid = UUID.randomUUID();
+		String photoPath = FILE_PATH + "/artistProfilePhoto/"+ busker.getBuskerNo()+"/"+uuid.toString()+file.getOriginalFilename();
+		busker.setPhoto(photoPath);
+		File Nfile = new File(photoPath);
+		if(!Nfile.exists()) Nfile.mkdirs();
+		file.transferTo(Nfile);
+		mMapper.updateBukserPhoto(busker);
+		return photoPath;
 	}
 }
