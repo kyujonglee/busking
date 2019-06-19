@@ -1,5 +1,6 @@
 package kr.co.buskers.main.member.controller;
 
+import java.util.Map;
 import java.util.Random;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
@@ -25,6 +27,8 @@ import kr.co.buskers.main.member.util.PrevUrl;
 import kr.co.buskers.main.socialmember.controller.KakaoApi;
 import kr.co.buskers.repository.domain.Busker;
 import kr.co.buskers.repository.domain.BuskerGenre;
+import kr.co.buskers.repository.domain.Follow;
+import kr.co.buskers.repository.domain.FollowList;
 import kr.co.buskers.repository.domain.Member;
 
 @Controller
@@ -69,7 +73,6 @@ public class MemberController {
 	@RequestMapping("login.do")
 	public String login(HttpSession session, Member member, RedirectAttributes rttr) {
 		Member user = service.login(member);
-				
 		// DB 값 체크
 		if(user != null) {
 			boolean passMatch = passEncoder.matches(member.getPass(), user.getPass());
@@ -288,8 +291,20 @@ public class MemberController {
 	
 	// 개인설정 페이지
 	@RequestMapping("setting.do")
-	public void setting() {
-		
+	public void setting(Model model, HttpSession session, Follow follow, FollowList followList) {
+		Member member = (Member)session.getAttribute("user");
+		Member user = service.selectMember(member.getMemberNo());
+		System.out.println(user.getBuskerNo());
+		followList.setMemberNo(user.getMemberNo());
+		followList.setBuskerNo(user.getBuskerNo());
+		follow.setMemberNo(user.getMemberNo());
+		follow.setBuskerNo(user.getBuskerNo());
+		Map<String, Object> resultList = service.followList(followList);
+		Map<String, Object> resultCount = service.followCount(follow);
+		model.addAttribute("followMember", resultList.get("followMember"));
+		model.addAttribute("followerMember", resultList.get("followerMember"));
+		model.addAttribute("followCount", resultCount.get("followCount"));
+		model.addAttribute("followerCount", resultCount.get("followerCount"));
 	}
 	
 	// 프로필 이미지 업로드

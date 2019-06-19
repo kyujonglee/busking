@@ -1,9 +1,14 @@
 package kr.co.buskers.repository.mapper;
 
+import java.util.List;
+
 import kr.co.buskers.repository.domain.Busker;
 import kr.co.buskers.repository.domain.BuskerGenre;
 import kr.co.buskers.repository.domain.Follow;
+import kr.co.buskers.repository.domain.FollowList;
+import kr.co.buskers.repository.domain.FreePage;
 import kr.co.buskers.repository.domain.Member;
+import kr.co.buskers.repository.domain.QnaBoard;
 
 public interface MemberMapper {
 	
@@ -91,7 +96,12 @@ public interface MemberMapper {
 
 	// 프로필 소개글 업데이트
 	public void updateMemberProfileIntroduce(Member member);
-	
+
+	// 팔로우 팔로워 관리
+	public List<FollowList> selectFollowMember(FollowList followList);
+	public List<FollowList> selectFollowerMember(FollowList followList);
+	public int selectFollowCount(Follow follow);
+	public int selectFollowerCount(Follow follow);
 	
 	
 	

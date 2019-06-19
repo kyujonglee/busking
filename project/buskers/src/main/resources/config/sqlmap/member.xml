@@ -248,7 +248,7 @@
 	
 	
 	<!-- 팔로우 / 팔로워 관리 -->
-	<select id="countFollow" parameterType="follow" resultType="int">
+	<select id="selectFollowCount" parameterType="follow" resultType="int">
 		select count(*)
 		  from tb_follow
 		 where follow_status = 'y'
@@ -259,19 +259,26 @@
 		select f.*, b.activity_name, m.profile_img_path, m.profile_img, m.nick_name
 		  from tb_follow f, tb_busker b, tb_member m
 		 where f.member_no = #{memberNo}
-<!-- 		   and f.busker_no = b.busker_no -->
-<!-- 		   and b.member_no = m.member_no -->
+		   and f.busker_no = b.busker_no
+		   and b.member_no = m.member_no
 		   and f.follow_status = 'y'
 	</select>
 	
-	<select id="countFollower" parameterType="follow" resultType="int">
+	<select id="selectFollowerCount" parameterType="follow" resultType="int">
 		select count(*)
 		  from tb_follow
 		 where follow_status = 'y'
 		   and busker_no = #{buskerNo}
 	</select>
 	
-	
+	<select id="selectFollowerMember" parameterType="int" resultType="followList">
+		select f.*, b.activity_name, m.profile_img_path, m.profile_img, m.nick_name
+		  from tb_follow f, tb_busker b, tb_member m
+		 where f.busker_no = #{buskerNo}
+		   and f.busker_no = b.busker_no
+		   and b.member_no = m.member_no
+		   and f.follow_status = 'y'
+	</select>
 	
 	
 	
