@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.mysql.cj.protocol.x.Notice;
 
+import kr.co.buskers.repository.domain.NoticeBoard;
 import kr.co.buskers.repository.domain.NoticePage;
 import kr.co.buskers.repository.mapper.NoticeBoardMapper;
 
@@ -34,5 +35,11 @@ public class NoticeServiceImpl implements NoticeService{
 		Map<String,Object> map = new HashMap<>();
 		map.put("board", mapper.selectBoardByNo(boardNo));
 		return map;
+	}
+
+	@Override
+	public void insert(NoticeBoard noticeboard) {
+		mapper.insertBoard(noticeboard);
+		
 	}
 }

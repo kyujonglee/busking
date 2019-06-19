@@ -29,6 +29,11 @@
 		 where n.member_no = m.member_no
 		   and board_no=#{boardNo}
 	</select>
+	
+	<insert id="insertBoard">
+		insert into tb_noticeboard(member_no,title,content)
+		values( 1, #{title}, #{content})
+	</insert>
 		
 </mapper>
 

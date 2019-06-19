@@ -90,9 +90,9 @@
 	<select id="selectArtistShowToday" resultType="artistShow">
 		select * 
 		  from tb_busker_show s, tb_busker b, tb_member m
-		 where s.busker_no = b.busker_no
-           and m.member_no = b.member_no
-		   and date(enroll_date) = current_date();
+<!-- 		 where s.busker_no = b.busker_no -->
+<!--            and m.member_no = b.member_no -->
+<!-- 		   and date(enroll_date) = current_date(); -->
 	</select>
 	
 	<select id="selectFollowArtistShow" parameterType="int" resultType="artistShow">

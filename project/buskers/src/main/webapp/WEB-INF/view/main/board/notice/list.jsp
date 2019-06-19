@@ -79,7 +79,7 @@
 	        <header class="notice-board__view-content-header">
 	          <div class="view-content__header-title">
 				<!-- 첫글의 제목 --> 
-				<span>${list[0].title}</span>
+				<span id="detail__title">${list[0].title}</span>
 	          </div>
 	          <div class="view-content__header-content">
 	            <div class="header-content__column">
@@ -99,28 +99,98 @@
 		          	<!-- 첫글의 내용 -->   
 		          	${list[0].content}
               	  </section>
+              	  	<span class="button_bottom">
+	                	<button class="notice_button reg_button" type="button" data-toggle="modal" data-target="#writeModal">글등록</button>
+	                	<button class="notice_button" type="button" id="notice_modify">수정</button>
+	                	<button class="notice_button" type="button">삭제</button>
+	                	<input type="hidden" id="board_no_button" data-bno="${list[0].boardNo}"/>
+                	</span>
                 </div>
         	</section>
     	</div>
 	</div>
 </main>
+
+<!-- Modal -->
+<div class="modal fade" id="writeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <div class="modal_title">공지사항을 입력해주세요.</div>
+        </div>
+        <div class="modal-body">
+	    	<div class="form-group">
+	        	<div class="control-label">글제목 : </div>
+		        <input type="text" class="form-control" id="title"/>
+	        </div>
+	    	<div class="form-group">
+	        	<div class="control-label">글내용 : </div>
+		        <textarea type="text" class="form-control" id="content"/></textarea>
+	        </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
+          <button type="button" class="btn btn-primary" id="regBtn">글등록</button>
+        </div>
+      </div>
+    </div>
+</div>
+
 <script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
 <script src="<c:url value='/resources/js/main/board/notice/list.js'/>"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
 <script>
 
+	//글수정
+	$(document).on("click","#notice_modify",function(){
+		boardNo = $("#board_no_button").data("bno");
+		$.ajax({
+			data : {boardNo:boardNo},
+			url : "detail-ajax.do",
+		}).done(function(result){
+			$(".button_bottom").html('<button class="notice_button" type="button" id="notice_modify">수정완료</button>');
+			$("#detail__title").html("<input type='text' class='title__input' value='"+result.board.title+"'/> ");
+			$(".notice-board__view-content").html("<textarea type='text' class='content__input'>"+result.board.content+"</textarea>")
+		})
+	});
+	
+	//글동룍
+	$(document).on("click","#regBtn",function(){
+		title = $("#title").val();
+		content = $("#content").val();
+		$.ajax({
+			data : {title:title,content:content},
+			url : "insert.do",
+		}).done(function(){
+			$("#writeModal").hide();
+			window.location.href="/buskers/main/board/notice/list.do";
+		})
+	})
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	let searchType = "${param.searchType}";
     let input = "${param.input}";
-	let itemLength = $(".notice-board-main__view-item").length;	
+	let itemLength = $(".notice-board-main__view-item").length;
+	
+	//onsubmit 시에 함수를 실행시켜서  글자수 검사
 	function confirmSearchType(){
-		alert("check 실행");
-// 			search = $("#searchInput").val();
-//			alert(search.length);
-//			if($("#searchInput").val().length > 30){
-//				alert("30자 미만으로 검색어를 입력해주세요.");
-//				return false;
-//			}
-//	 	return true;
+		search = $("#searchType").val();
+			if(search.length > 50){
+				Swal.fire({
+					  title:"50자 미만으로 검색어를 입력해주세요.",
+					  type:'info',
+					  timer:2000	
+				});
+				return false;
+			}
 	}
 	
 	function titleBold(){
