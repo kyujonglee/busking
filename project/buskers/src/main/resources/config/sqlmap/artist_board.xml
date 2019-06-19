@@ -218,10 +218,17 @@
 		 where file_no = #{fileNo}
 	</delete>
 	
-	<select id="countPhoto" parameterType="int"  resultType="int">
+	<select id="countPhoto" parameterType="int" resultType="int">
 		select count(*)
 		  from tb_artist_photo
 		 where busker_no = #{buskerNo}
+	</select>
+	
+	<select id="selectFollowMembers" parameterType="int" resultType="member">
+		select m.nick_name
+		  from tb_follow f, tb_member m
+		 where f.member_no = m.member_no
+		   and f.busker_no = #{buskerNo};
 	</select>
 	
 </mapper>

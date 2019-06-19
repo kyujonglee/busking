@@ -106,49 +106,69 @@
 <script src="<c:url value='/resources/js/artist/board/map.js' />"></script>
 <script src="<c:url value='/resources/js/artist/board/enroll.js' />"></script>
 <script>
- 	  function check(){
- 		  const lat = $("#lat").val();
- 		  const enrollDate = $(".busker-enroll__date").val();
- 		  const place = $("#place").val();
- 		  const title = $("#title").val();
- 		  const content = $("#content").val();
- 		  
- 		  if(lat === ""){
- 			  alert("공연위치를 지도에서 클릭해주세요!");
- 			  return false;
- 		  }
- 		  
- 		  if(enrollDate === "") {
- 			  alert("날짜를 선택해주세요.");
- 			  return false;
- 		  }else {
- 			  if(new Date(enrollDate) < new Date()){
- 				  alert("현재 날짜 이후로 선택 가능합니다.");
- 				  return false;
- 			  }
- 		  }
- 		  if(title === ""){
- 			  alert("제목을 입력해주세요.");
- 			  $("#title").focus();
- 			  return false;
- 		  }
- 		  if(place === ""){
- 			  alert("장소를 입력해주세요.");
- 			  $("#place").focus();
- 			  return false;
- 		  }
- 		  if(content === ""){
- 			  alert("내용을 입력해주세요.");
- 			  $("#content").focus();
- 			  return false;
- 		  }
- 		  
- 		  
- 		  
- 		  $("#enrollDate").val( new Date(enrollDate) );
-		  if($("#temperature").val() === ""){
-			  $("#temperature").val(0);
-		  }
- 		  return true;
- 	  }
+	function check() {
+		const lat = $("#lat").val();
+		const enrollDate = $(".busker-enroll__date").val();
+		const place = $("#place").val();
+		const title = $("#title").val();
+		const content = $("#content").val();
+
+		if (lat === "") {
+			alert("공연위치를 지도에서 클릭해주세요!");
+			return false;
+		}
+
+		if (enrollDate === "") {
+			alert("날짜를 선택해주세요.");
+			return false;
+		} else {
+			if (new Date(enrollDate) < new Date()) {
+				alert("현재 날짜 이후로 선택 가능합니다.");
+				return false;
+			}
+		}
+		if (title === "") {
+			alert("제목을 입력해주세요.");
+			$("#title").focus();
+			return false;
+		}
+		if (place === "") {
+			alert("장소를 입력해주세요.");
+			$("#place").focus();
+			return false;
+		}
+		if (content === "") {
+			alert("내용을 입력해주세요.");
+			$("#content").focus();
+			return false;
+		}
+
+		$("#enrollDate").val(new Date(enrollDate));
+		if ($("#temperature").val() === "") {
+			$("#temperature").val(0);
+		}
+		return true;
+	}
+
+	/* 공연일정 등록 emit */
+	
+	let alarmBuskerNo = "${param.buskerNo}";
+	let alarmActivityName = "${sessionScope.user.busker.activityName}";
+	console.log(alarmActivityName);
+	$.ajax({
+		type : "POST",
+		url : "/buskers/artist/board/show-alarm-ajax.do",
+		data : {buskerNo : alarmBuskerNo},
+		success : function(result) {
+			console.log(result);
+			socket.emit(
+				"show-alarm", 
+				{
+					activityName: alarmActivityName,
+		            nickName: result
+        		}
+			);
+		}
+	});
+	
 </script>

@@ -21,7 +21,9 @@
        						<span aria-hidden="true">&times;</span>
        					</button>
        				</div>
-       				<img class="follow__list__img" src="<c:url value='/file/download.do'/>?path=${list.profileImgPath}${list.profileImg}" title="프로필" onError="this.src='<c:url value='/resources/img/profile.png' />';" />
+       				<a href="<c:url value='/artist/main/main.do?buskerNo='/>${list.buskerNo}">
+       					<img class="follow__list__img" src="<c:url value='/file/download.do'/>?path=${list.profileImgPath}${list.profileImg}" title="프로필" onError="this.src='<c:url value='/resources/img/profile.png' />';" />
+       				</a>
        				<div class="follow__list__nickName">
        					<a href="<c:url value='/artist/main/main.do?buskerNo='/>${list.buskerNo}">
 	       					<span>${list.activityName}</span>
@@ -37,7 +39,16 @@
        			<li class="follow__list__items">
        				<div class="follow__cancel__div">
        				</div>
-       				<img class="follow__list__img" src="<c:url value='/file/download.do'/>?path=${list.profileImgPath}${list.profileImg}" title="프로필" onError="this.src='<c:url value='/resources/img/profile.png' />';" />
+       				<c:if test="${list.activityName eq null}">
+	       				<a class="follow_list_noneBuskerNo">
+	       					<img class="follow__list__img" src="<c:url value='/file/download.do'/>?path=${list.profileImgPath}${list.profileImg}" title="프로필" onError="this.src='<c:url value='/resources/img/profile.png' />';" />
+	       				</a>
+       				</c:if>
+       				<c:if test="${list.activityName ne null}">
+	       				<a href="<c:url value='/artist/main/main.do?buskerNo='/>${list.buskerNo}">
+	       					<img class="follow__list__img" src="<c:url value='/file/download.do'/>?path=${list.profileImgPath}${list.profileImg}" title="프로필" onError="this.src='<c:url value='/resources/img/profile.png' />';" />
+	       				</a>
+       				</c:if>
        				<div class="follow__list__nickName">
        					<c:if test="${list.activityName eq null}">
        						<a class="follow_list_noneBuskerNo">

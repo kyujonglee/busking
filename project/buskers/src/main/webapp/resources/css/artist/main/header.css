@@ -193,7 +193,7 @@
 }
 
 .header-a > .fa-bell {
-	animation: bell 2s infinite linear;
+	
 }
 
 @keyframes alarms { 

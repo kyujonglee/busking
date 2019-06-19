@@ -4,32 +4,32 @@
 <mapper namespace="kr.co.buskers.repository.mapper.HeaderMapper">
    <select id="selectMessage" parameterType="freePage" resultType="message">
       select *
-          from (select @rownum:=@rownum+1 rnum, a.*
-                from ( select m.*, mem.is_agency, info.agency_name, info.basic_addr
-                         from tb_message m, tb_member mem, tb_agency agency, tb_agency_info info
-                        where m.sender_member_no = mem.member_no
-                          and mem.member_no = agency.member_no
-                          and agency.member_no = info.member_no
-                          and (@rownum:=0)=0
-                          and receiver_member_no = #{receiverMemberNo}
-                          and receiver_is_deleted = 'N'
-                  <choose>
-           	  		<when test="searchType == 'title'">
-                  		and title like concat('%', #{input}, '%')
-                  	</when>
-                  	<when test="searchType == 'content'">
-                  		and f.content like concat('%', #{input}, '%')
-               	  	</when>
-                  	<when test="searchType == 'nickName'">
-                  		and nick_name like concat('%', #{input}, '%')
-                  	</when>
-                  	<otherwise>
-                  	</otherwise>
-                  </choose>
-                  order by msg_no desc
-                  
-                  ) a
-             ) b
+        from (select @rownum:=@rownum+1 rnum, a.*
+              from ( select m.*, mem.is_agency, info.agency_name, info.basic_addr
+                       from tb_message m, tb_member mem, tb_agency agency, tb_agency_info info
+                      where m.sender_member_no = mem.member_no
+                        and mem.member_no = agency.member_no
+                        and agency.member_no = info.member_no
+                        and (@rownum:=0)=0
+                        and receiver_member_no = #{receiverMemberNo}
+                        and receiver_is_deleted = 'N'
+                <choose>
+         	  		<when test="searchType == 'title'">
+                		and title like concat('%', #{input}, '%')
+                	</when>
+                	<when test="searchType == 'content'">
+                		and f.content like concat('%', #{input}, '%')
+             	  	</when>
+                	<when test="searchType == 'nickName'">
+                		and nick_name like concat('%', #{input}, '%')
+                	</when>
+                	<otherwise>
+                	</otherwise>
+                </choose>
+                order by msg_no desc
+                
+                ) a
+           ) b
        where rnum between #{begin} and #{end}
    </select>
    
@@ -96,11 +96,19 @@
 
    </update>
    
+<!--    <select id="selectMessageByNo" parameterType="int" resultType="message"> -->
+<!--       select *  -->
+<!--         from tb_message m, tb_member mem -->
+<!--        where m.sender_member_no = mem.member_no -->
+<!--          and msg_no = #{msgNo} -->
+<!--    </select>    -->
    <select id="selectMessageByNo" parameterType="int" resultType="message">
-      select * 
-        from tb_message m, tb_member mem
-       where m.sender_member_no = mem.member_no
-         and msg_no = #{msgNo}
+      select msg_no, sender_member_no, receiver_member_no, send_date, title, content, read_status, save_status, sender_is_deleted, receiver_is_deleted, nick_name, is_agency, agency_name, phone, basic_addr, detail_addr, info.email
+        from tb_message m
+       inner join tb_member mem on m.sender_member_no = mem.member_no
+        left join tb_agency agency on agency.member_no = mem.member_no
+        left join tb_agency_info info on info.agency_info_no = agency.agency_info_no
+       where msg_no = #{msgNo}
    </select>   
    
    <update id="updateMessageReadStatus" parameterType="int">

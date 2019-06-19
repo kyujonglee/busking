@@ -19,14 +19,24 @@
 	</div>
 	<div class="message_detail">
 		<br>
-		<span>제목 </span><a>${message.title}</a>
+		<span>제목</span><a> ${message.title}</a>
 		<br><br>
-		<span>보낸 사람 </span><a>${message.nickName}</a><span>날짜 </span><a><fmt:formatDate value="${message.sendDate}" pattern="yy/MM/dd HH:mm" /></a>
+		<span>보낸 사람 </span>
+		<c:if test="${message.isAgency ne 'y'}">
+			<a>${message.nickName}</a>
+		</c:if>
+		<c:if test="${message.isAgency eq 'y'}">
+			<a class="message-agency">
+				<i class="fas fa-award message-agency__icon"></i>
+				${message.nickName}
+			</a>
+		</c:if>
+		<span>날짜 </span><a><fmt:formatDate value="${message.sendDate}" pattern="yy/MM/dd HH:mm" /></a>
 		<br>
 		<hr>
 		<span>내용</span>
 		<br>
-		<textarea id="message_detail_content" class="form-control" rows="10" readonly="readonly" disabled>${message.content}</textarea>
+		<textarea id="message_detail_content" class="form-control" rows="10" readonly="readonly" disabled></textarea>
 		
 		<div class="post_bottom_button">
 			<div>
@@ -40,7 +50,16 @@
 <script src="<c:url value='/resources/js/main/header/bootstrap.js'/>"></script> 
 
 <script>
+	const isAgency = ${ (message.isAgency eq 'n') ? false : true };
+	const content = "${message.content}";
+	<c:if test="${message.isAgency eq 'y'}">
+		const agencyName = "${message.agencyName}";
+		const email = "${message.email}";
+		const phone = "${message.phone}";
+		const basicAddr = "${message.basicAddr}";
+		const detailAddr = "${message.detailAddr}";
+	</c:if>
 </script>
-
+<script src="<c:url value='/resources/js/main/header/message-detail.js'/>"></script>
 </body>
 </html>

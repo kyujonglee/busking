@@ -17,6 +17,7 @@ public interface MainService {
 	public void exportCSV();
 	public void mapView(String enrollDate);
 	public List<ArtistShow> mapDetail(ArtistShow artistShow);
+	public List<ArtistShow> locationDetail(ArtistShow artistShow);
 	public Map<String, Object> selectArtistShowToday(HttpSession session);
 	public List<ArtistPhoto> selectFollowArtistPhotoList(HttpSession session);
 	public List<Video> selectFollowArtistVideoList(HttpSession session);

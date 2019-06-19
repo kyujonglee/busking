@@ -7,6 +7,7 @@ import java.util.Map;
 import kr.co.buskers.repository.domain.ArtistPhoto;
 import kr.co.buskers.repository.domain.ArtistShow;
 import kr.co.buskers.repository.domain.Busker;
+import kr.co.buskers.repository.domain.Member;
 import kr.co.buskers.repository.domain.SocialUrl;
 import kr.co.buskers.repository.domain.Video;
 
@@ -65,4 +66,7 @@ public interface ArtistBoardMapper {
 	void deletePhoto(int fileNo);
 	int countPhoto(int buskerNo);
 	List<ArtistPhoto> selectPhoto(int buskerNo, int beginPage);
+	
+// 공연일정 등록 알림
+	List<Member> selectFollowMembers(int buskerNo);
 }
