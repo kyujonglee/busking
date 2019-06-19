@@ -52,12 +52,11 @@ public class AgencyServiceImpl implements AgencyService {
 		
 		Map<String,Object> map = new HashMap<>();
 		List<Integer> memberNoList = mapper.selectAgencyByAgencyInfoNo(agencyInfoNo);
-		for(int memberNo:memberNoList) {
-			System.out.println(memberNo);
+		if(memberNoList.size() != 0) {
+			map.put("memberNoList",memberNoList);
+			map.put("permission","n");
+			mapper.updateAgencyMembers(map);
 		}
-		map.put("memberNoList",memberNoList);
-		map.put("permission","n");
-		mapper.updateAgencyMembers(map);
 		
 		mapper.deleteAgencyByNo(agencyInfoNo);
 		mapper.deleteAgencyInfoByNo(agencyInfoNo);

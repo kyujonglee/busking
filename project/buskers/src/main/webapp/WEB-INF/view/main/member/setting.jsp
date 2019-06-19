@@ -42,7 +42,7 @@
 					</div>
 					<div class="profile_comment">
 						<p>15</p>
-						<p>팔로우</p>
+						<p>팔로워</p>
 					</div>
 				</div>
 				<hr class="profile_hr">
@@ -59,7 +59,7 @@
 							<a class="pro_tab_link"  onclick="tab_menu(0);" >프로필</a>
 						</li>
 						<li class="pro_tab">
-							<a class="pro_tab_link"  onclick="tab_menu(1);" >팔로우/팔로워 관리</a>
+							<a class="pro_tab_link"  onclick="tab_menu(1);" >팔로우 / 팔로워 관리</a>
 						</li>
 						<li class="pro_tab">
 							<a class="pro_tab_link"  onclick="tab_menu(2);" >개인정보 관리</a>
@@ -70,52 +70,22 @@
 						<li class="pro_tab">
 							<a class="pro_tab_link"  onclick="tab_menu(4);" >결제</a>
 						</li>
+						<c:if test="${sessionScope.user.isAgency eq 'y'}">
 						<li class="pro_tab">
-							<a class="pro_tab_link"  onclick="tab_menu(5);" >회원탈퇴</a>
+							<a class="pro_tab_link"  onclick="tab_menu(5);" >업체</a>
+						</li>
+						</c:if>
+						<li class="pro_tab">
+							<a class="pro_tab_link"  onclick="tab_menu(6);" >회원탈퇴</a>
 						</li>
 					</ul>
 				</div>
 				<div class="profile_content">
 			        <div class="tab-pane0" id="profile" style="display: block;">
-			        	<div class="form profile">
-			        		<div class="profile__img__title">
-			        			<h3>프로필 사진</h3>
-			        		</div>	
-			        		<div class="profile__img__box">
-			        			<div class="profile__img__row">
-			        				<div class="profile__img__setting">
-			        					<div class="img__box1">
-			        						<div class="img__box2">
-			        							<img class="img__box3" src="<c:url value='/file/download.do'/>?path=${sessionScope.user.profileImgPath}${sessionScope.user.profileImg}" title="프로필 사진" onError="this.src='<c:url value='/resources/img/profile.png' />';"/>
-			        						</div>
-			        					</div>
-			        					<div class="img__update">
-			        						<div class="img__update__box">
-			        							<button type="button" class="img__update__button" id="profileBtn">프로필 사진 업데이트</button>
-			        						</div>
-			        						<div class="img__update__ment">
-			        							<p>JPEG, PNG, GIF 중 하나여야 하며 10MB를 초과할 수 없습니다.</p>
-			        						</div>
-			        					</div>
-			        				</div>
-			        			</div>
-			        		</div>
-			        		<div class="profile__introduce__title">
-			        			<h3>프로필 소개</h3>
-			        		</div>
-			        		<form name="member__profile__introduce"  id="member__introduce" action="memberProfileIntroduce.do"  method="post">
-				        		<div class="profile__introduce__box">
-				        			<textarea class="introduce__textarea" name="profileIntroduce" id="introduce__textarea" placeholder="소개글을 써주세요!(50자 이내)" maxlength="50"></textarea>
-				        		</div>
-								<input type="hidden" name="memberNo" value="${sessionScope.user.memberNo }"/>
-								<div class="modifyWrapper">
-									<button id="modify_intorduce" type="button" class="info_change_button">변경</button>
-								</div>
-			        		</form>
-			        	</div>
+			        	<%@ include file= "change-profile.jsp" %>
 			        </div>
 				    <div class="tab-pane1" id="friend" style="display: none;" >
-						...2
+						<%@ include file= "follow-info.jsp" %>
 				    </div>
 				    <div class="tab-pane2" id="privacy" style="display: none;" >
 				    	<%@ include file= "change-info.jsp" %>
@@ -125,6 +95,9 @@
 				    </div>
 				    <div class="tab-pane4" id="pay" style="display: none;" >
 				    	<%@ include file= "pay.jsp" %>
+				    </div>
+				    <div class="tab-pane5" id="agency" style="display: none;" >
+				    	<%@ include file= "agency.jsp" %>
 				    </div>
 				</div>
 			</div>
@@ -169,6 +142,20 @@ function tab_menu(num){
      	} else {
       		f.eq(i).removeClass('active');   
       		$('.tab-pane' + i ).css('display','none');
+     	}
+    }
+}
+
+//탭이동(팔로우 / 팔로워)
+function tab_menu_follow(num){
+    var f = $('.category__tab').find('a');
+    for ( var i = 0; i < f.length; i++ ) { 
+    	if ( i == num) { 
+      		f.eq(i).addClass('current');
+      		$('.tab-pane-follow' + i ).css('display','block');
+     	} else {
+      		f.eq(i).removeClass('current');   
+      		$('.tab-pane-follow' + i ).css('display','none');
      	}
     }
 }
@@ -228,15 +215,20 @@ function handleImgFileSelect(e) {
 
 
 // 프로필 이미지 업로드
+let maxSize  = 5 * 1024 * 1024;
 
 $(".closeBtn").click(function () {
 	$("#profile__img").val("");
-	$("#profile__preview").removeAttr("src");	
+	$("#profile__preview").removeAttr("src");
+	$('.preview-profile').css('display','none');
+	$(".btn-file-word").css('display','inline-block');
 });
 
 $(".saveBtn").click(function (f) {
 	if(($("#profile__img").val() == "" || $("#profile__img").val() == null)) {
 		alert("이미지 파일을 등록해주세요!");
+	} else if($("#profile__img")[0].files[0].size > maxSize) {
+		alert("이미지 파일은 5MB를 초과할수 없습니다!");
 	} else {
 		let file = $("#profile__img")[0].files[0];
 		let uriPath = "/buskers/main/board/member/";
@@ -467,7 +459,6 @@ $(".saveBtn").click(function (f) {
 	})
 	
 	/* 닉네임 중복체크 */
-	// 닉네임 중복 체크
 	$(function() {
 		$("#checkNickName").click(function() {
 			
@@ -519,15 +510,39 @@ $(".saveBtn").click(function (f) {
 /*  버스커정보 변경  */
   	let buskeractivityName = "${sessionScope.user.busker.activityName}";
 	let activityNameck = 0;
+	const updateBusker = document.updateBusker;
+	const phone = updateBusker.phone;
+	const buskerCheckbox = updateBusker.buskerCheckbox;
+	
 	
 	$("#modify_busker").click(function DosignUpBusker() {
         
-        // 활동명 공백 확인
+        /* 활동명 공백 확인 */
         if($("#activityName").val() == ""){
           	alert("활동명을 입력해주세요!");
           	$("#activityName").focus();
           	return false;
         }
+        
+        /* 폰번호 공백 확인 */
+        if($("#phone").val() == "") {
+        	alert("폰번호를 입력해주세요!");
+        	$("#phone").focus();
+        	return false;
+        }
+        
+        /* 유효성 검사 */
+        if (!isCellPhone(phone.value)){
+			alert("연락처를 형식에 맞게 입력해주세요\n ex) 010-3333-3333");
+			return false;
+		}
+        
+        /* 체크박스 체크 */
+        if (!checkbox(buskerCheckbox)) {
+			alert("관심분야를 1가지이상 선택하세요.");
+			return false;
+		}
+        
         
         Swal.fire({
 			  title: '버스커정보를 변경하시겠습니까?',
@@ -552,16 +567,38 @@ $(".saveBtn").click(function (f) {
 							  type:'success',
 							  timer:2000	
 						});
-			       		$("#busker_info").submit();
+			       		$("#updateBusker").submit();
 			        	return true;
 			       	}
 			  }
 		})
 	})
 
+	/* 체크박스 체크 */
+	function checkbox(buskerCheckbox){
+		 let flag = false;
+		 for(let check of buskerCheckbox){
+			 if(check.checked){
+				 flag = true;
+				 break;
+			 };
+		 }
+		 return flag;
+	}
+	
+	/* 연락처 유효성 검사. */
+	function isCellPhone(p) {
+		const phonenum = $('#phone').val();
+		const regPhone = /(01[0|1|6|9|7])[-](\d{3}|\d{4})[-](\d{4}$)/g;
+		if(!regPhone.test(phonenum)){
+			$('#phone').select();
+			return false;    
+		}
+		return true;
+	}
 	
 	
-	// 활동명 중복 체크
+	/* 활동명 중복 체크 */
 	$(function() {
 		$("#checkActivityName").click(function() {
 			let activityName = $(".busker__activityName").val();
@@ -578,7 +615,7 @@ $(".saveBtn").click(function (f) {
 			
 			}
 			
-			// 활동명 공백일때
+			/* 활동명 공백일때 */
 			if(activityName.length < 1) {
 				Swal.fire({
 					  title:'활동명을 입력해 주세요',

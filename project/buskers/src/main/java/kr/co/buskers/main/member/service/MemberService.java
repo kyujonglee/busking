@@ -1,7 +1,11 @@
 package kr.co.buskers.main.member.service;
 
+import java.util.Map;
+
 import kr.co.buskers.repository.domain.Busker;
 import kr.co.buskers.repository.domain.BuskerGenre;
+import kr.co.buskers.repository.domain.Follow;
+import kr.co.buskers.repository.domain.FollowList;
 import kr.co.buskers.repository.domain.Member;
 
 public interface MemberService {
@@ -57,6 +61,11 @@ public interface MemberService {
 
 	// 프로필 소개글 업데이트
 	public void updateMemberProfileIntroduce(Member member);
+
+	// 팔로우 정보 리스트
+	public Map<String, Object> followList(FollowList followList);
+	public Map<String, Object> followCount(Follow follow);
+
 
 
 	

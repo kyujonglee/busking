@@ -1,4 +1,4 @@
-function deleteAgency(path,agencyInfoNo,memberNo) {
+function deleteAgency(path,agencyInfoNo,memberNo = "") {
 //	$("agency-insert__btn-content .agency-insert__btn:eq(1)").click(function(e) {
     Swal.fire({
         title: '정말로 삭제하시겠습니까? ',
@@ -23,7 +23,7 @@ function deleteAgency(path,agencyInfoNo,memberNo) {
         } else if (result.dismiss === Swal.DismissReason.cancel) {
           Swal.fire({
             title : 'Cancelled',
-            text : '휴~ 아직 삭제안됨! :)',
+            text : '삭제하는 중 에러가 발생했습니다. :)',
             type : 'error',
             timer : 1000
           })

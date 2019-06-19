@@ -13,7 +13,51 @@ public class Message {
     private String saveStatus;
     private String nickName;
     private int[] msgNos;
+    private String isAgency;
     
+//  agency, agency_info table 관련
+    private String agencyName;
+    private String phone;
+    private String email;
+    private String basicAddr;
+    private String detailAddr;
+    
+	public String getIsAgency() {
+		return isAgency;
+	}
+	public void setIsAgency(String isAgency) {
+		this.isAgency = isAgency;
+	}
+	public String getAgencyName() {
+		return agencyName;
+	}
+	public void setAgencyName(String agencyName) {
+		this.agencyName = agencyName;
+	}
+	public String getPhone() {
+		return phone;
+	}
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public String getBasicAddr() {
+		return basicAddr;
+	}
+	public void setBasicAddr(String basicAddr) {
+		this.basicAddr = basicAddr;
+	}
+	public String getDetailAddr() {
+		return detailAddr;
+	}
+	public void setDetailAddr(String detailAddr) {
+		this.detailAddr = detailAddr;
+	}
 	public int[] getMsgNos() {
 		return msgNos;
 	}

@@ -1,13 +1,20 @@
 package kr.co.buskers.main.member.service;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import kr.co.buskers.common.page.FreePageResult;
 import kr.co.buskers.repository.domain.Busker;
 import kr.co.buskers.repository.domain.BuskerGenre;
+import kr.co.buskers.repository.domain.Follow;
+import kr.co.buskers.repository.domain.FollowList;
+import kr.co.buskers.repository.domain.FreePage;
 import kr.co.buskers.repository.domain.Member;
 import kr.co.buskers.repository.mapper.BuskerMapper;
 import kr.co.buskers.repository.mapper.MemberMapper;
@@ -145,6 +152,26 @@ public class MemberServiceImpl implements MemberService {
 	public void updateMemberProfileIntroduce(Member member) {
 		mapper.updateMemberProfileIntroduce(member);
 	}
+
+	// 팔로우 팔로워 관리
+	public Map<String, Object> followList(FollowList followList) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("followMember", mapper.selectFollowMember(followList));
+		map.put("followerMember", mapper.selectFollowerMember(followList));
+		return map;
+	}
+	@Override
+	public Map<String, Object> followCount(Follow follow) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("followCount", mapper.selectFollowCount(follow));
+		map.put("followerCount", mapper.selectFollowerCount(follow));
+		return map;
+	}
+
+
+	
+
+
 
 
 	
