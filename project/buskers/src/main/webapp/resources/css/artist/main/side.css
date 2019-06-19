@@ -35,6 +35,9 @@
   font-size: 32px;
   font-weight: 600;
   font-family: 'Italianno', cursive;
+  height: 100%;
+  width: 100%;
+  text-align: center;
 }
 
 .busker-side .busker-info__btn {
