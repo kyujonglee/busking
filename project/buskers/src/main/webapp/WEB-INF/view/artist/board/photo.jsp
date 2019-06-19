@@ -198,14 +198,13 @@ S							</div>
 	}
  	//목록보여주기 추가되는부분
  	
+	let maxHeight = 0;
 	function list(length,result,f){
 		setTimeout(function(){
 			let i = $(".artist__photo__img").length;	// 이전 사진의 갯수
-// 			console.log(result.length);
-// 			console.log("div childe의 length"+$(".artist__photo__img").length)
 			let k = i%4;								// 몇번째 세로라인인지 알수있음 (1,2,3,4 번째 시작중 몇번째라인인지)
 			let t = Math.floor(i/4);					// 몇번째 가로라인인지 알수있음 바로 전 가로라인까지 바놉ㄱ해야함
-			height = 0;
+			let height = 0;
 			for(let j=0; j<t ; j++){
 				height += $(".artist__photo__img:eq("+k+")").outerHeight();
 				k = k+4;
@@ -217,6 +216,12 @@ S							</div>
 				`);
 			f++;
 			i++; 
+			
+// 			if(height > maxHeight){
+// 				maxHeight = height;
+// 				console.log(maxHeight);
+// 			}
+			
 			if(f==length){
 				$(".photo_body_wrapper").css("height",height+"px");
 				return;
@@ -249,12 +254,13 @@ S							</div>
 // 		console.log("wrapper의 height : "+$(".photo_body_wrapper").height())
 // 		console.log("wrapper의 scrollTop : "+$(".photo_body_wrapper").scrollTop())
 // 		console.log("body의 height : "+$(".photo_body").height())
-// 		console.log("body의 height :: "+$(".photo_body").scrollTop())
-		console.log($(".photo_body").scrollTop()+$(".photo_body").height()-$(".photo_body_wrapper").height());
-// 		if(($(".photo_body").scrollTop())+$(".photo_body").height())- < 600){
-// 			beginPage += 20;
-// 			showList(beginPage);
-// 		}
+// 		console.log("body의 height :: "+$(".photo_body").scrollTop());
+// 		console.log($(".photo_body").height()-$(".photo_body").scrollTop());
+// 		console.log($(".photo_body").scrollTop()+$(".photo_body").height()-$(".photo_body_wrapper").height());
+		if($(".photo_body_wrapper").height()-$(".photo_body").scrollTop()<500){
+			beginPage += 20;
+			showList(beginPage);
+		}
 	});
 	
 // 	$(".photo_body").scroll($(".artist__photo__img").height);
