@@ -239,6 +239,12 @@
           where busker_no=#{buskerNo}
 	</select>
 	
+	<update id="updateBukserPhoto">
+		update tb_busker
+		   set photo=#{photo}
+		 where busker_no = #{buskerNo}
+	</update>
+	
 	
 	
 </mapper>

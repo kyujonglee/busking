@@ -12,20 +12,16 @@
 					<div class="panel panel-default">
 						<div class="panel-heading">
 							<i class="far fa-image"></i> Photo
-							<button id='addVideoBtn'
-								class='btn btn-primary btn-xs pull-right' data-toggle="modal"
-								data-target="#photoModal">New Photo</button>
+							<c:if test="${param.buskerNo eq sessionScope.user.busker.buskerNo }">
+								<button id='addVideoBtn'
+									class='btn btn-primary btn-xs pull-right' data-toggle="modal"
+									data-target="#photoModal">New Photo</button>
+							</c:if> 
 						</div>
 						<div class="panel-body">
 							<div class="photo_body">
 								<div class="photo_body_wrapper">
-								<!-- 				        		<div class="artist__photo__img"> -->
-								<%-- 				        			<img src="<c:url value='/resources/img/boyoung.jpg'/>"/> --%>
-								<!-- 				        			<div class="hover"> -->
-								<!-- 				        				<div>제목</div> -->
-								<!-- 				        				<div>2019-06-03</div> -->
-								<!-- 				        			</div> -->
-								<!-- 				        		</div> -->
+								</div>
 							</div>
 						</div>
 					</div>
@@ -45,7 +41,7 @@
 					aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
-				<div class="modal_title">첨부할 사진을 선택합니다.</div>
+				<div class="add-modal_title">첨부할 사진을 선택합니다.</div>
 			</div>
 			<div class="modal-body">
 				<div class="form-group">
@@ -105,6 +101,29 @@
 		formData.append("file", file);
 		formData.append("buskerNo",buskerNo);
 		formData.append("title", title);
+
+		//글등록 유효성 검사
+		if(title==""){
+			alert("타이틀을 입력해주세요.")
+			return;
+		}
+		if(title.length>21){
+			alert("제목의 길이가 너무 깁니다. 20자 이하로 입력해주세요")
+			return;
+		}
+		if(file == undefined){
+			alert("파일을 첨부해주세요")
+			return;
+		}
+		
+		//파일 유효성 검사
+		let fileName = $("#photo")[0].files[0].name;	
+		fileName = fileName.slice(fileName.indexOf(".") + 1).toLowerCase(); //파일 확장자를 잘라내고, 비교를 위해 소문자로 만듭니다.
+		if(fileName != "jpg" && fileName != "png" &&  fileName != "gif" &&  fileName != "bmp"){ //확장자를 확인합니다.
+			alert('썸네일은 이미지 파일(jpg, png, gif, bmp)만 등록 가능합니다.');
+			return;
+		}
+		//파일등록 에이작스
 		$.ajax({
 			type : "post",
 			data: formData,
@@ -115,7 +134,20 @@
 		}).done(function(retsult){
 			$(".photo_body_wrapper").html("");
 			showList();
+			$("#title").val("");
+			$("#photo").val("");
 			$("#photoModal").hide();
+			//사진숫자 새로고침
+			$.ajax({
+				url : "<c:url value='/artist/main/main-ajax.do'/>",
+				dateType : "json",
+				data : "buskerNo="+buskerNo
+			}).done(map => {
+				
+				const photoCount = map.photoCount;
+				$("#photoCount").text(photoCount);
+			});
+			
 		})
 	})
 	
@@ -130,6 +162,17 @@
 				$(".photo_body_wrapper").html("");
 				$("#photoModalDetail").hide();
 				showList();
+				
+				//사진숫자 새로고침
+				$.ajax({
+					url : "<c:url value='/artist/main/main-ajax.do'/>",
+					dateType : "json",
+					data : "buskerNo="+buskerNo
+				}).done(map => {
+					const photoCount = map.photoCount;
+					$("#photoCount").text(photoCount);
+				});
+				
 			})
 		}
 	})
@@ -152,18 +195,29 @@
 			list(result.length,4,result);
 		})
 	}
+	
  	//목록보여주기 추가되는부분
 	function list(length,i,result){
 		setTimeout(function(){
-				height =  $(".artist__photo__img:eq("+(i-4)+")").outerHeight()+$(".artist__photo__img:eq("+(i-4)+")").position().top;
-				console.log($(".artist__photo__img:eq("+(i-4)+")").outerHeight());
-				console.log($(".artist__photo__img:eq("+(i-4)+")").position().top);
+			let k = i%4;
+			let t = Math.floor(i/4);
+// 			t = Math.floor(t);
+			height = 0;
+// 			console.log(i,k,t)
+			for(let j=0; j<t ; j++){
+				height += $(".artist__photo__img:eq("+k+")").outerHeight();
+				k = k+4;
+			};
+				
 			$(".photo_body_wrapper").append(`
 					 <div class="artist__photo__img" style="top:`+height+`px;"  >
 					 	<img data-pno="`+result[i].fileNo+`" src="<c:url value='/file/download.do'/>?path=`+result[i].path+result[i].sysname+`" />
 					 </div>
 				`);
 			i++;
+			if(i==length){
+				return;
+			}
 			list(length,i,result);
 		},20);
 	}
@@ -183,18 +237,19 @@
 		$("#photoModalDetail").modal();
 	})
 	
-	//제목 클릭시에 수정할수 있게
-	$(document).on("click",".modal_title",function(){
-		$(".select_title_text").removeAttr('readonly');
-		$(".select_title_text").removeClass("title_text");
-		$(".select_title_text").addClass("title_text_click");
-	})
-	$(document).on("blur",".select_title_text",function(){
-		$(".select_title_text").removeClass("title_text_click");
-		$(".select_title_text").attr('readonly',true);
-		let text=$(".select_title_text").val();
-		alert(text);
-	})
+// 	//제목 클릭시에 수정할수 있게
+// 	$(document).on("click",".modal_title",function(){
+// 		$(".select_title_text").removeAttr('readonly');
+// 		$(".select_title_text").removeClass("title_text");
+// 		$(".select_title_text").addClass("title_text_click");
+// 	})
+// 	//블러시에 돌아감
+// 	$(document).on("blur",".select_title_text",function(){
+// 		$(".select_title_text").removeClass("title_text_click");
+// 		$(".select_title_text").attr('readonly',true);
+// 		let text=$(".select_title_text").val();
+// 		alert(text);
+// 	})
 	
 	showList();
 

@@ -137,5 +137,11 @@ public class ArtistMainServiceImpl implements ArtistMainService {
 	public void deletePhoto(int fileNo) {
 		boardMapper.deletePhoto(fileNo);
 	}
+
+	@Override
+	public void updateBukserPhoto(Busker busker) {
+		memberMapper.updateBukserPhoto(busker);
+		
+	}
 	
 }

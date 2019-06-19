@@ -64,12 +64,20 @@
 	</select>
 	
 	<!-- 버스커 검색 -->
-	<select id="searchBusker" parameterType="searchPage" resultType="busker" >
+	<select id="searchBusker"  resultType="busker" >
 		select m.profile_img,m.profile_img_path , b.*
 		  from tb_busker as b
 		 inner join tb_member as m
 		    on b.member_no = m.member_no
 		 where b.activity_name = #{input}
+	</select>
+	<!-- 버스커 검색 -->
+	<select id="selectSearchBuskerList" resultType="busker" >
+		select m.profile_img,m.profile_img_path , b.*
+		  from tb_busker as b
+		 inner join tb_member as m
+		    on b.member_no = m.member_no
+		 where b.activity_name like concat ('%', #{input}, '%')
 	</select>
 	
 	<select id="selectMarker" parameterType="int" resultType="artistShow">

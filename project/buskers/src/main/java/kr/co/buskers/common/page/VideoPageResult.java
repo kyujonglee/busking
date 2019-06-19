@@ -17,7 +17,7 @@ public class VideoPageResult {
 	private void setPageInfo() {
 		int lastPage = (count % 6 == 0) ? count / 6
 				                         : count / 6 + 1;
-		int tabSize = 6;
+		int tabSize = 10;
 		int currTab = (pageNo -1) / tabSize + 1; 
 		
 		beginPage = (currTab -1) * tabSize + 1;

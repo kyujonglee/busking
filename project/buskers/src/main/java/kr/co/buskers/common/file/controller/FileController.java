@@ -19,6 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import kr.co.buskers.common.file.service.FileService;
 import kr.co.buskers.repository.domain.ArtistPhoto;
+import kr.co.buskers.repository.domain.Busker;
 import kr.co.buskers.repository.domain.MusicFile;
 
 @RequestMapping("/file")
@@ -125,9 +126,12 @@ public class FileController {
 	@RequestMapping("artist-photo-insert.do")
 	@ResponseBody
 	public String insertArtistPhoto(ArtistPhoto artistPhoto) throws Exception {
-		System.out.println(artistPhoto.getTitle());
-		System.out.println(artistPhoto.getBuskerNo());
 		return service.insertArtistPhoto(artistPhoto);
+	}
+	@RequestMapping("artist-photo-profile-update.do")
+	@ResponseBody
+	public String artistPhotoProfileUpdate(Busker busker,MultipartFile file) throws Exception {
+		return service.artistPhotoProfileUpdate(busker,file);
 	}
 	
 	
