@@ -22,7 +22,7 @@
 							<div class="photo_body">
 								<div class="photo_body_wrapper">
 								</div>
-S							</div>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -133,7 +133,9 @@ S							</div>
 			url : '/buskers/file/artist-photo-insert.do',
 		}).done(function(retsult){
 			$(".photo_body_wrapper").html("");
-			showList();
+			beginPage = 0;
+			$(".photo_body_wrapper").css("height","710px");
+			showList(0);
 			$("#title").val("");
 			$("#photo").val("");
 			$("#photoModal").hide();
@@ -158,9 +160,11 @@ S							</div>
 				data:{fileNo:fileNo},
 				url : "delete-photo.do",
 			}).done(function(){
-				$(".photo_body_wrapper").html("");
 				$("#photoModalDetail").hide();
-				showList();
+				$(".photo_body_wrapper").html("");
+				$(".photo_body_wrapper").css("height","710px");
+				beginPage = 0;
+				showList(0);
 				
 				//사진숫자 새로고침
 				$.ajax({
@@ -184,28 +188,22 @@ S							</div>
 			url:'select-photo-ajax.do',
 		}).done(function(result){
 			console.log(result);
-// 			if(beginPage == 0){
-// 				for(let i = 0; i < 4;  i ++){
-// 					$(".photo_body_wrapper").append(`
-// 						<div class="artist__photo__img" >
-// 							<img data-pno="`+result[i].fileNo+`" src="<c:url value='/file/download.do'/>?path=`+result[i].path+result[i].sysname+`" />
-// 						</div>
-// 					`)
-// 				}
-// 			}
-			list(result.length,result,0);
+			if(result.length == 0 && beginPage == 0){
+				$(".photo_body").html("<div class='no__result'>버스커가 등록한 사진이 없습니다.</div>")
+			}else{
+				list(result.length,result,0);
+			}
 		})
 	}
  	//목록보여주기 추가되는부분
  	
+	let maxHeight = 0;
 	function list(length,result,f){
 		setTimeout(function(){
 			let i = $(".artist__photo__img").length;	// 이전 사진의 갯수
-// 			console.log(result.length);
-// 			console.log("div childe의 length"+$(".artist__photo__img").length)
 			let k = i%4;								// 몇번째 세로라인인지 알수있음 (1,2,3,4 번째 시작중 몇번째라인인지)
 			let t = Math.floor(i/4);					// 몇번째 가로라인인지 알수있음 바로 전 가로라인까지 바놉ㄱ해야함
-			height = 0;
+			let height = 0;
 			for(let j=0; j<t ; j++){
 				height += $(".artist__photo__img:eq("+k+")").outerHeight();
 				k = k+4;
@@ -217,12 +215,18 @@ S							</div>
 				`);
 			f++;
 			i++; 
+			
+// 			if(height > maxHeight){
+// 				maxHeight = height;
+// 				console.log(maxHeight);
+// 			}
+			
 			if(f==length){
 				$(".photo_body_wrapper").css("height",height+"px");
 				return;
 			}
 			list(length,result,f);
-		},20);
+		},100);
 	}
  	
  	
@@ -240,8 +244,9 @@ S							</div>
 		}).done(function(result){
 			$(".modal_title").html("<input id='title_text' class='select_title_text title_text' value='"+result.title+"' readonly/>");
 			$(".modal-body-photo").html(`<img src="<c:url value='/file/download.do'/>?path=`+result.path+result.sysname+`" />`)
+			$("#photoModalDetail").show();
+			$("#photoModalDetail").modal();
 		})
-		$("#photoModalDetail").modal();
 	})
 	
 	
@@ -249,12 +254,13 @@ S							</div>
 // 		console.log("wrapper의 height : "+$(".photo_body_wrapper").height())
 // 		console.log("wrapper의 scrollTop : "+$(".photo_body_wrapper").scrollTop())
 // 		console.log("body의 height : "+$(".photo_body").height())
-// 		console.log("body의 height :: "+$(".photo_body").scrollTop())
-		console.log($(".photo_body").scrollTop()+$(".photo_body").height()-$(".photo_body_wrapper").height());
-// 		if(($(".photo_body").scrollTop())+$(".photo_body").height())- < 600){
-// 			beginPage += 20;
-// 			showList(beginPage);
-// 		}
+// 		console.log("body의 height :: "+$(".photo_body").scrollTop());
+// 		console.log($(".photo_body").height()-$(".photo_body").scrollTop());
+// 		console.log($(".photo_body").scrollTop()+$(".photo_body").height()-$(".photo_body_wrapper").height());
+		if($(".photo_body_wrapper").height()-$(".photo_body").scrollTop()<500){
+			beginPage += 20;
+			showList(beginPage);
+		}
 	});
 	
 // 	$(".photo_body").scroll($(".artist__photo__img").height);
@@ -276,7 +282,7 @@ S							</div>
 // 		alert(text);
 // 	})
 	
-	showList();
+	showList(0);
 
 
 </script>

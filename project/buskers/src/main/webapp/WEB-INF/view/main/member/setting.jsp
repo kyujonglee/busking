@@ -41,7 +41,7 @@
 						<p>게시글</p>
 					</div>
 					<div class="profile_comment">
-						<p>15</p>
+						<p>${followerCount}</p>
 						<p>팔로워</p>
 					</div>
 				</div>
@@ -159,6 +159,52 @@ function tab_menu_follow(num){
      	}
     }
 }
+
+//　팔로우 취소 이벤트
+$(".follow__cancel").click(function () {
+	data = $(this).parent().parent().attr("value").split(",");
+	const followMemberNo = data[0];
+	const followBuskerNo = data[1];
+	
+	Swal.fire({
+		  title: '팔로우를 취소하시겠습니까?',
+		  type: 'info',
+		  showCancelButton: true,
+		  confirmButtonColor: '#3085d6',
+		  cancelButtonColor: '#d33',
+		  confirmButtonText: '예',
+		  cancelButtonText: '아니오',
+		}).then((result) => {
+		  if (result.value) {
+			  $.ajax({
+					type: 'POST',
+					url: "followCancel.do",
+					data: {"memberNo":followMemberNo, "buskerNo":followBuskerNo},
+					success: function(cancelResult) {
+						if(cancelResult == 0) {
+							Swal.fire({
+								  title:'팔로우 취소',
+								  type:'success',
+								  timer:2000	
+							}).then(function () {
+								location.reload();
+							});
+						}
+					}
+				});
+	        	return true;
+		  }
+	})
+});
+
+$(".follow_list_noneBuskerNo").click(function() {
+	Swal.fire({
+		  title:'해당유저는 버스커가 아닙니다!',
+		  type:'info',
+		  timer:2000
+	});
+});
+
 
 //Get the modal
 var modal = document.getElementById('myModal');

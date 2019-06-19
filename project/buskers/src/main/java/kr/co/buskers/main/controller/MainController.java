@@ -49,7 +49,7 @@ public class MainController {
 	@RequestMapping("show-ajax.do")
 	@ResponseBody
 	public List<ArtistShow> mapDetail(ArtistShow artistShow) {
-
+		System.out.println("가져온 gu의값 "+artistShow.getGu());
 		return service.mapDetail(artistShow);
 	}
 	
