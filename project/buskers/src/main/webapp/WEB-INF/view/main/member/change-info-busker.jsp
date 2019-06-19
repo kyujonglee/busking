@@ -17,7 +17,7 @@
 	</c:if>
 	
 	<c:if test="${sessionScope.user.isBusker eq 'y' }">
-		<form name="busker_info"  id="busker_info" action="buskerInfoUpdate.do"  method="post">
+		<form name="updateBusker"  id="updateBusker" action="buskerInfoUpdate.do"  method="post">
 			<div class="info_detail_wrapper">
 				<div class="menu_title">활동명</div>
 				<div>
@@ -71,6 +71,7 @@
        		</div>
        		<hr>
 			<input type="hidden" name="memberNo" value="${sessionScope.user.memberNo }"/>
+			<input type="hidden" name="buskerNo" value="${sessionScope.user.busker.buskerNo }"/>
 			<div class="modifyWrapper2">
 				<button id="modify_busker" type="button" class="info_change_button">변경</button>
 			</div>

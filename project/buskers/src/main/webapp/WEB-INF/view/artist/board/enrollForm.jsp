@@ -106,9 +106,6 @@
 <script src="<c:url value='/resources/js/artist/board/map.js' />"></script>
 <script src="<c:url value='/resources/js/artist/board/enroll.js' />"></script>
 <script>
- 	  $(document).ready(function(){
-        $(".busker-side__info-btn i").trigger("click");
-      });
  	  function check(){
  		  const lat = $("#lat").val();
  		  const enrollDate = $(".busker-enroll__date").val();

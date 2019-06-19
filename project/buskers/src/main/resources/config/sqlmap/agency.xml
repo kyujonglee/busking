@@ -61,12 +61,58 @@
 		select *
 		  from tb_genre
 	</select>
+	
 	<select id="selectGenreByNo" parameterType="int" resultType="genre">
 		select *
 		  from tb_genre
 	     where genre_no = #{genreNo}
 	</select>
 
+	<select id="selectAgencyCode" resultType="String">
+		select agency_code
+		  from tb_agency_info
+		 where agency_info_no = #{agencyInfoNo}
+	</select>
+	
+	<select id="checkAgencyCode" resultType="int">
+		select count(*)
+		  from tb_agency_info
+		 where agency_code = #{agencyCode}
+	</select>
+	
+	<select id="checkAgency" parameterType="agency" resultType="agency">
+		select *
+		  from tb_agency
+		 where agency_info_no = #{agencyInfoNo}
+		   and member_no = #{memberNo}
+	</select>
+	
+	<resultMap id="agencyMap" type="agency">
+		<result column="agency_no" property="agencyNo"/>
+		<result column="member_no" property="memberNo"/>
+		<result column="agency_info_no" property="agencyInfoNo"/>
+		<collection property="agencyInfo" select="selectAgencyInfoByNo" column="agency_info_no">
+		</collection>
+	</resultMap>
+	
+	<select id="selectAgencyByNo" parameterType="int" resultMap="agencyMap">
+		select *
+		  from tb_agency
+		 where member_no = #{memberNo}
+	</select>
+	
+	<select id="selectAgencyInfoNoByAgencyCode" resultType="Integer">
+		select agency_info_no
+		  from tb_agency_info
+		 where agency_code = #{agencyCode}
+	</select>
+	
+	<select id="selectAgencyByAgencyInfoNo" resultType="int">
+		select member_no
+		  from tb_agency
+		 where agency_info_no = #{agencyInfoNo}
+	</select>
+	
 	<!-- insert -->
 	<insert id="insertAgencyInfo" parameterType="agencyInfo">
 		<selectKey keyProperty="agencyInfoNo" resultType="int" order="BEFORE">
@@ -83,21 +129,41 @@
             (#{genre}, #{agencyInfoNo})
         </foreach>
 	</insert>
+	
+	<insert id="insertAgency" parameterType="agency">
+		insert into tb_agency(agency_info_no, member_no)
+		values(#{agencyInfoNo}, #{memberNo})
+	</insert>
+	
 	<!-- delete -->
 	<delete id="deleteAgencyInfoByNo" parameterType="int">
 		delete
 		  from tb_agency_info
 		 where agency_info_no = #{agencyInfoNo}
 	</delete>
+	
 	<delete id="deleteAgencyGenreByNo" parameterType="int">
 		delete
 		  from tb_agency_genre
 		 where agency_info_no = #{agencyInfoNo}
 	</delete>
+	
 	<delete id="deleteAgencyByNo" parameterType="int">
 		delete
 		  from tb_agency
 		 where agency_info_no = #{agencyInfoNo}
+	</delete>
+	
+	<delete id="deleteAgency">
+		delete
+		  from tb_agency
+		 where agency_no = #{agencyNo}
+	</delete>
+	
+	<delete id="deleteAgencyByMemberNo">
+		delete
+		  from tb_agency
+		 where member_no = #{memberNo}
 	</delete>
 	
 	<!-- update -->
@@ -112,10 +178,30 @@
 		 where agency_info_no = #{agencyInfoNo}
 	</update>
 	
-	<update id="updateAgencyPermission">
+	<update id="updateAgencyPermission" parameterType="agencyInfo">
 		update tb_agency_info
 		   set permission = #{permission}
 		 where agency_info_no = #{agencyInfoNo}
+	</update>
+	
+	<update id="updateAgencyCode" parameterType="agencyInfo">
+		update tb_agency_info
+		   set agency_code = #{agencyCode}
+		 where agency_info_no = #{agencyInfoNo}
+	</update>
+	
+	<update id="updateMemberAgency" parameterType="agencyInfo">
+		update tb_member
+		   set is_agency = #{permission}
+		 where member_no = #{memberNo}
+	</update>
+	
+	<update id="updateAgencyMembers">
+		<foreach collection="memberNoList" item="memberNo" index="index" separator=";">
+       		 update tb_member
+       		    set is_agency = #{permission} 
+       		  where member_no = #{memberNo}
+    	</foreach>
 	</update>
 </mapper>
 

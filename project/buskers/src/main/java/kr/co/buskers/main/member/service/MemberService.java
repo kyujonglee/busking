@@ -53,10 +53,11 @@ public interface MemberService {
 	public int checkActivityName(Busker busker);
 
 	// 버스커 정보 업데이트
-	public void updateBusker(Busker busker);
+	public void updateBusker(Busker busker, BuskerGenre buskerGenre);
 
 	// 프로필 소개글 업데이트
 	public void updateMemberProfileIntroduce(Member member);
+
 
 	
 

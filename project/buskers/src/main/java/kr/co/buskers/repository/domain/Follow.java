@@ -4,7 +4,7 @@ public class Follow {
 	private int no;
 	private int memberNo;
 	private int buskerNo;
-	String followStatus;
+	private String followStatus;
 	
 	public int getNo() {
 		return no;

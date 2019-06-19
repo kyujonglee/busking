@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
@@ -18,9 +19,11 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.UrlBasedViewResolver;
 
 import kr.co.buskers.common.file.service.FileService;
+import kr.co.buskers.main.agency.service.AgencyService;
 import kr.co.buskers.main.member.service.MemberService;
 import kr.co.buskers.main.member.util.Email;
 import kr.co.buskers.main.member.util.EmailSender;
+import kr.co.buskers.main.member.util.PrevUrl;
 import kr.co.buskers.main.socialmember.controller.KakaoApi;
 import kr.co.buskers.repository.domain.Busker;
 import kr.co.buskers.repository.domain.BuskerGenre;
@@ -36,6 +39,9 @@ public class MemberController {
 	@Autowired
 	private FileService fService;
 	
+	@Autowired 
+	private AgencyService aService;
+	
 	@Autowired
 	private EmailSender emailSender;
 	
@@ -48,16 +54,16 @@ public class MemberController {
 	@Autowired
 	BCryptPasswordEncoder passEncoder;
 	
-	private String prevUrl;
+	@Autowired
+	private PrevUrl prevUrl;
 	
 	// 로그인 화면
 	@RequestMapping("loginform.do")
 	public String loginform(HttpSession session, HttpServletRequest request) {
 		String referer = (String)request.getHeader("REFERER");
-		prevUrl = referer.substring(referer.indexOf("/",referer.indexOf("buskers")));
-//		prevUrl = refererUrl.substring(1, refererUrl.indexOf(".do"));
+		String url = referer.substring(referer.indexOf("/",referer.indexOf("buskers")));
+		prevUrl.setPrevUrl(url);
 		
-		System.out.println(prevUrl);
 		if(session.getAttribute("user") != null) {
 			return "redirect:/index.jsp";
 		}
@@ -76,19 +82,19 @@ public class MemberController {
 			if(passMatch) {
 				session.setAttribute("user", user);
 				session.setMaxInactiveInterval(60 * 60);
-				return "redirect:" + prevUrl;
+				return "redirect:" + prevUrl.getPrevUrl();
 			} 
 			// DB 가데이터(관리자) 로그인 체크용
 			else if(user.getIsAdmin().equals("y") && user.getPass().equals(member.getPass())) {
 				session.setAttribute("user", user);
 				session.setMaxInactiveInterval(60 * 60);
-				return "redirect:" + prevUrl;
+				return "redirect:" + prevUrl.getPrevUrl();
 			} 
 			// DB 가데이터(버스커) 로그인 체크용
 			else if(user.getIsBusker().equals("y") && user.getPass().equals(member.getPass())) {
 				session.setAttribute("user", user);
 				session.setMaxInactiveInterval(60 * 60);
-				return "redirect:" + prevUrl;
+				return "redirect:" + prevUrl.getPrevUrl();
 			} 
 			// passMatch 통과 실패 false 값일때
 			else {
@@ -128,7 +134,9 @@ public class MemberController {
 	
 	// 회원 가입 화면
 	@RequestMapping("signupform.do")
-	public void signupform() {}
+	public void signupform() {
+		
+	}
 	
 	// 회원 가입 처리
 	@RequestMapping("signup.do")
@@ -285,16 +293,15 @@ public class MemberController {
 	
 	// 개인설정 페이지
 	@RequestMapping("setting.do")
-	public void setting() {
-		
+	public void setting(HttpSession session, Model model) {
+		Member member = (Member) session.getAttribute("user");
+		model.addAttribute("agencyInfo", aService.selectAgencyByNo(member.getMemberNo()));
 	}
 	
 	// 프로필 이미지 업로드
 	@RequestMapping("profileUpload.do")
 	@ResponseBody
 	public void profileUpload(MultipartFile file, String uriPath, Member member, HttpSession session) throws Exception {
-		System.out.println(member.getMemberNo());
-		System.out.println(member.getProfileImg());
 		// 프로필 이미지가 이미 존재한다면
 //		if(member.getProfileImg() != null) {
 //			// 기존 이미지 삭제후 업로드
@@ -321,7 +328,7 @@ public class MemberController {
 		Member user = service.selectMember(member.getMemberNo());
 		session.setAttribute("user", user);
 		session.setMaxInactiveInterval(60 * 60);
-		return "main/member/setting";
+		return "redirect:setting.do";
 	}
 	
 	
@@ -360,7 +367,6 @@ public class MemberController {
 	@RequestMapping("charge-money.do")
 	@ResponseBody
 	public void chargeMoney(Member member,  HttpSession session) {
-//		System.out.println(member.getSum()+"컨트롤러들어옴");
 		service.chargeMoney(member);
 		
 		session.removeAttribute("user");
@@ -380,19 +386,22 @@ public class MemberController {
 		Member user = service.selectMember(member.getMemberNo());
 		session.setAttribute("user", user);
 		session.setMaxInactiveInterval(60 * 60);
-		return "main/member/setting";
+		return "redirect:setting.do";
 	}
 	
 	// 버스커 정보 업데이트
 	@RequestMapping("buskerInfoUpdate.do")
 	public String buskerUpdate(Member member, Busker busker,HttpSession session) {
-		service.updateBusker(busker);
+		BuskerGenre buskerGenre = new BuskerGenre();
+		buskerGenre.setBuskerNo(busker.getBuskerNo());
+		buskerGenre.setBuskerCheckbox(busker.getBuskerCheckbox());
+		service.updateBusker(busker,buskerGenre);
 		
 		session.removeAttribute("user");
 		Member user = service.selectMember(member.getMemberNo());
 		session.setAttribute("user", user);
 		session.setMaxInactiveInterval(60 * 60);
-		return "main/member/setting";
+		return "redirect:setting.do";
 	}
 	
 	

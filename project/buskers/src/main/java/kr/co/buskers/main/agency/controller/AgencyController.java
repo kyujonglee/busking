@@ -12,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import kr.co.buskers.common.page.AgencyPageResult;
 import kr.co.buskers.main.agency.service.AgencyService;
+import kr.co.buskers.main.member.service.MemberService;
 import kr.co.buskers.repository.domain.AgencyGenre;
 import kr.co.buskers.repository.domain.AgencyInfo;
 import kr.co.buskers.repository.domain.AgencyPage;
@@ -23,6 +24,9 @@ public class AgencyController {
 	
 	@Autowired
 	private AgencyService service;
+	
+	@Autowired
+	private MemberService mService;
 	
 	@RequestMapping("list.do")
 	public void list(AgencyPage page, Model model) {
@@ -62,9 +66,13 @@ public class AgencyController {
 	}
 	
 	@RequestMapping("delete.do")
-	public String delete(int agencyInfoNo) {
-		// 3개의 테이블을 다 삭제해야함.
+	public String delete(int agencyInfoNo, HttpSession session, int memberNo) {
 		service.deleteAgencyInfoAll(agencyInfoNo);
+		
+		Member user = mService.selectMember(memberNo);
+		session.setAttribute("user", user);
+		session.setMaxInactiveInterval(60 * 60);
+		
 		return "redirect:list.do";
 	}
 	
@@ -85,16 +93,47 @@ public class AgencyController {
 		
 		return mav;
 	}
+	
 	@RequestMapping("updateform.do")
 	public void updateform(int agencyInfoNo,int pageNo, Model model) {
 		model.addAttribute("agencyInfo",service.selectAgencyInfoByNo(agencyInfoNo));
 		model.addAttribute("genre",service.selectGenre());
 		model.addAttribute("pageNo",pageNo);
 	}
+	
 	@RequestMapping("update-agency-permission-ajax.do")
 	@ResponseBody
 	public void updateAgencyPermission(AgencyInfo agencyInfo) {
 		service.updateAgencyPermission(agencyInfo);
+	}
+	
+	@RequestMapping("check-agencyCode-ajax.do")
+	@ResponseBody
+	public int checkAgencyCode(String agencyCode) {
+		return service.checkAgencyCode(agencyCode);
+	}
+	
+	@RequestMapping("insert-memberAgency-ajax.do")
+	@ResponseBody
+	public void insertMemberAgency(AgencyInfo agencyInfo, HttpSession session) {
+		service.insertMemberAgency(agencyInfo);
+		session.removeAttribute("user");
+		Member user = mService.selectMember(agencyInfo.getMemberNo());
+		session.setAttribute("user", user);
+		session.setMaxInactiveInterval(60 * 60);
+	}
+	
+	@RequestMapping("delete-agency.do")
+	public String deleteAgency(AgencyInfo agencyInfo, HttpSession session) {
+		System.out.println(agencyInfo.getAgencyInfoNo());
+		System.out.println(agencyInfo.getMemberNo());
+		service.deleteAgency(agencyInfo);
+		
+		Member user = mService.selectMember(agencyInfo.getMemberNo());
+		session.setAttribute("user", user);
+		session.setMaxInactiveInterval(60 * 60);
+			
+		return "redirect:/main/member/setting.do";
 	}
 	
 }

@@ -19,6 +19,14 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="<c:url value='/resources/css/artist/main/artist.css' />" />
 
+	<!-- PageTour -->
+	<link rel="stylesheet" href="<c:url value='/resources/css/common/ptjs.min.css' />" />
+	<link rel="stylesheet" href="<c:url value='/resources/css/common/classic.min.css' />" />
+	
+	<script src="<c:url value='/resources/js/jquery-ui.js'/>"></script>
+	<script src="<c:url value='/resources/js/ptjs.min.js'/>"></script>
+	<script src="<c:url value='/resources/js/artist/main/pagetour.js'/>"></script>
+
 	<!-- Favicon -->
 	<link rel="shortcut icon" href="<c:url value='/resources/img/guitar_icon.png'/>" type="image/x-icon">
     <title>Buskers</title>

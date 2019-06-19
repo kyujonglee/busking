@@ -52,7 +52,6 @@ public class HeaderController {
 	@ResponseBody
 	public Map<String, Object> alarm(HttpSession session, Model model, int index) {
 		Map<String, Object> result = service.selectAlarmList(session, index);
-		System.out.println(index);
 		model.addAttribute("alarm", result.get("alarm"));
 		
 		return result;
