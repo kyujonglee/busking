@@ -7,7 +7,7 @@
 		  from tb_busker_show
 	</select>
 	
-	<select id="selectArtistShowByDate" parameterType="String" resultType="artistShow">
+	<select id="selectArtistShowByDate" parameterType="artistShow" resultType="artistShow">
 		select *
 		  from tb_busker_show
 	     where date(enroll_date) = #{enroll_date};
@@ -19,7 +19,6 @@
 		 where s.busker_no = b.busker_no
            and m.member_no = b.member_no
 		   and gu = #{gu}
-		   and date(enroll_date) = #{enrollDate}
 	</select>
 	
 	<select id="selectArtistShowDetailByDate" parameterType="artistShow" resultType="artistShow">

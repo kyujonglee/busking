@@ -633,6 +633,7 @@
     	function seoulclicked(d) {
     		var x, y, k;
     		let gu = d.properties.name;
+    		console.log(gu);
     	
     		if (d && centered !== d) {
     		    var centroid = path.centroid(d);
@@ -672,14 +673,15 @@
     	    
     	    /* 클릭시 지역값 넘겨줌 */
     	    console.log(selDate);
-    	    let enrollDate = new Date(selDate);
     		$.ajax({
     			type:"POST",
-    			data: {gu : gu, enrollDate: enrollDate},
+    			data: {gu : gu},
     			url:"show-ajax.do",
     		
     		}).done(function (result) {
+    			console.log("=====");
     			console.log(result);
+    			console.log("=====");
     			let html = "";
     			for (let i = 0; i < result.length; i++) {
     				let list = result[i];
@@ -933,6 +935,10 @@
 				}
 		    });
 		}
+	});
+	
+	$(".municipality-label").click(function () {
+		alert("afdsfas");
 	});
 		
 </script>

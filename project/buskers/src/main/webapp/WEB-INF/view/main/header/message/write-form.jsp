@@ -43,14 +43,12 @@
 
 <script>
 	
-	$("#nickName").val("${param.nickName}");
+// 	$("#nickName").val("${param.nickName}");
 
 	let confirm = 0;
-	$("#nickName").keyup(function(){
-		
-		let nickName = $(".input-nickName").val();
-		console.log(nickName);
-		let input = $("#nickName");
+	$("#nickName").blur(function(){
+		let nickName = $("#nickName").val();
+		let input = $("#nickName");					//input 변수로설정
 		$.ajax({
 			type:"POST",
 			data: {nickName:nickName},

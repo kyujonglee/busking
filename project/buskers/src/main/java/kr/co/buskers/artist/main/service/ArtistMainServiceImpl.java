@@ -119,8 +119,8 @@ public class ArtistMainServiceImpl implements ArtistMainService {
 	}
 
 	@Override
-	public List<ArtistPhoto> selectPhoto(int buskerNo) {
-		return boardMapper.selectPhoto(buskerNo);
+	public List<ArtistPhoto> selectPhoto(int buskerNo,int beginPage) {
+		return boardMapper.selectPhoto(buskerNo,beginPage);
 	}
 
 	@Override

@@ -122,8 +122,8 @@ public class ArtistBoardController {
 	
 	@RequestMapping("select-photo-ajax.do")
 	@ResponseBody
-	public List<ArtistPhoto> selectPhoto(int buskerNo){
-		return mainService.selectPhoto(buskerNo);
+	public List<ArtistPhoto> selectPhoto(int buskerNo,int beginPage){
+		return mainService.selectPhoto(buskerNo,beginPage);
 	}
 	
 	@RequestMapping("select-photo-no-ajax.do")
@@ -142,5 +142,10 @@ public class ArtistBoardController {
 	@ResponseBody
 	public void updateBukserPhoto(Busker busker) {
 		mainService.updateBukserPhoto(busker);
+	}
+	/** 후원게시판 */
+	@RequestMapping("list-support.do")
+	public void listSupport(int buskerNo,Model model) {
+		model.addAttribute("buskerNo",buskerNo);
 	}
 }

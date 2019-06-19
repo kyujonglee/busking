@@ -1,0 +1,138 @@
+@charset "UTF-8";
+@import '../common/common.css';
+body {
+  font-family: 'Roboto', sans-serif;
+}
+.tv-error-404-tm {
+  background-color:#000;
+  max-height:100%;
+  min-height:100%;
+  position:relative;
+  padding:50px 0;
+}
+.tv-dark-background-tm {
+  position:absolute;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,.6);
+  top:0;
+  left:0;
+}
+.tv-error-content-tm {
+  position:relative;
+  top:100px;
+  color:#fff;
+}
+.tv-error-content-tm h1 {
+  font-size:102px;
+  text-align:center;
+  font-weight:400;
+}
+.tv-error-content-tm h3 {
+  font-size:32px;
+  font-weight:300;
+  text-align:center;
+}
+.tv-error-links-tm {
+  width:100%;
+  margin-top:20%;
+  text-align:center;
+}
+.tv-error-content-tm a {
+  color:#fff !important;
+  padding:5px 30px;
+  border:2px solid #fff;
+  font-size:22px;
+  margin-right:30px;
+  border-radius:5px;
+}
+.tv-error-content-tm a:hover,.tv-error-content-tm a:active,.tv-error-content-tm a:visited,.tv-error-content-tm a:focus {
+  color:#fff !important;
+
+}
+@media (max-width: 992px)  { 
+    .tv-error-content-tm h1 {
+      font-size:62px;
+      text-align:center;
+      font-weight:400;
+    }
+    .tv-error-content-tm h3 {
+      font-size:26px;
+      font-weight:300;
+      text-align:center;
+    }
+    .tv-error-content-tm a {
+      color:#fff !important;
+      padding:5px 30px;
+      border:2px solid #fff;
+      font-size:22px;
+      margin-right:30px;
+      border-radius:5px;
+    }
+}
+@media (max-width: 425px)  { 
+    .tv-error-content-tm h1 {
+        font-size: 49px;
+        text-align: center;
+        font-weight: 400;
+    }
+    .tv-error-content-tm h3 {
+      font-size:26px;
+      font-weight:300;
+      text-align:center;
+    }
+    .tv-error-content-tm a {
+        color: #fff !important;
+        padding: 5px 30px;
+        border: 2px solid #fff;
+        font-size: 19px;
+        margin-right: 10px;
+        border-radius: 5px;
+    }
+}
+@media (max-width: 375px)  { 
+   .tv-error-content-tm h1 {
+        font-size: 42px;
+        text-align: center;
+        font-weight: 400;
+    }
+    .tv-error-content-tm h3 {
+        font-size: 22px;
+        font-weight: 300;
+        text-align: center;
+    }
+    .tv-error-content-tm a {
+        color: #fff !important;
+        padding: 5px 30px;
+        border: 2px solid #fff;
+        font-size: 18px;
+        margin-right: 0;
+        border-radius: 5px;
+    }
+}
+@media (max-width: 320px)  { 
+    .tv-error-content-tm h1 {
+      font-size:34px;
+      text-align:center;
+      font-weight:400;
+    }
+    .tv-error-content-tm h3 {
+      font-size:18px;
+      font-weight:300;
+      text-align:center;
+    }
+    .tv-error-content-tm a {
+        color: #fff !important;
+        padding: 5px 30px;
+        border: 2px solid #fff;
+        font-size: 18px;
+        margin-right: 0;
+        border-radius: 5px;
+    }
+}
+
+.error_title{
+	margin-bottom:50px;
+}
+
+

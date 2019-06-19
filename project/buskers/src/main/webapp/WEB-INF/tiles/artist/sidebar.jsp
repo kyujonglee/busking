@@ -73,7 +73,9 @@
 						d="M22 4h-20c-1.104 0-2 .896-2 2v12c0 1.104.896 2 2 2h20c1.104 0 2-.896 2-2v-12c0-1.104-.896-2-2-2zm0 13.5c0 .276-.224.5-.5.5h-19c-.276 0-.5-.224-.5-.5v-6.5h20v6.5zm0-9.5h-20v-1.5c0-.276.224-.5.5-.5h19c.276 0 .5.224.5.5v1.5zm-9 6h-9v-1h9v1zm-3 2h-6v-1h6v1zm10-2h-3v-1h3v1z" />
               </svg>
 			</div>
-			<div class="busker-side__menu-title">후원게시판</div>
+			<div class="busker-side__menu-title">
+				<a href="<c:url value='/artist/board/list-support.do'/>?buskerNo=${param.buskerNo}">후원게시판</a>
+			</div>
 		</li>
 		<li class="busker-side__menu-item">
 			<div class="busker-side__menu-icon">
@@ -85,7 +87,7 @@
 			</div> <a href="<c:url value='/artist/board/list.do'/>?buskerNo=${param.buskerNo}"
 			class="busker-side__menu-title"> 공연일정<span class="busker-side__menu-count" id="showCount"></span> </a>
 		</li>
-		<c:if test="${sessionScope.user.busker.buskerNo eq buskerNo}">
+		<c:if test="${sessionScope.user.busker.buskerNo eq param.buskerNo}">
 		<li class="busker-side__menu-item">
 			<div class="busker-side__menu-icon">
 				<i class="fas fa-music fa-lg"></i>
@@ -234,22 +236,24 @@
 			if($("#faceBookUrl").val() == ""){
 				alert("등록된 url이 없습니다.");
 			}else{
-		    	window.location.href = 	$("#faceBookUrl").val();
+		    	/* window.location.href = 	$("#faceBookUrl").val(); */
+		    	window.open($("#faceBookUrl").val());
 			}
 	    })
 	     $(".youtube").click(function(){
 			if($("#youTubeUrl").val() == ""){
 				alert("등록된 url이 없습니다.");
 			}else{
-		    	window.location.href = $("#youTubeUrl").val();
+		    	/* window.location.href = $("#youTubeUrl").val(); */
+				window.open($("#youTubeUrl").val());
 			}
 	    })
 	    $(".instargram").click(function(){
 			if($("#instargramUrl").val() == ""){
 				alert("등록된 url이 없습니다.");
 			}else{
-				alert("else실행됨")
-		    	window.location.href = $("#instargramUrl").val();
+		    	/* window.location.href = $("#instargramUrl").val(); */
+				window.open($("#instargramUrl").val());
 			}
 	    })
 		    
