@@ -47,12 +47,12 @@
 }
 .header-c {
     display: flex;
-    height: 30px;
+    height: 35px;
     position: relative;
     text-align: right;
     user-select: none;
     white-space: nowrap;
-    width: 30px;
+    width: 35px;
 }
 .header-d{
     border-radius: 2px;
