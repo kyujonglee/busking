@@ -63,4 +63,5 @@ public interface ArtistBoardMapper {
 	Busker selectBuskerActivityName(int buskerNo);
 	
 	void deletePhoto(int fileNo);
+	int countPhoto(int buskerNo);
 }

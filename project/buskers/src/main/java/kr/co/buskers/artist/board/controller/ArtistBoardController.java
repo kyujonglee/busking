@@ -138,6 +138,11 @@ public class ArtistBoardController {
 		mainService.deletePhoto(fileNo);
 	}
 	
+	@RequestMapping("artist-photo-update.do")
+	@ResponseBody
+	public void updateBukserPhoto(Busker busker) {
+		mainService.updateBukserPhoto(busker);
+	}
 	/** 후원게시판 */
 	@RequestMapping("list-support.do")
 	public void listSupport(int buskerNo,Model model) {

@@ -42,7 +42,7 @@
 					</div>
 					<div class="profile_comment">
 						<p>15</p>
-						<p>팔로우</p>
+						<p>팔로워</p>
 					</div>
 				</div>
 				<hr class="profile_hr">

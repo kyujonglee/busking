@@ -34,8 +34,8 @@
 <!-- 			<i class="fas fa-user-circle fa-lg"></i> -->
 			<span class="header__user">
 				<div class="header-a">
-				<i class="far fa-bell fa-lg"></i>
-				<i class="far fa-envelope fa-lg"><span class="message_count"></span></i>
+				<i class="far fa-bell fa-lg"><span class="badge badge-pill badge-warning notification alarm_count"></span></i>
+				<i class="far fa-envelope fa-lg"><span class="badge badge-pill badge-success notification message_count"></span></i>
 				<i class="fas fa-comment-dots fa-lg" id="chat-icon"></i>
 					<div class="header-b2">${sessionScope.user.nickName}  님</div>
 					<div class="header-b3">
@@ -85,6 +85,14 @@
 					</div>
 				</div>
 			</span>
+			<div class="busker_alarm_wrapper">
+		        <div class="busker_alarm_title">새로운 소식</div>
+		        <div class="busker_alarm_list_wrapper">
+			        <div class="busker_alarm_list">
+			            
+			        </div>
+		        </div>
+		    </div>
 		</c:if>
 		
 	</div>
@@ -132,19 +140,6 @@
 	
 	$(".fa-envelope").click(function () {
 		$(".fa-envelope").css({"animation": "none"});
-	});
-
-	$(document).ready(function () {
-		$.ajax({
-			type: "POST",
-			url: "/buskers/main/header/message/message-count-ajax.do",
-			success: function (count) {
-				if (count != 0) {
-					$(".message_count").text(count);
-					$(".message_count").show();
-				}
-			}
-		});
 	});
 
 	$(".header-c").click(function() {
@@ -207,4 +202,165 @@
 		alert("현재 회원은 버스커가 아닙니다.")
 		return false;
 	}
+	
+	$(document).ready(function () {
+		$.ajax({
+			type: "POST",
+			url: "/buskers/main/header/message/message-count-ajax.do",
+			success: function (count) {
+				if (count != 0) {
+					$(".message_count").text(count);
+					$(".message_count").show();
+				}
+			}
+		});
+		
+		$.ajax({
+			type: "POST",
+			url: "/buskers/main/header/alarm/alarm-count-ajax.do",
+			success: function (count) {
+				if (count != 0) {
+					$(".alarm_count").text(count);
+					$(".alarm_count").show();
+				}
+			}
+		});
+	});
+	
+	let flag = false;
+	$(".header__user .fa-bell").click(function () {
+		if (flag) {
+	        $(".busker_alarm_wrapper").fadeOut();
+	        $(this).css({"color": "white"});
+	        flag = false;
+	    } else {
+			$(".busker_alarm_wrapper").fadeIn();
+			$(this).css({"color": "black"});
+	        flag = true;
+	    }
+	});
+	
+	$.ajax({
+		type: "POST",
+		url: "/buskers/main/header/alarm/alarm-ajax.do",
+		success: function (result) {
+			console.log(result);
+			
+			let alarm = result.alarm;
+			let html = "";
+			for (let i = 0; i < alarm.length; i++) {
+				let nowDate = new Date();
+				let time = nowDate - new Date(alarm[i].regDate);
+				let gapTime = "";
+				if ( (time / (1000*60)) >= 3600 ) {
+					gapTime = parseInt(time / (1000*60*60*24)) + "일 전";
+				} else {
+					if ( (time / (1000*60*60)) > 1 ) {
+						gapTime = parseInt(time / (1000*60*60)) + "시간 " + parseInt((time/1000*60*60) % 60) + "분 전";
+					} else {
+						gapTime = parseInt((time/1000*60*60) % 60) + "분 전";
+					}
+				}
+				let type = "";
+				if (alarm[i].dataType == "1") {
+					type = "채널에 새로운 공연일정이 등록되었습니다.";
+				} else {
+					type = "채널에 새로운 공지사항이 등록되었습니다.";
+				}
+				html += '<div class="busker_alarm_card">';
+				html += 	'<div class="busker_alarm_image_wrapper">';
+				html += 		'<div class="busker_alarm_image">';
+				html += 		'<img src="<c:url value='/file/download.do'/>?path=' + alarm[i].profileImgPath + alarm[i].profileImg + '"/>';
+				html += 		'</div>';
+				html += 	'</div>';
+				html += 	'<div class="busker_alarm_body">';
+				html += 		'<div class="busker_alarm_body_header">' + alarm[i].activityName + '<a></a><span>&nbsp' + type + '</span></div>';
+				html += 		'<div class="busker_alarm_body_title">' + alarm[i].title + '</div>';
+				html += 		'<div class="busker_alarm_body_date">' + gapTime + '</div>';
+				html += 	'</div>';
+				html += '</div>';
+			}
+			$(".busker_alarm_list").append(html);
+		}
+	});
+	
+	$(".busker_alarm_list").scroll(function () {
+		console.log( "전체 길이 : " + $(".busker_alarm_wrapper").height() );
+		console.log( "스크롤의 위치 : " + $(".busker_alarm_list").scrollTop() );
+		console.log( "스크롤 있는 곳의 길이 : " + $(".busker_alarm_list").height() );
+		
+	});
+	let index = 0;
+	
+	function alarm() {
+		console.log("인덱스:"+index);
+		$.ajax({
+			type: "POST",
+			url: "/buskers/main/header/alarm/alarm-ajax.do",
+			data: {index : index},
+			success: function (result) {
+				
+				let alarm = result.alarm;
+				let html = "";
+				for (let i = 0; i < alarm.length; i++) {
+					let nowDate = new Date();
+					let time = nowDate - new Date(alarm[i].regDate);
+					let gapTime = "";
+					if ( (time / (1000*60*60*24)) >= 1 ) {
+						gapTime = parseInt(time / (1000*60*60*24)) + "일 전";
+					} else {
+						if ( (time / (1000*60*60)) > 1 ) {
+							gapTime = parseInt(time / (1000*60*60)) + "시간 " + Math.floor((time/(1000*60)) % 60) + "분 전";
+							console.log((time/(1000*60)));
+							console.log("시간차이 : " + (time/1000*60) % 60);
+							console.log("시간차이 버림 : " + Math.floor((time/1000*60) % 60));
+						} else {
+							gapTime = Math.floor((time/(1000*60)) % 60) + "분 전";
+						}
+					}
+					let type = "";
+					let link = "";
+					if (alarm[i].dataType == "1") {
+						type = "채널에 새로운 공연일정이 등록되었습니다.";
+						link = '<a href="<c:url value='/artist/board/detail.do?' />' + 'showNo=' + alarm[i].dataNo + '&buskerNo=' + alarm[i].buskerNo + '&alarmNo=' + alarm[i].alarmNo + '&dataType=1' + '&dataNo=' + alarm[i].dataNo + '">';
+					} else {
+						type = "채널에 새로운 공지사항이 등록되었습니다.";
+						link = '<a href="#">';
+					}
+					
+					if (alarm[i].isRead == 'y') {
+						html += '<div class="busker_alarm_card">';
+					} else {
+						html += '<div class="busker_alarm_card is_not_read">';
+					}
+					html += link;
+					html += 	'<div class="busker_alarm_image_wrapper">';
+					html += 		'<div class="busker_alarm_image">';
+					html += 		'<img src="<c:url value='/file/download.do'/>?path=' + alarm[i].profileImgPath + alarm[i].profileImg + '"/>';
+					html += 		'</div>';
+					html += 	'</div>';
+					html += 	'<div class="busker_alarm_body">';
+					html += 		'<div class="busker_alarm_body_header">' + alarm[i].activityName + '<span>&nbsp' + type + '</span></div>';
+					html += 		'<div class="busker_alarm_body_title">' + alarm[i].title + '</div>';
+					html += 		'<div class="busker_alarm_body_date">' + gapTime + '</div>';
+					html += 	'</div>';
+					html += '</a>';
+					html += '</div>'; 
+				}
+				$(".busker_alarm_list").append(html);
+			}
+		});
+	}
+	alarm();
+	
+	$(".busker_alarm_list_wrapper").scroll(function () {
+		if ( $(".busker_alarm_list").height() - $(".busker_alarm_list_wrapper").scrollTop() - $(".busker_alarm_list_wrapper").height() <= 0 ) {
+			index += 10;
+			alarm();
+		}
+	});
+	
+	$(".fa-bell").click(function () {
+		$(this).css({"animation": "none"});
+	});
 </script>

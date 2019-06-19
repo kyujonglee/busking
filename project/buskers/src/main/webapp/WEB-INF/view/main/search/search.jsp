@@ -22,45 +22,40 @@
    
         <div class="search__wrapper">
             <div class="search__result"><b>'${input}'</b>에 대한 검색결과 입니다.</div>
-            <c:choose>
-			 	<c:when test="${busker ne null}">
 		            <div class="search__artist__wrapper">
 		            	<div class="search__title">
                				아티스트 검색 결과
             			</div>			
-		                <div class="artist__search__info">
-		                    <div class="artist__search__image">
-		                        <img src="<c:url value='/file/download.do'/>?path=${busker.profileImgPath}${busker.profileImg}">
-		                    </div>
-		                    <div class="artist__search__explain">
-		                        <div class="busker_info busker_name"><a href="<c:url value='/artist/main/main.do?buskerNo=${busker.buskerNo}'/>">${busker.activityName }</a></div>
-		                        <div class="busker_info">아티스트 소개  <span class="busker_info_db">${busker.intro }</span></div>
-		                        <div class="busker_info">장르  <span class="busker_info_db">${busker.genre }</span></div>
-		                        <div class="busker_info">주요 공연 장소  <span class="busker_info_db">${busker.location }</span></div>
-		                        <div class="busker_info">주요 공연 시간  <span class="busker_info_db">${busker.time }</span></div>
-		                    </div>
-		                </div>
-		                <div class="artist__search__video">
-		                    <!--동영상 목록자리-->
-		                </div>
-		                <%-- <div class="artist__search__list" >
-		                    <div class="search__title">아티스트 리스트</div>
-		                    <div class="artist__search__list_detail">
-		                        <div class="artist__search__list__info">
-		                            <img src="<c:url value='/resources/img/common.jpg'/>">
-		                            <div><a href="#">피아노치는 이정환</a></div>
-		                            <div>이정환</div>
-		                        </div>
-		                    </div>
-		                </div> --%>
+					 	<c:if test="${busker ne null}">
+			                <div class="artist__search__info">
+			                    <div class="artist__search__image">
+			                        <img src="<c:url value='/file/download.do'/>?path=${busker.profileImgPath}${busker.profileImg}">
+			                    </div>
+			                    <div class="artist__search__explain">
+			                        <div class="busker_info busker_name"><a href="<c:url value='/artist/main/main.do?buskerNo=${busker.buskerNo}'/>">${busker.activityName }</a></div>
+			                        <div class="busker_info">아티스트 소개  <span class="busker_info_db">${busker.intro }</span></div>
+			                        <div class="busker_info">장르  <span class="busker_info_db">${busker.genre }</span></div>
+			                        <div class="busker_info">주요 공연 장소  <span class="busker_info_db">${busker.location }</span></div>
+			                        <div class="busker_info">주요 공연 시간  <span class="busker_info_db">${busker.time }</span></div>
+			                    </div>
+			                </div>
+			                <div class="artist__search__video">
+			                    <!--동영상 목록자리-->
+			                </div>
+			            </c:if>
+		                <div class="artist__search__list" >
+		                	<div class="artist_list_wrapper">
+			                    <div class="search__title">아티스트 리스트</div>
+			                    <div class="artist__search__list_detail">
+			                    <!-- append 부분 -->
+			                    </div>
+		                	</div>
+		                </div> 
 		            </div>
-	            </c:when>
-	            <c:otherwise>
-	            	<div class="no__result">
-              	  		'<b>${input }</b>'에 대한 아티스트 정보가 없습니다.
-              		</div>
-	            </c:otherwise>
-            </c:choose>
+	            <div class="onlyNoResult">
+	            
+	            </div>
+	            	
         </div>
         
         <div class="search__board__wrapper">
@@ -143,8 +138,6 @@
            		</c:if>
            	</c:forEach>
             
-            
-            
 			<c:if test="${fn:length(list) gt '5' }">
 	            <div class="board__more">
             		<a href="board-search-list.do?input=${input}">
@@ -161,18 +154,62 @@
     </div>
     <script>
     	$(".search__board__wrapper div:eq(1)").addClass("first__board__list__top");
+    	//이미지가 없을경우에 기본이미지로 변경하
+    	if("${busker.profileImgPath}" == ""){
+	    	$(".artist__search__image img").attr("src","<c:url value='/resources/img/profile.png' />")
+    	}
     	
-		
-// 	    for (i = 0; i < $(".board__content").length; i++) {
-// 	    	text = $(".board__content:eq("+i+")").text();
+    	let input = "${param.input}";
+    	
+    	$.ajax({
+    		data : {input:input},
+    		url : "search-ajax.do",
+    	}).done(function(result){
+    		
+    		//검색후 아티스트의 결과가 0일경우에 정보없다는 알림을 띄움.
+    		if(result.length == 0){
+    			$(".artist__search__list").remove();
+    			$(".onlyNoResult").append(`
+   					<div class="no__result">
+            	  		<b>`+input +`</b>에 대한 아티스트 정보가 없습니다.
+           			</div>
+				`);
+    		}
 			
-// 	        text = text.replace(/<br\/>/ig, "\n");
-	    	
-// 	    	let newText = text.replace(/(<([^>]+)>)/ig,"");
-// 			$(".board__content:eq(" + i + ")").text(newText);
-
-
-// 		}
+    		//검색결과가 정확하게 맞을경우, 아티스트 여러명목록 보여주는창 삭제
+    		if(result.length == 1 && result[0].activityName == input){
+    			$(".artist__search__list").remove();
+    		}
+    		
+    		//목록을 추가해줌
+    		for(let i=0; i<result.length ; i++){
+    			//검색어와 활동명이 정확하게 일치하는것은 제외
+    			if(result[i].activityName != input){
+    				if(result[i].profileImg == null){
+			    		$(".artist__search__list_detail").append(`
+			    			<div class="artist__search__list__info">
+							  	<img src="<c:url value='/resources/img/profile.png' />">
+				            	<div>
+				             		<a href="<c:url value='/artist/main/main.do?buskerNo=`+result[i].buskerNo+`'/>" >`+result[i].activityName+`</a>
+				             	</div>
+				             	<div></div>
+			              	</div>
+			    		`)
+    				}else{
+			    		$(".artist__search__list_detail").append(`
+			    			<div class="artist__search__list__info">
+							  	<img src="<c:url value='/file/download.do'/>?path=`+result[i].profileImgPath+result[i].profileImg+`">
+				            	<div>
+				             		<a href="<c:url value='/artist/main/main.do?buskerNo=`+result[i].buskerNo+`'/>" >`+result[i].activityName+`</a>
+				             	</div>
+				             	<div></div>
+			              	</div>
+			    		`)
+    				}
+    			}
+    		}
+    	})
+		
     
     </script>
 </body>

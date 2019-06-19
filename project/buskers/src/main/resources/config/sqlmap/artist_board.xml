@@ -187,6 +187,7 @@
 		select *
 		  from tb_artist_photo
 		 where busker_no = #{buskerNo}
+		 order by reg_date desc
 	</select>
 
 	<select id="selectPhotoByNo" resultType="artistPhoto">
@@ -208,6 +209,18 @@
 		  from tb_busker b, tb_member m
 		 where b.member_no = m.member_no
 		   and b.busker_no = #{buskerNo}
+	</select>
+	
+	<delete id="deletePhoto">
+		delete
+		  from tb_artist_photo
+		 where file_no = #{fileNo}
+	</delete>
+	
+	<select id="countPhoto" parameterType="int"  resultType="int">
+		select count(*)
+		  from tb_artist_photo
+		 where busker_no = #{buskerNo}
 	</select>
 	
 </mapper>

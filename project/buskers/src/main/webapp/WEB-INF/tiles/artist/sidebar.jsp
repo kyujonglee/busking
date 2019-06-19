@@ -179,6 +179,8 @@
 		const genre = map.busker.genre;
 		const profileImg = map.busker.profileImg;
 		const profileImgPath = map.busker.profileImgPath;
+		const photo = map.busker.photo;
+
 		$("#showCount").text(showCount);
 		$("#musicCount").text(musicCount);
 		$("#videoCount").text(videoCount);
@@ -190,6 +192,12 @@
 		$("#input_form_time").val(time);
 		$("#input_form_genre").val(genre);
 		
+		//사진
+		if(photo == ""){
+			$(".side_photo_img").attr("src" , "<c:url value='/resources/img/default.jpg' />");
+		}else{
+			$(".side_photo_img").attr("src" , "<c:url value='/file/download.do'/>?path="+photo);
+		}
 		
 		$(".busker-side__profile-photo").prepend(
 		`<img src='<c:url value='/resources/img/profile.png' />'>`		
@@ -294,7 +302,7 @@
 // 	팔로우 기능
 	$(".busker__profile-header-follow").click(function(){
 
-		if("${sessionScope.user.busker}" == ""){
+		if("${sessionScope.user}" == ""){
 			Swal.fire({
 				  title:'로그인이 필요한 기능입니다.',
 				  type:'warning',
@@ -342,16 +350,6 @@
 		});
     	$('#myModal').modal('hide');
     });
-    
-    $(".facebook").click(function(){
-    	window.location.href = 	$("#faceBookUrl").val();
-    })
-    $(".youtube").click(function(){
-    	window.location.href = '${socialUrl.youTubeUrl}';
-    })
-    $(".instargram").click(function(){
-    	window.location.href = '${socialUrl.instargramUrl}';
-    })
     
     /** 관련 버스커 */
     $.ajax({
