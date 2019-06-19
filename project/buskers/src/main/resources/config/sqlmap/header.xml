@@ -5,9 +5,11 @@
    <select id="selectMessage" parameterType="freePage" resultType="message">
       select *
           from (select @rownum:=@rownum+1 rnum, a.*
-                from ( select *
-                         from tb_message m, tb_member mem
+                from ( select m.*, mem.is_agency, info.agency_name, info.basic_addr
+                         from tb_message m, tb_member mem, tb_agency agency, tb_agency_info info
                         where m.sender_member_no = mem.member_no
+                          and mem.member_no = agency.member_no
+                          and agency.member_no = info.member_no
                           and (@rownum:=0)=0
                           and receiver_member_no = #{receiverMemberNo}
                           and receiver_is_deleted = 'N'

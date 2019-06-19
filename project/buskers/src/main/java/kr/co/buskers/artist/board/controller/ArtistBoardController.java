@@ -137,4 +137,10 @@ public class ArtistBoardController {
 	public void deletePhoto(int fileNo) {
 		mainService.deletePhoto(fileNo);
 	}
+	
+	/** 후원게시판 */
+	@RequestMapping("list-support.do")
+	public void listSupport(int buskerNo,Model model) {
+		model.addAttribute("buskerNo",buskerNo);
+	}
 }
