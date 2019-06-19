@@ -214,10 +214,7 @@
 				htrr += '</div>';
 				
 				$(".video_body").append(htrr);
-<<<<<<< HEAD
-=======
 				
->>>>>>> hs
 			}
 		})
 	}
@@ -234,7 +231,7 @@
 			htr+="<div class='pagination'>"
 			
 			if(result.pageResult.prev == true ){
-				htr += '<a class="video-page" href='+(result.pageResult.beginpage-1)+'>이전</a>'
+				htr += '<a class="video-page" href='+(result.pageResult.beginPage-1)+'>이전</a>'
 			}
 			for(let i=result.pageResult.beginPage; i <= result.pageResult.endPage; i++){
 				var strClass = num == i ? 'active' : '';
@@ -247,23 +244,6 @@
 			$(".panel-body").append(htr);
 		})
 	}
-	
-	
-	$(document).on("click",".video-page",function(event){
-		event.preventDefault();
-		page = $(this).attr("href");
-		realPage = page;
-		spage = (page -1) * 6;
-		$(".panel-body").html("<div class='video_body'></div>");
-		showList(spage);
-		pageList(page);
-		
-	})
-	
-	showList(0);
-	pageList(1);
-	
-
 	
 	
 	Date.prototype.format = function(f) {
@@ -295,8 +275,6 @@
 	Number.prototype.zf = function(len){return this.toString().zf(len);};
     
 	
-<<<<<<< HEAD
-=======
 	//페이지 클릭시에 각각의 href값을 갖고 페이지를 출력함. spage는 비디오의 begin값, page는 page값.
 	$(document).on("click",".video-page",function(event){
 		event.preventDefault();
@@ -311,7 +289,6 @@
 	
 		showList(0);
 		pageList(1);
->>>>>>> hs
 	
 
 
