@@ -226,7 +226,6 @@
 	
 	      }).done(function(result){
 	    	  let leng= result.listAjax.length;
-// 	    	  console.log(result.listAjax);
 			  
 			  for(let i = 0 ; i < leng ; i ++){
 			    let date = moment(result.listAjax.regDat).format("YYYY-MM-DD");  

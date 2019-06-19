@@ -122,8 +122,8 @@ public class ArtistBoardController {
 	
 	@RequestMapping("select-photo-ajax.do")
 	@ResponseBody
-	public List<ArtistPhoto> selectPhoto(int buskerNo){
-		return mainService.selectPhoto(buskerNo);
+	public List<ArtistPhoto> selectPhoto(int buskerNo,int beginPage){
+		return mainService.selectPhoto(buskerNo,beginPage);
 	}
 	
 	@RequestMapping("select-photo-no-ajax.do")

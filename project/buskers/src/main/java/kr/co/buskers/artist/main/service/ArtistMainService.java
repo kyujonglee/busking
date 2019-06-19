@@ -28,7 +28,7 @@ public interface ArtistMainService {
 	
 	List<Busker> selectRecommendArtist(int buskerNo);
 
-	List<ArtistPhoto> selectPhoto(int buskerNo);
+	List<ArtistPhoto> selectPhoto(int buskerNo, int beginPage);
 
 	ArtistPhoto selectPhotoByNo(int fileNo);
 	
