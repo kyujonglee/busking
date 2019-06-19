@@ -178,32 +178,37 @@
 	})
 	
 	
-	
+	let beginPage = 0;
 	//목록보여주기 전체
-	function showList(){
+	function showList(num){
 		$.ajax({
-			data : {buskerNo: buskerNo},
+			data : {buskerNo: buskerNo,beginPage : beginPage},
 			url:'select-photo-ajax.do',
 		}).done(function(result){
-			for(let i = 0; i < 4;  i ++){
-				$(".photo_body_wrapper").append(`
-					<div class="artist__photo__img" >
-						<img data-pno="`+result[i].fileNo+`" src="<c:url value='/file/download.do'/>?path=`+result[i].path+result[i].sysname+`" />
-					</div>
-				`)
-			}
-			list(result.length,4,result);
+			console.log(result);
+// 			if(beginPage == 0){
+// 				for(let i = 0; i < 4;  i ++){
+// 					$(".photo_body_wrapper").append(`
+// 						<div class="artist__photo__img" >
+// 							<img data-pno="`+result[i].fileNo+`" src="<c:url value='/file/download.do'/>?path=`+result[i].path+result[i].sysname+`" />
+// 						</div>
+// 					`)
+// 				}
+// 			}
+			list(result.length,result,0);
 		})
 	}
 	
  	//목록보여주기 추가되는부분
-	function list(length,i,result){
+ 	
+	function list(length,result,f){
 		setTimeout(function(){
-			let k = i%4;
-			let t = Math.floor(i/4);
-// 			t = Math.floor(t);
+			let i = $(".artist__photo__img").length;	// 이전 사진의 갯수
+// 			console.log(result.length);
+// 			console.log("div childe의 length"+$(".artist__photo__img").length)
+			let k = i%4;								// 몇번째 세로라인인지 알수있음 (1,2,3,4 번째 시작중 몇번째라인인지)
+			let t = Math.floor(i/4);					// 몇번째 가로라인인지 알수있음 바로 전 가로라인까지 바놉ㄱ해야함
 			height = 0;
-// 			console.log(i,k,t)
 			for(let j=0; j<t ; j++){
 				height += $(".artist__photo__img:eq("+k+")").outerHeight();
 				k = k+4;
@@ -211,16 +216,22 @@
 				
 			$(".photo_body_wrapper").append(`
 					 <div class="artist__photo__img" style="top:`+height+`px;"  >
-					 	<img data-pno="`+result[i].fileNo+`" src="<c:url value='/file/download.do'/>?path=`+result[i].path+result[i].sysname+`" />
+					 	<img data-pno="`+result[f].fileNo+`" src="<c:url value='/file/download.do'/>?path=`+result[f].path+result[f].sysname+`" />
 					 </div>
 				`);
-			i++;
-			if(i==length){
+			f++;
+			i++; 
+			if(f==length){
+				$(".photo_body_wrapper").css("height",height+"px");
 				return;
 			}
-			list(length,i,result);
+			list(length,result,f);
 		},20);
 	}
+ 	
+ 	
+ 	
+ 	
 	
 	
 	//사진 디테일
@@ -236,6 +247,24 @@
 		})
 		$("#photoModalDetail").modal();
 	})
+	
+	
+	$(".photo_body").scroll(function(){
+// 		console.log("wrapper의 height : "+$(".photo_body_wrapper").height())
+// 		console.log("wrapper의 scrollTop : "+$(".photo_body_wrapper").scrollTop())
+// 		console.log("body의 height : "+$(".photo_body").height())
+// 		console.log("body의 height :: "+$(".photo_body").scrollTop())
+		console.log($(".photo_body").scrollTop()+$(".photo_body").height()-$(".photo_body_wrapper").height());
+// 		if(($(".photo_body").scrollTop())+$(".photo_body").height())- < 600){
+// 			beginPage += 20;
+// 			showList(beginPage);
+// 		}
+	});
+	
+// 	$(".photo_body").scroll($(".artist__photo__img").height);
+	
+	
+	
 	
 // 	//제목 클릭시에 수정할수 있게
 // 	$(document).on("click",".modal_title",function(){
