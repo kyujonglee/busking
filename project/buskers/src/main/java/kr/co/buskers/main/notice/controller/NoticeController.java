@@ -7,8 +7,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import kr.co.buskers.main.notice.service.NoticeService;
+import kr.co.buskers.repository.domain.NoticeBoard;
 import kr.co.buskers.repository.domain.NoticePage;
 
 @Controller("kr.co.buskers.main.notice.controller.NoticeController")
@@ -37,5 +39,13 @@ public class NoticeController {
 	public Map<String,Object> detail(int boardNo, Model model) {
 		Map<String, Object> result = service.detail(boardNo);
 		return result;
+	}
+	
+	@RequestMapping("insert.do")
+	public String insert(NoticeBoard noticeboard){
+		service.insert(noticeboard);
+		System.out.println(noticeboard.getContent());
+		System.out.println(noticeboard.getTitle());
+		return "main/board/notice/list";
 	}
 }

@@ -9,4 +9,5 @@ public interface NoticeBoardMapper {
 	List<NoticeBoard> selectBoard(NoticePage noticePage);
 	List<NoticeBoard> selectAjaxBoard(NoticePage noticePage);
 	NoticeBoard selectBoardByNo(int boardNo);
+	void insertBoard(NoticeBoard noticeboard);
 }
