@@ -13,7 +13,7 @@
 	            <span class="agency-check__answer-title">
 	              업체등록번호
 	            </span>
-	            <input class="agency-check__answer-input" type="text" id="agencyCode"/>
+	            <input class="agency-check__answer-input" type="text" id="agencyCode" maxlength="30" />
           </div>
           <button type="button" class="agency-check__ok-button" onclick="checkAgencyCode();">확인</button>
         </section>

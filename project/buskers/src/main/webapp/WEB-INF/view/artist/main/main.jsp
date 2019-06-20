@@ -14,6 +14,58 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!--     ></iframe> -->
   </div>
   <div class="busker-content__item">
+    <div class="busker-content__show">
+      <header class="busker-content__show-header">
+        <a href="<c:url value='/artist/board/list.do'/>?buskerNo=${buskerNo}">
+          공연일정
+        </a>
+      </header>
+      <section class="busker-content__show-list">
+        <c:forEach var="show" items="${showList}">
+          <div class="busker-content__show-row" id="show${show.showNo}">
+            <div class="busker-content__show-column">
+              <i class="far fa-calendar-alt"></i>
+              <div class="busker-content__show-title">
+                <a
+                  href="<c:url value='/artist/board/detail.do?showNo=${show.showNo}&buskerNo=${buskerNo}'/> "
+                >
+                  ${show.title}
+                </a>
+              </div>
+            </div>
+            <div class="busker-content__show-column">
+              <i class="far fa-clock"></i>
+              <div class="busker-content__show-date">
+                <fmt:formatDate
+                  value="${show.enrollDate}"
+                  pattern="MM-dd HH:mm"
+                  type="both"
+                />
+              </div>
+            </div>
+            <div class="busker-content__show-column">
+              <i class="fas fa-angle-down"></i>
+            </div>
+          </div>
+          <div class="busker-content__show-detail">
+            <div class="busker-content__show-detail-item">
+              <div class="busker-content__show-detail-item-title">공연장소</div>
+              <div class="busker-content__show-detail-item-content"
+                >${show.place}</div
+              >
+            </div>
+            <div class="busker-content__show-detail-item">
+              <div class="busker-content__show-detail-item-title">공연내용</div>
+              <div class="busker-content__show-detail-item-content"
+                >${show.content}</div
+              >
+            </div>
+          </div>
+        </c:forEach>
+      </section>
+    </div>
+  </div>
+  <div class="busker-content__item">
     <div class="busker-board">
       <header class="busker-board__header">
         <div class="busker-board__header-column"></div>
@@ -130,58 +182,7 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
       </div>
     </div>
   </div>
-  <div class="busker-content__item">
-    <div class="busker-content__show">
-      <header class="busker-content__show-header">
-        <a href="<c:url value='/artist/board/list.do'/>?buskerNo=${buskerNo}">
-          공연일정
-        </a>
-      </header>
-      <section class="busker-content__show-list">
-        <c:forEach var="show" items="${showList}">
-          <div class="busker-content__show-row" id="show${show.showNo}">
-            <div class="busker-content__show-column">
-              <i class="far fa-calendar-alt"></i>
-              <div class="busker-content__show-title">
-                <a
-                  href="<c:url value='/artist/board/detail.do?showNo=${show.showNo}&buskerNo=${buskerNo}'/> "
-                >
-                  ${show.title}
-                </a>
-              </div>
-            </div>
-            <div class="busker-content__show-column">
-              <i class="far fa-clock"></i>
-              <div class="busker-content__show-date">
-                <fmt:formatDate
-                  value="${show.enrollDate}"
-                  pattern="MM-dd HH:mm"
-                  type="both"
-                />
-              </div>
-            </div>
-            <div class="busker-content__show-column">
-              <i class="fas fa-angle-down"></i>
-            </div>
-          </div>
-          <div class="busker-content__show-detail">
-            <div class="busker-content__show-detail-item">
-              <div class="busker-content__show-detail-item-title">공연장소</div>
-              <div class="busker-content__show-detail-item-content"
-                >${show.place}</div
-              >
-            </div>
-            <div class="busker-content__show-detail-item">
-              <div class="busker-content__show-detail-item-title">공연내용</div>
-              <div class="busker-content__show-detail-item-content"
-                >${show.content}</div
-              >
-            </div>
-          </div>
-        </c:forEach>
-      </section>
-    </div>
-  </div>
+  
   <div class="busker-audio-wrapper" id="music-player">
     <div class="audio-menu">
       <!-- 뮤직플레이어에 제목과 가수가 표시 되지 않는다는 단점!!-->

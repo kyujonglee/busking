@@ -14,7 +14,7 @@
                 <div class="agency-insert__item-column">
                   <span class="agency-insert__item-name">업체명</span>
                 </div>
-                <input class="agency-insert__item-input" type="text" name="agencyName" id="agencyName"/>
+                <input class="agency-insert__item-input" type="text" name="agencyName" id="agencyName" maxlength="40"/>
               </div>
               <div class="agency-insert__item">
                 <div class="agency-insert__item-column">
@@ -37,6 +37,7 @@
                   type="text"
                   name="email1"
                   id="email1"
+                  maxlength="20"
                 />
                 <span style="color:inherit;">@</span>
                 <input
@@ -44,6 +45,7 @@
                   type="text"
                   name="email2"
                   id="email2"
+                  maxlength="20"
                 />
                 <input type="hidden" name="email" id="email"/>
               </div>
@@ -57,6 +59,7 @@
                   placeholder="ex) 010-xxxx-xxxx"
                   name="phone"
                   id="phone"
+                  maxlength="13"
                 />
               </div>
               <div class="agency-insert__item addr-search">
@@ -74,6 +77,7 @@
                   type="text"
                   id="roadAddrPart1"
                   name="basicAddr"
+                  maxlength="100"
                 />
               </div>
               <div class="agency-insert__item">
@@ -85,73 +89,27 @@
                   type="text"
                   id="addrDetail"
                   name="detailAddr"
+                  maxlength="100"
                 />
               </div>
               <div class="agency-insert__item">
                 <div class="agency-insert__item-column">
                   <span class="agency-insert__item-name">관심분야</span>
                 </div>
-                <div class="agency-insert__checkbox-item">
-                  <label for="agencyCheckbox1" style="cursor:pointer">
-                  <input
-                    class="agency-insert__checkbox"
-                    type="checkbox"
-                    name="agencyCheckbox"
-                    value="1"
-                    id="agencyCheckbox1"
-                  />
-                  <span class="agency-insert__checkbox-title">스트릿댄스</span>
-                  </label>
-<!--                   <span class="agency-insert__checkbox-title">스트릿댄스</span> -->
-                </div>
-                <div class="agency-insert__checkbox-item">
-                <label for="agencyCheckbox2" style="cursor:pointer">
-                  <input
-                    class="agency-insert__checkbox"
-                    type="checkbox"
-                    name="agencyCheckbox"
-                    value="2"
-                    id="agencyCheckbox2"
-                  />
-                  <span class="agency-insert__checkbox-title">발라드</span>
-                  </label>
-                </div>
-                <div class="agency-insert__checkbox-item">
-                <label for="agencyCheckbox3" style="cursor:pointer">
-                  <input
-                    class="agency-insert__checkbox"
-                    type="checkbox"
-                    name="agencyCheckbox"
-                    value="3"
-                    id="agencyCheckbox3"
-                  />
-                  <span class="agency-insert__checkbox-title">개그</span>
-                  </label>
-                </div>
-                <div class="agency-insert__checkbox-item">
-                <label for="agencyCheckbox4" style="cursor:pointer">
-                  <input
-                    class="agency-insert__checkbox"
-                    type="checkbox"
-                    name="agencyCheckbox"
-                    value="4"
-                    id="agencyCheckbox4"
-                  />
-                  <span class="agency-insert__checkbox-title">악기연주</span>
-                  </label>
-                </div>
-                <div class="agency-insert__checkbox-item">
-                <label for="agencyCheckbox5" style="cursor:pointer">
-                  <input
-                    class="agency-insert__checkbox"
-                    type="checkbox"
-                    name="agencyCheckbox"
-                    value="5"
-                    id="agencyCheckbox5"
-                  />
-                  <span class="agency-insert__checkbox-title">마술</span>
-                  </label>
-                </div>
+                <c:forEach var="genre" items="genreList" varStatus="status">
+                   <div class="agency-insert__checkbox-item">
+                  	<label for="agencyCheckbox${status.count}" style="cursor:pointer">
+	                  <input
+	                    class="agency-insert__checkbox"
+	                    type="checkbox"
+	                    name="agencyCheckbox"
+	                    value="${status.count}"
+	                    id="agencyCheckbox${status.count}"
+	                  />
+                      <span class="agency-insert__checkbox-title">${genre.title}</span>
+                    </label>
+                  </div>
+                </c:forEach>
               </div>
               <div class="agency-insert__btn-content">
                 <button class="agency-insert__btn">등 록</button>

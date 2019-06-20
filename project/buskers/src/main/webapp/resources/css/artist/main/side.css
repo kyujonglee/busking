@@ -238,5 +238,6 @@
 	color : rgba(0,0,0,0.5);
 	padding-left : 20px;
 	display : flex;
+	align-items : center;
 	margin : 10px 0px;
 }

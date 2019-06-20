@@ -28,7 +28,7 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
           <span class="support-info__percent-value">79</span>
           <span class="support-info__percent-icon">%</span>
         </div>
-        <div class="support-info__target">목표금액 : 999,000 원</div>
+        <div class="support-info__target">목표금액 : 999,000 섬</div>
       </header>
       <section class="support-info__section">
         <div class="support-info__progressbar-wrapper">
@@ -43,7 +43,7 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
           <button class="support-info__btn" type="button">D - 69</button>
         </div>
         <div class="support-info__price">
-          <span class="support-info__current-price">800,000</span>원
+          <span class="support-info__current-price">800,000</span> 섬
         </div>
         <div class="support-info__purpose">
           <span class="support-info__purpose-name">목표</span>
@@ -78,7 +78,7 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
             <div class="support-section__money">
               <span class="support-user">Yelle님</span>
               <div class="support-user__support">
-                <span class="support-user__money">1,400</span>원 후원
+                <span class="support-user__money">1,400</span>섬 후원
               </div>
             </div>
           </div>
@@ -250,7 +250,7 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
             <div class="support-section__money">
               <span class="support-user">홍선경님</span>
               <div class="support-user__support">
-                <span class="support-user__money"> 30,000 </span> 원 후원
+                <span class="support-user__money"> 30,000 </span> 섬 후원
               </div>
             </div>
           </div>
@@ -268,7 +268,7 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
             <div class="support-section__money">
               <span class="support-user">Yelle님</span>
               <div class="support-user__support">
-                <span class="support-user__money">1,400</span>원 후원
+                <span class="support-user__money">1,400</span>섬 후원
               </div>
             </div>
           </div>
@@ -288,7 +288,7 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
             <div class="support-section__money">
               <span class="support-user">홍선경님</span>
               <div class="support-user__support">
-                <span class="support-user__money"> 30,000 </span> 원 후원
+                <span class="support-user__money"> 30,000 </span> 섬 후원
               </div>
             </div>
           </div>
