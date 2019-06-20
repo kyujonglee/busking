@@ -117,10 +117,17 @@ public class MainServiceImpl implements MainService {
 	
 	public Map<String, Object> selectArtistShowToday(HttpSession session) {
 		Map<String, Object> map = new HashMap<>();
+		
+		map.put("artistShowRecent", mapper.selectArtistShowRecent());
+		map.put("artistVideoRecent", mapper.selectArtistVideoListRecent());
+		map.put("artistPhotoRecent", mapper.selectArtistPhotoListRecent());
+		
 		if (session.getAttribute("user") != null) {
 			Member member = (Member)session.getAttribute("user");
 			
 			map.put("followArtistShow", mapper.selectFollowArtistShow(member.getMemberNo()));
+			map.put("followArtist", mapper.selectFollowArtist(member.getMemberNo()));
+			System.out.println("adsdaads"+mapper.selectFollowArtist(member.getMemberNo()));
 		}
 		map.put("artistShow", mapper.selectArtistShowToday());
 		return map;

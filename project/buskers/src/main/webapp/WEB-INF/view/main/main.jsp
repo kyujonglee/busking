@@ -132,11 +132,21 @@
 								<div class="artist_name">${list.activityName}</div>
 							</div>
 							<div class="details-btn">
-								<h1>${list.title}</h1>
+								<c:if test="${fn:length(list.title) gt 20}">
+									<h1>${fn:substring(list.title, 0, 19)}..</h1>
+								</c:if>
+								<c:if test="${fn:length(list.title) le 20}">
+									<h1>${list.title}</h1>
+								</c:if>
 								<h3>
-									<i class="fas fa-map-marker-alt">&nbsp;${list.place}</i>
-									&nbsp;&nbsp; <i class="fas fa-calendar-day">&nbsp;<fmt:formatDate
-											value="${list.enrollDate}" pattern="yyyy.MM.dd HH:mm" /></i>
+									<c:if test="${fn:length(list.place) gt 13}">
+										<i class="fas fa-map-marker-alt">&nbsp;${fn:substring(list.place, 0, 12)}..</i>&nbsp;&nbsp;
+										<i class="fas fa-calendar-day">&nbsp;<fmt:formatDate value="${list.enrollDate}" pattern="yyyy.MM.dd HH:mm" /></i>
+									</c:if>
+									<c:if test="${fn:length(list.place) le 13}">
+										<i class="fas fa-map-marker-alt">&nbsp;${list.place}</i>&nbsp;&nbsp;
+										<i class="fas fa-calendar-day">&nbsp;<fmt:formatDate value="${list.enrollDate}" pattern="yyyy.MM.dd HH:mm" /></i>
+									</c:if>
 								</h3>
 								<p>${list.content}</p>
 							</div>
@@ -148,17 +158,140 @@
 			</div>
 		</div>
 	</div>
+	
+	<div class="buskers_feed_wrapper buskers_feed_recent_wrapper">
+		<div class="buskers_feed_title">
+			<div class="neon">
+				<b>Wha<span>t's</span> new<span> with Artist?</span>
+				</b>
+			</div>
+		</div>
+
+		<div class="buskers_feed_list recent_feed_list">
+			<div class="buskers_feed_show recent_feed_show">
+				<div class="buskers_feed_follow">
+					공연일정 <span>최근 업로드</span>
+				</div>
+				<div class="swiper-container swiper-container-show-recent">
+					<div class="swiper-wrapper swiper-wrapper-recent-show">
+						<c:forEach var="list" items="${artistShowRecent}">
+							<div class="feed-card swiper-slide">
+								<div class="feed-card-header">
+									<img
+										src="<c:url value='/file/download.do'/>?path=${list.profileImgPath}${list.profileImg}"
+										onError="this.src='<c:url value='/resources/img/profile.png' />';" />
+								</div>
+								<div class="feed-card-content">
+									<div class="title">
+										<div class="title_header">
+											<c:if test="${fn:length(list.title) gt 19}">
+												<a
+													href="<c:url value='/artist/board/detail.do?showNo=${list.showNo}&buskerNo=${list.buskerNo}'/> ">${fn:substring(list.title, 0, 19)}..</a>
+											</c:if>
+											<c:if test="${fn:length(list.title) le 19}">
+												<a
+													href="<c:url value='/artist/board/detail.do?showNo=${list.showNo}&buskerNo=${list.buskerNo}'/> ">${list.title}</a>
+											</c:if>
+										</div>
+										<a class="title_header_activity_name"
+											href="<c:url value='/artist/main/main.do?buskerNo=${list.buskerNo}'/> ">${list.activityName}</a>
+										<c:if test="${fn:length(list.place) gt 18}">
+											<i class="fas fa-map-marker-alt">&nbsp;${fn:substring(list.place, 0, 9)}..</i> &nbsp;&nbsp;
+					                	</c:if>
+										<c:if test="${fn:length(list.place) le 18}">
+											<i class="fas fa-map-marker-alt">&nbsp;${list.place}</i> &nbsp;&nbsp;
+					                	</c:if>
+										
+									</div>
+									<div class="summary">
+										<p>${list.content}</p>
+									</div>
+								</div>
+								<div class="feed-card-footer">
+									<div class="time">
+										<i class="fas fa-calendar">&nbsp;<fmt:formatDate value="${list.enrollDate}" pattern="yyyy년 MM월 dd일 HH시 mm분" /></i>
+									</div>
+								</div>
+							</div>
+						</c:forEach>
+					</div>
+
+					<div class="swiper-pagination"></div>
+
+				</div>
+			</div>
+
+			<div class="buskers_feed_video">
+				<div class="buskers_feed_follow">
+					아티스트 영상 <span>최근 업로드</span>
+				</div>
+				<div class="swiper-container swiper-container-video-recent">
+					<div class="swiper-wrapper swiper-wrapper-video-recent">
+						<c:forEach var="list" items="${artistVideoRecent}">
+							<div class="swiper-slide feed_video">
+				    			<iframe src="${list.url}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+			    			</div>
+		    			</c:forEach>
+					</div>
+
+					<div class="swiper-pagination"></div>
+
+					<div class="swiper-button-next swiper-button-white"></div>
+					<div class="swiper-button-prev swiper-button-white"></div>
+				</div>
+			</div>
+
+			<div class="buskers_feed_photo">
+				<div class="buskers_feed_follow">
+					아티스트 사진 <span>최근 업로드</span>
+				</div>
+				<div class="buskers_feed_photo_container_recent">
+					<div class="swiper-wrapper swiper-wrapper-photo-recent">
+					<c:forEach var="list" items="${artistPhotoRecent}">
+						<div class="photo_card_wrapper swiper-slide">
+							<div class="photo_card">
+								<div class="photo_card_image">
+									<img src="<c:url value='/file/download.do?path=${list.path}${list.sysname}'/>"/>
+								</div>
+								<div class="photo_card_body">
+									<div class="photo_card_body_header">
+										<p class="photo_card_title">${list.title}</p>
+									</div>
+									<div class="photo_card_body_footer">
+										<a href="/buskers/artist/main/main.do?buskerNo=${list.buskerNo}" class="photo_card_activity_name">By&nbsp${list.activityName}</a>
+										<p class="photo_card_reg_date"></p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</c:forEach>
+					</div>
+
+					<div class="swiper-pagination"></div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+	
 
 	<div class="buskers_feed_wrapper">
 		<div class="buskers_feed_title">
 			<div class="neon">
-				<b>Fol<span>low</span>ers n<span>ews</span> feed
+				<b>Fol<span>low</span>er's n<span>ews</span> feed
 				</b>
 			</div>
 		</div>
 
 		<div class="buskers_feed_list">
 			<c:if test="${sessionScope.user ne null}">
+				<c:if test="${fn:length(followArtist) eq 0}">
+					<span>팔로우한 아티스트가 없습니다.</span><br>
+					<div class="link_artist_info_wrapper">
+						<a class="link_artist_info" href="/buskers/main/info/info.do">아티스트 둘러보기&rarr;</a>
+					</div>
+				</c:if>
+				
 				<div class="buskers_feed_show">
 					<div class="buskers_feed_follow">
 						공연일정 <span>팔로우 채널</span>
@@ -200,7 +333,7 @@
 									</div>
 									<div class="feed-card-footer">
 										<div class="time">
-											<i class="fas fa-calendar-day">&nbsp;<fmt:formatDate value="${list.enrollDate}" pattern="yyyy년 MM월 dd일 HH시 mm분" /></i>
+											<i class="fas fa-calendar">&nbsp;<fmt:formatDate value="${list.enrollDate}" pattern="yyyy년 MM월 dd일 HH시 mm분" /></i>
 										</div>
 									</div>
 								</div>
@@ -208,7 +341,7 @@
 						</div>
 
 						<div class="swiper-pagination swiper-pagination-artist-show"></div>
-
+						
 					</div>
 				</div>
 
@@ -218,9 +351,9 @@
 					</div>
 					<div class="swiper-container swiper-container-video">
 						<div class="swiper-wrapper swiper-wrapper-video"></div>
-
+						
 						<div class="swiper-pagination"></div>
-
+						
 						<div class="swiper-button-next swiper-button-white"></div>
 						<div class="swiper-button-prev swiper-button-white"></div>
 					</div>
@@ -232,7 +365,7 @@
 					</div>
 					<div class="buskers_feed_photo_container">
 						<div class="swiper-wrapper swiper-wrapper-photo"></div>
-
+							
 						<div class="swiper-pagination"></div>
 
 					</div>
@@ -876,82 +1009,125 @@
     	}
     });
 	
-	$.ajax({
-		type: "POST",
-		url: "/buskers/main/feed-photo-ajax.do",
-		success: function (result) {
-			console.log(result);
-			let html = "";
-			for (let i = 0; i < result.length; i++) {
-				
-				html += '<div class="photo_card_wrapper swiper-slide">';
-				html += 	'<div class="photo_card">';
-				html +=			'<div class="photo_card_image">';
-				html +=				'<img src="<c:url value='/file/download.do'/>?path=' + result[i].path + result[i].sysname + '"/>';
-				html +=			'</div>';
-				html +=			'<div class="photo_card_body">';
-				html +=				'<div class="photo_card_body_header">';
-				html +=					'<p class="photo_card_title">' + result[i].title + '</p>';
-				html +=				'</div>';
-				html +=				'<div class="photo_card_body_footer">';
-				html +=					'<a href="/buskers/artist/main/main.do?buskerNo=' + result[i].buskerNo + '" class="photo_card_activity_name">By&nbsp' + result[i].activityName + '</a>';
-				html +=					'<p class="photo_card_reg_date">' + new Date(result[i].regDate).format('yyyy.MM.dd') + '</p>';
-				html +=				'</div>';
-				html +=			'</div>';
-				html +=		'</div>';
-				html +=	'</div>';
-			}
-			
-			$(".swiper-wrapper-photo").html(html);
-			
-			new Swiper('.buskers_feed_photo_container', {
-			    slidesPerView: 4,
-			    spaceBetween: 70,
-			    loop: true,
-			    centeredSlides: true,
-			    pagination: {
-			      el: '.swiper-pagination',
-			      clickable: true,
-			    },
-			    autoplay: {
-			        delay: 2500,
-			        disableOnInteraction: false,
-		    	}
-		    });
-		}
-	});
+	new Swiper('.swiper-container-show-recent', {
+	    slidesPerView: 5,
+	    spaceBetween: 30,
+	    slidesPerGroup: 5,
+	    loop: true,
+      	loopFillGroupWithBlank: true,
+    	pagination: {
+  	      el: '.swiper-pagination',
+  	      clickable: true,
+  	    },
+  	  	autoplay: {
+	        delay: 10000,
+	        disableOnInteraction: false,
+    	}
+    });
 	
-	$.ajax({
-		type: "POST",
-		url: "/buskers/main/feed-video-ajax.do",
-		success: function (result) {
-			console.log(result);
-			let html = "";
-			for (let i = 0; i < result.length; i++) {
-				
-				html += '<div class="swiper-slide feed_video">';
-			    html +=		'<iframe src="' + result[i].url + '" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
-		    	html += '</div>';
-			}
-			
-			$(".swiper-wrapper-video").html(html);
-			
-			new Swiper('.swiper-container-video', {
-				loop: true,
-				pagination: {
-		 			el: '.swiper-pagination',
-			  		clickable: true,
-				},
-				navigation: {
-			  		nextEl: '.swiper-button-next',
-			  		prevEl: '.swiper-button-prev',
+	new Swiper('.buskers_feed_photo_container_recent', {
+	    slidesPerView: 4,
+	    spaceBetween: 70,
+	    loop: true,
+	    centeredSlides: true,
+	    pagination: {
+	      el: '.swiper-pagination',
+	      clickable: true,
+	    },
+	    autoplay: {
+	        delay: 2500,
+	        disableOnInteraction: false,
+    	}
+    });
+	
+	new Swiper('.swiper-container-video-recent', {
+		loop: true,
+		pagination: {
+ 			el: '.swiper-pagination',
+	  		clickable: true,
+		},
+		navigation: {
+	  		nextEl: '.swiper-button-next',
+	  		prevEl: '.swiper-button-prev',
+		}
+    });
+	
+	if ("${sessionScope.user}" != "") {
+		
+		$.ajax({
+			type: "POST",
+			url: "/buskers/main/feed-photo-ajax.do",
+			success: function (result) {
+				console.log(result);
+				let html = "";
+				for (let i = 0; i < result.length; i++) {
+					
+					html += '<div class="photo_card_wrapper swiper-slide">';
+					html += 	'<div class="photo_card">';
+					html +=			'<div class="photo_card_image">';
+					html +=				'<img src="<c:url value='/file/download.do'/>?path=' + result[i].path + result[i].sysname + '"/>';
+					html +=			'</div>';
+					html +=			'<div class="photo_card_body">';
+					html +=				'<div class="photo_card_body_header">';
+					html +=					'<p class="photo_card_title">' + result[i].title + '</p>';
+					html +=				'</div>';
+					html +=				'<div class="photo_card_body_footer">';
+					html +=					'<a href="/buskers/artist/main/main.do?buskerNo=' + result[i].buskerNo + '" class="photo_card_activity_name">By&nbsp' + result[i].activityName + '</a>';
+					html +=					'<p class="photo_card_reg_date">' + new Date(result[i].regDate).format('yyyy.MM.dd') + '</p>';
+					html +=				'</div>';
+					html +=			'</div>';
+					html +=		'</div>';
+					html +=	'</div>';
 				}
-		    });
-		}
-	});
+				
+				$(".swiper-wrapper-photo").html(html);
+				
+				new Swiper('.buskers_feed_photo_container', {
+				    slidesPerView: 4,
+				    spaceBetween: 70,
+				    loop: true,
+				    centeredSlides: true,
+				    pagination: {
+				      el: '.swiper-pagination',
+				      clickable: true,
+				    },
+				    autoplay: {
+				        delay: 2500,
+				        disableOnInteraction: false,
+			    	}
+			    });
+			}
+		});
+		
+		$.ajax({
+			type: "POST",
+			url: "/buskers/main/feed-video-ajax.do",
+			success: function (result) {
+				console.log(result);
+				let html = "";
+				for (let i = 0; i < result.length; i++) {
+					
+					html += '<div class="swiper-slide feed_video">';
+				    html +=		'<iframe src="' + result[i].url + '" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+			    	html += '</div>';
+				}
+				
+				$(".swiper-wrapper-video").html(html);
+				
+				new Swiper('.swiper-container-video', {
+					loop: true,
+					pagination: {
+			 			el: '.swiper-pagination',
+				  		clickable: true,
+					},
+					navigation: {
+				  		nextEl: '.swiper-button-next',
+				  		prevEl: '.swiper-button-prev',
+					}
+			    });
+			}
+		});
+	}
 	
-	$(".municipality-label").click(function () {
-		alert("afdsfas");
-	});
 		
 </script>

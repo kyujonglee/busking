@@ -23,7 +23,7 @@
 
             <div class="board_head_line">
                 <span class="board_img_title">
-                	<img src="<c:url value='/resources/img/boyoung.jpg'/>"/>
+                	<img src="<c:url value='/file/download.do'/>?path=${board.profileImgPath}${board.profileImg}" onError="this.src='<c:url value='/resources/img/profile.png' />';" />/>
                 </span>
    				<c:out value="${board.title}" />
             </div>
@@ -123,7 +123,7 @@
 			                	<div class="comment_list">
 			               			<div class="comment_info">
 			                			<span class="board_img_title">
-						                	<img src="<c:url value='/resources/img/boyoung.jpg'/>"/>
+						                	<img src="<c:url value='/file/download.do'/>?path=${comment.profileImgPath}${comment.profileImg}" onError="this.src='<c:url value='/resources/img/profile.png' />';" />
 						                </span>
 			               				<div class="comment_id">${comment.nickName}</div>
 			               				<div class="comment_date">
@@ -164,7 +164,7 @@
 			                		<div class="reply_list">
 				               			<div class="comment_info">
 				                			<span class="board_img_title">
-							                	<img src="<c:url value='/resources/img/boyoung.jpg'/>"/>
+							                	<img src="<c:url value='/file/download.do'/>?path=${reply.profileImgPath}${reply.profileImg}" onError="this.src='<c:url value='/resources/img/profile.png' />';" />
 							                </span>
 				               				<div class="comment_id">${reply.nickName}</div>
 				               				<div class="comment_date">
@@ -223,7 +223,7 @@
 	          			</c:if>
 	          			<c:if test="${sessionScope.user ne null}">
 		          			<span class="board_img_title">
-		              			<img src="<c:url value='/resources/img/boyoung.jpg'/>"/>
+		              			<img src="<c:url value='/file/download.do'/>?path=${sessionScope.user.profileImgPath}${sessionScope.user.profileImg}" onError="this.src='<c:url value='/resources/img/profile.png' />';" />/>
 		           			</span>
 		       				<div class="comment_id">${sessionScope.user.nickName}</div>
 	           			</c:if>
@@ -442,7 +442,7 @@
 	                		html += '<div class="comment_list">';
 	                		html += 	'<div class="comment_info">';
 	                		html += 		'<span class="board_img_title">';
-	                		html +=     		'<img src="<c:url value='/resources/img/boyoung.jpg'/>"/>';
+	                		html +=     		'<img src="<c:url value='/file/download.do'/>?path=' + comment.profileImgPath + comment.profileImg+ `" onError="this.src='<c:url value='/resources/img/profile.png' />';"` + '"/>';
 	               			html +=     	'</span>';
 	               			html += 		'<div class="comment_id">' + comment.nickName + '</div>';
 	               			html += 		'<div class="comment_date">';
@@ -483,7 +483,7 @@
 	       							html += '<div class="reply_list">';
 	                        		html += 	'<div class="comment_info">';
 	                        		html += 		'<span class="board_img_title">';
-	                        		html +=     		'<img src="<c:url value='/resources/img/boyoung.jpg'/>"/>';
+	                        		html +=     		'<img src="<c:url value='/file/download.do'/>?path=' + reply.profileImgPath + reply.profileImg  + `" onError="this.src='<c:url value='/resources/img/profile.png' />';"` +  '"/>';
 	                       			html +=     	'</span>';
 	                       			html += 		'<div class="comment_id">' + reply.nickName + '</div>';
 	                       			html += 		'<div class="comment_date">';
@@ -601,7 +601,7 @@
 	                		html += '<div class="comment_list">';
 	                		html += 	'<div class="comment_info">';
 	                		html += 		'<span class="board_img_title">';
-	                		html +=     		'<img src="<c:url value='/resources/img/boyoung.jpg'/>"/>';
+	                		html +=     		'<img src="<c:url value='/file/download.do'/>?path=' + comment.profileImgPath + comment.profileImg  + `" onError="this.src='<c:url value='/resources/img/profile.png' />';"` + '"/>';
 	               			html +=     	'</span>';
 	               			html += 		'<div class="comment_id">' + comment.nickName + '</div>';
 	               			html += 		'<div class="comment_date">';
@@ -642,7 +642,7 @@
 	       							html += '<div class="reply_list">';
 	                        		html += 	'<div class="comment_info">';
 	                        		html += 		'<span class="board_img_title">';
-	                        		html +=     		'<img src="<c:url value='/resources/img/boyoung.jpg'/>"/>';
+	                        		html +=     		'<img src="<c:url value='/file/download.do'/>?path=' + reply.profileImgPath + reply.profileImg + `" onError="this.src='<c:url value='/resources/img/profile.png' />';"` + '"/>';
 	                       			html +=     	'</span>';
 	                       			html += 		'<div class="comment_id">' + reply.nickName + '</div>';
 	                       			html += 		'<div class="comment_date">';
@@ -761,7 +761,7 @@
 	                		html += '<div class="comment_list">';
 	                		html += 	'<div class="comment_info">';
 	                		html += 		'<span class="board_img_title">';
-	                		html +=     		'<img src="<c:url value='/resources/img/boyoung.jpg'/>"/>';
+	                		html +=     		'<img src="<c:url value='/file/download.do'/>?path=' + comment.profileImgPath + comment.profileImg + `" onError="this.src='<c:url value='/resources/img/profile.png' />';"` + '"/>';
 	               			html +=     	'</span>';
 	               			html += 		'<div class="comment_id">' + comment.nickName + '</div>';
 	               			html += 		'<div class="comment_date">';
@@ -802,7 +802,7 @@
 	       							html += '<div class="reply_list">';
 	                        		html += 	'<div class="comment_info">';
 	                        		html += 		'<span class="board_img_title">';
-	                        		html +=     		'<img src="<c:url value='/resources/img/boyoung.jpg'/>"/>';
+	                        		html +=     		'<img src="<c:url value='/file/download.do'/>?path=' + reply.profileImgPath + reply.profileImg + `" onError="this.src='<c:url value='/resources/img/profile.png' />';"` + '"/>';
 	                       			html +=     	'</span>';
 	                       			html += 		'<div class="comment_id">' + reply.nickName + '</div>';
 	                       			html += 		'<div class="comment_date">';

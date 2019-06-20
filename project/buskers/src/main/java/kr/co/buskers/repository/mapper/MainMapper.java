@@ -5,6 +5,7 @@ import java.util.List;
 import kr.co.buskers.repository.domain.ArtistPhoto;
 import kr.co.buskers.repository.domain.ArtistShow;
 import kr.co.buskers.repository.domain.Busker;
+import kr.co.buskers.repository.domain.Follow;
 import kr.co.buskers.repository.domain.SearchBoard;
 import kr.co.buskers.repository.domain.SearchPage;
 import kr.co.buskers.repository.domain.Video;
@@ -27,8 +28,15 @@ public interface MainMapper {
 	List<ArtistPhoto> selectFollowArtistPhotoList(int memberNo);
 	List<Video> selectFollowArtistVideoList(int memberNo);
 	
+	// 최근 게시물
+	List<ArtistShow> selectArtistShowRecent();
+	List<ArtistPhoto> selectArtistPhotoListRecent();
+	List<Video> selectArtistVideoListRecent();
+	
 	List<SearchBoard> selectSearchBoard(SearchPage searchPage);
 	int selectCountSearchBoard(SearchPage searchPage);
 	Busker searchBusker(SearchPage searchPage);
 	List<Busker> selectSearchBuskerList(String input);
+	
+	List<Follow> selectFollowArtist(int memberNo);
 }

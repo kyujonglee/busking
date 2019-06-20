@@ -14,6 +14,12 @@
 		0 0 0.1em #ff4444, 0 10px 3px #000;
 }
 
+.buskers_feed_recent_wrapper .neon b {
+	color: #fee;
+	text-shadow: 0 -40px 100px, 0 0 2px, 0 0 1em yellow, 0 0 0.5em yellow,
+		0 0 0.1em yellow, 0 10px 3px #000;
+}
+
 .feed-card {
 	position: relative;
 	height: 360px !important;
@@ -175,8 +181,14 @@
     height: 100%;
 }
 
+.buskers_feed_photo_container_recent {
+	display: flex;
+    width: 100%;
+    height: 100%;
+}
+
 .buskers_feed_photo {
-	height: 550px;
+	max-height: 550px;
 }
 
 .photo_card_wrapper {
@@ -236,10 +248,14 @@
 }
 
 .buskers_feed_photo .swiper-pagination {
-	margin-bottom: 80px;
+	margin-bottom: 30px;
 }
 
 .buskers_feed_photo_container .swiper-wrapper {
+	margin-bottom: 20px;
+}
+
+.buskers_feed_photo_container_recent .swiper-wrapper {
 	margin-bottom: 20px;
 }
 
@@ -257,3 +273,36 @@
 .photo_card_activity_name:hover {
 	color: tomato;
 } 
+
+.time .fa-calendar {
+	font-weight: 400;
+}
+
+.buskers_feed_recent_wrapper {
+	background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+	background-image: url(../../img/room5.jpg);
+	background-position-y: -205px;
+    background-size: 100%;
+    background-attachment: fixed;
+}
+
+.buskers_feed_list > span {
+	display: block;
+	color: white;
+	text-align: center;
+	font-size: 20px;
+}
+
+.link_artist_info {
+	color: white;
+	font-size: 20px;
+}
+
+.link_artist_info_wrapper {
+	display: flex;
+	justify-content: center;
+}
+
+.link_artist_info:hover {
+	color: tomato;
+}

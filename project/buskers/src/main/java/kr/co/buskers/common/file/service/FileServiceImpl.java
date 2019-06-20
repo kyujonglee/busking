@@ -184,7 +184,7 @@ public class FileServiceImpl implements FileService {
 		
 		mMapper.uploadProfile(member);
 	}
-
+ 
 	@Override
 	public String insertArtistPhoto(ArtistPhoto artistPhoto) throws Exception{
 		MultipartFile attach = artistPhoto.getFile();
