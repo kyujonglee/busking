@@ -65,7 +65,12 @@ public class MemberController {
 	public String loginform(HttpSession session, HttpServletRequest request) {
 		String referer = (String)request.getHeader("REFERER");
 		String url = referer.substring(referer.indexOf("/",referer.indexOf("buskers")));
-		prevUrl.setPrevUrl(url);
+		System.out.println(url);
+		if(url.equals("/main/member/signupform.do")) {
+			return "main/member/loginform";
+		} else {
+			prevUrl.setPrevUrl(url);
+		}
 		
 		if(session.getAttribute("user") != null) {
 			return "redirect:/index.jsp";
@@ -149,7 +154,7 @@ public class MemberController {
 		member.setPass(pass);
 
 		service.signupMember(member);
-		return UrlBasedViewResolver.REDIRECT_URL_PREFIX + "loginform.do";
+		return "redirect:loginform.do";
 	}
 	
 	// 아이디 중복 체크
@@ -299,14 +304,16 @@ public class MemberController {
 		Member member = (Member)session.getAttribute("user");
 		Member user = service.selectMember(member.getMemberNo());
 		followList.setMemberNo(user.getMemberNo());
-		followList.setBuskerNo(user.getBusker().getBuskerNo());
 		follow.setMemberNo(user.getMemberNo());
-		follow.setBuskerNo(user.getBusker().getBuskerNo());
+		if (user.getIsBusker().equals("y")) {
+			followList.setBuskerNo(user.getBusker().getBuskerNo());
+			follow.setBuskerNo(user.getBusker().getBuskerNo());			
+		}
 		Map<String, Object> resultList = service.followList(followList);
 		Map<String, Object> resultCount = service.followCount(follow);
 		model.addAttribute("followMember", resultList.get("followMember"));
-		model.addAttribute("followerMember", resultList.get("followerMember"));
 		model.addAttribute("followCount", resultCount.get("followCount"));
+		model.addAttribute("followerMember", resultList.get("followerMember"));
 		model.addAttribute("followerCount", resultCount.get("followerCount"));
 		model.addAttribute("agencyInfo", aService.selectAgencyByNo(member.getMemberNo()));
 	}
