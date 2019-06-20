@@ -85,7 +85,7 @@
 					<option value='title'>제목</option>
 					<option value='content'>내용</option>
 					<option value='nickName'>작성자</option>
-				</select> <input class="search_form_input" name="input"
+				</select> <input class="search_form_input" name="input" maxlength="50"
 					placeholder="검색어를 입력하세요." />
 
 				<button class="fas fa-search search_form_button">검색</button>

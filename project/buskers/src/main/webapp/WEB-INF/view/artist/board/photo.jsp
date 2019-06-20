@@ -216,13 +216,34 @@
 			f++;
 			i++; 
 			
-// 			if(height > maxHeight){
-// 				maxHeight = height;
-// 				console.log(maxHeight);
-// 			}
+			
+			
 			
 			if(f==length){
-				$(".photo_body_wrapper").css("height",height+"px");
+				console.log("길이가 f와 같을때");
+				i = $(".artist__photo__img").length;	// 이전 사진의 갯수
+				let maxHeight = 0;
+				for(let p=0; p<4 ;p++){
+					divLength = i-p;
+					k = divLength%4;								// 몇번째 세로라인인지 알수있음 (1,2,3,4 번째 시작중 몇번째라인인지)
+					t = Math.floor(divLength/4);					// 몇번째 가로라인인지 알수있음 바로 전 가로라인까지 바놉ㄱ해야함
+					height = 0;
+					for(let j=0; j<t ; j++){
+						height += $(".artist__photo__img:eq("+k+")").outerHeight();
+						k = k+4;
+					};
+// 					console.log(divLength+"번째 div height"+"="+height);
+// 					console.log("if전의 maxHeight값:"+maxHeight)
+					if(height > maxHeight){
+						maxHeight= height;
+// 						console.log(divLength+"번쨰최대값은"+maxHeight)
+					}
+				}
+				
+				
+				
+
+				$(".photo_body_wrapper").css("height",maxHeight+"px");
 				return;
 			}
 			list(length,result,f);
@@ -252,12 +273,13 @@
 	
 	$(".photo_body").scroll(function(){
 // 		console.log("wrapper의 height : "+$(".photo_body_wrapper").height())
-// 		console.log("wrapper의 scrollTop : "+$(".photo_body_wrapper").scrollTop())
 // 		console.log("body의 height : "+$(".photo_body").height())
 // 		console.log("body의 height :: "+$(".photo_body").scrollTop());
-// 		console.log($(".photo_body").height()-$(".photo_body").scrollTop());
-// 		console.log($(".photo_body").scrollTop()+$(".photo_body").height()-$(".photo_body_wrapper").height());
-		if($(".photo_body_wrapper").height()-$(".photo_body").scrollTop()<500){
+		
+// 		console.log("ss");
+		console.log($(".photo_body_wrapper").height()-($(".photo_body").height()+$(".photo_body").scrollTop()));
+		if($(".photo_body_wrapper").height()-($(".photo_body").height()+$(".photo_body").scrollTop()) < -17){
+// 		if(($(".photo_body").height()+$(".photo_body").scrollTop()) > $(".photo_body_wrapper").height()+10){
 			beginPage += 20;
 			showList(beginPage);
 		}

@@ -31,11 +31,13 @@
 	
 	<select id="selectSearchBoard" parameterType="searchPage" resultType="searchBoard" >
 		select c.*,f.path,f.system_name,f.group_no
-		  from (select title,content,reg_date,board_no, 'q' as 'board_type',group_no
+		  from (select title,content,reg_date,board_no,is_deleted, 'q' as 'board_type',group_no
   				  from tb_qnaboard
+  				 where is_deleted = 'n'
                  union all
-	    		select title,content,reg_date,board_no, 'f' as 'board_type',group_no
-			      from tb_freeboard ) as c
+	    		select title,content,reg_date,board_no,is_deleted, 'f' as 'board_type',group_no
+			      from tb_freeboard
+			     where is_deleted = 'n' ) as c
           left outer join (select group_no,system_name,path
                              from tb_file
 	   	                    group by group_no) as f	
@@ -48,11 +50,13 @@
 	
 	<select id="selectCountSearchBoard" parameterType="searchPage" resultType="int">
 		select count(*)
-		  from (select title,content,reg_date,board_no, 'q' as 'board_type',group_no
+		  from (select title,content,reg_date,board_no,is_deleted, 'q' as 'board_type',group_no
   				  from tb_qnaboard
+  				 where is_deleted = 'n'
                  union all
-	    		select title,content,reg_date,board_no, 'f' as 'board_type',group_no
-			      from tb_freeboard ) as c
+	    		select title,content,reg_date,board_no,is_deleted, 'f' as 'board_type',group_no
+			      from tb_freeboard
+			     where is_deleted = 'n' ) as c
           left outer join (select group_no,system_name,path
                              from tb_file
 	   	                    group by group_no) as f	
@@ -60,6 +64,7 @@
          where title like concat('%', #{input}, '%')
             or content like concat('%', #{input}, '%')
          order by reg_date desc
+         
 	</select>
 	
 	<!-- 버스커 검색 -->

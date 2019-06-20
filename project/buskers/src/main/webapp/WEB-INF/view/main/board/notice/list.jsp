@@ -77,7 +77,7 @@
 	      <div class="notice-board-main__view-column">
 	      	<input type="hidden" name="detail_boardNo" value="${list[0].boardNo}" id="detail_boardNo"/>
 	        <header class="notice-board__view-content-header">
-	          <div class="view-content__header-title">
+	          <div class="view-content__header-title" id="detail__title">
 				<!-- 첫글의 제목 --> 
 				<span id="detail__title">${list[0].title}</span>
 	          </div>
@@ -102,7 +102,7 @@
               	  	<span class="button_bottom">
 	                	<button class="notice_button reg_button" type="button" data-toggle="modal" data-target="#writeModal">글등록</button>
 	                	<button class="notice_button" type="button" id="notice_modify">수정</button>
-	                	<button class="notice_button" type="button">삭제</button>
+	                	<button class="notice_button" type="button" id="notice_delete">삭제</button>
 	                	<input type="hidden" id="board_no_button" data-bno="${list[0].boardNo}"/>
                 	</span>
                 </div>
@@ -140,17 +140,76 @@
 <script src="<c:url value='/resources/js/main/board/notice/list.js'/>"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
 <script>
+	
+	//삭제 이벤트
+	$(document).on("click","#notice_delete",function(){
+		let boardNo = $("#board_no_button").data("bno");
+		if(confirm("정말로 삭제하시겠습니까?")==true){
+			$.ajax({
+				data : {boardNo:boardNo},
+				url : "delete.do",
+			}).done(function(){
+				window.location.href="/buskers/main/board/notice/list.do";
+			})
+		}
+	})
 
-	//글수정
+	//글수정 버튼 클릭
 	$(document).on("click","#notice_modify",function(){
-		boardNo = $("#board_no_button").data("bno");
+		let boardNo = $("#board_no_button").data("bno");
+		
 		$.ajax({
 			data : {boardNo:boardNo},
 			url : "detail-ajax.do",
 		}).done(function(result){
-			$(".button_bottom").html('<button class="notice_button" type="button" id="notice_modify">수정완료</button>');
+			$(".button_bottom").html('<button class="notice_button" type="button" id="notice_modify_com">수정완료<input type="hidden" id="modify_board_no" value="'+result.board.boardNo+'"/></button>');
 			$("#detail__title").html("<input type='text' class='title__input' value='"+result.board.title+"'/> ");
 			$(".notice-board__view-content").html("<textarea type='text' class='content__input'>"+result.board.content+"</textarea>")
+		})
+	});
+	
+	//글수정 버튼완료 클릭
+	$(document).on("click","#notice_modify_com",function(){
+		let title = $(".title__input").val();
+		let content = $(".content__input").val(); 
+		let boardNo = $("#modify_board_no").val();
+		if(title.length > 26){
+			Swal.fire({
+				  title:"제목은 25자 이하로 입력해주세요.",
+				  type:'info',
+				  timer:2000	
+			});
+			return;
+		}
+		if(title == ""){
+			Swal.fire({
+				  title:"제목을 입력해주세요.",
+				  type:'info',
+				  timer:2000	
+			});
+			return;
+		}
+		if(content.length > 1000){
+			Swal.fire({
+				  title:"내용은 1000자 이하로 입력해주세요.",
+				  type:'info',
+				  timer:2000	
+			});
+			return;
+		}
+		if(content == ""){
+			Swal.fire({
+				  title:"내용을 입력해주세요.",
+				  type:'info',
+				  timer:2000	
+			});
+			return;
+		}
+		$.ajax({
+			data : {boardNo:boardNo,title:title,content:content},
+			url : "update.do",
+		}).done(function(){
+			window.location.href="/buskers/main/board/notice/list.do";
 		})
 	});
 	
@@ -158,6 +217,40 @@
 	$(document).on("click","#regBtn",function(){
 		title = $("#title").val();
 		content = $("#content").val();
+		//유효성검사
+		if(title.length > 26){
+			Swal.fire({
+				  title:"제목은 25자 이하로 입력해주세요.",
+				  type:'info',
+				  timer:2000	
+			});
+			return;
+		}
+		if(title == ""){
+			Swal.fire({
+				  title:"제목을 입력해주세요.",
+				  type:'info',
+				  timer:2000	
+			});
+			return;
+		}
+		if(content.length > 1000){
+			Swal.fire({
+				  title:"내용은 1000자 이하로 입력해주세요.",
+				  type:'info',
+				  timer:2000	
+			});
+			return;
+		}
+		if(content == ""){
+			Swal.fire({
+				  title:"내용을 입력해주세요.",
+				  type:'info',
+				  timer:2000	
+			});
+			return;
+		}
+	
 		$.ajax({
 			data : {title:title,content:content},
 			url : "insert.do",
@@ -237,6 +330,7 @@
 	//우측 공지사항 detail부분
 	$(document).on("click",".notice-board-main__view-item",function(){
 		let boardNo = $(this).find("#boardNo").val();
+		$("#board_no_button").data("bno",boardNo);
 		$.ajax({
 			type:"POST",
 			data:"boardNo="+boardNo,
@@ -279,10 +373,10 @@
 	// 마우스 왔을때 box 이동   
 	$(document).on("mouseenter",".notice-board-main__view-item",function(){
 		let index = $(this).position().top;
-		console.log("자식좌표0"+$(this).position().top);
+// 		console.log("자식좌표0"+$(this).position().top);
 		$(".mouse-active").stop().animate({top:index},300);
 	}).on("mouseleave",".notice-board-main__view-item",function(){
-		console.log(orgindex);
+// 		console.log(orgindex);
 		$(".mouse-active").stop().animate({top:orgindex},300);
 	});
 	
@@ -294,7 +388,8 @@
 	  function(){
 	    let sh = $("#notice_board_main__view-list").scrollTop() + $("#notice_board_main__view-list").height();
 	    let dh = $("#notice-board-main__view-items-wrapper").height();
-	    
+	  	console.log(sh);
+	  	console.log(dh);
 	    if(sh >= dh-10){
 	      //Ajax로 서버의 데이터를 가져온다.
 	      pageNo = pageNo+5;

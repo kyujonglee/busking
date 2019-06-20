@@ -21,12 +21,12 @@
 				</div>
 			</div>
 	
-			<form action="write.do" method="get" id="write_form">
+			<form action="write.do" method="get" id="write_form" onsubmit="return contentConfirm();">
 				<div class="board_head_line">
 					<span class="board_img_title">
 						<img src="<c:url value='/resources/img/boyoung.jpg'/>" />
 					</span> 
-					<input class="write_form_title" name="title" placeholder="제목을 입력하세요." />
+					<input class="write_form_title" name="title" placeholder="제목을 입력하세요."  maxlength="80"/>
 				</div>
 	
 				<textarea class="board_write_form" name="content" id="summernote"></textarea>
@@ -49,6 +49,22 @@
 	<div class="footer"></div>
 
     <script>
+    
+    function contentConfirm(){
+		if($(".write_form_title").val() == ""){
+			alert("게시글 제목을 입력해주세요.");
+			return false;
+		}
+		if($(".board_write_form").val() == ""){
+			alert("게시글 제목을 입력해주세요.");
+			return false;
+		}
+		content = $(".board_write_form").val();
+		if(content.length > 1000){
+			alert("게시글은 1000자 미만으로 입력해주세요.");
+			return false;
+		}
+	};
 
 	$(document).ready(function () {
    	   	$('#summernote').summernote({

@@ -71,8 +71,8 @@
 			</c:if>            
            	<c:forEach var="board" items="${list}" begin="0" end="4" >
            		<!-- 그룹no가 0일경우는 사진이 없는경우임 -->
-				
-           		<c:if test="${board.groupNo eq 0}">
+<%--            		<c:if test="${board.groupNo eq 0}"> --%>
+           		<c:if test="${empty board.path}">
            			<div class="search__board__detail_not_photo">
 		                <div class="search__board__board__wapper">
 		                    <div class="board__title">
@@ -87,7 +87,7 @@
 									<fmt:formatDate value="${board.regDate}" pattern="yyyy-MM-dd" />
 								</span>
                      		</div>
-		                    <div class="board__content">${board.content}</div>
+		                    <div class="board__content"><c:out value='${board.content.replaceAll("\\\<.*?\\\>","")}' /></div>
 		                    <div class="board__info">
                         		<c:if test="${board.boardType eq 'q' }">
 	                        		<a href= "<c:url value='/main/board/qna/list.do'/>" class="kind__board">질문게시판</a>
@@ -101,7 +101,8 @@
            		</c:if>
            	
             <!-- 사진있을 경우는  추가해줘야함..-->
-           		<c:if test="${board.groupNo ne 0 }">
+<%--            		<c:if test="${board.groupNo ne 0 }"> --%>
+           		<c:if test="${!empty board.path}">
 		            <div class="search__board__detail">
 		                <div class="board__detail__img__wrapper">
       	                    <a href="<c:url value='/main/board/qna/detail.do?boardNo=${board.boardNo}'/>">
