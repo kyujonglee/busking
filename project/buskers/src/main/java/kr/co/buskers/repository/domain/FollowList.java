@@ -10,8 +10,15 @@ public class FollowList {
 	private String profileImg;
 	private String profileImgPath;
 	private String nickName;
+	private int followerBuskerNo;
 	
 	
+	public int getFollowerBuskerNo() {
+		return followerBuskerNo;
+	}
+	public void setFollowerBuskerNo(int followerBuskerNo) {
+		this.followerBuskerNo = followerBuskerNo;
+	}
 	public int getNo() {
 		return no;
 	}

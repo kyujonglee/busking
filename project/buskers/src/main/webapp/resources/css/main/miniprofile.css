@@ -222,6 +222,9 @@
     padding-right: 12px;
     text-decoration-line: none;
 }
+.header-i10:hover {
+	color: rgb(255, 255, 255);
+}
 .header-j{
     border-bottom-color: rgba(0, 0, 0, 0.2);
     border-left-color: rgba(0, 0, 0, 0.2);
@@ -261,4 +264,8 @@
     padding-right: 12px;
     text-align: center;
     text-decoration-line: none;
+}
+.header-j2:hover, .header-j3:hover {
+	color: rgb(102, 102, 102);
+	cursor: pointer;
 }
