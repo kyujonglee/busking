@@ -186,14 +186,13 @@
 											</div>
 											<a class="title_header_activity_name"
 												href="<c:url value='/artist/main/main.do?buskerNo=${list.buskerNo}'/> ">${list.activityName}</a>
-											<c:if test="${fn:length(list.place) gt 9}">
+											<c:if test="${fn:length(list.place) gt 18}">
 												<i class="fas fa-map-marker-alt">&nbsp;${fn:substring(list.place, 0, 9)}..</i> &nbsp;&nbsp;
 						                	</c:if>
-											<c:if test="${fn:length(list.place) le 9}">
+											<c:if test="${fn:length(list.place) le 18}">
 												<i class="fas fa-map-marker-alt">&nbsp;${list.place}</i> &nbsp;&nbsp;
 						                	</c:if>
-											<i class="fas fa-calendar-day">&nbsp;<fmt:formatDate
-													value="${list.enrollDate}" pattern="MM-dd HH:mm" /></i>
+											
 										</div>
 										<div class="summary">
 											<p>${list.content}</p>
@@ -201,38 +200,7 @@
 									</div>
 									<div class="feed-card-footer">
 										<div class="time">
-											<a> <jsp:useBean id="currDate" class="java.util.Date" />
-
-												<fmt:formatDate var="currDay" value="${currDate}"
-													pattern="yyyy-MM-dd" /> <fmt:formatDate var="regDay"
-													value="${list.regDate}" pattern="yyyy-MM-dd" /> <fmt:parseNumber
-													var="currDateTime"
-													value="${currDate.time / (1000*60*60*24)}"
-													integerOnly="true"></fmt:parseNumber> <fmt:parseNumber
-													var="regDateTime"
-													value="${list.regDate.time / (1000*60*60*24)}"
-													integerOnly="true"></fmt:parseNumber> <fmt:formatDate
-													var="currTime" value="${currDate}" pattern="HHmm" /> <fmt:formatDate
-													var="regTime" value="${list.regDate}" pattern="HHmm" /> <fmt:parseNumber
-													value="${(currTime - regTime)}" integerOnly="true"
-													var="result"></fmt:parseNumber> <fmt:parseNumber
-													value="${(currTime - regTime) / 60}" integerOnly="true"
-													var="hours"></fmt:parseNumber> <fmt:parseNumber
-													value="${(currTime - regTime) % 60}" integerOnly="true"
-													var="minutes"></fmt:parseNumber> <c:if
-													test="${currDay eq regDay}">
-													<c:choose>
-														<c:when test="${result < 60}">
-										                	${result}분 전
-									                	</c:when>
-														<c:when test="${result >= 60}">
-										                	${hours}시간 ${minutes}분 전
-									                	</c:when>
-													</c:choose>
-												</c:if> <c:if test="${currDate ne regDate}">
-							                		${currDateTime - regDateTime}일 전
-							                	</c:if>
-											</a>
+											<i class="fas fa-calendar-day">&nbsp;<fmt:formatDate value="${list.enrollDate}" pattern="yyyy년 MM월 dd일 HH시 mm분" /></i>
 										</div>
 									</div>
 								</div>
