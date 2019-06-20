@@ -56,7 +56,7 @@
   height: 28vh;
   display : flex;
   flex-direction : column;
-  justify-content : center;
+/*   justify-content : center; */
 }
 
 .busker-side__buskers {

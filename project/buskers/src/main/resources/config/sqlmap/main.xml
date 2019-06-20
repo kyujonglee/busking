@@ -103,7 +103,8 @@
 		   and s.busker_no = b.busker_no
 		   and b.member_no = m.member_no
 		   and f.follow_status = 'y'
-		 order by s.reg_date desc;
+		 order by s.reg_date desc
+		 limit 15;
 	</select>
 	
 	<select id="selectFollowArtistPhotoList" parameterType="int" resultType="artistPhoto">
@@ -114,7 +115,8 @@
 		   and p.busker_no = b.busker_no
 		   and b.member_no = m.member_no
 		   and f.follow_status = 'y'
-		 order by p.reg_date desc;
+		 order by p.reg_date desc
+		 limit 10;
 	</select>
 	
 	<select id="selectFollowArtistVideoList" parameterType="int" resultType="video">
@@ -125,7 +127,8 @@
 		   and v.busker_no = b.busker_no
 		   and b.member_no = m.member_no
 		   and f.follow_status = 'y'
-		 order by v.reg_date desc;
+		 order by v.reg_date desc
+		 limit 10;
 	</select>
 	
 </mapper>
