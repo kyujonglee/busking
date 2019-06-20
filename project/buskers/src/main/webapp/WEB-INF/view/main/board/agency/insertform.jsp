@@ -96,7 +96,7 @@
                 <div class="agency-insert__item-column">
                   <span class="agency-insert__item-name">관심분야</span>
                 </div>
-                <c:forEach var="genre" items="genreList" varStatus="status">
+                <c:forEach var="genre" items="${genreList}" varStatus="status">
                    <div class="agency-insert__checkbox-item">
                   	<label for="agencyCheckbox${status.count}" style="cursor:pointer">
 	                  <input
@@ -106,7 +106,7 @@
 	                    value="${status.count}"
 	                    id="agencyCheckbox${status.count}"
 	                  />
-                      <span class="agency-insert__checkbox-title">${genre.title}</span>
+                      <span class="agency-insert__checkbox-title">${genre.name}</span>
                     </label>
                   </div>
                 </c:forEach>
