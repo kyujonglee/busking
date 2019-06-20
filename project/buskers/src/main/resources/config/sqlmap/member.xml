@@ -278,7 +278,7 @@
 	</select>
 	
 	<select id="selectFollowerMember" parameterType="int" resultType="followList">
-       select f.*, m.profile_img_path, m.profile_img, m.nick_name, b.activity_name
+       select f.*, m.profile_img_path, m.profile_img, m.nick_name, b.activity_name, b.busker_no as follower_busker_no
          from tb_member m
         inner join tb_follow f on f.member_no = m.member_no
           and f.busker_no = #{buskerNo}

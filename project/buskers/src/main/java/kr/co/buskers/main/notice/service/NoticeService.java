@@ -10,4 +10,6 @@ public interface NoticeService {
 	public Map<String, Object> listAjax(NoticePage noticePage);
 	public Map<String, Object> detail(int boardNo);
 	public void insert(NoticeBoard noticeboard);
+	public void update(NoticeBoard noticeBoard);
+	public void delete(NoticeBoard noticeBoard);
 }

@@ -17,7 +17,7 @@
   						<button type="button" class="img__update__button" id="profileBtn">프로필 사진 업데이트</button>
   					</div>
   					<div class="img__update__ment">
-  						<p>JPEG, PNG, GIF 중 하나여야 하며 10MB를 초과할 수 없습니다.</p>
+  						<p>JPEG, PNG, GIF 중 하나여야 하며 5MB를 초과할 수 없습니다.</p>
   					</div>
   				</div>
 	   		</div>

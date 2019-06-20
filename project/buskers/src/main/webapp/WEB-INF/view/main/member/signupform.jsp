@@ -5,9 +5,15 @@
 <script src="<c:url value='/resources/js/jquery-3.4.1.min.js'/>"></script>
 <title>회원가입</title>
 <script type="text/javascript">
+
 	let idck = 0;
 	let emailck = 0;
 	let nickNameck = 0;
+	
+	let getMail = RegExp(/^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/);
+ 	let getCheck = RegExp(/^[a-zA-Z0-9]{4,16}$/);
+ 	let getCheckPwd = RegExp(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/);
+  	let getName = RegExp(/^[가-힣]+$/);
 
 	// 아이디 중복 체크
 	$(function() {
@@ -16,6 +22,10 @@
 			
 			if(id.length < 1) {
 				alert("아이디를 입력해주시기 바랍니다.");
+			} else if(!getCheck.test($("#id").val())) {
+	      		alert("형식에 맞춰서 ID를 4자이상 입력해주세요!");
+	      		$("#id").val("");
+	            $("#id").focus();
 			} else {
 				$.ajax({
 					data: "id="+id,
@@ -42,6 +52,9 @@
 			
 			if(email.length < 1) {
 				alert("이메일을 입력해주시기 바랍니다.");
+			} else if(!getMail.test($("#email").val())) {
+	          	alert("이메일형식에 맞게 입력해주세요!")
+	          	$("#email").focus();
 			} else {
 				$.ajax({
 					data: "email="+email,
@@ -88,21 +101,6 @@
 	});
 	
 	function DosignUp() {
-		let getMail = RegExp(/^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/);
-     	let getCheck = RegExp(/^[a-zA-Z0-9]{4,16}$/);
-     	let getCheckPwd = RegExp(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/);
-      	let getName = RegExp(/^[가-힣]+$/);
-      	
-      	// 모듈화
-//       	function availability(ele, msg) {
-//       		if(ele.val() == "") {
-//       			alert(msg)
-//       			$(ele).focus()
-//       			return false;
-//       		}
-//       	}
-//       	$("#write_form").submit(availability($("#id"), "ID를 입력해주세요!!!!"))
-
       	
       	// 아이디 공백 확인
       	if($("#id").val() == "") {
@@ -111,7 +109,7 @@
       		return false;
       	}
       	
-      	// 이름 유효성 검사
+      	// 아이디 유효성 체크
       	if(!getCheck.test($("#id").val())) {
       		alert("형식에 맞춰서 ID를 4자이상 입력해주세요!");
       		$("#id").val("");

@@ -20,15 +20,15 @@
                	 </div>
         	    </div>
 			
-			<form action="update.do" method="post" id="update_form">
+			<form action="update.do" method="post" id="update_form" onsubmit="return contentConfirm();">
 	            <div class="board_head_line">
 	                <span class="board_img_title">
 	                	<img src="<c:url value='/resources/img/boyoung.jpg'/>"/>
 	                </span>
-	                <input class="write_form_title" name="title" value="${board.title}" />
+	                <input class="write_form_title" name="title" value="${board.title}"  maxlength="50"/>
 	            </div>
 	            
-	            <textarea class="board_write_form" name="content">${board.content}</textarea>
+	            <textarea class="board_write_form" name="content" maxlength="1000">${board.content}</textarea>
             	<input type="hidden" name="boardNo" value="${board.boardNo}" />
             
           	  <br><br><br>
@@ -44,6 +44,22 @@
 			</div>
 		</main>
     <script>
+    	
+    	function contentConfirm(){
+    		if($(".write_form_title").val() == ""){
+    			alert("게시글 제목을 입력해주세요.");
+    			return false;
+    		}
+    		if($(".board_write_form").val() == ""){
+    			alert("게시글 제목을 입력해주세요.");
+    			return false;
+    		}
+    		if($(".board_write_form").length > 1000){
+    			alert("게시글은 1000자 미만으로 입력해주세요.");
+    			return false;
+    		}
+    	};
+    
     	$(".fa-edit").click(function () {
    			if ( $(".write_form_title").val() == "" ) {
    				alert("제목을 입력하세요");
