@@ -36,7 +36,7 @@
     <div class="tab-pane-follow1" id="follower" style="display: none;" >
     	<ul class="follow__list">
 			<c:forEach var="list" items="${followerMember}">
-       			<li class="follow__list__items">
+       			<li class="follow__list__items" >
        				<div class="follow__cancel__div">
        				</div>
        				<c:if test="${list.activityName eq null}">
@@ -45,7 +45,7 @@
 	       				</a>
        				</c:if>
        				<c:if test="${list.activityName ne null}">
-	       				<a href="<c:url value='/artist/main/main.do?buskerNo='/>${list.buskerNo}">
+	       				<a href="<c:url value='/artist/main/main.do?buskerNo='/>${list.followerBuskerNo}">
 	       					<img class="follow__list__img" src="<c:url value='/file/download.do'/>?path=${list.profileImgPath}${list.profileImg}" title="프로필" onError="this.src='<c:url value='/resources/img/profile.png' />';" />
 	       				</a>
        				</c:if>
@@ -56,7 +56,7 @@
 	       					</a>
 	       				</c:if>
 	       				<c:if test="${list.activityName ne null}">
-	       					<a href="<c:url value='/artist/main/main.do?buskerNo='/>${list.buskerNo}">
+	       					<a href="<c:url value='/artist/main/main.do?buskerNo='/>${list.followerBuskerNo}">
 	       						<span>${list.activityName}</span>
 	       					</a>
 	       				</c:if>
