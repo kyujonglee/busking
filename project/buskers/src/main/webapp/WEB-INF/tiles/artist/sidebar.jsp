@@ -1,13 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<link href="https://fonts.googleapis.com/css?family=Playball&display=swap" rel="stylesheet">
 
 <aside class="busker-side">
 	<section class="busker-side__profile">
 		<header class="busker-side__header">
-			<a href="<c:url value='/artist/main/main.do'/>?buskerNo=${param.buskerNo}"
-				class="busker-side__header-title"> <i class="fas fa-street-view"></i>
-				Buskers
+			<a href="<c:url value='/artist/main/main.do'/>?buskerNo=${param.buskerNo}" class="busker-side__header-title">
+				Artist Channel
 			</a>
 			<div class="busker-side__info-btn">
 				<i class="fas fa-angle-right fa-2x"></i>

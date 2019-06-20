@@ -147,28 +147,30 @@
 		if ($("#temperature").val() === "") {
 			$("#temperature").val(0);
 		}
+		
+		/* 공연일정 등록 emit */
+		
+		let alarmBuskerNo = "${param.buskerNo}";
+		let alarmActivityName = "${sessionScope.user.busker.activityName}";
+		console.log(alarmActivityName);
+		$.ajax({
+			type : "POST",
+			url : "/buskers/artist/board/show-alarm-ajax.do",
+			data : {buskerNo : alarmBuskerNo},
+			success : function(result) {
+				console.log(result);
+				socket.emit(
+					"show-alarm", 
+					{
+						activityName: alarmActivityName,
+			            nickName: result
+	        		}
+				);
+			}
+		});
+		
 		return true;
 	}
-
-	/* 공연일정 등록 emit */
 	
-	let alarmBuskerNo = "${param.buskerNo}";
-	let alarmActivityName = "${sessionScope.user.busker.activityName}";
-	console.log(alarmActivityName);
-	$.ajax({
-		type : "POST",
-		url : "/buskers/artist/board/show-alarm-ajax.do",
-		data : {buskerNo : alarmBuskerNo},
-		success : function(result) {
-			console.log(result);
-			socket.emit(
-				"show-alarm", 
-				{
-					activityName: alarmActivityName,
-		            nickName: result
-        		}
-			);
-		}
-	});
 	
 </script>
