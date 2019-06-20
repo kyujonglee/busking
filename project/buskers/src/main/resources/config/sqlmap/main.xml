@@ -108,6 +108,7 @@
 		   and s.busker_no = b.busker_no
 		   and b.member_no = m.member_no
 		   and f.follow_status = 'y'
+		   and s.enroll_date > now()
 		 order by s.reg_date desc
 		 limit 15;
 	</select>

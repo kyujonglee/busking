@@ -128,11 +128,17 @@ public class MainServiceImpl implements MainService {
 	
 	public List<ArtistPhoto> selectFollowArtistPhotoList(HttpSession session) {
 		Member member = (Member)session.getAttribute("user");
+		if(member == null) {
+			return null;
+		}
 		return mapper.selectFollowArtistPhotoList(member.getMemberNo());
 	}
 	
 	public List<Video> selectFollowArtistVideoList(HttpSession session) {
 		Member member = (Member)session.getAttribute("user");
+		if(member == null) {
+			return null;
+		}
 		return mapper.selectFollowArtistVideoList(member.getMemberNo());
 	}
 

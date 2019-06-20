@@ -65,13 +65,17 @@ public class HeaderServiceImpl implements HeaderService {
 	
 	public int selectMessageCount(HttpSession session) {
 		Member member = (Member)session.getAttribute("user");
-		
+		if(member == null) {
+			return 0;
+		}
 		return mapper.selectMessageCount(member.getMemberNo());
 	}
 	
 	public int selectAlarmCount(HttpSession session) {
 		Member member = (Member)session.getAttribute("user");
-		
+		if(member == null) {
+			return 0;
+		}
 		return mapper.selectAlarmCount(member.getMemberNo());
 	}
 	

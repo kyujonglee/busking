@@ -18,9 +18,9 @@
 	padding-left: 10px;
 }
 
-.busker-side__menu-count {
-	background-color: var(- -color-orange);
-	color: var(- -color-white);
+.busker-side .busker-side__menu-count {
+	background-color: var(--color-orange);
+	color: var(--color-white);
 	padding: 3px;
 	border-radius: 5px;
 	font-size: 0.8em;
@@ -28,7 +28,7 @@
 }
 
 .busker-side__header-title i {
-	color: var(- -color-orange);
+	color: var(--color-orange);
 }
 
 .busker-side__profile .busker-side__header-title {

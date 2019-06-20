@@ -222,9 +222,10 @@
                				<a class="comment_id" id="go_login_form" href="<c:url value='/main/member/loginform.do'/>">로그인이 필요합니다.</a>
 	          			</c:if>
 	          			<c:if test="${sessionScope.user ne null}">
-		          			<span class="board_img_title">
-		              			<img src="<c:url value='/resources/img/boyoung.jpg'/>"/>
-		           			</span>
+		          			<img 
+	              				src="<c:url value='/file/download.do?path=${sessionScope.user.profileImgPath}${sessionScope.user.profileImg}'/>"
+	              				onError="this.src='<c:url value='/resources/img/profile.png' />';"
+	              			/>
 		       				<div class="comment_id">${sessionScope.user.nickName}</div>
 	           			</c:if>
        				</div>
@@ -254,27 +255,6 @@
 			</div>
 			</div>
 		</main>
-		
-		<footer id="mu-footer">
-		  <div class="container">
-		    <div class="row">
-		      <div class="col-md-12">
-		      <div class="mu-footer-area">
-		         <div class="mu-footer-social">
-		          <a href="#"><span class="fa fa-facebook"></span></a>
-		          <a href="#"><span class="fa fa-twitter"></span></a>
-		          <a href="#"><span class="fa fa-google-plus"></span></a>
-		          <a href="#"><span class="fa fa-linkedin"></span></a>
-		          <a href="#"><span class="fa fa-youtube"></span></a>
-		        </div>
-		        <div class="mu-footer-copyright">
-		          <p>Bukers</p><a>Copyright 2019. koo. hoo. kyu. hyun.</a>
-		        </div>         
-		      </div>
-		    </div>
-		    </div>
-		  </div>
-		</footer>
 		
 	<script>
 		toastr.options.positionClass = 'toast-bottom-right';

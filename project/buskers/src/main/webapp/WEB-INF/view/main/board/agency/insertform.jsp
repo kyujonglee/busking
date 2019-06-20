@@ -14,7 +14,7 @@
                 <div class="agency-insert__item-column">
                   <span class="agency-insert__item-name">업체명</span>
                 </div>
-                <input class="agency-insert__item-input" type="text" name="agencyName" id="agencyName" maxlength="40"/>
+                <input class="agency-insert__item-input" type="text" name="agencyName" id="agencyName" maxlength="30"/>
               </div>
               <div class="agency-insert__item">
                 <div class="agency-insert__item-column">
@@ -26,6 +26,7 @@
                   rows="7"
                   name="purpose"
                   id="purpose"
+                  maxlength="500"
                 ></textarea>
               </div>
               <div class="agency-insert__item">
@@ -89,7 +90,7 @@
                   type="text"
                   id="addrDetail"
                   name="detailAddr"
-                  maxlength="100"
+                  maxlength="50"
                 />
               </div>
               <div class="agency-insert__item">
