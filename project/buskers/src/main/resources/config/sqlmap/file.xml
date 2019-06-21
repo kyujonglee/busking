@@ -98,7 +98,8 @@
 		       time = #{time},
 		       path = #{path},
 		       sysname = #{sysname},
-		       name = #{name}
+		       name = #{name},
+		       img_path = #{imgPath}
 		 where file_no = #{fileNo}
 	</update>
 	

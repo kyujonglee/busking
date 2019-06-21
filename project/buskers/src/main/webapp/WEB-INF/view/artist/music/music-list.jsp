@@ -214,6 +214,7 @@ uri="http://java.sun.com/jsp/jstl/fmt"%>
 				$("#musicCount").text(musicCount);
 			});
 	        musicList(buskerNo);
+	        alertInfo("삭제되었습니다!");
         });
       });
       
@@ -236,6 +237,7 @@ uri="http://java.sun.com/jsp/jstl/fmt"%>
     		  $("#title").val(musicFile.title);
     		  $("#writer").val(musicFile.writer);
     		  $("#time").val(musicFile.time);
+    		  alertInfo("오른쪽 등록메뉴에서 수정해주시기 바랍니다.");
     	  })
     	  
        });
@@ -252,14 +254,12 @@ const update = buskerNo => {
     const writer = $("#writer").val();
     const time = $("#time").val();
     const attach = $("#attach").val();
-    const attach2 = $("#attach2").val();
     
     // 유효성 검사!
     if (isEmpty(title, "노래제목을 입력해주세요"))return;
     if (isEmpty(writer, "아티스트를 입력해주세요"))return;
     if (isEmpty(time, "연주시간을 입력해주세요"))return;
     if (isEmpty(attach, "파일을 선택해주세요"))return;
-    if (isEmpty(attach2, "파일을 선택해주세요"))return;
     
     $.ajax({
       url : "<c:url value='/file/music-update-ajax.do'/>",
@@ -280,6 +280,7 @@ const update = buskerNo => {
         $("#attach").val("");
         $("#attach2").val("");
         musicList(buskerNo);
+        alertInfo("수정되었습니다!");
     });
     
 };
@@ -287,6 +288,7 @@ const update = buskerNo => {
   
 const insert = buskerNo => {
   const formData = new FormData(document.getElementById("musicForm"));
+  console.log(formData);
   const title = $("#title").val();
   const writer = $("#writer").val();
   const time = $("#time").val();
@@ -310,8 +312,7 @@ const insert = buskerNo => {
   	$("#time").val("");
     $("#attach").val("");
     $("#attach2").val("");
- 	console.log($("#attach").val());
-  	
+ 	alertInfo("등록되었습니다!");
   	$.ajax({
 		url : "<c:url value='/artist/main/main-ajax.do'/>",
 		dateType : "json",
@@ -324,29 +325,28 @@ const insert = buskerNo => {
 }
 
 function init() {
-  musicList(${buskerNo});
+  musicList(${param.buskerNo});
 }
   init();
   
-  function isEmpty(ele, msg) {
-		if (ele === "") {
-			alertInfo(msg);
-			ele.focus();
-			return true;
-		}
-		return false;
-  }
+ function isEmpty(ele, msg) {
+	if (ele === "") {
+		alertInfo(msg);
+		return true;
+	}
+	return false;
+ }
   
   function alertInfo(msg,text){
-		// sweetalert 쓰기 
-		// isEmpty function 도 고치기
-		Swal.fire({
-		  title:msg,
-		  text:text,
-		  type:'info',
-		  timer:2000
-		});
-	}
+	// sweetalert 쓰기 
+	// isEmpty function 도 고치기
+	Swal.fire({
+	  title:msg,
+	  text:text,
+	  type:'info',
+	  timer:2000
+	});
+  }
   
   function chk_file_type(obj) {
 	  const file_kind = obj.value.lastIndexOf('.');

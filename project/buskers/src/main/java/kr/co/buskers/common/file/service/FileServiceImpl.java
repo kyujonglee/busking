@@ -122,6 +122,8 @@ public class FileServiceImpl implements FileService {
 	public void updateMusicByFileNo(MusicFile musicFile) throws Exception {
 		musicFile.setPath(musicUpload(musicFile));
 		musicFile.setImgPath(imgUpload(musicFile));
+		System.out.println("musicUpdate"+musicFile.getImgPath());
+		System.out.println(musicFile.getFileNo());
 		mapper.updateMusic(musicFile);
 	}
 	
@@ -141,11 +143,11 @@ public class FileServiceImpl implements FileService {
 		File file = new File(path);
 		if(!file.exists()) file.mkdirs();
 		
-		path = FILE_PATH+ "/"+ buskerName +"/"+musicFile.getSysname()+".mp3";
+		path = FILE_PATH+ "/"+ buskerName +"/"+musicFile.getSysname()+musicFile.getName();
 		attach.transferTo(new File(path));
 		
 		path = "/upload/" + buskerName;
-		path = path + "/" +musicFile.getSysname()+".mp3";
+		path = path + "/" +musicFile.getSysname()+musicFile.getName();
 		return path;
 	}
 	
@@ -157,14 +159,12 @@ public class FileServiceImpl implements FileService {
 		UUID uuid = UUID.randomUUID();
 		
 		musicFile.setSysname(uuid.toString());
-		musicFile.setName(attach2.getOriginalFilename());
 		
 		String buskerName = bMapper.selectBuskerByNo(musicFile.getBuskerNo()).getActivityName();
 		String path = FILE_PATH + "/" +buskerName;
 		File file = new File(path);
 		if(!file.exists()) file.mkdirs();
-		
-		path = FILE_PATH + "/"+ buskerName +"/"+musicFile.getSysname()+musicFile.getName();
+		path = FILE_PATH + "/"+ buskerName +"/"+musicFile.getSysname()+attach2.getOriginalFilename();
 		attach2.transferTo(new File(path));
 		return path;
 	}
