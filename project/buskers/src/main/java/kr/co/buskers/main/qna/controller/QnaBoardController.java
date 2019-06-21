@@ -1,7 +1,10 @@
 package kr.co.buskers.main.qna.controller;
 
+import java.io.IOException;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.UrlBasedViewResolver;
 
 import kr.co.buskers.main.qna.service.QnaService;
@@ -91,8 +95,8 @@ public class QnaBoardController {
 	}
 	
 	@RequestMapping("detail.do")
-	public void detail(int boardNo, Model model, HttpSession session) {
-		Map<String, Object> result = service.detail(boardNo, session);
+	public ModelAndView detail(int boardNo, Model model, HttpSession session,HttpServletResponse response,HttpServletRequest request) throws IOException {
+		Map<String, Object> result = service.detail(boardNo, session,request,response);
 		if (session.getAttribute("user") != null) {
 			model.addAttribute("like", result.get("like"));
 		}
@@ -101,6 +105,9 @@ public class QnaBoardController {
 		model.addAttribute("reply", result.get("reply"));
 		model.addAttribute("comment", result.get("comment"));
 		model.addAttribute("board", result.get("board"));
+		ModelAndView view = new ModelAndView();
+		view.setViewName("main/board/qna/detail");
+		return view;
 	}
 	
 	@RequestMapping("write-form.do")

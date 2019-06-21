@@ -184,7 +184,7 @@ public class FileServiceImpl implements FileService {
 		
 		mMapper.uploadProfile(member);
 	}
-
+ 
 	@Override
 	public String insertArtistPhoto(ArtistPhoto artistPhoto) throws Exception{
 		MultipartFile attach = artistPhoto.getFile();
@@ -208,10 +208,11 @@ public class FileServiceImpl implements FileService {
 
 	@Override
 	public String artistPhotoProfileUpdate(Busker busker, MultipartFile file) throws Exception{
-		System.out.println("사용자가 선택한 파일명 : "+file.getOriginalFilename());
-		
+//		System.out.println("사용자가 선택한 파일명 : "+file.getOriginalFilename());
 		UUID uuid = UUID.randomUUID();
-		String photoPath = FILE_PATH + "/artistProfilePhoto/"+ busker.getBuskerNo()+"/"+uuid.toString()+file.getOriginalFilename();
+		String fileName = file.getOriginalFilename();
+		String[] arr = fileName.split("\\.");
+		String photoPath = FILE_PATH + "/artistProfilePhoto/"+ busker.getBuskerNo()+"/"+uuid.toString()+"."+arr[arr.length-1];
 		busker.setPhoto(photoPath);
 		File Nfile = new File(photoPath);
 		if(!Nfile.exists()) Nfile.mkdirs();

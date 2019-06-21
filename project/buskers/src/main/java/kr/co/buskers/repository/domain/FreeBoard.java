@@ -19,9 +19,8 @@ public class FreeBoard {
 	private String isBusker;
 	private String isAgency;
 	private int buskerNo;
-	
-	private String profileImgPath;
 	private String profileImg;
+	private String profileImgPath;
 	
 	public String getProfileImgPath() {
 		return profileImgPath;
@@ -35,7 +34,7 @@ public class FreeBoard {
 	public void setProfileImg(String profileImg) {
 		this.profileImg = profileImg;
 	}
-	
+
 	public int getBuskerNo() {
 		return buskerNo;
 	}
