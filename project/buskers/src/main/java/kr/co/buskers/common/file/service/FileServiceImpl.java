@@ -39,6 +39,10 @@ public class FileServiceImpl implements FileService {
 //	private final String FILE_PATH = "/Users/kyujong/Documents/bit2019/upload";
 	private final String FILE_PATH = "C:/bit2019/upload";
 	
+	public FileServiceImpl() {
+//		String OS = System.getProperty("os.name").toLowerCase();
+	}
+	
 	public void deleteFile(int groupNo) throws Exception {
 		mapper.deleteFileAll(groupNo);
 	}
