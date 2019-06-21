@@ -37,10 +37,18 @@ public class FileServiceImpl implements FileService {
 	private ArtistBoardMapper aMapper;
 	
 //	private final String FILE_PATH = "/Users/kyujong/Documents/bit2019/upload";
-	private final String FILE_PATH = "C:/bit2019/upload";
+//	private final String FILE_PATH = "C:/bit2019/upload";
+	private String FILE_PATH;
+	
 	
 	public FileServiceImpl() {
-//		String OS = System.getProperty("os.name").toLowerCase();
+		String OS = System.getProperty("os.name").toLowerCase();
+		if(OS.indexOf("win") >= 0) {
+			FILE_PATH = "C:/bit2019/upload";
+		}
+		if(OS.indexOf("mac") >= 0) {
+			FILE_PATH = "/Users/kyujong/Documents/bit2019/upload";
+		}
 	}
 	
 	public void deleteFile(int groupNo) throws Exception {

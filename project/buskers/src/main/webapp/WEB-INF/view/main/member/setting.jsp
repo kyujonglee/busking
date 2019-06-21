@@ -345,11 +345,20 @@ $(".saveBtn").click(function (f) {
 	let emailck = 0;
 	let nickNameck = 0;
 	
+	$(".user__nickName").on("change paste keyup", function() {
+		nickNameck = 0;
+	});
+	
+	$(".user__email").on("change paste keyup", function() {
+		emailck = 0;
+	});
+	
 	$("#modify").click(function DosignUp() {
 		let getMail = RegExp(/^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/);
      	let getCheck = RegExp(/^[a-zA-Z0-9]{4,16}$/);
      	let getCheckPwd = RegExp(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/);
       	let getName = RegExp(/^[가-힣]+$/);
+      	let nickName = $(".user__nickName").val();
       	
       	
       	if("${sessionScope.user.isBusker}" == 'n'){
@@ -452,17 +461,14 @@ $(".saveBtn").click(function (f) {
 							  title:'정보가 변경되었습니다.',
 							  type:'success',
 							  timer:2000	
+						}).then(function () {
+				       		$("#user_info").submit();
+				        	return true;
 						});
-			       		$("#user_info").submit();
-			        	return true;
 			       	}
 			  }
 		})
 	})
-	
-	
-
-	
 	
 	// 이메일 중복 체크
 	$(function() {
@@ -528,9 +534,7 @@ $(".saveBtn").click(function (f) {
 	/* 닉네임 중복체크 */
 	$(function() {
 		$("#checkNickName").click(function() {
-			
 			let nickName = $(".user__nickName").val();
-			
 
 			/* 현재닉네임과 같은경우 */
 			if(nickName==userNickName){
@@ -544,7 +548,6 @@ $(".saveBtn").click(function (f) {
 			
 			}			
 			
-			
 			if(nickName.length < 1) {
 				Swal.fire({
 					  title:'닉네임을 입력해 주세요',
@@ -556,7 +559,7 @@ $(".saveBtn").click(function (f) {
 					data: "nickName="+nickName,
 					url: "checkNickName.do",
 					success: function(result) {
-						if (result == 0) {
+						if (result == 0 || nickName===userNickName) {
 							Swal.fire({
 								  title:'사용가능한 닉네임 입니다',
 								  type:'info',
@@ -578,39 +581,26 @@ $(".saveBtn").click(function (f) {
 		});
 	});
 	
-/*  버스커정보 변경  */
+	/*  버스커정보 변경  */
   	let buskeractivityName = "${sessionScope.user.busker.activityName}";
-    let activityName = $(".busker__activityName").val();
 	let activityNameck = 0;
 	const updateBusker = document.updateBusker;
 	const phone = updateBusker.phone;
 	const buskerCheckbox = updateBusker.buskerCheckbox;
 	
+	$("#changeActivityName").on("change paste keyup", function() {
+		activityNameck = 0;
+	});
 	
-	$("#modify_busker").click(function DosignUpBusker() {
+	$("#modify_busker").click(function () {
+		let activityName = $(".busker__activityName").val();
         
         /* 활동명 공백 확인 */
-        if($("#activityName").val() == ""){
+        if($("#changeActivityName").val() == ""){
           	alert("활동명을 입력해주세요!");
-          	$("#activityName").focus();
+          	$("#changeActivityName").focus();
           	return false;
         }
-        
-        /* 활동명 중복 확인 */
-        $.ajax({
-			data: "activityName="+activityName,
-			url: "checkActivityName.do",
-			success: function(result) {
-				if (result == 1) {
-					Swal.fire({
-						  title:'존재하는 활동명입니다.',
-						  type:'warning',
-						  timer:2000	
-					});
-					return false;
-				}
-			}
-		});
         
         /* 폰번호 공백 확인 */
         if($("#phone").val() == "") {
@@ -630,7 +620,6 @@ $(".saveBtn").click(function (f) {
 			alert("관심분야를 1가지이상 선택하세요.");
 			return false;
 		}
-        
         
         Swal.fire({
 			  title: '버스커정보를 변경하시겠습니까?',
@@ -654,9 +643,10 @@ $(".saveBtn").click(function (f) {
 							  title:'정보가 변경되었습니다.',
 							  type:'success',
 							  timer:2000	
+						}).then(function () {
+				       		$("#updateBusker").submit();
+				        	return true;
 						});
-			       		$("#updateBusker").submit();
-			        	return true;
 			       	}
 			  }
 		})
@@ -685,10 +675,10 @@ $(".saveBtn").click(function (f) {
 		return true;
 	}
 	
-	
 	/* 활동명 중복 체크 */
 	$(function() {
-		$("#checkActivityName").click(function() {
+		$("#updateActivityName").click(function() {
+			let activityName = $(".busker__activityName").val();
 			
 			/* 현재활동명과 같은경우 */ 
 			if(activityName == buskeractivityName){
@@ -699,7 +689,6 @@ $(".saveBtn").click(function (f) {
 				});
 				activityNameck = 1;
 				return;
-			
 			}
 			
 			/* 활동명 공백일때 */
@@ -738,7 +727,7 @@ $(".saveBtn").click(function (f) {
 				});
 			}
 		});
-	})
+	});
 	
 	
  

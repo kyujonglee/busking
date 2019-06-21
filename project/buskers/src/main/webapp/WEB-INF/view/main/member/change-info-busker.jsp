@@ -21,8 +21,8 @@
 			<div class="info_detail_wrapper">
 				<div class="menu_title">활동명</div>
 				<div>
-					<input type="text" class="busker__activityName" id="activityName" name="activityName" value="${sessionScope.user.busker.activityName }">
-					<button id="checkActivityName" type="button" class="info_change_button">중복확인</button>
+					<input type="text" class="busker__activityName" id="changeActivityName" name="activityName" value="${sessionScope.user.busker.activityName }">
+					<button id="updateActivityName" type="button" class="info_change_button">중복확인</button>
 				</div>
 			</div>
 			<hr>

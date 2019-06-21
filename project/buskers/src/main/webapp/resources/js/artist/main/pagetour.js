@@ -62,6 +62,12 @@
 	          templateData: {
 	            content: '버스커에 대한 여러 정보를 한 눈에 볼 수 있습니다.'
 	          }
+          },
+          {
+	          el: '#chat-icon',
+	          templateData: {
+	            content: '버스커 채널에 들어와 있는 회원들과 채팅을 할 수 있습니다.'
+	          }
           }
         ]
       });
