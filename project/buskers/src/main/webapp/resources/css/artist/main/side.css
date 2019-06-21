@@ -18,9 +18,9 @@
 	padding-left: 10px;
 }
 
-.busker-side__menu-count {
-	background-color: var(- -color-orange);
-	color: var(- -color-white);
+.busker-side .busker-side__menu-count {
+	background-color: var(--color-orange);
+	color: var(--color-white);
 	padding: 3px;
 	border-radius: 5px;
 	font-size: 0.8em;
@@ -28,7 +28,7 @@
 }
 
 .busker-side__header-title i {
-	color: var(- -color-orange);
+	color: var(--color-orange);
 }
 
 .busker-side__profile .busker-side__header-title {
@@ -53,10 +53,10 @@
 }
 
 .busker-side__menu {
-	height: 28vh;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
+  height: 28vh;
+  display : flex;
+  flex-direction : column;
+/*   justify-content : center; */
 }
 
 .busker-side__buskers {
@@ -245,8 +245,9 @@
 }
 
 .busker-side__settings {
-	color: rgba(0, 0, 0, 0.5);
-	padding-left: 20px;
-	display: flex;
-	margin: 10px 0px;
+	color : rgba(0,0,0,0.5);
+	padding-left : 20px;
+	display : flex;
+	align-items : center;
+	margin : 10px 0px;
 }

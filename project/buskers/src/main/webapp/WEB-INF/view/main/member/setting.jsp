@@ -106,7 +106,7 @@
 	</div>
 	
 	<!-- The Modal -->
-    <div id="myModal" class="modal">
+    <div id="myModal" class="modal profileZIndex">
 	    <!-- Modal content -->
 	    <div class="modal-content">
 		    <div class="modal-header">
@@ -279,13 +279,17 @@ $(".saveBtn").click(function (f) {
 		let file = $("#profile__img")[0].files[0];
 		let uriPath = "/buskers/main/board/member/";
 		let memberNo = "${sessionScope.user.memberNo}";
+		let id = "${sessionScope.user.id}";
 		let profileImg = "${sessionScope.user.profileImg}";
+		let profileImgPath = "${sessionScope.user.profileImgPath}";
 		
 		let formData = new FormData();
 		formData.append("file", file);
 		formData.append("uriPath", uriPath);
 		formData.append("memberNo", memberNo);
+		formData.append("id", id);
 		formData.append("profileImg", profileImg);
+		formData.append("profileImgPath", profileImgPath);
 		$.ajax({
 			type: 'POST',
 			url: "profileUpload.do",
@@ -576,6 +580,7 @@ $(".saveBtn").click(function (f) {
 	
 /*  버스커정보 변경  */
   	let buskeractivityName = "${sessionScope.user.busker.activityName}";
+    let activityName = $(".busker__activityName").val();
 	let activityNameck = 0;
 	const updateBusker = document.updateBusker;
 	const phone = updateBusker.phone;
@@ -590,6 +595,22 @@ $(".saveBtn").click(function (f) {
           	$("#activityName").focus();
           	return false;
         }
+        
+        /* 활동명 중복 확인 */
+        $.ajax({
+			data: "activityName="+activityName,
+			url: "checkActivityName.do",
+			success: function(result) {
+				if (result == 1) {
+					Swal.fire({
+						  title:'존재하는 활동명입니다.',
+						  type:'warning',
+						  timer:2000	
+					});
+					return false;
+				}
+			}
+		});
         
         /* 폰번호 공백 확인 */
         if($("#phone").val() == "") {
@@ -628,7 +649,7 @@ $(".saveBtn").click(function (f) {
 							  timer:2000	
 						});
 			       		return false;
-			       	}  else {
+			       	} else {
 			       		Swal.fire({
 							  title:'정보가 변경되었습니다.',
 							  type:'success',
@@ -668,7 +689,6 @@ $(".saveBtn").click(function (f) {
 	/* 활동명 중복 체크 */
 	$(function() {
 		$("#checkActivityName").click(function() {
-			let activityName = $(".busker__activityName").val();
 			
 			/* 현재활동명과 같은경우 */ 
 			if(activityName == buskeractivityName){

@@ -15,6 +15,21 @@ public class QnaBoardComment {
 	private String nickName;
 	private String likeStatus;
 	private String disLikeStatus;
+	private String profileImgPath;
+	private String profileImg;
+	
+	public String getProfileImgPath() {
+		return profileImgPath;
+	}
+	public void setProfileImgPath(String profileImgPath) {
+		this.profileImgPath = profileImgPath;
+	}
+	public String getProfileImg() {
+		return profileImg;
+	}
+	public void setProfileImg(String profileImg) {
+		this.profileImg = profileImg;
+	}
 	
 	public String getLikeStatus() {
 		return likeStatus;

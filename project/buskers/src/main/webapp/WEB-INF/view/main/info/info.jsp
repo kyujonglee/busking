@@ -333,23 +333,7 @@ uri="http://java.sun.com/jsp/jstl/fmt"%>
 		  url : "<c:url value='/main/info/video-list-ajax.do'/>",
 		  dataType : "json"
 	  }).done((videoList)=>{
-		  let html = "";
-		  for(let i = 0; i<videoList.length ; i++){
-			 	html +=		
-		            `
-		          <div class="swiper-slide">
-		            <iframe
-		              width="540px"
-		              height="360px"
-		              src="`+videoList[i].url+`"
-		              frameborder="0"
-		              allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-		              allowfullscreen
-		            ></iframe>
-		          </div>
-				 `;			  
-		  }
-		  $(".swiper-wrapper").html(html);
+		  $(".swiper-wrapper").html(video(videoList));
 		  swiper.update();
 		  /* swiper.updateSlides(); */
 	  });
@@ -362,8 +346,19 @@ uri="http://java.sun.com/jsp/jstl/fmt"%>
 		  dataType : "json",
 		  data : "buskerNo="+no
 	  }).done((videoList)=>{
-		  
-		  let html = "";
+		  console.log("click");
+		  console.log(video(videoList));
+		  $(".swiper-wrapper").html(video(videoList));
+		  swiper.update();
+		  swiper.slideTo(0);
+	  })
+  });
+  
+  function video(videoList){
+	  let html = "";
+	  if(videoList.length === 0){
+		html = "<div class='busker-content__empty'>버스커가 올린 영상이 존재하지 않습니다.</div>";  
+	  }else {
 		  for(let i = 0; i<videoList.length ; i++){
 			 	html +=		
 		            `
@@ -379,10 +374,8 @@ uri="http://java.sun.com/jsp/jstl/fmt"%>
 		          </div>
 				 `;			  
 		  }
-		  $(".swiper-wrapper").html(html);
-		  swiper.update();
-		  swiper.slideTo(0);
-	  })
-  });
+	  }
+	  return html;
+  }
   
 </script>

@@ -18,9 +18,11 @@
 	<form class="write_form_submit_wrapper" action="write.do">
 		<div>받는 사람</div>
 		<input type="hidden" class="form-control" name="senderMemberNo" value="${sessionScope.user.memberNo}" placeholder="닉네임을 입력하세요">
-		<i class="fas fa-times confirm-nickname-icon-x"></i>
-		<i class="fas fa-check confirm-nickname-icon-o"></i>
-		<input type="text" id="nickName" class="form-control" name="nickName" placeholder="닉네임을 입력하세요"></input>
+		<div class="message__nickname">
+			<input type="text" id="nickName" class="form-control" name="nickName" placeholder="닉네임을 입력하세요"></input>
+			<i class="fas fa-times confirm-nickname-icon-x"></i>
+			<i class="fas fa-check confirm-nickname-icon-o"></i>
+		</div>
 		<br>
 		<div>제목</div>
 		<input type="text" class="form-control" name="title" id="message_title" placeholder="제목을 입력하세요">

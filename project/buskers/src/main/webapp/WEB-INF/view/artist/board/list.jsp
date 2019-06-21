@@ -20,9 +20,9 @@
 <script>
 	// 위에서 지정됨.
 	/* const buskerNo = ${buskerNo}; */
-	const no = ${(sessionScope.user eq null) ? 0 : sessionScope.user.busker.buskerNo};
+	const no = ${(sessionScope.user eq null) ? 0 : (sessionScope.user.busker eq null)? 0 : sessionScope.user.busker.buskerNo};
 	function enrollForm(){
-		if(no === buskerNo){
+		if(no === ${param.buskerNo}){
 			return true;
 		}else {
 			alert('버스커만 공연일정을 등록할 수 있습니다.');
