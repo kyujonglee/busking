@@ -347,63 +347,74 @@ $(".saveBtn").click(function (f) {
      	let getCheckPwd = RegExp(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/);
       	let getName = RegExp(/^[가-힣]+$/);
       	
+      	
+      	if("${sessionScope.user.isBusker}" == 'n'){
       	// 비밀번호 공백 확인
-      	if($("#pass").val() == "") {
-      		Swal.fire({
-				  title:'비밀번호를 입력해 주세요',
-				  type:'warning',
-				  timer:2000	
-			});
-      		return false;
+          	if($("#pass").val() == "") {
+          		Swal.fire({
+    				  title:'비밀번호를 입력해 주세요',
+    				  type:'warning',
+    				  timer:2000	
+    			});
+          		return false;
+          	}
+          	
+          	// 비밀번호 유효성 검사
+          	if(!getCheckPwd.test($("#pass").val())) {
+    	      	Swal.fire({
+    				  title:'비밀번호는 특수문자를 제외한 영문,숫자를 혼용하여 8~16자를 입력해주세요!',
+    				  type:'warning',
+    				  timer:2000	
+    			});
+    	      	$("#pass").val("");
+    	      	$("#pass").focus();
+    	      	return false;
+          	}	
+          	
+         	// 비밀번호체크 공백 확인
+          	if($("#checkpass").val() == "") {
+          		Swal.fire({
+    				  title:'비밀번호확인을 입력해 주세요',
+    				  type:'warning',
+    				  timer:2000	
+    			});
+          		return false;
+          	}
+         
+            // 비밀번호와 비밀번호체크가 같은지 검사
+            if($("#pass").val() != ($("#checkpass").val())){ 
+            	Swal.fire({
+    				  title:'비밀번호가 같지 않습니다.',
+    				  type:'warning',
+    				  timer:2000	
+    			});
+    	        $("#pass").val("");
+    	        $("#checkpass").val("");
+    	        $("#pass").focus();
+            	return false;
+            }
       	}
-      	
-      	
-      	// 비밀번호 유효성 검사
-      	if(!getCheckPwd.test($("#pass").val())) {
-	      	Swal.fire({
-				  title:'비밀번호는 특수문자를 제외한 영문,숫자를 혼용하여 8~16자를 입력해주세요!',
-				  type:'warning',
-				  timer:2000	
-			});
-	      	$("#pass").val("");
-	      	$("#pass").focus();
-	      	return false;
-      	}	
-      	
-     	// 비밀번호체크 공백 확인
-      	if($("#checkpass").val() == "") {
-      		Swal.fire({
-				  title:'비밀번호확인을 입력해 주세요',
-				  type:'warning',
-				  timer:2000	
-			});
-      		return false;
-      	}
-     
-        // 비밀번호와 비밀번호체크가 같은지 검사
-        if($("#pass").val() != ($("#checkpass").val())){ 
-        	Swal.fire({
-				  title:'비밀번호가 같지 않습니다.',
-				  type:'warning',
-				  timer:2000	
-			});
-	        $("#pass").val("");
-	        $("#checkpass").val("");
-	        $("#pass").focus();
-        	return false;
-        }
-        
+      	    
         // 이메일 공백 확인
-        if($("#email").val() == ""){
-          	alert("이메일을 입력해주세요!");
-          	$("#email").focus();
+        if($(".user__email").val() == ""){
+        	Swal.fire({
+				  title:'이메일을 입력해 주세요..',
+				  type:'warning',
+				  timer:2000	
+			});
+          	$(".user__email").focus();
           	return false;
         }
              
         // 이메일 유효성 검사
         if(!getMail.test($(".user__email").val())){
+        	Swal.fire({
+				  title:'이메일형식에 맞게 입력해 주세요.',
+				  type:'warning',
+				  timer:2000	
+			});
           	alert("이메일형식에 맞게 입력해주세요!")
-          	$("#email").focus();
+          	$(".user__email").focus();
           	return false;
         }
         
@@ -453,7 +464,14 @@ $(".saveBtn").click(function (f) {
 	$(function() {
 		$("#checkEmail").click(function() {
 			let email = $(".user__email").val();
-			
+			if(email == ""){
+				Swal.fire({
+					  title:'이메일을 입력해주세요',
+					  type:'info',
+					  timer:2000	
+				});
+			return
+			}
 			/* 현재이메일과 같은경우 */ 
 			if(email==userEmail){
 				Swal.fire({
@@ -463,7 +481,6 @@ $(".saveBtn").click(function (f) {
 				});
 				emailck = 1;
 				return;
-			
 			}
 			
 			//이메일 공백일때
@@ -525,7 +542,11 @@ $(".saveBtn").click(function (f) {
 			
 			
 			if(nickName.length < 1) {
-				alert("닉네임을 입력해주시기 바랍니다.");
+				Swal.fire({
+					  title:'닉네임을 입력해 주세요',
+					  type:'info',
+					  timer:2000	
+				});
 			} else {
 				$.ajax({
 					data: "nickName="+nickName,

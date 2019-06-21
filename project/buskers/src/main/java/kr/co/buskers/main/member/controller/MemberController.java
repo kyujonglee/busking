@@ -405,9 +405,13 @@ public class MemberController {
 	// 회원 정보 업데이트
 	@RequestMapping("userInfoUpdate.do")
 	public String memberUpdate(Member member,HttpSession session) {
-		String inputPass = member.getPass();
-		String pass = passEncoder.encode(inputPass);
-		member.setPass(pass);
+		try {
+			String inputPass = member.getPass();
+			String pass = passEncoder.encode(inputPass);
+			member.setPass(pass);
+		}catch(Exception e) {
+			
+		}
 		service.updateMember(member);
 		session.removeAttribute("user");
 		Member user = service.selectMember(member.getMemberNo());
