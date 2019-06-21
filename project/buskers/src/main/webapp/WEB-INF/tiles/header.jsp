@@ -413,7 +413,11 @@
 			}
 		});
 	}
-	alarm();
+	
+	if ("${sessionScope.user}" != "") {
+		alarm();
+	}
+		
 	
 	$(".busker_alarm_list_wrapper").scroll(function () {
 		if ( $(".busker_alarm_list").height() - $(".busker_alarm_list_wrapper").scrollTop() - $(".busker_alarm_list_wrapper").height() <= 0 ) {
