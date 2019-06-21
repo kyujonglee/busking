@@ -164,6 +164,7 @@
 		select *
 		  from tb_follow
 		 where member_no = #{memberNo}
+		   and follow_status = 'y'
 	</select>
 	
 </mapper>
