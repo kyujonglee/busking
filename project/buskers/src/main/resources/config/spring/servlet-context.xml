@@ -111,12 +111,21 @@
 			<mvc:mapping path="/main/board/agency/**.do"/>
 			<mvc:mapping path="/artist/board/**.do"/>
 			<mvc:mapping path="/main/member/setting.do"/>
+			<mvc:mapping path="/artist/board/video-regist-ajax.do"/>
+			<mvc:mapping path="/artist/board/video-delete-ajax.do"/>
+			<mvc:mapping path="/artist/board/delete-photo.do"/>
+			<mvc:mapping path="/file/artist-photo-insert.do"/>
+			<mvc:mapping path="/main/header/message/**.do"/>
+			
+			
 <!--  			<mvc:mapping path="/main/**"/> -->
 <!-- 			<mvc:exclude-mapping path="/main/member/**"/> -->
 			<mvc:exclude-mapping path="/main/board/agency/list.do"/>
 			<mvc:exclude-mapping path="/artist/board/list.do"/>
 			<mvc:exclude-mapping path="/artist/board/detail.do"/>
 			<mvc:exclude-mapping path="/artist/board/*ajax.do"/>
+			
+			
 			<bean class="kr.co.buskers.main.member.util.LoginInterceptor" />
 		</mvc:interceptor>
 	</mvc:interceptors>
