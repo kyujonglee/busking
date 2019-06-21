@@ -287,6 +287,7 @@
 }
 
 .buskers_feed_list > span {
+	font-family: 'Nanum Gothic', sans-serif;
 	display: block;
 	color: white;
 	text-align: center;
@@ -294,6 +295,7 @@
 }
 
 .link_artist_info {
+	font-family: 'Nanum Gothic', sans-serif;
 	color: white;
 	font-size: 20px;
 }
@@ -305,4 +307,11 @@
 
 .link_artist_info:hover {
 	color: tomato;
+}
+
+.buskers_feed_not_login {
+	color: white;
+    text-align: center;
+    font-size: 20px;
+    font-family: 'Nanum Gothic', sans-serif;
 }

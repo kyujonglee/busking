@@ -284,6 +284,9 @@
 		</div>
 
 		<div class="buskers_feed_list">
+			<c:if test="${sessionScope.user eq null}">
+				<div class="buskers_feed_not_login">로그인하여 아티스트를 팔로우 하고, 새로운 아티스트 소식을 만나보세요.</div>
+			</c:if>
 			<c:if test="${sessionScope.user ne null}">
 				<c:if test="${fn:length(followArtist) eq 0}">
 					<span>팔로우한 아티스트가 없습니다.</span><br>
