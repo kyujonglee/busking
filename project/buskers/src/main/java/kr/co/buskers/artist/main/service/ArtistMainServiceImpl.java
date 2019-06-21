@@ -39,10 +39,10 @@ public class ArtistMainServiceImpl implements ArtistMainService {
 		boardMap.put("musicCount", fMapper.countMusic(buskerNo) );
 		boardMap.put("videoCount", boardMapper.countVideo(buskerNo));
 		boardMap.put("busker",memberMapper.selectBusker(buskerNo));
-		System.out.println(boardMapper.countPhoto(buskerNo));
+//		System.out.println(boardMapper.countPhoto(buskerNo));
 		boardMap.put("photoCount",boardMapper.countPhoto(buskerNo));
 		try {
-			System.out.println(boardMapper.selectSocialUrl(buskerNo).getFaceBookUrl());
+//			System.out.println(boardMapper.selectSocialUrl(buskerNo).getFaceBookUrl());
 			boardMap.put("socialUrl",boardMapper.selectSocialUrl(buskerNo));
 		}catch(Exception e) {
 			SocialUrl sUrl = new SocialUrl();

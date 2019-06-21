@@ -4,6 +4,12 @@ const phone = insertBusker.phone;
 const buskerCheckbox = insertBusker.buskerCheckbox;
 let activityNameck = 0;
 	
+$("#activityName").on("change paste keyup", function() {
+	activityNameck = 0;
+});
+	
+
+
 	//활동명 중복 체크
 	$(function() {
 		$("#checkActivityName").click(function() {

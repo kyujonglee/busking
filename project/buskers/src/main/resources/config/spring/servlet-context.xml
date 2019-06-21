@@ -115,14 +115,17 @@
 			<mvc:mapping path="/main/board/free/write-form.do"/>
 			<mvc:mapping path="/main/board/qna/update-form.do"/>
 			<mvc:mapping path="/main/board/free/update-form.do"/>
-			
-<!-- 			<mvc:mapping path="/main/header/message/**.do"/> -->
+
+
+			<mvc:mapping path="/main/header/message/list.do"/>
+			<mvc:mapping path="/main/header/message/write-form.do"/>
 
 			
 <!--  			<mvc:mapping path="/main/**"/> -->
 <!-- 			<mvc:exclude-mapping path="/main/member/**"/> -->
 			
 			<mvc:exclude-mapping path="/main/board/agency/list.do"/>
+			<mvc:exclude-mapping path="/main/board/agency/jusopopup.do"/>
 			<mvc:exclude-mapping path="/artist/board/list.do"/>
 			<mvc:exclude-mapping path="/artist/board/detail.do"/>
 			

@@ -17,10 +17,10 @@
             </div>
             <form class="email-login" method="post">
                 <div class="u-form-group">
-                    <input type="text" name="id" id="id" placeholder="Id"/>
+                    <input type="text" name="id" id="id" placeholder="Id" maxlength="16"/>
                 </div>
                 <div class="u-form-group">
-                    <input type="password" name="pass" id="pass" placeholder="Password"/>
+                    <input type="password" name="pass" id="pass" placeholder="Password" maxlength="16"/>
                 </div>
                 <div class="u-form-group">
                     <button id="login">로그인</button>
