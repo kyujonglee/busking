@@ -144,14 +144,34 @@
 	//삭제 이벤트
 	$(document).on("click","#notice_delete",function(){
 		let boardNo = $("#board_no_button").data("bno");
-		if(confirm("정말로 삭제하시겠습니까?")==true){
-			$.ajax({
-				data : {boardNo:boardNo},
-				url : "delete.do",
-			}).done(function(){
-				window.location.href="/buskers/main/board/notice/list.do";
-			})
-		}
+		
+		Swal.fire({
+			  title: '정말 삭제하시겠습니까?',
+			  type: 'info',
+			  showCancelButton: true,
+			  confirmButtonColor: '#3085d6',
+			  cancelButtonColor: '#d33',
+			  cancelButtonText: '아니오',
+			  confirmButtonText: '예',
+		}).then((result) => {
+			if (result.value) {
+				$.ajax({
+					data : {boardNo:boardNo},
+					url : "delete.do",
+				}).done(function(){
+					window.location.href="/buskers/main/board/notice/list.do";
+				})
+			}
+		})
+		
+				
+		
+		
+		
+		
+// 		if(confirm("정말로 삭제하시겠습니까?")==true){
+			
+// 		}
 	})
 
 	//글수정 버튼 클릭
@@ -209,7 +229,28 @@
 			data : {boardNo:boardNo,title:title,content:content},
 			url : "update.do",
 		}).done(function(){
-			window.location.href="/buskers/main/board/notice/list.do";
+			let htr = "";
+			htr += '<button class="notice_button reg_button" type="button" data-toggle="modal" data-target="#writeModal">글등록</button>';
+			htr += '<button class="notice_button" type="button" id="notice_modify">수정</button>';
+			htr += '<button class="notice_button" type="button" id="notice_delete">삭제</button>';
+			htr += '<input type="hidden" id="board_no_button" data-bno="'+boardNo+'"/>'
+			$(".button_bottom").html(htr);
+			$("#detail__title").html(title);
+			$(".notice-board__view-content").html(content);
+        	let len = $(".notice-board-main__view-item").length;
+        	
+        	for(let i = 0; i < len ; i++){
+	        	let no = $(".notice-board-main__view-item:eq("+i+")").find("#boardNo").val();
+	        	if(no == boardNo){
+	        		$(".notice-board-main__view-item:eq("+i+")").find(".view-item__title").html(title);
+	        		$(".notice-board-main__view-item:eq("+i+")").find(".view-item__content").html(content);
+	        	}
+        	}
+        	
+        	
+        	
+			
+			//window.location.href="/buskers/main/board/notice/list.do";
 		})
 	});
 	
@@ -364,6 +405,7 @@
 	})
 	
 	var orgindex = 0;
+	//마우스이동
 	$(document).on("click",".notice-board-main__view-item",function(){
 		orgindex = $(this).position().top;
 		$(".mouse-active").stop().animate({top:orgindex},1000);

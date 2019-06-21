@@ -194,6 +194,8 @@
 				list(result.length,result,0);
 			}
 		})
+		//false 값을 0.5초후에 바꿔줌. 무한스크롤로 추가되는 부분의 값을 불러올때까지 기다려줌.
+		
 	}
  	//목록보여주기 추가되는부분
  	
@@ -209,14 +211,11 @@
 				k = k+4;
 			};
 			$(".photo_body_wrapper").append(`
-					 <div class="artist__photo__img" style="top:`+height+`px;"  >
-					 	<img data-pno="`+result[f].fileNo+`" src="<c:url value='/file/download.do'/>?path=`+result[f].path+result[f].sysname+`" />
-					 </div>
-				`);
+				 <div class="artist__photo__img" style="top:`+height+`px;"  >
+				 	<img data-pno="`+result[f].fileNo+`" src="<c:url value='/file/download.do'/>?path=`+result[f].path+result[f].sysname+`" />
+				 </div>`);
 			f++;
 			i++; 
-			
-			
 			
 			
 			if(f==length){
@@ -239,15 +238,11 @@
 // 						console.log(divLength+"번쨰최대값은"+maxHeight)
 					}
 				}
-				
-				
-				
-
 				$(".photo_body_wrapper").css("height",maxHeight+"px");
 				return;
 			}
 			list(length,result,f);
-		},100);
+		},10);
 	}
  	
  	
@@ -270,23 +265,26 @@
 		})
 	})
 	
-	
-	$(".photo_body").scroll(function(){
-// 		console.log("wrapper의 height : "+$(".photo_body_wrapper").height())
-// 		console.log("body의 height : "+$(".photo_body").height())
-// 		console.log("body의 height :: "+$(".photo_body").scrollTop());
-		
-// 		console.log("ss");
-		console.log($(".photo_body_wrapper").height()-($(".photo_body").height()+$(".photo_body").scrollTop()));
-		if($(".photo_body_wrapper").height()-($(".photo_body").height()+$(".photo_body").scrollTop()) < -17){
-// 		if(($(".photo_body").height()+$(".photo_body").scrollTop()) > $(".photo_body_wrapper").height()+10){
-			beginPage += 20;
-			showList(beginPage);
-		}
-	});
-	
-// 	$(".photo_body").scroll($(".artist__photo__img").height);
-	
+	//화면실행후 500의 시간을 갖고실행함. 바로실행할경우 사진불러오면서 스크롤이벤트가 실행됨
+	setTimeout(function(){
+		$(".photo_body").data('ajaxready',true).scroll(function(e){
+			if($(".photo_body").data('ajaxready') == false){
+				return;
+			}
+	// 		console.log("wrapper의 height : "+$(".photo_body_wrapper").height())
+	// 		console.log("body의 height : "+$(".photo_body").height())
+	// 		console.log("body의 height :: "+$(".photo_body").scrollTop());
+			console.log($(".photo_body_wrapper").height()-($(".photo_body").height()+$(".photo_body").scrollTop()));
+			if($(".photo_body_wrapper").height()-($(".photo_body").height()+$(".photo_body").scrollTop()) < -10){
+				$(".photo_body").data('ajaxready',false);				
+				beginPage += 20;
+				showList(beginPage);
+				setTimeout(function(){
+					$(".photo_body").data('ajaxready',true);
+				},500);
+			}
+		});
+	},500)
 	
 	
 	
