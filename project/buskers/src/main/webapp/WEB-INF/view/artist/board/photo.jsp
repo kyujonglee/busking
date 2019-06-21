@@ -75,7 +75,6 @@
 				<div class="modal_title" >title보여주기!</div>
 			</div>
 			<div class="modal-body-photo">
-				<%-- 			<img src="<c:url value='/resources/img/busker1.jpg'/>"/> --%>
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
@@ -287,20 +286,6 @@
 	},500)
 	
 	
-	
-// 	//제목 클릭시에 수정할수 있게
-// 	$(document).on("click",".modal_title",function(){
-// 		$(".select_title_text").removeAttr('readonly');
-// 		$(".select_title_text").removeClass("title_text");
-// 		$(".select_title_text").addClass("title_text_click");
-// 	})
-// 	//블러시에 돌아감
-// 	$(document).on("blur",".select_title_text",function(){
-// 		$(".select_title_text").removeClass("title_text_click");
-// 		$(".select_title_text").attr('readonly',true);
-// 		let text=$(".select_title_text").val();
-// 		alert(text);
-// 	})
 	
 	showList(0);
 

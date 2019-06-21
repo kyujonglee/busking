@@ -18,7 +18,7 @@
 
 .notice-board-main__view-column:first-child {
     width: 45%;
-    overflow : scroll;
+    overflow : auto;
     border-right: 2px solid rgba(0, 0, 0, 0.3);
 }
 

@@ -120,7 +120,6 @@
 				showList(spage);
 				pageList(page);
 				
-				
 				//비디오 수 새로고침
 				$.ajax({
 					url : "<c:url value='/artist/main/main-ajax.do'/>",
