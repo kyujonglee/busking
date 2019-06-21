@@ -224,7 +224,7 @@
                         <div>비밀번호 확인&nbsp;</div><input type="password" id="checkpass" name="passcheck" maxlength="16" placeholder="PasswordCheck"/>&emsp;&emsp;&emsp;&emsp;&emsp;
                     </div>
                     <div class="u-form-group">
-                        <div>이메일&nbsp;</div><input type="text" id="email" name="email" placeholder="email"/>
+                        <div>이메일&nbsp;</div><input type="text" id="email" name="email" placeholder="email" maxlength="50"/>
                         <button type="button" id="checkEmail" class="check">중복확인</button>
                     </div>
                     <div class="u-form-group">

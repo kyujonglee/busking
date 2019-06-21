@@ -35,7 +35,7 @@
 	<div class="info_detail_wrapper">
 		<div class="menu_title">닉네임</div>
 		<div>
-			<input type="text" class="user__nickName" name="nickName" value="${sessionScope.user.nickName}" maxlength="15">
+			<input type="text" class="user__nickName" name="nickName" value="${sessionScope.user.nickName}" maxlength="12">
 			<button id="checkNickName" type="button" class="info_change_button">중복확인</button>
 		</div>	
 	</div>
