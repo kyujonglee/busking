@@ -57,9 +57,9 @@ public class FileServiceImpl implements FileService {
 	
 	public Map<String, Object> selectFile(int groupNo) throws Exception {
 		Map<String, Object> map = new HashMap<>();
-		System.out.println("도달");
+//		System.out.println("도달");
 		map.put("file", mapper.selectFileByGroupNo(groupNo));
-		System.out.println(mapper.selectFileByGroupNo(groupNo));
+//		System.out.println(mapper.selectFileByGroupNo(groupNo));
 		return map;
 	}
 	

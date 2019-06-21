@@ -86,7 +86,7 @@
       </div>
       <div class="agency-insert__item">
       	<div class="agency-insert__item-column">
-          <span class="agency-insert__item-name">업체등록번호</span>
+          <span class="agency-insert__item-name">업체번호</span>
         </div>
         <div class="agency-insert__item-column">
           <span>${agencyInfo.agencyCode}</span>

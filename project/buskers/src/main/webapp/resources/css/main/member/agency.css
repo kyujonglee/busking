@@ -10,9 +10,19 @@
 	justify-content : center;
 	align-items : center;
 }
+
+.member-agency .agency-insert{
+	margin-bottom : 0px;
+	padding-top : 0px;
+	padding-bottom : 5px;
+}
 .member-agency__wrapper {
 	width : 40%;
 	height : 40%;
 	border-radius : 5px;
 	border : 1px solid rgba(0,0,0,0.5);
+}
+
+#agency .agency-delete__btn {
+	font-size : 16px;
 }

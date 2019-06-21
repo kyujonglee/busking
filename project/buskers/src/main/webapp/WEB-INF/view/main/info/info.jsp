@@ -129,7 +129,7 @@ uri="http://java.sun.com/jsp/jstl/fmt"%>
     <div class="music-box__imgbox">
       <img 
           src="
-                <c:url value='/file/download.do?path='/>${map.musicList[0].imgPath ? map.musicList[0].imgPath:'' }
+                <c:url value='/file/download.do?path='/>${map.musicList[0].imgPath ne ''? map.musicList[0].imgPath:'' }
           "
       	class="music-box__img"
       	onError="this.src='<c:url value='/resources/img/music-profile.png' />';" 

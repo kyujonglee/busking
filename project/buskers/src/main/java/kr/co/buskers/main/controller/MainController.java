@@ -54,7 +54,7 @@ public class MainController {
 	@RequestMapping("show-ajax.do")
 	@ResponseBody
 	public List<ArtistShow> mapDetail(ArtistShow artistShow) {
-		System.out.println("가져온 gu의값 "+artistShow.getGu());
+//		System.out.println("가져온 gu의값 "+artistShow.getGu());
 		return service.mapDetail(artistShow);
 	}
 	
@@ -110,7 +110,7 @@ public class MainController {
 	@RequestMapping("/search/search-ajax.do")
 	@ResponseBody
 	public List<Busker> selectSearchBuskerList(String input){
-		System.out.println("인풋은"+input);
+//		System.out.println("인풋은"+input);
 		return service.selectSearchBuskerList(input);
 	}
 }
