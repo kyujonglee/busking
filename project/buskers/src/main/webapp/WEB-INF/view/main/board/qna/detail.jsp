@@ -23,7 +23,6 @@
 
 	            <div class="board_head_line">
 	                <span class="board_img_title">
-<%-- 	                	<img src="<c:url value='/resources/img/boyoung.jpg'/>"/> --%>
 						<img 
               				src="<c:url value='/file/download.do?path=${board.profileImgPath}${board.profileImg}'/>"
               				onError="this.src='<c:url value='/resources/img/profile.png' />';"
@@ -103,11 +102,7 @@
 				                	<div class="comment_list">
 				               			<div class="comment_info">
 				                			<span class="board_img_title">
-							                	<img src="<c:url value='/resources/img/boyoung.jpg'/>"/>
-<!-- 													<img  -->
-<%-- 							              				src="<c:url value='/file/download.do?path=${comment.profileImgPath}${comment.profileImg}'/>" --%>
-<%-- 							              				onError="this.src='<c:url value='/resources/img/profile.png' />';" --%>
-<!-- 			              							/> -->
+							                	<img src="<c:url value='/file/download.do'/>?path=${comment.profileImgPath}${comment.profileImg}" onError="this.src='<c:url value='/resources/img/profile.png' />';" />
 							                </span>
 				               				<div class="comment_id">${comment.nickName}</div>
 				               				<div class="comment_date">
