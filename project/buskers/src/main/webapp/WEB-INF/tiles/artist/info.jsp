@@ -62,9 +62,12 @@
 			let file = $(".side_photo_button")[0].files[0]
 			//파일 유효성 검사
 			let fileName = $(".side_photo_button")[0].files[0].name;	
-			fileName = fileName.slice(fileName.indexOf(".") + 1).toLowerCase(); //파일 확장자를 잘라내고, 비교를 위해 소문자로 만듭니다.
-			if(fileName != "jpg" && fileName != "png" &&  fileName != "gif" &&  fileName != "bmp"){ //확장자를 확인합니다.
-				alert('썸네일은 이미지 파일(jpg, png, gif, bmp)만 등록 가능합니다.');
+			fileName = fileName.slice(fileName.lastIndexOf(".") + 1).toLowerCase(); //파일 확장자를 잘라내고, 비교를 위해 소문자로 만듭니다.
+			
+			let pattern = /jpg|png|jpeg/i;
+			
+			if(fileName != "jpg" && fileName != "png" &&  fileName != "bmp" &&  fileName != "jpeg"){ //확장자를 확인합니다.
+				alert('썸네일은 이미지 파일(jpg, png, jpeg, bmp)만 등록 가능합니다.');
 				return;
 			}
 			

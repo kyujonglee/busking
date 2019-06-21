@@ -1,8 +1,12 @@
 package kr.co.buskers.main.qna.service;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +39,38 @@ public class QnaServiceImpl implements QnaService {
 		return map;
 	}	
 	
-	public Map<String, Object> detail(int boardNo, HttpSession session) {
+	public Map<String, Object> detail(int boardNo, HttpSession session,HttpServletRequest request,HttpServletResponse response) 
+			throws IOException{
+		
+
+		
+		
+		Cookie[] cookies = request.getCookies();
+//		비교를 위한 쿠키
+		Cookie viewCookie = null;	
+//		쿠키가 존재할경우
+		if(cookies != null && cookies.length > 0) {
+			for(int i = 0; i < cookies.length ; i++) {
+				//쿠키의 이름이 cookie+qnaBoardNo와 일치하는 쿠키를 viewCookie에 넣어준다.
+				if(cookies[i].getName().equals("cookie"+boardNo)) {
+					viewCookie = cookies[i];
+				}
+			}
+		}
+		if(viewCookie == null) {
+		     System.out.println("cookie 없음 쿠키생성함");
+             // 쿠키 생성(이름, 값)
+             Cookie newCookie = new Cookie("cookie"+boardNo, "|" + boardNo + "|");
+             // 쿠키 추가
+             response.addCookie(newCookie);
+             // 쿠키를 추가 시키고 조회수 증가시킴
+             mapper.updateBoardViewCount(boardNo);
+		}else {
+			 System.out.println("cookie 있음");
+             // 쿠키 값 받아옴.
+             String value = viewCookie.getValue();
+             System.out.println("cookie 값 : " + value);
+		}
 		
 		Map<String, Object> map = new HashMap<>();
 		
@@ -50,10 +85,6 @@ public class QnaServiceImpl implements QnaService {
 			}
 			
 		}
-		
-		
-		mapper.updateBoardViewCount(boardNo);
-//		System.out.println("try실행");
 		try {
 			map.put("highestLikeComment", mapper.selectLikeHighestComment(boardNo));
 		}catch(Exception e) {
@@ -62,8 +93,6 @@ public class QnaServiceImpl implements QnaService {
 		if (mapper.selectGroupNo(boardNo) != null  ) {
 			map.put("file", mapper.selectFile(mapper.selectGroupNo(boardNo).getGroupNo()));
 		}
-		
-		
 		map.put("reply", mapper.selectReplyList(boardNo));
 		map.put("comment", mapper.selectCommentList(boardNo));
 		map.put("board", mapper.selectBoardByNo(boardNo));
@@ -234,5 +263,6 @@ public class QnaServiceImpl implements QnaService {
 		}
 		return map;
 	}
+
 	
 }

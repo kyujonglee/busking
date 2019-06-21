@@ -304,7 +304,7 @@
 			});
 		}else{
 			$.ajax({
-				url : "follow-ajax.do",
+				url : "/buskers/artist/main/follow-ajax.do",
 				data : {buskerNo: buskerNo,memberNo:"${sessionScope.user.memberNo}"},
 			}).done(function(result){
 				if(result == 1){
