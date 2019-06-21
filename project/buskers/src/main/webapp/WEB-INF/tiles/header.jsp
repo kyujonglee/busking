@@ -355,6 +355,7 @@
 	});
 	
 	function alarm() {
+		
 		$.ajax({
 			type: "POST",
 			url: "/buskers/main/header/alarm/alarm-ajax.do",
