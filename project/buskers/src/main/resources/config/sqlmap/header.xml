@@ -170,7 +170,7 @@
                and s.busker_no = b.busker_no
                and b.member_no = m.member_no
                and f.follow_status = 'y'
-               and f.member_no = 1
+               and f.member_no = #{memberNo}
             )
             +
             (
@@ -180,13 +180,13 @@
                and n.busker_no = b.busker_no
                and b.member_no = m.member_no
                and f.follow_status = 'y'
-               and f.member_no = 1
+               and f.member_no = #{memberNo}
             )
             -
             (
             select count(*)
               from tb_alarm
-             where member_no = 1
+             where member_no = #{memberNo}
               ) as is_not_read_cnt
         FROM DUAL;
   
