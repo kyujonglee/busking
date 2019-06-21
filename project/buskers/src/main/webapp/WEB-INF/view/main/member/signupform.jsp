@@ -15,6 +15,9 @@
  	let getCheckPwd = RegExp(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/);
   	let getName = RegExp(/^[가-힣]+$/);
 
+  	
+  	
+  	
 	// 아이디 중복 체크
 	$(function() {
 		$("#checkId").click(function() {
@@ -248,3 +251,18 @@
 
     </div>
 </main>
+<script type="text/javascript">
+$("#id").on("change paste keyup", function() {
+	idck = 0;
+});
+	
+$("#email").on("change paste keyup", function() {
+	emailck = 0;
+});
+	
+$("#nickName").on("change paste keyup", function() {
+	nickNameck = 0;
+});
+
+
+</script>

@@ -188,6 +188,7 @@ a:link {
     height: 100%;
     display: inline-block;
     background-color: white;
+    overflow: auto;
 }
 
 .form, .profile__img__row {
@@ -539,6 +540,13 @@ a:link {
 .current:hover {
 	text-decoration: none;
 	color: #333;
+}
+
+.profile_content_item {
+	width: 100%;
+    height: 100%;
+    display: inline-block;
+    background-color: white;
 }
 
 

@@ -11,8 +11,8 @@
 		</li>
 	</ul>
 </div>
-<div class="profile_content">
-    <div class="tab-pane-follow0" id="follow" style="display: block;">
+<div class="profile_content_item">
+    <div class="tab-pane-follow0" id="follow" >
     	<ul class="follow__list">
 	       	<c:forEach var="list" items="${followMember}">
        			<li class="follow__list__items" value="${list.memberNo},${list.buskerNo}" >
