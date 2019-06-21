@@ -64,8 +64,11 @@ public class MemberController {
 	@RequestMapping("loginform.do")
 	public String loginform(HttpSession session, HttpServletRequest request) {
 		String referer = (String)request.getHeader("REFERER");
+		if(referer == null) {
+			return "main/member/loginform";
+		}
 		String url = referer.substring(referer.indexOf("/",referer.indexOf("buskers")));
-		System.out.println(url);
+		System.out.println("url : " + url);
 		if(url.equals("/main/member/signupform.do")) {
 			return "main/member/loginform";
 		} else {

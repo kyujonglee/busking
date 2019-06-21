@@ -25,7 +25,7 @@
 		<div class="busker-show-enroll__main-columns">
 			<form class="weather-search">
 				<span class="weather-search__title">✔ 장소검색</span> <input type="text"
-					class="weather-search__input" />
+					class="weather-search__input" maxlength="30"/>
 			</form>
 			<form id="enrollForm" name="enrollForm" action="<c:url value='/artist/board/enroll.do'/>" onsubmit="return check();" method="post">
 				<div class="busker-show-enroll__form">
@@ -60,7 +60,7 @@
 						</div>
 						<div class="enroll-form-column__content">
 							<i class="fas fa-map-marker-alt fa-lg content-icon"></i> <input
-								type="text" class="enroll-form-column__place" name="place" id="place"/>
+								type="text" class="enroll-form-column__place" name="place" id="place" maxlength="40"/>
 						</div>
 					</div>
 					<div class="busker-show-enroll__form-column">
@@ -80,7 +80,7 @@
 						</div>
 						<div class="enroll-form-column__content">
 							<i class="fas fa-pencil-alt fa-lg content-icon"></i> <input
-								type="text" class="enroll-form-column__place" name="title" id="title"/>
+								type="text" class="enroll-form-column__place" name="title" id="title" maxlength="40"/>
 						</div>
 					</div>
 					<div class="busker-show-enroll__form-column">
@@ -88,7 +88,7 @@
 							<span>✔ 공연내용</span>
 						</div>
 						<div class="enroll-form-column__content">
-							<textarea name="content" id="content" class="enroll-form-column__textarea"></textarea>
+							<textarea name="content" id="content" class="enroll-form-column__textarea" maxlength="300"></textarea>
 						</div>
 					</div>
 					<div class="busker-show-enroll__form-column">

@@ -52,25 +52,27 @@
 	});
 	
 	$(document).ready(function () {
-		$.ajax({
-			type: "POST",
-			url: "/buskers/main/header/message/message-count-ajax.do",
-			success: function (count) {
-				if (count != 0) {
-					$(".message__count").text(count);
+		if ("${sessionScope.user}" != "") {
+			$.ajax({
+				type: "POST",
+				url: "/buskers/main/header/message/message-count-ajax.do",
+				success: function (count) {
+					if (count != 0) {
+						$(".message__count").text(count);
+					}
 				}
-			}
-		});
-		
-		$.ajax({
-			type: "POST",
-			url: "/buskers/main/header/alarm/alarm-count-ajax.do",
-			success: function (count) {
-				if (count != 0) {
-					$(".alarm__count").text(count);
+			});
+			
+			$.ajax({
+				type: "POST",
+				url: "/buskers/main/header/alarm/alarm-count-ajax.do",
+				success: function (count) {
+					if (count != 0) {
+						$(".alarm__count").text(count);
+					}
 				}
-			}
-		});
+			});
+		}
 		
 		$.ajax({
 			type: "POST",

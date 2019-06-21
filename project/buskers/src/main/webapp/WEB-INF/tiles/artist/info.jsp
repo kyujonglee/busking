@@ -44,7 +44,8 @@
 			}).done(function(){
 			});
 		});
-		
+	}else{
+		$(".side_photo_img").css("cursor","default");
 	}
 	
 	//클릭시에 파일;

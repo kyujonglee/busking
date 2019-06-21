@@ -51,7 +51,7 @@
   opacity: 0.5;
 }
 
-.busker-content .busker-content__item:nth-child(4) {
+.busker-content .busker-content__item:nth-child(2) {
   grid-area: span 2 / span 1;
 }
 
