@@ -416,6 +416,7 @@
 	
 	if ("${sessionScope.user}" != "") {
 		alarm();
+		
 	}
 		
 	
