@@ -260,18 +260,21 @@
 	    	if(face != ""){
 		    	if( face.includes("www.facebook.com") == false){
 		    		alert("페이스북 url을 확인해주세요.");
+		    		$("#faceBookUrl").val("");
 		    		return;
 		    	};
 	    	}
 	    	if(ytube != ""){
 		    	if( ytube.includes("www.youtube.com") == false){
 		    		alert("유튜브 url을 확인해주세요.");
+		    		$("#youTubeUrl").val("");
 		    		return;
 		    	};	
 	    	}
 	    	if(insta != ""){
 		    	if( insta.includes("www.instagram.com") == false){
 		    		alert("인스타그램 url을 확인해주세요.");
+		    		$("#instargramUrl").val("");
 		    		return;
 		    	};
 	    	}
@@ -287,7 +290,7 @@
     		    $("#youTubeUrl").val(result.youTubeUrl);
     		    $("#instargramUrl").val(result.instargramUrl);
     		});
-        	$('#myModal').modal('hide');
+	        	$('#myModal').modal('hide');
         });
 	});
 
