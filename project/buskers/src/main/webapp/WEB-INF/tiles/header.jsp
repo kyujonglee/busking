@@ -159,9 +159,6 @@
 					} else {
 						if ( (time / (1000*60*60)) > 1 ) {
 							gapTime = parseInt(time / (1000*60*60)) + "시간 " + Math.floor((time/(1000*60)) % 60) + "분 전";
-							console.log((time/(1000*60)));
-							console.log("시간차이 : " + (time/1000*60) % 60);
-							console.log("시간차이 버림 : " + Math.floor((time/1000*60) % 60));
 						} else {
 							gapTime = Math.floor((time/(1000*60)) % 60) + "분 전";
 						}
@@ -348,9 +345,11 @@
 	
 	
 	$(".busker_alarm_list").scroll(function () {
+		/*
 		console.log( "전체 길이 : " + $(".busker_alarm_wrapper").height() );
 		console.log( "스크롤의 위치 : " + $(".busker_alarm_list").scrollTop() );
 		console.log( "스크롤 있는 곳의 길이 : " + $(".busker_alarm_list").height() );
+		*/
 		
 	});
 	
@@ -373,9 +372,6 @@
 					} else {
 						if ( (time / (1000*60*60)) > 1 ) {
 							gapTime = parseInt(time / (1000*60*60)) + "시간 " + Math.floor((time/(1000*60)) % 60) + "분 전";
-							console.log((time/(1000*60)));
-							console.log("시간차이 : " + (time/1000*60) % 60);
-							console.log("시간차이 버림 : " + Math.floor((time/1000*60) % 60));
 						} else {
 							gapTime = Math.floor((time/(1000*60)) % 60) + "분 전";
 						}

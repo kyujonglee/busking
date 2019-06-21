@@ -29,9 +29,9 @@
 			<li role="presentation">
 				<a href="#sent_box"	aria-controls="sent_box" role="tab" data-toggle="tab">보낸 쪽지함</a>
 			</li>
-			<li role="presentation">
-				<a href="#saved_box" aria-controls="saved_box" role="tab" data-toggle="tab">쪽지 보관함</a>
-			</li>
+<!-- 			<li role="presentation"> -->
+<!-- 				<a href="#saved_box" aria-controls="saved_box" role="tab" data-toggle="tab">쪽지 보관함</a> -->
+<!-- 			</li> -->
 		</ul>
 
 		<!-- Tab panes -->
@@ -143,7 +143,7 @@
 		 
 		<div class="post_box_button">
 			<div>
-				<a>보관</a>
+<!-- 				<a>보관</a> -->
 				<a class="delete_post">삭제</a>
 			</div>
 			<div>
