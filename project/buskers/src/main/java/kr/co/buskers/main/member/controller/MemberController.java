@@ -64,8 +64,11 @@ public class MemberController {
 	@RequestMapping("loginform.do")
 	public String loginform(HttpSession session, HttpServletRequest request) {
 		String referer = (String)request.getHeader("REFERER");
+		if(referer == null) {
+			return "main/member/loginform";
+		}
 		String url = referer.substring(referer.indexOf("/",referer.indexOf("buskers")));
-		System.out.println(url);
+		System.out.println("url : " + url);
 		if(url.equals("/main/member/signupform.do")) {
 			return "main/member/loginform";
 		} else {
@@ -329,15 +332,6 @@ public class MemberController {
 	@RequestMapping("profileUpload.do")
 	@ResponseBody
 	public void profileUpload(MultipartFile file, String uriPath, Member member, HttpSession session) throws Exception {
-		// 프로필 이미지가 이미 존재한다면
-//		if(member.getProfileImg() != null) {
-//			// 기존 이미지 삭제후 업로드
-//			service.uploadProfile(file, uriPath, member);
-//		} else {
-//		
-//	}
-		// 프로필 이미지가 없다면 바로 업로드
-//		service.uploadProfile(file, uriPath, member);
 		fService.uploadProfile(file, uriPath, member);
 		
 		session.removeAttribute("user");

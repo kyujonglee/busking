@@ -44,12 +44,13 @@ public class AgencyController {
 	public void checkform() {}
 	
 	@RequestMapping("insertform.do")
-	public void insertform() {}
+	public void insertform(Model model) {
+		model.addAttribute("genreList",service.selectGenre());
+	}
 	
 	@PostMapping("insert.do")
 	public String insert(AgencyInfo agencyInfo,HttpSession session) throws Exception{
 		Member mem = (Member)session.getAttribute("user");
-//		// 자바스크립트에서 조건을 줄 것!
 		agencyInfo.setMemberNo(mem.getMemberNo());
 		service.insertAgencyInfo(agencyInfo);
 		AgencyGenre agencyGenre = new AgencyGenre();

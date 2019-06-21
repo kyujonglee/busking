@@ -13,7 +13,21 @@ public class QnaBoard {
 	private String isDelete;
 	private String nickName;
 	private int commentCount;
+	private String profileImgPath;
+	private String profileImg;
 	
+	public String getProfileImgPath() {
+		return profileImgPath;
+	}
+	public void setProfileImgPath(String profileImgPath) {
+		this.profileImgPath = profileImgPath;
+	}
+	public String getProfileImg() {
+		return profileImg;
+	}
+	public void setProfileImg(String profileImg) {
+		this.profileImg = profileImg;
+	}
 	public int getCommentCount() {
 		return commentCount;
 	}

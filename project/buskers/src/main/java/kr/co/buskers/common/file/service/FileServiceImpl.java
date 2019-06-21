@@ -159,23 +159,32 @@ public class FileServiceImpl implements FileService {
 	
 	@Override
 	public void uploadProfile(MultipartFile multipartFile, String uriPath, Member member) throws Exception {
+		File prevFile = new File(member.getProfileImgPath() + member.getProfileImg());
+		if(prevFile.exists() != false) {
+			prevFile.delete();
+	    } 
+		
 		UUID uuid = UUID.randomUUID();
 		String uploadRoot = FILE_PATH;
 		String path = uriPath + member.getId() + "/";
 		String orgFileName = multipartFile.getOriginalFilename();
-		String sysFileName = uuid.toString() + orgFileName;
+		String jpng = "";
+		if (orgFileName.endsWith(".jpg") == true) {
+			jpng = orgFileName.substring(orgFileName.indexOf(".jpg"));
+		} else if (orgFileName.endsWith(".png") == true) {
+			jpng = orgFileName.substring(orgFileName.indexOf(".png"));
+		} else if (orgFileName.endsWith(".gif") == true) {
+			jpng = orgFileName.substring(orgFileName.indexOf(".gif"));
+		} else if (orgFileName.endsWith(".jpeg") == true) {
+			jpng = orgFileName.substring(orgFileName.indexOf(".jpeg"));
+		}
+		String sysFileName = uuid.toString() + jpng;
 		String filePath = uploadRoot + path;
 		
 		member.setProfileImg(sysFileName);
 		member.setProfileImgPath(filePath);
 		
 		File f = new File(filePath + sysFileName);
-		
-		System.out.println(filePath + sysFileName);
-		System.out.println(member.getProfileImg());
-		System.out.println(member.getProfileImgPath());
-		
-		
 	    if(f.exists() == false) {
 	    	f.mkdirs();
 	    }
