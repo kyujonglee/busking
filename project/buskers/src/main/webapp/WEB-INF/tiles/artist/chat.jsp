@@ -117,7 +117,7 @@
 		html += "<li class='received'>";
 		html +=		"<span style='color:" + data.color + ";'><i class='fas fa-circle'></i>" + data.sender + "<time>" + data.date + "</time></span>";
 		html +=		"<div>";
-		html +=	'<img src="<c:url value='/file/download.do'/>?path=' + data.image + `" onError="this.src='<c:url value='/resources/img/profile.png' />';"` +'"/>';
+		html +=	'<img src="<c:url value='/file/download.do'/>?path=' + data.image + `" onError="this.src='<c:url value='/resources/img/profile.png' />';"` + '"/>';
 		html +=			"<p>" + data.content + "</p>";
 		html +=		"</div>";
 		html += "</li>";

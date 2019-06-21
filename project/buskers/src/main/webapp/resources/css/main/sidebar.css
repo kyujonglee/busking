@@ -627,3 +627,7 @@ opacity
 .user-name strong {
 	font-weight: bold;
 }
+
+.side_offline {
+	color: red !important;
+}

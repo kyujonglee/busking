@@ -42,4 +42,14 @@ public class NoticeServiceImpl implements NoticeService{
 		mapper.insertBoard(noticeboard);
 		
 	}
+
+	@Override
+	public void update(NoticeBoard noticeBoard) {
+		mapper.updateBoard(noticeBoard);
+	}
+
+	@Override
+	public void delete(NoticeBoard noticeBoard) {
+		mapper.deleteBoard(noticeBoard);
+	}
 }

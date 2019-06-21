@@ -119,7 +119,7 @@
 				               			
 				               			<div class="update_wrapper">
 					               			<div class="reply_content_wrapper">
-							           			<textarea class="reply_content" name="content"></textarea>
+							           			<textarea class="reply_content" name="content" maxlength="500"></textarea>
 						           			</div>
 						           			<div class="update_submit_button" name="${comment.commentNo}" nick="${comment.nickName}" type="comment" no="${comment.commentNo}">
 							           			<a class="far fa-edit"> 댓글 수정</a>
@@ -128,7 +128,7 @@
 				               			
 				               			<div class="reply_wrapper">
 					               			<div class="reply_content_wrapper">
-							           			<textarea class="reply_content" name="content"></textarea>
+							           			<textarea class="reply_content" name="content" maxlength="500"></textarea>
 						           			</div>
 						           			<div class="reply_submit_button" name="${comment.commentNo}" nick="${comment.nickName}" type="comment" no="${comment.commentNo}">
 							           			<a class="far fa-edit"> 답글 등록</a>
@@ -160,7 +160,7 @@
 					               			
 					               			<div class="update_wrapper">
 						               			<div class="reply_content_wrapper">
-								           			<textarea class="reply_content" name="content"></textarea>
+								           			<textarea class="reply_content" name="content" maxlength="500"></textarea>
 							           			</div>
 							           			<div class="update_submit_button" name="${comment.commentNo}" nick="${reply.nickName}" type="reply" no="${reply.commentNo}">
 								           			<a class="far fa-edit"> 댓글 수정</a>
@@ -169,7 +169,7 @@
 						           			
 					               			<div class="reply_wrapper">
 						               			<div class="reply_content_wrapper">
-								           			<textarea class="reply_content" name="content"></textarea>
+								           			<textarea class="reply_content" name="content" maxlength="500"></textarea>
 							           			</div>
 							           			<div class="reply_submit_button" name="${comment.commentNo}" nick="${reply.nickName}" type="reply" no="${reply.commentNo}">
 								           			<a class="far fa-edit"> 답글 등록</a>
@@ -207,7 +207,7 @@
 	           			
 	           			
 	           			<div class="comment_content_wrapper">
-		           			<textarea class="comment_content" name="content"></textarea>
+		           			<textarea class="comment_content" name="content" maxlength="500"></textarea>
 	           			</div>
 	           			<div class="comment_submit_button">
 		           			<a class="far fa-edit"> 댓글 등록</a>
@@ -220,10 +220,10 @@
 	        
 	        	<div class="free_board_detail_bottom">
 	        		<c:if test="${sessionScope.user.memberNo eq board.memberNo}">
-	                <a href="<c:url value='/main/board/free/update-form.do?pageNo=${param.pageNo}&input=${param.input}&sortType=${param.sortType}&searchType=${param.searchType}&boardNo=${param.boardNo}'/>" class="fas fa-eraser"> 수정</a>
-	                <a href="<c:url value='/main/board/free/delete.do?pageNo=${param.pageNo}&input=${param.input}&sortType=${param.sortType}&searchType=${param.searchType}&boardNo=${param.boardNo}'/>" class="fas fa-pen-square"> 삭제</a>
+	                <a href="<c:url value='/main/board/qna/update-form.do?pageNo=${param.pageNo}&input=${param.input}&sortType=${param.sortType}&searchType=${param.searchType}&boardNo=${param.boardNo}'/>" class="fas fa-eraser"> 수정</a>
+	                <a href="<c:url value='/main/board/qna/delete.do?pageNo=${param.pageNo}&input=${param.input}&sortType=${param.sortType}&searchType=${param.searchType}&boardNo=${param.boardNo}'/>" class="fas fa-pen-square"> 삭제</a>
 	                </c:if>
-	                <a href="<c:url value='/main/board/free/list.do?pageNo=${param.pageNo}&input=${param.input}&sortType=${param.sortType}&searchType=${param.searchType}'/>" class="fas fa-list-ul"> 목록</a>
+	                <a href="<c:url value='/main/board/qna/list.do?pageNo=${param.pageNo}&input=${param.input}&sortType=${param.sortType}&searchType=${param.searchType}'/>" class="fas fa-list-ul"> 목록</a>
 	            </div>
 	
 	            <br><br><br>
@@ -444,7 +444,7 @@
 	          				html += 	'<div class="bubble"><p>' + comment.content + '</p></div>';
 	          				html +=		'<div class="update_wrapper">';
 	          				html +=			'<div class="reply_content_wrapper">';
-	          				html +=				'<textarea class="reply_content" name="content"></textarea>';
+	          				html +=				'<textarea class="reply_content" name="content" maxlength="500"></textarea>';
 	          				html +=			'</div>';
 	          				html +=			'<div class="update_submit_button" name="' + comment.commentNo + '" nick="' + comment.nickName + '" no="' + comment.commentNo + '" type="comment">';
 	          				html +=				'<a class="far fa-edit"> 댓글 수정</a>';
@@ -452,7 +452,7 @@
 	          				html +=		'</div>';
 	          				html +=		'<div class="reply_wrapper">';
 	          				html +=			'<div class="reply_content_wrapper">';
-	          				html +=				'<textarea class="reply_content" name="content"></textarea>';
+	          				html +=				'<textarea class="reply_content" name="content" maxlength="500"></textarea>';
 	          				html +=			'</div>';
 	          				html +=			'<div class="reply_submit_button" name="' + comment.commentNo + '" nick="' + comment.nickName + '" no="' + comment.commentNo + '" type="comment">';
 	          				html +=				'<a class="far fa-edit"> 답글 등록</a>';
@@ -485,7 +485,7 @@
 	                  				html += 	'<div class="bubble"><p>' + reply.content + '</p></div>';
 	                  				html +=		'<div class="update_wrapper">';
 	                  				html +=			'<div class="reply_content_wrapper">';
-	                  				html +=				'<textarea class="reply_content" name="content"></textarea>';
+	                  				html +=				'<textarea class="reply_content" name="content" maxlength="500"></textarea>';
 	                  				html +=			'</div>';
 	                  				html +=			'<div class="update_submit_button" name="' + comment.commentNo + '" nick="' + reply.nickName + '" no="' + reply.commentNo + '" type="reply">';
 	                  				html +=				'<a class="far fa-edit"> 댓글 수정</a>';
@@ -493,7 +493,7 @@
 	                  				html +=		'</div>';
 	                  				html +=		'<div class="reply_wrapper">';
 	                  				html +=			'<div class="reply_content_wrapper">';
-	                  				html +=				'<textarea class="reply_content" name="content"></textarea>';
+	                  				html +=				'<textarea class="reply_content" name="content" maxlength="500"></textarea>';
 	                  				html +=			'</div>';
 	                  				html +=			'<div class="reply_submit_button" name="' + comment.commentNo + '" nick="' + reply.nickName + '" no="' + reply.commentNo + '" type="reply">';
 	                  				html +=				'<a class="far fa-edit"> 답글 등록</a>';
@@ -601,7 +601,7 @@
 	          				html += 	'<div class="bubble"><p>' + comment.content + '</p></div>';
 	          				html +=		'<div class="update_wrapper">';
 	          				html +=			'<div class="reply_content_wrapper">';
-	          				html +=				'<textarea class="reply_content" name="content"></textarea>';
+	          				html +=				'<textarea class="reply_content" name="content" maxlength="500"></textarea>';
 	          				html +=			'</div>';
 	          				html +=			'<div class="update_submit_button" name="' + comment.commentNo + '" nick="' + comment.nickName + '" no="' + comment.commentNo + '" type="comment">';
 	          				html +=				'<a class="far fa-edit"> 댓글 수정</a>';
@@ -609,7 +609,7 @@
 	          				html +=		'</div>';
 	          				html +=		'<div class="reply_wrapper">';
 	          				html +=			'<div class="reply_content_wrapper">';
-	          				html +=				'<textarea class="reply_content" name="content"></textarea>';
+	          				html +=				'<textarea class="reply_content" name="content" maxlength="500"></textarea>';
 	          				html +=			'</div>';
 	          				html +=			'<div class="reply_submit_button" name="' + comment.commentNo + '" nick="' + comment.nickName + '" no="' + comment.commentNo + '" type="comment">';
 	          				html +=				'<a class="far fa-edit"> 답글 등록</a>';
@@ -642,7 +642,7 @@
 	                  				html += 	'<div class="bubble"><p>' + reply.content + '</p></div>';
 	                  				html +=		'<div class="update_wrapper">';
 	                  				html +=			'<div class="reply_content_wrapper">';
-	                  				html +=				'<textarea class="reply_content" name="content"></textarea>';
+	                  				html +=				'<textarea class="reply_content" name="content" maxlength="500"></textarea>';
 	                  				html +=			'</div>';
 	                  				html +=			'<div class="update_submit_button" name="' + comment.commentNo + '" nick="' + reply.nickName + '" no="' + reply.commentNo + '" type="reply">';
 	                  				html +=				'<a class="far fa-edit"> 댓글 수정</a>';
@@ -650,7 +650,7 @@
 	                  				html +=		'</div>';
 	                  				html +=		'<div class="reply_wrapper">';
 	                  				html +=			'<div class="reply_content_wrapper">';
-	                  				html +=				'<textarea class="reply_content" name="content"></textarea>';
+	                  				html +=				'<textarea class="reply_content" name="content" maxlength="500"></textarea>';
 	                  				html +=			'</div>';
 	                  				html +=			'<div class="reply_submit_button" name="' + comment.commentNo + '" nick="' + reply.nickName + '" no="' + reply.commentNo + '" type="reply">';
 	                  				html +=				'<a class="far fa-edit"> 답글 등록</a>';
@@ -760,7 +760,7 @@
 	          				html += 	'<div class="bubble"><p>' + comment.content + '</p></div>';
 	          				html +=		'<div class="update_wrapper">';
 	          				html +=			'<div class="reply_content_wrapper">';
-	          				html +=				'<textarea class="reply_content" name="content"></textarea>';
+	          				html +=				'<textarea class="reply_content" name="content" maxlength="500"></textarea>';
 	          				html +=			'</div>';
 	          				html +=			'<div class="update_submit_button" name="' + comment.commentNo + '" nick="' + comment.nickName + '" no="' + comment.commentNo + '" type="comment">';
 	          				html +=				'<a class="far fa-edit"> 댓글 수정</a>';
@@ -768,7 +768,7 @@
 	          				html +=		'</div>';
 	          				html +=		'<div class="reply_wrapper">';
 	          				html +=			'<div class="reply_content_wrapper">';
-	          				html +=				'<textarea class="reply_content" name="content"></textarea>';
+	          				html +=				'<textarea class="reply_content" name="content" maxlength="500"></textarea>';
 	          				html +=			'</div>';
 	          				html +=			'<div class="reply_submit_button" name="' + comment.commentNo + '" nick="' + comment.nickName + '" no="' + comment.commentNo + '" type="comment">';
 	          				html +=				'<a class="far fa-edit"> 답글 등록</a>';
@@ -801,7 +801,7 @@
 	                  				html += 	'<div class="bubble"><p>' + reply.content + '</p></div>';
 	                  				html +=		'<div class="update_wrapper">';
 	                  				html +=			'<div class="reply_content_wrapper">';
-	                  				html +=				'<textarea class="reply_content" name="content"></textarea>';
+	                  				html +=				'<textarea class="reply_content" name="content" maxlength="500"></textarea>';
 	                  				html +=			'</div>';
 	                  				html +=			'<div class="update_submit_button" name="' + comment.commentNo + '" nick="' + reply.nickName + '" no="' + reply.commentNo + '" type="reply">';
 	                  				html +=				'<a class="far fa-edit"> 댓글 수정</a>';
@@ -809,7 +809,7 @@
 	                  				html +=		'</div>';
 	                  				html +=		'<div class="reply_wrapper">';
 	                  				html +=			'<div class="reply_content_wrapper">';
-	                  				html +=				'<textarea class="reply_content" name="content"></textarea>';
+	                  				html +=				'<textarea class="reply_content" name="content" maxlength="500"></textarea>';
 	                  				html +=			'</div>';
 	                  				html +=			'<div class="reply_submit_button" name="' + comment.commentNo + '" nick="' + reply.nickName + '" no="' + reply.commentNo + '" type="reply">';
 	                  				html +=				'<a class="far fa-edit"> 답글 등록</a>';

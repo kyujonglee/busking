@@ -42,10 +42,19 @@ public class NoticeController {
 	}
 	
 	@RequestMapping("insert.do")
-	public String insert(NoticeBoard noticeboard){
-		service.insert(noticeboard);
-		System.out.println(noticeboard.getContent());
-		System.out.println(noticeboard.getTitle());
+	public String insert(NoticeBoard noticeBoard){
+		service.insert(noticeBoard);
+		return "main/board/notice/list";
+	}
+	@RequestMapping("update.do")
+	public String update(NoticeBoard noticeBoard) {
+		service.update(noticeBoard);
+		return "main/board/notice/list";
+	}
+	
+	@RequestMapping("delete.do")
+	public String delete(NoticeBoard noticeBoard) {
+		service.delete(noticeBoard);
 		return "main/board/notice/list";
 	}
 }

@@ -45,8 +45,14 @@
 					        </c:if>
 							</span>
 	                        <span class="user-status">
+	                        <c:if test="${sessionScope.user ne null}">
 	                            <i class="fa fa-circle"></i>
 	                            <span>Online</span>
+                            </c:if>
+	                        <c:if test="${sessionScope.user eq null}">
+	                            <i class="fa fa-circle side_offline"></i>
+	                            <span>Offline</span>
+                            </c:if>
 	                        </span>
 	                    </div>
 	                </div>

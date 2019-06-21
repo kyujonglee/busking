@@ -147,7 +147,7 @@
 			return;
 		}
 		if(videoUrl.includes("www.youtube.com") == false){
-			alert("유튜브 url을 입력해주세요.");
+			alert("유튜브 동영상 url을 입력해주세요.");
 			return;
 		}
 		
@@ -155,10 +155,14 @@
 		
 		let url = "https://www.youtube.com/embed/";
 		
-		let code = videoUrl.split('?');
-		code = code[1].split('=');
-		code = code[1].split('&');
-		let yUrl = url+code[0];
+		try{
+			let code = videoUrl.split('?');
+			code = code[1].split('=');
+			code = code[1].split('&');
+			let yUrl = url+code[0];
+		}catch(e){
+			alert("유튜브 동영상 url을 입력해주세요.")
+		}
 
 		
 		$.ajax({

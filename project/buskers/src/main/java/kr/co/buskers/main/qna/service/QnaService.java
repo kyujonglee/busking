@@ -1,7 +1,10 @@
 package kr.co.buskers.main.qna.service;
 
-import java.util.Map; 
+import java.io.IOException;
+import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import kr.co.buskers.repository.domain.FreePage;
@@ -15,7 +18,7 @@ public interface QnaService {
 	public Map<String, Object> insertComment(QnaBoardComment qnaBoardComment);
 	public Map<String, Object> insertReply(QnaBoardComment qnaBoardComment);
 	public Map<String, Object> updateComment(QnaBoardComment qnaBoardComment);
-	public Map<String, Object> detail(int boardNo, HttpSession session);
+	public Map<String, Object> detail(int boardNo, HttpSession session,HttpServletRequest request,HttpServletResponse response)throws IOException;
 	public Map<String, Object> updateForm(int boardNo);
 	public void delete(QnaBoard qnaBoard);
 	public void write(QnaBoard qnaBoard);

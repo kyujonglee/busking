@@ -32,8 +32,13 @@ public class MainController {
 		Map<String, Object> result = service.selectArtistShowToday(session);
 		if (session.getAttribute("user") != null) {
 			model.addAttribute("followArtistShow", result.get("followArtistShow"));
+			model.addAttribute("followArtist", result.get("followArtist"));
 		}
 		model.addAttribute("artistShow", result.get("artistShow"));
+		
+		model.addAttribute("artistShowRecent", result.get("artistShowRecent"));
+		model.addAttribute("artistVideoRecent", result.get("artistVideoRecent"));
+		model.addAttribute("artistPhotoRecent", result.get("artistPhotoRecent"));
 		
 		service.exportCSV();
 		

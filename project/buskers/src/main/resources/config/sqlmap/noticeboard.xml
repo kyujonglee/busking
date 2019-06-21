@@ -34,6 +34,19 @@
 		insert into tb_noticeboard(member_no,title,content)
 		values( 1, #{title}, #{content})
 	</insert>
+	
+	<update id="updateBoard">
+		update tb_noticeboard
+		   set title=#{title},
+		       content=#{content}
+		 where board_no = #{boardNo}
+	</update>
+	
+	<delete id="deleteBoard">
+		delete
+		  from tb_noticeboard
+		 where board_no = #{boardNo}
+	</delete>
 		
 </mapper>
 

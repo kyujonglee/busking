@@ -12,8 +12,25 @@ public class FreeBoardComment {
 	private int likeCnt;
 	private int dislikeCnt;
 	private String nickName;
-
+	private String profileImg;
+	private String profileImgPath;
 	
+	public String getProfileImg() {
+		return profileImg;
+	}
+
+	public void setProfileImg(String profileImg) {
+		this.profileImg = profileImg;
+	}
+
+	public String getProfileImgPath() {
+		return profileImgPath;
+	}
+
+	public void setProfileImgPath(String profileImgPath) {
+		this.profileImgPath = profileImgPath;
+	}
+
 	public String getNickName() {
 		return nickName;
 	}

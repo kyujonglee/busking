@@ -46,7 +46,7 @@
 									<fmt:formatDate value="${board.regDate}" pattern="yyyy-MM-dd" />
 								</span>
                      		</div>
-		                    <div class="board__content">${board.content}</div>
+		                    <div class="board__content"><c:out value='${board.content.replaceAll("\\\<.*?\\\>","")}' /></div>
 		                    <div class="board__info">
                         		<c:if test="${board.boardType eq 'q' }">
 	                        		<a href= "<c:url value='/main/board/qna/list.do'/>" class="kind__board">질문게시판</a>
@@ -145,8 +145,6 @@
 	    	
 // 	    	let newText = text.replace(/(<([^>]+)>)/ig,"");
 // 			$(".board__content:eq(" + i + ")").text(newText);
-
-
 // 		}
     
     </script>
