@@ -108,8 +108,9 @@
 		   and s.busker_no = b.busker_no
 		   and b.member_no = m.member_no
 		   and f.follow_status = 'y'
+		   and s.enroll_date > now()
 		 order by s.reg_date desc
-		 limit 10
+		 limit 15;
 	</select>
 	
 	<select id="selectArtistShowRecent" resultType="artistShow">
@@ -130,7 +131,7 @@
 		   and b.member_no = m.member_no
 		   and f.follow_status = 'y'
 		 order by p.reg_date desc
-		 limit 10
+		 limit 10;
 	</select>
 	
 	<select id="selectArtistPhotoListRecent" resultType="artistPhoto">
@@ -151,7 +152,7 @@
 		   and b.member_no = m.member_no
 		   and f.follow_status = 'y'
 		 order by v.reg_date desc
-		 limit 10
+		 limit 10;
 	</select>
 	
 	<select id="selectArtistVideoListRecent" resultType="video">
@@ -167,7 +168,7 @@
 		select *
 		  from tb_follow
 		 where member_no = #{memberNo}
+		   and follow_status = 'y'
 	</select>
 	
 </mapper>
-	
