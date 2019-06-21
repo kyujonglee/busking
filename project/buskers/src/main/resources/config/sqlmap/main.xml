@@ -111,6 +111,15 @@
 		 order by s.reg_date desc;
 	</select>
 	
+	<select id="selectArtistShowRecent" resultType="artistShow">
+		select s.*, b.activity_name, m.profile_img_path, m.profile_img
+		  from tb_busker_show s, tb_busker b, tb_member m
+		 where s.busker_no = b.busker_no
+		   and b.member_no = m.member_no
+		 order by s.reg_date desc
+         limit 0, 10
+	</select>
+	
 	<select id="selectFollowArtistPhotoList" parameterType="int" resultType="artistPhoto">
 		select *
 		  from tb_follow f, tb_artist_photo p, tb_busker b, tb_member m
@@ -122,6 +131,15 @@
 		 order by p.reg_date desc;
 	</select>
 	
+	<select id="selectArtistPhotoListRecent" resultType="artistPhoto">
+		select *
+		  from tb_artist_photo p, tb_busker b, tb_member m
+		 where p.busker_no = b.busker_no
+		   and b.member_no = m.member_no
+		 order by p.reg_date desc
+         limit 0, 10
+	</select>
+	
 	<select id="selectFollowArtistVideoList" parameterType="int" resultType="video">
 		select *
 		  from tb_follow f, tb_video v, tb_busker b, tb_member m
@@ -131,6 +149,21 @@
 		   and b.member_no = m.member_no
 		   and f.follow_status = 'y'
 		 order by v.reg_date desc;
+	</select>
+	
+	<select id="selectArtistVideoListRecent" resultType="video">
+		select *
+		  from tb_video v, tb_busker b, tb_member m
+		 where v.busker_no = b.busker_no
+		   and b.member_no = m.member_no
+		 order by v.reg_date desc
+		 limit 0, 10
+ 	</select>
+ 	
+	<select id="selectFollowArtist" resultType="follow">
+		select *
+		  from tb_follow
+		 where member_no = #{memberNo}
 	</select>
 	
 </mapper>

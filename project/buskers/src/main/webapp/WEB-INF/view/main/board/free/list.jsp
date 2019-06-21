@@ -47,7 +47,7 @@
 					</td>
 					<td class="nickName_info">
 						<c:if test="${notify.isAdmin eq 'y'}">
-						<i class="fas fa-award"></i>
+						<i class="fas fa-sun"></i>
 						</c:if>
 						<c:if test="${notify.isBusker eq 'y'}">
 						<i class="fas fa-star"></i>
@@ -99,7 +99,7 @@
 				</td>
 				<td class="nickName_info">
 					<c:if test="${board.isAdmin eq 'y'}">
-					<i class="fas fa-award"></i>
+					<i class="fas fa-sun"></i>
 					</c:if>
 					<c:if test="${board.isBusker eq 'y'}">
 					<i class="fas fa-star"></i>
