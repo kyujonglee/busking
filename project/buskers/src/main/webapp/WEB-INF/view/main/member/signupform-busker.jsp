@@ -70,4 +70,4 @@
 
     </div>
 </main>
-<script src="<c:url value='/resources/js/main/member/insertBusker.js'/>"></script>
+<script src="<c:url value='/resources/js/main/member/signupBusker.js'/>"></script>
