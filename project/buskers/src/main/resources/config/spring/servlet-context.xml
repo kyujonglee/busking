@@ -19,7 +19,6 @@
 		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
 	<context:component-scan base-package="kr.co.buskers" />
-	
 	<bean id="prevUrl" class="kr.co.buskers.main.member.util.PrevUrl"></bean>
 	
 	<!-- 스프링을 이용한 파일 업로드 처리시 필수 클래스 -->
@@ -44,7 +43,6 @@
 	<mvc:resources mapping="/bower_components/**" location="/resources/bower_components/" />
 	<mvc:resources mapping="/dist/**" location="/resources/dist/" />
 	<mvc:resources mapping="/plugins/**" location="/resources/plugins/" />
-	
 	<mvc:default-servlet-handler/>
 	
 	<mvc:view-resolvers>
