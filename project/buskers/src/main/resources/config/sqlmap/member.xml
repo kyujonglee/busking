@@ -282,6 +282,7 @@
          from tb_member m
         inner join tb_follow f on f.member_no = m.member_no
           and f.busker_no = #{buskerNo}
+          and f.follow_status = 'y'
          left join tb_busker b on b.member_no = m.member_no
 	</select>
 	
