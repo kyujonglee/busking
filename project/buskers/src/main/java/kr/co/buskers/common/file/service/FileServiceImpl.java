@@ -141,11 +141,11 @@ public class FileServiceImpl implements FileService {
 		File file = new File(path);
 		if(!file.exists()) file.mkdirs();
 		
-		path = FILE_PATH+ "/"+ buskerName +"/"+musicFile.getSysname()+".mp3";
+		path = FILE_PATH+ "/"+ buskerName +"/"+musicFile.getSysname()+musicFile.getName();
 		attach.transferTo(new File(path));
 		
 		path = "/upload/" + buskerName;
-		path = path + "/" +musicFile.getSysname()+".mp3";
+		path = path + "/" +musicFile.getSysname()+musicFile.getName();
 		return path;
 	}
 	

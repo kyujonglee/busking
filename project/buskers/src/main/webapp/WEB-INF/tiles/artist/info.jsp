@@ -21,10 +21,7 @@
 
 <script>
 	buskerNo = "${sessionScope.user.busker.buskerNo}";
-	let paramBuskerNo = "${param.buskerNo}";
 	let introUpdate = "<c:url value='/artist/main/intro-update.do'/>";
-	let mainAjax = "<c:url value='/artist/main/main-ajax.do'/>";
 	let artistPhotoProfileUpdate = "<c:url value='/file/artist-photo-profile-update.do'/>";
-	let fileDownload = "<c:url value='/file/download.do?path='/>";
 </script>
 <script src="<c:url value='/resources/js/artist/main/info.js' />"></script>
