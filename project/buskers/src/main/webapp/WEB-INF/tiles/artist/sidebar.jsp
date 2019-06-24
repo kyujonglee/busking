@@ -164,6 +164,7 @@
 	let followAjax = "<c:url value='/artist/main/follow-ajax.do'/>";
 	let mainRecommend = "<c:url value='/artist/main/main-recommend-ajax.do'/>";
 	let artistMain = "<c:url value='/artist/main/main.do'/>";
+	
 	$.ajax({
 		url : mainAjax,
 		dateType : "json",
@@ -209,16 +210,8 @@
 			)
 		}
 		
-		
-		
-		
-		
-		
-		
-		
-		
 		//팔로우버튼
-    	if(map.followStatus == 'y'){
+		if(map.followStatus == 'y'){
 			$(".busker__profile-header-follow").css("background-color","red").html("팔로우");		
 		}else{
 			$(".busker__profile-header-follow").css("background-color","rgb(243,116,32)").html("팔로우+");		
@@ -231,9 +224,6 @@
 		$("#faceBookUrl").val(faceBookUrl);
 	    $("#youTubeUrl").val(youTubeUrl);
 	    $("#instargramUrl").val(instargramUrl);
-
-		    
-	    
 
 	    $("#myButtons1").click(function(){
 	    	let face = $("#faceBookUrl").val(); 
@@ -262,31 +252,32 @@
 	    	}
 
 	    	$.ajax({
-    			url : socialInsert,
-    			data : {faceBookUrl:$("#faceBookUrl").val() 
-    				   ,youTubeUrl:$("#youTubeUrl").val()
-    				   ,instargramUrl:$("#instargramUrl").val() 
-    				   ,buskerNo:paramBuskerNo},
-    		}).done(function(result){
-    			$("#faceBookUrl").val(result.faceBookUrl);
-    		    $("#youTubeUrl").val(result.youTubeUrl);
-    		    $("#instargramUrl").val(result.instargramUrl);
-    		});
+				url : socialInsert,
+				data : {faceBookUrl:$("#faceBookUrl").val() 
+					   ,youTubeUrl:$("#youTubeUrl").val()
+					   ,instargramUrl:$("#instargramUrl").val() 
+					   ,buskerNo:paramBuskerNo},
+			}).done(function(result){
+				$("#faceBookUrl").val(result.faceBookUrl);
+			    $("#youTubeUrl").val(result.youTubeUrl);
+			    $("#instargramUrl").val(result.instargramUrl);
+			});
 	        	$('#myModal').modal('hide');
-        });
+	    });
 	});
 
-	
-	
-// 	팔로우 기능
+		
+		
+//	 	팔로우 기능
 	$(".busker__profile-header-follow").click(function(){
 
 		if("${sessionScope.user}" == ""){
 			Swal.fire({
-				  title:'로그인이 필요한 기능입니다.',
-				  type:'warning',
-				  timer:2000	
-			});
+			  title:'로그인이 필요한 기능입니다.',
+			  type:'warning',
+			  timer:2000	
+		});
+			
 		}else{
 			$.ajax({
 				url : followAjax ,
@@ -310,11 +301,11 @@
 			});
 		}
 	})
-	
+		
 
-	
-	
-// Edit
+		
+		
+	// Edit
 	$("#myButtons1").click(function(){
 	let faceBookUrl = $("#faceBookUrl").val();
 	let youTubeUrl = $("#youTubeUrl").val();
@@ -327,11 +318,11 @@
 		    $("#youtubeUrl").val(result.youTubeUrl);
 		    $("#instargramUrl").val(result.instargramUrl);
 		});
-    	$('#myModal').modal('hide');
-    });
-    
-    /** 관련 버스커 */
-    $.ajax({
+		$('#myModal').modal('hide');
+	});
+	    
+	/** 관련 버스커 */
+	$.ajax({
 		url : mainRecommend,
 		data : "buskerNo=" + paramBuskerNo
 	}).done((result) => {
@@ -339,37 +330,37 @@
 		for (let i = 0; i < result.length; i++) {
 			html += '<div class="buskers__recommend-item">';
 			html += '<i class="fas fa-user-friends"></i>' + '<a href="'+artistMain+'?buskerNo=' + result[i].buskerNo + '">' + result[i].activityName + '</a>';
-// 			html += '<i class="fas fa-user-friends"></i>' + '<a href="<c:url value='/artist/main/main.do'/>' + '?buskerNo=' + result[i].buskerNo + '">' + result[i].activityName + '</a>';
+//	 			html += '<i class="fas fa-user-friends"></i>' + '<a href="<c:url value='/artist/main/main.do'/>' + '?buskerNo=' + result[i].buskerNo + '">' + result[i].activityName + '</a>';
 			html += '</div>';
 		}
 		$(".buskers__recommend").html(html);
 	});
-    
-    //url
-    	$(".facebook").click(function(){
-			if($("#faceBookUrl").val() == ""){
-				alert("등록된 url이 없습니다.");
-			}else{
-		    	/* window.location.href = 	$("#faceBookUrl").val(); */
-		    	window.open($("#faceBookUrl").val());
-			}
-	    })
-	     $(".youtube").click(function(){
-			if($("#youTubeUrl").val() == ""){
-				alert("등록된 url이 없습니다.");
-			}else{
-		    	/* window.location.href = $("#youTubeUrl").val(); */
-				window.open($("#youTubeUrl").val());
-			}
-	    })
-	    $(".instargram").click(function(){
-			if($("#instargramUrl").val() == ""){
-				alert("등록된 url이 없습니다.");
-			}else{
-		    	/* window.location.href = $("#instargramUrl").val(); */
-				window.open($("#instargramUrl").val());
-			}
-	    })
+
+	//url
+	$(".facebook").click(function(){
+		if($("#faceBookUrl").val() == ""){
+			alert("등록된 url이 없습니다.");
+		}else{
+	    	/* window.location.href = 	$("#faceBookUrl").val(); */
+	    	window.open($("#faceBookUrl").val());
+		}
+	})
+	 $(".youtube").click(function(){
+		if($("#youTubeUrl").val() == ""){
+			alert("등록된 url이 없습니다.");
+		}else{
+	    	/* window.location.href = $("#youTubeUrl").val(); */
+			window.open($("#youTubeUrl").val());
+		}
+	})
+	$(".instargram").click(function(){
+		if($("#instargramUrl").val() == ""){
+			alert("등록된 url이 없습니다.");
+		}else{
+	    	/* window.location.href = $("#instargramUrl").val(); */
+			window.open($("#instargramUrl").val());
+		}
+	})
 		
     
 </script>
