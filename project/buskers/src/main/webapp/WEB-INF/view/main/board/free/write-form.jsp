@@ -24,7 +24,7 @@
 		<form action="write.do" method="get" id="write_form">
 			<div class="board_head_line">
 				<span class="board_img_title">
-					<img src="<c:url value='/resources/img/boyoung.jpg'/>" />
+					<img src="<c:url value='/file/download.do'/>?path=${sessionScope.user.profileImgPath}${sessionScope.user.profileImg}" />
 				</span> 
 				<input class="write_form_title" name="title" placeholder="제목을 입력하세요." />
 			</div>
