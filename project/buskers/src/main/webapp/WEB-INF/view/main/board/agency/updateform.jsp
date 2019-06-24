@@ -165,4 +165,7 @@
 	</div>
 </div>
 </main>
+<script>
+	const jusoUrl = "<c:url value='/popup/jusopopup.do'/>";
+</script>
 <script src="<c:url value='/resources/js/main/board/agency/update.js'/>"></script>
