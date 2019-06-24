@@ -51,6 +51,7 @@ public class ArtistBoardServiceImpl implements ArtistBoardService {
 		if (alarm.getAlarmNo() == 0) {
 			map.put("dataType", alarm.getDataType());
 			map.put("dataNo", alarm.getDataNo());
+			map.put("buskerNo", alarm.getBuskerNo());
 			map.put("memberNo", member.getMemberNo());
 			
 			mapper.insertShowAlarmIsReadStatus(map);

@@ -59,38 +59,24 @@ function whenPlayed() {
 }
 
 $(document).ready(() => {
-  console.log("ready");
   if (audioItemList.length !== 0) {
 	  audio.oncanplaythrough = function(){
-		  console.log("canplay");
 		  this.play();
 		  whenPaused();
 	  };
   }
-  //	audio.addEventListener("canplay", function(){
-  //		  console.log("canplay");
-  //		  this.play();
-  //		  whenPaused();
-  //	});
 });
 
 canvas.onclick = function(e) {
-  //  console.log(e.offsetX / canvas.clientWidth);
-  //  console.log(audio.duration);
-  //  console.log((e.offsetX / canvas.clientWidth) * audio.duration);
-  //  console.log("audio.currentTime ",audio.currentTime);
   audio.addEventListener("canplay", function() {
     audio.currentTime = (e.offsetX / canvas.clientWidth) * audio.duration;
-    //		  console.log("audio.currentTime ",audio.currentTime);
     this.removeEventListener("canplay", arguments.callee);
   });
   audio.currentTime = (e.offsetX / canvas.clientWidth) * audio.duration;
-  //  console.log("audio.currentTime ",audio.currentTime);
 };
 
 let colorFlag = true;
 audio.addEventListener("timeupdate", function() {
-  //  console.log("timeupdate ",audio.currentTime);
   const currentTime = parseInt(audio.currentTime);
   const duration = parseInt(audio.duration);
 
@@ -121,9 +107,7 @@ audio.addEventListener("timeupdate", function() {
     <span id="duration"> ${du + ":" + pad(duration % 60)} </span>
     `);
   }
-  //-----------------------------------------
-  // 캔버스 추가된 부분
-  //-----------------------------------------
+  
   // 그림을 그릴 컨텍스트
   ctx.clearRect(0, 0, canvas.clientWidth, canvas.clientWidth);
   const rectWidth = (currentTime / duration) * canvas.clientWidth;
@@ -218,17 +202,11 @@ $(".audio-menu > ul > li .audio-menu__music").click(function(e) {
   audio.src = audioItem.path;
   $(".music .music-title").text(audioItem.title);
   $(".music .music-writer").text(audioItem.writer);
-  console.log(audioItem);
   $(".music-box .music-box__img").attr({
     src: "/buskers/file/download.do?path=" + audioItem.imgPath
   });
   $("#play").trigger("click");
 });
-
-// 해야할 일!
-//
-// 1. 현재 재생중인 것 class 추가하기
-// 2. 삭제 하는 div 만들기
 
 $(".busker-audio__column:eq(1) svg:first-child").click(() => {
   for (let idx = 0; idx < list.length; idx++) {
@@ -246,6 +224,7 @@ $(".busker-audio__column:eq(1) svg:first-child").click(() => {
   }
   list[list.length - 1].getElementsByClassName("audio-menu__music")[0].click();
 });
+
 $(".busker-audio__column:eq(1) svg:last-child").click(() => {
   for (let idx = 0; idx < list.length; idx++) {
     if (list[idx].classList.contains("audio-menu__selected")) {

@@ -15,6 +15,7 @@ public class Alarm {
 	private int index;
 	private int alarmNo;
 	private int dataNo;
+	
 	public int getBuskerNo() {
 		return buskerNo;
 	}

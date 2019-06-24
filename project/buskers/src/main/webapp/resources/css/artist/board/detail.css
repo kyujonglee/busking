@@ -71,6 +71,12 @@
   border-radius: 10px;
 }
 
+.busker-show-detail__item .detail-item__content-show {
+	height : 150px;
+	overflow : auto;
+	width : 100%;
+}
+
 .busker-show-detail__item button
 {
 	all : unset;

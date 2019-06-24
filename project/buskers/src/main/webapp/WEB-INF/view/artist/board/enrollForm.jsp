@@ -60,7 +60,7 @@
 						</div>
 						<div class="enroll-form-column__content">
 							<i class="fas fa-map-marker-alt fa-lg content-icon"></i> <input
-								type="text" class="enroll-form-column__place" name="place" id="place" maxlength="40"/>
+								type="text" class="enroll-form-column__place" name="place" id="place" maxlength="40" placeholder="장소를 입력해주세요."/>
 						</div>
 					</div>
 					<div class="busker-show-enroll__form-column">
@@ -168,9 +168,7 @@
 				);
 			}
 		});
-		
 		return true;
 	}
-	
 	
 </script>

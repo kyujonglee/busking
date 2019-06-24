@@ -75,7 +75,7 @@
 							<span>✔ 공연내용</span>
 						</div>
 						<div class="detail-item__content">
-							<span>${show.content}</span>
+							<span style="white-space:pre;" class="detail-item__content-show">${show.content}</span>
 						</div>
 					</div>
 					<div class="busker-show-detail__item">

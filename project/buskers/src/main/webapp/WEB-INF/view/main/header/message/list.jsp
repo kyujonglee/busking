@@ -24,10 +24,10 @@
 		<!-- Nav tabs -->
 		<ul class="nav nav-tabs" role="tablist" id="post_box">
 			<li role="presentation" <c:if test="${param.active ne 'sent_box'}">class="active"</c:if>>
-				<a href="#received_box"	aria-controls="received_box" role="tab" data-toggle="tab">받은 쪽지함</a>
+				<a href="#received_box"	aria-controls="received_box" role="tab" data-toggle="tab" class="received_msg_box">받은 쪽지함</a>
 			</li>
 			<li role="presentation">
-				<a href="#sent_box"	aria-controls="sent_box" role="tab" data-toggle="tab">보낸 쪽지함</a>
+				<a href="#sent_box"	aria-controls="sent_box" role="tab" data-toggle="tab" class="sent_msg_box">보낸 쪽지함</a>
 			</li>
 <!-- 			<li role="presentation"> -->
 <!-- 				<a href="#saved_box" aria-controls="saved_box" role="tab" data-toggle="tab">쪽지 보관함</a> -->
@@ -172,12 +172,19 @@
 	    
 	    $(".delete_post").click(function () {
 		    if ( $("#post_box").children(".active").children("a").attr("href") == "#received_box" ) {
+		    	if ( $("input:checkbox[class=post_all]:checked").length == 0 ) {
+		    		alert("삭제할 메시지를 선택하세요.");
+		    		return;
+		    	}
 		    	$(".delete_received_post_submit").submit();
 		    }
 		    if ( $("#post_box").children(".active").children("a").attr("href") == "#sent_box" ) {
+		    	if ( $("input:checkbox[class=post_sent]:checked").length == 0 ) {
+		    		alert("삭제할 메시지를 선택하세요.");
+		    		return;
+		    	}
 		    	$(".delete_sent_post_submit").submit();
 		    }
-	    	
 	    });
 	    
 	    
@@ -185,7 +192,7 @@
 	        let chk = $(this).is(":checked");
 	        let cls = $(this).attr("class");
 	        if(chk) $("." + cls + "").prop('checked', true);
-	        else  $("." + cls + "").prop('checked', false);
+	        else $("." + cls + "").prop('checked', false);
 	    });
 	    /*
     	let active = "${param.active}";

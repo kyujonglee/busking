@@ -146,7 +146,9 @@
 			data: {index : index},
 			url: "/buskers/main/header/alarm/alarm-ajax.do",
 			success: function (result) {
+				console.log("====");
 				console.log(result);
+				console.log("====");
 				
 				let alarm = result.alarm;
 				let html = "";
@@ -360,7 +362,6 @@
 			url: "/buskers/main/header/alarm/alarm-ajax.do",
 			data: {index : index},
 			success: function (result) {
-				
 				let alarm = result.alarm;
 				let html = "";
 				for (let i = 0; i < alarm.length; i++) {
