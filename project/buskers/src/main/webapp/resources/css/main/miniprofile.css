@@ -86,7 +86,7 @@
 .header-f, .header-g {
     border-color: rgba(0, 0, 0, 0.0);
     border-bottom-color: rgba(0, 0, 0, 0.2);
-    border-width: 8.5px;
+    border-width: 10.5px;
     border-top-width: 0px;
     border-style: solid;
     left: 6.5px;
@@ -97,7 +97,7 @@
 .header-g {
     border-color: rgba(0, 0, 0, 0);
     border-bottom-color: rgb(255, 255, 255);
-    border-width: 8.5px;
+    border-width: 10.5px;
     border-top-width: 0px;
     border-bottom-style: solid;
     left: 6.5px;

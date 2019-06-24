@@ -119,4 +119,4 @@
             </form>
           </div>
         </main>
-    <script src="<c:url value='/resources/js/main/board/agency/insert.js'/>"></script>
+<script src="<c:url value='/resources/js/main/board/agency/insert.js'/>"></script>

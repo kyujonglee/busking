@@ -45,17 +45,18 @@ function updateAgency(){
 function goPopup(){
 	// 주소검색을 수행할 팝업 페이지를 호출합니다.
 	// 호출된 페이지(jusopopup.jsp)에서 실제 주소검색URL(http://www.juso.go.kr/addrlink/addrLinkUrl.do)를 호출하게 됩니다.
-	var pop = window.open("/buskers/popup/jusopopup.do","pop","width=570,height=420, scrollbars=yes, resizable=yes"); 
+	var pop = window.open(jusoUrl,"pop","width=570,height=420, scrollbars=yes, resizable=yes"); 
 	// 모바일 웹인 경우, 호출된 페이지(jusopopup.jsp)에서 실제 주소검색URL(http://www.juso.go.kr/addrlink/addrMobileLinkUrl.do)를 호출하게 됩니다.
 	//var pop = window.open("/popup/jusoPopup.jsp","pop","scrollbars=yes, resizable=yes");
 }
 
+const insertForm2 = document.querySelector("#insertForm");
 
 function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAddr, jibunAddr, zipNo, admCd, rnMgtSn, bdMgtSn,detBdNmList,bdNm,bdKdcd,siNm,sggNm,emdNm,liNm,rn,udrtYn,buldMnnm,buldSlno,mtYn,lnbrMnnm,lnbrSlno,emdNo){
 	// 팝업페이지에서 주소입력한 정보를 받아서, 현 페이지에 정보를 등록합니다.
 //	document.insertForm.roadAddrPart1.value = roadAddrPart1 + roadAddrPart2;
 //	document.insertForm.addrDetail.value = addrDetail;
 //	$("#insertForm input[name='']").val(roadAddrPart1);
-	insertForm.basicAddr.value = roadAddrPart1 + roadAddrPart2;
-	insertForm.detailAddr.value = addrDetail;
+	insertForm2.basicAddr.value = roadAddrPart1 + roadAddrPart2;
+	insertForm2.detailAddr.value = addrDetail;
 }

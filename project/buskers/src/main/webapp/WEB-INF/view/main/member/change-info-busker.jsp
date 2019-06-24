@@ -8,7 +8,7 @@
 			<div class="menu_title_none">버스커 등록을 먼저 해주세요!</div>
 			<br>
 			<a href="signupform-busker.do" class="busker_signup">
-				<button type="button">
+				<button type="button" class="img__update__button">
 					버스커 등록 하러가기
 				</button>
 			</a>		

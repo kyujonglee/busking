@@ -76,7 +76,12 @@
 	}
 	
 	chat.on("join", function (members) {
-		let count = members.length;
+		let count = 0;
+		for (let j = 0; j < members.length; j++) {
+			if (members[j].roomId == roomId) {
+				count++;
+			}
+		}
 		console.log(members);
 		let html = "";
 		for(let i = 0; i < members.length; i++) {
