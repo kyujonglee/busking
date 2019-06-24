@@ -57,9 +57,7 @@ public class FileServiceImpl implements FileService {
 	
 	public Map<String, Object> selectFile(int groupNo) throws Exception {
 		Map<String, Object> map = new HashMap<>();
-//		System.out.println("도달");
 		map.put("file", mapper.selectFileByGroupNo(groupNo));
-//		System.out.println(mapper.selectFileByGroupNo(groupNo));
 		return map;
 	}
 	
@@ -77,14 +75,10 @@ public class FileServiceImpl implements FileService {
 		f.setName(file.getName());
 		f.setPath(file.getPath());
 		f.setSystemName(file.getSystemName());
-		System.out.println("insert 전");
 		mapper.insertFile(f);
-		System.out.println("insert 후");
 		
 		return f.getGroupNo();
 	}
-	
-	
 	
 	public kr.co.buskers.repository.domain.File uploadImage(MultipartFile multipartFile, String uriPath) throws Exception {
 		UUID uuid = UUID.randomUUID();
@@ -122,15 +116,11 @@ public class FileServiceImpl implements FileService {
 	public void updateMusicByFileNo(MusicFile musicFile) throws Exception {
 		musicFile.setPath(musicUpload(musicFile));
 		musicFile.setImgPath(imgUpload(musicFile));
-		System.out.println("musicUpdate"+musicFile.getImgPath());
-		System.out.println(musicFile.getFileNo());
 		mapper.updateMusic(musicFile);
 	}
 	
 	public String musicUpload(MusicFile musicFile) throws Exception {
 		MultipartFile attach = musicFile.getAttach();
-		
-		System.out.println("사용자가 선택한 파일명 : "+attach.getOriginalFilename());
 		
 		UUID uuid = UUID.randomUUID();
 		
@@ -153,8 +143,6 @@ public class FileServiceImpl implements FileService {
 	
 	public String imgUpload(MusicFile musicFile) throws Exception {
 		MultipartFile attach2 = musicFile.getAttach2();
-		
-		System.out.println("사용자가 선택한 파일명 : "+attach2.getOriginalFilename());
 		
 		UUID uuid = UUID.randomUUID();
 		
@@ -209,7 +197,6 @@ public class FileServiceImpl implements FileService {
 	@Override
 	public String insertArtistPhoto(ArtistPhoto artistPhoto) throws Exception{
 		MultipartFile attach = artistPhoto.getFile();
-		System.out.println("사용자가 선택한 파일명 : "+attach.getOriginalFilename());
 		
 		UUID uuid = UUID.randomUUID();
 		
@@ -229,7 +216,6 @@ public class FileServiceImpl implements FileService {
 
 	@Override
 	public String artistPhotoProfileUpdate(Busker busker, MultipartFile file) throws Exception{
-//		System.out.println("사용자가 선택한 파일명 : "+file.getOriginalFilename());
 		UUID uuid = UUID.randomUUID();
 		String fileName = file.getOriginalFilename();
 		String[] arr = fileName.split("\\.");

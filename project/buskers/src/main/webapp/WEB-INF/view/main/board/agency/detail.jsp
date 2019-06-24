@@ -24,9 +24,7 @@
                     <span class="agency-insert__item-name">목적</span>
                   </div>
                   <div class="agency-insert__item-column">
-                    <span class="agency-insert__item-purpose">
-                      ${agencyInfo.purpose}
-                    </span>
+                    <span class="agency-insert__item-purpose" style="white-space:pre;">${agencyInfo.purpose}</span>
                   </div>
                 </div>
                 <div class="agency-insert__item">
