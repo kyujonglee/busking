@@ -155,12 +155,19 @@
 </div>
 
 <script>
-	let buskerNo = ${param.buskerNo};
-	
+	let paramBuskerNo = "${param.buskerNo}";
+	let mainAjax = "<c:url value='/artist/main/main-ajax.do'/>";
+	let defaultPhoto = "<c:url value='/resources/img/default.jpg' />";
+	let fileDownload = "<c:url value='/file/download.do?path='/>";
+	let defaultProfile = '<c:url value="/resources/img/profile.png" />';
+	let socialInsert = "<c:url value='/artist/main/social-url.do'/>";
+	let followAjax = "<c:url value='/artist/main/follow-ajax.do'/>";
+	let mainRecommend = "<c:url value='/artist/main/main-recommend-ajax.do'/>";
+	let artistMain = "<c:url value='/artist/main/main.do'/>";
 	$.ajax({
-		url : "<c:url value='/artist/main/main-ajax.do'/>",
+		url : mainAjax,
 		dateType : "json",
-		data : "buskerNo="+buskerNo
+		data : "buskerNo="+paramBuskerNo
 	}).done(map => {
 		const showCount = map.showCount;
 		const musicCount = map.musicCount;
@@ -188,17 +195,17 @@
 		
 		//사진
 		if(photo == ""){
-			$(".side_photo_img").attr("src" , "<c:url value='/resources/img/default.jpg' />");
+			$(".side_photo_img").attr("src" , defaultPhoto);
 		}else{
-			$(".side_photo_img").attr("src" , "<c:url value='/file/download.do'/>?path="+photo);
+			$(".side_photo_img").attr("src" , fileDownload+photo);
 		}
 		
 		$(".busker-side__profile-photo").prepend(
-		`<img src='<c:url value='/resources/img/profile.png' />'>`		
+		`<img src=`+defaultProfile+`>`		
 		)
 		if(profileImg != null){
 			$(".busker-side__profile-photo img:eq(0)").attr("src",
-			"<c:url value='/file/download.do'/>?path="+profileImgPath+profileImg+""		
+				fileDownload+profileImgPath+profileImg
 			)
 		}
 		
@@ -224,32 +231,7 @@
 		$("#faceBookUrl").val(faceBookUrl);
 	    $("#youTubeUrl").val(youTubeUrl);
 	    $("#instargramUrl").val(instargramUrl);
-		
 
-		$(".facebook").click(function(){
-			if($("#faceBookUrl").val() == ""){
-				alert("등록된 url이 없습니다.");
-			}else{
-		    	/* window.location.href = 	$("#faceBookUrl").val(); */
-		    	window.open($("#faceBookUrl").val());
-			}
-	    })
-	     $(".youtube").click(function(){
-			if($("#youTubeUrl").val() == ""){
-				alert("등록된 url이 없습니다.");
-			}else{
-		    	/* window.location.href = $("#youTubeUrl").val(); */
-				window.open($("#youTubeUrl").val());
-			}
-	    })
-	    $(".instargram").click(function(){
-			if($("#instargramUrl").val() == ""){
-				alert("등록된 url이 없습니다.");
-			}else{
-		    	/* window.location.href = $("#instargramUrl").val(); */
-				window.open($("#instargramUrl").val());
-			}
-	    })
 		    
 	    
 
@@ -280,11 +262,11 @@
 	    	}
 
 	    	$.ajax({
-    			url : "<c:url value='/artist/main/social-url.do'/>",
+    			url : socialInsert,
     			data : {faceBookUrl:$("#faceBookUrl").val() 
     				   ,youTubeUrl:$("#youTubeUrl").val()
     				   ,instargramUrl:$("#instargramUrl").val() 
-    				   ,buskerNo:buskerNo},
+    				   ,buskerNo:paramBuskerNo},
     		}).done(function(result){
     			$("#faceBookUrl").val(result.faceBookUrl);
     		    $("#youTubeUrl").val(result.youTubeUrl);
@@ -307,8 +289,8 @@
 			});
 		}else{
 			$.ajax({
-				url : "/buskers/artist/main/follow-ajax.do",
-				data : {buskerNo: buskerNo,memberNo:"${sessionScope.user.memberNo}"},
+				url : followAjax ,
+				data : {buskerNo: paramBuskerNo,memberNo:"${sessionScope.user.memberNo}"},
 			}).done(function(result){
 				if(result == 1){
 					Swal.fire({
@@ -339,7 +321,7 @@
 	let instargramUrl = $("#instargramUrl").val();
 		$.ajax({
 			url : "social-url.do",
-			data : {faceBookUrl:faceBookUrl , youTubeUrl:youTubeUrl, instargramUrl:instargramUrl ,buskerNo:buskerNo},
+			data : {faceBookUrl:faceBookUrl , youTubeUrl:youTubeUrl, instargramUrl:instargramUrl ,buskerNo:paramBuskerNo},
 		}).done(function(result){
 			$("#facebookUrl").val(result.faceBookUrl);
 		    $("#youtubeUrl").val(result.youTubeUrl);
@@ -350,15 +332,44 @@
     
     /** 관련 버스커 */
     $.ajax({
-		url : "<c:url value='/artist/main/main-recommend-ajax.do'/>",
-		data : "buskerNo=" + buskerNo
+		url : mainRecommend,
+		data : "buskerNo=" + paramBuskerNo
 	}).done((result) => {
 		let html = "";
 		for (let i = 0; i < result.length; i++) {
 			html += '<div class="buskers__recommend-item">';
-			html += '<i class="fas fa-user-friends"></i>' + '<a href="<c:url value='/artist/main/main.do'/>' + '?buskerNo=' + result[i].buskerNo + '">' + result[i].activityName + '</a>';
+			html += '<i class="fas fa-user-friends"></i>' + '<a href="'+artistMain+'?buskerNo=' + result[i].buskerNo + '">' + result[i].activityName + '</a>';
+// 			html += '<i class="fas fa-user-friends"></i>' + '<a href="<c:url value='/artist/main/main.do'/>' + '?buskerNo=' + result[i].buskerNo + '">' + result[i].activityName + '</a>';
 			html += '</div>';
 		}
 		$(".buskers__recommend").html(html);
 	});
+    
+    //url
+    	$(".facebook").click(function(){
+			if($("#faceBookUrl").val() == ""){
+				alert("등록된 url이 없습니다.");
+			}else{
+		    	/* window.location.href = 	$("#faceBookUrl").val(); */
+		    	window.open($("#faceBookUrl").val());
+			}
+	    })
+	     $(".youtube").click(function(){
+			if($("#youTubeUrl").val() == ""){
+				alert("등록된 url이 없습니다.");
+			}else{
+		    	/* window.location.href = $("#youTubeUrl").val(); */
+				window.open($("#youTubeUrl").val());
+			}
+	    })
+	    $(".instargram").click(function(){
+			if($("#instargramUrl").val() == ""){
+				alert("등록된 url이 없습니다.");
+			}else{
+		    	/* window.location.href = $("#instargramUrl").val(); */
+				window.open($("#instargramUrl").val());
+			}
+	    })
+		
+    
 </script>

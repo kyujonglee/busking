@@ -3,19 +3,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
 <link rel="stylesheet" href="<c:url value='/resources/css/main/search/search-board-list.css'/>" />
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"/>
 <script
 	src="https://code.jquery.com/jquery-3.4.1.min.js"
 	integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
 	crossorigin="anonymous"></script>
-<title>Insert title here</title>
-</head>
-<body>
+<title>board-search-list</title>
 <body class="search__body">
     <div class="container">
         <div class="search__wrapper">
@@ -120,6 +114,7 @@
 				</c:if>
 			  </c:forEach>
 			  
+			  
 			  <c:if test="${pageResult.next eq true}">
 				<a href="board-search-list.do?pageNo=${pageResult.endPage + 1}&input=${param.input}">
 					<i class="fas fa-angle-right"></i>
@@ -128,26 +123,12 @@
 	         
 	         
           </div>
-			
-            
             
 <!--         <hr> -->
         </div>
     </div>
     <script>
-    	$(".search__board__wrapper div:eq(1)").addClass("first__board__list__top");
-    	
-		
-// 	    for (i = 0; i < $(".board__content").length; i++) {
-// 	    	text = $(".board__content:eq("+i+")").text();
-			
-// 	        text = text.replace(/<br\/>/ig, "\n");
-	    	
-// 	    	let newText = text.replace(/(<([^>]+)>)/ig,"");
-// 			$(".board__content:eq(" + i + ")").text(newText);
-// 		}
-    
+    	let pageNo = "${param.pageNo}";
     </script>
+    <script src="<c:url value='/resources/js/main/search/board-search-list.js'/>"></script>
 </body>
-</body>
-</html>
