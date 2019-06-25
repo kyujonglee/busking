@@ -69,4 +69,7 @@
     	<input type="hidden"  id="accessToken" name="accessToken" value=""/>
     </form> 
 </main>
+<script>
+	let msg = '${msg}';
+</script>
 <script src="<c:url value='/resources/js/main/member/login.js'/>"></script>

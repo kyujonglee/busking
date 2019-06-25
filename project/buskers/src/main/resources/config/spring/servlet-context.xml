@@ -126,6 +126,7 @@
 			<mvc:exclude-mapping path="/main/board/agency/jusopopup.do"/>
 			<mvc:exclude-mapping path="/artist/board/list.do"/>
 			<mvc:exclude-mapping path="/artist/board/detail.do"/>
+			<mvc:exclude-mapping path="/artist/board/list-ajax.do"/>
 			
 			<mvc:exclude-mapping path="/artist/main/main-ajax.do"/>
 			<mvc:exclude-mapping path="/artist/board/photo.do"/>
