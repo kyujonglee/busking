@@ -97,19 +97,7 @@
 </section>
 <script src="<c:url value='/resources/js/artist/board/map.js' />"></script>
 <script>
-function init() {
-  console.log("detail 초기실행");
-  const lat = '<c:out value="${show.lat}"/>';
-  const lon = '<c:out value="${show.lon}"/>';
-  mapInit(lat, lon);
-}
-const no = ${sessionScope.user eq null? 0 : sessionScope.user.buskerNo};
-const update = (showNo, enrollDate) => {
-  if(new Date() > new Date(enrollDate)){
-	  alert("현재 날짜 이전의 공연날짜는 수정할 수 없습니다.");
-  }else {
-	  location.href = `updateForm.do?showNo=` + showNo+ `&buskerNo=`+${buskerNo};
-  }
-};
-init();
+	const lat = '<c:out value="${show.lat}"/>';
+	const lon = '<c:out value="${show.lon}"/>';
 </script>
+<script src="<c:url value='/resources/js/artist/board/detail.js' />"></script>
