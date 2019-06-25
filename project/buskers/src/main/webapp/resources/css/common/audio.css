@@ -6,7 +6,7 @@
 }
 
 .busker-audio-wrapper {
-  z-index : 10;
+  z-index : 100;
   /* width: 50%; */
   width: 50px;
   border-radius: 25px;
