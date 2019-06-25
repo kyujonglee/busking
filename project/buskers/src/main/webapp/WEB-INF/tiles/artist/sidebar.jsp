@@ -155,7 +155,7 @@
 </div>
 
 <script>
-	let paramBuskerNo = "${param.buskerNo}";
+	const paramBuskerNo = "${param.buskerNo}";
 	let mainAjax = "<c:url value='/artist/main/main-ajax.do'/>";
 	let defaultPhoto = "<c:url value='/resources/img/default.jpg' />";
 	let fileDownload = "<c:url value='/file/download.do?path='/>";
