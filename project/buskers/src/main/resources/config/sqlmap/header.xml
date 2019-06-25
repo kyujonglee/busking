@@ -138,6 +138,7 @@
        where read_status = 'N'
          and receiver_is_deleted = 'N'
          and receiver_member_no = #{memberNo}
+         and receiver_is_deleted = 'N'
    </select>
    
    <select id="selectMemberNickName" parameterType="String" resultType="int">
