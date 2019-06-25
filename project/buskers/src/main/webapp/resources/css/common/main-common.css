@@ -1,6 +1,6 @@
 
-.main-agency {
-	height: auto;
+.main-body .main-agency {
+	height: calc(100vh - 100px);
 /* 	position: absolute; */
 	width: 100%;
 /* 	background-color: var(--color-background); */
