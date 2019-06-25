@@ -50,7 +50,7 @@
 						버스킹 공연이 있습니다.</h2>
 					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
 						Itaque voluptatem accusamus non quidem, deleniti optio.</p>
-					<a href="#" class="mu-readmore-btn">더 알아보기</a>
+					<a href="#" class="mu-readmore-btn more_button_1">더 알아보기</a>
 				</div>
 			</div>
 
@@ -60,7 +60,7 @@
 					<h2 class="mu-slider-title">팔로우한 아티스트의 소식을 확인해보세요.</h2>
 					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
 						Itaque voluptatem accusamus non quidem, deleniti optio.</p>
-					<a href="#" class="mu-readmore-btn">더 알아보기</a>
+					<a href="#" class="mu-readmore-btn more_button_2">더 알아보기</a>
 				</div>
 			</div>
 
@@ -70,7 +70,7 @@
 					<h2 class="mu-slider-title">가장 인기있는 버스킹 공연 장소는?</h2>
 					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
 						Itaque voluptatem accusamus non quidem, deleniti optio.</p>
-					<a href="#" class="mu-readmore-btn">더 알아보기</a>
+					<a href="#" class="mu-readmore-btn more_button_3">더 알아보기</a>
 				</div>
 			</div>
 
@@ -275,7 +275,7 @@
 	</div>
 	
 
-	<div class="buskers_feed_wrapper">
+	<div class="buskers_feed_wrapper button__3">
 		<div class="buskers_feed_title">
 			<div class="neon">
 				<b>Fol<span>low</span>er's n<span>ews</span> feed
@@ -620,15 +620,26 @@
 	*/
 	  	
 	let topbol = true;
-		$(document).on("click",".mu-readmore-btn",function(){
+	$(document).on("click",".more_button_1",function(){
 		let index = $(".main_body_container").offset().top-10;
-		if(topbol){
-			$('html,body').stop().animate({scrollTop:index},1000);
-			topbol=false;	  			
-		}else{
-			$('html,body').stop().animate({scrollTop:index-60},1000);
-		}
+// 		if(topbol){
+// 			$('html,body').stop().animate({scrollTop:index},1000);
+// 			topbol=false;	  			
+// 		}else{
+		$('html,body').stop().animate({scrollTop:index-60},1000);
+// 		}
 	});
+	$(document).on("click",".more_button_2",function(){
+		let index = $(".button__3").offset().top-10;
+		$('html,body').stop().animate({scrollTop:index-60},1000);
+	});
+	$(document).on("click",".more_button_3",function(){
+		let index = $(".buskers_feed_recent_wrapper").offset().top-10;
+		$('html,body').stop().animate({scrollTop:index-60},1000);
+	});
+		
+		
+		
 	 	
 	$( window ).scroll( function() {
 		if ( $( this ).scrollTop() > $(".main_body_container").position().top-80) {
