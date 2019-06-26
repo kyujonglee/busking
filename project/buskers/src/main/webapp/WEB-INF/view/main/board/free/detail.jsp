@@ -247,7 +247,12 @@
                 <a href="<c:url value='/main/board/free/update-form.do?pageNo=${param.pageNo}&input=${param.input}&sortType=${param.sortType}&searchType=${param.searchType}&boardNo=${param.boardNo}'/>" class="fas fa-eraser"> 수정</a>
                 <a href="<c:url value='/main/board/free/delete.do?pageNo=${param.pageNo}&input=${param.input}&sortType=${param.sortType}&searchType=${param.searchType}&boardNo=${param.boardNo}'/>" class="fas fa-pen-square"> 삭제</a>
                 </c:if>
-                <a href="<c:url value='/main/board/free/list.do?pageNo=${param.pageNo}&input=${param.input}&sortType=${param.sortType}&searchType=${param.searchType}'/>" class="fas fa-list-ul"> 목록</a>
+                <c:if test="${!empty param.pageNo }">
+                	<a href="<c:url value='/main/board/free/list.do?pageNo=${param.pageNo}&input=${param.input}&sortType=${param.sortType}&searchType=${param.searchType}'/>" class="fas fa-list-ul"> 목록</a>
+                </c:if>
+                <c:if test="${empty  param.pageNo}">
+                	<a href="<c:url value='/main/board/free/list.do?'/>" class="fas fa-list-ul"> 목록</a>
+                </c:if>
             </div>
 
             <br><br><br>

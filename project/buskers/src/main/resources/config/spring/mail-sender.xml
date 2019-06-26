@@ -9,8 +9,8 @@
         <property name="host" value="smtp.gmail.com" />
         <property name="port" value="587" />
         <property name="defaultEncoding" value="utf-8"/>
-        <property name="username" value="이메일 보낼 계정아이디" />
-        <property name="password" value="해당 이메일계정 비밀번호" />
+        <property name="username" value="kyujong93@gmail.com" />
+        <property name="password" value="dlrbwhd1!!" />
        
         <property name="javaMailProperties">
             <props>
