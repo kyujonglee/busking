@@ -48,8 +48,6 @@
 				<div class="mu-top-slider-content">
 					<h2 class="mu-slider-title">오늘 하루, ${fn:length(artistShow)}건의
 						버스킹 공연이 있습니다.</h2>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-						Itaque voluptatem accusamus non quidem, deleniti optio.</p>
 					<a href="#" class="mu-readmore-btn more_button_1">더 알아보기</a>
 				</div>
 			</div>
@@ -58,8 +56,6 @@
 				<img src="<c:url value='/resources/img/busker4.jpg'/>" alt="img">
 				<div class="mu-top-slider-content">
 					<h2 class="mu-slider-title">팔로우한 아티스트의 소식을 확인해보세요.</h2>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-						Itaque voluptatem accusamus non quidem, deleniti optio.</p>
 					<a href="#" class="mu-readmore-btn more_button_2">더 알아보기</a>
 				</div>
 			</div>
@@ -67,9 +63,7 @@
 			<div class="mu-top-slider-single">
 				<img src="<c:url value='/resources/img/busker5.jpg'/>" alt="img">
 				<div class="mu-top-slider-content">
-					<h2 class="mu-slider-title">가장 인기있는 버스킹 공연 장소는?</h2>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-						Itaque voluptatem accusamus non quidem, deleniti optio.</p>
+					<h2 class="mu-slider-title">최근 올라온 아티스트 소식은?</h2>
 					<a href="#" class="mu-readmore-btn more_button_3">더 알아보기</a>
 				</div>
 			</div>
