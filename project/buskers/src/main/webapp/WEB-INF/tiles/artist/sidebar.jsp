@@ -155,6 +155,8 @@
 </div>
 
 <script>
+	let memberNo = "${sessionScope.user.memberNo}";
+	let user = "${sessionScope.user}";
 	const paramBuskerNo = "${param.buskerNo}";
 	let mainAjax = "<c:url value='/artist/main/main-ajax.do'/>";
 	let defaultPhoto = "<c:url value='/resources/img/default.jpg' />";

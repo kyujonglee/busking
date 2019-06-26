@@ -78,9 +78,7 @@
 		                		<i class="fas fa-comment-dots"></i>
 		                		<span><b class="comment_highlight">${fn:length(comment) + fn:length(reply)}</b>개의 댓글</span>
 		                	</div>
-		                	
 	                	</div>
-	                	
 	                	<div class="board_article_comment_list">
                 	<%--	<div class="best_comment comment_list">
 			               	 	<div class="comment_info">
@@ -256,6 +254,7 @@
 						<div class="best_comment comment_list">
 							<div class="comment_info">
 	            			<span class="board_img_title">
+	            			<img src="<c:url value='/file/download.do'/>?path=${highestLikeComment.profileImgPath}${highestLikeComment.profileImg}" onError="this.src='<c:url value='/resources/img/profile.png' />';" />
 			            	</span>
 	           		   			<div class="comment_id">${highestLikeComment.nickName}</div>
 	           					<div class="comment_date">

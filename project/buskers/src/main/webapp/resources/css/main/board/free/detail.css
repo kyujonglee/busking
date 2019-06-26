@@ -75,6 +75,9 @@
 	height: auto;
 	padding: 30px 10px;
 }
+.board_article_content div p img{
+	width:100%;
+}
 
 .free_board_detail_bottom > a {
     min-width: 56px;
