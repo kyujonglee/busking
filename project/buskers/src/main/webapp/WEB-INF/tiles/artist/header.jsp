@@ -11,9 +11,8 @@
 		</button>
 	</div>
 	<div class="busker-header__title">
-		<a href="<c:url value='/main/main.do'/>">
-		<i class="fas fa-home"></i> Buskers
-		</a>
+		<img src="/buskers/resources/img/logo.png" />
+		<a class="busker_header_logo" href="<c:url value='/main/main.do'/>">Buskers</a>
 	</div>
 	<div class="busker-header__member">
 		<c:if test="${sessionScope.user eq null}">
