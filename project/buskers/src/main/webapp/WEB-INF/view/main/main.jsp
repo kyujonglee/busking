@@ -148,7 +148,9 @@
 								<p>${list.content}</p>
 							</div>
 							<div class="SM-btn"></div>
-							<div class="layer"></div>
+							<a href="<c:url value='/artist/board/detail.do?buskerNo=${list.buskerNo}&showNo=${list.showNo }'/>">
+								<div class="layer"></div>
+							</a>
 						</section>
 					</c:forEach>
 				</div>
@@ -540,7 +542,7 @@
    				html +=     '<div class="SM-btn">';
   				html += genre;
   				html +=     '</div>';
-  				html += 	'<div class="layer"></div>';
+  				html += 	`<a href="<c:url value='/artist/board/detail.do?buskerNo=`+list.buskerNo+`&showNo=`+list.showNo+`' />"><div class="layer"></div></a>`;
    				html += '</section>';
 			}
 			$(".performance_info_list").html(html);
@@ -776,7 +778,7 @@
 	       				html +=     '<div class="SM-btn">';
 	      				html += genre;
 	      				html +=     '</div>';
-	      				html += 	'<div class="layer"></div>';
+	      				html +=  	`<a href="<c:url value='/artist/board/detail.do?buskerNo=`+list.buskerNo+`&showNo=`+list.showNo+`' />"><div class="layer"></div></a>`;
 	       				html += '</section>';
 		    			$(".performance_info_list").html(html);
 		    		    	
@@ -873,7 +875,7 @@
        				html +=     '<div class="SM-btn">';
       				html += genre;
       				html +=     '</div>';
-      				html += 	'<div class="layer"></div>';
+      				html += 	`<a href="<c:url value='/artist/board/detail.do?buskerNo=`+list.buskerNo+`&showNo=`+list.showNo+`' />"><div class="layer"></div></a>`;
        				html += '</section>';
     			}
     			$(".performance_info_list").html(html);
