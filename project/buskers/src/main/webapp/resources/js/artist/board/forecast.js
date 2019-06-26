@@ -56,13 +56,13 @@ function realTimeWeather() {
   ForecastGribURL += "&nx=" + _nx + "&ny=" + _ny;
   ForecastGribURL += "&pageNo=1&numOfRows=7";
   ForecastGribURL += "&_type=json";
+}
 
   //   $.ajax({
   //     dataType : "jsonp",
   //     url :url
   // }).done(json=>console.log(json))
   // .fail(error=>console.log(error));
-}
 
 // const API_KEY = "d3bf0d7d2d5b1152cc9ad6fde52607b6";
 // const lat = 37.541;

@@ -9,7 +9,7 @@
 	<div class="board">
 		<header class="agency-header agency-insert__title">
 			<a href="<c:url value='/main/board/agency/list.do'/>"><i
-				class="fas fa-home fa-lg"></i></a> <span class="agency-title ">업체
+				class="fas fa-home fa-lg"></i></a> <span class="agency-title">업체
 				수정</span>
 		</header>
 		<form id="insertForm" method="post"
@@ -30,7 +30,7 @@
 						<span class="agency-insert__item-name">목적</span>
 					</div>
 					<div class="agency-insert__item-column">
-						<textarea class="agency-insert__item-textarea" cols="70" rows="7"
+						<textarea class="agency-insert__item-textarea" cols="70" rows="4"
 							name="purpose" id="purpose">${agencyInfo.purpose}</textarea>
 					</div>
 				</div>

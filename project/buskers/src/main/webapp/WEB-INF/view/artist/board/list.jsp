@@ -11,7 +11,7 @@
 		</div>
 		<div class="busker-show__header-title">
 			<a class="busker-show__header-link">공연일정</a>
-			<a href="<c:url value='enrollForm.do?buskerNo=' />${buskerNo}" onclick="return enrollForm();" class="busker-show__header-enroll-btn">등록하기</a>
+			<a href="<c:url value='enrollForm.do?buskerNo=' />${param.buskerNo}" onclick="return enrollForm();" class="busker-show__header-enroll-btn">등록하기</a>
 		</div>
 	</header>
 	<section class="busker-show-list__main">
@@ -24,7 +24,7 @@
 // 	const paramBuskerNo = ${param.buskerNo};
 	const showListUrl = "<c:url value='artist/board/list-ajax.do'/>";
 	function enrollForm(){
-		if(no === paramBuskerNo){
+		if(no === parseInt(paramBuskerNo)){
 			return true;
 		}else {
 			alert('버스커만 공연일정을 등록할 수 있습니다.');
@@ -33,7 +33,7 @@
 	}
 	
 	const update = (showNo, enrollDate) => {
-	  if(no === paramBuskerNo) {
+	  if(no === parseInt(paramBuskerNo)) {
 		  if(new Date() > enrollDate){
 			  alert("현재 날짜 이전의 공연날짜는 수정할 수 없습니다.");
 		  }else {
@@ -44,4 +44,5 @@
 	  }
 	};
 </script>
+<script src="<c:url value='/resources/js/artist/board/forecast.js' />"></script>
 <script src="<c:url value='/resources/js/artist/board/list.js' />"></script>

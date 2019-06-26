@@ -105,7 +105,7 @@ $.ajax({
 //	 	팔로우 기능
 $(".busker__profile-header-follow").click(function(){
 
-	if("${sessionScope.user}" == ""){
+	if(user == ""){
 		Swal.fire({
 		  title:'로그인이 필요한 기능입니다.',
 		  type:'warning',
@@ -115,7 +115,7 @@ $(".busker__profile-header-follow").click(function(){
 	}else{
 		$.ajax({
 			url : followAjax ,
-			data : {buskerNo: paramBuskerNo,memberNo:"${sessionScope.user.memberNo}"},
+			data : {buskerNo: paramBuskerNo,memberNo:memberNo},
 		}).done(function(result){
 			if(result == 1){
 				Swal.fire({

@@ -26,9 +26,7 @@
                         <button type="button" class="register signout"  >뒤로</button>
                     </div>
                 </form>
-                
             </div>
-
     </div>
 </main>
 <script src="<c:url value='/resources/js/main/member/signupSocial.js'/>"></script>
