@@ -4,8 +4,7 @@
     overflow-wrap: break-word;
     white-space: pre-line;
     word-break: break-all; 
-    height : 200px;
-    overflow : auto;
+    max-height : 200px;
 }
 
 .agency-insert__item .agency-insert__item-column:last-child{

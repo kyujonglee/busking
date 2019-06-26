@@ -58,16 +58,27 @@ function whenPlayed() {
     .addClass("fas fa-play fa-lg");
 }
 
+// $(document).ready(() => {
+//   setTimeout(() => {
+//     console.log("shit");
+//     console.log(audioItemList.length);
+//     if (audioItemList.length !== 0) {
+//       console.log("fucking shit");
+//       audio.canplay = function() {
+//         console.log("fucking shit2222");
+//         this.play();
+//         whenPaused();
+//       };
+//     }
+//   }, 500);
+// });
 $(document).ready(() => {
   setTimeout(() => {
-    console.log("shit");
     if (audioItemList.length !== 0) {
-      audio.oncanplaythrough = function() {
-        this.play();
-        whenPaused();
-      };
+      audio.play();
+      whenPaused();
     }
-  }, 500);
+  }, 1000);
 });
 
 canvas.onclick = function(e) {
