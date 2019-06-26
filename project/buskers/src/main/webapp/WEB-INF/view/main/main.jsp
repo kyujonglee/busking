@@ -48,6 +48,7 @@
 				<div class="mu-top-slider-content">
 					<h2 class="mu-slider-title">오늘 하루, ${fn:length(artistShow)}건의
 						버스킹 공연이 있습니다.</h2>
+					<p>지역, 장소, 시간별 공연 정보를 확인해보세요.</p>
 					<a href="#" class="mu-readmore-btn more_button_1">더 알아보기</a>
 				</div>
 			</div>
@@ -56,6 +57,7 @@
 				<img src="<c:url value='/resources/img/busker4.jpg'/>" alt="img">
 				<div class="mu-top-slider-content">
 					<h2 class="mu-slider-title">팔로우한 아티스트의 소식을 확인해보세요.</h2>
+					<p>관심있는 아티스트의 공연일정과 영상, 사진을 확인해보세요.</p>
 					<a href="#" class="mu-readmore-btn more_button_2">더 알아보기</a>
 				</div>
 			</div>
@@ -64,6 +66,7 @@
 				<img src="<c:url value='/resources/img/busker5.jpg'/>" alt="img">
 				<div class="mu-top-slider-content">
 					<h2 class="mu-slider-title">최근 올라온 아티스트 소식은?</h2>
+					<p>새로운 공연일정과 영상, 사진을 확인해보세요.</p>
 					<a href="#" class="mu-readmore-btn more_button_3">더 알아보기</a>
 				</div>
 			</div>
