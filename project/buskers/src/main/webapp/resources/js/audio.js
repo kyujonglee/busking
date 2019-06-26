@@ -59,12 +59,15 @@ function whenPlayed() {
 }
 
 $(document).ready(() => {
-  if (audioItemList.length !== 0) {
-	  audio.oncanplaythrough = function(){
-		  this.play();
-		  whenPaused();
-	  };
-  }
+  setTimeout(() => {
+    console.log("shit");
+    if (audioItemList.length !== 0) {
+      audio.oncanplaythrough = function() {
+        this.play();
+        whenPaused();
+      };
+    }
+  }, 500);
 });
 
 canvas.onclick = function(e) {
@@ -107,7 +110,7 @@ audio.addEventListener("timeupdate", function() {
     <span id="duration"> ${du + ":" + pad(duration % 60)} </span>
     `);
   }
-  
+
   // 그림을 그릴 컨텍스트
   ctx.clearRect(0, 0, canvas.clientWidth, canvas.clientWidth);
   const rectWidth = (currentTime / duration) * canvas.clientWidth;
