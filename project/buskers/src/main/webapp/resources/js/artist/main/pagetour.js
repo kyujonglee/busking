@@ -54,7 +54,7 @@
           {
 	          el: '#busker-info',
 	          templateData: {
-	            content: '버스커에 대한 소개를 볼 수 있습니다.'
+	            content: '버스커가 이미지, 소개글을 간편하게 입력할 수 있습니다.'
 	          }
           },
           {

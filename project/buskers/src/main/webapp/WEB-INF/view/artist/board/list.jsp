@@ -11,7 +11,7 @@
 		</div>
 		<div class="busker-show__header-title">
 			<a class="busker-show__header-link">공연일정</a>
-			<a href="<c:url value='enrollForm.do?buskerNo=' />${buskerNo}" onclick="return enrollForm();" class="busker-show__header-enroll-btn">등록하기</a>
+			<a href="<c:url value='enrollForm.do?buskerNo=' />${param.buskerNo}" onclick="return enrollForm();" class="busker-show__header-enroll-btn">등록하기</a>
 		</div>
 	</header>
 	<section class="busker-show-list__main">
