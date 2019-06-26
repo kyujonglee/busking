@@ -1,10 +1,15 @@
 .agency-insert__item-purpose {
     display: block;
     width: 100%;
-    overflow-wrap: break-word; 
+    overflow-wrap: break-word;
+    white-space: pre-line;
+    word-break: break-all; 
+    height : 200px;
+    overflow : auto;
 }
 
 .agency-insert__item .agency-insert__item-column:last-child{
     color : var(--color-gray);
     height: auto;
 }
+

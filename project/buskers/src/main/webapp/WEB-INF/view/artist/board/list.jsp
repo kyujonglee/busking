@@ -44,4 +44,5 @@
 	  }
 	};
 </script>
+<script src="<c:url value='/resources/js/artist/board/forecast.js' />"></script>
 <script src="<c:url value='/resources/js/artist/board/list.js' />"></script>
