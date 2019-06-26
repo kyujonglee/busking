@@ -2,7 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<section class="busker-info">
+<section class="busker-info" id="busker-info">
 	<img src="" class="side_photo_img" />
 	<input type="file" name="side_photo_button" class="side_photo_button"/>
 
@@ -20,7 +20,7 @@
 
 
 <script>
-	buskerNo = "${sessionScope.user.busker.buskerNo}";
+	buskerNo = "${sesessionScope.user.busker.buskerNo}";
 	let introUpdate = "<c:url value='/artist/main/intro-update.do'/>";
 	let artistPhotoProfileUpdate = "<c:url value='/file/artist-photo-profile-update.do'/>";
 </script>

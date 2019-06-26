@@ -8,9 +8,9 @@
 	<header class="busker-show__header">
 		<div class="busker-show__header-top-menu">
 			<a class="header-top-menu__content"
-				href="<c:url value='/artist/main/main.do'/>?buskerNo=${buskerNo}"> <i
+				href="<c:url value='/artist/main/main.do'/>?buskerNo=${param.buskerNo}"> <i
 				class="fas fa-home fa-lg"></i> 버스커 홈
-			</a> &gt <a href="<c:url value='list.do?buskerNo=${buskerNo}' />" class="header-top-menu__content"> 공연일정 </a> &gt <a
+			</a> &gt <a href="<c:url value='list.do?buskerNo=${param.buskerNo}' />" class="header-top-menu__content"> 공연일정 </a> &gt <a
 				class="header-top-menu__content"> 상세조회 </a>
 		</div>
 		<div class="busker-show__header-title">
@@ -87,7 +87,7 @@
 								<button type="button" class="busker-show-delete__btn">삭제</button>
 							</a>
 						</c:if>
-						<a href="list.do?buskerNo=${buskerNo}">
+						<a href="list.do?buskerNo=${param.buskerNo}">
 							<button type="button" class="busker-show-list__btn">목록</button>
 						</a>
 					</div>

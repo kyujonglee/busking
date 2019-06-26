@@ -24,11 +24,10 @@ $(document).ready(() => {
 		  if(show.genre === null) {
 			  show.genre.name = "";
 		  }
-//		  <a href="updateForm.do?showNo=${show.showNo}">
 		  $(".busker-show-list__main").append(`
     			  <div class="busker-show-list__item" id="busker-show${show.showNo}">
     				<div class="busker-show-list__item-title">
-					  <a href="detail.do?showNo=${show.showNo}&buskerNo=`+buskerNo+ `" class="busker-show-list__detail-link">
+					  <a href="detail.do?showNo=${show.showNo}&buskerNo=${paramBuskerNo}" class="busker-show-list__detail-link">
 	    					<span>${show.title}</span>
 						  ${end}
 					  </a>
