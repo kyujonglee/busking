@@ -20,7 +20,7 @@
 
 
 <script>
-	buskerNo = "${sesessionScope.user.busker.buskerNo}";
+	buskerNo = "${sessionScope.user.busker.buskerNo}";
 	let introUpdate = "<c:url value='/artist/main/intro-update.do'/>";
 	let artistPhotoProfileUpdate = "<c:url value='/file/artist-photo-profile-update.do'/>";
 </script>

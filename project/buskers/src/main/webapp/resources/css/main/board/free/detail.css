@@ -75,8 +75,8 @@
 	height: auto;
 	padding: 30px 10px;
 }
-.board_article_content div p img{
-	width:100%;
+.board_article_content div{
+	overflow:auto;
 }
 
 .free_board_detail_bottom > a {

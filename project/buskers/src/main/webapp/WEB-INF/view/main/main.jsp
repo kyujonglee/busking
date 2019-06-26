@@ -48,8 +48,7 @@
 				<div class="mu-top-slider-content">
 					<h2 class="mu-slider-title">오늘 하루, ${fn:length(artistShow)}건의
 						버스킹 공연이 있습니다.</h2>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-						Itaque voluptatem accusamus non quidem, deleniti optio.</p>
+					<p></p>
 					<a href="#" class="mu-readmore-btn more_button_1">더 알아보기</a>
 				</div>
 			</div>
@@ -58,8 +57,7 @@
 				<img src="<c:url value='/resources/img/busker4.jpg'/>" alt="img">
 				<div class="mu-top-slider-content">
 					<h2 class="mu-slider-title">팔로우한 아티스트의 소식을 확인해보세요.</h2>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-						Itaque voluptatem accusamus non quidem, deleniti optio.</p>
+					<p></p>
 					<a href="#" class="mu-readmore-btn more_button_2">더 알아보기</a>
 				</div>
 			</div>
@@ -68,8 +66,7 @@
 				<img src="<c:url value='/resources/img/busker5.jpg'/>" alt="img">
 				<div class="mu-top-slider-content">
 					<h2 class="mu-slider-title">가장 인기있는 버스킹 공연 장소는?</h2>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-						Itaque voluptatem accusamus non quidem, deleniti optio.</p>
+					<p></p>
 					<a href="#" class="mu-readmore-btn more_button_3">더 알아보기</a>
 				</div>
 			</div>
@@ -151,7 +148,9 @@
 								<p>${list.content}</p>
 							</div>
 							<div class="SM-btn"></div>
-							<div class="layer"></div>
+							<a href="<c:url value='/artist/board/detail.do?buskerNo=${list.buskerNo}&showNo=${list.showNo }'/>">
+								<div class="layer"></div>
+							</a>
 						</section>
 					</c:forEach>
 				</div>
@@ -543,7 +542,7 @@
    				html +=     '<div class="SM-btn">';
   				html += genre;
   				html +=     '</div>';
-  				html += 	'<div class="layer"></div>';
+  				html += 	`<a href="<c:url value='/artist/board/detail.do?buskerNo=`+list.buskerNo+`&showNo=`+list.showNo+`' />"><div class="layer"></div></a>`;
    				html += '</section>';
 			}
 			$(".performance_info_list").html(html);
@@ -779,7 +778,7 @@
 	       				html +=     '<div class="SM-btn">';
 	      				html += genre;
 	      				html +=     '</div>';
-	      				html += 	'<div class="layer"></div>';
+	      				html +=  	`<a href="<c:url value='/artist/board/detail.do?buskerNo=`+list.buskerNo+`&showNo=`+list.showNo+`' />"><div class="layer"></div></a>`;
 	       				html += '</section>';
 		    			$(".performance_info_list").html(html);
 		    		    	
@@ -876,7 +875,7 @@
        				html +=     '<div class="SM-btn">';
       				html += genre;
       				html +=     '</div>';
-      				html += 	'<div class="layer"></div>';
+      				html += 	`<a href="<c:url value='/artist/board/detail.do?buskerNo=`+list.buskerNo+`&showNo=`+list.showNo+`' />"><div class="layer"></div></a>`;
        				html += '</section>';
     			}
     			$(".performance_info_list").html(html);
