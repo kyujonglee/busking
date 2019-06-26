@@ -507,3 +507,8 @@
 .fa-sun {
 	color: orangered;
 }
+
+.bubble p {
+	text-align: left;
+	line-height: 25px;
+}

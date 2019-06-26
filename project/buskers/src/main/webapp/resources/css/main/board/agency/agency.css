@@ -4,3 +4,8 @@
 @import "table.css";
 @import 'check.css';
 @import 'detail.css';
+
+
+.agency-board .board-title {
+	margin-bottom : 50px;
+}

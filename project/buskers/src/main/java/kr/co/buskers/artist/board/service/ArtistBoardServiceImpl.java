@@ -48,7 +48,7 @@ public class ArtistBoardServiceImpl implements ArtistBoardService {
 		Map<String,Object> map = new HashMap<>();
 		Member member = (Member)session.getAttribute("user");
 		
-		if (alarm.getAlarmNo() == 0) {
+		if (alarm.getAlarmNo() == 0 && member != null) {
 			map.put("dataType", alarm.getDataType());
 			map.put("dataNo", alarm.getDataNo());
 			map.put("buskerNo", alarm.getBuskerNo());
