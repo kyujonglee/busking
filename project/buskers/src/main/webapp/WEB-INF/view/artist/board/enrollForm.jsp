@@ -88,7 +88,7 @@
 							<span>✔ 공연내용</span>
 						</div>
 						<div class="enroll-form-column__content">
-							<textarea name="content" id="content" class="enroll-form-column__textarea" maxlength="300"></textarea>
+							<textarea cols="60" rows="4" name="content" id="content" class="enroll-form-column__textarea" maxlength="300"></textarea>
 						</div>
 					</div>
 					<div class="busker-show-enroll__form-column">
