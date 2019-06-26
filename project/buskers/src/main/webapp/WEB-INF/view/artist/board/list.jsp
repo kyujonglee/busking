@@ -31,7 +31,7 @@
 	}
 	
 	const update = (showNo, enrollDate) => {
-	  if(no === buskerNo) {
+	  if(no === ${param.buskerNo}) {
 		  if(new Date() > enrollDate){
 			  alert("현재 날짜 이전의 공연날짜는 수정할 수 없습니다.");
 		  }else {

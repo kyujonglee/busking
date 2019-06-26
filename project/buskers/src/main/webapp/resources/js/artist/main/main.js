@@ -12,7 +12,7 @@
 	  // 메인 영상 스크립트
 	  $.ajax({
 		  url : videoItemUrl,
-		  data : "buskerNo="+buskerNo
+		  data : "buskerNo="+paramBuskerNo
 	  }).done((video)=>{
 		  if(video.length === 0){
 			  $(".busker-content__item:first-child").html(`
