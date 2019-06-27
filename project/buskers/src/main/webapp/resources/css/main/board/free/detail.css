@@ -75,6 +75,9 @@
 	height: auto;
 	padding: 30px 10px;
 }
+.board_article_content div{
+	overflow:auto;
+}
 
 .free_board_detail_bottom > a {
     min-width: 56px;
@@ -503,4 +506,9 @@
 
 .fa-sun {
 	color: orangered;
+}
+
+.bubble p {
+	text-align: left;
+	line-height: 25px;
 }

@@ -2,7 +2,7 @@
   margin: 0 auto;
   width: 100%;
   background-color: var(--color-white);
-  padding: 20px;
+  padding: 0px 20px;
   box-sizing: border-box;
   margin-bottom : 20px;
   border-radius : 10px;
@@ -13,7 +13,7 @@
 }
 .agency-insert__item {
   padding: 10px;
-  margin: 10px;
+  margin: 5px;
   display: flex;
   justify-content: flex-start;
   align-items: center;

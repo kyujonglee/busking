@@ -35,7 +35,6 @@ public class MainServiceImpl implements MainService {
 	public void exportCSV() {
 		List<ArtistShow> as = mapper.selectArtistShow();
 		try {
-			System.out.println(context.getRealPath("resources/etc/places.csv"));
 			
 			BufferedWriter fw = new BufferedWriter(new FileWriter(
 					context.getRealPath("resources/etc/places.csv"),false));
@@ -56,7 +55,7 @@ public class MainServiceImpl implements MainService {
 		List<ArtistShow> as = mapper.selectArtistShowByDate(enrollDate);
 		try {
 			BufferedWriter fw = new BufferedWriter(new FileWriter(
-					context.getRealPath("resources/etc/places.csv"),false));
+			context.getRealPath("resources/etc/places.csv"),false));
 			fw.write("name,lat,lon,id");
 			fw.newLine();
 			for(int i =0;i < as.size() ; i++) {
@@ -110,7 +109,6 @@ public class MainServiceImpl implements MainService {
 	public HashMap<String,Object> BoardListSearch(SearchPage searchPage) {
 		HashMap<String,Object> map = new HashMap<>();
 		map.put("pageResult", new FreePageResult(searchPage.getPageNo(), mapper.selectCountSearchBoard(searchPage)));
-//		System.out.println(mapper.selectCountSearchBoard(searchPage));
 		map.put("list",mapper.selectSearchBoard(searchPage));
 		return map;
 	}

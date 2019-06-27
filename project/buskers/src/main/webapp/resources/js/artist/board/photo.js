@@ -158,7 +158,7 @@ function list(length,result,f){
 			return;
 		}
 		list(length,result,f);
-	},10);
+	},100);
 }
 
 	

@@ -20,7 +20,7 @@
 				<b>'${input}'</b>에 대한 검색결과 입니다.
 			</div>
 			<div class="search__artist__wrapper">
-				<div class="search__title">아티스트 검색 결과</div>
+				<div class="search__title search-title__padding">아티스트 검색 결과</div>
 				<c:if test="${busker ne null}">
 					<div class="artist__search__info">
 						<div class="artist__search__image">
@@ -33,16 +33,20 @@
 									href="<c:url value='/artist/main/main.do?buskerNo=${busker.buskerNo}'/>">${busker.activityName }</a>
 							</div>
 							<div class="busker_info">
-								아티스트 소개 <span class="busker_info_db">${busker.intro }</span>
+								<span class="busker_info-tab">아티스트 소개</span> &nbsp;
+								<span class="busker_info_db">${busker.intro }</span>
 							</div>
 							<div class="busker_info">
-								장르 <span class="busker_info_db">${busker.genre }</span>
+								<span class="busker_info-tab">장르</span> &nbsp; 
+								<span class="busker_info_db">${busker.genre }</span>
 							</div>
 							<div class="busker_info">
-								주요 공연 장소 <span class="busker_info_db">${busker.location }</span>
+								<span class="busker_info-tab">주요 공연 장소</span> &nbsp;
+								<span class="busker_info_db">${busker.location }</span>
 							</div>
 							<div class="busker_info">
-								주요 공연 시간 <span class="busker_info_db">${busker.time }</span>
+								<span class="busker_info-tab">주요 공연 시간</span> &nbsp;
+								<span class="busker_info_db">${busker.time }</span>
 							</div>
 						</div>
 					</div>

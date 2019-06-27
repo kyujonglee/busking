@@ -1,16 +1,13 @@
 const API_KEY = "d3bf0d7d2d5b1152cc9ad6fde52607b6";
 $(document).ready(() => {
-//  $(".busker-side__info-btn i").trigger("click");
-//	infoFlag = false;
-//	$(".busker-side__info-btn i").attr({class:"fas fa-angle-left fa-2x"});
-//	$(".busker-info").css({display:"block"});
+	console.log(paramBuskerNo);
 });
 
   $.ajax({
 	  type : "POST",
 	  url : "/buskers/artist/board/list-ajax.do",
 	  dateType : "json",
-	  data : "buskerNo="+buskerNo,
+	  data : "buskerNo="+paramBuskerNo,
 	  async: true
   })
   .done((list)=>{
@@ -27,11 +24,10 @@ $(document).ready(() => {
 		  if(show.genre === null) {
 			  show.genre.name = "";
 		  }
-//		  <a href="updateForm.do?showNo=${show.showNo}">
 		  $(".busker-show-list__main").append(`
     			  <div class="busker-show-list__item" id="busker-show${show.showNo}">
     				<div class="busker-show-list__item-title">
-					  <a href="detail.do?showNo=${show.showNo}&buskerNo=`+buskerNo+ `" class="busker-show-list__detail-link">
+					  <a href="detail.do?showNo=${show.showNo}&buskerNo=${paramBuskerNo}" class="busker-show-list__detail-link">
 	    					<span>${show.title}</span>
 						  ${end}
 					  </a>

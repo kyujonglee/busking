@@ -78,9 +78,7 @@
 		                		<i class="fas fa-comment-dots"></i>
 		                		<span><b class="comment_highlight">${fn:length(comment) + fn:length(reply)}</b>개의 댓글</span>
 		                	</div>
-		                	
 	                	</div>
-	                	
 	                	<div class="board_article_comment_list">
                 	<%--	<div class="best_comment comment_list">
 			               	 	<div class="comment_info">
@@ -226,7 +224,12 @@
 	                <a href="<c:url value='/main/board/qna/update-form.do?pageNo=${param.pageNo}&input=${param.input}&sortType=${param.sortType}&searchType=${param.searchType}&boardNo=${param.boardNo}'/>" class="fas fa-eraser"> 수정</a>
 	                <a href="<c:url value='/main/board/qna/delete.do?pageNo=${param.pageNo}&input=${param.input}&sortType=${param.sortType}&searchType=${param.searchType}&boardNo=${param.boardNo}'/>" class="fas fa-pen-square"> 삭제</a>
 	                </c:if>
-	                <a href="<c:url value='/main/board/qna/list.do?pageNo=${param.pageNo}&input=${param.input}&sortType=${param.sortType}&searchType=${param.searchType}'/>" class="fas fa-list-ul"> 목록</a>
+	                <c:if test="${!empty param.pageNo }">
+                		<a href="<c:url value='/main/board/qna/list.do?pageNo=${param.pageNo}&input=${param.input}&sortType=${param.sortType}&searchType=${param.searchType}'/>" class="fas fa-list-ul"> 목록</a>
+                	</c:if>
+	                <c:if test="${empty  param.pageNo}">
+	                	<a href="<c:url value='/main/board/qna/list.do?'/>" class="fas fa-list-ul"> 목록</a>
+	                </c:if>
 	            </div>
 	
 	            <br><br><br>
@@ -256,6 +259,7 @@
 						<div class="best_comment comment_list">
 							<div class="comment_info">
 	            			<span class="board_img_title">
+	            			<img src="<c:url value='/file/download.do'/>?path=${highestLikeComment.profileImgPath}${highestLikeComment.profileImg}" onError="this.src='<c:url value='/resources/img/profile.png' />';" />
 			            	</span>
 	           		   			<div class="comment_id">${highestLikeComment.nickName}</div>
 	           					<div class="comment_date">

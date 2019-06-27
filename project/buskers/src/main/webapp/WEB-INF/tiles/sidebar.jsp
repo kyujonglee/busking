@@ -5,7 +5,7 @@
 <link rel="stylesheet" href="<c:url value='/resources/css/main/sidebar.css'/>" />
 <div class="page-wrapper chiller-theme">
 	        <a id="show-sidebar" class="btn btn-sm btn-dark">
-	            <i class="fas fa-bars"></i>
+	            <i class="fas fa-bars fa-lg"></i>
 	        </a>
 	        <nav id="sidebar" class="sidebar-wrapper">
 	            <div class="sidebar-content">

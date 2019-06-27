@@ -3,7 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <link rel="stylesheet" href="<c:url value='/resources/css/main/board/agency/agency.css'/>" />
       <main class="main-agency">
-        <div class="container">
           <div class="agency">
           <div class="board">
             <header class="agency-header agency-insert__title">
@@ -24,7 +23,7 @@
                     <span class="agency-insert__item-name">목적</span>
                   </div>
                   <div class="agency-insert__item-column">
-                    <span class="agency-insert__item-purpose" style="white-space:pre;">${agencyInfo.purpose}</span>
+                    <span class="agency-insert__item-purpose">${agencyInfo.purpose}</span>
                   </div>
                 </div>
                 <div class="agency-insert__item">
@@ -127,7 +126,6 @@
                   </a>
                 </div>
               </section>
-          </div>
         </div>
       </main>
 <script>

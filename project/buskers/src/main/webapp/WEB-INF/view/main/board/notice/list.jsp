@@ -95,13 +95,15 @@
 	            </div>
 	          </div>
 	        </header>
-	        	  <section class="notice-board__view-content" style="white-space:pre;">${list[0].content}</section>
-              	  	<span class="button_bottom">
-	                	<button class="notice_button reg_button" type="button" data-toggle="modal" data-target="#writeModal">글등록</button>
-	                	<button class="notice_button" type="button" id="notice_modify">수정</button>
-	                	<button class="notice_button" type="button" id="notice_delete">삭제</button>
-	                	<input type="hidden" id="board_no_button" data-bno="${list[0].boardNo}"/>
-                	</span>
+	        	  <section class="notice-board__view-content" style="white-space:pre-line;">${list[0].content}</section>
+	        	  	<c:if test="${sessionScope.user.memberNo eq 1 }">
+	              	  	<span class="button_bottom">
+		                	<button class="notice_button reg_button" type="button" data-toggle="modal" data-target="#writeModal">글등록</button>
+		                	<button class="notice_button" type="button" id="notice_modify">수정</button>
+		                	<button class="notice_button" type="button" id="notice_delete">삭제</button>
+		                	<input type="hidden" id="board_no_button" data-bno="${list[0].boardNo}"/>
+	                	</span>
+                	</c:if>
                 </div>
         	</section>
     	</div>

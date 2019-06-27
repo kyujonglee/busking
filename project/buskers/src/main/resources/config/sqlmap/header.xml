@@ -136,6 +136,7 @@
       select count(*)
         from tb_message
        where read_status = 'N'
+         and receiver_is_deleted = 'N'
          and receiver_member_no = #{memberNo}
    </select>
    

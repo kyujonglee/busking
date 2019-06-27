@@ -12,8 +12,9 @@
 	  // 메인 영상 스크립트
 	  $.ajax({
 		  url : videoItemUrl,
-		  data : "buskerNo="+buskerNo
+		  data : "buskerNo="+paramBuskerNo
 	  }).done((video)=>{
+		  console.log(video);
 		  if(video.length === 0){
 			  $(".busker-content__item:first-child").html(`
 				  <div class="busker-content__empty">버스커가 올린 영상이 존재하지 않습니다.</div>  

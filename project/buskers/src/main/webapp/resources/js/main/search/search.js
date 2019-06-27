@@ -35,8 +35,8 @@ $.ajax({
 	    		$(".artist__search__list_detail").append(`
 	    			<div class="artist__search__list__info">
 					  	<img src= `+nomalProfile+`>
-		            	<div>
-		             		<a href="`+artistPage+result[i].buskerNo+`" >`+result[i].activityName+`</a>
+		            	<div class="artist__search__list_detail-name">
+		             		<a href="${artistPage+result[i].buskerNo}" class="artist__search-profile-title">${result[i].activityName}</a>
 		             	</div>
 		             	<div></div>
 	              	</div>
@@ -45,8 +45,8 @@ $.ajax({
 	    		$(".artist__search__list_detail").append(`
 	    			<div class="artist__search__list__info">
 					  	<img src="`+fileDownload+`?path=`+result[i].profileImgPath+result[i].profileImg+`">
-		            	<div>
-		             		<a href="`+artistPage+result[i].buskerNo+`" >`+result[i].activityName+`</a>
+		            	<div class="artist__search__list_detail-name">
+		             		<a href="${artistPage+result[i].buskerNo}" class="artist__search-profile-title">${result[i].activityName}</a>
 		             	</div>
 		             	<div></div>
 	              	</div>

@@ -41,7 +41,7 @@
 .main-agency .agency-table th {
   text-align: center;
   vertical-align: middle;
-  padding: 10px 10px;
+  padding : 8px;
   box-sizing : border-box;
 }
 .main-agency .agency-table td a {

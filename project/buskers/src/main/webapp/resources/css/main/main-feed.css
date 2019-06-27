@@ -39,6 +39,7 @@
 }
 
 .feed-card-header img {
+	width : 100%;
 	max-width: 100%;
 	transition: 0.3s;
 }

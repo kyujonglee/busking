@@ -1,8 +1,9 @@
 
-.main-agency {
-	height: auto;
+.main-body .main-agency {
+	height: calc(100vh - 100px);
+	margin : 0 auto;
 /* 	position: absolute; */
-	width: 100%;
+	width: 70%;
 /* 	background-color: var(--color-background); */
 	padding : 0 70px;
 	box-sizing : border-box;

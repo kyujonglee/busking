@@ -5,6 +5,7 @@
 @import 'check.css';
 @import 'detail.css';
 
-/* .main-body__agency { */
-/* 	background-color : var(--color-background); */
-/* } */
+
+.main-agency .board_title {
+	margin-bottom : 50px;
+}

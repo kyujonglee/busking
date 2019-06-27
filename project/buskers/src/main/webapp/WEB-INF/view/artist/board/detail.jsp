@@ -8,9 +8,9 @@
 	<header class="busker-show__header">
 		<div class="busker-show__header-top-menu">
 			<a class="header-top-menu__content"
-				href="<c:url value='/artist/main/main.do'/>?buskerNo=${buskerNo}"> <i
+				href="<c:url value='/artist/main/main.do'/>?buskerNo=${param.buskerNo}"> <i
 				class="fas fa-home fa-lg"></i> 버스커 홈
-			</a> &gt <a href="<c:url value='list.do?buskerNo=${buskerNo}' />" class="header-top-menu__content"> 공연일정 </a> &gt <a
+			</a> &gt <a href="<c:url value='list.do?buskerNo=${param.buskerNo}' />" class="header-top-menu__content"> 공연일정 </a> &gt <a
 				class="header-top-menu__content"> 상세조회 </a>
 		</div>
 		<div class="busker-show__header-title">
@@ -87,7 +87,7 @@
 								<button type="button" class="busker-show-delete__btn">삭제</button>
 							</a>
 						</c:if>
-						<a href="list.do?buskerNo=${buskerNo}">
+						<a href="list.do?buskerNo=${param.buskerNo}">
 							<button type="button" class="busker-show-list__btn">목록</button>
 						</a>
 					</div>
@@ -97,19 +97,7 @@
 </section>
 <script src="<c:url value='/resources/js/artist/board/map.js' />"></script>
 <script>
-function init() {
-  console.log("detail 초기실행");
-  const lat = '<c:out value="${show.lat}"/>';
-  const lon = '<c:out value="${show.lon}"/>';
-  mapInit(lat, lon);
-}
-const no = ${sessionScope.user eq null? 0 : sessionScope.user.buskerNo};
-const update = (showNo, enrollDate) => {
-  if(new Date() > new Date(enrollDate)){
-	  alert("현재 날짜 이전의 공연날짜는 수정할 수 없습니다.");
-  }else {
-	  location.href = `updateForm.do?showNo=` + showNo+ `&buskerNo=`+${buskerNo};
-  }
-};
-init();
+	const lat = '<c:out value="${show.lat}"/>';
+	const lon = '<c:out value="${show.lon}"/>';
 </script>
+<script src="<c:url value='/resources/js/artist/board/detail.js' />"></script>

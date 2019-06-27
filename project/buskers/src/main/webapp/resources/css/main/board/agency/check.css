@@ -13,7 +13,7 @@
     text-align: center;
     width: 30%;
     margin: 0 auto;
-    margin-top : 50px;
+    padding-top : 50px;
     margin-bottom: 30px;
     color : var(--color-black-check);
     font-size : 26px;
@@ -21,7 +21,7 @@
 }
 .agency-check__section {
     margin : 0 auto;
-    width: 30%;
+    width: 50%;
     border : 1px solid rgba(0, 0, 0, 0.1);
     border-radius: 10px;
     background-color : white;

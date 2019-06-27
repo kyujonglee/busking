@@ -38,13 +38,13 @@ Number.prototype.zf = function(len){return this.toString().zf(len);};
 
 
 
-//수정버튼 클릭시에 다른 수정버튼을 숨김
+//삭제버튼 클릭시에 다른 수정버튼을 숨김
 $(document).on("click",".videoMenu",function(event){
     $('.video_menu_modify').hide();
     event.stopPropagation();   
     $(this).children(".video_menu_modify").show();
 });
-//바탕화면 클릭시에 수정버튼 숨김
+//바탕화면 클릭시에 삭제버튼 숨김
 $(".panel-body").click(function() {
     $('.video_menu_modify').hide();
 });
@@ -61,7 +61,6 @@ $(document).on("click",".video_menu_modify",function(){
 			$(".panel-body").html("<div class='video_body'></div>");
 			page = realPage;
 			spage = (page -1) * 6;
-			$(".panel-body").html("<div class='video_body'></div>");
 			showList(spage);
 			pageList(page);
 			
