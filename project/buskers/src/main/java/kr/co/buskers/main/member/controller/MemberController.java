@@ -68,8 +68,9 @@ public class MemberController {
 			return "main/member/loginform";
 		}
 		String url = referer.substring(referer.indexOf("/",referer.indexOf("buskers")));
-		System.out.println("url : " + url);
 		if(url.equals("/main/member/signupform.do")) {
+			return "main/member/loginform";
+		} else if(url.equals("/main/member/findIdResult.do") || url.equals("/main/member/findPasswordResult.do")) {
 			return "main/member/loginform";
 		} else {
 			prevUrl.setPrevUrl(url);
