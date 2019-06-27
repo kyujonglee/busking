@@ -16,7 +16,6 @@ $("#findPass").click(function() {
     		});
 		}
 	}); 
-	let msg = '${msg}';
 	if (msg === 'msgFalse') {
 		alert("이메일 혹은 아이디가 일치하지 않습니다!");    		
 	}

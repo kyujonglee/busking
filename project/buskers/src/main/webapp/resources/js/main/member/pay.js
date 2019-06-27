@@ -33,7 +33,6 @@ let memberNo = "${sessionScope.user.memberNo}";
 
 				}).fail(function(xhr){
 					alert("서버 처리중 에러발생")
-					console.dir(xhr);
 				});
 				Swal.fire({
 					  title:cash+'충전이 완료됐습니다.',

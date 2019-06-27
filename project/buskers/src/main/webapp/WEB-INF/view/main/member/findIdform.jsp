@@ -36,4 +36,7 @@
 
     </div>
 </main>
+<script>
+let msg = '${msg}';
+</script>
 <script src="<c:url value='/resources/js/main/member/findId.js'/>"></script>

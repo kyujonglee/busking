@@ -1,3 +1,4 @@
+
 package kr.co.buskers.main.member.util;
 
 import javax.mail.MessagingException;
@@ -20,13 +21,11 @@ public class EmailSender  {
             msg.setRecipients(MimeMessage.RecipientType.TO , InternetAddress.parse(email.getReceiver()));
            
         }catch(MessagingException e) {
-            System.out.println("MessagingException");
             e.printStackTrace();
         }
         try {
             mailSender.send(msg);
         }catch(MailException e) {
-            System.out.println("MailException발생");
             e.printStackTrace();
         }
     }

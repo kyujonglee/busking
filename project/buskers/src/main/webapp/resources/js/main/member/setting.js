@@ -117,7 +117,6 @@ function handleImgFileSelect(e) {
 		reader.onload = function (e) {
 			$(".preview-profile").css('display','inline-block');
 			$(".btn-file-word").css('display','none');
-			console.log(e.target.result);
 			$("#profile__preview").attr("src", e.target.result);
 			
 		}
@@ -164,8 +163,6 @@ $(".saveBtn").click(function (f) {
 			},
 			error: function(error) {
 				alert("프로필 이미지 업로드에 실패하였습니다.");
-				console.log(error);
-				console.log(error.status);
 			}
 			
 		});
