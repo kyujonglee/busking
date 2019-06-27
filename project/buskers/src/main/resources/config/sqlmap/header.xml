@@ -204,6 +204,7 @@
 			 inner join tb_follow f on f.busker_no = a.busker_no
 			   and a.member_no = f.member_no
 			   and f.follow_status = 'y'
+			   and is_read = 'n'
 			   and a.member_no = #{memberNo}
             ) as is_not_read_cnt
         FROM DUAL;
