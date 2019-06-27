@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<link rel="stylesheet" href="<c:url value='/resources/css/main/board/agency/agency.css'/>" />
 <div class="member-agency">
 	<section class="agency-insert">
       <div class="agency-insert__item">
