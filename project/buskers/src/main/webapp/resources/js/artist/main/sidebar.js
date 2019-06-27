@@ -38,7 +38,7 @@ $.ajax({
 	$(".busker-side__profile-photo").prepend(
 	`<img src=`+defaultProfile+`>`		
 	)
-	if(profileImg != null){
+	if(profileImg != null && profileImg != "" ){
 		$(".busker-side__profile-photo img:eq(0)").attr("src",
 			fileDownload+profileImgPath+profileImg
 		)
