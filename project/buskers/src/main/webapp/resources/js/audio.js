@@ -58,13 +58,27 @@ function whenPlayed() {
     .addClass("fas fa-play fa-lg");
 }
 
+// $(document).ready(() => {
+//   setTimeout(() => {
+//     console.log("shit");
+//     console.log(audioItemList.length);
+//     if (audioItemList.length !== 0) {
+//       console.log("fucking shit");
+//       audio.canplay = function() {
+//         console.log("fucking shit2222");
+//         this.play();
+//         whenPaused();
+//       };
+//     }
+//   }, 500);
+// });
 $(document).ready(() => {
-  if (audioItemList.length !== 0) {
-	  audio.oncanplaythrough = function(){
-		  this.play();
-		  whenPaused();
-	  };
-  }
+  setTimeout(() => {
+    if (audioItemList.length !== 0) {
+      audio.play();
+      whenPaused();
+    }
+  }, 1000);
 });
 
 canvas.onclick = function(e) {
@@ -107,7 +121,7 @@ audio.addEventListener("timeupdate", function() {
     <span id="duration"> ${du + ":" + pad(duration % 60)} </span>
     `);
   }
-  
+
   // 그림을 그릴 컨텍스트
   ctx.clearRect(0, 0, canvas.clientWidth, canvas.clientWidth);
   const rectWidth = (currentTime / duration) * canvas.clientWidth;

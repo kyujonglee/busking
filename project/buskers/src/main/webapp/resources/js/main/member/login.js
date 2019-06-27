@@ -72,7 +72,6 @@
     						}
     					}).fail(function(xhr){
     						alert("서버 처리중 에러발생")
-    						console.dir(xhr);
     					})
               	 	}
              	})
@@ -134,11 +133,10 @@
     						}
     					}).fail(function(xhr){
     						alert("서버 처리중 에러발생")
-    						console.dir(xhr);
     					})
 
 			} else {
-				console.log("callback 처리에 실패하였습니다.");
+				
 			}
 		});
 	});
@@ -171,7 +169,6 @@
 			}
 		}).fail(function(xhr){
 			alert("서버 처리중 에러발생")
-			console.dir(xhr);
 		})
 	  
 	  

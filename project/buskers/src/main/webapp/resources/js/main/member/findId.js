@@ -10,7 +10,6 @@ $("#findId").click(function() {
 	});
 	
 });
-let msg = '${msg}';
 if (msg === 'msgEmail') {
 	alert("존재하지않는 이메일 입니다!");    		
 }

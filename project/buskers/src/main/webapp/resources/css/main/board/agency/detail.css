@@ -4,7 +4,7 @@
     overflow-wrap: break-word;
     white-space: pre-line;
     word-break: break-all; 
-    height : 200px;
+    max-height : 150px;
     overflow : auto;
 }
 
