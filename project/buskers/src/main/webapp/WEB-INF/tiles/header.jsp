@@ -162,7 +162,11 @@
 						if ( (time / (1000*60*60)) > 1 ) {
 							gapTime = parseInt(time / (1000*60*60)) + "시간 " + Math.floor((time/(1000*60)) % 60) + "분 전";
 						} else {
-							gapTime = Math.floor((time/(1000*60)) % 60) + "분 전";
+							if (Math.floor((time/(1000*60)) % 60) <= 1 ) {
+								gapTime = "방금 전";
+							} else {
+								gapTime = Math.floor((time/(1000*60)) % 60) + "분 전";
+							}
 						}
 					}
 					let type = "";
