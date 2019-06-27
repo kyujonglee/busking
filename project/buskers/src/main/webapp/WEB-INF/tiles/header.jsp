@@ -130,7 +130,7 @@
 
 	const buskerNo = ${(sessionScope.user eq null)? 0 : sessionScope.user.buskerNo};
 	
-	toastr.options.positionClass = 'toast-bottom-right';
+	toastr.options.positionClass = 'toast-top-right';
 	toastr.options.closeButton = true;
 
 	/** 실시간 알림 */

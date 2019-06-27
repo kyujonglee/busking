@@ -21,7 +21,6 @@ $(".signout").click(function() {
 	    	    var auth2 = gapi.auth2.getAuthInstance();
 	    	    auth2.signOut().then(function () {
 	    	    	alert("사인아웃실행됨");
-    	        console.log('User signed out.');
     	    });
     	  }
 	   
