@@ -251,3 +251,19 @@
 	align-items : center;
 	margin : 10px 0px;
 }
+
+.buskers__recommend::-webkit-scrollbar {
+  background-color:#fff;
+  width:12px
+}
+
+.buskers__recommend::-webkit-scrollbar-track {
+  background-color:#fff;
+  
+}
+
+.buskers__recommend::-webkit-scrollbar-thumb {
+  background-color:#000;
+  border-radius:20px;
+  border:2px solid #fff;
+}

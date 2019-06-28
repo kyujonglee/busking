@@ -140,11 +140,12 @@
 
 .reply_list {
 	margin-left: 60px;
+	margin-top: 10px;
 }
 
 .comment_info {
 	display: flex;
-}
+} 
 
 .comment_write_info {
 	display: flex;
@@ -510,5 +511,5 @@
 
 .bubble p {
 	text-align: left;
-	line-height: 25px;
+	line-height: 20px;
 }
