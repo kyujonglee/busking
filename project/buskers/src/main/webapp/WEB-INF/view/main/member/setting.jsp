@@ -37,7 +37,7 @@
 				<hr class="profile_hr">
 				<div class="profile_countbox">
 					<div class="profile_posts">
-						<p>6</p>
+						<p>0</p>
 						<p>게시글</p>
 					</div>
 					<div class="profile_comment">

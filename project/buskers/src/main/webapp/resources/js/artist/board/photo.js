@@ -25,8 +25,8 @@ $(document).on("click","#regBtn",function(){
 	//파일 유효성 검사
 	let fileName = $("#photo")[0].files[0].name;	
 	fileName = fileName.slice(fileName.indexOf(".") + 1).toLowerCase(); //파일 확장자를 잘라내고, 비교를 위해 소문자로 만듭니다.
-	if(fileName != "jpg" && fileName != "png" &&  fileName != "gif" &&  fileName != "bmp"){ //확장자를 확인합니다.
-		alert('썸네일은 이미지 파일(jpg, png, gif, bmp)만 등록 가능합니다.');
+	if(fileName != "jpg" && fileName != "jpeg" && fileName != "png" &&  fileName != "gif" &&  fileName != "bmp"){ //확장자를 확인합니다.
+		alert('썸네일은 이미지 파일(jpg, png, gif, bmp,jpeg)만 등록 가능합니다.');
 		return;
 	}
 	//파일등록 에이작스
