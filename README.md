@@ -19,4 +19,8 @@ directory structure
 
 - project(folder) > buskers, node_buskers
 
-<img src='/img/메인페이지.png' width='400px' height='300px'/>
+<img src='/img/메인페이지1.png' width='400px' height='300px'/>
+
+[![Main](/img/메인페이지1.png)](메인페이지)
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/sqvoI1b5tx0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
