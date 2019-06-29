@@ -19,7 +19,7 @@ directory structure
 
 - project(folder) > buskers, node_buskers
 
-[![Video Label](http://img.youtube.com/vi/uLR1RNqJ1Mw/0.jpg)](https://www.youtube.com/watch?v=sqvoI1b5tx0) Video Label
+[![Video Label](https://img.youtube.com/vi/sqvoI1b5tx0/0.jpg)](https://www.youtube.com/watch?v=sqvoI1b5tx0) Video Label
 
 [![Main](/img/메인페이지1.png)](메인페이지)
 
