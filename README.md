@@ -19,8 +19,12 @@ directory structure
 
 - project(folder) > buskers, node_buskers
 
-<img src='/img/메인페이지1.png' width='400px' height='300px'/>
+[![Video Label](http://img.youtube.com/vi/uLR1RNqJ1Mw/0.jpg)](https://www.youtube.com/watch?v=sqvoI1b5tx0) Video Label
 
 [![Main](/img/메인페이지1.png)](메인페이지)
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/sqvoI1b5tx0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+[![Main](/img/메인페이지2.png)](메인페이지)
+
+[![Main](/img/메인페이지3.png)](메인페이지)
+
+[![Main](/img/메인페이지4.png)](메인페이지)
