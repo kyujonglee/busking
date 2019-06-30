@@ -59,7 +59,6 @@ public class HeaderController {
 
 	@RequestMapping("message/delete-sent.do")
 	public String deleteSentMessage(int[] msgNo) {
-		
 		service.deleteSentMessage(msgNo);
 		return UrlBasedViewResolver.REDIRECT_URL_PREFIX + "list.do?active=sent_box";
 	}
@@ -67,29 +66,24 @@ public class HeaderController {
 	@RequestMapping("alarm/alarm-count-ajax.do")
 	@ResponseBody
 	public int selectAlarmCount(HttpSession session) {
-		
 		return service.selectAlarmCount(session);
 	}
 	
 	@RequestMapping("message/message-count-ajax.do")
 	@ResponseBody
 	public int selectMessageCount(HttpSession session) {
-		
 		return service.selectMessageCount(session);
 	}
 	
 	@RequestMapping("message/detail.do")
 	public void detail(int msgNo, Model model) {
-		
 		Map<String, Object> result = service.detail(msgNo);
-		
 		model.addAttribute("message", result.get("message"));
-		
 	}
+	
 	@RequestMapping("message/receive-member-ajax.do")
 	@ResponseBody
 	public int selectMemberNickName(String nickName) {
-		System.out.println(nickName);
 		return service.selectMemberNickName(nickName);
 	}
 }
