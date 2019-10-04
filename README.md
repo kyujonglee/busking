@@ -1,5 +1,19 @@
 # busking
 
+<h1 align="center"> 😆Welcome to buskers 😆</h1>
+<p>
+  <img src="https://img.shields.io/badge/spring-5.1.6-blue.svg" />
+  <a href="https://github.com/kyujonglee/busking#readme">
+    <img alt="Documentation" src="https://img.shields.io/badge/documentation-none-red.svg" target="_blank" />
+  </a>
+  <a href="https://github.com/demetoir/day3-challenge/graphs/commit-activity">
+    <img alt="Maintenance" src="https://img.shields.io/badge/Maintained%3F-nope-green.svg" target="_blank" />
+  </a>
+  <a href="https://github.com/demetoir/day3-challenge/blob/master/LICENSE">
+    <img alt="License" src="https://img.shields.io/badge/License-Apache_Lisense_2.0-yellow.svg" target="_blank" />
+  </a>
+</p>
+
 ## 기획의도 
 평소 버스킹에 관한 정보를 각각의 버스킹 그룹의 sns등을 찾아봐야하는 불편함을 해소함과 동시에 의사소통도 원활하게 하는 것.
 각각 찾아봐야했던 정보를 한곳에 취합함으로써, 버스커들은 홍보, 정보제공, sns공유, 팬들과의 의사소통 등이 편해지게 됩니다.
@@ -7,8 +21,8 @@
 이를 통하여 버스킹 문화를 활성화시키는 것이 프로젝트의 목적입니다.
 
 ## 프로젝트 기간
-`약 7주간 진행(2주: 데이터 모델링, 기획 등, 4주: 개발기간, 1주: 발표준비 및 코드 리팩토링)
-팀원별로 풀스텍으로 프로젝트를 진행함.`
+> 약 7주간 진행(2주: 데이터 모델링, 기획 등, 4주: 개발기간, 1주: 발표준비 및 코드 리팩토링)
+  팀원별로 풀스텍으로 프로젝트를 진행함.
 
 ## 프로젝트 영상
 [![Video Label](https://img.youtube.com/vi/sqvoI1b5tx0/0.jpg)](https://www.youtube.com/watch?v=sqvoI1b5tx0)
@@ -110,3 +124,5 @@
 
 [![](/img/업체등록(관리자).png)](업체게시판)
 
+***
+_This README was generated with ❤️ by [readme-md-generator](https://github.com/kefranabg/readme-md-generator)_
