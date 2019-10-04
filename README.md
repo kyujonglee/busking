@@ -2,6 +2,7 @@
 
 <h1 align="center"> 😆Welcome to buskers 😆</h1>
 <p>
+  <img src="https://img.shields.io/badge/version-0.0.1-pink.svg" />
   <img src="https://img.shields.io/badge/spring-5.1.6-blue.svg" />
   <a href="https://github.com/kyujonglee/busking#readme">
     <img alt="Documentation" src="https://img.shields.io/badge/documentation-none-red.svg" target="_blank" />
